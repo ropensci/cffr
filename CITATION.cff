@@ -1,34 +1,8 @@
 cff-version: 1.2.0
-message: "To cite package 'igoR' in publications use:"
+title: 'igoR: Intergovernmental Organizations Database'
+message: If you use this software, please cite it using these metadata.
 authors:
 - family-names: "Hernangómez"
   given-names: "Diego"
   orcid: "https://orcid.org/0000-0001-8457-4658"
-title: "igoR"
-doi: 10.5281/zenodo.4442958
-repository-code: "https://github.com/dieghernan/igoR"
-url: https://dieghernan.github.io/igoR/
-license: GPL-3.0-or-later
 abstract: "Tools to extract information from the Intergovernmental Organizations (IGO) Database , version 3, provided by the Correlates of War Project <https://correlatesofwar.org/>. See also Pevehouse, J.C. et al. (2020), <https://doi.org/10.1177/0022343319881175>.  Version 3 includes information from 1815 to 2014."
-references:
-  - type: article
-    scope: Please also cite this article.
-    title: "Tracking organizations in the world: The Correlates of War IGO Version 3.0 datasets."
-    authors:
-    - family-names: Pevehouse
-      name-particle: CW
-      given-names: Jon
-    - family-names: Nordstrom
-      given-names: Timothy
-    - family-names: McManus
-      name-particle: W
-      given-names: Roseanne
-    - family-names: Jamison
-      name-particle: Spencer
-      given-names: Anne
-    year: 2020
-    journal: Journal of Peace Research
-    volume: 57
-    number: 3
-    pages: 492–503
-    doi: 10.1177/0022343319881175
