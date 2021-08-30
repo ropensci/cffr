@@ -48,12 +48,16 @@ citat <- yaml::as.yaml(
     ),
     abstract = abstract
 
-  ),
-  indent = 1
+  )
 )
 
 
 yaml::write_yaml(citat,"CITATION.cff")
 
-n <- yaml::as.yaml(list(foo=list(list(x = 1, y = 2), list(x = 3, y = 4))))
-yaml::write_yaml(n,"test.cff")
+# Now read it and modify it
+
+valid <- readLines("CITATION.cff")
+valid <- valid[-1]
+valid <- gsub("^  ","", valid)
+writeLines(valid, "CITATION.cff")
+

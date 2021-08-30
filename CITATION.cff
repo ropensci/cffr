@@ -1,10 +1,10 @@
-  cff-version: 1.2.0
-  title: 'igoR: Intergovernmental Organizations Database'
-  message: If you use this software, please cite it using these metadata.
-  authors:
-    family-names: Hernangómez
-    given-names: Diego
-  abstract: Tools to extract information from the Intergovernmental Organizations ('IGO')
-    Database , version 3, provided by the Correlates of War Project <https://correlatesofwar.org/>.
-    See also Pevehouse, J. C. et al. (2020), <doi:10.1177/0022343319881175>. Version
-    3 includes information from 1815 to 2014.
+cff-version: 1.2.0
+title: 'igoR: Intergovernmental Organizations Database'
+message: If you use this software, please cite it using these metadata.
+authors:
+  family-names: Hernangómez
+  given-names: Diego
+abstract: Tools to extract information from the Intergovernmental Organizations ('IGO')
+  Database , version 3, provided by the Correlates of War Project <https://correlatesofwar.org/>.
+  See also Pevehouse, J. C. et al. (2020), <doi:10.1177/0022343319881175>. Version
+  3 includes information from 1815 to 2014.
