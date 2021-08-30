@@ -1,0 +1,59 @@
+rm(list = ls())
+
+pkg <- system.file("DESCRIPTION", package = "igoR")
+msg <- "If you use this software, please cite it using these metadata."
+
+
+abstract <- desc::desc_get("Description", file = pkg)
+
+# Helper
+clean_str <- function(str) {
+  clean <- gsub("[\n\r]", " ", str)
+  clean <- gsub("\\s+", " ", clean)
+
+  clean
+}
+abstract <- clean_str(abstract)
+abstract <- unname(abstract)
+
+
+# End abstract
+
+
+# Title
+title <- paste0(desc::desc_get("Package", file = pkg),
+                ": ",
+                desc::desc_get("Title", file = pkg))
+
+title <- clean_str(title)
+
+
+# End title
+
+# Author
+
+auth <- desc::desc_get_author(role = c("aut"), file=pkg)
+
+
+# to yaml
+
+citat <- yaml::as.yaml(
+  list(
+    "cff-version" = "1.2.0",
+    title = title,
+    message = msg,
+    authors = list(
+      "family-names" = auth$family,
+      "given-names" = auth$given
+    ),
+    abstract = abstract
+
+  ),
+  indent = 1
+)
+
+
+yaml::write_yaml(citat,"CITATION.cff")
+
+n <- yaml::as.yaml(list(foo=list(list(x = 1, y = 2), list(x = 3, y = 4))))
+yaml::write_yaml(n,"test.cff")

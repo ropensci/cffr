@@ -1,0 +1,20 @@
+Package: cffR
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: 
+    c(person(given = "Diego",
+             family = "Hernangómez",
+             role = c("aut", "cre"),
+             email = "diego.hernangomezherrero@gmail.com",
+             comment = c(ORCID = "0000-0001-8457-4658")),
+      person(given = "test",
+             role = "ctb"))
+Description: What the package does (one paragraph).
+License: agaga
+Imports: 
+    jsonlite (>= 1.7.2),
+    yaml (>= 2.2.1)
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
