@@ -94,17 +94,30 @@ writeLines(valid, "CITATION.cff")
 
 # Validation
 
-f <- yaml::read_yaml("CITATION.cff")
+# Read file
+citfile <- yaml::read_yaml("CITATION.cff")
 
-jsonlite::write_json(f, "test.json", pretty = TRUE)
+# Convert to json
+jsonlite::write_json(citfile, "CITATION.json", pretty = TRUE)
+
+# Clean json file
+citfile_clean <- readLines("CITATION.json")
+citfile_clean <- gsub('["','"', citfile_clean, fixed = TRUE)
+citfile_clean <- gsub('"]','"', citfile_clean, fixed = TRUE)
+writeLines(citfile_clean, "CITATION.json")
+
+# Download latest scheme
 download.file("https://raw.githubusercontent.com/citation-file-format/citation-file-format/main/schema.json",
               "schema.json", mode="wb", quiet = TRUE)
 
-a <- readLines("test.json")
-a <- gsub('["','"', a, fixed = TRUE)
-a <- gsub('"]','"', a, fixed = TRUE)
-writeLines(a, "test.json")
-jsonvalidate::json_validate("test.json", "schema.json", verbose = TRUE)
 
-rm(list = ls())
+result <- jsonvalidate::json_validate("CITATION.json",
+                            "schema.json",
+                            verbose = TRUE)
+
+result
+if (result == FALSE){
+  stop("Error on your cff file")
+}
+
 

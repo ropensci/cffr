@@ -20,15 +20,11 @@ jobs:
         with:
           use-public-rspm: true
 
-      - uses: r-lib/actions/setup-r-dependencies@v1
-        with:
-          extra-packages: |
-            jsonlite
-            yaml
-            jsonvalidate
-
       - name: Validate cff
         run: |
+          # Install libraries
+          install.packages(c("yaml","jsonlite", "jsonvalidate"))
+
           # Read file
           citfile <- yaml::read_yaml("CITATION.cff")
 
