@@ -1,10 +1,15 @@
 cff-version: 1.2.0
-title: 'igoR: Intergovernmental Organizations Database'
 message: If you use this software, please cite it using these metadata.
+title: 'dplyr: A Grammar of Data Manipulation'
+version: 1.0.7
 authors:
-  - family-names: Hernangómez
-    given-names: Diego
-abstract: Tools to extract information from the Intergovernmental Organizations ('IGO')
-  Database , version 3, provided by the Correlates of War Project <https://correlatesofwar.org/>.
-  See also Pevehouse, J. C. et al. (2020), <doi:10.1177/0022343319881175>. Version
-  3 includes information from 1815 to 2014.
+- family-names: Wickham
+  given-names: Hadley
+- family-names: François
+  given-names: Romain
+- family-names: Henry
+  given-names: Lionel
+- family-names: Müller
+  given-names: Kirill
+abstract: A fast, consistent tool for working with data frame like objects, both in
+  memory and out of memory.

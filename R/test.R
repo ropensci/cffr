@@ -1,6 +1,6 @@
 rm(list = ls())
 
-pkg <- system.file("DESCRIPTION", package = "igoR")
+pkg <- system.file("DESCRIPTION", package = "dplyr")
 msg <- "If you use this software, please cite it using these metadata."
 
 
@@ -34,30 +34,40 @@ title <- clean_str(title)
 
 auth <- desc::desc_get_author(role = c("aut"), file=pkg)
 
+auth_yaml <- list()
+for (i in seq_len(length(auth))){
+ auth_yaml <- c(auth_yaml, list(list("family-names" = auth[i]$family,
+                                "given-names" = auth[i]$given)))
+
+
+}
+
+
 
 # to yaml
 
 citat <- yaml::as.yaml(
   list(
     "cff-version" = "1.2.0",
-    title = title,
     message = msg,
-    authors = list(
-      "family-names" = auth$family,
-      "given-names" = auth$given
-    ),
+    title = title,
+    version = desc::desc_get("Version", pkg),
+    authors = auth_yaml,
     abstract = abstract
-
   )
 )
 
-
+# Write CITATION
 yaml::write_yaml(citat,"CITATION.cff")
+
+
 
 # Now read it and modify it
 
 valid <- readLines("CITATION.cff")
 valid <- valid[-1]
 valid <- gsub("^  ","", valid)
+valid
+
 writeLines(valid, "CITATION.cff")
 
