@@ -1,10 +1,18 @@
 rm(list = ls())
 
-pkg <- system.file("DESCRIPTION", package = "dplyr")
+root <- "inst/examples/DESCRIPTION_plainauthors"
+#desc::desc_coerce_authors_at_r()
+
+#root <- system.file("DESCRIPTION", package="dplyr")
 msg <- "If you use this software, please cite it using these metadata."
 
+pkg <- desc::desc(root)
 
-abstract <- desc::desc_get("Description", file = pkg)
+pkg$coerce_authors_at_r()
+
+
+
+abstract <- pkg$get("Description")
 
 # Helper
 clean_str <- function(str) {
@@ -21,9 +29,9 @@ abstract <- unname(abstract)
 
 
 # Title
-title <- paste0(desc::desc_get("Package", file = pkg),
+title <- paste0(pkg$get("Package"),
                 ": ",
-                desc::desc_get("Title", file = pkg))
+                pkg$get("Title"))
 
 title <- clean_str(title)
 
@@ -32,16 +40,27 @@ title <- clean_str(title)
 
 # Author
 
-auth <- desc::desc_get_author(role = c("aut"), file=pkg)
+auth <- pkg$get_authors()
+# Fix this
+
+# desc::desc_get_authors(file=pkg)
+# a <- citation("dplyr")
+# b <- print(a, style = "R")
+# f <- as.list(unclass(a[1]))[[1]]
+#
+# attributes(f)$bibtype
+
 
 auth_yaml <- list()
 for (i in seq_len(length(auth))){
+  if ("aut" %in% auth[i]$role || "cre" %in% auth[i]$role){
+
  auth_yaml <- c(auth_yaml, list(list("family-names" = auth[i]$family,
                                 "given-names" = auth[i]$given)))
 
-
 }
-
+}
+auth_yaml
 
 
 # to yaml
@@ -51,12 +70,13 @@ citat <- yaml::as.yaml(
     "cff-version" = "1.2.0",
     message = msg,
     title = title,
-    version = desc::desc_get("Version", pkg),
+    version = pkg$get("Version"),
     authors = auth_yaml,
     abstract = abstract
   )
 )
 
+citat
 # Write CITATION
 yaml::write_yaml(citat,"CITATION.cff")
 
@@ -71,4 +91,20 @@ valid
 
 writeLines(valid, "CITATION.cff")
 
+
+# Validation
+
+f <- yaml::read_yaml("CITATION.cff")
+
+jsonlite::write_json(f, "test.json", pretty = TRUE)
+download.file("https://raw.githubusercontent.com/citation-file-format/citation-file-format/main/schema.json",
+              "schema.json", mode="wb", quiet = TRUE)
+
+a <- readLines("test.json")
+a <- gsub('["','"', a, fixed = TRUE)
+a <- gsub('"]','"', a, fixed = TRUE)
+writeLines(a, "test.json")
+jsonvalidate::json_validate("test.json", "schema.json", verbose = TRUE)
+
+rm(list = ls())
 
