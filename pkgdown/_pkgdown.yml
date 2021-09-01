@@ -1,6 +1,5 @@
 url: 'https://dieghernan.github.io/cffR/'
 template:
-  path: inst/pkgdown/templates
   params:
     bootswatch: paper
   opengraph:
