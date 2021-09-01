@@ -1,6 +1,10 @@
 ^cffR\.Rproj$
 ^\.Rproj\.user$
+^dev$
 ^LICENSE\.md$
-^revdep$
-^codemeta\.json$
-^CITATION\.cff$
+^\.github$
+^pkgdown$
+^docs$
+^data-raw$
+^_pkgdown\.yaml$
+^_pkgdown\.yml$

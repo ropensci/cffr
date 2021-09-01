@@ -21,3 +21,5 @@ cffR*.tar.gz
 cffR*.tgz
 .Rdata
 .DS_Store
+docs
+docs/
