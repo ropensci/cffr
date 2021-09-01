@@ -76,7 +76,8 @@ citat <- yaml::as.yaml(
   )
 )
 
-citat
+
+class(f)
 # Write CITATION
 yaml::write_yaml(citat,"CITATION.cff")
 
@@ -91,7 +92,7 @@ valid
 
 writeLines(valid, "CITATION.cff")
 
-
+desc_path = "DESCRIPTION"
 # Validation
 
 # Read file

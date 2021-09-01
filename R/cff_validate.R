@@ -16,7 +16,6 @@
 #'
 #' # .cff with errors
 #' cff_validate(system.file("examples/CITATION_error.cff", package = "cffR"))
-#'
 #' \dontrun{
 #' # If a CITATION file (note that is not .cff) it throws an error
 #' cff_validate(system.file("CITATION", package = "cffR"))
@@ -97,11 +96,13 @@ cff_validate <- function(path = "./CITATION.cff") {
   # Results
   message("\ncff_validate results-----")
   if (result == FALSE) {
-    message(crayon::red("Oops! ", path, " has errors:\n\n"))
+    message(
+      crayon::red("Oops! This CITATION.cff file has the following errors:\n\n")
+    )
     print(attributes(result)$errors)
     return(invisible(FALSE))
   } else {
-    message(crayon::green("Congratulations! ", path, " is valid"))
+    message(crayon::green("Congratulations! This CITATION.cff file is valid"))
     return(invisible(TRUE))
   }
 }

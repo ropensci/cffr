@@ -1,0 +1,63 @@
+#' Convert `DESCRIPTION` to cff format
+#'
+#' @description
+#' Extract information from a `DESCRIPTION` file and creates an object
+#' to be converted into a `CITATION.cff` file.
+#'
+#' @return A character value ready for writing into `yaml` format.
+#'
+#' @seealso [yaml::as.yaml()]
+#'
+#' @keywords internal
+#'
+#' @param desc_path Path to a `DESCRIPTION` file
+#'
+#' @param message A message to the human reader of the `CITATION.cff` file to
+#'   let them know what to do with the citation metadata.
+#'
+#' @seealso [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md)
+cff_description <- function(desc_path = "DESCRIPTION",
+                            message = "If you use this software, please cite it using these metadata.") {
+  pkg <- desc::desc(desc_path)
+  pkg$coerce_authors_at_r()
+
+
+  list_fields <-     list(
+     "cff-version" = "1.2.0",
+     message = message,
+     type = "software",
+     title = parse_desc_title(pkg),
+     version = parse_desc_version(pkg),
+     abstract = parse_desc_abstract(pkg),
+     "date-released" = parse_desc_date_released(pkg)
+  )
+  list_fields <- drop_null(list_fields)
+
+  parsed <- yaml::as.yaml(list_fields)
+
+  parsed
+}
+
+
+# Valid keys on CFF v1.2.0:
+# [DONE] abstract
+# authors (array of objects)
+# [DONE] cff-version
+# [WONT DO]commit
+# contact (object)
+# [DONE] date-released
+# doi
+# [WONT DO - Prefer DOI]identifiers (array of objects)
+# keywords
+# license
+# license-url
+# [DONE] message
+# preferred-citation (object)
+# [WONT DO] references (array of objects)
+# [WONT DO] repository
+# repository-artifact
+# repository-code
+# [DONE] title
+# [DONE] type
+# url
+# [DONE] version

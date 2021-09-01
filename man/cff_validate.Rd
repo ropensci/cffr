@@ -22,7 +22,6 @@ cff_validate(system.file("examples/CITATION_full.cff", package = "cffR"))
 
 # .cff with errors
 cff_validate(system.file("examples/CITATION_error.cff", package = "cffR"))
-
 \dontrun{
 # If a CITATION file (note that is not .cff) it throws an error
 cff_validate(system.file("CITATION", package = "cffR"))

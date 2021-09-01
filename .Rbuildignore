@@ -8,3 +8,4 @@
 ^data-raw$
 ^_pkgdown\.yaml$
 ^_pkgdown\.yml$
+^CITATION\.cff$
