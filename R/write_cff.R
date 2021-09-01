@@ -19,12 +19,15 @@ write_cff <- function(desc_path = "DESCRIPTION",
   message(crayon::green(outfile, "generated"))
 
   # Add CITATION.cff to .Rbuildignore
-  ignore <- readLines(".Rbuildignore")
-  ignore <- c(ignore, "^CITATION\\.cff$")
-  ignore <- unique(ignore)
+  if (file.exists(".Rbuildignore")) {
+    # nocov start
+    ignore <- readLines(".Rbuildignore")
+    ignore <- c(ignore, "^CITATION\\.cff$")
+    ignore <- unique(ignore)
 
-  message(crayon::blue("Adding ", outfile, "to .Rbuildignore"))
-  writeLines(ignore, ".Rbuildignore")
-
+    message(crayon::blue("Adding ", outfile, "to .Rbuildignore"))
+    writeLines(ignore, ".Rbuildignore")
+    # nocov end
+  }
   return(invisible(citat))
 }

@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it using these metadata.
+type: software
+title: 'cffR: What the Package Does (One Line, Title Case)'
+version: 0.0.0.9000
+authors:
+- family-names: Hernangómez
+  given-names: Diego
+abstract: What the package does (one paragraph).
+repository-code: https://github.com/dieghernan/cffR
+url: https://github.com/dieghernan/cffR
+contact:
+- family-names: Hernangómez
+  given-names: Diego
+  email: diego.hernangomezherrero@gmail.com

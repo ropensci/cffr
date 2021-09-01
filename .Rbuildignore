@@ -8,4 +8,6 @@
 ^data-raw$
 ^_pkgdown\.yaml$
 ^_pkgdown\.yml$
+^revdep$
+^codemeta\.json$
 ^CITATION\.cff$

@@ -47,7 +47,7 @@ parse_desc_date_released <- function(pkg) {
 parse_desc_urls <- function(pkg) {
   url <- pkg$get_urls()
   # Get issue url
-  issues <- tryCatch(pkg$get_field("BugReports"),
+  issues <- tryCatch(pkg$get_field("BugReports")[1],
     error = function(cond) {
       return(pkg$get_urls())
     }
@@ -76,9 +76,9 @@ parse_desc_urls <- function(pkg) {
 
   # Extract repo url
   repo_line <- which(lapply(domains, grepl, allurls)[[1]])
-  repository_code <- allurls[repo_line]
+  repository_code <- allurls[repo_line][1]
 
-  # The second url is considered for url arbitrarely
+  # The second url is considered for url arbitrarily
   if (isTRUE(length(allurls) > 1)) {
     url_end <- allurls[-repo_line][1]
   } else {
@@ -95,7 +95,9 @@ parse_desc_urls <- function(pkg) {
 
 # Mapped to Maintainer
 parse_desc_contacts <- function(pkg) {
-  contact <- as.person(pkg$get_maintainer())
+
+  # Select first maintainer (FIX THIS)
+  contact <- as.person(pkg$get_maintainer())[1]
   # This needs to be corrected along with persons
 
   if (is.null(contact$given)) {
@@ -112,4 +114,20 @@ parse_desc_contacts <- function(pkg) {
   parsed <- c(parsed, email = clean_str(contact$email))
   parsed <- drop_null(parsed)
   parsed
+}
+
+
+# Mapped to X-schema.org-keywords, as codemeta/codemetar
+parse_desc_keywords <- function(pkg) {
+  kword <- pkg$get("X-schema.org-keywords")
+
+  kword <- clean_str(kword)
+  kword <- unname(kword)
+
+  if (is.null(kword)) {
+    return(kword)
+  }
+
+  kword <- strsplit(kword, ", ")
+  kword
 }
