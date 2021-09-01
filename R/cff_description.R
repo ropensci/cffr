@@ -22,15 +22,20 @@ cff_description <- function(desc_path = "DESCRIPTION",
   pkg$coerce_authors_at_r()
 
 
-  list_fields <-     list(
-     "cff-version" = "1.2.0",
-     message = message,
-     type = "software",
-     title = parse_desc_title(pkg),
-     version = parse_desc_version(pkg),
-     abstract = parse_desc_abstract(pkg),
-     "date-released" = parse_desc_date_released(pkg)
+  list_fields <- list(
+    "cff-version" = "1.2.0",
+    message = message,
+    type = "software",
+    title = parse_desc_title(pkg),
+    version = parse_desc_version(pkg),
+    abstract = parse_desc_abstract(pkg),
+    "repository-code" = parse_desc_urls(pkg)$repo,
+    url = parse_desc_urls(pkg)$url,
+    "date-released" = parse_desc_date_released(pkg),
+    contact = parse_desc_contacts(pkg)
   )
+
+
   list_fields <- drop_null(list_fields)
 
   parsed <- yaml::as.yaml(list_fields)
@@ -44,7 +49,7 @@ cff_description <- function(desc_path = "DESCRIPTION",
 # authors (array of objects)
 # [DONE] cff-version
 # [WONT DO]commit
-# contact (object)
+# [DONE] contact (object)
 # [DONE] date-released
 # doi
 # [WONT DO - Prefer DOI]identifiers (array of objects)
@@ -55,9 +60,9 @@ cff_description <- function(desc_path = "DESCRIPTION",
 # preferred-citation (object)
 # [WONT DO] references (array of objects)
 # [WONT DO] repository
-# repository-artifact
-# repository-code
+# [WONT DO] repository-artifact
+# [DONE] repository-code
 # [DONE] title
 # [DONE] type
-# url
+# [DONE] url
 # [DONE] version
