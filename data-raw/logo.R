@@ -4,7 +4,7 @@ font_add_google("Roboto", "roboto")
 
 showtext_auto()
 sticker("data-raw/network.png",
-  package = "cffR",
+  package = "cffr",
   p_family = "roboto",
   p_fontface = "bold",
   s_width = 1.2,

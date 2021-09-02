@@ -16,9 +16,9 @@ vignettes/*.pdf
 *.knit.md
 .Renviron
 revdep
-cffR.Rcheck/
-cffR*.tar.gz
-cffR*.tgz
+cffr.Rcheck/
+cffr*.tar.gz
+cffr*.tgz
 .Rdata
 .DS_Store
 docs

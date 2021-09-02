@@ -1,4 +1,4 @@
 library(testthat)
-library(cffR)
+library(cffr)
 
-test_check("cffR")
+test_check("cffr")

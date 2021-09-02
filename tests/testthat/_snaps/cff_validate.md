@@ -1,7 +1,7 @@
 # Snapshot for validating message
 
     Code
-      err <- system.file("examples/CITATION_error.cff", package = "cffR")
+      err <- system.file("examples/CITATION_error.cff", package = "cffr")
       cff_validate(err)
     Message <simpleMessage>
       

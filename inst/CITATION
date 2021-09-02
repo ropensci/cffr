@@ -1,4 +1,4 @@
-citHeader("To cite cffR in publications use:")
+citHeader("To cite cffr in publications use:")
 
 year = format(Sys.time(), "%Y")
 vers = paste('R package version', meta$Version)
@@ -6,10 +6,10 @@ vers = paste('R package version', meta$Version)
 citEntry(
   ,
   entry = 'manual',
-  title = paste('cffR:', meta$Title),
+  title = paste('cffr:', meta$Title),
   author = "Diego Hernangómez",
   year = year,
   note = vers,
-  textVersion = paste0('Hernangómez, D. H. (', year, '). cffR: ', meta$Title, '. ', vers)
+  textVersion = paste0('Hernangómez, D. (', year, '). cffR: ', meta$Title, '. ', vers)
 )
 
