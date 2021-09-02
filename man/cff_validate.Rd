@@ -18,12 +18,12 @@ Validate a \code{CITATION.cff} file using the corresponding
 }
 \examples{
 # Full .cff example
-cff_validate(system.file("examples/CITATION_full.cff", package = "cffR"))
+cff_validate(system.file("examples/CITATION_full.cff", package = "cffr"))
 
 # .cff with errors
-cff_validate(system.file("examples/CITATION_error.cff", package = "cffR"))
+cff_validate(system.file("examples/CITATION_error.cff", package = "cffr"))
 \dontrun{
 # If a CITATION file (note that is not .cff) it throws an error
-cff_validate(system.file("CITATION", package = "cffR"))
+cff_validate(system.file("CITATION", package = "cffr"))
 }
 }
