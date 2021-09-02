@@ -11,3 +11,4 @@
 ^revdep$
 ^codemeta\.json$
 ^CITATION\.cff$
+^README\.Rmd$
