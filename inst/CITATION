@@ -4,12 +4,12 @@ year = format(Sys.time(), "%Y")
 vers = paste('R package version', meta$Version)
 
 citEntry(
-  ,
   entry = 'manual',
   title = paste('cffr:', meta$Title),
-  author = "Diego Hernangómez",
+  author = Filter(function(p) 'aut' %in% p$role, as.person(meta$Author)),
   year = year,
   note = vers,
-  textVersion = paste0('Hernangómez, D. (', year, '). cffR: ', meta$Title, '. ', vers)
+  url = meta$URL,
+  textVersion = paste('Hernangómez, D. (', year, '). cffr: ', meta$Title, '. ', vers, '.', sep = '')
 )
 
