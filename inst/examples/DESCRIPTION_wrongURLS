@@ -2,8 +2,8 @@ Package: codemetar
 Type: Package
 Title: Generate CodeMeta Metadata for R Packages
 Version: 0.1.0
-Author: Carl Boettiger [aut, cre, cph] <cboettig@gmail.com> (http://orcid.org/0000-0002-1642-628X)
-Maintainer: Carl Boettiger <cboettig@gmail.com> (http://orcid.org/0000-0002-1642-628X)
+Author: Carl Boettiger [aut, cre, cph] <cboettig@gmail.com> (https://orcid.org/0000-0002-1642-628X)
+Maintainer: Carl Boettiger <cboettig@gmail.com> (https://orcid.org/0000-0002-1642-628X)
 Description: Codemeta defines a 'JSON-LD' format for describing software metadata.
     This package provides utilities to generate, parse, and modify codemeta.jsonld
     files automatically for R packages.

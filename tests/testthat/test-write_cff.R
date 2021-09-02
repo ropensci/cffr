@@ -1,4 +1,4 @@
-test_that("Validate all DESCRIPTION files", {
+test_that("Validate packages", {
   allfiles <- list.files(system.file("examples",
     package = "cffr"
   ), pattern = "^DESC", full.names = TRUE)

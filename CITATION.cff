@@ -1,15 +1,24 @@
 cff-version: 1.2.0
 message: If you use this software, please cite it using these metadata.
 type: software
-title: 'cffR: What the Package Does (One Line, Title Case)'
+license: GPL-3.0-or-later
+title: 'cffr: What the Package Does (One Line, Title Case)'
 version: 0.0.0.9000
+abstract: What the package does (one paragraph).
 authors:
 - family-names: Hernangómez
   given-names: Diego
-abstract: What the package does (one paragraph).
-repository-code: https://github.com/dieghernan/cffR
-url: https://github.com/dieghernan/cffR
+  email: diego.hernangomezherrero@gmail.com
+  orcid: https://orcid.org/0000-0001-8457-4658
+repository-code: https://github.com/dieghernan/cffr
+url: https://github.com/dieghernan/cffr
 contact:
 - family-names: Hernangómez
   given-names: Diego
   email: diego.hernangomezherrero@gmail.com
+  orcid: https://orcid.org/0000-0001-8457-4658
+keywords:
+- a
+- b
+- c
+- d

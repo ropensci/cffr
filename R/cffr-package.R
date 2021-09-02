@@ -8,5 +8,5 @@
 NULL
 
 # import stuffs
-#' @importFrom utils download.file as.person
+#' @importFrom utils download.file as.person read.csv
 NULL

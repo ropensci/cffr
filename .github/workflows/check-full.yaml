@@ -10,7 +10,7 @@ on:
   pull_request:
     branches: [main, master]
   schedule:
-      - cron:  '30 08 1 * *'
+      - cron:  '30 11 * * 1,4'
 
 
 name: R-CMD-check
@@ -28,7 +28,7 @@ jobs:
           - {os: windows-latest, r: 'devel'}
           - {os: windows-latest, r: 'release'}
           - {os: windows-latest, r: 'oldrel'}
-          - {os: macOS-latest, r: 'devel'}
+          #- {os: macOS-latest, r: 'devel'}
           - {os: macOS-latest, r: 'release'}
           - {os: macOS-latest, r: 'oldrel'}
           - {os: ubuntu-20.04, r: 'release'}

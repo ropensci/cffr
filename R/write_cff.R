@@ -1,20 +1,40 @@
 
 write_cff <- function(desc_path = "DESCRIPTION",
-                      message = "If you use this software, please cite it using these metadata.",
                       outfile = "CITATION.cff") {
-  citat <- cff_description(desc_path, message)
+  citat <- cff_description(desc_path)
+  citat <- citat[cff_schema_keys()]
+
+  citat <- drop_null(citat)
 
   # Write CITATION
   yaml::write_yaml(citat, outfile)
 
-  # Now read it and modify it t make it valid
-  # This is due to the yaml package format (maybe is v1.1?)
+  message(crayon::green(outfile, "generated"))
 
-  valid <- readLines(outfile)
-  valid <- valid[-1]
-  valid <- gsub("^  ", "", valid)
+  # Add CITATION.cff to .Rbuildignore
+  if (file.exists(".Rbuildignore")) {
+    # nocov start
+    ignore <- readLines(".Rbuildignore")
+    ignore <- c(ignore, "^CITATION\\.cff$")
+    ignore <- unique(ignore)
 
-  writeLines(valid, outfile)
+    message(crayon::blue("Adding ", outfile, "to .Rbuildignore"))
+    writeLines(ignore, ".Rbuildignore")
+    # nocov end
+  }
+  return(invisible(citat))
+}
+
+# Just for testing
+write_cff_testing <- function(desc_path = "DESCRIPTION",
+                      outfile = "CITATION.cff") {
+  citat <- cff_description(desc_path)
+  citat <- citat[cff_schema_keys()]
+
+  citat <- drop_null(citat)
+
+  # Write CITATION
+  yaml::write_yaml(citat, outfile)
 
   message(crayon::green(outfile, "generated"))
 

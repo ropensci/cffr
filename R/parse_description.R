@@ -93,29 +93,6 @@ parse_desc_urls <- function(pkg) {
   return(url_list)
 }
 
-# Mapped to Maintainer
-parse_desc_contacts <- function(pkg) {
-
-  # Select first maintainer (FIX THIS)
-  contact <- as.person(pkg$get_maintainer())[1]
-  # This needs to be corrected along with persons
-
-  if (is.null(contact$given)) {
-    # Is a entity
-    parsed <- list(name = clean_str(contact$family))
-  } else {
-    # Is a person
-    parsed <- list(
-      "family-names" = clean_str(contact$family),
-      "given-names" = clean_str(contact$given)
-    )
-  }
-
-  parsed <- c(parsed, email = clean_str(contact$email))
-  parsed <- drop_null(parsed)
-  parsed
-}
-
 
 # Mapped to X-schema.org-keywords, as codemeta/codemetar
 parse_desc_keywords <- function(pkg) {
@@ -130,4 +107,37 @@ parse_desc_keywords <- function(pkg) {
 
   kword <- strsplit(kword, ", ")
   kword
+}
+
+# Mapped to License
+parse_desc_license <- function(pkg) {
+  licenses <- pkg$get_field("License")
+
+  # The schema only accepts two LiCENSES max
+
+  licenses <- unlist(strsplit(licenses, "\\| "))[1:2]
+
+  # Clean up and split
+  split <- strsplit(licenses, "\\| | \\+ |\\+")
+
+  # Clean leading and trailing blanks
+  split <- gsub("^ | $", "", split)
+  split <- unique(split)
+
+  licenses_df <- data.frame(LICENSE = split)
+
+  # Read mapping
+  cran_to_spdx <-
+    read.csv(system.file("extdata/cran-to-spdx.csv", package = "cffr"))
+
+  # Merge
+  licenses_df <- merge(licenses_df, cran_to_spdx)
+
+  # Clean results
+  licenses_list <- lapply(licenses_df$SPDX, clean_str)
+  licenses_list <- drop_null(licenses_list)
+
+  license_char <- unlist(licenses_list)
+
+  license_char
 }

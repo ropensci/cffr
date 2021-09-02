@@ -41,8 +41,19 @@ devtools::install_github("dieghernan/cffR")
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
+```{r example, eval=FALSE}
 library(cffr)
 ## basic example code
+create_cff(find.package("jsonlite"))
+```
+That produces this output:
+
+```{r echo=FALSE, comment=""}
+library(cffr)
+
+create_cff(find.package("jsonlite"))
+
+
 ```
 
+We can validate it ...
