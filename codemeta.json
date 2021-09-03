@@ -5,6 +5,7 @@
   "description": "The Citation File Format (version 1.2.0)\n    <doi:10.5281/zenodo.5171937> is a human and machine readable file\n    format which provides citation metadata for software. This package\n    provides core utilities to generate and validate this metadata.",
   "name": "cffr: Generate Citation File Format ('cff') Metadata for R Packages",
   "codeRepository": "https://github.com/dieghernan/cffr",
+  "relatedLink": "https://dieghernan.github.io/cffr/",
   "issueTracker": "https://github.com/dieghernan/cffr/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "0.0.0.9000",
@@ -122,7 +123,7 @@
     "SystemRequirements": null
   },
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata"],
-  "fileSize": "228.607KB",
+  "fileSize": "230.492KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
