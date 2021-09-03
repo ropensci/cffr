@@ -16,6 +16,7 @@ The Citation File Format (version 1.2.0)
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://dieghernan.github.io/cffr/}
   \item \url{https://github.com/dieghernan/cffr}
   \item Report bugs at \url{https://github.com/dieghernan/cffr/issues}
 }
