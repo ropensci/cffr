@@ -1,0 +1,106 @@
+---
+output: github_document
+editor_options: 
+  markdown: 
+    wrap: 80
+bibliography: bibtex.bib
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# cffr <img src="man/figures/logo.png" align="right" width="120"/>
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/dieghernan/cffr/workflows/R-CMD-check/badge.svg)](https://github.com/dieghernan/cffr/actions)
+[![codecov](https://codecov.io/gh/dieghernan/cffr/branch/master/graph/badge.svg)](https://codecov.io/gh/dieghernan/cffr)
+[![CITATION-cff](https://github.com/dieghernan/cffr/actions/workflows/cff-validator.yml/badge.svg)](https://github.com/dieghernan/cffr/actions/workflows/cff-validator.yml)
+<!-- badges: end -->
+
+[Citation File Format (CFF)](https://citation-file-format.github.io/) 
+[@druskat_stephan_2021_5171937]
+are plain text files with human- and machine-readable citation information for 
+software (and datasets). Code developers can include them in their 
+repositories to let others know how to correctly cite their software.
+
+**cffr** provides utilities to generate, parse, modify and validate
+`CITATION.cff` files automatically for R packages, as well as tools 
+and examples for working with codemeta json-ld more generally.
+
+When you put a `CITATION.cff` file in the default branch of your 
+GitHub repository, it is automatically linked from the repository 
+landing page, and the citation information is rendered on the 
+repository page, and also provided as BibTeX snippet which users 
+can simply copy
+
+
+
+## Installation
+
+You can install the developing version of **cff** with:
+
+```{r, eval=FALSE}
+devtools::install_github("dieghernan/cffr")
+```
+
+Alternatively, you can install **cffr** using the
+[r-universe](https://dieghernan.r-universe.dev/ui#builds):
+
+```{r, eval=FALSE}
+# Enable this universe
+options(repos = c(
+  dieghernan = "https://dieghernan.r-universe.dev",
+  CRAN = "https://cloud.r-project.org"
+))
+install.packages("cffr")
+```
+
+
+## Example
+
+This is a basic example which shows you how to create an 
+`cffr` object:
+
+```{r }
+library(cffr)
+
+# Example with an installed package
+test <- cff_create("ggplot2")
+```
+
+<details><summary>
+<strong>cffr object</strong></summary>
+
+
+```{r, echo=FALSE, comment=""}
+
+test
+```
+
+</details>
+
+We can validate the result using `cff_validate()`:
+
+```{r }
+
+cff_validate(test)
+```
+  
+By default most often from within your package folder you’ll 
+simply run `cffr::cff_write()`, that creates a `cffr` object, 
+write it on a `CITATION.cff` file and validates it on a single command.
+
+Check the [docs](https://dieghernan.github.io/cffr/reference/index.html) to learn 
+how to work with `cffr` objects.
+
+# References
+
+
