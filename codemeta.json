@@ -1,0 +1,146 @@
+{
+  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@type": "SoftwareSourceCode",
+  "identifier": "cffr",
+  "description": "The Citation File Format (version 1.2.0)\n    <doi:10.5281/zenodo.5171937> is a human and machine readable file\n    format which provides citation metadata for software. This package\n    provides core utilities to generate and validate this metadata.",
+  "name": "cffr: Generate Citation File Format ('cff') Metadata for R Packages",
+  "codeRepository": "https://github.com/dieghernan/cffr",
+  "issueTracker": "https://github.com/dieghernan/cffr/issues",
+  "license": "https://spdx.org/licenses/GPL-3.0",
+  "version": "0.0.0.9000",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 4.1.1 (2021-08-10)",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Diego",
+      "familyName": "Hernangómez",
+      "email": "diego.hernangomezherrero@gmail.com",
+      "@id": "https://orcid.org/0000-0001-8457-4658"
+    }
+  ],
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Diego",
+      "familyName": "Hernangómez",
+      "email": "diego.hernangomezherrero@gmail.com",
+      "@id": "https://orcid.org/0000-0001-8457-4658"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "version": ">= 3.0.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
+    }
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 3.6.0"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "crayon",
+      "name": "crayon",
+      "version": ">= 1.4.1",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=crayon"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "desc",
+      "name": "desc",
+      "version": ">= 1.3.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=desc"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "jsonlite",
+      "name": "jsonlite",
+      "version": ">= 1.7.2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=jsonlite"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "jsonvalidate",
+      "name": "jsonvalidate",
+      "version": ">= 1.1.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=jsonvalidate"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "yaml",
+      "name": "yaml",
+      "version": ">= 2.2.1",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=yaml"
+    }
+  ],
+  "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata", "r", "r-package", "citation-file-format"],
+  "fileSize": "230.088KB",
+  "citation": [
+    {
+      "@type": "SoftwareSourceCode",
+      "datePublished": "2021",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Diego",
+          "familyName": "Hernangómez"
+        }
+      ],
+      "name": "cffr: ",
+      "description": "R package version "
+    }
+  ],
+  "contributor": {},
+  "copyrightHolder": {},
+  "funder": {},
+  "releaseNotes": "https://github.com/dieghernan/cffr/blob/master/NEWS.md",
+  "readme": "https://github.com/dieghernan/cffr/blob/master/README.md",
+  "contIntegration": ["https://github.com/dieghernan/cffr/actions", "https://codecov.io/gh/dieghernan/cffr", "https://github.com/dieghernan/cffr/actions/workflows/cff-validator.yml"]
+}

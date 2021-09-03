@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/dieghernan/cffR/workflows/R-CMD-check/badge.svg)](https://github.com/dieghernan/cffR/actions)
+[![R-CMD-check](https://github.com/dieghernan/cffr/workflows/R-CMD-check/badge.svg)](https://github.com/dieghernan/cffr/actions)
 [![codecov](https://codecov.io/gh/dieghernan/cffr/branch/master/graph/badge.svg)](https://codecov.io/gh/dieghernan/cffr)
 [![CITATION-cff](https://github.com/dieghernan/cffr/actions/workflows/cff-validator.yml/badge.svg)](https://github.com/dieghernan/cffr/actions/workflows/cff-validator.yml)
 <!-- badges: end -->
