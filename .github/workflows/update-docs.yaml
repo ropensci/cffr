@@ -35,6 +35,7 @@ jobs:
             rcmdcheck
             pkgdown
             dieghernan/pkgdev
+            ggplot2
           needs: website
 
       - name: Update docs
