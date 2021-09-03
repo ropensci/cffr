@@ -43,3 +43,4 @@ cff_schema_definitions_person()
 
 cff_schema_definitions_entity()
 }
+\concept{cff_schema}

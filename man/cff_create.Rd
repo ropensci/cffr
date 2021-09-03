@@ -78,3 +78,4 @@ cff_create(demo_file, keys = list("authors" = new_aut))
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0},
 \code{\link[=cff_write]{cff_write()}}
 }
+\concept{cff_core}

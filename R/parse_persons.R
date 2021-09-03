@@ -1,4 +1,6 @@
-parse_person <- function(person) {
+cff_parse_person <- function(person) {
+
+  person <- as.person(person)
 
   # Guess if entity of person.
   is_entity <- is.null(person$family) || is.null(person$given)
@@ -63,7 +65,7 @@ parse_desc_contacts <- function(pkg) {
     "cre" %in% x$role
   })]
 
-  parse_all_contacts <- lapply(contact, parse_person)
+  parse_all_contacts <- lapply(contact, cff_parse_person)
   parse_all_contacts <- unique(parse_all_contacts)
   parse_all_contacts
 }
@@ -79,7 +81,7 @@ parse_desc_authors <- function(pkg) {
     "aut" %in% x$role || "cre" %in% x$role
   })]
 
-  parse_all_authors <- lapply(authors, parse_person)
+  parse_all_authors <- lapply(authors, cff_parse_person)
   parse_all_authors <- unique(parse_all_authors)
 
   parse_all_authors

@@ -5,6 +5,8 @@
 #' basically a wrapper around [cff_create()] to both create the `cffr` object
 #' and write it out to a YAML-formatted file in one command.
 #'
+#' @concept cff_core
+#'
 #' @export
 #'
 #' @param outfile The name and path of the CITATION.cff to be created.
@@ -18,7 +20,7 @@
 #'
 #' @inheritParams cff_create
 #'
-#' @return A CITATION.cff file and an (invisible) `cffr` object
+#' @return A CITATION.cff file and an (invisible) `cffr` object.
 #'
 #' @seealso [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md),
 #' [cff_create()], [cff_validate()]

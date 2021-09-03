@@ -7,13 +7,15 @@
 #'
 #' @return A `ccfr` list object.
 #'
+#' @concept cff_core
+#'
 #' @export
 #'
 #' @param path path to package root (`"."`), or package name (`"jsonlite"`), or
 #'   description file (`"*/DESCRIPTION*"`).
 #'
 #' @param keys List of additional keys to add to the `ccfr` object. See
-#'  **Details**
+#'  **Details**.
 #'
 #'
 #' @seealso [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md),

@@ -38,3 +38,4 @@ cff_validate(system.file("CITATION", package = "cffr"))
 \seealso{
 \code{\link[=cff_create]{cff_create()}}, \code{\link[=cff_write]{cff_write()}}
 }
+\concept{cff_core}

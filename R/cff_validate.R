@@ -3,9 +3,11 @@
 #' @description
 #' Validate a CITATION.cff file or a `cffr` object created with
 #' [cff_create()] using the corresponding validation
-#' [schema.json](https://github.com/citation-file-format/citation-file-format/blob/main/schema.json)
+#' [schema.json](https://github.com/citation-file-format/citation-file-format/blob/main/schema.json).
 #'
 #' @export
+#'
+#' @concept cff_core
 #'
 #' @seealso [cff_create()], [cff_write()]
 #'
@@ -13,7 +15,7 @@
 #'   value `TRUE/FALSE`.
 #'
 #' @param path This is expected to be either a `cffr` object created
-#'   with [cff_create()] or the path to a *.cff file to validate
+#'   with [cff_create()] or the path to a *.cff file to be validated.
 #'
 #' @examples
 #' # Full .cff example
