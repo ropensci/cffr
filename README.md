@@ -11,7 +11,7 @@
 <!-- badges: end -->
 
 [Citation File Format (CFF)](https://citation-file-format.github.io/)
-(`CITATION.cff` files) are plain text files with human- and
+(Druskat et al. 2021) are plain text files with human- and
 machine-readable citation information for software (and datasets). Code
 developers can include them in their repositories to let others know how
 to correctly cite their software.
@@ -58,7 +58,7 @@ test <- cff_create("ggplot2")
 
 <details>
 
-<summary>`cffr` object</summary>
+<summary> <strong>cffr object</strong></summary>
 
     cff-version: 1.2.0
     message: If you use this software, please cite it using these metadata.
@@ -110,9 +110,13 @@ test <- cff_create("ggplot2")
 
 We can validate the result using `cff_validate()`:
 
-\`\`\`{ r }
+``` r
 
-cff\_validate(test) \`\`\`
+cff_validate(test)
+#> 
+#> cff_validate results-----
+#> Congratulations! This cffr object is valid
+```
 
 By default most often from within your package folder you’ll simply run
 `cffr::cff_write()`, that creates a `cffr` object, write it on a
@@ -120,3 +124,18 @@ By default most often from within your package folder you’ll simply run
 
 Check the [docs](https://dieghernan.github.io/cffr/reference/index.html)
 to learn how to work with `cffr` objects.
+
+# References
+
+<div id="refs" class="references">
+
+<div id="ref-druskat_stephan_2021_5171937">
+
+Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, Robert Haines,
+James Baker, Spencer Bliven, Egon Willighagen, David Pérez-Suárez, and
+Alexander Konovalov. 2021. “Citation File Format.” Zenodo.
+<https://doi.org/10.5281/zenodo.5171937>.
+
+</div>
+
+</div>
