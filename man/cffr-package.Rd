@@ -4,11 +4,14 @@
 \name{cffr-package}
 \alias{cffr}
 \alias{cffr-package}
-\title{cffr: What the Package Does (One Line, Title Case)}
+\title{cffr: Generate Citation File Format ('cff') Metadata for R Packages}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-What the package does (one paragraph).
+The Citation File Format (version 1.2.0) is a human and
+    machine readable file format which provides citation metadata for
+    software. This package provides core utilities to generate and
+    validate this metadata.
 }
 \seealso{
 Useful links:

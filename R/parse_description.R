@@ -25,27 +25,38 @@ parse_desc_title <- function(pkg) {
 # Mapped to Version
 parse_desc_version <- function(pkg) {
   version <- pkg$get("Version")
+
   version <- clean_str(version)
+  version <- unname(version)
+
+  version
 }
 
 # Mapped to Date or Date/Publication for installed packages
 parse_desc_date_released <- function(pkg) {
-  date <- as.character(as.Date(pkg$get("Date")))
+  date <- tryCatch(as.character(as.Date(pkg$get("Date"))),
+    error = function(cond) {
+      return(NULL)
+    }
+  )
+
+
   date <- clean_str(date)
 
-  # No date here, try with Date/Publication
+  # If no date here, try with Date/Publication
   # This field is populated in the installed packages from CRAN
   if (is.null(date)) {
     date <- as.character(as.Date(pkg$get("Date/Publication")))
-    date <- clean_str(date)
   }
 
+  date <- clean_str(date)
   date
 }
 
 # Mapped to URL and BugReports
 parse_desc_urls <- function(pkg) {
   url <- pkg$get_urls()
+
   # Get issue url
   issues <- tryCatch(pkg$get_field("BugReports")[1],
     error = function(cond) {
@@ -118,7 +129,7 @@ parse_desc_license <- function(pkg) {
   licenses <- unlist(strsplit(licenses, "\\| "))[1:2]
 
   # Clean up and split
-  split <- strsplit(licenses, "\\| | \\+ |\\+")
+  split <- unlist(strsplit(licenses, " \\+ |\\+"))
 
   # Clean leading and trailing blanks
   split <- gsub("^ | $", "", split)

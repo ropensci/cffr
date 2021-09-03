@@ -1,13 +1,11 @@
 ## code to prepare `cran-to-spdx.csv`
 # Run on 2021-09-02
 library(ggplot2)
-library(forcats)
 library(dplyr)
 
 cran_packs <- as.data.frame(table(available.packages()[, "License"])) %>%
   arrange(desc(Freq)) %>%
   select(LICENSE = Var1, n = Freq)
-
 
 # Add %
 cran_packs$porc <- round(cran_packs$n / sum(cran_packs$n), 6)

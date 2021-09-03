@@ -2,18 +2,18 @@
 % Please edit documentation in R/cff_validate.R
 \name{cff_validate}
 \alias{cff_validate}
-\title{Validate a \code{CITATION.cff} file}
+\title{Validate a CITATION.cff file}
 \usage{
 cff_validate(path = "./CITATION.cff")
 }
 \arguments{
-\item{path}{The path to the \code{CITATION.cff} file to validate}
+\item{path}{The path to the CITATION.cff file to validate}
 }
 \value{
 A message indicating the result of the validation.
 }
 \description{
-Validate a \code{CITATION.cff} file using the corresponding
+Validate a CITATION.cff file using the corresponding
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema.json}{schema.json}
 }
 \examples{

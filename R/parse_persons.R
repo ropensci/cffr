@@ -1,19 +1,19 @@
 parse_person <- function(person) {
 
-  # Guess if entity of person. Detected if family is missing
-  is_entity <- is.null(person$family)
+  # Guess if entity of person.
+  is_entity <- is.null(person$family) || is.null(person$given)
 
   # Create my list
   parsed_person <- list()
 
   if (is_entity) {
-    parsed_person$name <- person$given
+    parsed_person$name <- clean_str(c(person$family, person$given))
   } else {
-    parsed_person$"family-names" <- person$family
-    parsed_person$"given-names" <- person$given
+    parsed_person$"family-names" <- clean_str(person$family)
+    parsed_person$"given-names" <- clean_str(person$given)
   }
 
-  parsed_person$email <- person$email
+  parsed_person$email <- clean_str(clean_email(person$email))
 
   # Extract from comments
   parsed_comments <- as.list(person$comment)
@@ -55,7 +55,7 @@ parse_person <- function(person) {
 
 # Mapped to Maintainer
 parse_desc_contacts <- function(pkg) {
-  persons <- pkg$get_authors()
+  persons <- as.person(pkg$get_authors())
 
   # Extract creators only
   # all persons should be included
@@ -64,13 +64,14 @@ parse_desc_contacts <- function(pkg) {
   })]
 
   parse_all_contacts <- lapply(contact, parse_person)
+  parse_all_contacts <- unique(parse_all_contacts)
   parse_all_contacts
 }
 
 # Mapped to persons with roles "aut","cre"
 parse_desc_authors <- function(pkg) {
   # This extracts all the persons
-  persons <- (pkg$get_authors())
+  persons <- as.person(pkg$get_authors())
 
   # Extract authors and creators only - to be reviewed if this is logic is correct or
   # all persons should be included
@@ -79,5 +80,15 @@ parse_desc_authors <- function(pkg) {
   })]
 
   parse_all_authors <- lapply(authors, parse_person)
+  parse_all_authors <- unique(parse_all_authors)
+
   parse_all_authors
+}
+
+clean_email <- function(email) {
+  if (isTRUE(grep("@", email) == 1)) {
+    return(email)
+  } else {
+    return(NULL)
+  }
 }

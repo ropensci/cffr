@@ -1,14 +1,14 @@
-#' Validate a `CITATION.cff` file
+#' Validate a CITATION.cff file
 #'
 #' @description
-#' Validate a `CITATION.cff` file using the corresponding
+#' Validate a CITATION.cff file using the corresponding
 #' [schema.json](https://github.com/citation-file-format/citation-file-format/blob/main/schema.json)
 #'
 #' @export
 #'
 #' @return A message indicating the result of the validation.
 #'
-#' @param path The path to the `CITATION.cff` file to validate
+#' @param path The path to the CITATION.cff file to validate
 #'
 #' @examples
 #' # Full .cff example
@@ -78,7 +78,7 @@ cff_validate <- function(path = "./CITATION.cff") {
   # End Brackets management
 
   # Download latest scheme
-  schema_temp <- file.path(tempdir(), "schema.json")
+  schema_temp <- file.path(tempdir(), "cff_schema.json")
 
   if (isFALSE(file.exists(schema_temp))) {
     download.file("https://raw.githubusercontent.com/citation-file-format/citation-file-format/main/schema.json",

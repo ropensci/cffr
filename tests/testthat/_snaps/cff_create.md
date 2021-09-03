@@ -7,7 +7,7 @@
       full.names = FALSE)
       for (i in seq_len(length(allfiles))) {
         message("File ", names[i])
-        print(cff_description(allfiles[i]))
+        print(cff_create(allfiles[i]))
         message("End----- \n\n")
       }
     Message <simpleMessage>
@@ -16,8 +16,13 @@
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       type: software
+      license: GPL-3.0-only
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
       version: 0.1.6
+      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
+        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
+        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
+        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -26,13 +31,8 @@
       - family-names: Salmon
         given-names: Maëlle
         orcid: https://orcid.org/0000-0002-2815-0399
-      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
-        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
-        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
-        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       repository-code: https://github.com/ropensci/codemetar
       url: http://fakepackage.R-Forge.R-project.org/
-      date-released: ~
       contact:
       - family-names: Boettiger
         given-names: Carl
@@ -45,7 +45,6 @@
       - citation
       - credit
       - linked-data
-      license: GPL-3.0-only
     Message <simpleMessage>
       End----- 
       
@@ -54,8 +53,13 @@
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       type: software
+      license: GPL-3.0-only
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
       version: 0.1.6
+      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
+        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
+        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
+        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -64,13 +68,8 @@
       - family-names: Salmon
         given-names: Maëlle
         orcid: https://orcid.org/0000-0002-2815-0399
-      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
-        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
-        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
-        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       repository-code: https://github.com/ropensci/codemetar
       url: https://bitbucket.org/ropensci/codemetar
-      date-released: ~
       contact:
       - family-names: Boettiger
         given-names: Carl
@@ -83,7 +82,6 @@
       - citation
       - credit
       - linked-data
-      license: GPL-3.0-only
     Message <simpleMessage>
       End----- 
       
@@ -92,8 +90,13 @@
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       type: software
+      license:
+      - GPL-3.0-or-later
+      - MIT
       title: 'demodescriptionfile: Demo Description File'
       version: 0.1.0
+      abstract: This is demo description file. This file is used on examples and demos of
+        the 'ccfr' package.
       authors:
       - family-names: Author
         given-names: First
@@ -106,11 +109,8 @@
         alias: nickname
       - name: I am an entity
         date-end: '2020-01-01'
-      abstract: This is demo description file. This file is used on examples and demos of
-        the 'ccfr' package.
       repository-code: https://github.com/dieghernan/demo/demo
       url: https://demo.github.io/demo/
-      date-released: ~
       contact:
       - family-names: Author
         given-names: First
@@ -129,9 +129,6 @@
       - just
       - a
       - demo
-      license:
-      - GPL-3.0-or-later
-      - MIT
     Message <simpleMessage>
       End----- 
       
@@ -140,8 +137,15 @@
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       type: software
+      license:
+      - GPL-2.0-or-later
+      - GPL-3.0-only
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
       version: 0.1.6
+      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
+        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
+        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
+        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -150,13 +154,8 @@
       - family-names: Salmon
         given-names: Maëlle
         orcid: https://orcid.org/0000-0002-2815-0399
-      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
-        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
-        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
-        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       repository-code: https://github.com/ropensci/codemetar
       url: https://ropensci.github.io/codemetar
-      date-released: ~
       contact:
       - family-names: Boettiger
         given-names: Carl
@@ -169,9 +168,6 @@
       - citation
       - credit
       - linked-data
-      license:
-      - GPL-2.0-or-later
-      - GPL-3.0-only
     Message <simpleMessage>
       End----- 
       
@@ -180,8 +176,13 @@
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       type: software
+      license: GPL-3.0-only
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
       version: 0.1.6
+      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
+        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
+        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
+        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -190,13 +191,8 @@
       - family-names: Salmon
         given-names: Maëlle
         orcid: https://orcid.org/0000-0002-2815-0399
-      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
-        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
-        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
-        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       repository-code: https://github.com/ropensci/codemetar
       url: https://gitlab.com/ropensci/codemetar
-      date-released: ~
       contact:
       - family-names: Boettiger
         given-names: Carl
@@ -209,7 +205,6 @@
       - citation
       - credit
       - linked-data
-      license: GPL-3.0-only
     Message <simpleMessage>
       End----- 
       
@@ -218,8 +213,13 @@
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       type: software
+      license: GPL-3.0-only
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
       version: 0.1.6
+      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
+        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
+        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
+        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -228,13 +228,8 @@
       - family-names: Salmon
         given-names: Maëlle
         orcid: https://orcid.org/0000-0002-2815-0399
-      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
-        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
-        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
-        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       repository-code: https://github.com/ropensci/codemetar
       url: https://ropensci.github.io/codemetar
-      date-released: ~
       contact:
       - family-names: Boettiger
         given-names: Carl
@@ -247,7 +242,6 @@
       - citation
       - credit
       - linked-data
-      license: GPL-3.0-only
     Message <simpleMessage>
       End----- 
       
@@ -256,8 +250,13 @@
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       type: software
+      license: GPL-3.0-only
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
       version: 0.1.6
+      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
+        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
+        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
+        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -266,13 +265,8 @@
       - family-names: Salmon
         given-names: Maëlle
         orcid: https://orcid.org/0000-0002-2815-0399
-      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
-        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
-        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
-        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       repository-code: https://github.com/ropensci/codemetar
       url: https://ropensci.github.io/codemetar
-      date-released: ~
       contact:
       - family-names: Boettiger
         given-names: Carl
@@ -285,7 +279,6 @@
       - citation
       - credit
       - linked-data
-      license: GPL-3.0-only
     Message <simpleMessage>
       End----- 
       
@@ -294,8 +287,13 @@
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       type: software
+      license: GPL-3.0-only
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
       version: 0.1.6
+      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
+        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
+        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
+        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -304,13 +302,6 @@
       - family-names: Salmon
         given-names: Maëlle
         orcid: https://orcid.org/0000-0002-2815-0399
-      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
-        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
-        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
-        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
-      repository-code: ~
-      url: ~
-      date-released: ~
       contact:
       - family-names: Boettiger
         given-names: Carl
@@ -323,7 +314,6 @@
       - citation
       - credit
       - linked-data
-      license: GPL-3.0-only
     Message <simpleMessage>
       End----- 
       
@@ -332,8 +322,13 @@
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       type: software
+      license: GPL-3.0-only
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
       version: 0.1.6
+      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
+        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
+        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
+        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -342,13 +337,8 @@
       - family-names: Salmon
         given-names: Maëlle
         orcid: https://orcid.org/0000-0002-2815-0399
-      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
-        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
-        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
-        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       repository-code: https://github.com/ropensci/codemetar
       url: https://ropensci.github.io/codemetar
-      date-released: ~
       contact:
       - family-names: Boettiger
         given-names: Carl
@@ -361,7 +351,6 @@
       - citation
       - credit
       - linked-data
-      license: GPL-3.0-only
     Message <simpleMessage>
       End----- 
       
@@ -373,8 +362,13 @@
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       type: software
+      license: GPL-3.0-only
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
       version: 0.1.6
+      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
+        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
+        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
+        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -383,10 +377,6 @@
       - family-names: Salmon
         given-names: Maëlle
         orcid: https://orcid.org/0000-0002-2815-0399
-      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
-        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
-        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
-        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       repository-code: https://github.com/ropensci/codemetar
       url: https://bitbucket.org/ropensci/codemetar
       date-released: '2020-01-01'
@@ -402,7 +392,6 @@
       - citation
       - credit
       - linked-data
-      license: GPL-3.0-only
     Message <simpleMessage>
       End----- 
       
@@ -411,8 +400,13 @@
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       type: software
+      license: GPL-3.0-only
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
       version: 0.1.6
+      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
+        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
+        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
+        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       authors:
       - family-names: Hernangómez
         given-names: Diego
@@ -427,13 +421,8 @@
         email: fake@gmail.com
       - name: I am an entity
         date-end: '2020-01-01'
-      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
-        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
-        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
-        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       repository-code: https://github.com/ropensci/codemetar
       url: https://ropensci.github.io/codemetar
-      date-released: ~
       contact:
       - family-names: Hernangómez
         given-names: Diego
@@ -441,8 +430,6 @@
         orcid: https://orcid.org/0000-0001-8457-4658
       - name: I am an entity
         date-end: '2020-01-01'
-      keywords: ~
-      license: GPL-3.0-only
     Message <simpleMessage>
       End----- 
       
@@ -451,8 +438,13 @@
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       type: software
+      license: GPL-3.0-only
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
       version: 0.1.6
+      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
+        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
+        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
+        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       authors:
       - family-names: Ok
         given-names: John
@@ -461,13 +453,8 @@
         given-names: Jane
       - family-names: Doo
         given-names: Jane
-      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
-        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
-        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
-        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       repository-code: https://github.com/ropensci/codemetar
       url: https://ropensci.github.io/codemetar
-      date-released: ~
       contact:
       - family-names: Ok
         given-names: John
@@ -479,7 +466,6 @@
       - citation
       - credit
       - linked-data
-      license: GPL-3.0-only
     Message <simpleMessage>
       End----- 
       
@@ -488,8 +474,13 @@
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       type: software
+      license: GPL-3.0-only
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
       version: 0.1.6
+      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
+        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
+        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
+        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -498,13 +489,8 @@
       - family-names: Salmon
         given-names: Maëlle
         orcid: https://orcid.org/0000-0002-2815-0399
-      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
-        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
-        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
-        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       repository-code: https://github.com/ropensci/codemetar
       url: https://ropensci.github.io/codemetar
-      date-released: ~
       contact:
       - family-names: Boettiger
         given-names: Carl
@@ -517,7 +503,6 @@
       - citation
       - credit
       - linked-data
-      license: GPL-3.0-only
     Message <simpleMessage>
       End----- 
       
@@ -526,24 +511,22 @@
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       type: software
+      license: MIT
       title: 'essurvey: Download Data from the European Social Survey on the Fly'
       version: 1.0.0
+      abstract: Download data from the European Social Survey directly from their website
+        <http://www.europeansocialsurvey.org/>. There are two families of functions that
+        allow you to download and interactively check all countries and rounds available.
       authors:
       - family-names: Cimentada
         given-names: Jorge
         email: cimentadaj@gmail.com
-      abstract: Download data from the European Social Survey directly from their website
-        <http://www.europeansocialsurvey.org/>. There are two families of functions that
-        allow you to download and interactively check all countries and rounds available.
       repository-code: https://github.com/ropensci/essurvey
       url: https://ropensci.github.io/essurvey/
-      date-released: ~
       contact:
       - family-names: Cimentada
         given-names: Jorge
         email: cimentadaj@gmail.com
-      keywords: ~
-      license: MIT
     Message <simpleMessage>
       End----- 
       
@@ -552,8 +535,13 @@
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       type: software
+      license: GPL-3.0-only
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
       version: 0.1.6
+      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
+        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
+        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
+        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       authors:
       - family-names: Ok
         given-names: John
@@ -563,13 +551,8 @@
         email: email2@email.edu
       - family-names: Doo
         given-names: Jane
-      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
-        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
-        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
-        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       repository-code: https://github.com/ropensci/codemetar
       url: https://ropensci.github.io/codemetar
-      date-released: ~
       contact:
       - family-names: Ok
         given-names: John
@@ -577,8 +560,6 @@
       - family-names: Doe
         given-names: Jane
         email: email2@email.edu
-      keywords: ~
-      license: GPL-3.0-only
     Message <simpleMessage>
       End----- 
       
@@ -587,8 +568,13 @@
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       type: software
+      license: GPL-3.0-only
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
       version: 0.1.6
+      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
+        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
+        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
+        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -597,13 +583,8 @@
       - family-names: Salmon
         given-names: Maëlle
         orcid: https://orcid.org/0000-0002-2815-0399
-      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
-        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
-        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
-        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
       repository-code: https://github.com/ropensci/codemetar
       url: https://ropensci.github.io/codemetar
-      date-released: ~
       contact:
       - family-names: Boettiger
         given-names: Carl
@@ -616,7 +597,6 @@
       - citation
       - credit
       - linked-data
-      license: GPL-3.0-only
     Message <simpleMessage>
       End----- 
       
@@ -625,19 +605,19 @@
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       type: software
+      license: MIT
       title: 'codemetar: Generate CodeMeta Metadata for R Packages'
       version: 0.1.0
+      abstract: Codemeta defines a 'JSON-LD' format for describing software metadata. This
+        package provides utilities to generate, parse, and modify codemeta.jsonld files
+        automatically for R packages.
       authors:
       - family-names: Boettiger
         given-names: Carl
         email: cboettig@gmail.com
         orcid: https://orcid.org/0000-0002-1642-628X
-      abstract: Codemeta defines a 'JSON-LD' format for describing software metadata. This
-        package provides utilities to generate, parse, and modify codemeta.jsonld files
-        automatically for R packages.
       repository-code: https://www.github.com/ropensci/codemeta
       url: https://httpbin.org/status/404
-      date-released: ~
       contact:
       - family-names: Boettiger
         given-names: Carl
@@ -650,7 +630,6 @@
       - citation
       - credit
       - linked-data
-      license: MIT
     Message <simpleMessage>
       End----- 
       

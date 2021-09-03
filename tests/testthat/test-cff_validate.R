@@ -27,6 +27,12 @@ test_that("Validate error for invalid input", {
   expect_error(cff_validate(nofile))
 })
 
+test_that("File that is not cff", {
+  expect_error(
+    cff_validate(system.file("examples/DESCRIPTION_demo", package = "cffr"))
+  )
+})
+
 test_that("Snapshot for validating message", {
   expect_snapshot({
     err <- system.file("examples/CITATION_error.cff",

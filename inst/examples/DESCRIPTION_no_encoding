@@ -2,6 +2,7 @@ Package: codemetar
 Type: Package
 Title: Generate 'CodeMeta' Metadata for R Packages
 Version: 0.1.6
+Date: 2020-01-01
 Authors@R:
     c(person(given = "Carl",
              family = "Boettiger",
@@ -38,7 +39,8 @@ Description: The 'Codemeta' Project defines a 'JSON-LD' format for describing
   automatically for R packages, as well as tools and examples for working with
   'codemeta.json' 'JSON-LD' more generally.
 License: GPL-3
-Encoding: UTF-8
+URL: https://bitbucket.org/ropensci/codemetar, https://ropensci.github.io/codemetar
+BugReports: https://github.com/ropensci/codemetar/issues
 LazyData: true
 RoxygenNote: 6.0.1.9000
 Depends: R (>= 3.0.0)

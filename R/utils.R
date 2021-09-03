@@ -2,10 +2,16 @@
 
 # Clean strings
 clean_str <- function(str) {
+  if (is.null(str) || is.na(str)) {
+    return(NULL)
+  }
+
   clean <- gsub("[\n\r]", " ", str)
   clean <- gsub("\\s+", " ", clean)
+  # Collapse to single char
+  clean <- paste(clean, collapse = " ")
 
-  if (is.na(clean) || clean == "") {
+  if (clean == "") {
     return(NULL)
   }
 

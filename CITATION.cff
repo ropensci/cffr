@@ -2,9 +2,14 @@ cff-version: 1.2.0
 message: If you use this software, please cite it using these metadata.
 type: software
 license: GPL-3.0-or-later
-title: 'cffr: What the Package Does (One Line, Title Case)'
+title: 'cffr: Generate Citation File Format (''cff'') Metadata for R Packages'
 version: 0.0.0.9000
-abstract: What the package does (one paragraph).
+abstract: The Citation File Format (version 1.2.0) is a human and machine readable
+  file format in 'YAML 1.2' which provides citation metadata for software. This package
+  provides core utilities to generate and validate this metadata. See 'Druskat, S.,
+  Spaaks, J. H., Chue Hong, N., Haines, R., Baker, J., Bliven, S., Willighagen, E.,
+  Pérez-Suárez, D., & Konovalov, A.' (2021). Citation File Format (Version 1.2.0)
+  <doi:10.5281/zenodo.5171937>
 authors:
 - family-names: Hernangómez
   given-names: Diego
@@ -18,7 +23,9 @@ contact:
   email: diego.hernangomezherrero@gmail.com
   orcid: https://orcid.org/0000-0001-8457-4658
 keywords:
-- a
-- b
-- c
-- d
+- attribution
+- citation
+- credit
+- citation-files
+- cff
+- metadata

@@ -35,7 +35,7 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(cffr)
 ## basic example code
-create_cff(find.package("jsonlite"))
+cff_create(".")
 ```
 
 That produces this output:
@@ -43,26 +43,44 @@ That produces this output:
     cff-version: 1.2.0
     message: If you use this software, please cite it using these metadata.
     type: software
-    title: 'jsonlite: A Simple and Robust JSON Parser and Generator for R'
-    version: 1.7.2
-    abstract: A reasonably fast JSON parser and generator, optimized for statistical data
-      and the web. Offers simple, flexible tools for working with JSON in R, and is particularly
-      powerful for building pipelines and interacting with a web API. The implementation
-      is based on the mapping described in the vignette (Ooms, 2014). In addition to converting
-      JSON data from/to R objects, 'jsonlite' contains functions to stream, validate,
-      and prettify JSON data. The unit tests included with the package verify that all
-      edge cases are encoded and decoded consistently for use with dynamic data in systems
-      and applications.
+    license:
+    - GPL-3.0-or-later
+    - MIT
+    title: 'demodescriptionfile: Demo Description File'
+    version: 0.1.0
+    abstract: This is demo description file. This file is used on examples and demos of
+      the 'ccfr' package.
     authors:
-    - family-names: Ooms
-      given-names: Jeroen
-      email: jeroen@berkeley.edu
-      orcid: https://orcid.org/0000-0002-4035-0289
-    repository-code: https://github.com/jeroen/jsonlite
-    url: https://arxiv.org/abs/1403.2805
-    date-released: '2020-12-09'
+    - family-names: Author
+      given-names: First
+      email: first.last@example.com
+      orcid: https://orcid.org/0000-0001-8457-4658
+    - family-names: Author
+      given-names: Second
+      email: second.last@example.com
+      affiliation: An affiliation
+      alias: nickname
+    - name: I am an entity
+      date-end: '2020-01-01'
+    repository-code: https://github.com/dieghernan/demo/demo
+    url: https://demo.github.io/demo/
     contact:
-    - family-names: Ooms
-      given-names: Jeroen
-      email: jeroen@berkeley.edu
-      orcid: https://orcid.org/0000-0002-4035-0289
+    - family-names: Author
+      given-names: First
+      email: first.last@example.com
+      orcid: https://orcid.org/0000-0001-8457-4658
+    - family-names: Author
+      given-names: Second
+      email: second.last@example.com
+      affiliation: An affiliation
+      alias: nickname
+    - name: I am an entity
+      date-end: '2020-01-01'
+    keywords:
+    - This
+    - is
+    - just
+    - a
+    - demo
+
+We can validate it …

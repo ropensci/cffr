@@ -19,7 +19,6 @@ cff_description <- function(desc_path = "DESCRIPTION") {
     license = unlist(parse_desc_license(pkg))
   )
 
+  class(list_fields) <- "cffr"
   list_fields
-
-
 }

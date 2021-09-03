@@ -1,5 +1,5 @@
 Package: cffr
-Title: What the Package Does (One Line, Title Case)
+Title: Generate Citation File Format ('cff') Metadata for R Packages
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Diego",
@@ -7,7 +7,10 @@ Authors@R:
            role = c("aut", "cre"),
            email = "diego.hernangomezherrero@gmail.com",
            comment = c(ORCID = "0000-0001-8457-4658"))
-Description: What the package does (one paragraph).
+Description: The Citation File Format (version 1.2.0) is a human and
+    machine readable file format which provides citation metadata for
+    software. This package provides core utilities to generate and
+    validate this metadata.
 License: GPL (>= 3)
 URL: https://github.com/dieghernan/cffr
 BugReports: https://github.com/dieghernan/cffr/issues
@@ -25,4 +28,5 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-X-schema.org-keywords: a, b, c, d
+X-schema.org-keywords: attribution, citation, credit, citation-files, cff,
+    metadata

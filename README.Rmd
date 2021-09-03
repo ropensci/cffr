@@ -44,16 +44,16 @@ This is a basic example which shows you how to solve a common problem:
 ```{r example, eval=FALSE}
 library(cffr)
 ## basic example code
-create_cff(find.package("jsonlite"))
+cff_create(".")
 ```
 That produces this output:
 
 ```{r echo=FALSE, comment=""}
 library(cffr)
 
-create_cff(find.package("jsonlite"))
-
-
+# This is for demo purposes only. Show this result instead the previous chunk
+demo_file <- system.file("examples/DESCRIPTION_demo", package = "cffr")
+cff_create(demo_file)
 ```
 
 We can validate it ...
