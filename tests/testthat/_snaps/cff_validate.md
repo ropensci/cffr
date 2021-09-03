@@ -6,7 +6,7 @@
     Message <simpleMessage>
       
       cff_validate results-----
-      Oops! This CITATION.cff file has the following errors:
+      Oops! This  .cff file has the following errors:
       
     Output
                   field                          message

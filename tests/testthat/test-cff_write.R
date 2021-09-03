@@ -17,7 +17,7 @@ test_that("Validate packages", {
     } else {
       cff_write(allfiles[i], outfile = tmp)
     }
-    cff_validate(tmp)
+    expect_true(cff_validate(tmp))
   }
 })
 

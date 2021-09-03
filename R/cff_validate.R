@@ -1,18 +1,28 @@
-#' Validate a CITATION.cff file
+#' Validate a CITATION.cff file or a `cffr` object
 #'
 #' @description
-#' Validate a CITATION.cff file using the corresponding
+#' Validate a CITATION.cff file or a `cffr` object created with
+#' [cff_create()] using the corresponding validation
 #' [schema.json](https://github.com/citation-file-format/citation-file-format/blob/main/schema.json)
 #'
 #' @export
 #'
-#' @return A message indicating the result of the validation.
+#' @seealso [cff_create()], [cff_write()]
 #'
-#' @param path The path to the CITATION.cff file to validate
+#' @return A message indicating the result of the validation and an invisible
+#'   value `TRUE/FALSE`.
+#'
+#' @param path This is expected to be either a `cffr` object created
+#'   with [cff_create()] or the path to a *.cff file to validate
 #'
 #' @examples
 #' # Full .cff example
 #' cff_validate(system.file("examples/CITATION_full.cff", package = "cffr"))
+#'
+#' # Validate a cffr object
+#' cffr <- cff_create("jsonlite")
+#' class(cffr)
+#' cff_validate(cffr)
 #'
 #' # .cff with errors
 #' cff_validate(system.file("examples/CITATION_error.cff", package = "cffr"))
@@ -21,6 +31,16 @@
 #' cff_validate(system.file("CITATION", package = "cffr"))
 #' }
 cff_validate <- function(path = "./CITATION.cff") {
+  is_object <- inherits(path, "cffr")
+
+  # If is a cffr create the object
+  if (is_object) {
+    tmpfile <- tempfile(fileext = ".cff")
+    suppressMessages(yaml::write_yaml(path, tmpfile))
+    path <- tmpfile
+  }
+
+
   if (!file.exists(path)) {
     stop("File ", path, " doesn't exists",
       call. = FALSE
@@ -28,7 +48,7 @@ cff_validate <- function(path = "./CITATION.cff") {
   }
 
   if (tools::file_ext(path) != "cff") {
-    stop(path, " is not a .cff file",
+    stop(path, " is not a .cff file or a 'cffr' object",
       call. = FALSE
     )
   }
@@ -94,15 +114,27 @@ cff_validate <- function(path = "./CITATION.cff") {
   )
 
   # Results
+  message_obj <- ifelse(is_object,
+    "cffr object",
+    ".cff file"
+  )
+
   message("\ncff_validate results-----")
   if (result == FALSE) {
     message(
-      crayon::red("Oops! This CITATION.cff file has the following errors:\n\n")
+      crayon::red(
+        "Oops! This ", message_obj,
+        "has the following errors:\n\n"
+      )
     )
     print(attributes(result)$errors)
     return(invisible(FALSE))
   } else {
-    message(crayon::green("Congratulations! This CITATION.cff file is valid"))
+    message(crayon::green(
+      "Congratulations! This",
+      message_obj,
+      "is valid"
+    ))
     return(invisible(TRUE))
   }
 }

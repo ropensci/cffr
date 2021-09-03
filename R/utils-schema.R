@@ -1,8 +1,15 @@
-#' Valid keys in a `CITATION.cff` file.
+#' Schema utils
 #'
+#' @name cff_schema
 #' @description
-#' Set of valid keys as specified on the
+#' Helper functions with the valid values of different fields, according to the
 #' [Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md)
+#'
+#' - [cff_schema_keys()] provides the valid high-level keys of the Citation
+#'   File Format.
+#' - [cff_schema_definitions_person()] and [cff_schema_definitions_entity()]
+#'   returns the valid fields to be included when defining a
+#'   person or entity.
 #'
 #' @source
 #' [Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md)
@@ -75,6 +82,11 @@ cff_schema_keys <- function(sorted = FALSE) {
   schema_keys
 }
 
+#' @rdname cff_schema
+#' @export
+#' @examples
+#'
+#' cff_schema_definitions_person()
 cff_schema_definitions_person <- function() {
   definitions_person <- c(
     "address",
@@ -98,6 +110,11 @@ cff_schema_definitions_person <- function() {
   definitions_person
 }
 
+#' @rdname cff_schema
+#' @export
+#' @examples
+#'
+#' cff_schema_definitions_entity()
 cff_schema_definitions_entity <- function() {
   definitions_entity <- c(
     "address",
