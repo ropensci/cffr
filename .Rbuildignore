@@ -12,3 +12,4 @@
 ^codemeta\.json$
 ^CITATION\.cff$
 ^README\.Rmd$
+^bibtex\.bib$
