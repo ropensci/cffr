@@ -19,7 +19,7 @@ description file (\code{"*/DESCRIPTION*"}).}
 \code{\link[=cff_validate]{cff_validate()}}?}
 }
 \value{
-A CITATION.cff file and an (invisible) \code{cffr} object
+A CITATION.cff file and an (invisible) \code{cffr} object.
 }
 \description{
 Write out a CITATION.cff file for a given package. This function is

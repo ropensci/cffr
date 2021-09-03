@@ -1,5 +1,4 @@
 cff_parse_person <- function(person) {
-
   person <- as.person(person)
 
   # Guess if entity of person.

@@ -1,5 +1,5 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "cffr",
   "description": "The Citation File Format (version 1.2.0)\n    <doi:10.5281/zenodo.5171937> is a human and machine readable file\n    format which provides citation metadata for software. This package\n    provides core utilities to generate and validate this metadata.",
@@ -47,14 +47,14 @@
       "sameAs": "https://CRAN.R-project.org/package=testthat"
     }
   ],
-  "softwareRequirements": [
-    {
+  "softwareRequirements": {
+    "1": {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
       "version": ">= 3.6.0"
     },
-    {
+    "2": {
       "@type": "SoftwareApplication",
       "identifier": "crayon",
       "name": "crayon",
@@ -67,7 +67,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=crayon"
     },
-    {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "desc",
       "name": "desc",
@@ -80,7 +80,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=desc"
     },
-    {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "jsonlite",
       "name": "jsonlite",
@@ -93,7 +93,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=jsonlite"
     },
-    {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "jsonvalidate",
       "name": "jsonvalidate",
@@ -106,7 +106,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=jsonvalidate"
     },
-    {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "yaml",
       "name": "yaml",
@@ -118,10 +118,11 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=yaml"
-    }
-  ],
-  "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata", "r", "r-package", "citation-file-format"],
-  "fileSize": "230.088KB",
+    },
+    "SystemRequirements": null
+  },
+  "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata"],
+  "fileSize": "228.607KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -136,11 +137,5 @@
       "name": "cffr: ",
       "description": "R package version "
     }
-  ],
-  "contributor": {},
-  "copyrightHolder": {},
-  "funder": {},
-  "releaseNotes": "https://github.com/dieghernan/cffr/blob/master/NEWS.md",
-  "readme": "https://github.com/dieghernan/cffr/blob/master/README.md",
-  "contIntegration": ["https://github.com/dieghernan/cffr/actions", "https://codecov.io/gh/dieghernan/cffr", "https://github.com/dieghernan/cffr/actions/workflows/cff-validator.yml"]
+  ]
 }

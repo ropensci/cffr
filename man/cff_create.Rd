@@ -11,7 +11,7 @@ cff_create(path = ".", keys = NULL)
 description file (\code{"*/DESCRIPTION*"}).}
 
 \item{keys}{List of additional keys to add to the \code{ccfr} object. See
-\strong{Details}}
+\strong{Details}.}
 }
 \value{
 A \code{ccfr} list object.

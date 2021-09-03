@@ -8,7 +8,7 @@ cff_validate(path = "./CITATION.cff")
 }
 \arguments{
 \item{path}{This is expected to be either a \code{cffr} object created
-with \code{\link[=cff_create]{cff_create()}} or the path to a *.cff file to validate}
+with \code{\link[=cff_create]{cff_create()}} or the path to a *.cff file to be validated.}
 }
 \value{
 A message indicating the result of the validation and an invisible
@@ -17,7 +17,7 @@ value \code{TRUE/FALSE}.
 \description{
 Validate a CITATION.cff file or a \code{cffr} object created with
 \code{\link[=cff_create]{cff_create()}} using the corresponding validation
-\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema.json}{schema.json}
+\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema.json}{schema.json}.
 }
 \examples{
 # Full .cff example
