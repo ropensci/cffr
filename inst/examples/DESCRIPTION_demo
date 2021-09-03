@@ -6,25 +6,19 @@ Authors@R:
              family = "Author",
              role = c("aut", "cre"),
              email = "first.last@example.com",
-             comment = c(ORCID = "0000-0001-8457-4658")),
-      person(given = "Second",
-             family = "Author",
-             role = "cre",
-             email = "second.last@example.com",
-             comment = c(affiliation = "An affiliation", alias = "nickname")),
+             comment = c(ORCID = "0000-0001-8457-4658", affiliation = "An affiliation")),
       person(given = "I am an entity",
              role = "cre",
              comment = c("date-end" = "2020-01-01")),
       person(given = "I should not appear on the CITATION",
              role = "cph",
              comment = "I am not author or creator"))
-Description: This is demo description file. This file is used on examples
-    and demos of the 'ccfr' package.
+Description: This is demo description file.
 License: GPL (>= 3) | MIT + file LICENSE
 URL: https://demo.github.io/demo/, https://github.com/demo/demo
-BugReports: https://github.com/dieghernan/demo/demo
+BugReports: https://github.com/demo/demo
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-X-schema.org-keywords: This, is, just, a, demo
+X-schema.org-keywords: Demo, file
