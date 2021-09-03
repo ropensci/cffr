@@ -1,3 +1,39 @@
+#' Parse a person for `cffr`
+#'
+#' Parse a person or string to a valid format for .cff.
+#'
+#' @seealso [cff_create()], [utils::person()]
+#'
+#' @export
+#'
+#' @concept cff_parse
+#'
+#' @param person A `person` object or a character coercible to `person`. See
+#'   [utils::person()]
+#'
+#' @return A `cffr` object ready to be used on [cff_create()]
+#'
+#' @details
+#' This is a helper function designed to help on add or replace the auto-generated
+#' authors of the package. See **Examples**.
+#'
+#' @examples
+#' # Parse a person object
+#'
+#' cff_parse_person(person(
+#'   given = "First",
+#'   family = "Author",
+#'   role = c("aut", "cre"),
+#'   email = "first.last@example.com",
+#'   comment = c(
+#'     ORCID = "0000-0001-8457-4658",
+#'     affiliation = "An affiliation"
+#'   )
+#' ))
+#'
+#' # Parse a string
+#'
+#' cff_parse_person("Julio Iglesias <fake@email.com>")
 cff_parse_person <- function(person) {
   person <- as.person(person)
 
@@ -50,6 +86,7 @@ cff_parse_person <- function(person) {
     definition]
 
   parsed_person <- drop_null(parsed_person)
+  class(parsed_person) <- "cffr"
   parsed_person
 }
 

@@ -46,33 +46,29 @@ newkeys <- list(
   message = "This overwrites fields",
   abstract = "New abstract",
   keywords = c("A", "new", "list", "of", "keywords"),
-  authors = list(list(
-    "family-names" = "Doe",
-    "given-names" = "John"
-  )),
+  authors = list(cff_parse_person("New author")),
   "date-released" = "1900-01-01"
 )
 
 cff_create(demo_file, keys = newkeys)
 
-# Update a field
-# New author
+# Update a field on a list - i,e: authors, contacts, etc.
+# We are adding a new contact here
 
 old <- cff_create(demo_file)
 
-old_aut <- old$authors
-
-# It should be a list
-new_aut <- append(
-  old_aut,
-  list(list(
-    "family-names" = "new author",
-    "given-names" = "I am a",
-    alias = "Hello!"
-  ))
+new_contact <- append(
+  old$contact,
+  list(
+    cff_parse_person(person(
+      given = "I am",
+      family = "New Contact"
+    ))
+  )
 )
 
-cff_create(demo_file, keys = list("authors" = new_aut))
+
+cff_create(demo_file, keys = list("contact" = new_contact))
 }
 \seealso{
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0},

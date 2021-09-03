@@ -99,16 +99,11 @@
         given-names: First
         email: first.last@example.com
         orcid: https://orcid.org/0000-0001-8457-4658
-      - family-names: Author
-        given-names: Second
-        email: second.last@example.com
         affiliation: An affiliation
-        alias: nickname
       - name: I am an entity
         date-end: '2020-01-01'
-      abstract: This is demo description file. This file is used on examples and demos of
-        the 'ccfr' package.
-      repository-code: https://github.com/dieghernan/demo/demo
+      abstract: This is demo description file.
+      repository-code: https://github.com/demo/demo
       url: https://demo.github.io/demo/
       date-released: ~
       contact:
@@ -116,19 +111,12 @@
         given-names: First
         email: first.last@example.com
         orcid: https://orcid.org/0000-0001-8457-4658
-      - family-names: Author
-        given-names: Second
-        email: second.last@example.com
         affiliation: An affiliation
-        alias: nickname
       - name: I am an entity
         date-end: '2020-01-01'
       keywords:
-      - This
-      - is
-      - just
-      - a
-      - demo
+      - Demo
+      - file
       license:
       - GPL-3.0-or-later
       - MIT

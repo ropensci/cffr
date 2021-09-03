@@ -10,7 +10,7 @@ citEntry(
                   family = "Hernangómez"),
   year = year,
   note = vers,
-  url = meta$URL,
+  url = "https://dieghernan.github.io/cffr/",
   textVersion = paste('Hernangómez, D. (', year, '). cffr: ', meta$Title, '. ', vers, '.', sep = '')
 )
 

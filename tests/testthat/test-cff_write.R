@@ -32,10 +32,7 @@ test_that("Add new keys", {
     message = "This overwrites fields",
     abstract = "New abstract",
     keywords = c("A", "new", "list", "of", "keywords"),
-    authors = list(list(
-      "family-names" = "Doe",
-      "given-names" = "John"
-    )),
+    authors = list(cff_parse_person("Don Nadie")),
     "date-released" = "1900-01-01",
     "error" = "This is an error"
   )
@@ -61,13 +58,13 @@ test_that("Append keys", {
   # It should be a list
   new_aut <- append(
     old_aut,
-    list(list(
-      "family-names" = "new author",
-      "given-names" = "I am a",
-      alias = "Hello!"
+    list(cff_parse_person(
+      person("New", "author", comment = c(
+        "error" = 123,
+        country = "IT"
+      ))
     ))
   )
-
 
 
   cff_write(demo_file,

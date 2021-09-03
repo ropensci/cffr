@@ -12,3 +12,9 @@ test_that("Keys snapshot", {
     cff_schema_keys(FALSE)
   })
 })
+
+test_that("License snapshot", {
+  expect_snapshot({
+    cff_schema_keys_license()
+  })
+})

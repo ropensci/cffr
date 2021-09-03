@@ -6,7 +6,7 @@ template:
     twitter:
       creator: "@dhernangomez"
       card: summary_large_image
-      
+
 reference:
   - title: Core functions
     desc: Create, write and manipulate .cff files.
@@ -18,6 +18,10 @@ reference:
           by the CFF schema.json **(v1.2.0)**.
     contents:
       - has_concept("cff_schema")
+  - title: Parsers
+    desc: Helper functions to parse information.
+    contents:
+      - has_concept("cff_parse")
   - title: About the package
     contents:
       - cffr-package

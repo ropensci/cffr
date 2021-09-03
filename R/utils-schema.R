@@ -7,6 +7,9 @@
 #'
 #' - [cff_schema_keys()] provides the valid high-level keys of the Citation
 #'   File Format.
+#' - [cff_schema_keys_license()] provides the valid
+#'   [SPDX license identifier(s)](https://spdx.dev/ids/) to be used on the
+#'   .cff file.
 #' - [cff_schema_definitions_person()] and [cff_schema_definitions_entity()]
 #'   returns the valid fields to be included when defining a
 #'   person or entity.
@@ -83,6 +86,21 @@ cff_schema_keys <- function(sorted = FALSE) {
   }
 
   schema_keys
+}
+
+#' @rdname cff_schema
+#' @export
+#' @examples
+#'
+#' # Valid Licenses keys
+#' cff_schema_keys_license()
+cff_schema_keys_license <- function() {
+  license <- read.csv(system.file("extdata/SPDX_License_List.csv",
+    package = "cffr"
+  ))
+
+  license <- license$Identifier
+  license
 }
 
 #' @rdname cff_schema

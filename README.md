@@ -8,6 +8,7 @@
 [![R-CMD-check](https://github.com/dieghernan/cffr/workflows/R-CMD-check/badge.svg)](https://github.com/dieghernan/cffr/actions)
 [![codecov](https://codecov.io/gh/dieghernan/cffr/branch/master/graph/badge.svg)](https://codecov.io/gh/dieghernan/cffr)
 [![CITATION-cff](https://github.com/dieghernan/cffr/actions/workflows/cff-validator.yml/badge.svg)](https://github.com/dieghernan/cffr/actions/workflows/cff-validator.yml)
+
 <!-- badges: end -->
 
 [Citation File Format (CFF)](https://citation-file-format.github.io/)
@@ -18,7 +19,7 @@ to correctly cite their software.
 
 **cffr** provides utilities to generate, parse, modify and validate
 `CITATION.cff` files automatically for R packages, as well as tools and
-examples for working with codemeta json-ld more generally.
+examples for working with .cff more generally.
 
 When you put a `CITATION.cff` file in the default branch of your GitHub
 repository, it is automatically linked from the repository landing page,
@@ -57,8 +58,9 @@ test <- cff_create("ggplot2")
 ```
 
 <details>
-
-<summary> <strong>cffr object</strong></summary>
+<summary>
+<strong>cffr object</strong>
+</summary>
 
     cff-version: 1.2.0
     message: If you use this software, please cite it using these metadata.
@@ -111,7 +113,6 @@ test <- cff_create("ggplot2")
 We can validate the result using `cff_validate()`:
 
 ``` r
-
 cff_validate(test)
 #> 
 #> cff_validate results-----
@@ -127,13 +128,13 @@ to learn how to work with `cffr` objects.
 
 # References
 
-<div id="refs" class="references">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-druskat_stephan_2021_5171937">
+<div id="ref-Druskat_Citation_File_Format_2021" class="csl-entry">
 
 Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, Robert Haines,
 James Baker, Spencer Bliven, Egon Willighagen, David Pérez-Suárez, and
-Alexander Konovalov. 2021. “Citation File Format.” Zenodo.
+Alexander Konovalov. 2021. “Citation File Format.”
 <https://doi.org/10.5281/zenodo.5171937>.
 
 </div>

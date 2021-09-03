@@ -11,6 +11,12 @@ cran_packs <- as.data.frame(table(available.packages()[, "License"])) %>%
 cran_packs$porc <- round(cran_packs$n / sum(cran_packs$n), 6)
 cran_packs$cum <- cumsum(cran_packs$n) / sum(cran_packs$n)
 
+# Write raw
+write.csv(cran_packs,
+  "inst/extdata/cran_licenses.csv",
+  na = ""
+)
+
 # Top10
 cran_packs[10, "cum"]
 

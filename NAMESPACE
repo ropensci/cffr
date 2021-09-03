@@ -2,9 +2,11 @@
 
 S3method(print,cffr)
 export(cff_create)
+export(cff_parse_person)
 export(cff_schema_definitions_entity)
 export(cff_schema_definitions_person)
 export(cff_schema_keys)
+export(cff_schema_keys_license)
 export(cff_validate)
 export(cff_write)
 importFrom(utils,as.person)

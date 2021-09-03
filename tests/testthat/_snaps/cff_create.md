@@ -95,40 +95,28 @@
       - MIT
       title: 'demodescriptionfile: Demo Description File'
       version: 0.1.0
-      abstract: This is demo description file. This file is used on examples and demos of
-        the 'ccfr' package.
+      abstract: This is demo description file.
       authors:
       - family-names: Author
         given-names: First
         email: first.last@example.com
         orcid: https://orcid.org/0000-0001-8457-4658
-      - family-names: Author
-        given-names: Second
-        email: second.last@example.com
         affiliation: An affiliation
-        alias: nickname
       - name: I am an entity
         date-end: '2020-01-01'
-      repository-code: https://github.com/dieghernan/demo/demo
+      repository-code: https://github.com/demo/demo
       url: https://demo.github.io/demo/
       contact:
       - family-names: Author
         given-names: First
         email: first.last@example.com
         orcid: https://orcid.org/0000-0001-8457-4658
-      - family-names: Author
-        given-names: Second
-        email: second.last@example.com
         affiliation: An affiliation
-        alias: nickname
       - name: I am an entity
         date-end: '2020-01-01'
       keywords:
-      - This
-      - is
-      - just
-      - a
-      - demo
+      - Demo
+      - file
     Message <simpleMessage>
       End----- 
       
