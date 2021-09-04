@@ -34,8 +34,6 @@
 #'
 #' When creating and writing a CITATION.cff for the first time, the function
 #' adds "CITATION.cff" to .Rbuildignore
-
-
 cff_write <- function(path = ".",
                       outfile = "CITATION.cff",
                       keys = NULL,

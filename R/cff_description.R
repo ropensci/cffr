@@ -1,3 +1,5 @@
+
+#' @noRd
 cff_description <- function(desc_path = "DESCRIPTION", cff_version = "1.2.0") {
   pkg <- desc::desc(desc_path)
   pkg$coerce_authors_at_r()
@@ -26,6 +28,8 @@ cff_description <- function(desc_path = "DESCRIPTION", cff_version = "1.2.0") {
 # Functions to parse field on DESCRIPTION file
 
 # Mapped to Description
+
+#' @noRd
 parse_desc_abstract <- function(pkg) {
   abstract <- pkg$get("Description")
 
@@ -36,6 +40,8 @@ parse_desc_abstract <- function(pkg) {
 }
 
 # Mapped to Package & Title
+
+#' @noRd
 parse_desc_title <- function(pkg) {
   title <- paste0(
     pkg$get("Package"),
@@ -48,6 +54,8 @@ parse_desc_title <- function(pkg) {
 }
 
 # Mapped to Version
+
+#' @noRd
 parse_desc_version <- function(pkg) {
   version <- pkg$get("Version")
 
@@ -58,6 +66,8 @@ parse_desc_version <- function(pkg) {
 }
 
 # Mapped to Date or Date/Publication for installed packages
+
+#' @noRd
 parse_desc_date_released <- function(pkg) {
   date <- tryCatch(as.character(as.Date(pkg$get("Date"))),
     error = function(cond) {
@@ -79,6 +89,8 @@ parse_desc_date_released <- function(pkg) {
 }
 
 # Mapped to URL and BugReports
+
+#' @noRd
 parse_desc_urls <- function(pkg) {
   url <- pkg$get_urls()
 
@@ -112,6 +124,7 @@ parse_desc_urls <- function(pkg) {
 
   # Extract repo url
   repo_line <- which(lapply(domains, grepl, allurls)[[1]])
+  
   repository_code <- allurls[repo_line][1]
 
   # The second url is considered for url arbitrarily
@@ -131,6 +144,8 @@ parse_desc_urls <- function(pkg) {
 
 
 # Mapped to X-schema.org-keywords, as codemeta/codemetar
+
+#' @noRd
 parse_desc_keywords <- function(pkg) {
   kword <- pkg$get("X-schema.org-keywords")
 
@@ -146,6 +161,8 @@ parse_desc_keywords <- function(pkg) {
 }
 
 # Mapped to License
+
+#' @noRd
 parse_desc_license <- function(pkg) {
   licenses <- pkg$get_field("License")
 

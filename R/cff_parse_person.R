@@ -92,11 +92,12 @@ cff_parse_person <- function(person) {
 
 
 # Mapped to Maintainer
+
+#' @noRd
 parse_desc_contacts <- function(pkg) {
   persons <- as.person(pkg$get_authors())
 
   # Extract creators only
-  # all persons should be included
   contact <- persons[sapply(persons, function(x) {
     "cre" %in% x$role
   })]
@@ -107,6 +108,8 @@ parse_desc_contacts <- function(pkg) {
 }
 
 # Mapped to persons with roles "aut","cre"
+
+#' @noRd
 parse_desc_authors <- function(pkg) {
   # This extracts all the persons
   persons <- as.person(pkg$get_authors())

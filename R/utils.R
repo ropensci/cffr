@@ -1,6 +1,8 @@
 # Utils functions used on the package
 
 # Clean strings
+
+#' @noRd
 clean_str <- function(str) {
   if (is.null(str) || is.na(str)) {
     return(NULL)
@@ -20,6 +22,8 @@ clean_str <- function(str) {
 
 # Drop nulls from list
 # From https://github.com/cboettig/codemeta/blob/master/R/utils.R
+
+#' @noRd
 drop_null <- function(x) {
   x[lengths(x) != 0]
 }

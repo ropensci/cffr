@@ -1,4 +1,6 @@
 # Used for parsing CITATION R-native files
+
+#' @noRd
 parse_r_citation <- function(desc_path, cit_path) {
   if (!file.exists(cit_path) || !file.exists(desc_path)) {
     return(NULL)
@@ -37,6 +39,8 @@ parse_r_citation <- function(desc_path, cit_path) {
 }
 
 # Parse and clean data from DESCRIPTION to create metadata
+
+#' @noRd
 parse_package_meta <- function(desc_path) {
   pkg <- desc::desc(desc_path)
   # Extract package data

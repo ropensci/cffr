@@ -110,6 +110,8 @@ cff_create <- function(path = ".", keys = NULL,
   cffobj
 }
 
+# Print method
+
 #' @export
 print.cffr <- function(x, ...) {
   cat(yaml::as.yaml(x))
