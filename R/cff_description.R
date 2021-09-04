@@ -1,10 +1,10 @@
-cff_description <- function(desc_path = "DESCRIPTION") {
+cff_description <- function(desc_path = "DESCRIPTION", cff_version = "1.2.0") {
   pkg <- desc::desc(desc_path)
   pkg$coerce_authors_at_r()
 
 
   list_fields <- list(
-    "cff-version" = "1.2.0",
+    "cff-version" = cff_version,
     message = "If you use this software, please cite it using these metadata.",
     type = "software",
     title = parse_desc_title(pkg),

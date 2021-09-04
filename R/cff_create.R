@@ -16,7 +16,8 @@
 #'
 #' @param keys List of additional keys to add to the `ccfr` object. See
 #'  **Details**.
-#'
+#' @param cff_version The Citation File Format schema version that the 
+#'   CITATION.cff file adheres to for providing the citation metadata.
 #'
 #' @seealso [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md),
 #' [cff_write()]
@@ -71,7 +72,8 @@
 #'
 #'
 #' cff_create(demo_file, keys = list("contact" = new_contact))
-cff_create <- function(path = ".", keys = NULL) {
+cff_create <- function(path = ".", keys = NULL,
+cff_version = "1.2.0") {
 
   # Find DESCRIPTION
   # Guess if root, package or DESCRIPTION
@@ -87,7 +89,7 @@ cff_create <- function(path = ".", keys = NULL) {
     stop("No DESCRIPTION file found with ", path, call. = FALSE)
   }
 
-  cffobj <- cff_description(desc_path)
+  cffobj <- cff_description(desc_path, cff_version)
 
   # Additional keys
   if (!is.null(keys)) {

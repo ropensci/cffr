@@ -39,8 +39,10 @@
 cff_write <- function(path = ".",
                       outfile = "CITATION.cff",
                       keys = NULL,
+                      cff_version = "1.2.0",
                       validate = TRUE) {
-  citat <- cff_create(path, keys = keys)
+  citat <- cff_create(path, keys = keys,
+  cff_version = cff_version)
 
 
   # Write CITATION
