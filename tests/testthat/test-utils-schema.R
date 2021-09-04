@@ -13,8 +13,8 @@ test_that("Keys snapshot", {
   })
 })
 
-test_that("License snapshot", {
-  expect_snapshot({
+test_that("License run", {
+  expect_silent(
     cff_schema_keys_license()
-  })
+  )
 })
