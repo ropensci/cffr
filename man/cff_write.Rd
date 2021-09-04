@@ -4,7 +4,13 @@
 \alias{cff_write}
 \title{Write a CITATION.cff file}
 \usage{
-cff_write(path = ".", outfile = "CITATION.cff", keys = NULL, validate = TRUE)
+cff_write(
+  path = ".",
+  outfile = "CITATION.cff",
+  keys = NULL,
+  cff_version = "1.2.0",
+  validate = TRUE
+)
 }
 \arguments{
 \item{path}{path to package root (\code{"."}), or package name (\code{"jsonlite"}), or
@@ -14,6 +20,9 @@ description file (\code{"*/DESCRIPTION*"}).}
 
 \item{keys}{List of additional keys to add to the \code{ccfr} object. See
 \code{\link[=cff_create]{cff_create()}} for details and examples.}
+
+\item{cff_version}{The Citation File Format schema version that the
+CITATION.cff file adheres to for providing the citation metadata.}
 
 \item{validate}{Logical \code{TRUE/FALSE}. Should the new file be validated using
 \code{\link[=cff_validate]{cff_validate()}}?}

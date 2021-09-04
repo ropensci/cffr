@@ -4,7 +4,7 @@
 \alias{cff_create}
 \title{Create a \code{ccfr} object}
 \usage{
-cff_create(path = ".", keys = NULL)
+cff_create(path = ".", keys = NULL, cff_version = "1.2.0")
 }
 \arguments{
 \item{path}{path to package root (\code{"."}), or package name (\code{"jsonlite"}), or
@@ -12,6 +12,9 @@ description file (\code{"*/DESCRIPTION*"}).}
 
 \item{keys}{List of additional keys to add to the \code{ccfr} object. See
 \strong{Details}.}
+
+\item{cff_version}{The Citation File Format schema version that the
+CITATION.cff file adheres to for providing the citation metadata.}
 }
 \value{
 A \code{ccfr} list object.
