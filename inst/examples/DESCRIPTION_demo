@@ -1,6 +1,8 @@
 Package: demodescriptionfile
 Title: Demo Description File
 Version: 0.1.0
+Date: "2020-01-01"
+Built: R 4.1.1; ; 2021-08-10 08:02:32 UTC; windows
 Authors@R:
     c(person(given = "First",
              family = "Author",

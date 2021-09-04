@@ -277,6 +277,37 @@
     Message <simpleMessage>
       End----- 
       
+      File DESCRIPTION_installed
+    Output
+      cff-version: 1.2.0
+      message: If you use this software, please cite it using these metadata.
+      type: software
+      title: 'sf: Simple Features for R'
+      version: 1.0-2
+      authors:
+      - family-names: Pebesma
+        given-names: Edzer
+        email: edzer.pebesma@uni-muenster.de
+        orcid: https://orcid.org/0000-0001-8049-7069
+      abstract: Support for simple features, a standardized way to encode spatial vector
+        data. Binds to 'GDAL' for reading and writing data, to 'GEOS' for geometrical operations,
+        and to 'PROJ' for projection conversions and datum transformations. Uses by default
+        the 's2' package for spherical geometry operations on ellipsoidal (long/lat) coordinates.
+      repository-code: https://github.com/r-spatial/sf/
+      url: https://r-spatial.github.io/sf/
+      date-released: '2021-07-26'
+      contact:
+      - family-names: Pebesma
+        given-names: Edzer
+        email: edzer.pebesma@uni-muenster.de
+        orcid: https://orcid.org/0000-0001-8049-7069
+      keywords: ~
+      license:
+      - GPL-2.0-only
+      - MIT
+    Message <simpleMessage>
+      End----- 
+      
       File DESCRIPTION_no_URL
     Output
       cff-version: 1.2.0
