@@ -1,0 +1,42 @@
+---
+title: "license-analisis"
+author: "Diego Hernangómez"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{license-analisis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  tidy = "styler",
+  warning = FALSE,
+  message = FALSE,
+  dpi = 300,
+  dev = "ragg_png",
+  fig.path = "./",
+  out.width = "100%"
+)
+```
+
+Precompute
+
+```{r setup}
+library(cffr)
+```
+
+```{r}
+library(tidyverse)
+
+cran_packs <- as.data.frame(table(available.packages()[, "License"])) 
+cran_packs <- as_tibble(cran_packs) %>%
+  select(LICENSE = Var1, n = Freq) %>%
+  arrange(desc(n))
+
+cran_packs
+```
+

@@ -23,3 +23,4 @@ cffr*.tgz
 .DS_Store
 docs
 docs/
+inst/doc

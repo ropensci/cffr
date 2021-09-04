@@ -58,8 +58,9 @@ test <- cff_create("ggplot2")
 ```
 
 <details>
-
-<summary> <strong>cffr object</strong></summary>
+<summary>
+<strong>cffr object</strong>
+</summary>
 
     cff-version: 1.2.0
     message: If you use this software, please cite it using these metadata.
@@ -112,7 +113,6 @@ test <- cff_create("ggplot2")
 We can validate the result using `cff_validate()`:
 
 ``` r
-
 cff_validate(test)
 #> 
 #> cff_validate results-----
@@ -128,9 +128,9 @@ to learn how to work with `cffr` objects.
 
 # References
 
-<div id="refs" class="references">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-Druskat_Citation_File_Format_2021">
+<div id="ref-Druskat_Citation_File_Format_2021" class="csl-entry">
 
 Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, Robert Haines,
 James Baker, Spencer Bliven, Egon Willighagen, David Pérez-Suárez, and

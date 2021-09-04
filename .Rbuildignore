@@ -13,3 +13,5 @@
 ^CITATION\.cff$
 ^README\.Rmd$
 ^bibtex\.bib$
+^vignettes/vignettes/license-analisis\.Rmd\.orig$
+^vignettes/license-analisis\.Rmd\.orig$
