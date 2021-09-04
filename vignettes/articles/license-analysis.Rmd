@@ -17,6 +17,9 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 
+if (isFALSE(requireNamespace("reactable", quietly = TRUE))) {
+  install.packages("reactable")
+}
 ```
 
 Precompute
@@ -126,26 +129,31 @@ errors <- cran_packages %>%
 
 if (nrow(errors) == 0) {
   cat("\nAll the License strings have been parsed correctly.\n")
+} else {
+  cat("\nThe following License strings has produced an error on parsing:\n")
+  cat("\n")
+  cat(paste0("- ", cran_packages$cran_licenses, collapse = "\n"))
+  cat("\n")
 }
-cat("\nThe following License strings has produced an error on parsing:\n")
-
-cat(paste0("- ", cran_packages$cran_licenses, collapse = "\n"))
-cat("\n")
 ```
 
 ## Mapping between Licenses used on CRAN packages and SPDX licenses
 
-<details>
-<summary>
-<strong>Details</strong>
-</summary>
-
 ```{r, echo=FALSE}
 # Full mapping
-
+library(reactable)
 mapping <- system.file("extdata/cran-to-spdx.csv", package = "cffr")
 
-read.csv(mapping) %>% knitr::kable()
+df <- read.csv(mapping)
+
+reactable(df,
+  elementId = "mappinglice",
+  filterable = TRUE,
+  searchable = TRUE,
+  showPageSizeOptions = TRUE,
+  striped = TRUE,
+  paginationType = "jump"
+)
 ```
 
-</details>
+
