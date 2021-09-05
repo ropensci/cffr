@@ -19,7 +19,7 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
         with:
           use-public-rspm: true
-          install: false
+          install-r: false
 
       # This is needed for workflows running on
       # ubuntu-20.04 or later
