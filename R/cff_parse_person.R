@@ -19,7 +19,7 @@
 #' authors of the package. See **Examples**.
 #'
 #' @examples
-#' # Parser a person object
+#' # Parse a person object
 #'
 #' cff_parse_person(person(
 #'   given = "First",

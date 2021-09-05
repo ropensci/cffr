@@ -21,7 +21,7 @@ This is a helper function designed to help on add or replace the auto-generated
 authors of the package. See \strong{Examples}.
 }
 \examples{
-# Parser a person object
+# Parse a person object
 
 cff_parse_person(person(
   given = "First",
