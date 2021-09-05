@@ -10,7 +10,7 @@ reference:
   - title: Core functions
     desc: Create, write and manipulate files and objects.
     contents:
-      - has_concept("core functions")
+      - has_concept("**cffr** core functions")
   - title: Citation File Format schema
     desc: These functions provides lists
           of valid keys and fields as defined
