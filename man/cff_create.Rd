@@ -25,8 +25,8 @@ A \code{ccfr} list object.
 }
 \description{
 Create a \code{ccfr} object for further manipulation. Similar to
-\code{\link[=cff_write]{cff_write()}}, but returns a list object rather than writing directly to a
-file. See examples.
+\code{\link[=cff_write]{cff_write()}}, but returns a object rather than writing
+directly to a file. See \strong{Examples}.
 }
 \details{
 It is possible to add additional keys not detected by \link{cff_create} using the
@@ -37,8 +37,6 @@ Please refer to \href{https://github.com/citation-file-format/citation-file-form
 for additional details.
 }
 \examples{
-
-
 
 # Installed package
 cff_create("jsonlite")
@@ -78,8 +76,7 @@ new_contact <- append(
 cff_create(demo_file, keys = list("contact" = new_contact))
 }
 \seealso{
-\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0},
-\code{\link[=cff_write]{cff_write()}}
+\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
 
 Other \strong{cffr} core functions: 
 \code{\link{cff_validate}()},

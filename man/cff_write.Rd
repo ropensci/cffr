@@ -50,8 +50,7 @@ cff_obj <- cff_write("jsonlite", outfile = tempfile(fileext = ".cff"))
 cff_obj
 }
 \seealso{
-\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0},
-\code{\link[=cff_create]{cff_create()}}, \code{\link[=cff_validate]{cff_validate()}}
+\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
 
 Other \strong{cffr} core functions: 
 \code{\link{cff_create}()},

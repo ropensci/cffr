@@ -8,10 +8,10 @@ cff_parse_person(person)
 }
 \arguments{
 \item{person}{A \code{person} object or a character coercible to \code{person}. See
-\code{\link[utils:person]{utils::person()}}}
+\code{\link[utils:person]{utils::person()}}.}
 }
 \value{
-A \code{cffr} object ready to be used on \code{\link[=cff_create]{cff_create()}}
+A \code{cffr} object ready to be used on \code{\link[=cff_create]{cff_create()}}.
 }
 \description{
 Parse a person or string to a valid format for .cff.

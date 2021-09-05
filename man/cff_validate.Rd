@@ -36,7 +36,7 @@ cff_validate(system.file("CITATION", package = "cffr"))
 }
 }
 \seealso{
-\code{\link[=cff_create]{cff_create()}}, \code{\link[=cff_write]{cff_write()}}
+\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
 
 Other \strong{cffr} core functions: 
 \code{\link{cff_create}()},

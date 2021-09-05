@@ -46,7 +46,7 @@ person or entity.
 cff_schema_keys(sorted = TRUE)
 
 # Valid Licenses keys
-cff_schema_keys_license()
+head(cff_schema_keys_license(), 20)
 
 cff_schema_definitions_person()
 

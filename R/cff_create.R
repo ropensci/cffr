@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Create a `ccfr` object for further manipulation. Similar to
-#' [cff_write()], but returns a object rather than writing 
+#' [cff_write()], but returns a object rather than writing
 #' directly to a file. See **Examples**.
 #'
 #' @return A `ccfr` list object.
