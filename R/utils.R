@@ -1,13 +1,14 @@
 # Utils functions used on the package
 
 #' @noRd
-as.cffr <- function(x){
+as.cffr <- function(x) {
+  if (inherits(x, "cffr")) {
+    return(x)
+  }
 
-if (inherits(x, "cffr")) return(x)
-
-x <- unclass(as.list(x))
-class(x) <- "cffr"
-x
+  x <- unclass(as.list(x))
+  class(x) <- "cffr"
+  x
 }
 
 

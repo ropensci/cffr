@@ -5,7 +5,7 @@
 \title{Write a CITATION.cff file}
 \usage{
 cff_write(
-  path = ".",
+  x = ".",
   outfile = "CITATION.cff",
   keys = NULL,
   cff_version = "1.2.0",
@@ -13,8 +13,12 @@ cff_write(
 )
 }
 \arguments{
-\item{path}{path to package root (\code{"."}), or package name (\code{"jsonlite"}), or
-description file (\code{"*/DESCRIPTION*"}).}
+\item{x}{It could be
+\itemize{
+\item The path to package root (\code{"."}),
+\item The name of an installed package (\code{"jsonlite"}), or
+\item Path to a DESCRIPTION file (\code{"*/DESCRIPTION*"}).
+}}
 
 \item{outfile}{The name and path of the CITATION.cff to be created.}
 

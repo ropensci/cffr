@@ -4,11 +4,15 @@
 \alias{cff_create}
 \title{Create a \code{ccfr} object}
 \usage{
-cff_create(path = ".", keys = NULL, cff_version = "1.2.0")
+cff_create(x = ".", keys = NULL, cff_version = "1.2.0")
 }
 \arguments{
-\item{path}{path to package root (\code{"."}), or package name (\code{"jsonlite"}), or
-description file (\code{"*/DESCRIPTION*"}).}
+\item{x}{It could be
+\itemize{
+\item The path to package root (\code{"."}),
+\item The name of an installed package (\code{"jsonlite"}), or
+\item Path to a DESCRIPTION file (\code{"*/DESCRIPTION*"}).
+}}
 
 \item{keys}{List of additional keys to add to the \code{ccfr} object. See
 \strong{Details}.}
