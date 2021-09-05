@@ -2,8 +2,8 @@
 #'
 #' @description
 #' Create a `ccfr` object for further manipulation. Similar to
-#' [cff_write()], but returns a list object rather than writing directly to a
-#' file. See examples.
+#' [cff_write()], but returns a object rather than writing 
+#' directly to a file. See **Examples**.
 #'
 #' @return A `ccfr` list object.
 #'
@@ -12,17 +12,16 @@
 #' @export
 #'
 #' @param x It could be
-#'  * The path to package root (`"."`),
-#'  * The name of an installed package (`"jsonlite"`), or
-#'  * Path to a DESCRIPTION file (`"*/DESCRIPTION*"`).
+#'   * The path to package root (`"."`),
+#'   * The name of an installed package (`"jsonlite"`), or
+#'   * Path to a DESCRIPTION file (`"*/DESCRIPTION*"`).
 #'
 #' @param keys List of additional keys to add to the `ccfr` object. See
-#'  **Details**.
+#'   **Details**.
 #' @param cff_version The Citation File Format schema version that the
 #'   CITATION.cff file adheres to for providing the citation metadata.
 #'
-#' @seealso [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md),
-#' [cff_write()]
+#' @seealso [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md).
 #'
 #' @details
 #'
@@ -35,8 +34,6 @@
 #'
 #'
 #' @examples
-#'
-#'
 #'
 #' # Installed package
 #' cff_create("jsonlite")

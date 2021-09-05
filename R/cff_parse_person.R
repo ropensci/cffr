@@ -9,9 +9,9 @@
 #' @family parsers
 #'
 #' @param person A `person` object or a character coercible to `person`. See
-#'   [utils::person()]
+#'   [utils::person()].
 #'
-#' @return A `cffr` object ready to be used on [cff_create()]
+#' @return A `cffr` object ready to be used on [cff_create()].
 #'
 #' @details
 #' This is a helper function designed to help on add or replace the auto-generated

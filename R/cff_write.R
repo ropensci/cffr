@@ -22,8 +22,7 @@
 #'
 #' @return A CITATION.cff file and an (invisible) `cffr` object.
 #'
-#' @seealso [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md),
-#' [cff_create()], [cff_validate()]
+#' @seealso [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md).
 #'
 #' @examples
 #'

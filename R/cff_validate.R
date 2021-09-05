@@ -9,7 +9,7 @@
 #'
 #' @family **cffr** core functions
 #'
-#' @seealso [cff_create()], [cff_write()]
+#' @seealso [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md).
 #'
 #' @return A message indicating the result of the validation and an invisible
 #'   value `TRUE/FALSE`.

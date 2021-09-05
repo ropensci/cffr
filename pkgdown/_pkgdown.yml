@@ -1,7 +1,6 @@
 url: 'https://dieghernan.github.io/cffr/'
 template:
   params:
-    bootswatch: paper
   opengraph:
     twitter:
       creator: "@dhernangomez"

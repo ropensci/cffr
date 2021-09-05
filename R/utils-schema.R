@@ -93,7 +93,7 @@ cff_schema_keys <- function(sorted = FALSE) {
 #' @examples
 #'
 #' # Valid Licenses keys
-#' cff_schema_keys_license()
+#' head(cff_schema_keys_license(), 20)
 cff_schema_keys_license <- function() {
   license <- read.csv(system.file("extdata/SPDX_License_List.csv",
     package = "cffr"
