@@ -33,8 +33,10 @@ jobs:
         with:
           extra-packages: |
             dieghernan/cffr
-            # When on CRAN, use instead
-            # cffr
+
+# When on CRAN, use instead
+         # extra-packages: |
+         #  cffr
      
 
       - name: Update docs
