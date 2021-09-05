@@ -21,7 +21,7 @@ This is a helper function designed to help on add or replace the auto-generated
 authors of the package. See \strong{Examples}.
 }
 \examples{
-# Parse a person object
+# Parser a person object
 
 cff_parse_person(person(
   given = "First",
@@ -42,3 +42,4 @@ cff_parse_person("Julio Iglesias <fake@email.com>")
 \code{\link[=cff_create]{cff_create()}}, \code{\link[utils:person]{utils::person()}}
 }
 \concept{cff_parse}
+\concept{parsers}
