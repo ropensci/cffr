@@ -35,12 +35,12 @@
 #'
 #' When creating and writing a CITATION.cff for the first time, the function
 #' adds "CITATION.cff" to .Rbuildignore
-cff_write <- function(path = ".",
+cff_write <- function(x = ".",
                       outfile = "CITATION.cff",
                       keys = NULL,
                       cff_version = "1.2.0",
                       validate = TRUE) {
-  citat <- cff_create(path,
+  citat <- cff_create(x,
     keys = keys,
     cff_version = cff_version
   )

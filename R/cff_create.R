@@ -12,8 +12,10 @@
 #'
 #' @export
 #'
-#' @param path path to package root (`"."`), or package name (`"jsonlite"`), or
-#'   description file (`"*/DESCRIPTION*"`).
+#' @param x It could be
+#'  * The path to package root (`"."`),
+#'  * The name of an installed package (`"jsonlite"`), or
+#'  * Path to a DESCRIPTION file (`"*/DESCRIPTION*"`).
 #'
 #' @param keys List of additional keys to add to the `ccfr` object. See
 #'  **Details**.
@@ -73,17 +75,17 @@
 #'
 #'
 #' cff_create(demo_file, keys = list("contact" = new_contact))
-cff_create <- function(path = ".", keys = NULL,
+cff_create <- function(x = ".", keys = NULL,
                        cff_version = "1.2.0") {
 
   # Find DESCRIPTION
   # Guess if root, package or DESCRIPTION
-  if (isTRUE(grep("DESCRIPTION", path) == 1)) {
-    desc_path <- path
-  } else if (path == ".") {
-    desc_path <- file.path(path, "DESCRIPTION")
+  if (isTRUE(grep("DESCRIPTION", x) == 1)) {
+    desc_path <- x
+  } else if (c == ".") {
+    desc_path <- file.path(x, "DESCRIPTION")
   } else {
-    desc_path <- file.path(find.package(path), "DESCRIPTION")
+    desc_path <- file.path(find.package(x), "DESCRIPTION")
   }
 
   if (!file.exists(desc_path)) {
