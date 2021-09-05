@@ -2,12 +2,12 @@
 % Please edit documentation in R/cff_validate.R
 \name{cff_validate}
 \alias{cff_validate}
-\title{Validate a \code{CITATION.cff} file or a \code{cffr} object}
+\title{Validate a \code{CITATION.cff} file or a \link{cffr} object}
 \usage{
 cff_validate(path = "./CITATION.cff")
 }
 \arguments{
-\item{path}{This is expected to be either a \code{cffr} object created
+\item{path}{This is expected to be either a \link{cffr} object created
 with \code{\link[=cff_create]{cff_create()}} or the path to a \code{CITATION.cff} file to be validated.}
 }
 \value{
@@ -15,7 +15,7 @@ A message indicating the result of the validation and an invisible
 value \code{TRUE/FALSE}.
 }
 \description{
-Validate a \code{CITATION.cff} file or a \code{cffr} object created with
+Validate a \code{CITATION.cff} file or a \link{cffr} object created with
 \code{\link[=cff_create]{cff_create()}} using the corresponding validation
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema.json}{schema.json}.
 }
@@ -38,8 +38,9 @@ cff_validate(system.file("CITATION", package = "cffr"))
 \seealso{
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
 
-Other \strong{cffr} core functions: 
+Other core functions: 
+\code{\link{as.cffr}()},
 \code{\link{cff_create}()},
 \code{\link{cff_write}()}
 }
-\concept{\strong{cffr} core functions}
+\concept{core functions}

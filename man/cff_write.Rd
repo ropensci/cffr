@@ -2,7 +2,7 @@
 % Please edit documentation in R/cff_write.R
 \name{cff_write}
 \alias{cff_write}
-\title{Write a CITATION.cff file}
+\title{Write a \code{CITATION.cff} file}
 \usage{
 cff_write(
   x = ".",
@@ -14,16 +14,16 @@ cff_write(
 }
 \arguments{
 \item{x}{The source that would be used for generating
-the \code{cffr} object. It could be
+the \link{cffr} object. It could be
 \itemize{
 \item The path to package root (\code{"."}),
 \item The name of an installed package (\code{"jsonlite"}), or
 \item Path to a DESCRIPTION file (\code{"*/DESCRIPTION*"}).
 }}
 
-\item{outfile}{The name and path of the CITATION.cff to be created.}
+\item{outfile}{The name and path of the \code{CITATION.cff} to be created.}
 
-\item{keys}{List of additional keys to add to the \code{ccfr} object. See
+\item{keys}{List of additional keys to add to the \link{cffr} object. See
 \code{\link[=cff_create]{cff_create()}} for details and examples.}
 
 \item{cff_version}{The Citation File Format schema version that the
@@ -33,11 +33,11 @@ the \code{cffr} object. It could be
 \code{\link[=cff_validate]{cff_validate()}}?}
 }
 \value{
-A CITATION.cff file and an (invisible) \code{cffr} object.
+A CITATION.cff file and an (invisible) \link{cffr} object.
 }
 \description{
-Write out a CITATION.cff file for a given package. This function is
-basically a wrapper around \code{\link[=cff_create]{cff_create()}} to both create the \code{cffr} object
+Write out a \code{CITATION.cff} file for a given package. This function is
+basically a wrapper around \code{\link[=cff_create]{cff_create()}} to both create the \link{cffr} object
 and write it out to a YAML-formatted file in one command.
 }
 \details{
@@ -53,8 +53,9 @@ cff_obj
 \seealso{
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
 
-Other \strong{cffr} core functions: 
+Other core functions: 
+\code{\link{as.cffr}()},
 \code{\link{cff_create}()},
 \code{\link{cff_validate}()}
 }
-\concept{\strong{cffr} core functions}
+\concept{core functions}

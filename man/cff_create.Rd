@@ -8,24 +8,24 @@ cff_create(x = ".", keys = NULL, cff_version = "1.2.0")
 }
 \arguments{
 \item{x}{The source that would be used for generating
-the \code{cffr} object. It could be
+the \link{cffr} object. It could be
 \itemize{
 \item The path to package root (\code{"."}),
 \item The name of an installed package (\code{"jsonlite"}), or
 \item Path to a DESCRIPTION file (\code{"*/DESCRIPTION*"}).
 }}
 
-\item{keys}{List of additional keys to add to the \code{cffr} object. See
+\item{keys}{List of additional keys to add to the \link{cffr} object. See
 \strong{Details}.}
 
 \item{cff_version}{The Citation File Format schema version that the
 \code{CITATION.cff} file adheres to for providing the citation metadata.}
 }
 \value{
-A \code{cffr} list object.
+A \link{cffr} list object.
 }
 \description{
-Create a \code{cffr} object from a given source for further manipulation.
+Create a \link{cffr} object from a given source for further manipulation.
 Similar to \code{\link[=cff_write]{cff_write()}}, but returns a object rather than writing
 directly to a file. See \strong{Examples}.
 }
@@ -79,8 +79,9 @@ cff_create(demo_file, keys = list("contact" = new_contact))
 \seealso{
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
 
-Other \strong{cffr} core functions: 
+Other core functions: 
+\code{\link{as.cffr}()},
 \code{\link{cff_validate}()},
 \code{\link{cff_write}()}
 }
-\concept{\strong{cffr} core functions}
+\concept{core functions}
