@@ -1,7 +1,7 @@
-#' Validate a CITATION.cff file or a `cffr` object
+#' Validate a `CITATION.cff` file or a `cffr` object
 #'
 #' @description
-#' Validate a CITATION.cff file or a `cffr` object created with
+#' Validate a `CITATION.cff` file or a `cffr` object created with
 #' [cff_create()] using the corresponding validation
 #' [schema.json](https://github.com/citation-file-format/citation-file-format/blob/main/schema.json).
 #'
@@ -15,7 +15,7 @@
 #'   value `TRUE/FALSE`.
 #'
 #' @param path This is expected to be either a `cffr` object created
-#'   with [cff_create()] or the path to a *.cff file to be validated.
+#'   with [cff_create()] or the path to a `CITATION.cff` file to be validated.
 #'
 #' @examples
 #' # Full .cff example

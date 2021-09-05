@@ -1,6 +1,6 @@
-#' Parse a person for `cffr`
+#' Parse a person to `cffr`
 #'
-#' Parse a person or string to a valid format for .cff.
+#' Parse a person or string to a valid format for a `CITATION.cff` file.
 #'
 #' @seealso [cff_create()], [utils::person()]
 #'
@@ -14,8 +14,8 @@
 #' @return A `cffr` object ready to be used on [cff_create()].
 #'
 #' @details
-#' This is a helper function designed to help on add or replace the auto-generated
-#' authors of the package. See **Examples**.
+#' This is a helper function designed to help on adding or 
+#' replacing the auto-generated authors of the package. See **Examples**.
 #'
 #' @examples
 #' # Parse a person object

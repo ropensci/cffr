@@ -1,25 +1,26 @@
-#' Create a `ccfr` object
+#' Create `cffr` object
 #'
 #' @description
-#' Create a `ccfr` object for further manipulation. Similar to
-#' [cff_write()], but returns a object rather than writing
+#' Create a `cffr` object from a given source for further manipulation. 
+#' Similar to [cff_write()], but returns a object rather than writing
 #' directly to a file. See **Examples**.
 #'
-#' @return A `ccfr` list object.
+#' @return A `cffr` list object.
 #'
 #' @family core functions
 #'
 #' @export
 #'
-#' @param x It could be
+#' @param x The source that would be used for generating 
+#'   the `cffr` object. It could be
 #'   * The path to package root (`"."`),
 #'   * The name of an installed package (`"jsonlite"`), or
 #'   * Path to a DESCRIPTION file (`"*/DESCRIPTION*"`).
 #'
-#' @param keys List of additional keys to add to the `ccfr` object. See
+#' @param keys List of additional keys to add to the `cffr` object. See
 #'   **Details**.
 #' @param cff_version The Citation File Format schema version that the
-#'   CITATION.cff file adheres to for providing the citation metadata.
+#'   `CITATION.cff` file adheres to for providing the citation metadata.
 #'
 #' @seealso [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md).
 #'

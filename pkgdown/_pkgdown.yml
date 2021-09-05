@@ -8,10 +8,10 @@ template:
 
 reference:
   - title: Core functions
-    desc: Create, write and manipulate .cff files.
+    desc: Create, write and manipulate files and objects.
     contents:
       - has_concept("core functions")
-  - title: CFF schema
+  - title: Citation File Format schema
     desc: These functions provides lists
           of valid keys and fields as defined
           by the CFF schema.json **(v1.2.0)**.

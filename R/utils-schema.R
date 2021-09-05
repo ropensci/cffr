@@ -9,7 +9,7 @@
 #'   File Format.
 #' - [cff_schema_keys_license()] provides the valid
 #'   [SPDX license identifier(s)](https://spdx.dev/ids/) to be used on the
-#'   .cff file.
+#'   `CITATION.cff` file.
 #' - [cff_schema_definitions_person()] and [cff_schema_definitions_entity()]
 #'   returns the valid fields to be included when defining a
 #'   person or entity.
