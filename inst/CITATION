@@ -3,6 +3,7 @@ citHeader("To cite cffr in publications use:")
 year = format(Sys.time(), "%Y")
 vers = paste('R package version', meta$Version)
 
+
 citEntry(
   entry = 'manual',
   title = paste('cffr:', meta$Title),
