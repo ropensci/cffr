@@ -2,7 +2,7 @@
 % Please edit documentation in R/cff_parse_person.R
 \name{cff_parse_person}
 \alias{cff_parse_person}
-\title{Parse a person to \code{cffr}}
+\title{Parse a person to \code{cff}}
 \usage{
 cff_parse_person(person)
 }
@@ -11,7 +11,7 @@ cff_parse_person(person)
 \code{\link[utils:person]{utils::person()}}.}
 }
 \value{
-A \code{cffr} object ready to be used on \code{\link[=cff_create]{cff_create()}}.
+A \code{\link{cff}} object ready to be used on \code{\link[=cff_create]{cff_create()}}.
 }
 \description{
 Parse a person or string to a valid format for a \code{CITATION.cff} file.

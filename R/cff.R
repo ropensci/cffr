@@ -5,19 +5,16 @@
 #' @name cff
 #' @return A `cff` list object.
 #'
-#' @family **cffr** core functions
+#' @family core functions
 #'
 #' @export
 #'
-#' @param x a character string for the [as.cffr] default method
+#' @param x a character string for the [`as.cff`] default method
 as.cff <- function(x) {
   if (inherits(x, "cff")) {
     return(x)
   }
 
-  x <- unclass(as.list(x))
-  x <- unique(x)
-  
   class(x) <- "cff"
   x
 }

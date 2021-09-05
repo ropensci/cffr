@@ -14,7 +14,7 @@ cff_write(
 }
 \arguments{
 \item{x}{The source that would be used for generating
-the \link{cffr} object. It could be
+the \code{\link{cff}} object. It could be
 \itemize{
 \item The path to package root (\code{"."}),
 \item The name of an installed package (\code{"jsonlite"}), or
@@ -23,7 +23,7 @@ the \link{cffr} object. It could be
 
 \item{outfile}{The name and path of the \code{CITATION.cff} to be created.}
 
-\item{keys}{List of additional keys to add to the \link{cffr} object. See
+\item{keys}{List of additional keys to add to the \code{\link{cff}} object. See
 \code{\link[=cff_create]{cff_create()}} for details and examples.}
 
 \item{cff_version}{The Citation File Format schema version that the
@@ -33,11 +33,11 @@ the \link{cffr} object. It could be
 \code{\link[=cff_validate]{cff_validate()}}?}
 }
 \value{
-A CITATION.cff file and an (invisible) \link{cffr} object.
+A CITATION.cff file and an (invisible) \code{\link{cff}} object.
 }
 \description{
 Write out a \code{CITATION.cff} file for a given package. This function is
-basically a wrapper around \code{\link[=cff_create]{cff_create()}} to both create the \link{cffr} object
+basically a wrapper around \code{\link[=cff_create]{cff_create()}} to both create the \code{\link{cff}} object
 and write it out to a YAML-formatted file in one command.
 }
 \details{
@@ -56,6 +56,6 @@ cff_obj
 Other core functions: 
 \code{\link{cff_create}()},
 \code{\link{cff_validate}()},
-\code{\link{cffr}}
+\code{\link{cff}}
 }
 \concept{core functions}

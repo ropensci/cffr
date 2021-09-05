@@ -7,7 +7,7 @@
 #'
 #' @export
 #'
-#' @family **cffr** core functions
+#' @family core functions
 #'
 #' @seealso [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md).
 #'
@@ -33,7 +33,7 @@
 #' cff_validate(system.file("CITATION", package = "cffr"))
 #' }
 cff_validate <- function(path = "./CITATION.cff") {
-  is_object <- inherits(path, "cffr")
+  is_object <- inherits(path, "cff")
 
   # If is a cffr create the object
   if (is_object) {

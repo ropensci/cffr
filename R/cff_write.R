@@ -5,7 +5,7 @@
 #' basically a wrapper around [cff_create()] to both create the [`cff`] object
 #' and write it out to a YAML-formatted file in one command.
 #'
-#' @family **cffr** core functions
+#' @family core functions
 #'
 #' @export
 #'

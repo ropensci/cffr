@@ -2,35 +2,35 @@
 % Please edit documentation in R/cff_create.R
 \name{cff_create}
 \alias{cff_create}
-\title{Create \code{cffr} object}
+\title{Create \code{cff} object}
 \usage{
 cff_create(x = ".", keys = NULL, cff_version = "1.2.0")
 }
 \arguments{
 \item{x}{The source that would be used for generating
-the \link{cffr} object. It could be
+the \code{\link{cff}} object. It could be
 \itemize{
 \item The path to package root (\code{"."}),
 \item The name of an installed package (\code{"jsonlite"}), or
 \item Path to a DESCRIPTION file (\code{"*/DESCRIPTION*"}).
 }}
 
-\item{keys}{List of additional keys to add to the \link{cffr} object. See
+\item{keys}{List of additional keys to add to the \code{\link{cff}} object. See
 \strong{Details}.}
 
 \item{cff_version}{The Citation File Format schema version that the
 \code{CITATION.cff} file adheres to for providing the citation metadata.}
 }
 \value{
-A \link{cffr} list object.
+A \code{\link{cff}} list object.
 }
 \description{
-Create a \link{cffr} object from a given source for further manipulation.
+Create a \code{\link{cff}} object from a given source for further manipulation.
 Similar to \code{\link[=cff_write]{cff_write()}}, but returns a object rather than writing
 directly to a file. See \strong{Examples}.
 }
 \details{
-It is possible to add additional keys not detected by \link{cff_create} using the
+It is possible to add additional keys not detected by \code{\link[=cff_create]{cff_create()}} using the
 \code{keys} argument. A list of valid keys can be retrieved with
 \code{\link[=cff_schema_keys]{cff_schema_keys()}}.
 
@@ -82,6 +82,6 @@ cff_create(demo_file, keys = list("contact" = new_contact))
 Other core functions: 
 \code{\link{cff_validate}()},
 \code{\link{cff_write}()},
-\code{\link{cffr}}
+\code{\link{cff}}
 }
 \concept{core functions}

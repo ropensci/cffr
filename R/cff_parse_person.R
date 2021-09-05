@@ -84,8 +84,6 @@ cff_parse_person <- function(person) {
   }
   parsed_person <- parsed_person[names(parsed_person) %in%
     definition]
-    
-    parsed_person <- unique(parsed_person)
 
   parsed_person <- drop_null(parsed_person)
   parsed_person <- as.cff(parsed_person)

@@ -21,7 +21,7 @@ cff_description <- function(desc_path = "DESCRIPTION", cff_version = "1.2.0") {
     license = unlist(parse_desc_license(pkg))
   )
 
-  class(list_fields) <- "cffr"
+  list_fields <- as.cff(list_fields)
   list_fields
 }
 
