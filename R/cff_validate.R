@@ -1,20 +1,20 @@
-#' Validate a `CITATION.cff` file or a [cffr] object
+#' Validate a `CITATION.cff` file or a [`cff`] object
 #'
 #' @description
-#' Validate a `CITATION.cff` file or a [cffr] object created with
+#' Validate a `CITATION.cff` file or a [`cff`] object created with
 #' [cff_create()] using the corresponding validation
 #' [schema.json](https://github.com/citation-file-format/citation-file-format/blob/main/schema.json).
 #'
 #' @export
 #'
-#' @family core functions
+#' @family **cffr** core functions
 #'
 #' @seealso [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md).
 #'
 #' @return A message indicating the result of the validation and an invisible
 #'   value `TRUE/FALSE`.
 #'
-#' @param path This is expected to be either a [cffr] object created
+#' @param path This is expected to be either a [`cff`] object created
 #'   with [cff_create()] or the path to a `CITATION.cff` file to be validated.
 #'
 #' @examples
@@ -50,7 +50,7 @@ cff_validate <- function(path = "./CITATION.cff") {
   }
 
   if (tools::file_ext(path) != "cff") {
-    stop(path, " is not a .cff file or a 'cffr' object",
+    stop(path, " is not a .cff file or a 'cff' object",
       call. = FALSE
     )
   }
@@ -117,7 +117,7 @@ cff_validate <- function(path = "./CITATION.cff") {
 
   # Results
   message_obj <- ifelse(is_object,
-    "cffr object",
+    "cff object",
     ".cff file"
   )
 

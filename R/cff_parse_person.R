@@ -1,4 +1,4 @@
-#' Parse a person to `cffr`
+#' Parse a person to `cff`
 #'
 #' Parse a person or string to a valid format for a `CITATION.cff` file.
 #'
@@ -11,7 +11,7 @@
 #' @param person A `person` object or a character coercible to `person`. See
 #'   [utils::person()].
 #'
-#' @return A `cffr` object ready to be used on [cff_create()].
+#' @return A [`cff`] object ready to be used on [cff_create()].
 #'
 #' @details
 #' This is a helper function designed to help on adding or
@@ -84,9 +84,11 @@ cff_parse_person <- function(person) {
   }
   parsed_person <- parsed_person[names(parsed_person) %in%
     definition]
+    
+    parsed_person <- unique(parsed_person)
 
   parsed_person <- drop_null(parsed_person)
-  parsed_person <- as.cffr(parsed_person)
+  parsed_person <- as.cff(parsed_person)
   parsed_person
 }
 

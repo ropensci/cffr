@@ -1,23 +1,23 @@
-#' Create `cffr` object
+#' Create `cff` object
 #'
 #' @description
-#' Create a [cffr] object from a given source for further manipulation.
+#' Create a [`cff`] object from a given source for further manipulation.
 #' Similar to [cff_write()], but returns a object rather than writing
 #' directly to a file. See **Examples**.
 #'
-#' @return A [cffr] list object.
+#' @return A [`cff`] list object.
 #'
-#' @family core functions
+#' @family **cffr** core functions
 #'
 #' @export
 #'
 #' @param x The source that would be used for generating
-#'   the [cffr] object. It could be
+#'   the [`cff`] object. It could be
 #'   * The path to package root (`"."`),
 #'   * The name of an installed package (`"jsonlite"`), or
 #'   * Path to a DESCRIPTION file (`"*/DESCRIPTION*"`).
 #'
-#' @param keys List of additional keys to add to the [cffr] object. See
+#' @param keys List of additional keys to add to the [`cff`] object. See
 #'   **Details**.
 #' @param cff_version The Citation File Format schema version that the
 #'   `CITATION.cff` file adheres to for providing the citation metadata.
@@ -26,7 +26,7 @@
 #'
 #' @details
 #'
-#' It is possible to add additional keys not detected by [cff_create] using the
+#' It is possible to add additional keys not detected by [cff_create()] using the
 #' `keys` argument. A list of valid keys can be retrieved with
 #' [cff_schema_keys()].
 #'
@@ -105,7 +105,7 @@ cff_create <- function(x = ".", keys = NULL,
   cffobj <- cffobj[cff_schema_keys()]
 
   cffobj <- drop_null(cffobj)
-  cffobj <- as.cffr(cffobj)
+  cffobj <- as.cff(cffobj)
   cffobj
 }
 

@@ -1,22 +1,24 @@
-#' `cffr` objects
+#' `cff` objects
 #'
 #' A class and utility methods for holding CFF information.
 #'
-#' @name cffr
-#' @return A `cffr` list object.
+#' @name cff
+#' @return A `cff` list object.
 #'
-#' @family core functions
+#' @family **cffr** core functions
 #'
 #' @export
 #'
 #' @param x a character string for the [as.cffr] default method
-as.cffr <- function(x) {
-  if (inherits(x, "cffr")) {
+as.cff <- function(x) {
+  if (inherits(x, "cff")) {
     return(x)
   }
 
   x <- unclass(as.list(x))
-  class(x) <- "cffr"
+  x <- unique(x)
+  
+  class(x) <- "cff"
   x
 }
 
@@ -24,6 +26,6 @@ as.cffr <- function(x) {
 # Print method
 
 #' @export
-print.cffr <- function(x, ...) {
+print.cff <- function(x, ...) {
   cat(yaml::as.yaml(x))
 }
