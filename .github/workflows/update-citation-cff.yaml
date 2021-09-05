@@ -42,7 +42,8 @@ jobs:
       - name: Update docs
         run: |
 
-          pkgdev::update_docs()
+          library(cffr)
+          cff_write()
 
         shell: Rscript {0}
 

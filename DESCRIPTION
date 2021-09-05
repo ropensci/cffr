@@ -1,6 +1,6 @@
 Package: cffr
 Title: Generate Citation File Format ('cff') Metadata for R Packages
-Version: 0.0.0.9001
+Version: 0.0.0.9002
 Authors@R: 
     person(given = "Diego",
            family = "Hernangómez",
