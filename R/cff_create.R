@@ -86,7 +86,7 @@ cff_create <- function(x = ".", keys = NULL,
   }
 
   if (!file.exists(desc_path)) {
-    stop("No DESCRIPTION file found with ", path, call. = FALSE)
+    stop("No DESCRIPTION file found with ", x, call. = FALSE)
   }
 
   cffobj <- cff_description(desc_path, cff_version)
