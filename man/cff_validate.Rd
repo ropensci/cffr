@@ -38,8 +38,8 @@ cff_validate(system.file("CITATION", package = "cffr"))
 \seealso{
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
 
-Other \strong{cffr} core functions: 
+Other core functions: 
 \code{\link{cff_create}()},
 \code{\link{cff_write}()}
 }
-\concept{\strong{cffr} core functions}
+\concept{core functions}

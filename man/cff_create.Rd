@@ -78,8 +78,8 @@ cff_create(demo_file, keys = list("contact" = new_contact))
 \seealso{
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
 
-Other \strong{cffr} core functions: 
+Other core functions: 
 \code{\link{cff_validate}()},
 \code{\link{cff_write}()}
 }
-\concept{\strong{cffr} core functions}
+\concept{core functions}
