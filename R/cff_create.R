@@ -82,7 +82,7 @@ cff_create <- function(x = ".", keys = NULL,
   # Guess if root, package or DESCRIPTION
   if (isTRUE(grep("DESCRIPTION", x) == 1)) {
     desc_path <- x
-  } else if (c == ".") {
+  } else if (x == ".") {
     desc_path <- file.path(x, "DESCRIPTION")
   } else {
     desc_path <- file.path(find.package(x), "DESCRIPTION")
