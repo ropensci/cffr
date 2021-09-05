@@ -124,7 +124,7 @@ parse_desc_urls <- function(pkg) {
 
   # Extract repo url
   repo_line <- which(lapply(domains, grepl, allurls)[[1]])
-  
+
   repository_code <- allurls[repo_line][1]
 
   # The second url is considered for url arbitrarily

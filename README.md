@@ -126,6 +126,36 @@ By default most often from within your package folder you’ll simply run
 Check the [docs](https://dieghernan.github.io/cffr/reference/index.html)
 to learn how to work with `cffr` objects.
 
+## Citation
+
+To cite the **cffr** package in publications use:
+
+``` r
+citation("cffr")
+#> 
+#> To cite cffr in publications use:
+#> 
+#>   Hernangómez, D. (2021). cffr: Generate Citation File Format ('cff')
+#>   Metadata for R Packages. R package version 0.0.0.9000.
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Manual{,
+#>     title = {cffr: Generate Citation File Format ('cff') Metadata for R Packages},
+#>     author = {Diego Hernangómez},
+#>     year = {2021},
+#>     note = {R package version 0.0.0.9000},
+#>     url = {https://dieghernan.github.io/cffr/},
+#>   }
+```
+
+You can also use the [citation provided by
+GitHub](https://github.com/dieghernan/cffr), that is generated from the
+information of a `CITATION.cff` created with **cffr**. See [About
+CITATION
+files](https://docs.github.com/es/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/about-citation-files)
+for more info.
+
 # References
 
 <div id="refs" class="references">
