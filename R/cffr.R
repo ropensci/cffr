@@ -2,7 +2,7 @@
 #'
 #' A class and utility methods for holding CFF information.
 #'
-#' @rdname cffr
+#' @name cffr
 #' @return A `cffr` list object.
 #'
 #' @family core functions
