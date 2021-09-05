@@ -106,8 +106,7 @@ cff_create <- function(path = ".", keys = NULL,
   cffobj <- cffobj[cff_schema_keys()]
 
   cffobj <- drop_null(cffobj)
-  class(cffobj) <- "cffr"
-
+  cffobj <- as.cffr(cffobj)
   cffobj
 }
 

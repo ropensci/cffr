@@ -87,7 +87,7 @@ cff_parse_person <- function(person) {
     definition]
 
   parsed_person <- drop_null(parsed_person)
-  class(parsed_person) <- "cffr"
+  parsed_person <- as.cffr(parsed_person)
   parsed_person
 }
 
