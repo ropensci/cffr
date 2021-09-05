@@ -98,4 +98,18 @@ file and validates it on a single command.
 Check the [docs](https://dieghernan.github.io/cffr/reference/index.html) to
 learn how to work with `cffr` objects.
 
+## Citation
+
+To cite the **cffr** package in publications use:
+
+```{r}
+citation("cffr")
+```
+
+You can also use the [citation provided by GitHub](https://github.com/dieghernan/cffr), 
+that is generated from the information of a 
+`CITATION.cff` created with **cffr**. See 
+[About CITATION files](https://docs.github.com/es/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/about-citation-files)
+for more info.
+
 # References
