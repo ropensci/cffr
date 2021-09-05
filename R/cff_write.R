@@ -1,17 +1,17 @@
-#' Write a CITATION.cff file
+#' Write a `CITATION.cff` file
 #'
 #' @description
-#' Write out a CITATION.cff file for a given package. This function is
-#' basically a wrapper around [cff_create()] to both create the `cffr` object
+#' Write out a `CITATION.cff` file for a given package. This function is
+#' basically a wrapper around [cff_create()] to both create the [cffr] object
 #' and write it out to a YAML-formatted file in one command.
 #'
-#' @family **cffr** core functions
+#' @family core functions
 #'
 #' @export
 #'
-#' @param outfile The name and path of the CITATION.cff to be created.
+#' @param outfile The name and path of the `CITATION.cff` to be created.
 #'
-#' @param keys List of additional keys to add to the `ccfr` object. See
+#' @param keys List of additional keys to add to the [cffr] object. See
 #'  [cff_create()] for details and examples.
 #'
 #' @param validate Logical `TRUE/FALSE`. Should the new file be validated using
@@ -20,7 +20,7 @@
 #'
 #' @inheritParams cff_create
 #'
-#' @return A CITATION.cff file and an (invisible) `cffr` object.
+#' @return A CITATION.cff file and an (invisible) [cffr] object.
 #'
 #' @seealso [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md).
 #'

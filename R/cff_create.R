@@ -1,23 +1,23 @@
 #' Create `cffr` object
 #'
 #' @description
-#' Create a `cffr` object from a given source for further manipulation.
+#' Create a [cffr] object from a given source for further manipulation.
 #' Similar to [cff_write()], but returns a object rather than writing
 #' directly to a file. See **Examples**.
 #'
-#' @return A `cffr` list object.
+#' @return A [cffr] list object.
 #'
-#' @family **cffr** core functions
+#' @family core functions
 #'
 #' @export
 #'
 #' @param x The source that would be used for generating
-#'   the `cffr` object. It could be
+#'   the [cffr] object. It could be
 #'   * The path to package root (`"."`),
 #'   * The name of an installed package (`"jsonlite"`), or
 #'   * Path to a DESCRIPTION file (`"*/DESCRIPTION*"`).
 #'
-#' @param keys List of additional keys to add to the `cffr` object. See
+#' @param keys List of additional keys to add to the [cffr] object. See
 #'   **Details**.
 #' @param cff_version The Citation File Format schema version that the
 #'   `CITATION.cff` file adheres to for providing the citation metadata.
@@ -109,12 +109,6 @@ cff_create <- function(x = ".", keys = NULL,
   cffobj
 }
 
-# Print method
-
-#' @export
-print.cffr <- function(x, ...) {
-  cat(yaml::as.yaml(x))
-}
 
 # Valid keys on CFF v1.2.0:
 # [OK] abstract
