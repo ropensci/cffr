@@ -7,6 +7,7 @@
 #' @export
 #'
 #' @concept cff_parse
+#' @concept parsers
 #'
 #' @param person A `person` object or a character coercible to `person`. See
 #'   [utils::person()]
@@ -18,7 +19,7 @@
 #' authors of the package. See **Examples**.
 #'
 #' @examples
-#' # Parse a person object
+#' # Parser a person object
 #'
 #' cff_parse_person(person(
 #'   given = "First",

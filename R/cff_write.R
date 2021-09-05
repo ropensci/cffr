@@ -6,6 +6,7 @@
 #' and write it out to a YAML-formatted file in one command.
 #'
 #' @concept cff_core
+#' @concept **cffr** core functions
 #'
 #' @export
 #'

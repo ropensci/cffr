@@ -8,6 +8,7 @@
 #' @export
 #'
 #' @concept cff_core
+#' @concept **cffr** core functions
 #'
 #' @seealso [cff_create()], [cff_write()]
 #'

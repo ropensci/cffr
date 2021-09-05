@@ -38,6 +38,8 @@ parse_r_citation <- function(desc_path, cit_path) {
   parsed
 }
 
+
+
 # Parse and clean data from DESCRIPTION to create metadata
 
 #' @noRd
