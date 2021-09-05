@@ -28,7 +28,7 @@ also provided as BibTeX snippet which users can simply copy
 
 ## Installation
 
-You can install the developing version of **cff** with:
+You can install the developing version of **cffr** with:
 
 ``` r
 devtools::install_github("dieghernan/cffr")
@@ -48,7 +48,8 @@ install.packages("cffr")
 
 ## Example
 
-This is a basic example which shows you how to create a `cffr` object:
+This is a basic example which shows you how to create a `cff` object
+\[see `?cff` for more info:
 
 ``` r
 library(cffr)
@@ -59,7 +60,7 @@ test <- cff_create("ggplot2")
 
 <details>
 
-<summary> <strong>cffr object</strong></summary>
+<summary> <strong><code>cff</code> object</strong></summary>
 
     cff-version: 1.2.0
     message: If you use this software, please cite it using these metadata.
@@ -120,11 +121,11 @@ cff_validate(test)
 ```
 
 By default most often from within your package folder you’ll simply run
-`cffr::cff_write()`, that creates a `cffr` object, write it on a
+`cffr::cff_write()`, that creates a `cff` object, write it on a
 `CITATION.cff` file and validates it on a single command.
 
 Check the [docs](https://dieghernan.github.io/cffr/reference/index.html)
-to learn how to work with `cffr` objects.
+to learn how to work with `cff` objects.
 
 ## Citation
 
