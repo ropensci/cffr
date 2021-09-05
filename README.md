@@ -116,7 +116,7 @@ We can validate the result using `cff_validate()`:
 cff_validate(test)
 #> 
 #> cff_validate results-----
-#> Congratulations! This cffr object is valid
+#> Congratulations! This cff object is valid
 ```
 
 By default most often from within your package folder you’ll simply run
