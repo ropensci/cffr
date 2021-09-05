@@ -52,7 +52,7 @@ cff_write <- function(x = ".",
   message(crayon::green(outfile, "generated"))
 
   # Add CITATION.cff to .Rbuildignore
-  if (path == "." && file.exists(".Rbuildignore")) {
+  if (x == "." && file.exists(".Rbuildignore")) {
     # nocov start
     ignore <- readLines(".Rbuildignore")
 
