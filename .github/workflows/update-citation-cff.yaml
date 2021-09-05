@@ -16,11 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: r-lib/actions/setup-pandoc@v1
-
       - uses: r-lib/actions/setup-r@v1
         with:
           use-public-rspm: true
+          install: false
 
       # This is needed for workflows running on
       # ubuntu-20.04 or later
@@ -39,10 +38,14 @@ jobs:
          #  cffr
      
 
-      - name: Update docs
+      - name: Update CITATION.cff
         run: |
 
           library(cffr)
+          
+          # Customize with your own code
+          # Mind the indentation!
+          
           cff_write()
 
         shell: Rscript {0}
