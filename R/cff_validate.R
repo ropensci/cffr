@@ -7,7 +7,7 @@
 #'
 #' @export
 #'
-#' @family **cffr** core functions
+#' @family core functions
 #'
 #' @seealso [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md).
 #'
