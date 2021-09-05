@@ -37,6 +37,9 @@ cff_validate(system.file("CITATION", package = "cffr"))
 }
 \seealso{
 \code{\link[=cff_create]{cff_create()}}, \code{\link[=cff_write]{cff_write()}}
+
+Other \strong{cffr} core functions: 
+\code{\link{cff_create}()},
+\code{\link{cff_write}()}
 }
-\concept{**cffr** core functions}
-\concept{cff_core}
+\concept{\strong{cffr} core functions}

@@ -41,5 +41,4 @@ cff_parse_person("Julio Iglesias <fake@email.com>")
 \seealso{
 \code{\link[=cff_create]{cff_create()}}, \code{\link[utils:person]{utils::person()}}
 }
-\concept{cff_parse}
 \concept{parsers}
