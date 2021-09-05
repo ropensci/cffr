@@ -7,8 +7,7 @@
 #'
 #' @return A `ccfr` list object.
 #'
-#' @concept cff_core
-#' @concept **cffr** core functions
+#' @family **cffr** core functions
 #'
 #' @export
 #'

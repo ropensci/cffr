@@ -6,8 +6,7 @@
 #'
 #' @export
 #'
-#' @concept cff_parse
-#' @concept parsers
+#' @family parsers
 #'
 #' @param person A `person` object or a character coercible to `person`. See
 #'   [utils::person()]

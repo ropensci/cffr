@@ -18,7 +18,7 @@
 #' [Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md)
 #'
 #'
-#' @concept cff_schema
+#' @family schema
 #'
 #' @export
 #'

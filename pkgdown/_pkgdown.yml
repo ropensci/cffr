@@ -11,17 +11,17 @@ reference:
   - title: Core functions
     desc: Create, write and manipulate .cff files.
     contents:
-      - has_concept("cff_core")
+      - has_concept("cffr core functions")
   - title: CFF schema
     desc: These functions provides lists
           of valid keys and fields as defined
           by the CFF schema.json **(v1.2.0)**.
     contents:
-      - has_concept("cff_schema")
+      - has_concept("schema")
   - title: Parsers
     desc: Helper functions to parse information.
     contents:
-      - has_concept("cff_parse")
+      - has_concept("parsers")
   - title: About the package
     contents:
       - cffr-package
