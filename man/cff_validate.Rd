@@ -2,20 +2,20 @@
 % Please edit documentation in R/cff_validate.R
 \name{cff_validate}
 \alias{cff_validate}
-\title{Validate a CITATION.cff file or a \code{cffr} object}
+\title{Validate a \code{CITATION.cff} file or a \code{cffr} object}
 \usage{
 cff_validate(path = "./CITATION.cff")
 }
 \arguments{
 \item{path}{This is expected to be either a \code{cffr} object created
-with \code{\link[=cff_create]{cff_create()}} or the path to a *.cff file to be validated.}
+with \code{\link[=cff_create]{cff_create()}} or the path to a \code{CITATION.cff} file to be validated.}
 }
 \value{
 A message indicating the result of the validation and an invisible
 value \code{TRUE/FALSE}.
 }
 \description{
-Validate a CITATION.cff file or a \code{cffr} object created with
+Validate a \code{CITATION.cff} file or a \code{cffr} object created with
 \code{\link[=cff_create]{cff_create()}} using the corresponding validation
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema.json}{schema.json}.
 }

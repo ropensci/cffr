@@ -35,7 +35,7 @@ Helper functions with the valid values of different fields, according to the
 File Format.
 \item \code{\link[=cff_schema_keys_license]{cff_schema_keys_license()}} provides the valid
 \href{https://spdx.dev/ids/}{SPDX license identifier(s)} to be used on the
-.cff file.
+\code{CITATION.cff} file.
 \item \code{\link[=cff_schema_definitions_person]{cff_schema_definitions_person()}} and \code{\link[=cff_schema_definitions_entity]{cff_schema_definitions_entity()}}
 returns the valid fields to be included when defining a
 person or entity.

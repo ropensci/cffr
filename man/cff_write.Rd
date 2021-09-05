@@ -13,7 +13,8 @@ cff_write(
 )
 }
 \arguments{
-\item{x}{It could be
+\item{x}{The source that would be used for generating
+the \code{cffr} object. It could be
 \itemize{
 \item The path to package root (\code{"."}),
 \item The name of an installed package (\code{"jsonlite"}), or
@@ -26,7 +27,7 @@ cff_write(
 \code{\link[=cff_create]{cff_create()}} for details and examples.}
 
 \item{cff_version}{The Citation File Format schema version that the
-CITATION.cff file adheres to for providing the citation metadata.}
+\code{CITATION.cff} file adheres to for providing the citation metadata.}
 
 \item{validate}{Logical \code{TRUE/FALSE}. Should the new file be validated using
 \code{\link[=cff_validate]{cff_validate()}}?}

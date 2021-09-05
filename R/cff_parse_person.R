@@ -14,7 +14,7 @@
 #' @return A `cffr` object ready to be used on [cff_create()].
 #'
 #' @details
-#' This is a helper function designed to help on adding or 
+#' This is a helper function designed to help on adding or
 #' replacing the auto-generated authors of the package. See **Examples**.
 #'
 #' @examples

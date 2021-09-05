@@ -2,30 +2,31 @@
 % Please edit documentation in R/cff_create.R
 \name{cff_create}
 \alias{cff_create}
-\title{Create a \code{ccfr} object}
+\title{Create \code{cffr} object}
 \usage{
 cff_create(x = ".", keys = NULL, cff_version = "1.2.0")
 }
 \arguments{
-\item{x}{It could be
+\item{x}{The source that would be used for generating
+the \code{cffr} object. It could be
 \itemize{
 \item The path to package root (\code{"."}),
 \item The name of an installed package (\code{"jsonlite"}), or
 \item Path to a DESCRIPTION file (\code{"*/DESCRIPTION*"}).
 }}
 
-\item{keys}{List of additional keys to add to the \code{ccfr} object. See
+\item{keys}{List of additional keys to add to the \code{cffr} object. See
 \strong{Details}.}
 
 \item{cff_version}{The Citation File Format schema version that the
-CITATION.cff file adheres to for providing the citation metadata.}
+\code{CITATION.cff} file adheres to for providing the citation metadata.}
 }
 \value{
-A \code{ccfr} list object.
+A \code{cffr} list object.
 }
 \description{
-Create a \code{ccfr} object for further manipulation. Similar to
-\code{\link[=cff_write]{cff_write()}}, but returns a object rather than writing
+Create a \code{cffr} object from a given source for further manipulation.
+Similar to \code{\link[=cff_write]{cff_write()}}, but returns a object rather than writing
 directly to a file. See \strong{Examples}.
 }
 \details{

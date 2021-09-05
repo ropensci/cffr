@@ -2,7 +2,7 @@
 % Please edit documentation in R/cff_parse_person.R
 \name{cff_parse_person}
 \alias{cff_parse_person}
-\title{Parse a person for \code{cffr}}
+\title{Parse a person to \code{cffr}}
 \usage{
 cff_parse_person(person)
 }
@@ -14,11 +14,11 @@ cff_parse_person(person)
 A \code{cffr} object ready to be used on \code{\link[=cff_create]{cff_create()}}.
 }
 \description{
-Parse a person or string to a valid format for .cff.
+Parse a person or string to a valid format for a \code{CITATION.cff} file.
 }
 \details{
-This is a helper function designed to help on add or replace the auto-generated
-authors of the package. See \strong{Examples}.
+This is a helper function designed to help on adding or
+replacing the auto-generated authors of the package. See \strong{Examples}.
 }
 \examples{
 # Parse a person object

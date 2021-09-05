@@ -1,7 +1,7 @@
 #' Create `cffr` object
 #'
 #' @description
-#' Create a `cffr` object from a given source for further manipulation. 
+#' Create a `cffr` object from a given source for further manipulation.
 #' Similar to [cff_write()], but returns a object rather than writing
 #' directly to a file. See **Examples**.
 #'
@@ -11,7 +11,7 @@
 #'
 #' @export
 #'
-#' @param x The source that would be used for generating 
+#' @param x The source that would be used for generating
 #'   the `cffr` object. It could be
 #'   * The path to package root (`"."`),
 #'   * The name of an installed package (`"jsonlite"`), or
