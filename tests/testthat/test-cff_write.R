@@ -105,5 +105,3 @@ test_that("Fix extension of the file", {
   expect_error(cff_validate(tmp))
   expect_true(cff_validate(tmp2))
 })
-
-
