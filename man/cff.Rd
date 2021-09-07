@@ -5,16 +5,67 @@
 \alias{as.cff}
 \title{\code{cff} objects}
 \usage{
+cff(path, ...)
+
 as.cff(x)
 }
 \arguments{
+\item{path}{The path to a \code{CITATION.cff} file.}
+
+\item{...}{Named arguments to be used for creating a \code{\link{cff}} object.}
+
 \item{x}{a character string for the \code{\link{as.cff}} default method}
 }
 \value{
 A \code{cff} list object.
 }
 \description{
-A class and utility methods for holding CFF information.
+A class and utility methods for reading, creating and holding CFF
+information.
+}
+\details{
+If no parameters are supplied (the default behavior), a minimal
+valid \code{cff} object is created.
+
+This object can be manipulated using \code{\link[=cff_create]{cff_create()}}.
+}
+\examples{
+
+# Blank cff
+cff()
+
+# From file
+cff(system.file("examples/CITATION_basic.cff",
+  package = "cffr"
+))
+
+# Use custom params
+test <- cff(
+  message = "A blank file",
+  keywords = c("A", "new", "list", "of", "keywords"),
+  authors = list(cff_parse_person("New author")),
+  "date-released" = "1900-01-01"
+)
+test
+
+# Would fail
+cff_validate(test)
+
+
+# Modify with cff_create
+new <- cff_create(test, keys = list(
+  "cff-version" = "1.2.0",
+  title = "Manipulating files"
+))
+new
+
+# Would pass
+cff_validate(new)
+
+as.cff(list(
+  "cff-version" = "1.2.0",
+  title = "Manipulating files"
+))
 }
 \seealso{
 Other core functions: 

@@ -14,8 +14,9 @@ cff_write(
 }
 \arguments{
 \item{x}{The source that would be used for generating
-the \code{\link{cff}} object. It could be
+the \code{CITATION.cff} file. It could be:
 \itemize{
+\item A \code{\link{cff}} object,
 \item The path to package root (\code{"."}),
 \item The name of an installed package (\code{"jsonlite"}), or
 \item Path to a DESCRIPTION file (\code{"*/DESCRIPTION*"}).
@@ -33,7 +34,7 @@ the \code{\link{cff}} object. It could be
 \code{\link[=cff_validate]{cff_validate()}}?}
 }
 \value{
-A CITATION.cff file and an (invisible) \code{\link{cff}} object.
+A \code{CITATION.cff} file and an (invisible) \code{\link{cff}} object.
 }
 \description{
 Write out a \code{CITATION.cff} file for a given package. This function is
@@ -56,6 +57,6 @@ cff_obj
 Other core functions: 
 \code{\link{cff_create}()},
 \code{\link{cff_validate}()},
-\code{\link{cff}}
+\code{\link{cff}()}
 }
 \concept{core functions}

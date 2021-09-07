@@ -7,7 +7,12 @@
 #'
 #' @family core functions
 #'
-#' @export
+#' @param x The source that would be used for generating
+#'   the `CITATION.cff` file. It could be:
+#'   * A [`cff`] object,
+#'   * The path to package root (`"."`),
+#'   * The name of an installed package (`"jsonlite"`), or
+#'   * Path to a DESCRIPTION file (`"*/DESCRIPTION*"`).
 #'
 #' @param outfile The name and path of the `CITATION.cff` to be created.
 #'
@@ -17,10 +22,11 @@
 #' @param validate Logical `TRUE/FALSE`. Should the new file be validated using
 #'   [cff_validate()]?
 #'
+#' @export
 #'
 #' @inheritParams cff_create
 #'
-#' @return A CITATION.cff file and an (invisible) [`cff`] object.
+#' @return A `CITATION.cff` file and an (invisible) [`cff`] object.
 #'
 #' @seealso [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md).
 #'
@@ -50,7 +56,7 @@ cff_write <- function(x = ".",
   message(crayon::green(outfile, "generated"))
 
   # Add CITATION.cff to .Rbuildignore
-  if (x == "." && file.exists(".Rbuildignore")) {
+  if (!is.cff(x) && x == "." && file.exists(".Rbuildignore")) {
     # nocov start
     ignore <- readLines(".Rbuildignore")
 

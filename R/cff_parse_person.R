@@ -114,8 +114,8 @@ parse_desc_authors <- function(pkg) {
   # This extracts all the persons
   persons <- as.person(pkg$get_authors())
 
-  # Extract authors and creators only - to be reviewed if this is logic is correct or
-  # all persons should be included
+  # Extract authors and creators only - to be reviewed if this is logic is
+  # correct or all persons should be included
   authors <- persons[sapply(persons, function(x) {
     "aut" %in% x$role || "cre" %in% x$role
   })]

@@ -1,5 +1,13 @@
 test_that("Validate full CITATION.cff", {
-  full <- system.file("examples/CITATION_full.cff",
+  full <- system.file("examples/CITATION_complete.cff",
+    package = "cffr"
+  )
+  expect_message(cff_validate(full))
+  expect_true(cff_validate(full))
+})
+
+test_that("Validate minimal CITATION.cff", {
+  full <- system.file("examples/CITATION_skeleton.cff",
     package = "cffr"
   )
   expect_message(cff_validate(full))
@@ -51,7 +59,7 @@ test_that("Validate error CITATION.cff", {
 
 test_that("Validate error for invalid input", {
   nocff <- system.file("CITATION",
-    package = "cffR"
+    package = "cffr"
   )
   expect_error(cff_validate(nocff))
 

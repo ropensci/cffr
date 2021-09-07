@@ -73,3 +73,37 @@ test_that("Append keys", {
   )
   expect_true(cff_validate(tmp))
 })
+
+test_that("Write from a cff object", {
+  # Demo file
+  demo_file <- system.file("examples/DESCRIPTION_demo", package = "cffr")
+
+  tmp <- tempfile(fileext = ".cff")
+
+  cffobj <- cff_create(demo_file)
+  expect_true(is.cff(cffobj))
+
+  cff_write(cffobj,
+    outfile = tmp
+  )
+
+  expect_true(file.exists(tmp))
+  expect_true(cff_validate(tmp))
+})
+
+test_that("Fix extension of the file", {
+  complete <- system.file("examples/CITATION_complete.cff",
+    package = "cffr"
+  )
+  cffobj <- cff(complete)
+
+  tmp <- tempfile()
+  tmp2 <- tempfile(fileext = ".cff")
+  cff_write(cffobj, tmp, validate = FALSE)
+  cff_write(cffobj, tmp2, validate = FALSE)
+
+  expect_error(cff_validate(tmp))
+  expect_true(cff_validate(tmp2))
+})
+
+

@@ -14,12 +14,12 @@
 #' @return A message indicating the result of the validation and an invisible
 #'   value `TRUE/FALSE`.
 #'
-#' @param path This is expected to be either a [`cff`] object created
+#' @param x This is expected to be either a [`cff`] object created
 #'   with [cff_create()] or the path to a `CITATION.cff` file to be validated.
 #'
 #' @examples
 #' # Full .cff example
-#' cff_validate(system.file("examples/CITATION_full.cff", package = "cffr"))
+#' cff_validate(system.file("examples/CITATION_complete.cff", package = "cffr"))
 #'
 #' # Validate a cffr object
 #' cffr <- cff_create("jsonlite")
@@ -32,28 +32,26 @@
 #' # If a CITATION file (note that is not .cff) it throws an error
 #' cff_validate(system.file("CITATION", package = "cffr"))
 #' }
-cff_validate <- function(path = "./CITATION.cff") {
-  is_object <- inherits(path, "cff")
+cff_validate <- function(x = "./CITATION.cff") {
+  message_obj <- ifelse(is.cff(x),
+    "cff object",
+    ".cff file"
+  )
 
   # If is a cffr create the object
-  if (is_object) {
+  if (is.cff(x)) {
     tmpfile <- tempfile(fileext = ".cff")
-    suppressMessages(yaml::write_yaml(path, tmpfile))
+    suppressMessages(yaml::write_yaml(x, tmpfile))
     path <- tmpfile
+  } else {
+    path <- x
   }
 
 
-  if (!file.exists(path)) {
-    stop("File ", path, " doesn't exists",
-      call. = FALSE
-    )
-  }
+  stopifnotexists(path)
 
-  if (tools::file_ext(path) != "cff") {
-    stop(path, " is not a .cff file or a 'cff' object",
-      call. = FALSE
-    )
-  }
+  # Check
+  stopifnotcff(path)
 
 
   # Read file
@@ -102,8 +100,14 @@ cff_validate <- function(path = "./CITATION.cff") {
   # Download latest scheme
   schema_temp <- file.path(tempdir(), "cff_schema.json")
 
+  jsonschema <- paste0(
+    "https://raw.githubusercontent.com/",
+    "citation-file-format/",
+    "citation-file-format/main/schema.json"
+  )
+
   if (isFALSE(file.exists(schema_temp))) {
-    download.file("https://raw.githubusercontent.com/citation-file-format/citation-file-format/main/schema.json",
+    download.file(jsonschema,
       schema_temp,
       mode = "wb",
       quiet = TRUE
@@ -113,12 +117,6 @@ cff_validate <- function(path = "./CITATION.cff") {
   result <- jsonvalidate::json_validate(cit_temp,
     schema_temp,
     verbose = TRUE
-  )
-
-  # Results
-  message_obj <- ifelse(is_object,
-    "cff object",
-    ".cff file"
   )
 
   message("\ncff_validate results-----")

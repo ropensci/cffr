@@ -4,10 +4,10 @@
 \alias{cff_validate}
 \title{Validate a \code{CITATION.cff} file or a \code{\link{cff}} object}
 \usage{
-cff_validate(path = "./CITATION.cff")
+cff_validate(x = "./CITATION.cff")
 }
 \arguments{
-\item{path}{This is expected to be either a \code{\link{cff}} object created
+\item{x}{This is expected to be either a \code{\link{cff}} object created
 with \code{\link[=cff_create]{cff_create()}} or the path to a \code{CITATION.cff} file to be validated.}
 }
 \value{
@@ -21,7 +21,7 @@ Validate a \code{CITATION.cff} file or a \code{\link{cff}} object created with
 }
 \examples{
 # Full .cff example
-cff_validate(system.file("examples/CITATION_full.cff", package = "cffr"))
+cff_validate(system.file("examples/CITATION_complete.cff", package = "cffr"))
 
 # Validate a cffr object
 cffr <- cff_create("jsonlite")
@@ -41,6 +41,6 @@ cff_validate(system.file("CITATION", package = "cffr"))
 Other core functions: 
 \code{\link{cff_create}()},
 \code{\link{cff_write}()},
-\code{\link{cff}}
+\code{\link{cff}()}
 }
 \concept{core functions}

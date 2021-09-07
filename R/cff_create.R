@@ -12,7 +12,8 @@
 #' @export
 #'
 #' @param x The source that would be used for generating
-#'   the [`cff`] object. It could be
+#'   the [`cff`] object. It could be:
+#'   * An existing [`cff`] object,
 #'   * The path to package root (`"."`),
 #'   * The name of an installed package (`"jsonlite"`), or
 #'   * Path to a DESCRIPTION file (`"*/DESCRIPTION*"`).
@@ -26,8 +27,8 @@
 #'
 #' @details
 #'
-#' It is possible to add additional keys not detected by [cff_create()] using the
-#' `keys` argument. A list of valid keys can be retrieved with
+#' It is possible to add additional keys not detected by [cff_create()] using
+#' the `keys` argument. A list of valid keys can be retrieved with
 #' [cff_schema_keys()].
 #'
 #' Please refer to [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md)
@@ -74,23 +75,30 @@
 #' cff_create(demo_file, keys = list("contact" = new_contact))
 cff_create <- function(x = ".", keys = NULL,
                        cff_version = "1.2.0") {
-
-  # Find DESCRIPTION
-  # Guess if root, package or DESCRIPTION
-  if (isTRUE(grep("DESCRIPTION", x) == 1)) {
-    desc_path <- x
-  } else if (x == ".") {
-    desc_path <- file.path(x, "DESCRIPTION")
+  if (is.cff(x)) {
+    # It is already an object
+    cffobj <- x
+    cffobj["cff-version"] <- cff_version
   } else {
-    desc_path <- file.path(find.package(x), "DESCRIPTION")
+    # Need to parse
+    # Find DESCRIPTION
+    # Guess if root, package or DESCRIPTION
+    if (isTRUE(grep("DESCRIPTION", x) == 1)) {
+      desc_path <- x
+    } else if (x == ".") {
+      # nocov start
+      desc_path <- file.path(x, "DESCRIPTION")
+      # nocov end
+    } else {
+      desc_path <- file.path(find.package(x), "DESCRIPTION")
+    }
+
+    if (!file.exists(desc_path)) {
+      stop("No DESCRIPTION file found with ", x, call. = FALSE)
+    }
+
+    cffobj <- cff_description(desc_path, cff_version)
   }
-
-  if (!file.exists(desc_path)) {
-    stop("No DESCRIPTION file found with ", x, call. = FALSE)
-  }
-
-  cffobj <- cff_description(desc_path, cff_version)
-
   # Additional keys
   if (!is.null(keys)) {
     keys <- keys[names(keys) %in% cff_schema_keys()]

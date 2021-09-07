@@ -8,8 +8,9 @@ cff_create(x = ".", keys = NULL, cff_version = "1.2.0")
 }
 \arguments{
 \item{x}{The source that would be used for generating
-the \code{\link{cff}} object. It could be
+the \code{\link{cff}} object. It could be:
 \itemize{
+\item An existing \code{\link{cff}} object,
 \item The path to package root (\code{"."}),
 \item The name of an installed package (\code{"jsonlite"}), or
 \item Path to a DESCRIPTION file (\code{"*/DESCRIPTION*"}).
@@ -30,8 +31,8 @@ Similar to \code{\link[=cff_write]{cff_write()}}, but returns a object rather th
 directly to a file. See \strong{Examples}.
 }
 \details{
-It is possible to add additional keys not detected by \code{\link[=cff_create]{cff_create()}} using the
-\code{keys} argument. A list of valid keys can be retrieved with
+It is possible to add additional keys not detected by \code{\link[=cff_create]{cff_create()}} using
+the \code{keys} argument. A list of valid keys can be retrieved with
 \code{\link[=cff_schema_keys]{cff_schema_keys()}}.
 
 Please refer to \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}
@@ -82,6 +83,6 @@ cff_create(demo_file, keys = list("contact" = new_contact))
 Other core functions: 
 \code{\link{cff_validate}()},
 \code{\link{cff_write}()},
-\code{\link{cff}}
+\code{\link{cff}()}
 }
 \concept{core functions}
