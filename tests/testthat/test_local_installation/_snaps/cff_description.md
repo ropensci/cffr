@@ -4,181 +4,181 @@
     
     ## Summary of installed packages 
     
-                        package  res
-    askpass             askpass TRUE
-    assertthat       assertthat TRUE
-    backports         backports TRUE
-    base64enc         base64enc TRUE
-    bit                     bit TRUE
-    bit64                 bit64 TRUE
-    blob                   blob TRUE
-    brew                   brew TRUE
-    brio                   brio TRUE
-    broom                 broom TRUE
-    cachem               cachem TRUE
-    callr                 callr TRUE
-    cellranger       cellranger TRUE
-    cffr                   cffr TRUE
-    cli                     cli TRUE
-    clipr                 clipr TRUE
-    codemeta           codemeta TRUE
-    colorspace       colorspace TRUE
-    commonmark       commonmark TRUE
-    covr                   covr TRUE
-    cpp11                 cpp11 TRUE
-    crayon               crayon TRUE
-    credentials     credentials TRUE
-    curl                   curl TRUE
-    data.table       data.table TRUE
-    DBI                     DBI TRUE
-    dbplyr               dbplyr TRUE
-    desc                   desc TRUE
-    devtools           devtools TRUE
-    diffobj             diffobj TRUE
-    digest               digest TRUE
-    downlit             downlit TRUE
-    dplyr                 dplyr TRUE
-    dtplyr               dtplyr TRUE
-    ellipsis           ellipsis TRUE
-    evaluate           evaluate TRUE
-    fansi                 fansi TRUE
-    farver               farver TRUE
-    fastmap             fastmap TRUE
-    forcats             forcats TRUE
-    fs                       fs TRUE
-    gargle               gargle TRUE
-    generics           generics TRUE
-    gert                   gert TRUE
-    ggplot2             ggplot2 TRUE
-    gh                       gh TRUE
-    gitcreds           gitcreds TRUE
-    glue                   glue TRUE
-    googledrive     googledrive TRUE
-    googlesheets4 googlesheets4 TRUE
-    gtable               gtable TRUE
-    haven                 haven TRUE
-    highr                 highr TRUE
-    hms                     hms TRUE
-    htmltools         htmltools TRUE
-    htmlwidgets     htmlwidgets TRUE
-    httr                   httr TRUE
-    ids                     ids TRUE
-    ini                     ini TRUE
-    isoband             isoband TRUE
-    jsonlite           jsonlite TRUE
-    jsonvalidate   jsonvalidate TRUE
-    knitr                 knitr TRUE
-    labeling           labeling TRUE
-    lazyeval           lazyeval TRUE
-    lifecycle         lifecycle TRUE
-    lubridate         lubridate TRUE
-    magrittr           magrittr TRUE
-    markdown           markdown TRUE
-    memoise             memoise TRUE
-    mime                   mime TRUE
-    modelr               modelr TRUE
-    munsell             munsell TRUE
-    openssl             openssl TRUE
-    pak                     pak TRUE
-    pillar               pillar TRUE
-    pkgbuild           pkgbuild TRUE
-    pkgconfig         pkgconfig TRUE
-    pkgdev               pkgdev TRUE
-    pkgdown             pkgdown TRUE
-    pkgload             pkgload TRUE
-    praise               praise TRUE
-    prettyunits     prettyunits TRUE
-    processx           processx TRUE
-    progress           progress TRUE
-    ps                       ps TRUE
-    purrr                 purrr TRUE
-    R.cache             R.cache TRUE
-    R.methodsS3     R.methodsS3 TRUE
-    R.oo                   R.oo TRUE
-    R.utils             R.utils TRUE
-    R6                       R6 TRUE
-    ragg                   ragg TRUE
-    rappdirs           rappdirs TRUE
-    rcmdcheck         rcmdcheck TRUE
-    RColorBrewer   RColorBrewer TRUE
-    Rcpp                   Rcpp TRUE
-    reactable         reactable TRUE
-    reactR               reactR TRUE
-    readr                 readr TRUE
-    readxl               readxl TRUE
-    rematch             rematch TRUE
-    rematch2           rematch2 TRUE
-    remotes             remotes TRUE
-    reprex               reprex TRUE
-    rex                     rex TRUE
-    rlang                 rlang TRUE
-    rmarkdown         rmarkdown TRUE
-    roxygen2           roxygen2 TRUE
-    rprojroot         rprojroot TRUE
-    rstudioapi       rstudioapi TRUE
-    rversions         rversions TRUE
-    rvest                 rvest TRUE
-    scales               scales TRUE
-    selectr             selectr TRUE
-    sessioninfo     sessioninfo TRUE
-    stringi             stringi TRUE
-    stringr             stringr TRUE
-    styler               styler TRUE
-    sys                     sys TRUE
-    systemfonts     systemfonts TRUE
-    testthat           testthat TRUE
-    textshaping     textshaping TRUE
-    tibble               tibble TRUE
-    tidyr                 tidyr TRUE
-    tidyselect       tidyselect TRUE
-    tidyverse         tidyverse TRUE
-    tinytex             tinytex TRUE
-    tzdb                   tzdb TRUE
-    urlchecker       urlchecker TRUE
-    usethis             usethis TRUE
-    utf8                   utf8 TRUE
-    uuid                   uuid TRUE
-    V8                       V8 TRUE
-    vctrs                 vctrs TRUE
-    viridisLite     viridisLite TRUE
-    vroom                 vroom TRUE
-    waldo                 waldo TRUE
-    whisker             whisker TRUE
-    withr                 withr TRUE
-    xfun                   xfun TRUE
-    xml2                   xml2 TRUE
-    xopen                 xopen TRUE
-    yaml                   yaml TRUE
-    zip                     zip TRUE
-    base                   base TRUE
-    boot                   boot TRUE
-    class                 class TRUE
-    cluster             cluster TRUE
-    codetools         codetools TRUE
-    compiler           compiler TRUE
-    datasets           datasets TRUE
-    foreign             foreign TRUE
-    graphics           graphics TRUE
-    grDevices         grDevices TRUE
-    grid                   grid TRUE
-    KernSmooth       KernSmooth TRUE
-    lattice             lattice TRUE
-    MASS                   MASS TRUE
-    Matrix               Matrix TRUE
-    methods             methods TRUE
-    mgcv                   mgcv TRUE
-    nlme                   nlme TRUE
-    nnet                   nnet TRUE
-    parallel           parallel TRUE
-    rpart                 rpart TRUE
-    spatial             spatial TRUE
-    splines             splines TRUE
-    stats                 stats TRUE
-    stats4               stats4 TRUE
-    survival           survival TRUE
-    tcltk                 tcltk TRUE
-    tools                 tools TRUE
-    utils                 utils TRUE
+                        package    version  res
+    askpass             askpass        1.1 TRUE
+    assertthat       assertthat      0.2.1 TRUE
+    backports         backports      1.2.1 TRUE
+    base64enc         base64enc      0.1-3 TRUE
+    bit                     bit      4.0.4 TRUE
+    bit64                 bit64      4.0.5 TRUE
+    blob                   blob      1.2.2 TRUE
+    brew                   brew      1.0-6 TRUE
+    brio                   brio      1.1.2 TRUE
+    broom                 broom      0.7.9 TRUE
+    cachem               cachem      1.0.6 TRUE
+    callr                 callr      3.7.0 TRUE
+    cellranger       cellranger      1.1.0 TRUE
+    cffr                   cffr 0.0.0.9000 TRUE
+    cli                     cli      3.0.1 TRUE
+    clipr                 clipr      0.7.1 TRUE
+    codemeta           codemeta      0.1.1 TRUE
+    colorspace       colorspace      2.0-2 TRUE
+    commonmark       commonmark        1.7 TRUE
+    covr                   covr      3.5.1 TRUE
+    cpp11                 cpp11      0.3.1 TRUE
+    crayon               crayon      1.4.1 TRUE
+    credentials     credentials      1.3.1 TRUE
+    curl                   curl      4.3.2 TRUE
+    data.table       data.table     1.14.0 TRUE
+    DBI                     DBI      1.1.1 TRUE
+    dbplyr               dbplyr      2.1.1 TRUE
+    desc                   desc      1.3.0 TRUE
+    devtools           devtools      2.4.2 TRUE
+    diffobj             diffobj      0.3.4 TRUE
+    digest               digest     0.6.27 TRUE
+    downlit             downlit      0.2.1 TRUE
+    dplyr                 dplyr      1.0.7 TRUE
+    dtplyr               dtplyr      1.1.0 TRUE
+    ellipsis           ellipsis      0.3.2 TRUE
+    evaluate           evaluate       0.14 TRUE
+    fansi                 fansi      0.5.0 TRUE
+    farver               farver      2.1.0 TRUE
+    fastmap             fastmap      1.1.0 TRUE
+    forcats             forcats      0.5.1 TRUE
+    fs                       fs      1.5.0 TRUE
+    gargle               gargle      1.2.0 TRUE
+    generics           generics      0.1.0 TRUE
+    gert                   gert      1.3.2 TRUE
+    ggplot2             ggplot2      3.3.5 TRUE
+    gh                       gh      1.3.0 TRUE
+    gitcreds           gitcreds      0.1.1 TRUE
+    glue                   glue      1.4.2 TRUE
+    googledrive     googledrive      2.0.0 TRUE
+    googlesheets4 googlesheets4      1.0.0 TRUE
+    gtable               gtable      0.3.0 TRUE
+    haven                 haven      2.4.3 TRUE
+    highr                 highr        0.9 TRUE
+    hms                     hms      1.1.0 TRUE
+    htmltools         htmltools      0.5.2 TRUE
+    htmlwidgets     htmlwidgets      1.5.3 TRUE
+    httr                   httr      1.4.2 TRUE
+    ids                     ids      1.0.1 TRUE
+    ini                     ini      0.3.1 TRUE
+    isoband             isoband      0.2.5 TRUE
+    jsonlite           jsonlite      1.7.2 TRUE
+    jsonvalidate   jsonvalidate      1.1.0 TRUE
+    knitr                 knitr       1.33 TRUE
+    labeling           labeling      0.4.2 TRUE
+    lazyeval           lazyeval      0.2.2 TRUE
+    lifecycle         lifecycle      1.0.0 TRUE
+    lubridate         lubridate     1.7.10 TRUE
+    magrittr           magrittr      2.0.1 TRUE
+    markdown           markdown        1.1 TRUE
+    memoise             memoise      2.0.0 TRUE
+    mime                   mime       0.11 TRUE
+    modelr               modelr      0.1.8 TRUE
+    munsell             munsell      0.5.0 TRUE
+    openssl             openssl      1.4.4 TRUE
+    pak                     pak 0.1.2.9001 TRUE
+    pillar               pillar      1.6.2 TRUE
+    pkgbuild           pkgbuild      1.2.0 TRUE
+    pkgconfig         pkgconfig      2.0.3 TRUE
+    pkgdev               pkgdev 0.0.1.9004 TRUE
+    pkgdown             pkgdown      1.6.1 TRUE
+    pkgload             pkgload      1.2.1 TRUE
+    praise               praise      1.0.0 TRUE
+    prettyunits     prettyunits      1.1.1 TRUE
+    processx           processx      3.5.2 TRUE
+    progress           progress      1.2.2 TRUE
+    ps                       ps      1.6.0 TRUE
+    purrr                 purrr      0.3.4 TRUE
+    R.cache             R.cache     0.15.0 TRUE
+    R.methodsS3     R.methodsS3      1.8.1 TRUE
+    R.oo                   R.oo     1.24.0 TRUE
+    R.utils             R.utils     2.10.1 TRUE
+    R6                       R6      2.5.1 TRUE
+    ragg                   ragg      1.1.3 TRUE
+    rappdirs           rappdirs      0.3.3 TRUE
+    rcmdcheck         rcmdcheck      1.3.3 TRUE
+    RColorBrewer   RColorBrewer      1.1-2 TRUE
+    Rcpp                   Rcpp      1.0.7 TRUE
+    reactable         reactable      0.2.3 TRUE
+    reactR               reactR      0.4.4 TRUE
+    readr                 readr      2.0.1 TRUE
+    readxl               readxl      1.3.1 TRUE
+    rematch             rematch      1.0.1 TRUE
+    rematch2           rematch2      2.1.2 TRUE
+    remotes             remotes      2.4.0 TRUE
+    reprex               reprex      2.0.1 TRUE
+    rex                     rex      1.2.0 TRUE
+    rlang                 rlang     0.4.11 TRUE
+    rmarkdown         rmarkdown       2.10 TRUE
+    roxygen2           roxygen2      7.1.1 TRUE
+    rprojroot         rprojroot      2.0.2 TRUE
+    rstudioapi       rstudioapi       0.13 TRUE
+    rversions         rversions      2.1.1 TRUE
+    rvest                 rvest      1.0.1 TRUE
+    scales               scales      1.1.1 TRUE
+    selectr             selectr      0.4-2 TRUE
+    sessioninfo     sessioninfo      1.1.1 TRUE
+    stringi             stringi      1.7.4 TRUE
+    stringr             stringr      1.4.0 TRUE
+    styler               styler      1.5.1 TRUE
+    sys                     sys        3.4 TRUE
+    systemfonts     systemfonts      1.0.2 TRUE
+    testthat           testthat      3.0.4 TRUE
+    textshaping     textshaping      0.3.5 TRUE
+    tibble               tibble      3.1.4 TRUE
+    tidyr                 tidyr      1.1.3 TRUE
+    tidyselect       tidyselect      1.1.1 TRUE
+    tidyverse         tidyverse      1.3.1 TRUE
+    tinytex             tinytex       0.33 TRUE
+    tzdb                   tzdb      0.1.2 TRUE
+    urlchecker       urlchecker      1.0.0 TRUE
+    usethis             usethis      2.0.1 TRUE
+    utf8                   utf8      1.2.2 TRUE
+    uuid                   uuid      0.1-4 TRUE
+    V8                       V8      3.4.2 TRUE
+    vctrs                 vctrs      0.3.8 TRUE
+    viridisLite     viridisLite      0.4.0 TRUE
+    vroom                 vroom      1.5.4 TRUE
+    waldo                 waldo      0.3.0 TRUE
+    whisker             whisker        0.4 TRUE
+    withr                 withr      2.4.2 TRUE
+    xfun                   xfun       0.25 TRUE
+    xml2                   xml2      1.3.2 TRUE
+    xopen                 xopen      1.0.0 TRUE
+    yaml                   yaml      2.2.1 TRUE
+    zip                     zip      2.2.0 TRUE
+    base                   base      4.1.1 TRUE
+    boot                   boot     1.3-28 TRUE
+    class                 class     7.3-19 TRUE
+    cluster             cluster      2.1.2 TRUE
+    codetools         codetools     0.2-18 TRUE
+    compiler           compiler      4.1.1 TRUE
+    datasets           datasets      4.1.1 TRUE
+    foreign             foreign     0.8-81 TRUE
+    graphics           graphics      4.1.1 TRUE
+    grDevices         grDevices      4.1.1 TRUE
+    grid                   grid      4.1.1 TRUE
+    KernSmooth       KernSmooth    2.23-20 TRUE
+    lattice             lattice    0.20-44 TRUE
+    MASS                   MASS     7.3-54 TRUE
+    Matrix               Matrix      1.3-4 TRUE
+    methods             methods      4.1.1 TRUE
+    mgcv                   mgcv     1.8-36 TRUE
+    nlme                   nlme    3.1-152 TRUE
+    nnet                   nnet     7.3-16 TRUE
+    parallel           parallel      4.1.1 TRUE
+    rpart                 rpart     4.1-15 TRUE
+    spatial             spatial     7.3-14 TRUE
+    splines             splines      4.1.1 TRUE
+    stats                 stats      4.1.1 TRUE
+    stats4               stats4      4.1.1 TRUE
+    survival           survival     3.2-11 TRUE
+    tcltk                 tcltk      4.1.1 TRUE
+    tools                 tools      4.1.1 TRUE
+    utils                 utils      4.1.1 TRUE
     
     ---
 

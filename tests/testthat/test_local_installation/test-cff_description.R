@@ -13,12 +13,11 @@ test_that("Test DESCRIPTION of all installed packages", {
 
 
     res <- c()
-    
+
     for (i in seq_len(length(paths))) {
       single <- suppressMessages(cff_validate(cff_create(paths[i])))
 
       res <- c(res, single)
-    
     }
 
     df <- data.frame(
