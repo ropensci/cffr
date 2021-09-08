@@ -5,15 +5,6 @@
     ## Summary of installed packages 
     
                         package  res
-    DBI                     DBI TRUE
-    R.cache             R.cache TRUE
-    R.methodsS3     R.methodsS3 TRUE
-    R.oo                   R.oo TRUE
-    R.utils             R.utils TRUE
-    R6                       R6 TRUE
-    RColorBrewer   RColorBrewer TRUE
-    Rcpp                   Rcpp TRUE
-    V8                       V8 TRUE
     askpass             askpass TRUE
     assertthat       assertthat TRUE
     backports         backports TRUE
@@ -24,14 +15,12 @@
     brew                   brew TRUE
     brio                   brio TRUE
     broom                 broom TRUE
-    bslib                 bslib TRUE
     cachem               cachem TRUE
     callr                 callr TRUE
     cellranger       cellranger TRUE
     cffr                   cffr TRUE
     cli                     cli TRUE
     clipr                 clipr TRUE
-    clisymbols       clisymbols TRUE
     codemeta           codemeta TRUE
     colorspace       colorspace TRUE
     commonmark       commonmark TRUE
@@ -40,13 +29,14 @@
     crayon               crayon TRUE
     credentials     credentials TRUE
     curl                   curl TRUE
-    cyclocomp         cyclocomp TRUE
     data.table       data.table TRUE
+    DBI                     DBI TRUE
     dbplyr               dbplyr TRUE
     desc                   desc TRUE
     devtools           devtools TRUE
     diffobj             diffobj TRUE
     digest               digest TRUE
+    downlit             downlit TRUE
     dplyr                 dplyr TRUE
     dtplyr               dtplyr TRUE
     ellipsis           ellipsis TRUE
@@ -63,7 +53,6 @@
     gh                       gh TRUE
     gitcreds           gitcreds TRUE
     glue                   glue TRUE
-    goodpractice   goodpractice TRUE
     googledrive     googledrive TRUE
     googlesheets4 googlesheets4 TRUE
     gtable               gtable TRUE
@@ -71,44 +60,50 @@
     highr                 highr TRUE
     hms                     hms TRUE
     htmltools         htmltools TRUE
-    httpuv               httpuv TRUE
+    htmlwidgets     htmlwidgets TRUE
     httr                   httr TRUE
-    hunspell           hunspell TRUE
     ids                     ids TRUE
     ini                     ini TRUE
     isoband             isoband TRUE
-    jquerylib         jquerylib TRUE
     jsonlite           jsonlite TRUE
     jsonvalidate   jsonvalidate TRUE
     knitr                 knitr TRUE
     labeling           labeling TRUE
-    later                 later TRUE
     lazyeval           lazyeval TRUE
     lifecycle         lifecycle TRUE
-    lintr                 lintr TRUE
     lubridate         lubridate TRUE
     magrittr           magrittr TRUE
     markdown           markdown TRUE
     memoise             memoise TRUE
     mime                   mime TRUE
-    miniUI               miniUI TRUE
     modelr               modelr TRUE
     munsell             munsell TRUE
     openssl             openssl TRUE
+    pak                     pak TRUE
     pillar               pillar TRUE
     pkgbuild           pkgbuild TRUE
     pkgconfig         pkgconfig TRUE
     pkgdev               pkgdev TRUE
+    pkgdown             pkgdown TRUE
     pkgload             pkgload TRUE
     praise               praise TRUE
     prettyunits     prettyunits TRUE
     processx           processx TRUE
     progress           progress TRUE
-    promises           promises TRUE
     ps                       ps TRUE
     purrr                 purrr TRUE
+    R.cache             R.cache TRUE
+    R.methodsS3     R.methodsS3 TRUE
+    R.oo                   R.oo TRUE
+    R.utils             R.utils TRUE
+    R6                       R6 TRUE
+    ragg                   ragg TRUE
     rappdirs           rappdirs TRUE
     rcmdcheck         rcmdcheck TRUE
+    RColorBrewer   RColorBrewer TRUE
+    Rcpp                   Rcpp TRUE
+    reactable         reactable TRUE
+    reactR               reactR TRUE
     readr                 readr TRUE
     readxl               readxl TRUE
     rematch             rematch TRUE
@@ -123,18 +118,16 @@
     rstudioapi       rstudioapi TRUE
     rversions         rversions TRUE
     rvest                 rvest TRUE
-    sass                   sass TRUE
     scales               scales TRUE
     selectr             selectr TRUE
     sessioninfo     sessioninfo TRUE
-    shiny                 shiny TRUE
-    sourcetools     sourcetools TRUE
-    spelling           spelling TRUE
     stringi             stringi TRUE
     stringr             stringr TRUE
     styler               styler TRUE
     sys                     sys TRUE
+    systemfonts     systemfonts TRUE
     testthat           testthat TRUE
+    textshaping     textshaping TRUE
     tibble               tibble TRUE
     tidyr                 tidyr TRUE
     tidyselect       tidyselect TRUE
@@ -145,18 +138,16 @@
     usethis             usethis TRUE
     utf8                   utf8 TRUE
     uuid                   uuid TRUE
+    V8                       V8 TRUE
     vctrs                 vctrs TRUE
     viridisLite     viridisLite TRUE
     vroom                 vroom TRUE
     waldo                 waldo TRUE
     whisker             whisker TRUE
-    whoami               whoami TRUE
     withr                 withr TRUE
     xfun                   xfun TRUE
     xml2                   xml2 TRUE
-    xmlparsedata   xmlparsedata TRUE
     xopen                 xopen TRUE
-    xtable               xtable TRUE
     yaml                   yaml TRUE
     zip                     zip TRUE
     base                   base TRUE
