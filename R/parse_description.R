@@ -133,19 +133,35 @@ parse_desc_urls <- function(pkg) {
 
   repository_code <- clean_str(allurls[repo_line][1])
 
+  remaining <- allurls[-repo_line]
+
   # The second url is considered for url arbitrarily
   if (isTRUE(length(allurls) > 1)) {
     url_end <- allurls[-repo_line][1]
+    remaining <- remaining[-1]
   } else {
     url_end <- repository_code
   }
   url_end <- clean_str(url_end)
 
+  # If there are more, move them to identifiers
+
+  if (isTRUE(length(remaining) > 1)) {
+    identifiers <- lapply(remaining, function(x) {
+      list(
+        type = "url",
+        value = clean_str(x)
+      )
+    })
+  } else {
+    identifiers <- NULL
+  }
+
   url_list <- list(
     repo = clean_str(repository_code),
-    url = clean_str(url_end)
+    url = clean_str(url_end),
+    identifiers = identifiers
   )
-
   return(url_list)
 }
 

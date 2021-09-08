@@ -15,6 +15,7 @@ cff_description <- function(desc_path = "DESCRIPTION", cff_version = "1.2.0") {
     abstract = parse_desc_abstract(pkg),
     "repository-code" = parse_desc_urls(pkg)$repo,
     url = parse_desc_urls(pkg)$url,
+    identifiers = parse_desc_urls(pkg)$identifiers,
     "date-released" = parse_desc_date_released(pkg),
     contact = parse_desc_contacts(pkg),
     keywords = unlist(parse_desc_keywords(pkg)),

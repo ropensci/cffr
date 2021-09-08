@@ -1,9 +1,3 @@
-# This should be run locally only!
-# testthat::test_dir("tests/testthat/full_test")
-
-
-# The snapshot is meant to serve as summary, as it would vary
-# across machines depending on the local installation
 test_that("Test DESCRIPTION of all installed packages", {
   expect_snapshot_output({
     packs <- installed.packages()[, "Package"]

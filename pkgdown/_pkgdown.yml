@@ -7,10 +7,16 @@ template:
       card: summary_large_image
 
 reference:
-  - title: Core functions
+  - title: Main function
+    desc: The main function (and potentially the only one) you would run on
+          most cases.
+    contents:
+      - cff_write
+  - title: Other core functions
     desc: Create, write and manipulate files and objects.
     contents:
       - has_concept("core functions")
+      - -cff_write
   - title: Citation File Format schema
     desc: These functions provides lists
           of valid keys and fields as defined

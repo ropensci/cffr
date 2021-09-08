@@ -37,6 +37,9 @@ the \code{CITATION.cff} file. It could be:
 A \code{CITATION.cff} file and an (invisible) \code{\link{cff}} object.
 }
 \description{
+\strong{This is the core function of the package and likely to be the only one
+you would need when developing a package}.
+
 Write out a \code{CITATION.cff} file for a given package. This function is
 basically a wrapper around \code{\link[=cff_create]{cff_create()}} to both create the \code{\link{cff}} object
 and write it out to a YAML-formatted file in one command.

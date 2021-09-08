@@ -5,6 +5,15 @@
     ## Summary of installed packages 
     
                         package  res
+    DBI                     DBI TRUE
+    R.cache             R.cache TRUE
+    R.methodsS3     R.methodsS3 TRUE
+    R.oo                   R.oo TRUE
+    R.utils             R.utils TRUE
+    R6                       R6 TRUE
+    RColorBrewer   RColorBrewer TRUE
+    Rcpp                   Rcpp TRUE
+    V8                       V8 TRUE
     askpass             askpass TRUE
     assertthat       assertthat TRUE
     backports         backports TRUE
@@ -15,6 +24,7 @@
     brew                   brew TRUE
     brio                   brio TRUE
     broom                 broom TRUE
+    bslib                 bslib TRUE
     cachem               cachem TRUE
     callr                 callr TRUE
     cellranger       cellranger TRUE
@@ -32,7 +42,6 @@
     curl                   curl TRUE
     cyclocomp         cyclocomp TRUE
     data.table       data.table TRUE
-    DBI                     DBI TRUE
     dbplyr               dbplyr TRUE
     desc                   desc TRUE
     devtools           devtools TRUE
@@ -62,14 +71,18 @@
     highr                 highr TRUE
     hms                     hms TRUE
     htmltools         htmltools TRUE
+    httpuv               httpuv TRUE
     httr                   httr TRUE
+    hunspell           hunspell TRUE
     ids                     ids TRUE
     ini                     ini TRUE
     isoband             isoband TRUE
+    jquerylib         jquerylib TRUE
     jsonlite           jsonlite TRUE
     jsonvalidate   jsonvalidate TRUE
     knitr                 knitr TRUE
     labeling           labeling TRUE
+    later                 later TRUE
     lazyeval           lazyeval TRUE
     lifecycle         lifecycle TRUE
     lintr                 lintr TRUE
@@ -78,6 +91,7 @@
     markdown           markdown TRUE
     memoise             memoise TRUE
     mime                   mime TRUE
+    miniUI               miniUI TRUE
     modelr               modelr TRUE
     munsell             munsell TRUE
     openssl             openssl TRUE
@@ -90,17 +104,11 @@
     prettyunits     prettyunits TRUE
     processx           processx TRUE
     progress           progress TRUE
+    promises           promises TRUE
     ps                       ps TRUE
     purrr                 purrr TRUE
-    R.cache             R.cache TRUE
-    R.methodsS3     R.methodsS3 TRUE
-    R.oo                   R.oo TRUE
-    R.utils             R.utils TRUE
-    R6                       R6 TRUE
     rappdirs           rappdirs TRUE
     rcmdcheck         rcmdcheck TRUE
-    RColorBrewer   RColorBrewer TRUE
-    Rcpp                   Rcpp TRUE
     readr                 readr TRUE
     readxl               readxl TRUE
     rematch             rematch TRUE
@@ -115,9 +123,13 @@
     rstudioapi       rstudioapi TRUE
     rversions         rversions TRUE
     rvest                 rvest TRUE
+    sass                   sass TRUE
     scales               scales TRUE
     selectr             selectr TRUE
     sessioninfo     sessioninfo TRUE
+    shiny                 shiny TRUE
+    sourcetools     sourcetools TRUE
+    spelling           spelling TRUE
     stringi             stringi TRUE
     stringr             stringr TRUE
     styler               styler TRUE
@@ -133,7 +145,6 @@
     usethis             usethis TRUE
     utf8                   utf8 TRUE
     uuid                   uuid TRUE
-    V8                       V8 TRUE
     vctrs                 vctrs TRUE
     viridisLite     viridisLite TRUE
     vroom                 vroom TRUE
@@ -145,6 +156,7 @@
     xml2                   xml2 TRUE
     xmlparsedata   xmlparsedata TRUE
     xopen                 xopen TRUE
+    xtable               xtable TRUE
     yaml                   yaml TRUE
     zip                     zip TRUE
     base                   base TRUE

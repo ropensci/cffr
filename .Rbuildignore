@@ -14,3 +14,6 @@
 ^README\.Rmd$
 ^bibtex\.bib$
 ^vignettes/articles$
+^cffr\.Rcheck$
+^cffr.*\.tar\.gz$
+^cffr.*\.tgz$

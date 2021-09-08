@@ -1,6 +1,10 @@
 #' Write a `CITATION.cff` file
 #'
 #' @description
+#'
+#' **This is the core function of the package and likely to be the only one
+#' you would need when developing a package**.
+#'
 #' Write out a `CITATION.cff` file for a given package. This function is
 #' basically a wrapper around [cff_create()] to both create the [`cff`] object
 #' and write it out to a YAML-formatted file in one command.

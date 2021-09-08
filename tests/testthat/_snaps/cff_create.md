@@ -341,6 +341,13 @@
     - family-names: Cimentada
       given-names: Jorge
       email: cimentadaj@gmail.com
+    identifiers:
+    - type: url
+      value: https://ropensci.github.io/essurvey/
+    - type: url
+      value: https://r-forge.r-project.org/projects/visualfields/
+    - type: url
+      value: https://gitlab.com/r-packages/behaviorchange
     
     ---
     
