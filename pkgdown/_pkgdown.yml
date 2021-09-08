@@ -8,8 +8,9 @@ template:
 
 reference:
   - title: Main function
-    desc: The main function (and potentially the only one) you would run on
-          most cases.
+    desc: The main function of the package 
+          and likely to be the only one you 
+          would need.
     contents:
       - cff_write
   - title: Other core functions

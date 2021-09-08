@@ -17,3 +17,4 @@
 ^cffr\.Rcheck$
 ^cffr.*\.tar\.gz$
 ^cffr.*\.tgz$
+^tests/testthat/test_local_installation$
