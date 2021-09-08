@@ -1,7 +1,6 @@
 # Utils functions used on the package
 
-# Clean strings
-
+#' Clean strings
 #' @noRd
 clean_str <- function(str) {
   if (is.null(str) || is.na(str)) {
@@ -20,10 +19,18 @@ clean_str <- function(str) {
   clean
 }
 
-# Drop nulls from list
-# From https://github.com/cboettig/codemeta/blob/master/R/utils.R
-
+#' Drop nulls from list
+#' @source  https://github.com/cboettig/codemeta/blob/master/R/utils.R
 #' @noRd
 drop_null <- function(x) {
   x[lengths(x) != 0]
+}
+
+
+#' Pretty printing of snapshots
+#' @noRd
+print_snapshot <- function(title, obj) {
+  cat("\n\n##", title, "\n\n")
+  print(obj)
+  cat("\n---")
 }

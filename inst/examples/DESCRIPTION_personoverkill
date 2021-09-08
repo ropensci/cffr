@@ -11,6 +11,7 @@ Authors@R:
       person(given = "Joe",
              family = "Doe",
              role = "aut",
+             email = "I am a wrong email",
              comment = c(affiliation = "This One", country = "ES", "date-end" = "error")),
       person(given = "Pepe",
              family = "Doe",

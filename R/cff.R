@@ -1,3 +1,28 @@
+# Valid keys on CFF v1.2.0:
+# [OK] abstract
+# [OK] authors (array of objects)
+# [OK] cff-version
+# [WONT DO]commit
+# [OK] contact (object)
+# [OK] date-released
+# [TBD] identifiers (array of objects)
+# [OK] keywords
+# [OK] license
+# [WONT DO] license-url > needed only in the case of non-standard licenses
+# [OK] message
+# preferred-citation (object)
+# doi
+# [WONT DO] references (array of objects)
+# [WONT DO] repository
+# [WONT DO] repository-artifact
+# [OK] repository-code
+# [OK] title
+# [OK] type
+# [OK] url
+# [OK] version
+
+
+
 #' `cff` objects
 #'
 #' A class and utility methods for reading, creating and holding CFF
@@ -96,7 +121,7 @@ as.cff <- function(x) {
   if (is.cff(x)) {
     return(x)
   }
-
+  x <- drop_null(x)
   class(x) <- "cff"
   x
 }
@@ -107,32 +132,4 @@ as.cff <- function(x) {
 #' @export
 print.cff <- function(x, ...) {
   cat(yaml::as.yaml(x))
-}
-
-# Assertions
-
-#' @noRd
-is.cff <- function(x) {
-  if (unique("cff" %in% class(x))) {
-    return(TRUE)
-  } else {
-    return(FALSE)
-  }
-}
-
-#' @noRd
-stopifnotcff <- function(x) {
-  if (tools::file_ext(x) != "cff") {
-    stop(x, " is not a .cff file or a 'cff' object",
-      call. = FALSE
-    )
-  }
-}
-
-stopifnotexists <- function(x) {
-  if (!file.exists(x)) {
-    stop("File ", x, " doesn't exists",
-      call. = FALSE
-    )
-  }
 }

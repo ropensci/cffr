@@ -1,4 +1,4 @@
-test_that("Validate packages", {
+test_that("Write from packages", {
   allfiles <- list.files(system.file("examples",
     package = "cffr"
   ), pattern = "^DESC", full.names = TRUE)
@@ -102,6 +102,6 @@ test_that("Fix extension of the file", {
   cff_write(cffobj, tmp, validate = FALSE)
   cff_write(cffobj, tmp2, validate = FALSE)
 
-  expect_error(cff_validate(tmp))
+  expect_true(cff_validate(paste0(tmp, ".cff")))
   expect_true(cff_validate(tmp2))
 })

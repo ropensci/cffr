@@ -8,8 +8,9 @@ Description: Codemeta defines a 'JSON-LD' format for describing software metadat
     This package provides utilities to generate, parse, and modify codemeta.jsonld
     files automatically for R packages.
 License: MIT + file LICENSE
-URL: https://httpbin.org/status/429,
-    https://www.github.com/ropensci/codemeta
+URL: thisisnotandurl,
+     https://httpbin.org/status/429,
+     https://www.github.com/ropensci/codemeta,
 BugReports: https://httpbin.org/status/404
 Encoding: UTF-8
 LazyData: true

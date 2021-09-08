@@ -50,3 +50,26 @@ test_that("Other convertes", {
   expect_false(is.cff(list(a = 1, b = 2)))
   expect_true(is.cff(as.cff(list(a = 1, b = 2))))
 })
+
+
+test_that("Validate cffr objects", {
+  allfiles <- list.files(system.file("examples",
+    package = "cffr"
+  ), pattern = "^DESC", full.names = TRUE)
+
+  names <- list.files(system.file("examples",
+    package = "cffr"
+  ), pattern = "^DESC", full.names = FALSE)
+
+
+  for (i in seq_len(length(allfiles))) {
+    tmp <- tempfile(pattern = names[i], fileext = ".cff")
+    message("----\nValidating ", names[i], "\n----")
+    if (names[i] == "DESCRIPTION_no_encoding") {
+      expect_warning(cff_create(allfiles[i]))
+    } else {
+      s <- cff_create(allfiles[i])
+      expect_true(cff_validate(s))
+    }
+  }
+})

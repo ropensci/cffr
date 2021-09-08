@@ -38,7 +38,7 @@ cff_validate <- function(x = "./CITATION.cff") {
     ".cff file"
   )
 
-  # If is a cffr create the object
+  # If is a cff create the object
   if (is.cff(x)) {
     tmpfile <- tempfile(fileext = ".cff")
     suppressMessages(yaml::write_yaml(x, tmpfile))
@@ -65,6 +65,52 @@ cff_validate <- function(x = "./CITATION.cff") {
   cit_temp <- tempfile(fileext = ".json")
   jsonlite::write_json(citfile, cit_temp, pretty = TRUE)
 
+  citfile_clean <- clean_jsonlite(cit_temp)
+
+  # Download latest scheme
+  schema_temp <- file.path(tempdir(), "cff_schema.json")
+
+  jsonschema <- paste0(
+    "https://raw.githubusercontent.com/",
+    "citation-file-format/",
+    "citation-file-format/main/schema.json"
+  )
+
+  if (isFALSE(file.exists(schema_temp))) {
+    download.file(jsonschema,
+      schema_temp,
+      mode = "wb",
+      quiet = TRUE
+    )
+  }
+
+
+  # Validate
+  result <- validate_schema(cit_temp, schema_temp)
+
+  message("\ncff_validate results-----")
+  if (result == FALSE) {
+    message(
+      crayon::red(
+        "Oops! This ", message_obj,
+        "has the following errors:\n\n"
+      )
+    )
+    print(attributes(result)$errors)
+    return(invisible(FALSE))
+  } else {
+    message(crayon::green(
+      "Congratulations! This",
+      message_obj,
+      "is valid"
+    ))
+    return(invisible(TRUE))
+  }
+}
+
+# Remove extra brackets
+#' @noRd
+clean_jsonlite <- function(cit_temp) {
   # Brackets management. jsonlite adds unwanted extra brackets----
   citfile_clean <- readLines(cit_temp)
 
@@ -95,46 +141,18 @@ cff_validate <- function(x = "./CITATION.cff") {
   # Rewrite json
   writeLines(citfile_clean, cit_temp)
 
+  x <- cit_temp
+
   # End Brackets management
+}
 
-  # Download latest scheme
-  schema_temp <- file.path(tempdir(), "cff_schema.json")
-
-  jsonschema <- paste0(
-    "https://raw.githubusercontent.com/",
-    "citation-file-format/",
-    "citation-file-format/main/schema.json"
-  )
-
-  if (isFALSE(file.exists(schema_temp))) {
-    download.file(jsonschema,
-      schema_temp,
-      mode = "wb",
-      quiet = TRUE
-    )
-  }
-  # Validate
-  result <- jsonvalidate::json_validate(cit_temp,
+# Validate schema
+#' @noRd
+validate_schema <- function(cit_temp, schema_temp) {
+  x <- jsonvalidate::json_validate(cit_temp,
     schema_temp,
     verbose = TRUE
   )
 
-  message("\ncff_validate results-----")
-  if (result == FALSE) {
-    message(
-      crayon::red(
-        "Oops! This ", message_obj,
-        "has the following errors:\n\n"
-      )
-    )
-    print(attributes(result)$errors)
-    return(invisible(FALSE))
-  } else {
-    message(crayon::green(
-      "Congratulations! This",
-      message_obj,
-      "is valid"
-    ))
-    return(invisible(TRUE))
-  }
+  x
 }

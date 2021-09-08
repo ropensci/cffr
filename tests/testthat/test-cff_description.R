@@ -1,17 +1,14 @@
-test_that("Test file description", {
-  expect_snapshot({
-    allfiles <- list.files(system.file("examples",
-      package = "cffr"
-    ), pattern = "^DESC", full.names = TRUE)
+test_that("Test DESCRIPTION of installed packages", {
+  path <- file.path(find.package("jsonlite"), "DESCRIPTION")
+  cffobj <- cff_description(path)
 
-    names <- list.files(system.file("examples",
-      package = "cffr"
-    ), pattern = "^DESC", full.names = FALSE)
+  expect_s3_class(cffobj, "cff")
 
-    for (i in seq_len(length(allfiles))) {
-      message("File ", names[i])
-      print(cff_description(allfiles[i]))
-      message("End----- \n\n")
-    }
-  })
+  path <- file.path(find.package("jsonvalidate"), "DESCRIPTION")
+  cffobj <- cff_description(path)
+
+  expect_s3_class(cffobj, "cff")
 })
+
+
+# For all the example DESCRIPTION files the test is part of test-cff_create

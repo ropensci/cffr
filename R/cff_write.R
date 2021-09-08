@@ -50,6 +50,10 @@ cff_write <- function(x = ".",
   )
 
 
+  # Fix string if it is not cff
+  if (!is.substring(outfile, ".cff$")) outfile <- paste0(outfile, ".cff")
+
+
   # Write CITATION
   yaml::write_yaml(citat, outfile)
 

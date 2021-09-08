@@ -112,31 +112,6 @@ cff_create <- function(x = ".", keys = NULL,
   # Order
   cffobj <- cffobj[cff_schema_keys()]
 
-  cffobj <- drop_null(cffobj)
   cffobj <- as.cff(cffobj)
   cffobj
 }
-
-
-# Valid keys on CFF v1.2.0:
-# [OK] abstract
-# [OK] authors (array of objects)
-# [OK] cff-version
-# [WONT DO]commit
-# [OK] contact (object)
-# [OK] date-released
-# [WONT DO - Prefer DOI]identifiers (array of objects)
-# [OK] keywords
-# [OK] license
-# [WONT DO] license-url
-# [OK] message
-# preferred-citation (object)
-# doi
-# [WONT DO] references (array of objects)
-# [WONT DO] repository
-# [WONT DO] repository-artifact
-# [OK] repository-code
-# [OK] title
-# [OK] type
-# [OK] url
-# [OK] version

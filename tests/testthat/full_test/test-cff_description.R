@@ -1,0 +1,33 @@
+# This should be run locally only!
+# testthat::test_dir("tests/testthat/full_test")
+
+
+# The snapshot is meant to serve as summary, as it would vary
+# across machines depending on the local installation
+test_that("Test DESCRIPTION of all installed packages", {
+  expect_snapshot_output({
+    packs <- installed.packages()[, "Package"]
+
+    paths <- file.path(
+      unlist(lapply(
+        packs,
+        find.package
+      )),
+      "DESCRIPTION"
+    )
+
+
+    res <- c()
+    for (i in seq_len(length(paths))) {
+      single <- suppressMessages(cff_validate(cff_create(paths[i])))
+
+      res <- c(res, single)
+    }
+
+    df <- data.frame(package = packs, res = res)
+    print_snapshot("Summary of installed packages", df)
+  })
+})
+
+
+# For all the example DESCRIPTION files the test is part of test-cff_create

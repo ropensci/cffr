@@ -22,3 +22,6 @@ for (i in 1:length(installed)){
 }
 
 df <- data.frame(pkg = pkg, exists = exists, res = res)
+
+
+rcmdcheck::rcmdcheck(args=c("--as-cran"))
