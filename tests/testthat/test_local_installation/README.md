@@ -1,5 +1,7 @@
 # Test on local installation
 
+**This folder is included on `.Rbuildignore`.
+
 These tests validates `cffr` objects created for **all the packages installed**.
 
 As the local installations differs, the snapshots are expected to fail. However,
