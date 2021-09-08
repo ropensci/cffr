@@ -3,11 +3,13 @@
 cff_description <- function(desc_path = "DESCRIPTION", cff_version = "1.2.0") {
   pkg <- desc::desc(desc_path)
   pkg$coerce_authors_at_r()
-  
-  msg <- paste("To cite package '",
-  pkg$get("Package"),
-  "' in publications use:")
-  
+
+  msg <- paste(
+    "To cite package '",
+    pkg$get("Package"),
+    "' in publications use:"
+  )
+
 
   list_fields <- list(
     "cff-version" = cff_version,
