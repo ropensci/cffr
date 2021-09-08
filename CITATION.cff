@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: 'To cite package cffr in publications use:'
+message: 'To cite package "cffr" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'cffr: Generate Citation File Format (''cff'') Metadata for R Packages'

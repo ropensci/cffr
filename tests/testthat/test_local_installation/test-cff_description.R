@@ -15,17 +15,19 @@ test_that("Test DESCRIPTION of all installed packages", {
     vers <- c()
     for (i in seq_len(length(paths))) {
       single <- suppressMessages(cff_validate(cff_create(paths[i])))
-      
+
       res <- c(res, single)
       # FIXME
-      #version <- packageVersion(packs[i])
-      #vers <- c(vers, version)
+      # version <- packageVersion(packs[i])
+      # vers <- c(vers, version)
     }
 
-    df <- data.frame(package = packs, 
-    #version = vers,
-    res = res)
-    
+    df <- data.frame(
+      package = packs,
+      # version = vers,
+      res = res
+    )
+
     print_snapshot("Summary of installed packages", df)
   })
 })

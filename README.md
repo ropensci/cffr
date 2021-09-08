@@ -63,7 +63,7 @@ test <- cff_create("ggplot2")
 <summary> <strong><code>cff</code> object</strong></summary>
 
     cff-version: 1.2.0
-    message: 'To cite package ggplot2 in publications use:'
+    message: 'To cite package "ggplot2" in publications use:'
     type: software
     license: MIT
     title: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
