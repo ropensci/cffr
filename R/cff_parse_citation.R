@@ -108,7 +108,8 @@ cff_parse_citation <- function(bib) {
   parse_cit <- cleaned[names(parse_cit)]
 
   ## Parse authors----
-  parse_cit$authors <- lapply(parse_cit$authors, cff_parse_person)
+  ## Max 10 on schema
+  parse_cit$authors <- lapply(parse_cit$authors[1:10], cff_parse_person)
 
   ## DOIs----
   bb_doi <- building_doi(parse_cit)

@@ -51,7 +51,9 @@ parse_desc_authors <- function(pkg) {
     "aut" %in% x$role || "cre" %in% x$role
   })]
 
-  parse_all_authors <- lapply(authors, cff_parse_person)
+
+  # Max: 10 auth on the validator
+  parse_all_authors <- lapply(authors[1:10], cff_parse_person)
   parse_all_authors <- unique(parse_all_authors)
 
   parse_all_authors
@@ -111,6 +113,9 @@ parse_desc_urls <- function(pkg) {
   issues <- gsub("/issues", "", issues)
 
   # Join issues and urls
+  allurls <- c(issues, url)
+  allurls <- strsplit(allurls, " ")
+  allurls <- strsplit(allurls, ",")
   allurls <- unique(c(issues, url))
 
 
