@@ -26,6 +26,8 @@ test_that("Test DESCRIPTION of all installed packages", {
       res = res
     )
 
-    print_snapshot("Summary of installed packages", df)
+    print_snapshot("Installed packages", paste(nrow(df), "packages"))
+
+    print_snapshot("Errors", df[df$res == FALSE, ])
   })
 })
