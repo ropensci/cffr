@@ -47,4 +47,3 @@ test_that("Parse CITATION with no encoding", {
 
   expect_s3_class(s, "citation")
 })
-

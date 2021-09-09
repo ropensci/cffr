@@ -1,4 +1,4 @@
-# Test DESCRIPTION of all installed packages
+# Test CITATION.cff of all installed packages
 
     
     

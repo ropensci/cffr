@@ -1,6 +1,6 @@
 test_that("Test CITATION.cff of all installed packages", {
   expect_snapshot_output({
-    #skip_if(interactive()) # This breaks in R-Studio
+    # skip_if(interactive()) # This breaks in R-Studio
 
     packs <- installed.packages()[, "Package"]
     vers <- installed.packages()[, "Version"]

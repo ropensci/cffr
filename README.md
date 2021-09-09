@@ -59,9 +59,8 @@ test <- cff_create("ggplot2")
 ```
 
 <details>
-<summary>
-<strong><code>cff</code> object</strong>
-</summary>
+
+<summary> <strong><code>cff</code> object</strong></summary>
 
     cff-version: 1.2.0
     message: 'To cite package "ggplot2" in publications use:'
@@ -170,9 +169,9 @@ for more info.
 
 # References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references">
 
-<div id="ref-Druskat_Citation_File_Format_2021" class="csl-entry">
+<div id="ref-Druskat_Citation_File_Format_2021">
 
 Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, Robert Haines,
 James Baker, Spencer Bliven, Egon Willighagen, David Pérez-Suárez, and
