@@ -214,7 +214,8 @@ cff_schema_definitions_reference <- function() {
     "notes",
     "number",
     "number-volumes",
-    "pages",
+    # "pages", Definition on Bibtex and CFF difers
+    # Bibtex is the range and CFF understand total pages of the work
     "patent-states",
     "pmcid",
     "publisher",

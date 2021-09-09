@@ -3,6 +3,16 @@ test_that("Test DESCRIPTION of all installed packages", {
     packs <- installed.packages()[, "Package"]
     vers <- installed.packages()[, "Version"]
 
+    l <- length(packs)
+    if (interactive()) {
+      size <- 600
+
+      if (l > size) {
+        s <- sample(seq_len(l), size)
+        packs <- packs[s]
+        vers <- vers[s]
+      }
+    }
     paths <- file.path(
       unlist(lapply(
         packs,

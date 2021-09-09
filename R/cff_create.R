@@ -75,10 +75,11 @@
 #' cff_create(demo_file, keys = list("contact" = new_contact))
 cff_create <- function(x = ".", keys = NULL,
                        cff_version = "1.2.0") {
-
-  if(!is.cff(x) && !is.character(x)) stop("x should be a cff or a character",
-                                          call. = FALSE
-                                          )
+  if (!is.cff(x) && !is.character(x)) {
+    stop("x should be a cff or a character",
+      call. = FALSE
+    )
+  }
 
   # Set initially citobj to NULL
   citobj <- NULL
@@ -99,6 +100,7 @@ cff_create <- function(x = ".", keys = NULL,
       if (file.exists(cit_path)) {
         citobj <- parse_r_citation(desc_path, cit_path)
         citobj <- lapply(citobj, cff_parse_citation)
+        if (length(citobj) == 0) citobj <- NULL
       }
       # nocov end
     } else {
@@ -106,6 +108,7 @@ cff_create <- function(x = ".", keys = NULL,
       # Parse citation from installation
       citobj <- citation(x)
       citobj <- lapply(citobj, cff_parse_citation)
+      if (length(citobj) == 0) citobj <- NULL
     }
 
     if (!file.exists(desc_path)) {
@@ -125,16 +128,12 @@ cff_create <- function(x = ".", keys = NULL,
 
 
 
-  # Add DOI to identifiers
-  if (!is.null(cffobjend$doi)) {
-    oldids <- cffobjend$identifiers
-    cffobjend$identifiers <- c(
-      list(list(type = "doi", value = cffobjend$doi)),
-      oldids
-    )
-  }
-
-
+  # Merge identifiers
+  oldids <- cffobjend$identifiers
+  cffobjend$identifiers <- c(
+    citobj[[1]]$identifiers,
+    oldids
+  )
 
   # Additional keys
   if (!is.null(keys)) {

@@ -1,13 +1,20 @@
 test_that("Test CITATION.cff of all installed packages", {
   expect_snapshot_output({
-
-    skip_if(interactive()) # This breaks in R-Studio
+    #skip_if(interactive()) # This breaks in R-Studio
 
     packs <- installed.packages()[, "Package"]
     vers <- installed.packages()[, "Version"]
 
 
-
+    l <- length(packs)
+    if (interactive()) {
+      size <- 20
+      if (l > size) {
+        s <- sample(seq_len(l), size)
+        packs <- packs[s]
+        vers <- vers[s]
+      }
+    }
     res <- c()
 
     for (i in seq_len(length(packs))) {

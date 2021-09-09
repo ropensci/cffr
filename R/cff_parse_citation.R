@@ -39,15 +39,38 @@ cff_parse_citation <- function(bib) {
     return(NULL)
   }
 
+  if (is.null(bib)) {
+    return(NULL)
+  }
+
   parse_cit <- as.cff(bib[[1]])[[1]]
+
+
+
+
+  # rest to lowercase
+  names(parse_cit) <- tolower(names(parse_cit))
+
+  # rename authors
+  nm <- names(parse_cit)
+  nm[nm == "author"] <- "authors"
+  names(parse_cit) <- nm
+
+
+  # Handle type ----
 
   # Important! This is a mandatory key in CFF
   # Help needed
   # We map here the types explained in ?bibentry
   # to valid keys. see  https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype
   # In lower case to avoid mismatches
-  type <- clean_str(tolower(attr(parse_cit, "bibtype")))
 
+
+  type <- clean_str(tolower(attr(parse_cit, "bibtype")))
+  # Remove just in case
+  parse_cit <- parse_cit[names(parse_cit) != "type"]
+
+  ### Switch type based on bibentry----
   if (is.null(type)) {
     return(NULL)
   }
@@ -67,31 +90,36 @@ cff_parse_citation <- function(bib) {
     "generic"
   )
 
-  # rest to lowercase
-  names(parse_cit) <- tolower(names(parse_cit))
-
-  # Parse authors and rename
-  parse_cit$author <- lapply(parse_cit$author, cff_parse_person)
-
-  oldnames <- names(parse_cit)
-  newnames <- oldnames
-  newnames[oldnames == "author"] <- "authors"
-  names(parse_cit) <- newnames
-  # Clean doi
-  if (!is.null(parse_cit$doi)) {
-    parse_cit$doi <- clean_str(gsub("https://doi.org/", "", parse_cit$doi))
-  }
-  # Remove type from citation if present
-  # We would add it manually
-  parse_cit <- parse_cit[names(parse_cit) != "type"]
-
   parse_cit <- c(parse_cit, type = type)
+
+  # Building blocks----
 
   valid <- cff_schema_definitions_reference()
 
   # Keep only valid keys
   parse_cit <- parse_cit[names(parse_cit) %in%
     valid]
+
+  # Clean strings that are not authors
+  cleaned <- lapply(parse_cit[names(parse_cit) != "authors"], clean_str)
+
+  # Append and reorder
+  cleaned <- c(cleaned, list(authors = parse_cit$authors))
+  parse_cit <- cleaned[names(parse_cit)]
+
+  ## Parse authors----
+  parse_cit$authors <- lapply(parse_cit$authors, cff_parse_person)
+
+  ## DOIs----
+  bb_doi <- building_doi(parse_cit)
+  parse_cit <- parse_cit[!names(parse_cit) %in% c("doi", "identifiers")]
+  parse_cit <- c(parse_cit, bb_doi)
+
+
+  ## Month
+
+  parse_cit$month <- building_month(parse_cit)
+
 
 
   # Parse this as entities

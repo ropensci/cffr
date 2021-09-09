@@ -3,7 +3,8 @@
 **This folder is included on `.Rbuildignore`**. 
 
 These tests validates the creation of a `CITATION.cff` file for 
-**all the installed packages**.
+**a random sample of installed packages**. The max size of the sample is 500
+and is chosen randomly on each run.
 
 As the local installations differs, the snapshots are expected to fail. However,
 they are quite useful for extensive tests and debugging, as well as for 

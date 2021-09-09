@@ -1,17 +1,26 @@
-test_that("Test CITATION parsing of all installed packages", {
+test_that("Test CITATION parsing of a random sample of installed packages", {
   expect_snapshot_output({
     print_snapshot("Sessioninfo", sessionInfo())
 
     installed <- installed.packages()[, "Package"]
     vers <- installed.packages()[, "Version"]
 
-    # Has two dois on CITATION
-    installed <- installed[installed != "viridis"]
-    installed <- installed[installed != "viridisLite"]
+
+    l <- length(installed)
+
+    if (interactive()) {
+      size <- 600
+      if (l > size) {
+        s <- sample(seq_len(l), size)
+        installed <- installed[s]
+        vers <- vers[s]
+      }
+    }
+
 
     print_snapshot("Summary", paste(
-      "testing",
-      length(installed), "packages"
+      "testing a sample of",
+      length(installed), "installed packages"
     ))
 
 
@@ -32,6 +41,7 @@ test_that("Test CITATION parsing of all installed packages", {
         citmeta <- parse_r_citation(desc_path, cit_path)
 
         citobj <- lapply(citmeta, cff_parse_citation)
+        if (length(citobj) == 0) citobj <- NULL
         cffobj <- cff_description(desc_path)
 
         # Add cffobj
@@ -44,14 +54,13 @@ test_that("Test CITATION parsing of all installed packages", {
 
 
 
-        # Add DOI to identifiers
-        if (!is.null(cffobjend$doi)) {
-          oldids <- cffobjend$identifiers
-          cffobjend$identifiers <- c(
-            list(list(type = "doi", value = cffobjend$doi)),
-            oldids
-          )
-        }
+        # Merge identifiers
+        oldids <- cffobjend$identifiers
+        cffobjend$identifiers <- c(
+          citobj[[1]]$identifiers,
+          oldids
+        )
+
         cffobjend <- as.cff(cffobjend)
 
         s <- suppressMessages(cff_validate(cffobjend))
@@ -64,13 +73,14 @@ test_that("Test CITATION parsing of all installed packages", {
       }
     }
 
-    v <- unname(vers [installed %in% withcit])
+    v <- unname(vers[installed %in% withcit])
 
     print_snapshot(
       paste("Packages with CITATION file:", f),
-      data.frame(package =withcit, version = v,
-                 valid = res)
+      data.frame(
+        package = withcit, version = v,
+        valid = res
+      )
     )
   })
 })
-

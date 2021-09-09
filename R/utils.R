@@ -12,6 +12,9 @@ clean_str <- function(str) {
 
   clean <- gsub("[\n\r]", " ", str)
   clean <- gsub("\\s+", " ", clean)
+  clean <- gsub("\\s+", " ", clean)
+  clean <- gsub("\\{", "", clean)
+  clean <- gsub("\\}", "", clean)
   # Collapse to single char
   clean <- paste(clean, collapse = " ")
 
