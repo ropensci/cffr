@@ -76,6 +76,10 @@
 cff_create <- function(x = ".", keys = NULL,
                        cff_version = "1.2.0") {
 
+  if(!is.cff(x) && !is.character(x)) stop("x should be a cff or a character",
+                                          call. = FALSE
+                                          )
+
   # Set initially citobj to NULL
   citobj <- NULL
   if (is.cff(x)) {

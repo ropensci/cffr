@@ -43,6 +43,15 @@ test_that("Validate all DESCRIPTION files", {
 })
 
 
+test_that("Test error formats on inputs", {
+  df <- data.frame(x=1, b="c")
+  expect_error(cff_create(df))
+  l <- list(a=1, b=3)
+  expect_error(cff_create(l))
+
+  expect_error(cff_create("uanuanua"))
+})
+
 test_that("Snapshot all DESCRIPTION files", {
   # This includes cff_description under the hood
 

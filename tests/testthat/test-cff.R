@@ -20,25 +20,29 @@ test_that("Compare skeleton", {
 })
 
 test_that("Full lifecycle", {
-  complete <- system.file("examples/CITATION_complete.cff",
-    package = "cffr"
-  )
+  expect_snapshot_output({
+    complete <- system.file("examples/CITATION_complete.cff",
+      package = "cffr"
+    )
 
-  # Read
-  read <- expect_silent(cff(complete))
+    # Read
+    read <- cff(complete)
 
-  # Modify
-  modify <- cff_create(read, keys = list(title = "New title here"))
-  expect_false(read$title == modify$title)
+    print(read)
 
-  # Write
-  tmp <- tempfile(fileext = ".cff")
-  expect_message(cff_write(modify, outfile = tmp, validate = FALSE))
-  expect_silent(stopifnotexists(tmp))
-  expect_silent(stopifnotcff(tmp))
+    # Modify
+    modify <- cff_create(read, keys = list(title = "New title here"))
+    print(modify)
 
-  # Validate
-  expect_true(cff_validate(tmp))
+    # Write
+    tmp <- tempfile(fileext = ".cff")
+    suppressMessages(cff_write(modify, outfile = tmp, validate = FALSE))
+    stopifnotexists(tmp)
+    stopifnotcff(tmp)
+
+    # Validate
+    print(cff_validate(tmp))
+  })
 })
 
 test_that("Other convertes", {

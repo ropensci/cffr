@@ -18,6 +18,7 @@ test_that("Test CITATION parsing of all installed packages", {
 
     f <- 0
     withcit <- c()
+    res <- c()
     for (i in 1:length(installed)) {
       desc_path <- file.path(find.package(installed[i]), "DESCRIPTION")
       cit_path <- file.path(find.package(installed[i]), "CITATION")
@@ -54,15 +55,22 @@ test_that("Test CITATION parsing of all installed packages", {
         cffobjend <- as.cff(cffobjend)
 
         s <- suppressMessages(cff_validate(cffobjend))
+
+        res <- c(res, s)
+
         if (!s) {
           print_snapshot(paste("Errors on", installed[i]), cff_validate(cffobjend))
         }
       }
     }
 
+    v <- unname(vers [installed %in% withcit])
+
     print_snapshot(
       paste("Packages with CITATION file:", f),
-      paste(withcit, collapse = ", ")
+      data.frame(package =withcit, version = v,
+                 valid = res)
     )
   })
 })
+
