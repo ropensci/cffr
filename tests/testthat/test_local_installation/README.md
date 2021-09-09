@@ -3,16 +3,11 @@
 **This folder is included on `.Rbuildignore`**. 
 
 These tests validates the creation of a `CITATION.cff` file for 
-**a random sample of installed packages**. The max size of the sample is 500
-and is chosen randomly on each run.
+**a full set of >200 packages using github actions.**. The results can be checked on  https://github.com/dieghernan/cffr/tree/test/tests/testthat/test_local_installation/_snaps.
 
-As the local installations differs, the snapshots are expected to fail. However,
-they are quite useful for extensive tests and debugging, as well as for 
+As the local installations differs across users and machines, the snapshot testing is expected to fail. However, the snapshots are quite useful for extensive tests and debugging, as well as for 
 capturing corner cases.
  
-
-The fail on the `snapshot` is expected, however the snapshot itself is useful
-to get a summary of the performance of `cffr` on a extensive suite of packages.
 
 For that reason, these tests are no run in **CRAN**.
 
