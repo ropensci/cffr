@@ -114,11 +114,12 @@ parse_desc_urls <- function(pkg) {
 
   # Join issues and urls
   allurls <- c(issues, url)
+  if (is.character(allurls)) {
   allurls <- strsplit(allurls, " ")
   allurls <- strsplit(allurls, ",")
-  allurls <- unique(c(issues, url))
-
-
+  }
+  
+  allurls <- unique(allurls))
 
   # If no urls then return as null
   if (length(allurls) == 0) {
