@@ -4,7 +4,7 @@
     
     ## Installed packages 
     
-    [1] "254 packages"
+    [1] "256 packages"
     
     ---
     
