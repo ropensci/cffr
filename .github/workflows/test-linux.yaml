@@ -41,6 +41,8 @@ jobs:
 
       - name: Update test
         run: |
+        
+          devtools::load_all()
 
           
           unlink("./tests/testthat/test_local_installation/_snaps", 
