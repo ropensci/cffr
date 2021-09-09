@@ -46,7 +46,7 @@
     
     ## Summary 
     
-    [1] "testing a sample of 173 installed packages"
+    [1] "testing a sample of 170 installed packages"
     
     ---
     
