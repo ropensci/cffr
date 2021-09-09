@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [fulltest]:
+    branches: [test]
   workflow_dispatch:
 
 name: Test on Linux
