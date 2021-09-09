@@ -39,11 +39,11 @@
     
     ## Summary 
     
-    [1] "testing a sample of 235 installed packages"
+    [1] "testing a sample of 254 installed packages"
     
     ---
     
-    ## Packages with CITATION file: 41 
+    ## Packages with CITATION file: 45 
     
                     package  version valid
     DiceDesign   DiceDesign      1.9  TRUE
@@ -53,17 +53,21 @@
     cartography cartography    3.0.0  TRUE
     colorspace   colorspace    2.0-2  TRUE
     countrycode countrycode    1.3.0  TRUE
+    drake             drake   7.13.2  TRUE
     future           future   1.22.1  TRUE
     ggplot2         ggplot2    3.3.5  TRUE
     giscoR           giscoR    0.2.4  TRUE
+    igraph           igraph    1.2.6  TRUE
     jsonlite       jsonlite    1.7.2  TRUE
     knitr             knitr     1.34  TRUE
     lava               lava    1.6.9  TRUE
     lubridate     lubridate   1.7.10  TRUE
     mapSpain       mapSpain    0.3.0  TRUE
     pROC               pROC 1.17.0.1  TRUE
+    plotly           plotly  4.9.4.1  TRUE
     plyr               plyr    1.8.6  TRUE
     rmarkdown     rmarkdown     2.10  TRUE
+    rtweet           rtweet    0.7.0  TRUE
     selectr         selectr    0.4-2  TRUE
     sf                   sf    1.0-2  TRUE
     sp                   sp    1.4-5  TRUE
