@@ -1,6 +1,5 @@
 test_that("Test CITATION parsing of all installed packages", {
   expect_snapshot_output({
-
     print_snapshot("Sessioninfo", sessionInfo())
 
     installed <- installed.packages()[, "Package"]
