@@ -3,10 +3,10 @@ on:
     branches: [test]
   workflow_dispatch:
 
-name: Test on Linux
+name: Full testing on Linux
 
 jobs:
-  update-test:
+  full-testing-on-linux:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -32,19 +32,25 @@ jobs:
             devtools
             rcmdcheck
             pkgdown
-            dieghernan/pkgdev
             tidyverse
             scales
             reactable
             mapSpain
+            ctv
           
 
       - name: Update test
         run: |
-        
+          # Install views
+          ctv::install.views(c("ModelDeployment", "Econometrics",
+                               "Spatial", "Graphics", "Databases",
+                               "ReproducibleResearch"),
+               dependencies = TRUE)          
+          
+          # Load and test
           devtools::load_all()
 
-          
+          # Clean snapshot
           unlink("./tests/testthat/test_local_installation/_snaps", 
           recursive = TRUE)
           
