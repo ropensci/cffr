@@ -39,47 +39,54 @@
     
     ## Summary 
     
-    [1] "testing a sample of 197 installed packages"
+    [1] "testing a sample of 235 installed packages"
     
     ---
     
-    ## Packages with CITATION file: 34 
+    ## Packages with CITATION file: 41 
     
-                    package    version valid
-    R.methodsS3 R.methodsS3      1.8.1  TRUE
-    R.oo               R.oo     1.24.0  TRUE
-    Rcpp               Rcpp      1.0.7  TRUE
-    colorspace   colorspace      2.0-2  TRUE
-    countrycode countrycode      1.3.0  TRUE
-    ggplot2         ggplot2      3.3.5  TRUE
-    giscoR           giscoR      0.2.4  TRUE
-    jsonlite       jsonlite      1.7.2  TRUE
-    knitr             knitr       1.34  TRUE
-    lubridate     lubridate     1.7.10  TRUE
-    mapSpain       mapSpain      0.3.0  TRUE
-    pkgdev           pkgdev 0.0.1.9004  TRUE
-    rmarkdown     rmarkdown       2.10  TRUE
-    selectr         selectr      0.4-2  TRUE
-    sf                   sf      1.0-2  TRUE
-    sp                   sp      1.4-5  TRUE
-    stringi         stringi      1.7.4  TRUE
-    testthat       testthat      3.0.4  TRUE
-    tidyverse     tidyverse      1.3.1  TRUE
-    tinytex         tinytex       0.33  TRUE
-    units             units      0.7-2  TRUE
-    viridis         viridis      0.6.1  TRUE
-    viridisLite viridisLite      0.4.0  TRUE
-    MASS               MASS     7.3-54  TRUE
-    base               base      4.1.1  TRUE
-    boot               boot     1.3-28  TRUE
-    class             class     7.3-19  TRUE
-    cluster         cluster      2.1.2  TRUE
-    lattice         lattice    0.20-44  TRUE
-    mgcv               mgcv     1.8-36  TRUE
-    nlme               nlme    3.1-152  TRUE
-    nnet               nnet     7.3-16  TRUE
-    spatial         spatial     7.3-14  TRUE
-    survival       survival     3.2-11  TRUE
+                    package  version valid
+    DiceDesign   DiceDesign      1.9  TRUE
+    GPfit             GPfit    1.0-8  TRUE
+    Rcpp               Rcpp    1.0.7  TRUE
+    SQUAREM         SQUAREM   2021.1  TRUE
+    cartography cartography    3.0.0  TRUE
+    colorspace   colorspace    2.0-2  TRUE
+    countrycode countrycode    1.3.0  TRUE
+    future           future   1.22.1  TRUE
+    ggplot2         ggplot2    3.3.5  TRUE
+    giscoR           giscoR    0.2.4  TRUE
+    jsonlite       jsonlite    1.7.2  TRUE
+    knitr             knitr     1.34  TRUE
+    lava               lava    1.6.9  TRUE
+    lubridate     lubridate   1.7.10  TRUE
+    mapSpain       mapSpain    0.3.0  TRUE
+    pROC               pROC 1.17.0.1  TRUE
+    plyr               plyr    1.8.6  TRUE
+    rmarkdown     rmarkdown     2.10  TRUE
+    selectr         selectr    0.4-2  TRUE
+    sf                   sf    1.0-2  TRUE
+    sp                   sp    1.4-5  TRUE
+    stringi         stringi    1.7.4  TRUE
+    testthat       testthat    3.0.4  TRUE
+    tidymodels   tidymodels    0.1.3  TRUE
+    tidyverse     tidyverse    1.3.1  TRUE
+    tinytex         tinytex     0.33  TRUE
+    tmap               tmap    3.3-2  TRUE
+    units             units    0.7-2  TRUE
+    viridis         viridis    0.6.1  TRUE
+    viridisLite viridisLite    0.4.0  TRUE
+    MASS               MASS   7.3-54  TRUE
+    base               base    4.1.1  TRUE
+    boot               boot   1.3-28  TRUE
+    class             class   7.3-19  TRUE
+    cluster         cluster    2.1.2  TRUE
+    lattice         lattice  0.20-44  TRUE
+    mgcv               mgcv   1.8-36  TRUE
+    nlme               nlme  3.1-152  TRUE
+    nnet               nnet   7.3-16  TRUE
+    spatial         spatial   7.3-14  TRUE
+    survival       survival   3.2-11  TRUE
     
     ---
 

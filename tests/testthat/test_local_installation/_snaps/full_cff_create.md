@@ -1,17 +1,19 @@
 # Test CITATION.cff of all installed packages
 
+                           field                          message
+    1 data["preferred-citation"] referenced schema does not match
     
     
     ## Installed packages 
     
-    [1] "197 packages"
+    [1] "235 packages"
     
     ---
     
     ## Errors 
     
-    [1] package version res    
-    <0 rows> (or 0-length row.names)
+          package version   res
+    rgeos   rgeos   0.5-5 FALSE
     
     ---
 
