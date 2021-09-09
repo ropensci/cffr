@@ -36,16 +36,18 @@ jobs:
             scales
             reactable
             mapSpain
-            ctv
+            sf
+            cartography
+            viridis
+            curl
+            tmap
+            leaflet
+            tidymodels
+      
           
 
       - name: Update test
-        run: |
-          # Install views
-          ctv::install.views(c("ModelDeployment", "Econometrics",
-                               "Spatial", "Graphics", "Databases",
-                               "ReproducibleResearch"),
-               dependencies = TRUE)          
+        run: |          
           
           # Load and test
           devtools::load_all()
