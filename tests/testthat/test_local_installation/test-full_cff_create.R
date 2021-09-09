@@ -19,8 +19,8 @@ test_that("Test CITATION.cff of all installed packages", {
 
     for (i in seq_len(length(packs))) {
       single <- suppressMessages(cff_validate(cff_create(packs[i])))
-      
-      if (!single) print_snapshot(obj= cff_create(packs[i]))
+
+      if (!single) print_snapshot(obj = cff_create(packs[i]))
 
       res <- c(res, single)
     }
