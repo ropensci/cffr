@@ -43,6 +43,12 @@ jobs:
             tmap
             leaflet
             tidymodels
+            plotly
+            drake
+            skimr
+            rtweet
+            magick
+            elastic
       
           
 
