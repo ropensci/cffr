@@ -35,7 +35,7 @@ drop_null <- function(x) {
 
 #' Pretty printing of snapshots
 #' @noRd
-print_snapshot <- function(title="----", obj) {
+print_snapshot <- function(title = "----", obj) {
   cat("\n\n##", title, "\n\n")
   print(obj)
   cat("\n---")

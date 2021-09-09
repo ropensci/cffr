@@ -39,7 +39,7 @@
     [45] digest_0.6.27      stringi_1.7.4      processx_3.5.2     rprojroot_2.0.2   
     [49] cli_3.0.1          tools_4.1.1        magrittr_2.0.1     tibble_3.1.4      
     [53] crayon_1.4.1       pkgconfig_2.0.3    codemeta_0.1.1     ellipsis_0.3.2    
-    [57] xml2_1.3.2         prettyunits_1.1.1  rmarkdown_2.10     roxygen2_7.1.1    
+    [57] xml2_1.3.2         prettyunits_1.1.1  rmarkdown_2.10     roxygen2_7.1.2    
     [61] rstudioapi_0.13    R6_2.5.1           compiler_4.1.1    
     
     ---
