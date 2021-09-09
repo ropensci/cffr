@@ -12,6 +12,14 @@ authors:
   given-names: Diego
   email: diego.hernangomezherrero@gmail.com
   orcid: https://orcid.org/0000-0001-8457-4658
+preferred-citation:
+  title: 'cffr: Generate Citation File Format (''cff'') Metadata for R Packages'
+  authors:
+  - family-names: Hernangómez
+    given-names: Diego
+  year: '2021'
+  url: https://dieghernan.github.io/cffr/
+  type: manual
 repository-code: https://github.com/dieghernan/cffr
 url: https://dieghernan.github.io/cffr/
 contact:

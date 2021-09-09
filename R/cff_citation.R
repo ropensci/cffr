@@ -1,5 +1,4 @@
 # Used for parsing CITATION R-native files
-
 #' @noRd
 parse_r_citation <- function(desc_path, cit_path) {
   if (!file.exists(cit_path) || !file.exists(desc_path)) {

@@ -75,6 +75,9 @@
 #' cff_create(demo_file, keys = list("contact" = new_contact))
 cff_create <- function(x = ".", keys = NULL,
                        cff_version = "1.2.0") {
+
+  # Set initially citobj to NULL
+  citobj <- NULL
   if (is.cff(x)) {
     # It is already an object
     cffobj <- x
@@ -88,9 +91,17 @@ cff_create <- function(x = ".", keys = NULL,
     } else if (x == ".") {
       # nocov start
       desc_path <- file.path(x, "DESCRIPTION")
+      cit_path <- file.path(x, "inst/CITATION")
+      if (file.exists(cit_path)) {
+        citobj <- parse_r_citation(desc_path, cit_path)
+        citobj <- lapply(citobj, cff_parse_citation)
+      }
       # nocov end
     } else {
       desc_path <- file.path(find.package(x), "DESCRIPTION")
+      # Parse citation from installation
+      citobj <- citation(x)
+      citobj <- lapply(citobj, cff_parse_citation)
     }
 
     if (!file.exists(desc_path)) {
@@ -99,19 +110,41 @@ cff_create <- function(x = ".", keys = NULL,
 
     cffobj <- cff_description(desc_path, cff_version)
   }
+
+  # Add cffobj
+
+  cffobj$doi <- clean_str(citobj[[1]]$doi)
+  cffobjend <- c(cffobj,
+    "preferred-citation" = citobj[1],
+    references = list(citobj[-1])
+  )
+
+
+
+  # Add DOI to identifiers
+  if (!is.null(cffobjend$doi)) {
+    oldids <- cffobjend$identifiers
+    cffobjend$identifiers <- c(
+      list(list(type = "doi", value = cffobjend$doi)),
+      oldids
+    )
+  }
+
+
+
   # Additional keys
   if (!is.null(keys)) {
     keys <- keys[names(keys) %in% cff_schema_keys()]
-    cffobj <- drop_null(cffobj)
+    cffobjend <- drop_null(cffobjend)
 
-    cffobj <- cffobj[setdiff(names(cffobj), names(keys))]
-    cffobj <- c(cffobj, keys)
+    cffobjend <- cffobjend[setdiff(names(cffobjend), names(keys))]
+    cffobjend <- c(cffobjend, keys)
   }
 
 
   # Order
-  cffobj <- cffobj[cff_schema_keys()]
+  cffobjend <- cffobjend[cff_schema_keys()]
 
-  cffobj <- as.cff(cffobj)
-  cffobj
+  cffobjend <- as.cff(cffobjend)
+  cffobjend
 }

@@ -3,7 +3,10 @@
 #' Clean strings
 #' @noRd
 clean_str <- function(str) {
-  if (is.null(str) || is.na(str)) {
+  # Collapse to single char
+  str <- paste(str, collapse = " ")
+  if (length(str) == 0 || is.null(str) || is.na(str) ||
+    str == "NA") {
     return(NULL)
   }
 

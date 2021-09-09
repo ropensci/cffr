@@ -6,6 +6,7 @@
 \alias{cff_schema_keys_license}
 \alias{cff_schema_definitions_person}
 \alias{cff_schema_definitions_entity}
+\alias{cff_schema_definitions_reference}
 \title{Schema utils}
 \source{
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema version 1.2.0}
@@ -18,6 +19,8 @@ cff_schema_keys_license()
 cff_schema_definitions_person()
 
 cff_schema_definitions_entity()
+
+cff_schema_definitions_reference()
 }
 \arguments{
 \item{sorted}{Logical \code{TRUE/FALSE}. Should the keys be arranged
@@ -39,6 +42,8 @@ File Format.
 \item \code{\link[=cff_schema_definitions_person]{cff_schema_definitions_person()}} and \code{\link[=cff_schema_definitions_entity]{cff_schema_definitions_entity()}}
 returns the valid fields to be included when defining a
 person or entity.
+\item \code{\link[=cff_schema_definitions_person]{cff_schema_definitions_person()}} provides the valid
+keys to be used on the \code{preferred-citation} and \code{references} keys,
 }
 }
 \examples{
@@ -49,6 +54,8 @@ cff_schema_keys(sorted = TRUE)
 head(cff_schema_keys_license(), 20)
 
 cff_schema_definitions_person()
+
+cff_schema_definitions_entity()
 
 cff_schema_definitions_entity()
 }

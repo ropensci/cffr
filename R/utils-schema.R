@@ -13,6 +13,8 @@
 #' - [cff_schema_definitions_person()] and [cff_schema_definitions_entity()]
 #'   returns the valid fields to be included when defining a
 #'   person or entity.
+#' - [cff_schema_definitions_person()] provides the valid
+#'   keys to be used on the `preferred-citation` and `references` keys,
 #'
 #' @source
 #' [Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md)
@@ -155,4 +157,86 @@ cff_schema_definitions_entity <- function() {
     "website"
   )
   definitions_entity
+}
+
+
+#' @rdname cff_schema
+#' @export
+#' @examples
+#'
+#' cff_schema_definitions_entity()
+cff_schema_definitions_reference <- function() {
+  definitions_reference <- c(
+    "abbreviation",
+    "abstract",
+    "authors",
+    "collection-doi",
+    "collection-title",
+    "collection-type",
+    "commit",
+    "conference",
+    "contact",
+    "copyright",
+    "data-type",
+    "database-provider",
+    "database",
+    "date-accessed",
+    "date-downloaded",
+    "date-published",
+    "date-released",
+    "department",
+    "doi",
+    "edition",
+    "editors",
+    "editors-series",
+    "end",
+    "entry",
+    "filename",
+    "format",
+    "identifiers",
+    "institution",
+    "isbn",
+    "issn",
+    "issue",
+    "issue-date",
+    "issue-title",
+    "journal",
+    "keywords",
+    "languages",
+    "license",
+    "license-url",
+    "loc-end",
+    "loc-start",
+    "location",
+    "medium",
+    "month",
+    "nihmsid",
+    "notes",
+    "number",
+    "number-volumes",
+    "pages",
+    "patent-states",
+    "pmcid",
+    "publisher",
+    "recipients",
+    "repository",
+    "repository-artifact",
+    "repository-code",
+    "scope",
+    "section",
+    "senders",
+    "status",
+    "term",
+    "thesis-type",
+    "title",
+    "translators",
+    "type",
+    "url",
+    "version",
+    "volume",
+    "volume-title",
+    "year",
+    "year-original"
+  )
+  definitions_reference
 }

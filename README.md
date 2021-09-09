@@ -59,8 +59,9 @@ test <- cff_create("ggplot2")
 ```
 
 <details>
-
-<summary> <strong><code>cff</code> object</strong></summary>
+<summary>
+<strong><code>cff</code> object</strong>
+</summary>
 
     cff-version: 1.2.0
     message: 'To cite package "ggplot2" in publications use:'
@@ -99,6 +100,17 @@ test <- cff_create("ggplot2")
     - family-names: Dunnington
       given-names: Dewey
       orcid: https://orcid.org/0000-0002-9415-4582
+    preferred-citation:
+      authors:
+      - family-names: Wickham
+        given-names: Hadley
+      title: 'ggplot2: Elegant Graphics for Data Analysis'
+      publisher:
+        name: Springer-Verlag New York
+      year: '2016'
+      isbn: 978-3-319-24277-4
+      url: https://ggplot2.tidyverse.org
+      type: book
     repository-code: https://github.com/tidyverse/ggplot2
     url: https://ggplot2.tidyverse.org
     date-released: '2021-06-25'
@@ -113,7 +125,6 @@ test <- cff_create("ggplot2")
 We can validate the result using `cff_validate()`:
 
 ``` r
-
 cff_validate(test)
 #> 
 #> cff_validate results-----
@@ -159,9 +170,9 @@ for more info.
 
 # References
 
-<div id="refs" class="references">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-Druskat_Citation_File_Format_2021">
+<div id="ref-Druskat_Citation_File_Format_2021" class="csl-entry">
 
 Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, Robert Haines,
 James Baker, Spencer Bliven, Egon Willighagen, David Pérez-Suárez, and
