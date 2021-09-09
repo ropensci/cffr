@@ -24,7 +24,7 @@ examples for working with .cff more generally.
 When you put a `CITATION.cff` file in the default branch of your GitHub
 repository, it is automatically linked from the repository landing page,
 and the citation information is rendered on the repository page, and
-also provided as BibTeX snippet which users can simply copy
+also provided as BibTeX snippet which users can simply copy.(
 
 ## Installation
 
@@ -49,7 +49,7 @@ install.packages("cffr")
 ## Example
 
 This is a basic example which shows you how to create a `cff` object
-\[see `?cff` for more info:
+(see `?cff` for more info):
 
 ``` r
 library(cffr)

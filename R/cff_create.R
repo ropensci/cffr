@@ -50,8 +50,7 @@
 #'   message = "This overwrites fields",
 #'   abstract = "New abstract",
 #'   keywords = c("A", "new", "list", "of", "keywords"),
-#'   authors = list(cff_parse_person("New author")),
-#'   "date-released" = "1900-01-01"
+#'   authors = list(cff_parse_person("New author"))
 #' )
 #'
 #' cff_create(demo_file, keys = newkeys)
