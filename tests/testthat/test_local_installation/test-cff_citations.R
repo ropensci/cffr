@@ -24,7 +24,7 @@ for (i in 1:length(installed)){
     
     # Add cffobj
 
-  cffobj$doi <- clean_str(citobj[[1]]$doi)
+cffobj$doi <- clean_str(citobj[[1]]$doi)
   cffobjend <- c(cffobj,
     "preferred-citation" = citobj[1],
     references = list(citobj[-1])
