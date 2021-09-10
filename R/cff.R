@@ -139,4 +139,3 @@ as.cff <- function(x) {
 print.cff <- function(x, ...) {
   cat(yaml::as.yaml(x))
 }
-
