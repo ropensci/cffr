@@ -1,10 +1,10 @@
-# Test DESCRIPTION of all installed packages
+# Test CITATION.cff of all installed packages
 
     
     
     ## Installed packages 
     
-    [1] "170 packages"
+    [1] "169 packages"
     
     ---
     

@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.0 (2021-05-18)",
+  "runtimePlatform": "R version 4.1.1 (2021-08-10)",
   "author": [
     {
       "@type": "Person",
@@ -147,7 +147,7 @@
     "SystemRequirements": null
   },
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata"],
-  "fileSize": "344.636KB",
+  "fileSize": "344.574KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
