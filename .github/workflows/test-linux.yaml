@@ -61,6 +61,9 @@ jobs:
 
       - name: Update test
         run: |
+          # Load package
+          devtools::load_all()
+          
           # Write table of packages
           installedall <- installed.packages()[, c("Package", "Version")]
 
