@@ -72,11 +72,11 @@ info):
 library(cffr)
 
 # Example with an installed package
-test <- cff_create("ggplot2")
+test <- cff_create("rmarkdown")
 ```
 
 <details><summary>
-<strong><code>cff</code> object</strong></summary>
+<code>CITATION.cff</code> for <strong>rmarkdown</strong></summary>
 
 
 ```{r, echo=FALSE, comment=""}
@@ -85,6 +85,8 @@ test
 ```
 
 </details>
+
+
 
 We can validate the result using `cff_validate()`:
 

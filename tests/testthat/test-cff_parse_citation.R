@@ -1,11 +1,18 @@
 test_that("Test citations with installed packages", {
-  inst <- c("base", "utils", "jsonlite", "jsonvalidate")
+  installed <- as.character(installed.packages()[, 1])
+  inst <- c(
+    "base", "utils", "jsonlite", "jsonvalidate", "rmarkdown",
+    "rgeos", "urltools", "thisisanerrorpackage"
+  )
   for (i in seq_len(length(inst))) {
-    desc <- file.path(find.package(inst[i]))
-    desc_cff <- cff_description(file.path(desc, "DESCRIPTION"))
-    cit <- cff_parse_citation(citation(inst[i]))
-    full <- as.cff(c(desc_cff, list("preferred-citation" = cit)))
-    expect_true(cff_validate(full))
+    if (inst[i] %in% installed) {
+      print(paste("Testing", inst[i]))
+      desc <- file.path(find.package(inst[i]))
+      desc_cff <- cff_description(file.path(desc, "DESCRIPTION"))
+      cit <- cff_parse_citation(citation(inst[i]))
+      full <- as.cff(c(desc_cff, list("preferred-citation" = cit)))
+      expect_true(cff_validate(full))
+    }
   }
 })
 

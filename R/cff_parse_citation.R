@@ -108,7 +108,11 @@ cff_parse_citation <- function(bib) {
   parse_cit <- cleaned[names(parse_cit)]
 
   ## Parse authors----
-  parse_cit$authors <- lapply(parse_cit$authors, cff_parse_person)
+  ## On CFF reference max authors seems to be 10
+  ## See bug with urltools
+  parse_cit$authors <- drop_null(
+    lapply(parse_cit$authors[1:10], cff_parse_person)
+  )
 
   ## DOIs----
   bb_doi <- building_doi(parse_cit)
@@ -120,6 +124,15 @@ cff_parse_citation <- function(bib) {
 
   parse_cit$month <- building_month(parse_cit)
 
+  ## Parse url: see bug with cff_create("rgeos")
+  if (is.character(parse_cit$url)) {
+    url <- as.character(parse_cit$url)
+    url <- unlist(strsplit(url, " "))
+    url <- unlist(strsplit(url, ","))
+    # Select first element
+    url <- url[1]
+    parse_cit$url <- url
+  }
 
 
   # Parse this as entities

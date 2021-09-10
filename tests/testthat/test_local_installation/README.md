@@ -14,9 +14,23 @@ For that reason, these tests are no run in **CRAN**.
 Run the tests on this folder with 
 
 ```
+# Write table of packages
+installedall <- installed.packages()[, c("Package", "Version")]
+
+writeLines(knitr::kable(installedall,
+  row.names = FALSE,
+  caption = "Installed packages on this session"
+),
+con = file.path(
+  "tests", "testthat", "test_local_installation",
+  "allpackages.md"
+)
+)
+
 # Delete first the snaps folder
-unlink("./tests/testthat/test_local_installation/_snaps", 
-       recursive = TRUE)
+unlink("./tests/testthat/test_local_installation/_snaps",
+  recursive = TRUE
+)
 
 # Run the tests
 testthat::test_dir("tests/testthat/test_local_installation")

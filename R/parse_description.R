@@ -11,34 +11,6 @@ parse_desc_abstract <- function(pkg) {
   abstract
 }
 
-#' Mapped to Package & Title
-#' @noRd
-parse_desc_title <- function(pkg) {
-  title <- paste0(
-    pkg$get("Package"),
-    ": ",
-    pkg$get("Title")
-  )
-
-  title <- clean_str(title)
-  title
-}
-
-#' Mapped to Maintainer
-#' @noRd
-parse_desc_contacts <- function(pkg) {
-  persons <- as.person(pkg$get_authors())
-
-  # Extract creators only
-  contact <- persons[sapply(persons, function(x) {
-    "cre" %in% x$role
-  })]
-
-  parse_all_contacts <- lapply(contact, cff_parse_person)
-  parse_all_contacts <- unique(parse_all_contacts)
-  parse_all_contacts
-}
-
 #' Mapped to persons with roles "aut","cre"
 #' Feeback needed: is this approach correct?
 #' On CRAN, only first aut is used
@@ -57,20 +29,22 @@ parse_desc_authors <- function(pkg) {
   parse_all_authors
 }
 
-
-# Mapped to Version
+#' Mapped to Maintainer
 #' @noRd
-parse_desc_version <- function(pkg) {
-  version <- pkg$get("Version")
+parse_desc_contacts <- function(pkg) {
+  persons <- as.person(pkg$get_authors())
 
-  version <- clean_str(version)
-  version <- unname(version)
+  # Extract creators only
+  contact <- persons[sapply(persons, function(x) {
+    "cre" %in% x$role
+  })]
 
-  version
+  parse_all_contacts <- lapply(contact, cff_parse_person)
+  parse_all_contacts <- unique(parse_all_contacts)
+  parse_all_contacts
 }
 
-# Mapped to Date or Date/Publication for installed packages
-
+#' Mapped to Date or Date/Publication for installed packages
 #' @noRd
 parse_desc_date_released <- function(pkg) {
   date <- tryCatch(as.character(as.Date(pkg$get("Date"))),
@@ -90,6 +64,69 @@ parse_desc_date_released <- function(pkg) {
 
   date <- clean_str(date)
   date
+}
+
+#' Mapped to X-schema.org-keywords, as codemeta/codemetar
+#' @noRd
+parse_desc_keywords <- function(pkg) {
+  kword <- pkg$get("X-schema.org-keywords")
+
+  kword <- clean_str(kword)
+  kword <- unname(kword)
+
+  if (is.null(kword)) {
+    return(kword)
+  }
+
+  kword <- strsplit(kword, ", ")
+  kword
+}
+
+#' Mapped to License
+#' @noRd
+parse_desc_license <- function(pkg) {
+  licenses <- pkg$get_field("License")
+
+  # The schema only accepts two LiCENSES max
+
+  licenses <- unlist(strsplit(licenses, "\\| "))[1:2]
+
+  # Clean up and split
+  split <- unlist(strsplit(licenses, " \\+ |\\+"))
+
+  # Clean leading and trailing blanks
+  split <- gsub("^ | $", "", split)
+  split <- unique(split)
+
+  licenses_df <- data.frame(LICENSE = split)
+
+  # Read mapping
+  cran_to_spdx <-
+    read.csv(system.file("extdata/cran-to-spdx.csv", package = "cffr"))
+
+  # Merge
+  licenses_df <- merge(licenses_df, cran_to_spdx)
+
+  # Clean results
+  licenses_list <- lapply(licenses_df$SPDX, clean_str)
+  licenses_list <- drop_null(licenses_list)
+
+  license_char <- unlist(licenses_list)
+
+  license_char
+}
+
+#' Mapped to Package & Title
+#' @noRd
+parse_desc_title <- function(pkg) {
+  title <- paste0(
+    pkg$get("Package"),
+    ": ",
+    pkg$get("Title")
+  )
+
+  title <- clean_str(title)
+  title
 }
 
 #' Mapped to URL and BugReports
@@ -121,15 +158,15 @@ parse_desc_urls <- function(pkg) {
     return(url_list)
   }
   # Try to find an url of the repo
-  domains <- c(
+  domains <- paste0(c(
     "github.com", "www.github.com",
     "gitlab.com",
     "r-forge.r-project.org",
     "bitbucket.org"
-  )
+  ), collapse = "|")
 
   # Extract repo url
-  repo_line <- which(lapply(domains, grepl, allurls)[[1]])[1]
+  repo_line <- grep(domains, allurls)[1]
 
   repository_code <- clean_str(allurls[repo_line][1])
 
@@ -165,55 +202,13 @@ parse_desc_urls <- function(pkg) {
   return(url_list)
 }
 
-
-# Mapped to X-schema.org-keywords, as codemeta/codemetar
-
+#' Mapped to Version
 #' @noRd
-parse_desc_keywords <- function(pkg) {
-  kword <- pkg$get("X-schema.org-keywords")
+parse_desc_version <- function(pkg) {
+  version <- pkg$get("Version")
 
-  kword <- clean_str(kword)
-  kword <- unname(kword)
+  version <- clean_str(version)
+  version <- unname(version)
 
-  if (is.null(kword)) {
-    return(kword)
-  }
-
-  kword <- strsplit(kword, ", ")
-  kword
-}
-
-# Mapped to License
-
-#' @noRd
-parse_desc_license <- function(pkg) {
-  licenses <- pkg$get_field("License")
-
-  # The schema only accepts two LiCENSES max
-
-  licenses <- unlist(strsplit(licenses, "\\| "))[1:2]
-
-  # Clean up and split
-  split <- unlist(strsplit(licenses, " \\+ |\\+"))
-
-  # Clean leading and trailing blanks
-  split <- gsub("^ | $", "", split)
-  split <- unique(split)
-
-  licenses_df <- data.frame(LICENSE = split)
-
-  # Read mapping
-  cran_to_spdx <-
-    read.csv(system.file("extdata/cran-to-spdx.csv", package = "cffr"))
-
-  # Merge
-  licenses_df <- merge(licenses_df, cran_to_spdx)
-
-  # Clean results
-  licenses_list <- lapply(licenses_df$SPDX, clean_str)
-  licenses_list <- drop_null(licenses_list)
-
-  license_char <- unlist(licenses_list)
-
-  license_char
+  version
 }

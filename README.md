@@ -58,69 +58,115 @@ This is a basic example which shows you how to create a `cff` object
 library(cffr)
 
 # Example with an installed package
-test <- cff_create("ggplot2")
+test <- cff_create("rmarkdown")
 ```
 
 <details>
-
-<summary> <strong><code>cff</code> object</strong></summary>
+<summary>
+<code>CITATION.cff</code> for <strong>rmarkdown</strong>
+</summary>
 
     cff-version: 1.2.0
-    message: 'To cite package "ggplot2" in publications use:'
+    message: 'To cite package "rmarkdown" in publications use:'
     type: software
-    license: MIT
-    title: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
-    version: 3.3.5
-    abstract: A system for 'declaratively' creating graphics, based on "The Grammar of
-      Graphics". You provide the data, tell 'ggplot2' how to map variables to aesthetics,
-      what graphical primitives to use, and it takes care of the details.
+    license: GPL-3.0-only
+    title: 'rmarkdown: Dynamic Documents for R'
+    version: '2.10'
+    abstract: Convert R Markdown documents into a variety of formats.
     authors:
+    - family-names: Allaire
+      given-names: JJ
+      email: jj@rstudio.com
+    - family-names: Xie
+      given-names: Yihui
+      email: xie@yihui.name
+      orcid: https://orcid.org/0000-0003-0645-5666
+    - family-names: McPherson
+      given-names: Jonathan
+      email: jonathan@rstudio.com
+    - family-names: Luraschi
+      given-names: Javier
+      email: javier@rstudio.com
+    - family-names: Ushey
+      given-names: Kevin
+      email: kevin@rstudio.com
+    - family-names: Atkins
+      given-names: Aron
+      email: aron@rstudio.com
     - family-names: Wickham
       given-names: Hadley
       email: hadley@rstudio.com
-      orcid: https://orcid.org/0000-0003-4757-117X
+    - family-names: Cheng
+      given-names: Joe
+      email: joe@rstudio.com
     - family-names: Chang
       given-names: Winston
-      orcid: https://orcid.org/0000-0002-1576-2126
-    - family-names: Henry
-      given-names: Lionel
-    - family-names: Pedersen
-      given-names: Thomas Lin
-      email: thomas.pedersen@rstudio.com
-      orcid: https://orcid.org/0000-0002-5147-4711
-    - family-names: Takahashi
-      given-names: Kohske
-    - family-names: Wilke
-      given-names: Claus
-      orcid: https://orcid.org/0000-0002-7470-9261
-    - family-names: Woo
-      given-names: Kara
-      orcid: https://orcid.org/0000-0002-5125-4188
-    - family-names: Yutani
-      given-names: Hiroaki
-      orcid: https://orcid.org/0000-0002-3385-7233
-    - family-names: Dunnington
-      given-names: Dewey
-      orcid: https://orcid.org/0000-0002-9415-4582
+      email: winston@rstudio.com
+    - family-names: Iannone
+      given-names: Richard
+      email: rich@rstudio.com
+      orcid: https://orcid.org/0000-0003-3925-190X
     preferred-citation:
+      title: 'rmarkdown: Dynamic Documents for R'
       authors:
+      - family-names: Allaire
+        given-names: JJ
+      - family-names: Xie
+        given-names: Yihui
+      - family-names: McPherson
+        given-names: Jonathan
+      - family-names: Luraschi
+        given-names: Javier
+      - family-names: Ushey
+        given-names: Kevin
+      - family-names: Atkins
+        given-names: Aron
       - family-names: Wickham
         given-names: Hadley
-      title: 'ggplot2: Elegant Graphics for Data Analysis'
-      publisher:
-        name: Springer-Verlag New York
-      year: '2016'
-      isbn: 978-3-319-24277-4
-      url: https://ggplot2.tidyverse.org
-      type: book
-    repository-code: https://github.com/tidyverse/ggplot2
-    url: https://ggplot2.tidyverse.org
-    date-released: '2021-06-25'
+      - family-names: Cheng
+        given-names: Joe
+      - family-names: Chang
+        given-names: Winston
+      - family-names: Iannone
+        given-names: Richard
+      year: '2021'
+      url: https://github.com/rstudio/rmarkdown
+      type: manual
+    repository-code: https://github.com/rstudio/rmarkdown
+    url: https://pkgs.rstudio.com/rmarkdown/
+    date-released: '2021-08-06'
     contact:
-    - family-names: Pedersen
-      given-names: Thomas Lin
-      email: thomas.pedersen@rstudio.com
-      orcid: https://orcid.org/0000-0002-5147-4711
+    - family-names: Xie
+      given-names: Yihui
+      email: xie@yihui.name
+      orcid: https://orcid.org/0000-0003-0645-5666
+    references:
+    - title: 'R Markdown: The Definitive Guide'
+      authors:
+      - family-names: Xie
+        given-names: Yihui
+      - family-names: Allaire
+        given-names: J.J.
+      - family-names: Grolemund
+        given-names: Garrett
+      publisher:
+        name: Chapman and Hall/CRC
+      year: '2018'
+      url: https://bookdown.org/yihui/rmarkdown
+      type: book
+    - title: R Markdown Cookbook
+      authors:
+      - family-names: Xie
+        given-names: Yihui
+      - family-names: Dervieux
+        given-names: Christophe
+      - family-names: Riederer
+        given-names: Emily
+      publisher:
+        name: Chapman and Hall/CRC
+      year: '2020'
+      url: https://bookdown.org/yihui/rmarkdown-cookbook
+      type: book
 
 </details>
 
@@ -172,9 +218,9 @@ for more info.
 
 # References
 
-<div id="refs" class="references">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-Druskat_Citation_File_Format_2021">
+<div id="ref-Druskat_Citation_File_Format_2021" class="csl-entry">
 
 Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, Robert Haines,
 James Baker, Spencer Bliven, Egon Willighagen, David Pérez-Suárez, and
