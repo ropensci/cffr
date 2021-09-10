@@ -46,12 +46,6 @@ jobs:
           pkgdev::update_docs()
           
           testthat::test_local()
-          
-          unlink("./tests/testthat/test_local_installation/_snaps", 
-          recursive = TRUE)
-          
-          # Run the tests
-          testthat::test_dir("tests/testthat/test_local_installation")
 
         shell: Rscript {0}
 
