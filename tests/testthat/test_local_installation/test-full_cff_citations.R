@@ -9,7 +9,7 @@ test_that("Test CITATION parsing of a random sample of installed packages", {
     l <- length(installed)
 
     if (interactive()) {
-      size <- 600
+      size <- 1000
       if (l > size) {
         s <- sample(seq_len(l), size)
         installed <- installed[s]

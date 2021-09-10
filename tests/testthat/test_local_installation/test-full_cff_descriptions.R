@@ -1,4 +1,4 @@
-test_that("Test DESCRIPTION of all installed packages", {
+test_that("Test ALL installed packages", {
   expect_snapshot_output({
     # skip("Skip by now") # by now
 
@@ -7,7 +7,7 @@ test_that("Test DESCRIPTION of all installed packages", {
 
     l <- length(packs)
     if (interactive()) {
-      size <- 600
+      size <- 1000
 
       if (l > size) {
         s <- sample(seq_len(l), size)
