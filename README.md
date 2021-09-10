@@ -62,9 +62,9 @@ test <- cff_create("rmarkdown")
 ```
 
 <details>
-
-<summary> <code>CITATION.cff</code> for
-<strong>rmarkdown</strong></summary>
+<summary>
+<code>CITATION.cff</code> for <strong>rmarkdown</strong>
+</summary>
 
     cff-version: 1.2.0
     message: 'To cite package "rmarkdown" in publications use:'
@@ -213,14 +213,14 @@ You can also use the [citation provided by
 GitHub](https://github.com/dieghernan/cffr), that is generated from the
 information of a `CITATION.cff` created with **cffr**. See [About
 CITATION
-files](https://docs.github.com/es/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/about-citation-files)
+files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
 for more info.
 
 # References
 
-<div id="refs" class="references">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-Druskat_Citation_File_Format_2021">
+<div id="ref-Druskat_Citation_File_Format_2021" class="csl-entry">
 
 Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, Robert Haines,
 James Baker, Spencer Bliven, Egon Willighagen, David Pérez-Suárez, and

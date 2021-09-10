@@ -1,5 +1,7 @@
 test_that("Test DESCRIPTION of all installed packages", {
   expect_snapshot_output({
+    # skip("Skip by now") # by now
+
     packs <- installed.packages()[, "Package"]
     vers <- installed.packages()[, "Version"]
 

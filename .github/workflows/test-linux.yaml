@@ -29,6 +29,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
+          cache-version: 2
           extra-packages: |
             devtools
             rcmdcheck
@@ -52,29 +53,32 @@ jobs:
             elastic
             modeltime
             tidyMicro
+            psychotree
+            EpiModel
+            Seurat
+
+
 
       - name: Update test
         run: |
-
-          # Load and test
-          devtools::load_all()
-
           # Write table of packages
           installedall <- installed.packages()[, c("Package", "Version")]
 
+          rownames(installedall) <- 1:nrow(installedall)
+
+
           writeLines(knitr::kable(installedall,
-            row.names = FALSE,
-            caption = "Installed packages on this session"
-          ),
-          con = file.path(
-            "tests", "testthat", "test_local_installation",
-            "allpackages.md"
-          )
+                                  caption = "Installed packages on this session",
+                                  row.names = TRUE),
+                     con = file.path(
+                       "tests", "testthat", "test_local_installation",
+                       "allpackages.md")
           )
 
-          # Clean snapshot
+          # Delete first the snaps folder
           unlink("./tests/testthat/test_local_installation/_snaps",
-          recursive = TRUE)
+                 recursive = TRUE
+          )
 
           # Run the tests
           testthat::test_dir("tests/testthat/test_local_installation")

@@ -101,6 +101,7 @@ cff_create <- function(x = ".", keys = NULL,
       # Parse citation from installation
       citobj <- citation(x)
       citobj <- lapply(citobj, cff_parse_citation)
+      citobj <- citobj[!unlist(lapply(citobj[], is.null))]
       if (length(citobj) == 0) citobj <- NULL
     } else if (x == ".") {
 

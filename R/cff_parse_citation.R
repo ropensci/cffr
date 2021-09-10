@@ -46,6 +46,11 @@ cff_parse_citation <- function(bib) {
 
   parse_cit <- drop_null(unclass(bib)[[1]])
 
+  # Key needed
+  if (isFALSE("author" %in% names(parse_cit))) {
+    return(NULL)
+  }
+
 
   # rest to lowercase
   names(parse_cit) <- tolower(names(parse_cit))
@@ -136,6 +141,12 @@ cff_parse_citation <- function(bib) {
     parse_cit <- c(parse_cit, identifiers = list(bb_url$identifiers))
   } else {
     parse_cit$identifiers <- c(parse_cit$identifiers, bb_url$identifiers)
+  }
+
+  # Keywords
+  if ("keywords" %in% names(parse_cit)) {
+    newkeys <- unlist(strsplit(parse_cit$keywords, ", "))
+    parse_cit$keywords <- newkeys
   }
 
   # Parse this as entities

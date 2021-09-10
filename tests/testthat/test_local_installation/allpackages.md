@@ -1,216 +1,398 @@
 Table: Installed packages on this session
 
-|Package           |Version    |
-|:-----------------|:----------|
-|askpass           |1.1        |
-|assertthat        |0.2.1      |
-|backports         |1.2.1      |
-|base64enc         |0.1-3      |
-|bit               |4.0.4      |
-|bit64             |4.0.5      |
-|blob              |1.2.2      |
-|brew              |1.0-6      |
-|brio              |1.1.2      |
-|broom             |0.7.9      |
-|bslib             |0.3.0      |
-|cachem            |1.0.6      |
-|callr             |3.7.0      |
-|cellranger        |1.1.0      |
-|cffr              |0.0.0.9000 |
-|classInt          |0.4-3      |
-|cli               |3.0.1      |
-|clipr             |0.7.1      |
-|clisymbols        |1.2.0      |
-|codemeta          |0.1.1      |
-|colorspace        |2.0-2      |
-|commonmark        |1.7        |
-|countrycode       |1.3.0      |
-|covr              |3.5.1      |
-|cpp11             |0.3.1      |
-|crayon            |1.4.1      |
-|credentials       |1.3.1      |
-|crosstalk         |1.1.1      |
-|curl              |4.3.2      |
-|cyclocomp         |1.1.0      |
-|data.table        |1.14.0     |
-|DBI               |1.1.1      |
-|dbplyr            |2.1.1      |
-|desc              |1.3.0      |
-|devtools          |2.4.2      |
-|diffobj           |0.3.4      |
-|digest            |0.6.27     |
-|dplyr             |1.0.7      |
-|dtplyr            |1.1.0      |
-|e1071             |1.7-8      |
-|ellipsis          |0.3.2      |
-|evaluate          |0.14       |
-|fansi             |0.5.0      |
-|farver            |2.1.0      |
-|fastmap           |1.1.0      |
-|forcats           |0.5.1      |
-|fs                |1.5.0      |
-|gargle            |1.2.0      |
-|generics          |0.1.0      |
-|geojsonsf         |2.0.1      |
-|geometries        |0.2.0      |
-|gert              |1.3.2      |
-|ggplot2           |3.3.5      |
-|gh                |1.3.0      |
-|giscoR            |0.2.4      |
-|gitcreds          |0.1.1      |
-|glue              |1.4.2      |
-|goodpractice      |1.0.2      |
-|googledrive       |2.0.0      |
-|googlesheets4     |1.0.0      |
-|gridExtra         |2.3        |
-|gtable            |0.3.0      |
-|haven             |2.4.3      |
-|highr             |0.9        |
-|hms               |1.1.0      |
-|htmltools         |0.5.2      |
-|htmlwidgets       |1.5.4      |
-|httpuv            |1.6.2      |
-|httr              |1.4.2      |
-|hunspell          |3.0.1      |
-|ids               |1.0.1      |
-|ini               |0.3.1      |
-|isoband           |0.2.5      |
-|jquerylib         |0.1.4      |
-|jsonify           |1.2.1      |
-|jsonlite          |1.7.2      |
-|jsonvalidate      |1.1.0      |
-|knitr             |1.34       |
-|labeling          |0.4.2      |
-|later             |1.3.0      |
-|lazyeval          |0.2.2      |
-|leaflet           |2.0.4.1    |
-|leaflet.providers |1.9.0      |
-|lifecycle         |1.0.0      |
-|lintr             |2.0.1      |
-|lubridate         |1.7.10     |
-|lwgeom            |0.2-7      |
-|magrittr          |2.0.1      |
-|mapSpain          |0.3.0      |
-|markdown          |1.1        |
-|memoise           |2.0.0      |
-|mime              |0.11       |
-|miniUI            |0.1.1.1    |
-|modelr            |0.1.8      |
-|munsell           |0.5.0      |
-|openssl           |1.4.5      |
-|pillar            |1.6.2      |
-|pkgbuild          |1.2.0      |
-|pkgconfig         |2.0.3      |
-|pkgdev            |0.0.1.9004 |
-|pkgload           |1.2.1      |
-|png               |0.1-7      |
-|praise            |1.0.0      |
-|prettyunits       |1.1.1      |
-|processx          |3.5.2      |
-|progress          |1.2.2      |
-|promises          |1.2.0.1    |
-|proxy             |0.4-26     |
-|ps                |1.6.0      |
-|purrr             |0.3.4      |
-|R.cache           |0.15.0     |
-|R.methodsS3       |1.8.1      |
-|R.oo              |1.24.0     |
-|R.utils           |2.10.1     |
-|R6                |2.5.1      |
-|rapidjsonr        |1.2.0      |
-|rappdirs          |0.3.3      |
-|raster            |3.4-13     |
-|rcmdcheck         |1.3.3      |
-|RColorBrewer      |1.1-2      |
-|Rcpp              |1.0.7      |
-|readr             |2.0.1      |
-|readxl            |1.3.1      |
-|rematch           |1.0.1      |
-|rematch2          |2.1.2      |
-|remotes           |2.4.0      |
-|reprex            |2.0.1      |
-|rex               |1.2.0      |
-|rgeos             |0.5-7      |
-|rlang             |0.4.11     |
-|rmarkdown         |2.10       |
-|roxygen2          |7.1.2      |
-|rprojroot         |2.0.2      |
-|rstudioapi        |0.13       |
-|rversions         |2.1.1      |
-|rvest             |1.0.1      |
-|s2                |1.0.6      |
-|sass              |0.4.0      |
-|scales            |1.1.1      |
-|selectr           |0.4-2      |
-|sessioninfo       |1.1.1      |
-|sf                |1.0-2      |
-|sfheaders         |0.4.0      |
-|shiny             |1.6.0      |
-|slippymath        |0.3.1      |
-|sourcetools       |0.1.7      |
-|sp                |1.4-5      |
-|spelling          |2.2        |
-|stringi           |1.7.4      |
-|stringr           |1.4.0      |
-|styler            |1.5.1      |
-|sys               |3.4        |
-|testthat          |3.0.4      |
-|tibble            |3.1.4      |
-|tidyr             |1.1.3      |
-|tidyselect        |1.1.1      |
-|tidyverse         |1.3.1      |
-|tinytex           |0.33       |
-|triebeard         |0.3.0      |
-|tzdb              |0.1.2      |
-|units             |0.7-2      |
-|urlchecker        |1.0.0      |
-|urltools          |1.7.3      |
-|usethis           |2.0.1      |
-|utf8              |1.2.2      |
-|uuid              |0.1-4      |
-|V8                |3.4.2      |
-|vctrs             |0.3.8      |
-|viridis           |0.6.1      |
-|viridisLite       |0.4.0      |
-|vroom             |1.5.4      |
-|waldo             |0.3.0      |
-|whisker           |0.4        |
-|whoami            |1.3.0      |
-|withr             |2.4.2      |
-|wk                |0.5.0      |
-|xfun              |0.25       |
-|xml2              |1.3.2      |
-|xmlparsedata      |1.0.5      |
-|xopen             |1.0.0      |
-|xtable            |1.8-4      |
-|yaml              |2.2.1      |
-|zip               |2.2.0      |
-|base              |4.1.0      |
-|boot              |1.3-28     |
-|class             |7.3-19     |
-|cluster           |2.1.2      |
-|codetools         |0.2-18     |
-|compiler          |4.1.0      |
-|datasets          |4.1.0      |
-|foreign           |0.8-81     |
-|graphics          |4.1.0      |
-|grDevices         |4.1.0      |
-|grid              |4.1.0      |
-|KernSmooth        |2.23-20    |
-|lattice           |0.20-44    |
-|MASS              |7.3-54     |
-|Matrix            |1.3-3      |
-|methods           |4.1.0      |
-|mgcv              |1.8-35     |
-|nlme              |3.1-152    |
-|nnet              |7.3-16     |
-|parallel          |4.1.0      |
-|rpart             |4.1-15     |
-|spatial           |7.3-14     |
-|splines           |4.1.0      |
-|stats             |4.1.0      |
-|stats4            |4.1.0      |
-|survival          |3.2-11     |
-|tcltk             |4.1.0      |
-|tools             |4.1.0      |
-|utils             |4.1.0      |
+|    |Package           |Version      |
+|:---|:-----------------|:------------|
+|1   |abind             |1.4-5        |
+|2   |adehabitatMA      |0.3.14       |
+|3   |ape               |5.5          |
+|4   |askpass           |1.1          |
+|5   |assertthat        |0.2.1        |
+|6   |backports         |1.2.1        |
+|7   |base64enc         |0.1-3        |
+|8   |BH                |1.75.0-0     |
+|9   |bit               |4.0.4        |
+|10  |bit64             |4.0.5        |
+|11  |bitops            |1.0-7        |
+|12  |blob              |1.2.2        |
+|13  |brew              |1.0-6        |
+|14  |brio              |1.1.2        |
+|15  |broom             |0.7.9        |
+|16  |bslib             |0.3.0        |
+|17  |cachem            |1.0.6        |
+|18  |callr             |3.7.0        |
+|19  |car               |3.0-11       |
+|20  |carData           |3.0-4        |
+|21  |caret             |6.0-88       |
+|22  |caTools           |1.18.2       |
+|23  |cellranger        |1.1.0        |
+|24  |cffr              |0.0.0.9000   |
+|25  |chron             |2.3-56       |
+|26  |circlize          |0.4.13       |
+|27  |classInt          |0.4-3        |
+|28  |cli               |3.0.1        |
+|29  |cliapp            |0.1.1        |
+|30  |clipr             |0.7.1        |
+|31  |clisymbols        |1.2.0        |
+|32  |coda              |0.19-4       |
+|33  |codemeta          |0.1.1        |
+|34  |colorspace        |2.0-2        |
+|35  |colourpicker      |1.1.0        |
+|36  |commonmark        |1.7          |
+|37  |conquer           |1.0.2        |
+|38  |corrplot          |0.90         |
+|39  |countrycode       |1.3.0        |
+|40  |covr              |3.5.1        |
+|41  |cowplot           |1.1.1        |
+|42  |cpp11             |0.3.1        |
+|43  |crayon            |1.4.1        |
+|44  |credentials       |1.3.1        |
+|45  |crosstalk         |1.1.1        |
+|46  |curl              |4.3.2        |
+|47  |cyclocomp         |1.1.0        |
+|48  |data.table        |1.14.0       |
+|49  |DBI               |1.1.1        |
+|50  |dbplyr            |2.1.1        |
+|51  |deldir            |0.2-10       |
+|52  |dendextend        |1.15.1       |
+|53  |DEoptimR          |1.0-9        |
+|54  |desc              |1.3.0        |
+|55  |deSolve           |1.28         |
+|56  |devtools          |2.4.2        |
+|57  |diffobj           |0.3.4        |
+|58  |digest            |0.6.27       |
+|59  |doParallel        |1.0.16       |
+|60  |dplyr             |1.0.7        |
+|61  |dqrng             |0.3.0        |
+|62  |DT                |0.19         |
+|63  |dtplyr            |1.1.0        |
+|64  |e1071             |1.7-8        |
+|65  |egg               |0.4.5        |
+|66  |ellipse           |0.4.2        |
+|67  |ellipsis          |0.3.2        |
+|68  |EpiModel          |2.1.0        |
+|69  |ergm              |4.1.2        |
+|70  |evaluate          |0.14         |
+|71  |expm              |0.999-6      |
+|72  |factoextra        |1.0.7        |
+|73  |FactoMineR        |2.4          |
+|74  |fansi             |0.5.0        |
+|75  |farver            |2.1.0        |
+|76  |fastmap           |1.1.0        |
+|77  |filehash          |2.4-2        |
+|78  |filelock          |1.0.2        |
+|79  |fitdistrplus      |1.1-5        |
+|80  |flashClust        |1.01-2       |
+|81  |FNN               |1.1.3        |
+|82  |forcats           |0.5.1        |
+|83  |foreach           |1.5.1        |
+|84  |Formula           |1.2-4        |
+|85  |fs                |1.5.0        |
+|86  |future            |1.22.1       |
+|87  |future.apply      |1.8.1        |
+|88  |gam               |1.20         |
+|89  |gargle            |1.2.0        |
+|90  |gclus             |1.3.2        |
+|91  |gdata             |2.18.0       |
+|92  |gdistance         |1.3-6        |
+|93  |generics          |0.1.0        |
+|94  |geojsonsf         |2.0.1        |
+|95  |geometries        |0.2.0        |
+|96  |geosphere         |1.5-10       |
+|97  |gert              |1.3.2        |
+|98  |ggplot2           |3.3.5        |
+|99  |ggpubr            |0.4.0        |
+|100 |ggrepel           |0.9.1        |
+|101 |ggridges          |0.5.3        |
+|102 |ggsci             |2.9          |
+|103 |ggsignif          |0.6.3        |
+|104 |ggthemes          |4.2.4        |
+|105 |gh                |1.3.0        |
+|106 |giscoR            |0.2.4        |
+|107 |gitcreds          |0.1.1        |
+|108 |GlobalOptions     |0.1.2        |
+|109 |globals           |0.14.0       |
+|110 |glue              |1.4.2        |
+|111 |gmodels           |2.18.1       |
+|112 |goftest           |1.2-2        |
+|113 |goodpractice      |1.0.2        |
+|114 |googledrive       |2.0.0        |
+|115 |googlesheets4     |1.0.0        |
+|116 |gower             |0.2.2        |
+|117 |gplots            |3.1.1        |
+|118 |gridExtra         |2.3          |
+|119 |gstat             |2.0-7        |
+|120 |gsubfn            |0.7          |
+|121 |gtable            |0.3.0        |
+|122 |gtools            |3.9.2        |
+|123 |gWidgets2         |1.0-8        |
+|124 |haven             |2.4.3        |
+|125 |heatmaply         |1.2.1        |
+|126 |highr             |0.9          |
+|127 |hms               |1.1.0        |
+|128 |htmltools         |0.5.2        |
+|129 |htmlwidgets       |1.5.4        |
+|130 |httpuv            |1.6.2        |
+|131 |httr              |1.4.2        |
+|132 |hunspell          |3.0.1        |
+|133 |ica               |1.0-2        |
+|134 |ids               |1.0.1        |
+|135 |igraph            |1.2.6        |
+|136 |ini               |0.3.1        |
+|137 |intervals         |0.15.2       |
+|138 |inum              |1.0-4        |
+|139 |ipred             |0.9-11       |
+|140 |irlba             |2.3.3        |
+|141 |isoband           |0.2.5        |
+|142 |iterators         |1.0.13       |
+|143 |jpeg              |0.1-9        |
+|144 |jquerylib         |0.1.4        |
+|145 |jsonify           |1.2.1        |
+|146 |jsonlite          |1.7.2        |
+|147 |jsonvalidate      |1.1.0        |
+|148 |knitr             |1.34         |
+|149 |labeling          |0.4.2        |
+|150 |later             |1.3.0        |
+|151 |lava              |1.6.10       |
+|152 |lazyeval          |0.2.2        |
+|153 |leaflet           |2.0.4.1      |
+|154 |leaflet.providers |1.9.0        |
+|155 |leaps             |3.1          |
+|156 |LearnBayes        |2.15.1       |
+|157 |leiden            |0.3.9        |
+|158 |libcoin           |1.0-8        |
+|159 |lifecycle         |1.0.0        |
+|160 |lintr             |2.0.1        |
+|161 |listenv           |0.8.0        |
+|162 |lme4              |1.1-27.1     |
+|163 |lmtest            |0.9-38       |
+|164 |log4r             |0.3.2        |
+|165 |lpSolve           |5.6.15       |
+|166 |lpSolveAPI        |5.5.2.0-17.7 |
+|167 |lubridate         |1.7.10       |
+|168 |lwgeom            |0.2-7        |
+|169 |magrittr          |2.0.1        |
+|170 |mapdata           |2.3.0        |
+|171 |mapproj           |1.2.7        |
+|172 |maps              |3.3.0        |
+|173 |mapSpain          |0.3.0        |
+|174 |maptools          |1.1-2        |
+|175 |markdown          |1.1          |
+|176 |marmap            |1.0.5        |
+|177 |MatrixModels      |0.5-0        |
+|178 |matrixStats       |0.60.1       |
+|179 |memoise           |2.0.0        |
+|180 |mime              |0.11         |
+|181 |miniUI            |0.1.1.1      |
+|182 |minqa             |1.2.4        |
+|183 |ModelMetrics      |1.2.2.2      |
+|184 |modelr            |0.1.8        |
+|185 |mtsdi             |0.3.5        |
+|186 |munsell           |0.5.0        |
+|187 |mvtnorm           |1.1-2        |
+|188 |ncdf4             |1.17         |
+|189 |network           |1.17.1       |
+|190 |networkDynamic    |0.11.0       |
+|191 |nloptr            |1.2.2.2      |
+|192 |nnls              |1.4          |
+|193 |numDeriv          |2016.8-1.1   |
+|194 |openssl           |1.4.5        |
+|195 |openxlsx          |4.2.4        |
+|196 |pak               |0.1.2.1      |
+|197 |parallelly        |1.28.1       |
+|198 |partykit          |1.2-15       |
+|199 |patchwork         |1.1.1        |
+|200 |pbapply           |1.4-3        |
+|201 |pbkrtest          |0.5.1        |
+|202 |PBSmapping        |2.73.0       |
+|203 |permute           |0.9-5        |
+|204 |pillar            |1.6.2        |
+|205 |pkgbuild          |1.2.0        |
+|206 |pkgcache          |1.2.2        |
+|207 |pkgconfig         |2.0.3        |
+|208 |pkgdev            |0.0.1.9004   |
+|209 |pkgload           |1.2.1        |
+|210 |plogr             |0.2.0        |
+|211 |plotly            |4.9.4.1      |
+|212 |plotrix           |3.8-2        |
+|213 |plyr              |1.8.6        |
+|214 |png               |0.1-7        |
+|215 |polyclip          |1.10-0       |
+|216 |polynom           |1.4-0        |
+|217 |praise            |1.0.0        |
+|218 |prettycode        |1.1.0        |
+|219 |prettyunits       |1.1.1        |
+|220 |pROC              |1.18.0       |
+|221 |processx          |3.5.2        |
+|222 |prodlim           |2019.11.13   |
+|223 |progress          |1.2.2        |
+|224 |progressr         |0.8.0        |
+|225 |promises          |1.2.0.1      |
+|226 |proto             |1.0.0        |
+|227 |proxy             |0.4-26       |
+|228 |ps                |1.6.0        |
+|229 |psychotools       |0.6-1        |
+|230 |psychotree        |0.15-4       |
+|231 |purrr             |0.3.4        |
+|232 |qap               |0.1-1        |
+|233 |quantreg          |5.86         |
+|234 |R.cache           |0.15.0       |
+|235 |R.methodsS3       |1.8.1        |
+|236 |R.oo              |1.24.0       |
+|237 |R.utils           |2.10.1       |
+|238 |R6                |2.5.1        |
+|239 |RANN              |2.6.1        |
+|240 |rapidjsonr        |1.2.0        |
+|241 |rappdirs          |0.3.3        |
+|242 |raster            |3.4-13       |
+|243 |rcmdcheck         |1.3.3        |
+|244 |RColorBrewer      |1.1-2        |
+|245 |Rcpp              |1.0.7        |
+|246 |RcppAnnoy         |0.0.19       |
+|247 |RcppArmadillo     |0.10.6.0.0   |
+|248 |RcppEigen         |0.3.3.9.1    |
+|249 |RcppProgress      |0.4.2        |
+|250 |readr             |2.0.1        |
+|251 |readxl            |1.3.1        |
+|252 |recipes           |0.1.16       |
+|253 |registry          |0.5-1        |
+|254 |rematch           |1.0.1        |
+|255 |rematch2          |2.1.2        |
+|256 |remotes           |2.4.0        |
+|257 |reprex            |2.0.1        |
+|258 |reshape           |0.8.8        |
+|259 |reshape2          |1.4.4        |
+|260 |reticulate        |1.20         |
+|261 |rex               |1.2.0        |
+|262 |rgdal             |1.5-25       |
+|263 |rgeos             |0.5-7        |
+|264 |rintrojs          |0.3.0        |
+|265 |rio               |0.5.27       |
+|266 |rjags             |4-10         |
+|267 |rje               |1.10.16      |
+|268 |rjson             |0.2.20       |
+|269 |RJSONIO           |1.3-1.5      |
+|270 |rlang             |0.4.11       |
+|271 |rle               |0.9.2        |
+|272 |rmarkdown         |2.10         |
+|273 |robustbase        |0.93-8       |
+|274 |ROCR              |1.0-11       |
+|275 |roxygen2          |7.1.2        |
+|276 |rprojroot         |2.0.2        |
+|277 |RSpectra          |0.16-0       |
+|278 |RSQLite           |2.2.8        |
+|279 |rstatix           |0.7.0        |
+|280 |rstudioapi        |0.13         |
+|281 |Rtsne             |0.15         |
+|282 |rversions         |2.1.1        |
+|283 |rvest             |1.0.1        |
+|284 |s2                |1.0.6        |
+|285 |sass              |0.4.0        |
+|286 |scales            |1.1.1        |
+|287 |scattermore       |0.7          |
+|288 |scatterplot3d     |0.3-41       |
+|289 |sctransform       |0.3.2        |
+|290 |selectr           |0.4-2        |
+|291 |seriation         |1.3.0        |
+|292 |sessioninfo       |1.1.1        |
+|293 |Seurat            |4.0.4        |
+|294 |SeuratObject      |4.0.2        |
+|295 |sf                |1.0-2        |
+|296 |sfheaders         |0.4.0        |
+|297 |shape             |1.4.6        |
+|298 |shiny             |1.6.0        |
+|299 |shinycssloaders   |1.0.0        |
+|300 |shinydashboard    |0.7.1        |
+|301 |shinyjs           |2.0.0        |
+|302 |shinyWidgets      |0.6.1        |
+|303 |sitmo             |2.0.1        |
+|304 |slippymath        |0.3.1        |
+|305 |sourcetools       |0.1.7        |
+|306 |sp                |1.4-5        |
+|307 |spacetime         |1.2-5        |
+|308 |SparseM           |1.81         |
+|309 |spatstat.core     |2.3-0        |
+|310 |spatstat.data     |2.1-0        |
+|311 |spatstat.geom     |2.2-2        |
+|312 |spatstat.sparse   |2.0-0        |
+|313 |spatstat.utils    |2.2-0        |
+|314 |spData            |0.3.10       |
+|315 |spdep             |1.1-11       |
+|316 |spelling          |2.2          |
+|317 |sqldf             |0.4-11       |
+|318 |SQUAREM           |2021.1       |
+|319 |statnet.common    |4.5.0        |
+|320 |stringi           |1.7.4        |
+|321 |stringr           |1.4.0        |
+|322 |styler            |1.5.1        |
+|323 |sys               |3.4          |
+|324 |tensor            |1.5          |
+|325 |tergm             |4.0.2        |
+|326 |tergmLite         |2.5.0        |
+|327 |testthat          |3.0.4        |
+|328 |tibble            |3.1.4        |
+|329 |tidyr             |1.1.3        |
+|330 |tidyselect        |1.1.1        |
+|331 |tidyverse         |1.3.1        |
+|332 |timeDate          |3043.102     |
+|333 |tinytex           |0.33         |
+|334 |triebeard         |0.3.0        |
+|335 |trust             |0.1-8        |
+|336 |TSP               |1.1-10       |
+|337 |tzdb              |0.1.2        |
+|338 |units             |0.7-2        |
+|339 |urlchecker        |1.0.0        |
+|340 |urltools          |1.7.3        |
+|341 |usethis           |2.0.1        |
+|342 |utf8              |1.2.2        |
+|343 |uuid              |0.1-4        |
+|344 |uwot              |0.1.10       |
+|345 |V8                |3.4.2        |
+|346 |vctrs             |0.3.8        |
+|347 |vegan             |2.5-7        |
+|348 |viridis           |0.6.1        |
+|349 |viridisLite       |0.4.0        |
+|350 |vroom             |1.5.4        |
+|351 |waldo             |0.3.0        |
+|352 |webshot           |0.5.2        |
+|353 |whisker           |0.4          |
+|354 |whoami            |1.3.0        |
+|355 |withr             |2.4.2        |
+|356 |wk                |0.5.0        |
+|357 |xfun              |0.25         |
+|358 |xml2              |1.3.2        |
+|359 |xmlparsedata      |1.0.5        |
+|360 |xopen             |1.0.0        |
+|361 |xtable            |1.8-4        |
+|362 |xts               |0.12.1       |
+|363 |yaml              |2.2.1        |
+|364 |zip               |2.2.0        |
+|365 |zoo               |1.8-9        |
+|366 |base              |4.1.0        |
+|367 |boot              |1.3-28       |
+|368 |class             |7.3-19       |
+|369 |cluster           |2.1.2        |
+|370 |codetools         |0.2-18       |
+|371 |compiler          |4.1.0        |
+|372 |datasets          |4.1.0        |
+|373 |foreign           |0.8-81       |
+|374 |graphics          |4.1.0        |
+|375 |grDevices         |4.1.0        |
+|376 |grid              |4.1.0        |
+|377 |KernSmooth        |2.23-20      |
+|378 |lattice           |0.20-44      |
+|379 |MASS              |7.3-54       |
+|380 |Matrix            |1.3-3        |
+|381 |methods           |4.1.0        |
+|382 |mgcv              |1.8-35       |
+|383 |nlme              |3.1-152      |
+|384 |nnet              |7.3-16       |
+|385 |parallel          |4.1.0        |
+|386 |rpart             |4.1-15       |
+|387 |spatial           |7.3-14       |
+|388 |splines           |4.1.0        |
+|389 |stats             |4.1.0        |
+|390 |stats4            |4.1.0        |
+|391 |survival          |3.2-11       |
+|392 |tcltk             |4.1.0        |
+|393 |tools             |4.1.0        |
+|394 |utils             |4.1.0        |
