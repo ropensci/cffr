@@ -39,3 +39,28 @@ test_that("Add wrong field to citation", {
 
   expect_true(cff_validate(cffobj))
 })
+
+test_that("Several identifiers and duplicates", {
+  bib <- bibentry(
+    bibtype = "Manual",
+    title = "A Language and Environment for Statistical Computing",
+    year = "2021",
+    year = "2023",
+    author = person("R Core Team"),
+    version = NULL,
+    error = "",
+    url = "https://www.R-project.org/",
+    url = "https://google.com/",
+    doi = "10.5281/zenodo.5366600",
+    doi = "10.5281/zenodo.5366601",
+    doi = "10.5281/zenodo.5366602"
+  )
+
+  cffobj <- cff_create(cff(), keys = list(references = list(cff_parse_citation(
+    bib
+  ))))
+
+  expect_true(cff_validate(cffobj))
+
+  expect_snapshot(cffobj)
+})

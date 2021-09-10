@@ -21,7 +21,7 @@ Table: Installed packages on this session
 |cli               |3.0.1      |
 |clipr             |0.7.1      |
 |clisymbols        |1.2.0      |
-|codemeta          |0.1.0      |
+|codemeta          |0.1.1      |
 |colorspace        |2.0-2      |
 |commonmark        |1.7        |
 |countrycode       |1.3.0      |

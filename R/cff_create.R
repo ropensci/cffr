@@ -80,19 +80,31 @@ cff_create <- function(x = ".", keys = NULL,
     )
   }
 
+  instpack <- as.character(installed.packages()[, "Package"])
+
   # Set initially citobj to NULL
   citobj <- NULL
+
+  # Paths
   if (is.cff(x)) {
+
     # It is already an object
     cffobj <- x
     cffobj["cff-version"] <- cff_version
   } else {
-    # Need to parse
-    # Find DESCRIPTION
-    # Guess if root, package or DESCRIPTION
-    if (isTRUE(grep("DESCRIPTION", x) == 1)) {
-      desc_path <- x
+    # Need to parse with desc_path
+
+    if (x %in% instpack) {
+
+      # Installed package, have to parse
+      desc_path <- file.path(find.package(x), "DESCRIPTION")
+      # Parse citation from installation
+      citobj <- citation(x)
+      citobj <- lapply(citobj, cff_parse_citation)
+      if (length(citobj) == 0) citobj <- NULL
     } else if (x == ".") {
+
+      # In development package
       # nocov start
       desc_path <- file.path(x, "DESCRIPTION")
       cit_path <- file.path(x, "inst/CITATION")
@@ -102,12 +114,13 @@ cff_create <- function(x = ".", keys = NULL,
         if (length(citobj) == 0) citobj <- NULL
       }
       # nocov end
+    } else if (isTRUE(grep("DESCRIPTION", x) == 1)) {
+      desc_path <- x
     } else {
-      desc_path <- file.path(find.package(x), "DESCRIPTION")
-      # Parse citation from installation
-      citobj <- citation(x)
-      citobj <- lapply(citobj, cff_parse_citation)
-      if (length(citobj) == 0) citobj <- NULL
+      stop("object x: '", x, "' not valid. If it is a package ",
+        "you may need to install it.",
+        call. = FALSE
+      )
     }
 
     if (!file.exists(desc_path)) {
@@ -116,7 +129,6 @@ cff_create <- function(x = ".", keys = NULL,
 
     cffobj <- cff_description(desc_path, cff_version)
   }
-
   # Add cffobj
 
   cffobj$doi <- clean_str(citobj[[1]]$doi)

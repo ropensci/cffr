@@ -1,3 +1,6 @@
+
+
+
 test_that("Validate full CITATION.cff", {
   full <- system.file("examples/CITATION_complete.cff",
     package = "cffr"

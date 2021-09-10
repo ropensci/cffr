@@ -121,10 +121,16 @@ as.cff <- function(x) {
   if (is.cff(x)) {
     return(x)
   }
+  # Remove NULLs
   x <- drop_null(x)
+
+  # Remove duplicated names
+  x <- x[!duplicated(names(x))]
+
   class(x) <- "cff"
   x
 }
+
 
 
 # Print method
@@ -133,3 +139,4 @@ as.cff <- function(x) {
 print.cff <- function(x, ...) {
   cat(yaml::as.yaml(x))
 }
+

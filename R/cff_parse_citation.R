@@ -43,9 +43,8 @@ cff_parse_citation <- function(bib) {
     return(NULL)
   }
 
-  parse_cit <- as.cff(bib[[1]])[[1]]
 
-
+  parse_cit <- drop_null(unclass(bib)[[1]])
 
 
   # rest to lowercase
@@ -66,7 +65,7 @@ cff_parse_citation <- function(bib) {
   # In lower case to avoid mismatches
 
 
-  type <- clean_str(tolower(attr(parse_cit, "bibtype")))
+  type <- clean_str(tolower(attr(unclass(bib)[[1]], "bibtype")))
   # Remove just in case
   parse_cit <- parse_cit[names(parse_cit) != "type"]
 
@@ -103,9 +102,9 @@ cff_parse_citation <- function(bib) {
   # Clean strings that are not authors
   cleaned <- lapply(parse_cit[names(parse_cit) != "authors"], clean_str)
 
-  # Append and reorder
-  cleaned <- c(cleaned, list(authors = parse_cit$authors))
-  parse_cit <- cleaned[names(parse_cit)]
+  # Append
+  parse_cit <- c(list(authors = parse_cit$authors), cleaned)
+
 
   ## Parse authors----
   ## On CFF reference max authors seems to be 10
@@ -116,24 +115,28 @@ cff_parse_citation <- function(bib) {
 
   ## DOIs----
   bb_doi <- building_doi(parse_cit)
-  parse_cit <- parse_cit[!names(parse_cit) %in% c("doi", "identifiers")]
-  parse_cit <- c(parse_cit, bb_doi)
+  parse_cit$doi <- bb_doi$doi
+  # Create identifiers if not already there
+  if (!"identifiers" %in% names(parse_cit)) {
+    parse_cit <- c(parse_cit, identifiers = list(bb_doi$identifiers))
+  } else {
+    parse_cit$identifiers <- c(parse_cit$identifiers, bb_doi$identifiers)
+  }
 
 
   ## Month
 
   parse_cit$month <- building_month(parse_cit)
+  bb_url <- building_url(parse_cit)
 
-  ## Parse url: see bug with cff_create("rgeos")
-  if (is.character(parse_cit$url)) {
-    url <- as.character(parse_cit$url)
-    url <- unlist(strsplit(url, " "))
-    url <- unlist(strsplit(url, ","))
-    # Select first element
-    url <- url[1]
-    parse_cit$url <- url
+  parse_cit$url <- bb_url$url
+
+  # Create identifiers if not already there
+  if (!"identifiers" %in% names(parse_cit)) {
+    parse_cit <- c(parse_cit, identifiers = list(bb_url$identifiers))
+  } else {
+    parse_cit$identifiers <- c(parse_cit$identifiers, bb_url$identifiers)
   }
-
 
   # Parse this as entities
   # This is not completely right, however don't know

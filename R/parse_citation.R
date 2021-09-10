@@ -98,8 +98,8 @@ building_doi <- function(parse_cit) {
 
   doi <- unlist(dois[1])
 
-  # All goes to identifies
-  identifiers <- lapply(dois, function(x) {
+  # The rest goes to identifies
+  identifiers <- lapply(dois[-1], function(x) {
     list(
       type = "doi",
       value = clean_str(x)
@@ -128,4 +128,33 @@ building_month <- function(parse_cit) {
 
   res <- clean_str(which(tolower(month.name) == month))
   res
+}
+
+#' BB for URL
+#' @noRd
+building_url <- function(parse_cit) {
+  ## Parse url: see bug with cff_create("rgeos")
+  if (is.character(parse_cit$url)) {
+    urlall <- as.character(parse_cit[names(parse_cit) == "url"])
+    urlall <- unlist(strsplit(urlall, " "))
+    urlall <- unlist(strsplit(urlall, ","))
+  } else {
+    urlall <- parse_cit$url
+  }
+  # The first url goes to url key
+
+  url <- unlist(urlall[1])
+  urlall[-1]
+  # The rest goes to identifies
+  identifiers <- lapply(urlall[-1], function(x) {
+    list(
+      type = "url",
+      value = clean_str(x)
+    )
+  })
+
+  url_list <- list(
+    url = clean_str(url),
+    identifiers = identifiers
+  )
 }

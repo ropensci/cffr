@@ -29,6 +29,7 @@ test_that("Test CITATION parsing of a random sample of installed packages", {
     withcit <- c()
     res <- c()
     for (i in 1:length(installed)) {
+      message(installed[i])
       desc_path <- file.path(find.package(installed[i]), "DESCRIPTION")
       cit_path <- file.path(find.package(installed[i]), "CITATION")
 
