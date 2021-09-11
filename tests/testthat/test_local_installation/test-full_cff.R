@@ -98,5 +98,4 @@ test_that("Test ALL installed packages", {
   })
 
   write.csv(installed, "allpackages.csv", row.names = FALSE)
-
 })
