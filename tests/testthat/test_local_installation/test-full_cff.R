@@ -9,10 +9,15 @@ test_that("Test ALL installed packages", {
     l <- nrow(installed)
 
     if (interactive()) {
-      size <- 1000
+      size <- 100
       if (l > size) {
-        s <- sample(seq_len(l), size)
+        s <- sort(sample(seq_len(l), size))
         installed <- installed[s, ]
+        
+        print_snapshot("Interactive detected", 
+        paste("Running on a sample of size:", nrow(installed)
+        ))
+        
       }
     }
 
@@ -22,13 +27,8 @@ test_that("Test ALL installed packages", {
       nrow(installed), "installed packages"
     ))
 
-
-
-
     res <- c()
     withcit <- c()
-
-
 
     for (i in c(1:nrow(installed))) {
       message(installed[i, ]$Package)
