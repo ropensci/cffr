@@ -1,0 +1,70 @@
+on:
+  workflow_dispatch:
+
+name: Test on GHA
+
+jobs:
+  test-gha:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-pandoc@v1
+
+      - uses: r-lib/actions/setup-r@v1
+        with:
+          use-public-rspm: true
+
+      # This is needed for workflows running on
+      # ubuntu-20.04 or later
+      - name: Install V8
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get install -y libv8-dev
+
+      - uses: r-lib/actions/setup-r-dependencies@v1
+        with:
+          extra-packages: |
+            devtools
+            rcmdcheck
+            pkgdown
+            tidymodels
+            tidyverse
+            scales
+            reactable
+            sf
+            rgeos
+            urltools
+            rtweet
+            plotly
+            mapSpain
+            climaemet
+          
+
+      - name: Test GHa
+        run: |
+        
+          devtools::load_all()
+
+          # Load package
+          devtools::load_all()
+          
+          # Delete first the snaps folder
+          unlink("./tests/testthat/test_local_installation/_snaps",
+          recursive = TRUE)
+          
+          # Run the tests
+          testthat::test_dir("tests/testthat/test_local_installation")
+
+        shell: Rscript {0}
+
+      - name: Commit results
+        run: |
+          git config --local user.name "$GITHUB_ACTOR"
+          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git add -A
+          git commit -m 'Update test with gha' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
+
