@@ -141,12 +141,12 @@ building_url <- function(parse_cit) {
   } else {
     allurls <- parse_cit$url
   }
-  
+
   allurls <- allurls[is.url(allurls)]
   # The first url goes to url key
 
   url <- unlist(allurls[1])
-  
+
   # The rest goes to identifies
   identifiers <- lapply(allurls[-1], function(x) {
     list(

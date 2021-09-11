@@ -7,7 +7,6 @@ is.email <- function(email) {
 
   x <- grepl("@", email)
   x
-  
 }
 
 #' Check if a string is an url
@@ -19,7 +18,6 @@ is.url <- function(url) {
 
   x <- grepl("^http", url)
   x
-  
 }
 
 #' Check if a string contains a substring
