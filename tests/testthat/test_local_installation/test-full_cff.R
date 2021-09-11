@@ -13,11 +13,11 @@ test_that("Test ALL installed packages", {
       if (l > size) {
         s <- sort(sample(seq_len(l), size))
         installed <- installed[s, ]
-        
-        print_snapshot("Interactive detected", 
-        paste("Running on a sample of size:", nrow(installed)
-        ))
-        
+
+        print_snapshot(
+          "Interactive detected",
+          paste("Running on a sample of size:", nrow(installed))
+        )
       }
     }
 
