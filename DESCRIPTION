@@ -7,10 +7,11 @@ Authors@R:
            role = c("aut", "cre"),
            email = "diego.hernangomezherrero@gmail.com",
            comment = c(ORCID = "0000-0001-8457-4658"))
-Description: The Citation File Format (version 1.2.0)
-    <doi:10.5281/zenodo.5171937> is a human and machine readable file
-    format which provides citation metadata for software. This package
-    provides core utilities to generate and validate this metadata.
+Description: The Citation File Format version 1.2.0 (Druskat, S. et 
+    al. (2021) <doi:10.5281/zenodo.5171937>) is a human and machine 
+    readable file format which provides citation metadata for software. 
+    This package provides core utilities to generate and validate 
+    this metadata.
 License: GPL (>= 3)
 URL: https://dieghernan.github.io/cffr/,
     https://github.com/dieghernan/cffr
