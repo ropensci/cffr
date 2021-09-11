@@ -5,11 +5,21 @@ is.email <- function(email) {
     return(FALSE)
   }
 
-  if (isTRUE(grep("@", email) == 1)) {
-    return(TRUE)
-  } else {
+  x <- grepl("@", email)
+  x
+  
+}
+
+#' Check if a string is an url
+#' @noRd
+is.url <- function(url) {
+  if (is.null(url)) {
     return(FALSE)
   }
+
+  x <- grepl("^http", url)
+  x
+  
 }
 
 #' Check if a string contains a substring

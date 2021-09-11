@@ -80,7 +80,15 @@ cff_parse_person <- function(person) {
 
   # Add comments
   parsed_person <- c(parsed_person, parsed_comments)
-
+  
+  # Add website
+  web <- parsed_comments$website
+  
+  if(!is.null(web)) {
+    parsed_comments$website <- web[is.url(web)]
+  }
+  
+  
   # Keep only valid tags - Would depend on entity or person
   definition <- if (is_entity) {
     cff_schema_definitions_entity()

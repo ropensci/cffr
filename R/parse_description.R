@@ -149,6 +149,7 @@ parse_desc_urls <- function(pkg) {
 
   # Join issues and urls
   allurls <- unique(c(issues, url))
+  allurls <- allurls[is.url(allurls)]
 
 
 

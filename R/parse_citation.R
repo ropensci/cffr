@@ -135,18 +135,20 @@ building_month <- function(parse_cit) {
 building_url <- function(parse_cit) {
   ## Parse url: see bug with cff_create("rgeos")
   if (is.character(parse_cit$url)) {
-    urlall <- as.character(parse_cit[names(parse_cit) == "url"])
-    urlall <- unlist(strsplit(urlall, " "))
-    urlall <- unlist(strsplit(urlall, ","))
+    allurls <- as.character(parse_cit[names(parse_cit) == "url"])
+    allurls <- unlist(strsplit(allurls, " "))
+    allurls <- unlist(strsplit(allurls, ","))
   } else {
-    urlall <- parse_cit$url
+    allurls <- parse_cit$url
   }
+  
+  allurls <- allurls[is.url(allurls)]
   # The first url goes to url key
 
-  url <- unlist(urlall[1])
-  urlall[-1]
+  url <- unlist(allurls[1])
+  
   # The rest goes to identifies
-  identifiers <- lapply(urlall[-1], function(x) {
+  identifiers <- lapply(allurls[-1], function(x) {
     list(
       type = "url",
       value = clean_str(x)
