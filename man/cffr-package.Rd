@@ -10,7 +10,7 @@
 
 The Citation File Format version 1.2.0 (Druskat, S. et al.
     (2021) <doi:10.5281/zenodo.5171937>) is a human and machine readable
-    file format which provides citation metadata for software.  This
+    file format which provides citation metadata for software. This
     package provides core utilities to generate and validate this
     metadata.
 }
