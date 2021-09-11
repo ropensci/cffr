@@ -96,16 +96,7 @@ test_that("Test ALL installed packages", {
       installed
     )
   })
-  message(getwd())
 
-  if (!file.exists("allpackages.md")) file.create("allpackages.md")
+  write.csv(installed, "allpackages.csv", row.names = FALSE)
 
-  rownames(installed) <- 1:nrow(installed)
-
-  writeLines(knitr::kable(installed,
-    caption = "Tested packages on this session",
-    row.names = TRUE
-  ),
-  con = "allpackages.md"
-  )
 })
