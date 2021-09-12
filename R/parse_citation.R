@@ -62,6 +62,7 @@ parse_r_citation_errors <- function(cit_path, meta) {
 #' @noRd
 parse_package_meta <- function(desc_path) {
   pkg <- desc::desc(desc_path)
+  pkg$coerce_authors_at_r()
   # Extract package data
   meta <- pkg$get(desc::cran_valid_fields)
 
