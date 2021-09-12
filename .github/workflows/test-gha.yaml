@@ -32,29 +32,39 @@ jobs:
             pkgdown
             tidymodels
             tidyverse
-            scales
-            reactable
-            sf
             rgeos
             urltools
             rtweet
             plotly
-            mapSpain
             climaemet
-          
+            ctv
 
-      - name: Test GHa
+      - name: Try instaling views
         run: |
-        
-          devtools::load_all()
+
+          ctv::install.views(
+            c("Graphics",
+            "Finance",
+            "ReproducibleResearch",
+            "Spatial",
+            "ModelDeployment"
+            ),
+          repos = "https://cloud.r-project.org/"
+          )
+
+        shell: Rscript {0}
+
+
+      - name: Test GHA
+        run: |
 
           # Load package
           devtools::load_all()
-          
+
           # Delete first the snaps folder
           unlink("./tests/testthat/test_local_installation/_snaps",
           recursive = TRUE)
-          
+
           # Run the tests
           testthat::test_dir("tests/testthat/test_local_installation")
 
@@ -67,4 +77,3 @@ jobs:
           git add -A
           git commit -m 'Update test with gha' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
-

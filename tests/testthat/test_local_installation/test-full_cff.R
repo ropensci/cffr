@@ -6,10 +6,16 @@ test_that("Test ALL installed packages", {
 
     installed <- as.data.frame(installed.packages()[, c("Package", "Version")])
     installed <- installed[order(installed$Package), ]
+
+    # Remove bugs
+    bugs <- c("DCluster")
+    installed <- installed[!installed$Package %in% bugs, ]
+
+
     l <- nrow(installed)
 
     if (interactive()) {
-      size <- 100
+      size <- 1500
       if (l > size) {
         s <- sort(sample(seq_len(l), size))
         installed <- installed[s, ]
@@ -26,6 +32,7 @@ test_that("Test ALL installed packages", {
       "testing a sample of",
       nrow(installed), "installed packages"
     ))
+    message("Sample of ", nrow(installed))
 
     res <- c()
     withcit <- c()
