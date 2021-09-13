@@ -1,28 +1,3 @@
-# Valid keys on CFF v1.2.0:
-# [OK] abstract
-# [OK] authors (array of objects)
-# [OK] cff-version
-# [WONT DO]commit
-# [OK] contact (object)
-# [OK] date-released
-# [TBD] identifiers (array of objects)
-# [OK] keywords
-# [OK] license
-# [WONT DO] license-url > needed only in the case of non-standard licenses
-# [OK] message
-# preferred-citation (object)
-# doi
-# [WONT DO] references (array of objects)
-# [WONT DO] repository
-# [WONT DO] repository-artifact
-# [OK] repository-code
-# [OK] title
-# [OK] type
-# [OK] url
-# [OK] version
-
-
-
 #' `cff` objects
 #'
 #' A class and utility methods for reading, creating and holding CFF
@@ -57,8 +32,7 @@
 #' test <- cff(
 #'   message = "A blank file",
 #'   keywords = c("A", "new", "list", "of", "keywords"),
-#'   authors = list(cff_parse_person("New author")),
-#'   "date-released" = "1900-01-01"
+#'   authors = list(cff_parse_person("New author"))
 #' )
 #' test
 #'

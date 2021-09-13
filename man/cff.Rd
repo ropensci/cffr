@@ -43,8 +43,7 @@ cff(system.file("examples/CITATION_basic.cff",
 test <- cff(
   message = "A blank file",
   keywords = c("A", "new", "list", "of", "keywords"),
-  authors = list(cff_parse_person("New author")),
-  "date-released" = "1900-01-01"
+  authors = list(cff_parse_person("New author"))
 )
 test
 
