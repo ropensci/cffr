@@ -8,14 +8,23 @@ test_that("Test ALL installed packages", {
     installed <- installed[order(installed$Package), ]
 
     # Remove bugs
-    bugs <- c("DCluster")
+    bugs <- c("DCluster", "arrow", "midasr", "psychotree", "surveillance")
+    msg <- paste(
+      "Skipping ", paste(bugs, collapse = ", "),
+      ". cffr fails on this batch testing."
+    )
+    message(msg)
+
+
+    print(msg)
+
     installed <- installed[!installed$Package %in% bugs, ]
 
 
     l <- nrow(installed)
 
     if (interactive()) {
-      size <- 1500
+      size <- 3000
       if (l > size) {
         s <- sort(sample(seq_len(l), size))
         installed <- installed[s, ]

@@ -5,7 +5,7 @@ name: Test on GHA
 
 jobs:
   test-gha:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -28,30 +28,31 @@ jobs:
         with:
           extra-packages: |
             devtools
-            rcmdcheck
-            pkgdown
+            remotes
             tidymodels
             tidyverse
-            rgeos
-            urltools
-            rtweet
-            plotly
-            climaemet
             ctv
 
-      - name: Try instaling views
+      - name: Install coreo packages of all views
         run: |
 
-          ctv::install.views(
-            c("Graphics",
-            "Finance",
-            "ReproducibleResearch",
-            "Spatial",
-            "ModelDeployment"
-            ),
-          repos = "https://cloud.r-project.org/"
-          )
+          install.packages("remotes", dependencies = TRUE)
+          remotes::install_cran(c("ctv", "dplyr"),
+                                dependencies = TRUE)
 
+          # Install core packages of all views
+          allviews <- ctv::available.views()
+
+
+          packs <- lapply(seq_len(length(allviews)), function(x) {
+            allviews[[x]]$packagelist
+          })
+
+          packs <- dplyr::bind_rows(packs)
+          core <- dplyr::filter(packs, core == TRUE)
+
+          remotes::install_cran(core$name,
+                                dependencies = TRUE)
         shell: Rscript {0}
 
 
@@ -75,5 +76,5 @@ jobs:
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git add -A
-          git commit -m 'Update test with gha' || echo "No changes to commit"
+          git commit -m 'Update core test with gha' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
