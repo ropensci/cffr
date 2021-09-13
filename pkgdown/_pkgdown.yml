@@ -1,15 +1,18 @@
 url: 'https://dieghernan.github.io/cffr/'
 template:
   params:
+    ganalytics: G-0DP42JKT92
   opengraph:
     twitter:
       creator: "@dhernangomez"
       card: summary_large_image
 
+
+
 reference:
   - title: Main function
-    desc: The main function of the package 
-          and likely to be the only one you 
+    desc: The main function of the package
+          and likely to be the only one you
           would need.
     contents:
       - cff_write
