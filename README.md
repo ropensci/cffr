@@ -62,9 +62,9 @@ test <- cff_create("rmarkdown")
 ```
 
 <details>
-
-<summary> <code>CITATION.cff</code> for
-<strong>rmarkdown</strong></summary>
+<summary>
+<code>CITATION.cff</code> for <strong>rmarkdown</strong>
+</summary>
 
     cff-version: 1.2.0
     message: 'To cite package "rmarkdown" in publications use:'
@@ -107,6 +107,8 @@ test <- cff_create("rmarkdown")
       email: rich@rstudio.com
       orcid: https://orcid.org/0000-0003-3925-190X
     preferred-citation:
+      type: manual
+      title: 'rmarkdown: Dynamic Documents for R'
       authors:
       - family-names: Allaire
         given-names: JJ
@@ -128,10 +130,8 @@ test <- cff_create("rmarkdown")
         given-names: Winston
       - family-names: Iannone
         given-names: Richard
-      title: 'rmarkdown: Dynamic Documents for R'
       year: '2021'
       url: https://github.com/rstudio/rmarkdown
-      type: manual
     repository-code: https://github.com/rstudio/rmarkdown
     url: https://pkgs.rstudio.com/rmarkdown/
     date-released: '2021-08-06'
@@ -141,32 +141,32 @@ test <- cff_create("rmarkdown")
       email: xie@yihui.name
       orcid: https://orcid.org/0000-0003-0645-5666
     references:
-    - authors:
+    - type: book
+      title: 'R Markdown: The Definitive Guide'
+      authors:
       - family-names: Xie
         given-names: Yihui
       - family-names: Allaire
         given-names: J.J.
       - family-names: Grolemund
         given-names: Garrett
-      title: 'R Markdown: The Definitive Guide'
       publisher:
         name: Chapman and Hall/CRC
       year: '2018'
       url: https://bookdown.org/yihui/rmarkdown
-      type: book
-    - authors:
+    - type: book
+      title: R Markdown Cookbook
+      authors:
       - family-names: Xie
         given-names: Yihui
       - family-names: Dervieux
         given-names: Christophe
       - family-names: Riederer
         given-names: Emily
-      title: R Markdown Cookbook
       publisher:
         name: Chapman and Hall/CRC
       year: '2020'
       url: https://bookdown.org/yihui/rmarkdown-cookbook
-      type: book
 
 </details>
 
@@ -218,9 +218,9 @@ for more info.
 
 # References
 
-<div id="refs" class="references">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-Druskat_Citation_File_Format_2021">
+<div id="ref-Druskat_Citation_File_Format_2021" class="csl-entry">
 
 Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, Robert Haines,
 James Baker, Spencer Bliven, Egon Willighagen, David Pérez-Suárez, and

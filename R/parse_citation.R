@@ -161,3 +161,66 @@ building_url <- function(parse_cit) {
     identifiers = identifiers
   )
 }
+
+#' BB for other persons
+#' @noRd
+building_other_persons <- function(parse_cit) {
+  others <- drop_null(parse_cit[other_persons()])
+
+  # Parse as entity
+  toentity <- others[names(others) %in% other_persons_entity()]
+  toentity <- lapply(toentity, function(x) {
+    list(name = clean_str(x))
+  })
+  toperson <- others[!names(others) %in% other_persons_entity()]
+  toperson <- lapply(toperson, as.person)
+
+  toperson <- lapply(toperson, function(x) {
+    lapply(x, cff_parse_person)
+  })
+
+  # Bind and reorder
+  parsedothers <- c(toentity, toperson)
+  parsedothers <- parsedothers[names(others)]
+}
+
+
+#' Vector other persons
+#' @noRd
+other_persons <- function() {
+  pers_ent <- c(
+    "contact",
+    "conference",
+    "database-provider",
+    "editors",
+    "editors-series",
+    "institution",
+    "location",
+    "publisher",
+    "recipients",
+    "senders",
+    "translators"
+  )
+
+  pers_ent
+}
+
+#' Vector other persons to be parsed as entities
+#' @noRd
+other_persons_entity <- function() {
+  entities <- c(
+    # "contact",
+    "conference",
+    "database-provider",
+    # "editors",
+    # "editors-series",
+    "institution",
+    "location",
+    "publisher"
+    # "recipients",
+    # "senders",
+    # "translators"
+  )
+
+  entities
+}

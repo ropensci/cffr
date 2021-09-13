@@ -46,11 +46,14 @@ cff_parse_citation <- function(bib) {
 
   parse_cit <- drop_null(unclass(bib)[[1]])
 
-  # Key needed
+  # Keys needed
   if (isFALSE("author" %in% names(parse_cit))) {
     return(NULL)
   }
 
+  if (isFALSE("title" %in% names(parse_cit))) {
+    return(NULL)
+  }
 
   # rest to lowercase
   names(parse_cit) <- tolower(names(parse_cit))
@@ -86,8 +89,8 @@ cff_parse_citation <- function(bib) {
     # "incollection"=,
     "inproceedings" = "proceedings",
     "manual" = "manual",
-    "masterthesis" = "thesis",
-    "phdtesis" = "thesis",
+    "mastersthesis" = "thesis",
+    "phdthesis" = "thesis",
     "proceedings" = "proceedings",
     "techreport" = "report",
     "unpublished" = "unpublished",
@@ -104,11 +107,27 @@ cff_parse_citation <- function(bib) {
   parse_cit <- parse_cit[names(parse_cit) %in%
     valid]
 
-  # Clean strings that are not authors
-  cleaned <- lapply(parse_cit[names(parse_cit) != "authors"], clean_str)
+  # We would use it at the end
+  ordernames <- unique(c("type", "title", "authors", names(parse_cit)))
+
+  # Clean strings that are not authors or other persons
+  cleaned <- lapply(
+    parse_cit[!names(parse_cit) %in% c(
+      "authors",
+      other_persons()
+    )],
+    clean_str
+  )
 
   # Append
-  parse_cit <- c(list(authors = parse_cit$authors), cleaned)
+  parse_cit <- append(
+    parse_cit[names(parse_cit) %in% c(
+      "authors",
+      other_persons()
+    )],
+    cleaned
+  )
+  parse_cit$authors <- parse_cit$authors
 
 
   ## Parse authors----
@@ -149,41 +168,17 @@ cff_parse_citation <- function(bib) {
     parse_cit$keywords <- newkeys
   }
 
-  # Parse this as entities
-  # This is not completely right, however don't know
-  # how to make it. Some fields accept person o entity,
-  # it is safer to assume entity in all the cases.
+  #  Other persons
 
-  toent <- c(
-    "contact",
-    "conference",
-    "database-provider",
-    "editors",
-    "editors-series",
-    "institution",
-    "location",
-    "publisher",
-    "recipients",
-    "senders",
-    "translators"
-  )
+  bb_other <- building_other_persons(parse_cit)
 
-  entities <- parse_cit[names(parse_cit) %in% toent]
-
-
-  for (i in seq_len(length(entities))) {
-    p <- person(given = entities[i])
-    p <- cff_parse_person(p)
-    entities[i] <- (list(p))
-  }
-
-  newlist <- c(
-    parse_cit[!names(parse_cit) %in% toent],
-    entities
+  newlist <- append(
+    parse_cit[!names(parse_cit) %in% other_persons()],
+    bb_other
   )
 
   # Reorder
-  newlist <- newlist[names(parse_cit)]
+  newlist <- newlist[ordernames]
   newlist <- as.cff(newlist)
 
   newlist
