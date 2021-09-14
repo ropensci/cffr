@@ -6,22 +6,6 @@ test_that("Test ALL installed packages", {
 
   installed <- as.data.frame(installed.packages()[, c("Package", "Version")])
   installed <- installed[order(installed$Package), ]
-  # installed <- installed[1:200,]
-  # Remove bugs
-  bugs <- sort(c(
-    "DCluster", "surveillance"
-  ))
-  msg <- paste(
-    "Skipping ", paste(bugs, collapse = ", "),
-    ". cffr fails on this batch testing."
-  )
-  message(msg)
-
-
-  expect_snapshot_output(print(msg))
-
-  installed <- installed[!installed$Package %in% bugs, ]
-
 
   l <- nrow(installed)
 

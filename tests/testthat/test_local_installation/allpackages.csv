@@ -48,6 +48,7 @@
 "CreditMetrics","0.0-2",FALSE,TRUE
 "DBI","1.1.1",FALSE,TRUE
 "DBItest","1.7.1",FALSE,TRUE
+"DCluster","0.2-7",TRUE,TRUE
 "DEoptim","2.2-6",TRUE,TRUE
 "DEoptimR","1.0-9",FALSE,TRUE
 "DT","0.19",FALSE,TRUE
@@ -491,7 +492,7 @@
 "cmprsk","2.2-10",FALSE,TRUE
 "coda","0.19-4",TRUE,TRUE
 "codemeta","0.1.1",FALSE,TRUE
-"codemetar","0.3.1",FALSE,TRUE
+"codemetar","0.3.2",FALSE,TRUE
 "coder","0.13.5",FALSE,TRUE
 "codetools","0.2-18",FALSE,TRUE
 "coefplot","1.2.7",FALSE,TRUE
@@ -1089,7 +1090,7 @@
 "microbenchmark","1.4-7",FALSE,TRUE
 "microdemic","0.6.0",FALSE,TRUE
 "micromap","1.9.4",TRUE,TRUE
-"midasr","0.8",TRUE,FALSE
+"midasr","0.8",TRUE,TRUE
 "mime","0.11",FALSE,TRUE
 "miniCRAN","0.2.14",FALSE,TRUE
 "miniUI","0.1.1.1",FALSE,TRUE
@@ -1718,6 +1719,7 @@
 "suRtex","0.9",FALSE,TRUE
 "subplex","1.6",FALSE,TRUE
 "suppdata","1.1-7",TRUE,TRUE
+"surveillance","1.19.1",TRUE,TRUE
 "survey","4.1-1",TRUE,TRUE
 "survival","3.2-13",TRUE,TRUE
 "survival","3.2-11",TRUE,TRUE

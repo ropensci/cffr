@@ -25,18 +25,14 @@
      [1] Rcpp_1.0.7         rstudioapi_0.13    magrittr_2.0.1     usethis_2.0.1     
      [5] devtools_2.4.2     pkgload_1.2.2      jsonvalidate_1.1.0 R6_2.5.1          
      [9] rlang_0.4.11       fastmap_1.1.0      tools_4.1.1        pkgbuild_1.2.0    
-    [13] sessioninfo_1.1.1  cli_3.0.1          withr_2.4.2        ellipsis_0.3.2    
-    [17] remotes_2.4.0      yaml_2.2.1         rprojroot_2.0.2    lifecycle_1.0.0   
-    [21] crayon_1.4.1       processx_3.5.2     purrr_0.3.4        callr_3.7.0       
-    [25] fs_1.5.0           ps_1.6.0           curl_4.3.2         memoise_2.0.0     
-    [29] glue_1.4.2         cachem_1.0.6       V8_3.4.2           compiler_4.1.1    
-    [33] desc_1.3.0         prettyunits_1.1.1  jsonlite_1.7.2    
+    [13] waldo_0.3.0        sessioninfo_1.1.1  cli_3.0.1          withr_2.4.2       
+    [17] ellipsis_0.3.2     remotes_2.4.0      yaml_2.2.1         rprojroot_2.0.2   
+    [21] lifecycle_1.0.0    crayon_1.4.1       processx_3.5.2     purrr_0.3.4       
+    [25] callr_3.7.0        fs_1.5.0           ps_1.6.0           curl_4.3.2        
+    [29] memoise_2.0.0      glue_1.4.2         cachem_1.0.6       V8_3.4.2          
+    [33] compiler_4.1.1     desc_1.3.0         prettyunits_1.1.1  jsonlite_1.7.2    
     
     ---
-
----
-
-    [1] "Skipping  DCluster, surveillance . cffr fails on this batch testing."
 
 ---
 
@@ -44,7 +40,7 @@
     
     ## Summary 
     
-    [1] "testing a sample of 1928 installed packages"
+    [1] "testing a sample of 1930 installed packages"
     
     ---
 
@@ -58,13 +54,12 @@
     InformationValue InformationValue   1.2.3         FALSE FALSE
     arrow                       arrow 5.0.0.2         FALSE FALSE
     iheatmapr               iheatmapr   0.5.1          TRUE FALSE
-    midasr                     midasr     0.8          TRUE FALSE
     
     ---
     
     ## Error reports for  
     
-    [1] "InformationValue, arrow, iheatmapr, midasr"
+    [1] "InformationValue, arrow, iheatmapr"
     
     ---
     
@@ -212,65 +207,6 @@
     1 data.authors.0 no schemas match
     2 data.authors.1 no schemas match
     3 data.contact.0 no schemas match
-    [1] FALSE
-    
-    ---
-    
-    ## midasr: cffr object 
-    
-    cff-version: 1.2.0
-    message: 'To cite package "midasr" in publications use:'
-    type: software
-    license:
-    - GPL-2.0-only
-    - MIT
-    title: 'midasr: Mixed Data Sampling Regression'
-    version: '0.8'
-    doi: 10.18637/jss.v072.i04
-    abstract: Methods and tools for mixed frequency time series data analysis. Allows
-      estimation, model selection and forecasting for MIDAS regressions.
-    authors:
-    - family-names: Zemlys-Balevicius
-      given-names: Vaidotas
-      email: zemlys@gmail.com
-    - family-names: Kvedaras
-      given-names: Virmantas
-      email: virmantas.kvedaras@ec.europa.eu
-    - family-names: Zemlys-Balevicius
-      given-names: Vaidotas
-      email: zemlys@gmail.com
-    preferred-citation:
-      type: article
-      title: 'Mixed Frequency Data Sampling Regression Models: The R Package midasr'
-      authors:
-      - family-names: Ghysels
-        given-names: Eric
-        email: eghysels@unc.edu
-      - family-names: Kvedaras
-        given-names: Virmantas
-        email: virmantas.kvedaras@mif.vu.lt
-      - family-names: Zemlys
-        given-names: Vaidotas
-        email: vaidotas.zemlys@mif.vu.lt
-      journal: Journal of Statistical Software
-      year: '2016'
-      volume: '72'
-      number: '4'
-      doi: 10.18637/jss.v072.i04
-    repository-code: https://github.com/mpiktas/midasr
-    url: http://mpiktas.github.io/midasr/
-    date-released: '2021-02-23'
-    contact:
-    - family-names: Zemlys-Balevicius
-      given-names: Vaidotas
-      email: zemlys@gmail.com
-    
-    ---
-    
-    ## Validation results 
-    
-             field        message
-    1 data.authors must be unique
     [1] FALSE
     
     ---

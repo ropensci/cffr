@@ -2,7 +2,7 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "cffr",
-  "description": "The Citation File Format version 1.2.0 (Druskat, S. et al.\n    (2021) <doi:10.5281/zenodo.5171937>) is a human and machine readable\n    file format which provides citation metadata for software. This\n    package provides core utilities to generate and validate this\n    metadata.",
+  "description": "The Citation File Format version 1.2.0 (Druskat, S. et al. (2021) <doi:10.5281/zenodo.5171937>) is a human and machine readable file format which provides citation metadata for software. This package provides core utilities to generate and validate this metadata.",
   "name": "cffr: Generate Citation File Format ('cff') Metadata for R Packages",
   "codeRepository": "https://github.com/dieghernan/cffr",
   "relatedLink": "https://dieghernan.github.io/cffr/",
@@ -147,7 +147,7 @@
     "SystemRequirements": null
   },
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata"],
-  "fileSize": "472.01KB",
+  "fileSize": "482.983KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

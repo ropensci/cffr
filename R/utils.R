@@ -21,6 +21,10 @@ clean_str <- function(str) {
   if (clean == "") {
     return(NULL)
   }
+  # Parse encoding
+  enc <- Encoding(clean)
+
+  if (enc != "UTF-8") clean <- iconv(clean, to = "UTF-8")
 
   clean
 }
