@@ -66,9 +66,12 @@ cff_write <- function(x = ".",
     "# -----------------------------------------------------------",
     paste0(
       "# CITATION file created with {cffr} R package, v",
-      packageVersion("cffr")
+      packageDescription("cffr")$Version
     ),
-    "# Source code: https://github.com/dieghernan/cffR",
+    paste(
+      "# See also:",
+      strsplit(packageDescription("cffr")$URL, ",")[[1]][1]
+    ),
     "# -----------------------------------------------------------",
     " ",
     addcomment
