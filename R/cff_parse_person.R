@@ -77,16 +77,16 @@ cff_parse_person <- function(person) {
       parsed_comments$orcid
     )
   }
-
-  # Add comments
-  parsed_person <- c(parsed_person, parsed_comments)
-
   # Add website
   web <- parsed_comments$website
 
   if (!is.null(web)) {
-    parsed_comments$website <- web[is.url(web)]
+    parsed_comments$website <- clean_str(web[is.url(web)])
   }
+
+  # Add comments
+  parsed_person <- c(parsed_person, parsed_comments)
+
 
 
   # Keep only valid tags - Would depend on entity or person

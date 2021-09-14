@@ -6,11 +6,9 @@ test_that("Test citations with installed packages", {
   )
   for (i in seq_len(length(inst))) {
     if (inst[i] %in% installed) {
-      print(paste("Testing", inst[i]))
-      desc <- file.path(find.package(inst[i]))
-      desc_cff <- cff_description(file.path(desc, "DESCRIPTION"))
+      desc <- cff_create(inst[i])
       cit <- cff_parse_citation(citation(inst[i]))
-      full <- as.cff(c(desc_cff, list("preferred-citation" = cit)))
+      full <- as.cff(c(desc, list("preferred-citation" = cit)))
       expect_true(cff_validate(full))
     }
   }
@@ -18,34 +16,23 @@ test_that("Test citations with installed packages", {
 
 test_that("Add wrong field to citation", {
   bib <- bibentry(
-    bibtype = "InProceedings",
-    booktitle = "Some Title",
-    title = "Bootstrap Methods and Their Applications",
-    author = as.person("Anthony C. Davison [aut], David V. Hinkley [aut]"),
-    year = "1997",
-    publisher = person(
-      given = "Cambridge University Press",
-      comment = c("address" = "Madrid")
-    ),
-    # translators = "Juan Tenorio",
-    address = "Cambridge",
-    url = "http://statwww.epfl.ch/davison/BMA/",
-    key = "boot-book",
-    type = "errortype",
-    favorite_food = "bananas"
+    bibtype = "Manual",
+    title = "favoritefood is not valid on cff schema",
+    author = "Jane Smith",
+    favoritefood = "bananas"
   )
 
-  cffobj <- cff_create("jsonlite",
+  bibparsed <- cff_parse_citation(bib)
+
+  expect_s3_class(bibparsed, "cff")
+
+  cffobj <- cff_create(cff(),
     keys = list(
-      references = list(
-        cff_parse_citation(
-          bib
-        )
-      )
+      references = list(bibparsed)
     )
   )
 
-
+  expect_snapshot_output(cffobj)
   expect_true(cff_validate(cffobj))
 })
 
@@ -53,7 +40,7 @@ test_that("Several identifiers and duplicates", {
   bib <- bibentry(
     bibtype = "Manual",
     title = "A Language and Environment for Statistical Computing",
-    year = "2021",
+    year = "2022",
     year = "2023",
     author = person("R Core Team"),
     version = NULL,
@@ -65,18 +52,45 @@ test_that("Several identifiers and duplicates", {
     doi = "10.5281/zenodo.5366602"
   )
 
+  bibparsed <- cff_parse_citation(bib)
+
+  expect_s3_class(bibparsed, "cff")
+
   cffobj <- cff_create(cff(),
-    keys = list(references = list(
-      cff_parse_citation(
-        bib
-      )
-    ))
+    keys = list(
+      references = list(bibparsed)
+    )
   )
 
+  expect_snapshot_output(cffobj)
   expect_true(cff_validate(cffobj))
-
-  expect_snapshot(cffobj)
 })
+
+test_that("Test keywords and urls", {
+  bib <- bibentry(
+    bibtype = "Manual",
+    title = "A Language and Environment for Statistical Computing",
+    year = "2022",
+    author = person("R Core Team"),
+    url = "https://www.R-project.org/",
+    url = "https://google.com/",
+    keywords = "Some, random keywords, in, here"
+  )
+
+  bibparsed <- cff_parse_citation(bib)
+
+  expect_s3_class(bibparsed, "cff")
+
+  cffobj <- cff_create(cff(),
+    keys = list(
+      references = list(bibparsed)
+    )
+  )
+
+  expect_snapshot_output(cffobj)
+  expect_true(cff_validate(cffobj))
+})
+
 
 test_that("Article", {
   bib <- bibentry("Article",
@@ -318,6 +332,31 @@ test_that("Parse persons on CITATION", {
       person("Translator", "two")
     )
   )
+
+  bibparsed <- cff_parse_citation(bib)
+  expect_snapshot_output(bibparsed)
+
+  cffobj <- cff_create(cff(),
+    keys = list(references = list(bibparsed))
+  )
+
+  expect_true(cff_validate(cffobj))
+})
+
+test_that("Test inputs", {
+  bib <- c(1:5)
+  expect_null(cff_parse_citation(bib))
+
+  # Remove type
+
+  bib <- bibentry("Book",
+    title = "Test",
+    author = "Billy Jean",
+    year = "2021",
+    publisher = "Random House",
+    type = "RANDOM"
+  )
+
 
   bibparsed <- cff_parse_citation(bib)
   expect_snapshot_output(bibparsed)

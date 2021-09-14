@@ -76,7 +76,6 @@ cff_parse_citation <- function(bib) {
   type <- clean_str(tolower(attr(unclass(bib)[[1]], "bibtype")))
   # Remove just in case
   parse_cit <- parse_cit[names(parse_cit) != "type"]
-
   ### Switch type based on bibentry----
   if (is.null(type)) {
     return(NULL)
@@ -140,17 +139,14 @@ cff_parse_citation <- function(bib) {
   ## DOIs----
   bb_doi <- building_doi(parse_cit)
   parse_cit$doi <- bb_doi$doi
-  # Create identifiers if not already there
-  if (!"identifiers" %in% names(parse_cit)) {
-    parse_cit <- c(parse_cit, identifiers = list(bb_doi$identifiers))
-  } else {
-    parse_cit$identifiers <- c(parse_cit$identifiers, bb_doi$identifiers)
-  }
-
+  # Create identifiers
+  parse_cit <- parse_cit[names(parse_cit) != "identifiers"]
+  parse_cit <- c(parse_cit, identifiers = list(bb_doi$identifiers))
 
   ## Month
 
   parse_cit$month <- building_month(parse_cit)
+  parse_cit$year <- clean_str(as.integer(parse_cit$year))
   bb_url <- building_url(parse_cit)
 
   parse_cit$url <- bb_url$url
@@ -178,7 +174,7 @@ cff_parse_citation <- function(bib) {
   )
 
   # Reorder
-  newlist <- newlist[ordernames]
+  newlist <- newlist[unique(c(ordernames, "identifiers"))]
   newlist <- as.cff(newlist)
 
   newlist

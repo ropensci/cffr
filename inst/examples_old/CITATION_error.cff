@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software in your research, please cite it as below."
+title: "cff-validator"
+abstract: "Validate your repository's CITATION.cff file using R software"
+authors:
+- family-names: "Hernangómez"
+  given-names: "Diego"
+  orcid: "https://orcid.org/ 0000-0001-8457-4658"
+  error: yes
+- name: The Research Software project
+error_field: This is an error
+doi: https://doi.org/10.5281/zenodo.4442958
+url: 123456
+license: abcdef
+keywords:
+- family-names: "Hernangómez"
+  given-names: "Diego"
+  orcid: "https://orcid.org/ 0000-0001-8457-4658"
+  error: yes

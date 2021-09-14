@@ -5,7 +5,7 @@
 #' **This is the core function of the package and likely to be the only one
 #' you would need when developing a package**.
 #'
-#' This funxtion writes out a `CITATION.cff` file for a given package. This function is
+#' This function writes out a `CITATION.cff` file for a given package. This function is
 #' basically a wrapper around [cff_create()] to both create the [`cff`] object
 #' and write it out to a YAML-formatted file in one command.
 #'
@@ -61,6 +61,15 @@ cff_write <- function(x = ".",
   # Write CITATION
   yaml::write_yaml(citat, outfile)
 
+  addcomment <- readLines(outfile)
+  addcomment <- c(
+    "# CITATION file created with {cffr} R package",
+    "# Source code: https://github.com/dieghernan/cffR",
+    " ",
+    addcomment
+  )
+
+  writeLines(addcomment, outfile)
   message(crayon::green(outfile, "generated"))
 
   # Add CITATION.cff to .Rbuildignore

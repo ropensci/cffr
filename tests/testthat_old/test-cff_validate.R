@@ -1,3 +1,6 @@
+
+
+
 test_that("Validate full CITATION.cff", {
   full <- system.file("examples/CITATION_complete.cff",
     package = "cffr"
@@ -20,7 +23,6 @@ test_that("Validate error CITATION.cff", {
   )
   expect_message(cff_validate(err))
   expect_false(suppressMessages(cff_validate(err)))
-  expect_snapshot_output(cff_validate(err))
 })
 
 test_that("Validate cffr objects from installed packages", {
@@ -28,6 +30,17 @@ test_that("Validate cffr objects from installed packages", {
   expect_true(cff_validate(cffr))
 })
 
+test_that("Validate error CITATION.cff", {
+  err <- system.file("examples/CITATION_error.cff",
+    package = "cffr"
+  )
+  expect_message(cff_validate(err))
+  expect_false(suppressMessages(cff_validate(err)))
+
+  expect_snapshot_output({
+    print_snapshot("An example error message", cff_validate(err))
+  })
+})
 
 test_that("Validate error for invalid input", {
   nocff <- system.file("CITATION",
@@ -43,6 +56,6 @@ test_that("Validate error for invalid input", {
 
 test_that("File that is not cff", {
   expect_error(
-    cff_validate(system.file("examples/DESCRIPTION_basic", package = "cffr"))
+    cff_validate(system.file("examples/DESCRIPTION_demo", package = "cffr"))
   )
 })

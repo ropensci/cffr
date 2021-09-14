@@ -8,7 +8,7 @@ test_that("Parse Licenses on CRAN (Top 50, 98% cov)", {
 
   # Tempfile DESCRIPTION that we use for modifications
   tmp <- tempfile("DESCRIPTION")
-  file.copy(system.file("examples/DESCRIPTION_basic", package = "cffr"),
+  file.copy(system.file("examples/DESCRIPTION_demo", package = "cffr"),
     tmp,
     overwrite = TRUE
   )

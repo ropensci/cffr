@@ -41,7 +41,7 @@
 #' cff_create("jsonlite")
 #'
 #' # Demo file
-#' demo_file <- system.file("examples/DESCRIPTION_demo", package = "cffr")
+#' demo_file <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 #' cff_create(demo_file)
 #'
 #' # Add additional keys
@@ -132,7 +132,10 @@ cff_create <- function(x = ".", keys = NULL,
   }
   # Add cffobj
 
-  cffobj$doi <- clean_str(citobj[[1]]$doi)
+  # Add doi from citation if missing
+  if (is.null(cffobj$doi)) {
+    cffobj$doi <- clean_str(citobj[[1]]$doi)
+  }
   cffobjend <- c(cffobj,
     "preferred-citation" = citobj[1],
     references = list(citobj[-1])

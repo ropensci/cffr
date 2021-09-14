@@ -1,65 +1,22 @@
-# Add wrong field to citation
-
-    cff-version: 1.2.0
-    message: If you use this software, please cite it using these metadata.
-    title: My Research Software
-    authors:
-    - family-names: Druskat
-      given-names: Stephan
-    references:
-    - type: manual
-      title: favoritefood is not valid on cff schema
-      authors:
-      - family-names: Smith
-        given-names: Jane
-
 # Several identifiers and duplicates
 
-    cff-version: 1.2.0
-    message: If you use this software, please cite it using these metadata.
-    title: My Research Software
-    authors:
-    - family-names: Druskat
-      given-names: Stephan
-    references:
-    - type: manual
-      title: A Language and Environment for Statistical Computing
+    Code
+      cffobj
+    Output
+      cff-version: 1.2.0
+      message: If you use this software, please cite it using these metadata.
+      title: My Research Software
       authors:
-      - name: R Core Team
-      year: '2022'
-      url: https://www.R-project.org/
-      doi: 10.5281/zenodo.5366600
-      identifiers:
-      - type: doi
-        value: 10.5281/zenodo.5366601
-      - type: doi
-        value: 10.5281/zenodo.5366602
-      - type: url
-        value: https://google.com/
-
-# Test keywords and urls
-
-    cff-version: 1.2.0
-    message: If you use this software, please cite it using these metadata.
-    title: My Research Software
-    authors:
-    - family-names: Druskat
-      given-names: Stephan
-    references:
-    - type: manual
-      title: A Language and Environment for Statistical Computing
-      authors:
-      - name: R Core Team
-      year: '2022'
-      url: https://www.R-project.org/
-      keywords:
-      - Some
-      - random keywords
-      - in
-      - here
-      identifiers:
-      - type: url
-        value: https://google.com/
+      - family-names: Druskat
+        given-names: Stephan
+      references:
+      - type: manual
+        title: A Language and Environment for Statistical Computing
+        authors:
+        - name: R Core Team
+        year: '2021'
+        url: https://www.R-project.org/
+        doi: 10.5281/zenodo.5366600
 
 # Article
 
@@ -204,15 +161,4 @@
       given-names: Translator
     - family-names: two
       given-names: Translator
-
-# Test inputs
-
-    type: book
-    title: Test
-    authors:
-    - family-names: Jean
-      given-names: Billy
-    year: '2021'
-    publisher:
-      name: Random House
 

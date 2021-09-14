@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software in your research, please cite it as below."
+title: "cff-validator"
+abstract: "Validate your repository's CITATION.cff file using R software"
+authors:
+- family-names: "Hernangómez"
+  given-names: "Diego"
+  orcid: "https://orcid.org/0000-0001-8457-4658"
+license: MIT
+repository-code: "https://github.com/dieghernan/cff-validator"
+references:
+- title: Bootstrap Methods and Their Applications
+  authors:
+  - family-names: Davison
+    given-names: Anthony C.
+  - family-names: Hinkley
+    given-names: David V.
+  year: '1997'
+  publisher:
+    name: Cambridge University Press (Madrid)
+  translators:
+    name: "Research Translators Ltd."
+  url: http://statwww.epfl.ch/davison/BMA/
+  type: proceedings

@@ -1,4 +1,4 @@
-test_that("Error on cff", {
+test_that("Test errors on cff", {
   expect_error(cff("abcde"))
   nocff <- system.file("CITATION",
     package = "cffR"
@@ -6,74 +6,62 @@ test_that("Error on cff", {
   expect_error(cff_create(nocff))
 })
 
-test_that("Compare skeleton", {
+test_that("Compare blank cff with skeleton", {
   skeleton <- system.file("examples/CITATION_skeleton.cff",
     package = "cffr"
   )
 
-  fromfile <- unlist(cff(skeleton))
+  fromfile <- cff(skeleton)
   fromfunction <- cff()
-  expect_true(all(fromfile == unlist(fromfunction)))
+  expect_true(all(unlist(fromfile) == unlist(fromfunction)))
 
   # Validate
   expect_true(cff_validate(fromfunction))
 })
 
-test_that("Full lifecycle", {
-  expect_snapshot_output({
-    complete <- system.file("examples/CITATION_complete.cff",
-      package = "cffr"
-    )
+test_that("Walk trough full lifecycle", {
+  complete <- system.file("examples/CITATION_complete.cff",
+    package = "cffr"
+  )
 
-    # Read
-    read <- cff(complete)
+  # Read
+  read <- cff(complete)
+  expect_s3_class(read, "cff")
+  expect_true(cff_validate(read))
+  expect_snapshot_output(print_snapshot("Read object", read))
 
-    print(read)
+  # Modify
+  modify <- cff_create(read, keys = list(title = "A new title"))
+  expect_snapshot_output(print_snapshot("Modify object", modify))
+  expect_true(all(unlist(read) == unlist(read)))
+  expect_true(length(read) == length(modify))
+  expect_true(length((setdiff(names(read), names(modify)))) == 0)
+  expect_false(read$title == modify$title)
 
-    # Modify
-    modify <- cff_create(read, keys = list(title = "New title here"))
-    print(modify)
 
-    # Write
-    tmp <- tempfile(fileext = ".cff")
-    suppressMessages(cff_write(modify, outfile = tmp, validate = FALSE))
-    stopifnotexists(tmp)
-    stopifnotcff(tmp)
 
-    # Validate
-    print(cff_validate(tmp))
-  })
+  # Write
+  tmp <- tempfile(fileext = ".cff")
+  suppressMessages(cff_write(modify, outfile = tmp, validate = FALSE))
+  stopifnotexists(tmp)
+  stopifnotcff(tmp)
+
+  # Validate
+  expect_true(cff_validate(tmp))
+
+  file.remove(tmp)
 })
 
 test_that("Other convertes", {
   a <- cff()
+  expect_s3_class(a, "cff")
+  a <- cff(a)
+  expect_s3_class(a, "cff")
   a <- as.cff(a)
   expect_true(is.cff(a))
+  expect_s3_class(a, "cff")
 
   expect_true(is.cff(cff(address = "New York", version = 5)))
   expect_false(is.cff(list(a = 1, b = 2)))
   expect_true(is.cff(as.cff(list(a = 1, b = 2))))
-})
-
-
-test_that("Validate cffr objects", {
-  allfiles <- list.files(system.file("examples",
-    package = "cffr"
-  ), pattern = "^DESC", full.names = TRUE)
-
-  names <- list.files(system.file("examples",
-    package = "cffr"
-  ), pattern = "^DESC", full.names = FALSE)
-
-
-  for (i in seq_len(length(allfiles))) {
-    tmp <- tempfile(pattern = names[i], fileext = ".cff")
-    message("----\nValidating ", names[i], "\n----")
-    if (names[i] == "DESCRIPTION_no_encoding") {
-      expect_warning(cff_create(allfiles[i]))
-    } else {
-      s <- cff_create(allfiles[i])
-      expect_true(cff_validate(s))
-    }
-  }
 })

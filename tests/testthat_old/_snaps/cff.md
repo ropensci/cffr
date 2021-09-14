@@ -1,9 +1,5 @@
-# Walk trough full lifecycle
+# Full lifecycle
 
-    
-    
-    ## Read object 
-    
     cff-version: 1.2.0
     message: If you use this software, please cite it as below.
     abstract: This is an awesome piece of research software!
@@ -837,22 +833,12 @@
         date-start: '2017-01-01'
         date-end: '2017-01-31'
         location: The team garage
-    
-    ---
-
----
-
-    
-    
-    ## Modify object 
-    
     cff-version: 1.2.0
     message: If you use this software, please cite it as below.
     type: software
     license: CC-BY-SA-4.0
-    title: A new title
+    title: New title here
     version: 1.0.0
-    doi: 10.5281/zenodo.1003150
     abstract: This is an awesome piece of research software!
     authors:
     - family-names: Real Person
@@ -1679,6 +1665,5 @@
     - type: other
       value: other-schema://abcd.1234.efgh.5678
     license-url: https://spdx.org/licenses/CC-BY-SA-4.0.html#licenseText
-    
-    ---
+    [1] TRUE
 

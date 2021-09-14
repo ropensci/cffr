@@ -44,7 +44,7 @@ for additional details.
 cff_create("jsonlite")
 
 # Demo file
-demo_file <- system.file("examples/DESCRIPTION_demo", package = "cffr")
+demo_file <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 cff_create(demo_file)
 
 # Add additional keys
