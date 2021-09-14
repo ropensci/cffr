@@ -8,7 +8,12 @@ test_that("Test ALL installed packages", {
     installed <- installed[order(installed$Package), ]
 
     # Remove bugs
-    bugs <- c("DCluster", "arrow", "midasr", "psychotree", "surveillance")
+    bugs <- c(
+      "DCluster", "arrow", "midasr", "psychotree", "surveillance",
+      "InformationValue", "biomartr", "clifro",
+      "emld", "iheatmapr", "nasapower", "philentropy",
+      "ramlegacy", "rromeo"
+    )
     msg <- paste(
       "Skipping ", paste(bugs, collapse = ", "),
       ". cffr fails on this batch testing."

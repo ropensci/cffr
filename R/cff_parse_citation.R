@@ -146,7 +146,6 @@ cff_parse_citation <- function(bib) {
   ## Month
 
   parse_cit$month <- building_month(parse_cit)
-  parse_cit$year <- clean_str(as.integer(parse_cit$year))
   bb_url <- building_url(parse_cit)
 
   parse_cit$url <- bb_url$url
