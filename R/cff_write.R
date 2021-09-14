@@ -5,9 +5,9 @@
 #' **This is the core function of the package and likely to be the only one
 #' you would need when developing a package**.
 #'
-#' This function writes out a `CITATION.cff` file for a given package. This function is
-#' basically a wrapper around [cff_create()] to both create the [`cff`] object
-#' and write it out to a YAML-formatted file in one command.
+#' This function writes out a `CITATION.cff` file for a given package. This
+#' function is basically a wrapper around [cff_create()] to both create the
+#' [`cff`] object and writes it out to a YAML-formatted file in one command.
 #'
 #' @family core functions
 #'
@@ -41,8 +41,8 @@
 #' cff_obj
 #' @details
 #'
-#' When creating and writing a CITATION.cff for the first time, the function
-#' adds "CITATION.cff" to .Rbuildignore
+#' When creating and writing a `CITATION.cff` for the first time, the function
+#' adds "CITATION.cff" to ".Rbuildignore".
 cff_write <- function(x = ".",
                       outfile = "CITATION.cff",
                       keys = NULL,
@@ -63,8 +63,13 @@ cff_write <- function(x = ".",
 
   addcomment <- readLines(outfile)
   addcomment <- c(
-    "# CITATION file created with {cffr} R package",
+    "# -----------------------------------------------------------",
+    paste0(
+      "# CITATION file created with {cffr} R package, v",
+      packageVersion("cffr")
+    ),
     "# Source code: https://github.com/dieghernan/cffR",
+    "# -----------------------------------------------------------",
     " ",
     addcomment
   )

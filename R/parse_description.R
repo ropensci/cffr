@@ -19,9 +19,9 @@ parse_desc_authors <- function(pkg) {
   # This extracts all the persons
   persons <- as.person(pkg$get_authors())
 
-  authors <- persons[sapply(persons, function(x) {
+  authors <- persons[vapply(persons, function(x) {
     "aut" %in% x$role || "cre" %in% x$role
-  })]
+  }, logical(1))]
 
   parse_all_authors <- lapply(authors, cff_parse_person)
   parse_all_authors <- unique(parse_all_authors)
@@ -35,9 +35,9 @@ parse_desc_contacts <- function(pkg) {
   persons <- as.person(pkg$get_authors())
 
   # Extract creators only
-  contact <- persons[sapply(persons, function(x) {
+  contact <- persons[vapply(persons, function(x) {
     "cre" %in% x$role
-  })]
+  }, logical(1))]
 
   parse_all_contacts <- lapply(contact, cff_parse_person)
   parse_all_contacts <- unique(parse_all_contacts)
@@ -78,7 +78,9 @@ parse_desc_keywords <- function(pkg) {
     return(kword)
   }
 
-  kword <- strsplit(kword, ", ")
+  kword <- unlist(strsplit(kword, ", "))
+  kword <- strsplit(unique(kword), ",")
+
   kword
 }
 

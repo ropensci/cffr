@@ -35,7 +35,8 @@ It is possible to add additional keys not detected by \code{\link[=cff_create]{c
 the \code{keys} argument. A list of valid keys can be retrieved with
 \code{\link[=cff_schema_keys]{cff_schema_keys()}}.
 
-Please refer to \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}
+Please refer to
+\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}
 for additional details.
 }
 \examples{

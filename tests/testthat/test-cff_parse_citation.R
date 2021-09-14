@@ -36,6 +36,33 @@ test_that("Add wrong field to citation", {
   expect_true(cff_validate(cffobj))
 })
 
+test_that("Fix wrong orcid", {
+  bib <- bibentry(
+    bibtype = "Manual",
+    title = "Wrong orcid fixed by cffr",
+    author = person("Jane",
+      "Smith",
+      comment = c(
+        ORCID =
+          "http://orcid.org/0000-0000-0000-306X"
+      )
+    )
+  )
+
+  bibparsed <- cff_parse_citation(bib)
+
+  expect_s3_class(bibparsed, "cff")
+
+  cffobj <- cff_create(cff(),
+    keys = list(
+      references = list(bibparsed)
+    )
+  )
+
+  expect_snapshot_output(cffobj)
+  expect_true(cff_validate(cffobj))
+})
+
 test_that("Several identifiers and duplicates", {
   bib <- bibentry(
     bibtype = "Manual",
@@ -49,7 +76,8 @@ test_that("Several identifiers and duplicates", {
     url = "https://google.com/",
     doi = "10.5281/zenodo.5366600",
     doi = "10.5281/zenodo.5366601",
-    doi = "10.5281/zenodo.5366602"
+    doi = "10.5281/zenodo.5366602",
+    identifiers = "a,b"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -74,7 +102,7 @@ test_that("Test keywords and urls", {
     author = person("R Core Team"),
     url = "https://www.R-project.org/",
     url = "https://google.com/",
-    keywords = "Some, random keywords, in, here"
+    keywords = "Some, random keywords, in, here, here"
   )
 
   bibparsed <- cff_parse_citation(bib)

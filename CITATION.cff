@@ -1,5 +1,7 @@
-# CITATION file created with {cffr} R package
+# -----------------------------------------------------------
+# CITATION file created with {cffr} R package, v0.0.0.9000
 # Source code: https://github.com/dieghernan/cffR
+# -----------------------------------------------------------
  
 cff-version: 1.2.0
 message: 'To cite package "cffr" in publications use:'

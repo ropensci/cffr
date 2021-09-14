@@ -65,7 +65,7 @@ cff_validate <- function(x = "./CITATION.cff") {
   cit_temp <- tempfile(fileext = ".json")
   jsonlite::write_json(citfile, cit_temp, pretty = TRUE)
 
-  citfile_clean <- clean_jsonlite(cit_temp)
+  clean_jsonlite(cit_temp)
 
   # Download latest scheme
   schema_temp <- file.path(tempdir(), "cff_schema.json")
@@ -141,7 +141,7 @@ clean_jsonlite <- function(cit_temp) {
   # Rewrite json
   writeLines(citfile_clean, cit_temp)
 
-  x <- cit_temp
+  return(invisible())
 
   # End Brackets management
 }

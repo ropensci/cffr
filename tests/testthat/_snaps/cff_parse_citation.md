@@ -13,6 +13,22 @@
       - family-names: Smith
         given-names: Jane
 
+# Fix wrong orcid
+
+    cff-version: 1.2.0
+    message: If you use this software, please cite it using these metadata.
+    title: My Research Software
+    authors:
+    - family-names: Druskat
+      given-names: Stephan
+    references:
+    - type: manual
+      title: Wrong orcid fixed by cffr
+      authors:
+      - family-names: Smith
+        given-names: Jane
+        orcid: https://orcid.org/0000-0000-0000-306X
+
 # Several identifiers and duplicates
 
     cff-version: 1.2.0

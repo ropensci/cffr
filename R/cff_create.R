@@ -31,7 +31,8 @@
 #' the `keys` argument. A list of valid keys can be retrieved with
 #' [cff_schema_keys()].
 #'
-#' Please refer to [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md)
+#' Please refer to
+#' [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md)
 #' for additional details.
 #'
 #'
@@ -98,10 +99,15 @@ cff_create <- function(x = ".", keys = NULL,
 
       # Installed package, have to parse
       desc_path <- file.path(find.package(x), "DESCRIPTION")
+
       # Parse citation from installation
-      citobj <- citation(x)
-      citobj <- lapply(citobj, cff_parse_citation)
-      citobj <- citobj[!unlist(lapply(citobj[], is.null))]
+      cit_path <- file.path(find.package(x), "CITATION")
+      if (file.exists(cit_path)) {
+        citobj <- parse_r_citation(desc_path, cit_path)
+        citobj <- lapply(citobj, cff_parse_citation)
+        citobj <- drop_null(citobj)
+        if (length(citobj) == 0) citobj <- NULL
+      }
       if (length(citobj) == 0) citobj <- NULL
     } else if (x == ".") {
 
@@ -112,6 +118,7 @@ cff_create <- function(x = ".", keys = NULL,
       if (file.exists(cit_path)) {
         citobj <- parse_r_citation(desc_path, cit_path)
         citobj <- lapply(citobj, cff_parse_citation)
+        citobj <- drop_null(citobj)
         if (length(citobj) == 0) citobj <- NULL
       }
       # nocov end

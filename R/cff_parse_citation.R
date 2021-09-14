@@ -159,7 +159,7 @@ cff_parse_citation <- function(bib) {
 
   # Keywords
   if ("keywords" %in% names(parse_cit)) {
-    newkeys <- unlist(strsplit(parse_cit$keywords, ", "))
+    newkeys <- unique(unlist(strsplit(parse_cit$keywords, ", ")))
     parse_cit$keywords <- newkeys
   }
 

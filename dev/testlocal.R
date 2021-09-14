@@ -1,6 +1,7 @@
 # source("C:/Users/diego/Documents/R/Projects/cffr/dev/testlocal.R")
 
-setwd("C:/Users/diego/Documents/R/Projects/cffr")
+
+setwd("~/R/Projects/cffr")
 
 # Load package
 devtools::load_all()

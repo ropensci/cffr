@@ -8,5 +8,6 @@
 NULL
 
 # import stuffs
-#' @importFrom utils download.file as.person read.csv citation person installed.packages
+#' @importFrom utils download.file as.person read.csv person
+#' installed.packages packageVersion
 NULL
