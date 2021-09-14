@@ -11,6 +11,9 @@
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+![GitHub code size in
+bytes](https://img.shields.io/github/languages/code-size/dieghernan/cffr)
+[![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/cffr/badge)](https://www.codefactor.io/repository/github/dieghernan/cffr)
 
 <!-- badges: end -->
 
