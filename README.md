@@ -65,16 +65,16 @@ test <- cff_create("rmarkdown")
 ```
 
 <details>
-<summary>
-<code>CITATION.cff</code> for <strong>rmarkdown</strong>
-</summary>
+
+<summary> <code>CITATION.cff</code> for
+<strong>rmarkdown</strong></summary>
 
     cff-version: 1.2.0
     message: 'To cite package "rmarkdown" in publications use:'
     type: software
     license: GPL-3.0-only
     title: 'rmarkdown: Dynamic Documents for R'
-    version: '2.10'
+    version: '2.11'
     abstract: Convert R Markdown documents into a variety of formats.
     authors:
     - family-names: Allaire
@@ -137,7 +137,7 @@ test <- cff_create("rmarkdown")
       url: https://github.com/rstudio/rmarkdown
     repository-code: https://github.com/rstudio/rmarkdown
     url: https://pkgs.rstudio.com/rmarkdown/
-    date-released: '2021-08-06'
+    date-released: '2021-09-14'
     contact:
     - family-names: Xie
       given-names: Yihui
@@ -221,9 +221,9 @@ for more info.
 
 # References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references">
 
-<div id="ref-Druskat_Citation_File_Format_2021" class="csl-entry">
+<div id="ref-Druskat_Citation_File_Format_2021">
 
 Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, Robert Haines,
 James Baker, Spencer Bliven, Egon Willighagen, David Pérez-Suárez, and
