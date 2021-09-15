@@ -1,10 +1,13 @@
 on:
   workflow_dispatch:
+  schedule:
+      - cron:  '0 5 * * 2,5'
+
 
 name: Test on GHA
 
 jobs:
-  test-gha:
+  test-ci:
     runs-on: macos-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -71,19 +74,13 @@ jobs:
           # Load package
           devtools::load_all()
 
-          # Delete first the snaps folder
-          unlink("./tests/testthat/test_local_installation/_snaps",
-          recursive = TRUE)
-
           # Run the tests
-          testthat::test_dir("tests/testthat/test_local_installation")
+          testthat::test_dir("tests/testthat/test_ci")
 
         shell: Rscript {0}
 
-      - name: Commit results
-        run: |
-          git config --local user.name "$GITHUB_ACTOR"
-          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git add -A
-          git commit -m 'Update core test with gha' || echo "No changes to commit"
-          git push origin || echo "No changes to commit"
+     # Upload artifact
+      - uses: actions/upload-artifact@v2
+        with:
+          name: test-ci
+          path: tests/testthat/test_ci
