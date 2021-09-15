@@ -8,6 +8,7 @@
 [![R-CMD-check](https://github.com/dieghernan/cffr/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/cffr/actions/workflows/check-full.yaml)
 [![codecov](https://codecov.io/gh/dieghernan/cffr/branch/master/graph/badge.svg)](https://codecov.io/gh/dieghernan/cffr)
 [![CITATION-cff](https://github.com/dieghernan/cffr/actions/workflows/cff-validator.yml/badge.svg)](https://github.com/dieghernan/cffr/actions/workflows/cff-validator.yml)
+[![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.5509766-blue)](https://doi.org/10.5281/zenodo.5509766)
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
@@ -74,7 +75,7 @@ test <- cff_create("rmarkdown")
     type: software
     license: GPL-3.0-only
     title: 'rmarkdown: Dynamic Documents for R'
-    version: '2.10'
+    version: '2.11'
     abstract: Convert R Markdown documents into a variety of formats.
     authors:
     - family-names: Allaire
@@ -137,7 +138,7 @@ test <- cff_create("rmarkdown")
       url: https://github.com/rstudio/rmarkdown
     repository-code: https://github.com/rstudio/rmarkdown
     url: https://pkgs.rstudio.com/rmarkdown/
-    date-released: '2021-08-06'
+    date-released: '2021-09-14'
     contact:
     - family-names: Xie
       given-names: Yihui
@@ -199,7 +200,7 @@ print(citation("cffr"), bibtex = TRUE)
 #> To cite cffr in publications use:
 #> 
 #>   Hernangómez, D. (2021). cffr: Generate Citation File Format ('cff')
-#>   Metadata for R Packages. R package version 0.0.1.
+#>   Metadata for R Packages. R package version 0.0.1.9000.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -207,7 +208,8 @@ print(citation("cffr"), bibtex = TRUE)
 #>     title = {cffr: Generate Citation File Format ('cff') Metadata for R Packages},
 #>     author = {Diego Hernangómez},
 #>     year = {2021},
-#>     note = {R package version 0.0.1},
+#>     note = {R package version 0.0.1.9000},
+#>     doi = {10.5281/zenodo.5509766},
 #>     url = {https://dieghernan.github.io/cffr/},
 #>   }
 #> 

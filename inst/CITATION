@@ -11,6 +11,7 @@ citEntry(
                   family = "Hernangómez"),
   year = year,
   note = vers,
+  doi = "10.5281/zenodo.5509766",
   url = "https://dieghernan.github.io/cffr/",
   textVersion = paste('Hernangómez, D. (', year, '). cffr: ', meta$Title, '. ', vers, '.', sep = '')
 )
