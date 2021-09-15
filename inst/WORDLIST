@@ -3,6 +3,7 @@ CFF
 CMD
 Chue
 CodeFactor
+DOI
 Druskat
 Egon
 Haines
@@ -19,10 +20,14 @@ YAML
 al
 cff
 codecov
+codemeta
+codemetar
 coercible
 doi
 et
+handlr
 https
 json
 parsers
+rmarkdown
 zenodo

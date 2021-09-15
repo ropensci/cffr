@@ -19,19 +19,24 @@ bytes](https://img.shields.io/github/languages/code-size/dieghernan/cffr)
 <!-- badges: end -->
 
 [Citation File Format (CFF)](https://citation-file-format.github.io/)
-(Druskat et al. 2021) are plain text files with human- and
+(Druskat et al. 2021) (v1.2.0) are plain text files with human- and
 machine-readable citation information for software (and datasets). Code
 developers can include them in their repositories to let others know how
 to correctly cite their software.
-
-**cffr** provides utilities to generate, parse, modify and validate
-`CITATION.cff` files automatically for R packages, as well as tools and
-examples for working with .cff more generally.
 
 When you put a `CITATION.cff` file in the default branch of your GitHub
 repository, it is automatically linked from the repository landing page,
 and the citation information is rendered on the repository page, and
 also provided as BibTeX snippet which users can simply copy.
+
+**cffr** provides utilities to generate, parse, modify and validate
+`CITATION.cff` files automatically for R packages, as well as tools and
+examples for working with .cff more generally.
+
+**cffr** maximizes the data extraction by using both the `DESCRIPTION`
+file and the `CITATION` file (if present) of your package. Note that
+**cffr** works best if your package pass
+`R CMD check/devtools::check()`.
 
 ## Installation
 
@@ -55,8 +60,17 @@ install.packages("cffr")
 
 ## Example
 
+By default most often from within your package folder you’ll simply run
+`cff_write()`, that creates a `cff` object, write it on a `CITATION.cff`
+file and validates it on a single command.
+
+However, **cffr** provides also custom print methods and mechanisms that
+allows you to customize the `CITATION.cff` and integrate them in your
+workflows.
+
 This is a basic example which shows you how to create a `cff` object
-(see `?cff` for more info):
+(see `?cff` for more info). In this case, we are creating a `cff` object
+from the metadata of the **rmarkdown** package:
 
 ``` r
 library(cffr)
@@ -183,12 +197,24 @@ cff_validate(test)
 #> Congratulations! This cff object is valid
 ```
 
-By default most often from within your package folder you’ll simply run
-`cffr::cff_write()`, that creates a `cff` object, write it on a
-`CITATION.cff` file and validates it on a single command.
-
 Check the [docs](https://dieghernan.github.io/cffr/reference/index.html)
 to learn how to work with `cff` objects.
+
+## Related packages
+
+-   [**citation**](https://github.com/pik-piam/citation/): The
+    development version (at the time of this writing) includes a new
+    function `r2cff` that creates a `CITATION.cff` file (v1.1.0) using
+    the information of your `DESCRIPTION` file. It also provide minimal
+    validity checks.
+-   [**handlr**](https://github.com/ropensci/handlr): Tool for
+    converting among citation formats, including `*.cff` files.
+    Currently At the time of this writing only CFF v1.1.0 was supported
+    (see [\#24](https://github.com/ropensci/handlr/issues/24)).
+-   [**codemeta**](https://github.com/cboettig/codemeta)/
+    [**codemetar**](https://github.com/ropensci/codemetar) provides
+    similar solutions for creating `codemeta.json` file, another format
+    for storing and sharing software metadata.
 
 ## Citation
 
