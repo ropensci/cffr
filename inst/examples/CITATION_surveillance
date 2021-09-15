@@ -1,0 +1,28 @@
+bibentry(
+    bibtype = "Article",
+    header = "As a general software reference for the _monitoring_ functionality, please cite:",
+    author = c(person("Maëlle", "Salmon"), person("Dirk", "Schumacher"), person("Michael", "Höhle")),
+    title = "Monitoring Count Time Series in {R}: Aberration Detection in Public Health Surveillance",
+    journal = "Journal of Statistical Software",
+    year = "2016",
+    volume = "70",
+    number = "10",
+    pages = "1--35",
+    doi = "10.18637/jss.v070.i10"
+)
+
+bibentry(
+    bibtype = "Article",
+    header = "As a general reference for the spatio-temporal _modeling_ frameworks, please cite:",
+    author = c(person("Sebastian", "Meyer"), person("Leonhard", "Held"), person("Michael", "Höhle")),
+    title = "Spatio-Temporal Analysis of Epidemic Phenomena Using the {R} Package {surveillance}",
+    journal = "Journal of Statistical Software",
+    year = "2017",
+    volume = "77",
+    number = "11",
+    pages = "1--55",
+    doi = "10.18637/jss.v077.i11"
+)
+
+citFooter("References to the underlying methodological papers can be found via",
+          "'surveillance:::REFERENCES' and on the help pages of the functions.")

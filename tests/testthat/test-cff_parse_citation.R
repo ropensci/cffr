@@ -14,12 +14,31 @@ test_that("Test citations with installed packages", {
   }
 })
 
+test_that("Test full with CITATION and (option = author)", {
+
+  # Needs an installed package
+  desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
+  cit_path <- system.file("examples/CITATION_auto", package = "cffr")
+  parsed <- parse_r_citation(desc_path, cit_path)
+  expect_s3_class(parsed, "bibentry")
+
+  # Create cff
+  cffobj <- cff_create(desc_path, keys = list(
+    references = lapply(parsed, cff_parse_citation)
+  ))
+
+  expect_s3_class(cffobj, "cff")
+  expect_snapshot_output(cffobj)
+  expect_true(cff_validate(cffobj))
+})
+
 test_that("Add wrong field to citation", {
   bib <- bibentry(
     bibtype = "Manual",
     title = "favoritefood is not valid on cff schema",
     author = "Jane Smith",
-    favoritefood = "bananas"
+    favoritefood = "bananas",
+    type = "I should be removed"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -394,4 +413,15 @@ test_that("Test inputs", {
   )
 
   expect_true(cff_validate(cffobj))
+})
+
+test_that("NULL bibs and others strange errors", {
+  bib <- 1
+  class(bib) <- "bibentry"
+  bib <- NULL
+  expect_null(cff_parse_citation(bib))
+
+  bib <- list(a = 1)
+  class(bib) <- "bibentry"
+  expect_null(cff_parse_citation(bib))
 })

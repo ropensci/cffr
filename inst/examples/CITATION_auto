@@ -13,16 +13,13 @@ bibentry(bibtype = "Article",
          pages = "352--357",
          doi = "10.1111/2041-210X.12469")
 
-bibentry(bibtype = "Article",
-         header = "To cite RNeXML in publications, please use:",
-         title = "{RNeXML}: {A} Package for Reading and Writing Richly Annotated Phylogenetic, Character, and Trait Data in {R}",
-         journal = "Methods in Ecology and Evolution",
-         author = c(
-             person("Carl", "Boettiger"),
-             person("Scott", "Chamberlain"),
-             person("Rutger", "Vos"),
-             person("Hilmar", "Lapp")),
-         year = 2016,
-         volume = 7,
-         pages = "352--357",
-         doi = "https://doi.org/10.1111/2041-210X.12469")
+citEntry(entry = "book",
+  author = "Hadley Wickham",
+  title = "ggplot2: Elegant Graphics for Data Analysis",
+  publisher = "Springer-Verlag New York",
+  year = "2016",
+  isbn = "978-3-319-24277-4",
+  url = "https://ggplot2.tidyverse.org",
+  textVersion = "H. Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York, 2016."
+)
+

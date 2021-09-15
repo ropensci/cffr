@@ -17,12 +17,14 @@ test_that("Parse CITATION with no encoding", {
   expect_snapshot_output(print(parsed, bibtex = TRUE))
 })
 
-test_that("Parse CITATION_warning", {
-  desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
-  cit_path <- system.file("examples/CITATION_warning", package = "cffr")
+test_that("Parse CITATION_auto", {
+  # Needs an installed package
+  desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
+  cit_path <- system.file("examples/CITATION_auto", package = "cffr")
   parsed <- parse_r_citation(desc_path, cit_path)
 
   expect_s3_class(parsed, "citation")
+  expect_length(parsed, 3)
   expect_snapshot_output(print(parsed, bibtex = TRUE))
 })
 

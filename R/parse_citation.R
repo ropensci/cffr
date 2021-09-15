@@ -23,38 +23,6 @@ parse_r_citation <- function(desc_path, cit_path) {
     }
   )
 
-  # On null, try to catch this
-  if (is.null(parsed)) {
-    parsed <- parse_r_citation_errors(cit_path, meta)
-  }
-  parsed
-}
-
-
-#' Error handling on CITATION R-native files
-#' @noRd
-parse_r_citation_errors <- function(cit_path, meta) {
-  cit <- readLines(cit_path, encoding = meta$Encoding)
-  # Known issue citation(auto = meta) cause errors
-  # Remove
-  cit <- cit[-grep("citation(auto = meta)",
-    cit,
-    fixed = TRUE
-  )]
-
-  # Write to a temp file
-  tmp <- tempfile()
-  writeLines(cit, tmp)
-
-  parsed <- tryCatch(
-    utils::readCitationFile(tmp, meta = meta),
-    error = function(x) {
-      return(NULL)
-    }
-  )
-  if (length(parsed) == 0) {
-    return(NULL)
-  }
   parsed
 }
 
@@ -106,7 +74,7 @@ building_doi <- function(parse_cit) {
       value = clean_str(x)
     )
   })
-
+  if (length(identifiers) == 0) identifiers <- NULL
   doi_list <- list(
     doi = clean_str(doi),
     identifiers = identifiers
@@ -155,6 +123,8 @@ building_url <- function(parse_cit) {
       value = clean_str(x)
     )
   })
+
+  if (length(identifiers) == 0) identifiers <- NULL
 
   url_list <- list(
     url = clean_str(url),

@@ -1,7 +1,4 @@
 test_that("Test ALL installed packages", {
-
-  # skip("Skip by now") # by now
-
   expect_snapshot_output(print_snapshot("Sessioninfo", sessionInfo()))
 
   installed <- as.data.frame(installed.packages()[, c("Package", "Version")])

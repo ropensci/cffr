@@ -46,16 +46,8 @@ cff_parse_citation <- function(bib) {
 
   parse_cit <- drop_null(unclass(bib)[[1]])
 
-  # Keys needed
-  if (isFALSE("author" %in% names(parse_cit))) {
-    return(NULL)
-  }
 
-  if (isFALSE("title" %in% names(parse_cit))) {
-    return(NULL)
-  }
-
-  # rest to lowercase
+  # to lowercase
   names(parse_cit) <- tolower(names(parse_cit))
 
   # rename authors
@@ -69,14 +61,13 @@ cff_parse_citation <- function(bib) {
   # Important! This is a mandatory key in CFF
   # Help needed
   # We map here the types explained in ?bibentry
-  # to valid keys. see  https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype
+  # to valid keys. see
+  # https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype
   # In lower case to avoid mismatches
 
 
   type <- clean_str(tolower(attr(unclass(bib)[[1]], "bibtype")))
-  # Remove just in case
-  parse_cit <- parse_cit[names(parse_cit) != "type"]
-  ### Switch type based on bibentry----
+
   if (is.null(type)) {
     return(NULL)
   }
@@ -96,7 +87,7 @@ cff_parse_citation <- function(bib) {
     "generic"
   )
 
-  parse_cit <- c(parse_cit, type = type)
+  parse_cit$type <- type
 
   # Building blocks----
 
@@ -140,8 +131,8 @@ cff_parse_citation <- function(bib) {
   bb_doi <- building_doi(parse_cit)
   parse_cit$doi <- bb_doi$doi
   # Create identifiers
-  parse_cit <- parse_cit[names(parse_cit) != "identifiers"]
-  parse_cit <- c(parse_cit, identifiers = list(bb_doi$identifiers))
+  if (!is.null(bb_doi$identifiers)) parse_cit$identifiers <- bb_doi$identifiers
+
 
   ## Month
 
@@ -150,12 +141,16 @@ cff_parse_citation <- function(bib) {
 
   parse_cit$url <- bb_url$url
 
-  # Create identifiers if not already there
-  if (!"identifiers" %in% names(parse_cit)) {
-    parse_cit <- c(parse_cit, identifiers = list(bb_url$identifiers))
-  } else {
-    parse_cit$identifiers <- c(parse_cit$identifiers, bb_url$identifiers)
+  # Append identifiers
+
+  if (!is.null(bb_url$identifiers)) {
+    parse_cit$identifiers <- append(
+      parse_cit$identifiers,
+      bb_url$identifiers
+    )
   }
+
+
 
   # Keywords
   if ("keywords" %in% names(parse_cit)) {

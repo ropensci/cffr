@@ -65,16 +65,16 @@ test <- cff_create("rmarkdown")
 ```
 
 <details>
-
-<summary> <code>CITATION.cff</code> for
-<strong>rmarkdown</strong></summary>
+<summary>
+<code>CITATION.cff</code> for <strong>rmarkdown</strong>
+</summary>
 
     cff-version: 1.2.0
     message: 'To cite package "rmarkdown" in publications use:'
     type: software
     license: GPL-3.0-only
     title: 'rmarkdown: Dynamic Documents for R'
-    version: '2.11'
+    version: '2.10'
     abstract: Convert R Markdown documents into a variety of formats.
     authors:
     - family-names: Allaire
@@ -137,7 +137,7 @@ test <- cff_create("rmarkdown")
       url: https://github.com/rstudio/rmarkdown
     repository-code: https://github.com/rstudio/rmarkdown
     url: https://pkgs.rstudio.com/rmarkdown/
-    date-released: '2021-09-14'
+    date-released: '2021-08-06'
     contact:
     - family-names: Xie
       given-names: Yihui
@@ -194,7 +194,7 @@ to learn how to work with `cff` objects.
 To cite the **cffr** package in publications use:
 
 ``` r
-citation("cffr")
+print(citation("cffr"), bibtex = TRUE)
 #> 
 #> To cite cffr in publications use:
 #> 
@@ -210,6 +210,27 @@ citation("cffr")
 #>     note = {R package version 0.0.0.9000},
 #>     url = {https://dieghernan.github.io/cffr/},
 #>   }
+#> 
+#> References:
+#> 
+#> Druskat S, Spaaks J, Chue Hong N, Haines R, Baker J, Bliven S,
+#> Willighagen E, Pérez-Suárez D, Konovalov A (2021). "Citation File
+#> Format." doi: 10.5281/zenodo.5171937 (URL:
+#> https://doi.org/10.5281/zenodo.5171937).
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Misc{,
+#>     title = {{Citation File Format}},
+#>     year = {2021},
+#>     version = {1.2.0},
+#>     month = {aug},
+#>     author = {Stephan Druskat and Jurriaan H. Spaaks and Neil {Chue Hong} and Robert Haines and James Baker and Spencer Bliven and Egon Willighagen and David Pérez-Suárez and Alexander Konovalov},
+#>     doi = {10.5281/zenodo.5171937},
+#>     keywords = {citation file format, CFF, citation files, software citation,file format, YAML, software sustainability, research software, credit},
+#>     license = {CC-BY-4.0},
+#>     date-released = {2021-08-09},
+#>   }
 ```
 
 You can also use the [citation provided by
@@ -221,9 +242,9 @@ for more info.
 
 # References
 
-<div id="refs" class="references">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-Druskat_Citation_File_Format_2021">
+<div id="ref-Druskat_Citation_File_Format_2021" class="csl-entry">
 
 Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, Robert Haines,
 James Baker, Spencer Bliven, Egon Willighagen, David Pérez-Suárez, and

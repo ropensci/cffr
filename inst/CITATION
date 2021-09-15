@@ -15,3 +15,27 @@ citEntry(
   textVersion = paste('Hernangómez, D. (', year, '). cffr: ', meta$Title, '. ', vers, '.', sep = '')
 )
 
+bibentry(
+  "Misc",
+  header = "References:",
+  title = "{Citation File Format}",
+  year = 2021,
+  version = "1.2.0",
+  month = "aug",
+  author = c(
+    person("Stephan", "Druskat"),
+    person("Jurriaan H.", "Spaaks"),
+    person("Neil", "Chue Hong"),
+    person("Robert", "Haines"),
+    person("James", "Baker"),
+    person("Spencer", "Bliven"),
+    person("Egon", "Willighagen"),
+    person("David", "Pérez-Suárez"),
+    person("Alexander", "Konovalov")
+  ),
+  doi = "10.5281/zenodo.5171937",
+  keywords = paste0("citation file format, CFF, citation files, software citation,",
+                    "file format, YAML, software sustainability, research software, credit"),
+  license = "CC-BY-4.0",
+  "date-released" = "2021-08-09"
+)

@@ -109,7 +109,7 @@ learn how to work with `cff` objects.
 To cite the **cffr** package in publications use:
 
 ```{r}
-citation("cffr")
+print(citation("cffr"), bibtex = TRUE)
 ```
 
 You can also use the [citation provided by GitHub](https://github.com/dieghernan/cffr), 

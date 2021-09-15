@@ -145,9 +145,9 @@ parse_desc_urls <- function(pkg) {
   )
 
   # Clean if GitLab
-  issues <- gsub("/-/issues", "", issues)
+  issues <- gsub("/-/issues$", "", issues)
   # Clean if GitHub
-  issues <- gsub("/issues", "", issues)
+  issues <- gsub("/issues$", "", issues)
 
   # Join issues and urls
   allurls <- unique(c(issues, url))
@@ -173,11 +173,15 @@ parse_desc_urls <- function(pkg) {
 
   repository_code <- clean_str(allurls[repo_line][1])
 
-  remaining <- allurls[-repo_line]
+  if (!is.na(repo_line)) {
+    remaining <- allurls[-repo_line]
+  } else {
+    remaining <- allurls
+  }
 
   # The second url is considered for url arbitrarily
-  if (isTRUE(length(allurls) > 1)) {
-    url_end <- allurls[-repo_line][1]
+  if (isTRUE(length(remaining) > 0)) {
+    url_end <- remaining[1]
     remaining <- remaining[-1]
   } else {
     url_end <- repository_code
@@ -186,7 +190,7 @@ parse_desc_urls <- function(pkg) {
 
   # If there are more, move them to identifiers
 
-  if (isTRUE(length(remaining) > 1)) {
+  if (isTRUE(length(remaining) > 0)) {
     identifiers <- lapply(remaining, function(x) {
       list(
         type = "url",

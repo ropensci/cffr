@@ -43,8 +43,10 @@ cff_validate <- function(x = "./CITATION.cff") {
     tmpfile <- tempfile(fileext = ".cff")
     suppressMessages(yaml::write_yaml(x, tmpfile))
     path <- tmpfile
+    is_tmpfile <- TRUE
   } else {
     path <- x
+    is_tmpfile <- FALSE
   }
 
 
@@ -56,6 +58,9 @@ cff_validate <- function(x = "./CITATION.cff") {
 
   # Read file
   citfile <- yaml::read_yaml(path)
+
+  # Clean up
+  if (is_tmpfile) file.remove(path)
 
   # Convert all elements to character
   # This prevent errors with jsonvalidate
@@ -83,7 +88,6 @@ cff_validate <- function(x = "./CITATION.cff") {
       quiet = TRUE
     )
   }
-
 
   # Validate
   result <- validate_schema(cit_temp, schema_temp)

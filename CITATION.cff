@@ -39,3 +39,40 @@ keywords:
 - citation-files
 - cff
 - metadata
+references:
+- type: generic
+  title: Citation File Format
+  authors:
+  - family-names: Druskat
+    given-names: Stephan
+  - family-names: Spaaks
+    given-names: Jurriaan H.
+  - family-names: Chue Hong
+    given-names: Neil
+  - family-names: Haines
+    given-names: Robert
+  - family-names: Baker
+    given-names: James
+  - family-names: Bliven
+    given-names: Spencer
+  - family-names: Willighagen
+    given-names: Egon
+  - family-names: Pérez-Suárez
+    given-names: David
+  - family-names: Konovalov
+    given-names: Alexander
+  year: '2021'
+  version: 1.2.0
+  month: '8'
+  doi: 10.5281/zenodo.5171937
+  keywords:
+  - citation file format
+  - CFF
+  - citation files
+  - software citation,file format
+  - YAML
+  - software sustainability
+  - research software
+  - credit
+  license: CC-BY-4.0
+  date-released: '2021-08-09'

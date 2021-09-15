@@ -1,0 +1,19 @@
+Type: Package
+Package: manyurls
+Title: A lot of urls
+Version: 0.1.6
+BugReports: https://github.com/test/package/issues
+URL: https://github.com/test/package, https://test.github.io/package/,
+     https://r-forge.r-project.org/projects/test/,
+     http://google.ru, https://gitlab.com/r-packages/behaviorchange,
+     this.is.not.an.url
+Encoding: UTF-8
+Authors@R:
+    person(given = "Marc",
+             family = "Basic",
+             role = c("aut", "cre", "cph"),
+             email = "marcbasic@gmail.com")
+Description: This package has many urls. Specifically, 1 Bug Reports and
+           6 URLs. Expected is to have 1 repository-code, 1 url and 3 URLs,
+           since there is 1 duplicate and 1 invalid url.
+License: GPL-3

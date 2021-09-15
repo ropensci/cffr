@@ -1,4 +1,4 @@
-Package: codemetar
+Package: wrongurls
 Type: Package
 Title: Generate CodeMeta Metadata for R Packages
 Version: 0.1.0
@@ -10,7 +10,7 @@ Description: Codemeta defines a 'JSON-LD' format for describing software metadat
 License: MIT + file LICENSE
 URL: thisisnotandurl,
      https://httpbin.org/status/429,
-     https://www.github.com/ropensci/codemeta,
+     https://www.github.es/ropensci/codemeta,
 BugReports: https://httpbin.org/status/404
 Encoding: UTF-8
 LazyData: true
