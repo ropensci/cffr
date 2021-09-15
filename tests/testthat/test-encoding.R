@@ -8,7 +8,6 @@ test_that("Creating cff from packages encoded in latin1", {
   # Parse citation
   bib <- parse_r_citation(desc_path, cit_path)
   expect_false("UTF-8" %in% Encoding(unlist(bib)))
-  expect_true("latin1" %in% Encoding(unlist(bib)))
 
   # Parse to cff citation
   bibparsed <- lapply(bib, cff_parse_citation)
