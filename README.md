@@ -199,7 +199,7 @@ print(citation("cffr"), bibtex = TRUE)
 #> To cite cffr in publications use:
 #> 
 #>   Hernangómez, D. (2021). cffr: Generate Citation File Format ('cff')
-#>   Metadata for R Packages. R package version 0.0.0.9000.
+#>   Metadata for R Packages. R package version 0.0.1.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -207,7 +207,7 @@ print(citation("cffr"), bibtex = TRUE)
 #>     title = {cffr: Generate Citation File Format ('cff') Metadata for R Packages},
 #>     author = {Diego Hernangómez},
 #>     year = {2021},
-#>     note = {R package version 0.0.0.9000},
+#>     note = {R package version 0.0.1},
 #>     url = {https://dieghernan.github.io/cffr/},
 #>   }
 #> 
