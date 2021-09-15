@@ -187,6 +187,9 @@ test <- cff_create("rmarkdown")
       url: https://bookdown.org/yihui/rmarkdown-cookbook
 
 </details>
+<p>
+<p>
+<p>
 
 We can validate the result using `cff_validate()`:
 
@@ -208,9 +211,9 @@ to learn how to work with `cff` objects.
     the information of your `DESCRIPTION` file. It also provide minimal
     validity checks.
 -   [**handlr**](https://github.com/ropensci/handlr): Tool for
-    converting among citation formats, including `*.cff` files.
-    Currently At the time of this writing only CFF v1.1.0 was supported
-    (see [\#24](https://github.com/ropensci/handlr/issues/24)).
+    converting among citation formats, including `*.cff` files. At the
+    time of this writing only CFF v1.1.0 was supported (see
+    [\#24](https://github.com/ropensci/handlr/issues/24)).
 -   [**codemeta**](https://github.com/cboettig/codemeta)/
     [**codemetar**](https://github.com/ropensci/codemetar) provides
     similar solutions for creating `codemeta.json` file, another format
