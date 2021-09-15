@@ -5,21 +5,21 @@
     ## Sessioninfo 
     
     R version 4.1.1 (2021-08-10)
-    Platform: x86_64-w64-mingw32/x64 (64-bit)
-    Running under: Windows 10 x64 (build 19043)
+    Platform: x86_64-apple-darwin17.0 (64-bit)
+    Running under: macOS Catalina 10.15.7
     
     Matrix products: default
+    BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib
+    LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
     
     locale:
-    [1] LC_COLLATE=C                   LC_CTYPE=Spanish_Spain.1252   
-    [3] LC_MONETARY=Spanish_Spain.1252 LC_NUMERIC=C                  
-    [5] LC_TIME=Spanish_Spain.1252    
+    [1] C/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
     
     attached base packages:
     [1] stats     graphics  grDevices utils     datasets  methods   base     
     
     other attached packages:
-    [1] cffr_0.0.0.9000 testthat_3.0.4 
+    [1] cffr_0.0.1.9000 testthat_3.0.4 
     
     loaded via a namespace (and not attached):
      [1] Rcpp_1.0.7         rstudioapi_0.13    magrittr_2.0.1     usethis_2.0.1     
@@ -40,7 +40,7 @@
     
     ## Summary 
     
-    [1] "testing a sample of 1930 installed packages"
+    [1] "testing a sample of 1311 installed packages"
     
     ---
 
@@ -50,54 +50,17 @@
     
     ## Errors 
     
-                              Package Version with_citation is_ok
-    InformationValue InformationValue   1.2.3         FALSE FALSE
-    iheatmapr               iheatmapr   0.5.1          TRUE FALSE
-    outcomerate           outcomerate   1.0.1          TRUE FALSE
-    psychotree             psychotree  0.15-4          TRUE FALSE
-    rromeo                     rromeo   0.1.1          TRUE FALSE
+                    Package Version with_citation is_ok
+    iheatmapr     iheatmapr   0.5.1          TRUE FALSE
+    outcomerate outcomerate   1.0.1          TRUE FALSE
+    psychotree   psychotree  0.15-4          TRUE FALSE
+    rromeo           rromeo   0.1.1          TRUE FALSE
     
     ---
     
     ## Error reports for  
     
-    [1] "InformationValue, iheatmapr, outcomerate, psychotree, rromeo"
-    
-    ---
-    
-    ## InformationValue: cffr object 
-    
-    cff-version: 1.2.0
-    message: 'To cite package "InformationValue" in publications use:'
-    type: software
-    license: GPL-2.0-or-later
-    title: 'InformationValue: Performance Analysis and Companion Functions for Binary
-      Classification Models'
-    version: 1.2.3
-    abstract: Provides companion function for analysing the performance of classification
-      models. Also, provides function to optimise probability cut- off score based on
-      used specified objectives, Plot 'ROC' Curve in 'ggplot2', 'AUROC', 'IV', 'WOE' Calculation,
-      'KS Statistic' etc to aid accuracy improvement in binary classification models.
-    authors:
-    - family-names: Prabhakaran
-      given-names: Selva
-      email: selva86@gmail.com
-    repository-code: 'https://github.com/selva86/InformationValue/issues License: GPL
-      (>= 2)'
-    url: http://r-statistics.co/Information-Value-With-R.html
-    date-released: '2016-10-29'
-    contact:
-    - family-names: Prabhakaran
-      given-names: Selva
-      email: selva86@gmail.com
-    
-    ---
-    
-    ## Validation results 
-    
-                        field                          message
-    1 data["repository-code"] referenced schema does not match
-    [1] FALSE
+    [1] "iheatmapr, outcomerate, psychotree, rromeo"
     
     ---
     
