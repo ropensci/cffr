@@ -8,7 +8,7 @@ name: Test on GHA
 
 jobs:
   test-ci:
-    runs-on: windows-latest
+    runs-on: macos-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -69,9 +69,16 @@ jobs:
           
           toinstall <- setdiff(all, instpack)
           
+          
+          
+          
+          
+          
           install.packages(toinstall, dependencies = TRUE, 
                            verbose = TRUE, quiet = TRUE, type="binary")
           
+          # Bugs
+          remove.packages(c("pendulum"))
           
         shell: Rscript {0}
 
