@@ -74,6 +74,10 @@ cff <- function(path, ...) {
     cffobj <- yaml::read_yaml(path)
   }
   cffobj <- drop_null(cffobj)
+  # Parse some fields as cff
+  cffobj$authors <- lapply(cffobj$authors, as.cff)
+  cffobj$contact <- lapply(cffobj$contact, as.cff)
+
   cffobj <- as.cff(cffobj)
 
   return(cffobj)

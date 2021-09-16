@@ -1,6 +1,9 @@
 ---
 title: "Manipulating Citations with **cffr**"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+bibliography: bibtex.bib
 vignette: >
   %\VignetteIndexEntry{Manipulating Citations with **cffr**}
   %\VignetteEngine{knitr::rmarkdown}
@@ -10,13 +13,265 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  warning = FALSE,
+  message = FALSE
 )
-```
 
-```{r setup}
 library(cffr)
 ```
 
 
-*Coming soon...*
+**cffr** is a tool whose target audience are **R** package developers. 
+The main goal of **cffr** is to create a `CITATION.cff` file using the 
+metadata information of the following files:
+- Your `DESCRIPTION` file.
+- If available, the citation information located in `inst/CITATION`.
+
+## What is a `CITATION.cff` file?
+
+[Citation File Format (CFF)](https://citation-file-format.github.io/)
+[@Druskat_Citation_File_Format_2021] (v1.2.0) are plain text files with human- and
+machine-readable citation information for software (and datasets). Code
+developers can include them in their repositories to let others know how to
+correctly cite their software.
+
+This format is becoming popular within the software citation ecosystem. 
+Recently [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
+[Zenodo](https://twitter.com/ZENODO_ORG/status/1420357001490706442) and 
+[Zotero](https://twitter.com/zotero/status/1420515377390530560) have included
+full support of this citation format.
+
+GitHub support is of special interest:
+
+* See [Customize your repository/About CITATION files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)*
+
+<blockquote>
+When you add a CITATION.cff file to the default branch of your repository, it is automatically linked from the repository landing page. This makes it easy for other users to cite your software project, using the information you've provided.
+
+```{r echo=FALSE, out.width="80%", fig.align='center', fig.alt="citation-link"}
+knitr::include_graphics("citation-link.png")
+```
+</blockquote>
+## Creating a `CITATION.cff` file for my R package
+
+With **cffr** creating a `CITATION.cff` file is quite straightforward. You just
+need to run `cff_write()`:
+
+```{r setup, eval=FALSE}
+
+library(cffr)
+
+cff_write()
+
+# You are done!
+```
+
+Under the hood, `cff_write()` performs the following tasks:
+
+* It extracts the metadata using `cff_create()`.
+* Writes a `CITATION.cff` file using `yaml::write_yaml()`.
+* Validates the result using `cff_validate()`.
+
+Congratulations! Now you have a full `CITATION.cff` file for your **R** package.
+
+## Modifying your `CITATION.cff` file
+
+You can easily customize the `cff` object (a custom class of **cffr**) using 
+the parsers provided in the package, as well as making use of the `keys`
+parameter.
+
+We would create a `cff` object using `cff()` (for example purposes only) and 
+we would add or modify contents of it.
+
+### Adding new fields
+
+```{r newfields}
+
+newobject <- cff_create(cff())
+
+# For modifying your auto-generated object, run this line instead:
+# newoobject <- cff_create()
+
+newobject
+```
+
+The valid keys of the [Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md) can be displayed with `cff_schema_keys()`:
+
+```{r validkeys}
+
+cff_schema_keys()
+```
+
+In this case, we are going to add `url`, `version` and `repository`. We would
+also overwrite the `title` key. We just need to create a list and pass it
+to the `keys` argument of `cff_create()`:
+
+```{r modify}
+
+newkeys <- list(
+  "url" = "https://ropensci.org/",
+  "version" = "0.0.1",
+  "repository" = "https://github.com/user/repo",
+  # If the field is already present, it would be overridden
+  title = "Modifying a 'cff' object"
+)
+
+modobject <- cff_create(newobject, keys = newkeys)
+
+modobject
+
+# Validate against the schema
+
+cff_validate(modobject)
+```
+### Parsing persons and citations
+
+**cffr** provides two functions that parse `person` objects and `bibentry` 
+objects (See `?person` and `?bibentry`). These objects are included in the 
+**utils** package and are a core part of the metadata of any **R** package.
+
+Following the previous example, we are going to add a new author first. For
+doing that, we need first to extract the current author of the package
+and append the parsed person:
+
+```{r includeauthor}
+
+# Valid person keys
+
+cff_schema_definitions_person()
+
+# Create the person
+
+chiquito <- person("Gregorio",
+  "Sánchez Fernández",
+  email = "fake@email2.com",
+  comment = c(
+    alias = "Chiquito de la Calzada",
+    city = "Malaga",
+    country = "ES",
+    ORCID = "0000-0000-0000-0001"
+  )
+)
+
+chiquito
+
+# Parse it
+chiquito_parsed <- cff_parse_person(chiquito)
+chiquito_parsed
+
+
+# Append to previous authors
+
+# Needs to be append as a list
+newauthors <- append(modobject$authors, list(chiquito_parsed))
+newauthors
+
+newauthorobject <- cff_create(modobject, keys = list(authors = newauthors))
+
+newauthorobject
+
+cff_validate(newauthorobject)
+```
+
+Now, we may want to add `references` to our data. **cffr** supports two types
+of references:
+
+* References created with `bibentry()`
+* References extracted from packages using `citation()`
+
+On the following example, we would add two references, one of each type:
+
+```{r parsingcits}
+# Valid reference keys
+
+cff_schema_definitions_reference()
+
+# Auto parsed from another R package
+base_r <- cff_parse_citation(citation("base"))
+
+base_r
+
+# Create with bibentry
+
+bib <- bibentry("Book",
+  title = "This is a book",
+  author = "Lisa Lee",
+  year = 1980,
+  publisher = "McGraw Hill",
+  volume = 2
+)
+bib
+
+# Now parse it
+
+bookparsed <- cff_parse_citation(bib)
+
+bookparsed
+```
+
+Now the process is similar to the example with `person`: we append both
+references (as lists) and add them to our object:
+
+```{r references}
+
+refkeys <- list(references = append(list(base_r), list(bookparsed)))
+
+refkeys
+
+finalobject <- cff_create(newauthorobject, keys = refkeys)
+
+finalobject
+
+cff_validate(finalobject)
+```
+
+### Create your modified `CITATION.cff` file
+
+The results can be written with `cff_write()`:
+
+```{r write}
+
+# For example
+tmp <- tempfile(fileext = ".cff")
+
+see_res <- cff_write(finalobject, outfile = tmp)
+
+see_res
+```
+
+And finally we can read our created `CITATION.cff` file using `cff()`:
+
+```{r read}
+
+reading <- cff(tmp)
+
+reading
+```
+Note that `cff_write()` also has the `keys` param, so the workflow
+can be simplified as:
+
+```{r}
+
+allkeys <- list(
+  "url" = "https://ropensci.org/",
+  "version" = "0.0.1",
+  "repository" = "https://github.com/user/repo",
+  # If the field is already present, it would be overridden
+  title = "Modifying a 'cff' object",
+  authors = newauthors,
+  references = append(list(base_r), list(bookparsed))
+)
+
+tmp2 <- tempfile(fileext = ".cff")
+
+res <- cff_write(cff(), outfile = tmp2, keys = allkeys)
+
+res
+```
+
+
+
+
+
+## References

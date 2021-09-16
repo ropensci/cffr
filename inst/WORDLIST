@@ -17,6 +17,8 @@ Spaaks
 Suárez
 Willighagen
 YAML
+Zenodo
+Zotero
 al
 cff
 codecov
@@ -28,6 +30,7 @@ et
 handlr
 https
 json
+param
 parsers
 rmarkdown
 zenodo

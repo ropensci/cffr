@@ -24,3 +24,5 @@ cffr*.tgz
 docs
 docs/
 inst/doc
+/doc/
+/Meta/

@@ -129,14 +129,14 @@
     message: If you use this software, please cite it using these metadata.
     title: My Research Software
     authors:
-    - family-names: Druskat
-      given-names: Stephan
+    - family-names: Doe
+      given-names: John
     preferred-citation:
       type: manual
       title: My Research Software
       authors:
-      - family-names: Druskat
-        given-names: Stephan
+      - family-names: Doe
+        given-names: John
       year: '2021'
     references:
     - type: manual
@@ -151,14 +151,14 @@
     message: If you use this software, please cite it using these metadata.
     title: My Research Software
     authors:
-    - family-names: Druskat
-      given-names: Stephan
+    - family-names: Doe
+      given-names: John
     preferred-citation:
       type: manual
       title: My Research Software
       authors:
-      - family-names: Druskat
-        given-names: Stephan
+      - family-names: Doe
+        given-names: John
       year: '2021'
     references:
     - type: manual
@@ -174,14 +174,14 @@
     message: If you use this software, please cite it using these metadata.
     title: My Research Software
     authors:
-    - family-names: Druskat
-      given-names: Stephan
+    - family-names: Doe
+      given-names: John
     preferred-citation:
       type: manual
       title: My Research Software
       authors:
-      - family-names: Druskat
-        given-names: Stephan
+      - family-names: Doe
+        given-names: John
       year: '2021'
     references:
     - type: manual
@@ -205,14 +205,14 @@
     message: If you use this software, please cite it using these metadata.
     title: My Research Software
     authors:
-    - family-names: Druskat
-      given-names: Stephan
+    - family-names: Doe
+      given-names: John
     preferred-citation:
       type: manual
       title: My Research Software
       authors:
-      - family-names: Druskat
-        given-names: Stephan
+      - family-names: Doe
+        given-names: John
       year: '2021'
     references:
     - type: manual
