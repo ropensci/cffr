@@ -17,5 +17,5 @@
 ^cffr\.Rcheck$
 ^cffr.*\.tar\.gz$
 ^cffr.*\.tgz$
-^tests/testthat/test_local_installation$
 ^CODE_OF_CONDUCT\.md$
+^tests/testthat/test_ci$

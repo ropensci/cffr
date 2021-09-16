@@ -68,10 +68,6 @@ cff_parse_citation <- function(bib) {
 
   type <- clean_str(tolower(attr(unclass(bib)[[1]], "bibtype")))
 
-  if (is.null(type)) {
-    return(NULL)
-  }
-
   type <- switch(type,
     "article" = "article",
     "book" = "book",
@@ -122,9 +118,9 @@ cff_parse_citation <- function(bib) {
 
   ## Parse authors----
   ## On CFF reference max authors seems to be 10
-  ## See bug with urltools
+  ## Bug with urltools
   parse_cit$authors <- drop_null(
-    lapply(parse_cit$authors[1:10], cff_parse_person)
+    lapply(parse_cit$authors, cff_parse_person)
   )
 
   ## DOIs----

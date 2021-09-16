@@ -35,6 +35,10 @@
 #' [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md)
 #' for additional details.
 #'
+#' If `x` is a path to a DESCRIPTION file or `inst/CITATION`, is not present on
+#' your package, **cffr** would auto-generate a `preferred-citation` key using
+#' the information provided on that file. On
+#'
 #'
 #' @examples
 #'
@@ -101,13 +105,8 @@ cff_create <- function(x = ".", keys = NULL,
       desc_path <- file.path(find.package(x), "DESCRIPTION")
 
       # Parse citation from installation
-      cit_path <- file.path(find.package(x), "CITATION")
-      if (file.exists(cit_path)) {
-        citobj <- parse_r_citation(desc_path, cit_path)
-        citobj <- lapply(citobj, cff_parse_citation)
-        citobj <- drop_null(citobj)
-        if (length(citobj) == 0) citobj <- NULL
-      }
+      citobj <- lapply(citation(x), cff_parse_citation)
+      citobj <- drop_null(citobj)
       if (length(citobj) == 0) citobj <- NULL
     } else if (x == ".") {
 
@@ -156,6 +155,14 @@ cff_create <- function(x = ".", keys = NULL,
     citobj[[1]]$identifiers,
     oldids
   )
+
+  # Add auto preferred if not present
+  if (is.null(cffobjend[["preferred-citation"]])) {
+    pref_auto <- parse_preferred_auto(cffobjend)
+    cffobjend <- c(cffobjend,
+      "preferred-citation" = list(pref_auto)
+    )
+  }
 
   # Additional keys
   if (!is.null(keys)) {

@@ -26,6 +26,17 @@ test_that("Validate all DESCRIPTION files", {
 
   for (i in seq_len(length(allfiles))) {
     cffobj <- cff_create(allfiles[i])
+    # Check that all have preferred citation
+    expect_false(is.null(cffobj$`preferred-citation`))
+
+    # Check year
+    if (is.null(cffobj$`date-released`)) {
+      expect_true(cffobj$`preferred-citation`$year == format(Sys.Date(), "%Y"))
+    } else {
+      dat <- format(as.Date(cffobj$`date-released`), "%Y")
+      expect_true(cffobj$`preferred-citation`$year == dat)
+    }
+
     expect_true(cff_validate(cffobj))
   }
 })

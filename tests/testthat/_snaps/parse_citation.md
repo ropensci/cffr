@@ -89,7 +89,7 @@
 # Parse CITATION_auto
 
     
-      Roger Bivand and Colin Rundel (2021). rgeos: Interface to Geometry
+      Roger Bivand and Colin Rundel (2020). rgeos: Interface to Geometry
       Engine - Open Source ('GEOS'). R package version 0.5-7.
       https://CRAN.R-project.org/package=rgeos
     
@@ -98,7 +98,7 @@
       @Manual{,
         title = {rgeos: Interface to Geometry Engine - Open Source ('GEOS')},
         author = {Roger Bivand and Colin Rundel},
-        year = {2021},
+        year = {2020},
         note = {R package version 0.5-7},
         url = {https://CRAN.R-project.org/package=rgeos},
       }

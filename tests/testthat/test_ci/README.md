@@ -9,6 +9,9 @@ This test validates the creation of a `CITATION.cff` file for >1000 packages:
 
 This test is deployed in [GitHub Actions](https://github.com/dieghernan/cffr/actions/workflows/test-ci.yaml) and the results are uploaded as an artifact.
 
+Additionally, the artifact includes a folder named "/CITATION" with the parsed
+CITATION.cff files of all the tested packages.
+
 As the installations differs across users and machines, the snapshot testing is expected to fail on a normal run.
 However, the snapshots are quite useful for extensive tests and debugging, as well as for 
 capturing corner cases. For that reason, these tests are no run in **CRAN** or in the regular package development workflow.

@@ -60,6 +60,11 @@ cff_write <- function(x = ".",
   # Fix string if it is not cff
   if (!is.substring(outfile, ".cff$")) outfile <- paste0(outfile, ".cff")
 
+  # Check if dir exist and if not create
+  outdir <- dirname(outfile)
+
+  if (!dir.exists(outdir)) dir.create(outdir, showWarnings = FALSE, recursive = TRUE)
+
 
   # Write CITATION
   yaml::write_yaml(citat, outfile)

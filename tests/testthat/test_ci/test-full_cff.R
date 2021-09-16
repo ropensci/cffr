@@ -4,6 +4,8 @@ test_that("Test ALL installed packages", {
   installed <- as.data.frame(installed.packages()[, c("Package", "Version")])
   installed <- installed[order(installed$Package), ]
 
+  rownames(installed) <- seq_len(nrow(installed))
+
   l <- nrow(installed)
 
   if (interactive()) {
@@ -43,7 +45,12 @@ test_that("Test ALL installed packages", {
     }
 
     # Add cffobj
-    cffobj <- cff_create(pkg)
+    cffobj <- suppressMessages(
+      cff_write(pkg,
+        outfile = file.path("CITATION", paste0("CITATION_", pkg, ".cff")),
+        validate = FALSE
+      )
+    )
 
     s <- suppressMessages(cff_validate(cffobj))
 

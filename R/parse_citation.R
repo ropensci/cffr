@@ -47,6 +47,33 @@ parse_package_meta <- function(desc_path) {
   meta
 }
 
+
+#' Used for creating an auto preferred-citation from an
+#' cff object if not present
+#' It mocks citation(auto = meta) of base R
+#' @noRd
+parse_preferred_auto <- function(cffobjend) {
+  valid <- cff_schema_definitions_reference()
+
+  pref <- cffobjend[names(cffobjend) %in%
+    valid]
+
+  pref$type <- "manual"
+
+  # Handle year
+  year <- format(as.Date(pref$`date-released`), "%Y")
+  if (length(year) == 0) {
+    year <- format(Sys.Date(), "%Y")
+  }
+  pref$year <- year
+
+  # Order and output
+  ordernames <- unique(c("type", "title", "authors", names(pref)))
+  pref <- pref[unique(c(ordernames, "identifiers"))]
+  pref <- as.cff(pref)
+
+  pref
+}
 ## Building blocks ----
 
 #' BB for doi

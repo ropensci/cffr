@@ -38,6 +38,10 @@ the \code{keys} argument. A list of valid keys can be retrieved with
 Please refer to
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}
 for additional details.
+
+If \code{x} is a path to a DESCRIPTION file or \code{inst/CITATION}, is not present on
+your package, \strong{cffr} would auto-generate a \code{preferred-citation} key using
+the information provided on that file. On
 }
 \examples{
 

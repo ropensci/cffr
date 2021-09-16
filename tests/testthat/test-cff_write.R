@@ -14,6 +14,23 @@ test_that("Write basic", {
   expect_false(file.exists(tmp))
 })
 
+test_that("Write to a non-existing folder", {
+  desc_file <- system.file("examples/DESCRIPTION_basic", package = "cffr")
+  desc_file <- cff_create(desc_file)
+  expect_s3_class(desc_file, "cff")
+  tmp <- tempfile("/test_new_folder/recursive/", fileext = ".cff")
+  cff_write(desc_file, outfile = tmp, validate = FALSE)
+
+  expect_true(dir.exists(file.path(tempdir(), "test_new_folder", "recursive")))
+  expect_true(file.exists(tmp))
+
+  # Validate from file
+  expect_true(cff_validate(tmp))
+
+  file.remove(tmp)
+  expect_false(file.exists(tmp))
+})
+
 test_that("Write no encoding", {
   desc_file <- system.file("examples/DESCRIPTION_no_encoding", package = "cffr")
   desc_file <- cff_create(desc_file)

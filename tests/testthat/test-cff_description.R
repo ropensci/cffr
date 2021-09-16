@@ -10,6 +10,18 @@ test_that("Parse date", {
   expect_true(cff_validate(parsed))
 })
 
+test_that("Parse date in another format", {
+  desc_path <- system.file("examples/DESCRIPTION_basicdate", package = "cffr")
+
+  parsed <- cff_create(desc_path)
+
+  expect_false(is.null(parsed$`date-released`))
+
+  expect_s3_class(parsed, "cff")
+  expect_snapshot_output(parsed)
+  expect_true(cff_validate(parsed))
+})
+
 
 test_that("No date parsed in DESCRIPTION without it", {
   desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")

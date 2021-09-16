@@ -9,5 +9,5 @@ NULL
 
 # import stuffs
 #' @importFrom utils download.file as.person read.csv person
-#' installed.packages  packageDescription
+#' installed.packages  packageDescription citation
 NULL

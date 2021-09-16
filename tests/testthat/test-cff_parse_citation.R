@@ -2,7 +2,7 @@ test_that("Test citations with installed packages", {
   installed <- as.character(installed.packages()[, 1])
   inst <- c(
     "base", "utils", "jsonlite", "jsonvalidate", "rmarkdown",
-    "rgeos", "urltools", "thisisanerrorpackage"
+    "rgeos", "thisisanerrorpackage", "DCluster", "surveillance"
   )
   for (i in seq_len(length(inst))) {
     if (inst[i] %in% installed) {
@@ -419,9 +419,5 @@ test_that("NULL bibs and others strange errors", {
   bib <- 1
   class(bib) <- "bibentry"
   bib <- NULL
-  expect_null(cff_parse_citation(bib))
-
-  bib <- list(a = 1)
-  class(bib) <- "bibentry"
   expect_null(cff_parse_citation(bib))
 })
