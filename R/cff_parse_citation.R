@@ -113,15 +113,16 @@ cff_parse_citation <- function(bib) {
     )],
     cleaned
   )
-  parse_cit$authors <- parse_cit$authors
 
 
   ## Parse authors----
   ## On CFF reference max authors seems to be 10
   ## Bug with urltools
-  parse_cit$authors <- drop_null(
+  parse_all_authors <- drop_null(
     lapply(parse_cit$authors, cff_parse_person)
   )
+  
+  parse_cit$authors <- unique(parse_all_authors)
 
   ## DOIs----
   bb_doi <- building_doi(parse_cit)

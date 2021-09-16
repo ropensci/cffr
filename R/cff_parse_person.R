@@ -65,26 +65,21 @@ cff_parse_person <- function(person) {
 
 
   # Add url to orcid if not present
-
-  if (!is.substring(
-    parsed_comments$orcid,
-    "https://orcid.org/"
-  ) &&
-    !is.substring(
-      parsed_comments$orcid,
-      "http://orcid.org/"
-    ) &&
-    !is.null(parsed_comments$orcid)) {
+  
+  # Parse leading invalid urls
+  
+  if (!is.null(parsed_comments$orcid)) {
+    orcid <- gsub("^orcid.org/", "", parsed_comments$orcid)
+    orcid <- gsub("^https://orcid.org/", "", orcid)
+    orcid <- gsub("^http://orcid.org/", "", orcid)
+    
     parsed_comments$orcid <- paste0(
       "https://orcid.org/",
-      parsed_comments$orcid
+      orcid
     )
+    
   }
-  # Replace with https:/ - This issue was found on several packages
-  # Anyway, this kind of errors should be amended on the DESCRIPTION file IMHO
-  if (!is.null(parsed_comments$orcid)) {
-    parsed_comments$orcid <- gsub("http:/", "https:/", parsed_comments$orcid)
-  }
+  
   # Add website
   web <- parsed_comments$website
 
