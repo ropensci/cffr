@@ -49,18 +49,26 @@ jobs:
           packs <- dplyr::bind_rows(packs)
           core <- dplyr::filter(packs, core == TRUE)
 
+          # rOpenSci packages from r-universe
+
+          options(repos = c(
+            ropensci = "https://ropensci.r-universe.dev",
+            CRAN = "https://cloud.r-project.org"
+          ))
+
           ropensci <- unlist(jsonlite::read_json("https://ropensci.r-universe.dev/packages"))
 
           all <- sort(unique(c(core$name, ropensci)))
 
-          package.check <- lapply(
-            all,
-            FUN = function(x) {
-              if (!require(x, character.only = TRUE)) {
-                install.packages(x, dependencies = TRUE, quiet = TRUE)
-              }
-            }
-          )
+          # Check packages not installed yet
+          instpack <- as.character(installed.packages()[, "Package"])
+          
+          toinstall <- setdiff(all, instpack)
+          
+          install.packages(toinstall, dependencies = TRUE, 
+                           verbose = TRUE, quiet = TRUE)
+          
+          
         shell: Rscript {0}
 
 
