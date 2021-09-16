@@ -17,6 +17,9 @@
 #'
 #' This object can be manipulated using [cff_create()].
 #'
+#' **Note that** this function reads `CITATION.cff` files. If you want to
+#' create `cff` objects from DESCRIPTION files use [cff_create()]
+#'
 #' @export
 #' @examples
 #'

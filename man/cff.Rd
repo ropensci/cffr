@@ -28,6 +28,9 @@ If no parameters are supplied (the default behavior), a minimal
 valid \code{cff} object is created.
 
 This object can be manipulated using \code{\link[=cff_create]{cff_create()}}.
+
+\strong{Note that} this function reads \code{CITATION.cff} files. If you want to
+create \code{cff} objects from DESCRIPTION files use \code{\link[=cff_create]{cff_create()}}
 }
 \examples{
 
