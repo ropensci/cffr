@@ -19,7 +19,6 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
         with:
           use-public-rspm: true
-          install-r: false
 
       # This is needed for workflows running on
       # ubuntu-20.04 or later
@@ -41,6 +40,9 @@ jobs:
       - name: Install core packages of all views and rOpenSci
         run: |
           # Install core packages of all views
+          options(repos = c(
+            CRAN = "https://cloud.r-project.org"
+          ))
           allviews <- ctv::available.views()
 
 
