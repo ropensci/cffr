@@ -77,8 +77,8 @@ jobs:
           install.packages(toinstall, dependencies = TRUE, 
                            verbose = TRUE, quiet = TRUE, type="binary")
           
-          # Bugs
-          remove.packages(c("pendulum"))
+          # Malformed CITATION
+          remove.packages(c("photosearcher"))
           
         shell: Rscript {0}
 
