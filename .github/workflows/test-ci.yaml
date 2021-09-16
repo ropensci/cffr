@@ -38,12 +38,6 @@ jobs:
 
       - name: Install core packages of all views and rOpenSci
         run: |
-
-          install.packages("remotes", dependencies = TRUE)
-          remotes::install_cran(c("ctv", "dplyr", "jsonlite"),
-            dependencies = TRUE, quiet = TRUE
-          )
-
           # Install core packages of all views
           allviews <- ctv::available.views()
 
@@ -57,13 +51,22 @@ jobs:
 
           # rOpenSci packages from r-universe
 
+          options(repos = c(
+            ropensci = "https://ropensci.r-universe.dev",
+            CRAN = "https://cloud.r-project.org"
+          ))
+
           ropensci <- unlist(jsonlite::read_json("https://ropensci.r-universe.dev/packages"))
 
           all <- sort(unique(c(core$name, ropensci)))
 
-          remotes::install_cran(all,
-            dependencies = TRUE,
-            quiet = TRUE
+          package.check <- lapply(
+            all,
+            FUN = function(x) {
+              if (!require(x, character.only = TRUE)) {
+                install.packages(x, dependencies = TRUE, quiet = TRUE)
+              }
+            }
           )
         shell: Rscript {0}
 
