@@ -23,7 +23,10 @@ library(cffr)
 
 **cffr** is a tool whose target audience are **R** package developers. The main
 goal of **cffr** is to create a `CITATION.cff` file using the metadata
-information of the following files: - Your `DESCRIPTION` file. - If available,
+information of the following files: 
+
+- Your `DESCRIPTION` file. 
+- If available,
 the citation information located in `inst/CITATION`.
 
 ## What is a `CITATION.cff` file?

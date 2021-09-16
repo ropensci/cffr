@@ -30,7 +30,8 @@ and the citation information is rendered on the repository page, and
 also provided as BibTeX snippet which users can simply copy.
 
 **cffr** provides utilities to generate, parse, modify and validate
-`CITATION.cff` files automatically for R packages, as well as tools and
+`CITATION.cff` files automatically for **R**
+ packages, as well as tools and
 examples for working with .cff more generally.
 
 **cffr** maximizes the data extraction by using both the `DESCRIPTION`
