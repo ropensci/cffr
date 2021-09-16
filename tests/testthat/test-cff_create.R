@@ -40,3 +40,15 @@ test_that("Validate all DESCRIPTION files", {
     expect_true(cff_validate(cffobj))
   }
 })
+
+test_that("Auto generate preferred citations", {
+  rgeos <- system.file("examples/DESCRIPTION_rgeos",
+    package = "cffr"
+  )
+  expect_snapshot_output(cff_create(rgeos))
+
+  basicdate <- system.file("examples/DESCRIPTION_basicdate",
+    package = "cffr"
+  )
+  expect_snapshot_output(cff_create(rgeos))
+})

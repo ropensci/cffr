@@ -61,13 +61,15 @@ parse_preferred_auto <- function(cffobjend) {
   pref$type <- "manual"
 
   # Handle year
-  year <- format(as.Date(pref[["date-released"]]), "%Y")
 
+  date_rel <- pref[["date-released"]]
 
-
-  if (length(year) == 0) {
+  if (is.null(date_rel)) {
     year <- format(Sys.Date(), "%Y")
+  } else {
+    year <- format(as.Date(pref[["date-released"]]), "%Y")
   }
+
   pref$year <- year
 
   # Order and output
