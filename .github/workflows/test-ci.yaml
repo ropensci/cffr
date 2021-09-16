@@ -8,7 +8,18 @@ name: Test on GHA
 
 jobs:
   test-ci:
-    runs-on: macos-latest
+    runs-on: ${{ matrix.config.os }}
+
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: windows-latest, r: 'release'}
+          - {os: macOS-latest, r: 'release'}
+          - {os: ubuntu-20.04, r: 'release'}
+
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -20,16 +31,9 @@ jobs:
         with:
           use-public-rspm: true
 
-      # This is needed for workflows running on
-      # ubuntu-20.04 or later
-      - name: Install V8
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt-get install -y libv8-dev
-
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
-          cache-version: 900
+          cache-version: 901
           extra-packages: |
             devtools
             remotes
@@ -69,13 +73,12 @@ jobs:
           
           toinstall <- setdiff(all, instpack)
           
-          
-          
-          
-          
-          
           install.packages(toinstall, dependencies = TRUE, 
-                           verbose = TRUE, quiet = TRUE, type="binary")
+                           verbose = TRUE, quiet = TRUE)
+                           
+          
+          # Update                 
+          update.packages()
           
           # Malformed CITATION
           remove.packages(c("photosearcher"))
@@ -97,5 +100,5 @@ jobs:
      # Upload artifact
       - uses: actions/upload-artifact@v2
         with:
-          name: test-ci
+          name: test-ci-${{ runner.os }}
           path: tests/testthat/test_ci
