@@ -69,8 +69,13 @@ jobs:
           # R-lib packages
           rlib <- unlist(jsonlite::read_json("https://r-lib.r-universe.dev/packages"))
 
+          # R-forge packages
+          rforge <- unlist(jsonlite::read_json("https://r-forge.r-universe.dev/packages"))
 
-          all <- sort(unique(c(core$name, ropensci, rlib)))
+         # R-Studio packages
+          rstudio <- unlist(jsonlite::read_json("https://rstudio.r-universe.dev/packages"))
+
+          all <- sort(unique(c(core$name, ropensci, rlib, rforge, rstudio)))
 
           # Check packages not installed yet
           instpack <- as.character(installed.packages()[, "Package"])

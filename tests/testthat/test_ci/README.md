@@ -8,8 +8,8 @@ This test validates the creation of a `CITATION.cff` file for \>1000 packages:
     Views](https://cran.r-project.org/web/views/) and their dependencies.
 -   All the packages available in the [rOpenSci
     r-universe](https://ropensci.r-universe.dev/) and their dependencies.
--   All the packages available in the [r-lib
-    r-universe](https://r-lib.r-universe.dev/) and their dependencies.
+-   All the packages of r-forge, r-lib and r-studio: lists extracted from
+    https://r-universe.dev/organizations/.
 
 This test is deployed in [GitHub
 Actions](https://github.com/dieghernan/cffr/actions/workflows/test-ci.yaml) and
