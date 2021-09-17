@@ -152,6 +152,8 @@ cff_create <- function(x = ".", keys = NULL,
 
     cffobj <- cff_description(desc_path, cff_version)
   }
+  
+  citobj <- unique(citobj)
   # Add cffobj
 
   # Add doi from citation if missing
