@@ -44,6 +44,7 @@ cff_parse_person <- function(person) {
 
   if (length(person) > 1) {
     person <- lapply(person, cff_parse_person)
+    person <- as.cff(person)
     return(person)
   }
 
