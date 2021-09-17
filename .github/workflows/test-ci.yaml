@@ -72,7 +72,7 @@ jobs:
           # R-forge packages
           rforge <- unlist(jsonlite::read_json("https://r-forge.r-universe.dev/packages"))
 
-         # R-Studio packages
+          # R-Studio packages
           rstudio <- unlist(jsonlite::read_json("https://rstudio.r-universe.dev/packages"))
 
           all <- sort(unique(c(core$name, ropensci, rlib, rforge, rstudio)))
