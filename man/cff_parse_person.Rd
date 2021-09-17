@@ -37,6 +37,11 @@ cff_parse_person(person(
 # Parse a string
 
 cff_parse_person("Julio Iglesias <fake@email.com>")
+
+# Several persons
+persons <- c(person("Clark", "Kent"), person("Lois", "Lane"))
+
+cff_parse_person(persons)
 }
 \seealso{
 \code{\link[=cff_create]{cff_create()}}, \code{\link[utils:person]{utils::person()}}

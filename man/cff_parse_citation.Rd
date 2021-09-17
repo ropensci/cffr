@@ -25,6 +25,7 @@ replacing the auto-generated authors of the package. See \strong{Examples}.
 bib <- citation("base")
 bib
 
+
 # To cff
 bib_to_cff <- cff_parse_citation(bib)
 bib_to_cff
@@ -37,6 +38,10 @@ full <- cff_create(new_cff, keys = list("preferred-citation" = bib_to_cff))
 full
 # Validate
 cff_validate(full)
+
+# Several citations
+
+cff_parse_citation(citation("rmarkdown"))
 }
 \seealso{
 \code{\link[=cff_create]{cff_create()}}

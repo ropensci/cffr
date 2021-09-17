@@ -34,8 +34,18 @@
 #' # Parse a string
 #'
 #' cff_parse_person("Julio Iglesias <fake@email.com>")
+#'
+#' # Several persons
+#' persons <- c(person("Clark", "Kent"), person("Lois", "Lane"))
+#'
+#' cff_parse_person(persons)
 cff_parse_person <- function(person) {
   person <- as.person(person)
+
+  if (length(person) > 1) {
+    person <- lapply(person, cff_parse_person)
+    return(person)
+  }
 
   # Guess if entity of person.
   is_entity <- is.null(person$family) || is.null(person$given)

@@ -22,6 +22,7 @@
 #' bib <- citation("base")
 #' bib
 #'
+#'
 #' # To cff
 #' bib_to_cff <- cff_parse_citation(bib)
 #' bib_to_cff
@@ -34,6 +35,10 @@
 #' full
 #' # Validate
 #' cff_validate(full)
+#'
+#' # Several citations
+#'
+#' cff_parse_citation(citation("rmarkdown"))
 cff_parse_citation <- function(bib) {
   if (!inherits(bib, "bibentry")) {
     return(NULL)
@@ -43,6 +48,10 @@ cff_parse_citation <- function(bib) {
     return(NULL)
   }
 
+  if (length(bib) > 1) {
+    bib <- lapply(bib, cff_parse_citation)
+    return(bib)
+  }
 
   parse_cit <- drop_null(unclass(bib)[[1]])
 
