@@ -258,9 +258,23 @@ print(citation("cffr"), bibtex = TRUE)
 #>     month = {aug},
 #>     author = {Stephan Druskat and Jurriaan H. Spaaks and Neil {Chue Hong} and Robert Haines and James Baker and Spencer Bliven and Egon Willighagen and David Pérez-Suárez and Alexander Konovalov},
 #>     doi = {10.5281/zenodo.5171937},
-#>     keywords = {citation file format, CFF, citation files, software citation,file format, YAML, software sustainability, research software, credit},
+#>     keywords = {citation file format, CFF, citation files, software citation, file format, YAML, software sustainability, research software, credit},
 #>     license = {CC-BY-4.0},
 #>     date-released = {2021-08-09},
+#>   }
+#> 
+#> Wilson R (2016). "Encouraging citation of software - introducing
+#> CITATION files." <URL:
+#> https://www.software.ac.uk/blog/2016-10-06-encouraging-citation-software-introducing-citation-files>.
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Misc{,
+#>     author = {Robin Wilson},
+#>     title = {Encouraging citation of software - introducing CITATION files.},
+#>     year = {2016},
+#>     month = {6},
+#>     url = {https://www.software.ac.uk/blog/2016-10-06-encouraging-citation-software-introducing-citation-files},
 #>   }
 ```
 

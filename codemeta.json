@@ -147,7 +147,7 @@
     "SystemRequirements": null
   },
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata"],
-  "fileSize": "697.293KB",
+  "fileSize": "698.807KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -220,6 +220,19 @@
       "identifier": "10.5281/zenodo.5171937",
       "@id": "https://doi.org/10.5281/zenodo.5171937",
       "sameAs": "https://doi.org/10.5281/zenodo.5171937"
+    },
+    {
+      "@type": "CreativeWork",
+      "datePublished": "2016",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Robin",
+          "familyName": "Wilson"
+        }
+      ],
+      "name": "Encouraging citation of software - introducing CITATION files.",
+      "url": "https://www.software.ac.uk/blog/2016-10-06-encouraging-citation-software-introducing-citation-files"
     }
   ]
 }

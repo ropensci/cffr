@@ -71,10 +71,18 @@ references:
   - citation file format
   - CFF
   - citation files
-  - software citation,file format
+  - software citation
+  - file format
   - YAML
   - software sustainability
   - research software
   - credit
   license: CC-BY-4.0
   date-released: '2021-08-09'
+- type: generic
+  title: Encouraging citation of software - introducing CITATION files.
+  authors:
+  - family-names: Wilson
+    given-names: Robin
+  year: '2016'
+  url: https://www.software.ac.uk/blog/2016-10-06-encouraging-citation-software-introducing-citation-files
