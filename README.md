@@ -15,7 +15,6 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 ![GitHub code size in
 bytes](https://img.shields.io/github/languages/code-size/dieghernan/cffr)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/cffr/badge)](https://www.codefactor.io/repository/github/dieghernan/cffr)
-
 [![peer-review](https://badges.ropensci.org/463_status.svg)](https://github.com/ropensci/software-review/issues/463)
 <!-- badges: end -->
 
