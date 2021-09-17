@@ -32,8 +32,15 @@
 #'
 #' @return A `CITATION.cff` file and an (invisible) [`cff`] object.
 #'
-#' @seealso [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md).
+#' @seealso
+#' ```{r, echo=FALSE, results='asis'}
 #'
+#' cat(paste0("[Guide to Citation File Format schema version 1.2.0]",
+#'            "(https://github.com/citation-file-format/",
+#'            "citation-file-format/blob/main/schema-guide.md)."))
+#'
+#'
+#' ```
 #' @examples
 #' tmpfile <- tempfile(fileext = ".cff")
 #' cff_obj <- cff_write("jsonlite", outfile = tmpfile)
@@ -63,7 +70,12 @@ cff_write <- function(x = ".",
   # Check if dir exist and if not create
   outdir <- dirname(outfile)
 
-  if (!dir.exists(outdir)) dir.create(outdir, showWarnings = FALSE, recursive = TRUE)
+  if (!dir.exists(outdir)) {
+    dir.create(outdir,
+      showWarnings = FALSE,
+      recursive = TRUE
+    )
+  }
 
 
   # Write CITATION

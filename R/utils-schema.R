@@ -3,7 +3,14 @@
 #' @name cff_schema
 #' @description
 #' Helper functions with the valid values of different fields, according to the
-#' [Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md)
+#' ```{r, echo=FALSE, results='asis'}
+#'
+#' cat(paste0("\n", "[Citation File Format schema version 1.2.0]",
+#'            "(https://github.com/citation-file-format/",
+#'            "citation-file-format/blob/main/schema-guide.md)."))
+#'
+#'
+#' ```
 #'
 #' - [cff_schema_keys()] provides the valid high-level keys of the Citation
 #'   File Format.
@@ -13,12 +20,18 @@
 #' - [cff_schema_definitions_person()] and [cff_schema_definitions_entity()]
 #'   returns the valid fields to be included when defining a
 #'   person or entity.
-#' - [cff_schema_definitions_person()] provides the valid
-#'   keys to be used on the `preferred-citation` and `references` keys,
+#' - [cff_schema_definitions_refs()] provides the valid
+#'   keys to be used on the `preferred-citation` and `references` keys.
 #'
 #' @source
-#' [Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md)
+#' ```{r, echo=FALSE, results='asis'}
 #'
+#' cat(paste0("[Guide to Citation File Format schema version 1.2.0]",
+#'            "(https://github.com/citation-file-format/",
+#'            "citation-file-format/blob/main/schema-guide.md)."))
+#'
+#'
+#' ```
 #'
 #' @family schema
 #'
@@ -164,8 +177,8 @@ cff_schema_definitions_entity <- function() {
 #' @export
 #' @examples
 #'
-#' cff_schema_definitions_entity()
-cff_schema_definitions_reference <- function() {
+#' cff_schema_definitions_refs()
+cff_schema_definitions_refs <- function() {
   definitions_reference <- c(
     "abbreviation",
     "abstract",

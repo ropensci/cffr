@@ -3,13 +3,27 @@
 #' @description
 #' Validate a `CITATION.cff` file or a [`cff`] object created with
 #' [cff_create()] using the corresponding validation
-#' [schema.json](https://github.com/citation-file-format/citation-file-format/blob/main/schema.json).
+#' ```{r, echo=FALSE, results='asis'}
 #'
+#' cat(paste0("\n", "[schema.json]",
+#'            "(https://github.com/citation-file-format/",
+#'            "citation-file-format/blob/main/schema.json)."))
+#'
+#'
+#' ```
 #' @export
 #'
 #' @family core functions
 #'
-#' @seealso [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md).
+#' @seealso
+#' ```{r, echo=FALSE, results='asis'}
+#'
+#' cat(paste0("[Guide to Citation File Format schema version 1.2.0]",
+#'            "(https://github.com/citation-file-format/",
+#'            "citation-file-format/blob/main/schema-guide.md)."))
+#'
+#'
+#' ```
 #'
 #' @return A message indicating the result of the validation and an invisible
 #'   value `TRUE/FALSE`.

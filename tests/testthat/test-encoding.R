@@ -1,6 +1,8 @@
 test_that("Creating cff from packages encoded in latin1", {
   # Surveillance package
-  desc_path <- system.file("examples/DESCRIPTION_surveillance", package = "cffr")
+  desc_path <- system.file("examples/DESCRIPTION_surveillance",
+    package = "cffr"
+  )
   cit_path <- system.file("examples/CITATION_surveillance", package = "cffr")
 
   expect_true(desc::desc(desc_path)$get("Encoding") == "latin1")

@@ -53,7 +53,7 @@ parse_package_meta <- function(desc_path) {
 #' It mocks citation(auto = meta) of base R
 #' @noRd
 parse_preferred_auto <- function(cffobjend) {
-  valid <- cff_schema_definitions_reference()
+  valid <- cff_schema_definitions_refs()
 
   pref <- cffobjend[names(cffobjend) %in%
     valid]

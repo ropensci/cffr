@@ -61,8 +61,7 @@ cff_parse_citation <- function(bib) {
   # Important! This is a mandatory key in CFF
   # Help needed
   # We map here the types explained in ?bibentry
-  # to valid keys. see
-  # https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype
+  # to valid keys.
   # In lower case to avoid mismatches
 
 
@@ -87,7 +86,7 @@ cff_parse_citation <- function(bib) {
 
   # Building blocks----
 
-  valid <- cff_schema_definitions_reference()
+  valid <- cff_schema_definitions_refs()
 
   # Keep only valid keys
   parse_cit <- parse_cit[names(parse_cit) %in%
@@ -121,7 +120,7 @@ cff_parse_citation <- function(bib) {
   parse_all_authors <- drop_null(
     lapply(parse_cit$authors, cff_parse_person)
   )
-  
+
   parse_cit$authors <- unique(parse_all_authors)
 
   ## DOIs----

@@ -64,7 +64,9 @@ test_that("Parsing Gitlab", {
 })
 
 test_that("Parsing many persons", {
-  desc_path <- system.file("examples/DESCRIPTION_many_persons", package = "cffr")
+  desc_path <- system.file("examples/DESCRIPTION_many_persons",
+    package = "cffr"
+  )
 
   parsed <- cff_create(desc_path)
 
@@ -101,7 +103,9 @@ test_that("Parsing wrong urls", {
 
 
 test_that("Parsing two maintainers", {
-  desc_path <- system.file("examples/DESCRIPTION_twomaintainers", package = "cffr")
+  desc_path <- system.file("examples/DESCRIPTION_twomaintainers",
+    package = "cffr"
+  )
 
   parsed <- cff_create(desc_path)
 

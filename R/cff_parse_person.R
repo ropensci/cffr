@@ -65,21 +65,19 @@ cff_parse_person <- function(person) {
 
 
   # Add url to orcid if not present
-  
   # Parse leading invalid urls
-  
+
   if (!is.null(parsed_comments$orcid)) {
     orcid <- gsub("^orcid.org/", "", parsed_comments$orcid)
     orcid <- gsub("^https://orcid.org/", "", orcid)
     orcid <- gsub("^http://orcid.org/", "", orcid)
-    
+
     parsed_comments$orcid <- paste0(
       "https://orcid.org/",
       orcid
     )
-    
   }
-  
+
   # Add website
   web <- parsed_comments$website
 

@@ -1,7 +1,8 @@
 test_that("Test citations with installed packages", {
   installed <- as.character(installed.packages()[, 1])
   inst <- c(
-    "base", "utils", "jsonlite", "jsonvalidate", "rmarkdown", "thisisanerrorpackage", "DCluster", "surveillance"
+    "base", "utils", "jsonlite", "jsonvalidate", "rmarkdown",
+    "thisisanerrorpackage", "DCluster", "surveillance"
   )
   for (i in seq_len(length(inst))) {
     if (inst[i] %in% installed) {

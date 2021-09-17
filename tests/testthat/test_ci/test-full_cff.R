@@ -21,8 +21,8 @@ test_that("Test ALL installed packages", {
     }
   }
 
-# Initial set of packages
-write.csv(installed, "allpackages.csv", row.names = FALSE)
+  # Initial set of packages
+  write.csv(installed, "allpackages.csv", row.names = FALSE)
   expect_snapshot_output(print_snapshot("Summary", paste(
     "testing a sample of",
     nrow(installed), "installed packages"

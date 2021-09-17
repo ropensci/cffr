@@ -23,7 +23,15 @@
 #' @param cff_version The Citation File Format schema version that the
 #'   `CITATION.cff` file adheres to for providing the citation metadata.
 #'
-#' @seealso [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md).
+#' @seealso
+#' ```{r, echo=FALSE, results='asis'}
+#'
+#' cat(paste0("[Guide to Citation File Format schema version 1.2.0]",
+#'            "(https://github.com/citation-file-format/",
+#'            "citation-file-format/blob/main/schema-guide.md)."))
+#'
+#'
+#' ```
 #'
 #' @details
 #'
@@ -31,8 +39,16 @@
 #' the `keys` argument. A list of valid keys can be retrieved with
 #' [cff_schema_keys()].
 #'
+#'
 #' Please refer to
-#' [Guide to Citation File Format schema version 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md)
+#' ```{r, echo=FALSE, results='asis'}
+#'
+#' cat(paste0("\n", "[Guide to Citation File Format schema version 1.2.0]",
+#'            "(https://github.com/citation-file-format/",
+#'            "citation-file-format/blob/main/schema-guide.md)."))
+#'
+#'
+#' ```
 #' for additional details.
 #'
 #' If `x` is a path to a DESCRIPTION file or `inst/CITATION`, is not present on

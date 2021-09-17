@@ -6,10 +6,10 @@
 \alias{cff_schema_keys_license}
 \alias{cff_schema_definitions_person}
 \alias{cff_schema_definitions_entity}
-\alias{cff_schema_definitions_reference}
+\alias{cff_schema_definitions_refs}
 \title{Schema utils}
 \source{
-\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema version 1.2.0}
+\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
 }
 \usage{
 cff_schema_keys(sorted = FALSE)
@@ -20,7 +20,7 @@ cff_schema_definitions_person()
 
 cff_schema_definitions_entity()
 
-cff_schema_definitions_reference()
+cff_schema_definitions_refs()
 }
 \arguments{
 \item{sorted}{Logical \code{TRUE/FALSE}. Should the keys be arranged
@@ -32,7 +32,7 @@ Citation File Format version 1.2.0
 }
 \description{
 Helper functions with the valid values of different fields, according to the
-\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema version 1.2.0}
+\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema version 1.2.0}.
 \itemize{
 \item \code{\link[=cff_schema_keys]{cff_schema_keys()}} provides the valid high-level keys of the Citation
 File Format.
@@ -42,8 +42,8 @@ File Format.
 \item \code{\link[=cff_schema_definitions_person]{cff_schema_definitions_person()}} and \code{\link[=cff_schema_definitions_entity]{cff_schema_definitions_entity()}}
 returns the valid fields to be included when defining a
 person or entity.
-\item \code{\link[=cff_schema_definitions_person]{cff_schema_definitions_person()}} provides the valid
-keys to be used on the \code{preferred-citation} and \code{references} keys,
+\item \code{\link[=cff_schema_definitions_refs]{cff_schema_definitions_refs()}} provides the valid
+keys to be used on the \code{preferred-citation} and \code{references} keys.
 }
 }
 \examples{
@@ -57,6 +57,6 @@ cff_schema_definitions_person()
 
 cff_schema_definitions_entity()
 
-cff_schema_definitions_entity()
+cff_schema_definitions_refs()
 }
 \concept{schema}
