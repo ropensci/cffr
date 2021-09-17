@@ -50,7 +50,7 @@ cff_parse_citation <- function(bib) {
 
   if (length(bib) > 1) {
     bib <- lapply(bib, cff_parse_citation)
-    bib <- as.cff(bib)
+    class(bib) <- "cff"
     return(bib)
   }
 
