@@ -111,6 +111,8 @@ jobs:
             collapse = "\n"
           ))
 
+        shell: Rscript {0}
+
      # Upload artifact
       - uses: actions/upload-artifact@v2
         with:
