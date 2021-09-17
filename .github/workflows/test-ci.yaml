@@ -87,7 +87,6 @@ jobs:
           # Update
           update.packages(type = "binary")
 
-          updat
           # Malformed CITATION
           remove.packages(c("photosearcher"))
 
