@@ -47,10 +47,7 @@ test_that("Test ALL installed packages", {
 
     # Add cffobj
     cffobj <- suppressMessages(
-      cff_write(pkg,
-        outfile = file.path("CITATION", paste0("CITATION_", pkg, ".cff")),
-        validate = FALSE
-      )
+      cff_create(pkg)
     )
 
     s <- suppressMessages(cff_validate(cffobj))
@@ -69,6 +66,13 @@ test_that("Test ALL installed packages", {
     installed$is_ok <- res
 
     errors <- installed[installed$is_ok == FALSE, ]
+
+    okrate <- 1 - nrow(errors) / nrow(installed)
+
+    expect_snapshot_output(print_snapshot(
+      "OK rate",
+      sprintf("%1.2f%%", 100 * okrate)
+    ))
 
 
     if (nrow(errors) > 0) {

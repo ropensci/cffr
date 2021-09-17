@@ -66,23 +66,31 @@ jobs:
 
           ropensci <- unlist(jsonlite::read_json("https://ropensci.r-universe.dev/packages"))
 
-          all <- sort(unique(c(core$name, ropensci)))
+          # R-lib packages
+          rlib <- unlist(jsonlite::read_json("https://r-lib.r-universe.dev/packages"))
+
+
+          all <- sort(unique(c(core$name, ropensci, rlib)))
 
           # Check packages not installed yet
           instpack <- as.character(installed.packages()[, "Package"])
-          
+
           toinstall <- setdiff(all, instpack)
-          
-          install.packages(toinstall, dependencies = TRUE, 
-                           verbose = TRUE, quiet = TRUE)
-                           
-          
-          # Update                 
-          update.packages()
-          
+
+          install.packages(toinstall,
+            dependencies = TRUE,
+            verbose = TRUE, quiet = TRUE,
+            type = "binary"
+          )
+
+
+          # Update
+          update.packages(type = "binary")
+
+          updat
           # Malformed CITATION
           remove.packages(c("photosearcher"))
-          
+
         shell: Rscript {0}
 
 
@@ -97,8 +105,17 @@ jobs:
 
         shell: Rscript {0}
 
+      - name: Display results
+        run: |
+          cat(paste(
+            readLines("tests/testthat/test_ci/_snaps/full_cff.md"),
+            collapse = "\n"
+          ))
+
      # Upload artifact
       - uses: actions/upload-artifact@v2
         with:
           name: test-ci-${{ runner.os }}
-          path: tests/testthat/test_ci
+          path: |
+            tests/testthat/test_ci/_snaps/full_cff.md
+            tests/testthat/test_ci/allpackages.csv
