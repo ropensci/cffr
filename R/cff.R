@@ -118,7 +118,7 @@ as.cff <- function(x) {
   x <- x[!duplicated(names(x))]
 
   # Now apply cff class to nested lists
-  x <- lapply(x, rapply.cff)
+  x <- lapply(x, rapply_cff)
 
   class(x) <- "cff"
   x
@@ -138,49 +138,18 @@ print.cff <- function(x, ...) {
 #' Recursively clean lists and assign cff classes
 #' to all nested lists
 #'
-#' Suggestions? There is a test for this
 #'
 #' @noRd
-rapply.cff <- function(x) {
+rapply_cff <- function(x) {
   if ("cff" %in% class(x)) {
     return(x)
   }
 
-  if (is.list(x)) {
-    # First level
+  if (is.list(x) && length(x) > 0) {
     x <- drop_null(x)
-    # Second level
-    x <- lapply(x, function(y) {
-      if (is.list(y)) {
-        y <- drop_null(y)
-
-        # Third level
-        y <- lapply(y, function(z) {
-          if (is.list(z)) {
-            z <- drop_null(z)
-            # Last level
-
-            z <- lapply(z, function(w) {
-              if (is.list(w)) {
-                w <- drop_null(w)
-                return(structure(w, class = "cff"))
-              } else {
-                return(w)
-              }
-            })
-
-            return(structure(z, class = "cff"))
-          } else {
-            return(z)
-          }
-        })
-        return(structure(y, class = "cff"))
-      } else {
-        return(y)
-      }
-    })
-
+    x <- lapply(x, rapply_cff)
     return(structure(x, class = "cff"))
+  } else {
+    return(x)
   }
-  return(x)
 }

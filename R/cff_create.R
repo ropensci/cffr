@@ -121,7 +121,7 @@ cff_create <- function(x = ".", keys = NULL,
       desc_path <- file.path(find.package(x), "DESCRIPTION")
 
       # Parse citation from installation
-      citobj <- lapply(citation(x), cff_parse_citation)
+      citobj <- cff_parse_citation(citobj)
       citobj <- drop_null(citobj)
       if (length(citobj) == 0) citobj <- NULL
     } else if (x == ".") {
@@ -132,7 +132,7 @@ cff_create <- function(x = ".", keys = NULL,
       cit_path <- file.path(x, "inst/CITATION")
       if (file.exists(cit_path)) {
         citobj <- parse_r_citation(desc_path, cit_path)
-        citobj <- lapply(citobj, cff_parse_citation)
+        citobj <- cff_parse_citation(citobj)
         citobj <- drop_null(citobj)
         if (length(citobj) == 0) citobj <- NULL
       }
