@@ -74,9 +74,6 @@ cff <- function(path, ...) {
     cffobj <- yaml::read_yaml(path)
   }
   cffobj <- drop_null(cffobj)
-  # Parse some fields as cff
-  cffobj$authors <- lapply(cffobj$authors, as.cff)
-  cffobj$contact <- lapply(cffobj$contact, as.cff)
 
   cffobj <- as.cff(cffobj)
 
@@ -102,16 +99,30 @@ as.cff <- function(x) {
   if (is.cff(x)) {
     return(x)
   }
+
+  # Clean all strings recursively
+
+  x <- rapply(x, function(x) {
+    if (is.vector(x)) {
+      return(x)
+    }
+    return(clean_str(x))
+  },
+  how = "list"
+  )
+
   # Remove NULLs
   x <- drop_null(x)
 
   # Remove duplicated names
   x <- x[!duplicated(names(x))]
 
+  # Now apply cff class to nested lists
+  x <- lapply(x, rapply.cff)
+
   class(x) <- "cff"
   x
 }
-
 
 
 # Print method
@@ -119,4 +130,57 @@ as.cff <- function(x) {
 #' @export
 print.cff <- function(x, ...) {
   cat(yaml::as.yaml(x))
+}
+
+
+# Helper----
+
+#' Recursively clean lists and assign cff classes
+#' to all nested lists
+#'
+#' Suggestions? There is a test for this
+#'
+#' @noRd
+rapply.cff <- function(x) {
+  if ("cff" %in% class(x)) {
+    return(x)
+  }
+
+  if (is.list(x)) {
+    # First level
+    x <- drop_null(x)
+    # Second level
+    x <- lapply(x, function(y) {
+      if (is.list(y)) {
+        y <- drop_null(y)
+
+        # Third level
+        y <- lapply(y, function(z) {
+          if (is.list(z)) {
+            z <- drop_null(z)
+            # Last level
+
+            z <- lapply(z, function(w) {
+              if (is.list(w)) {
+                w <- drop_null(w)
+                return(structure(w, class = "cff"))
+              } else {
+                return(w)
+              }
+            })
+
+            return(structure(z, class = "cff"))
+          } else {
+            return(z)
+          }
+        })
+        return(structure(y, class = "cff"))
+      } else {
+        return(y)
+      }
+    })
+
+    return(structure(x, class = "cff"))
+  }
+  return(x)
 }

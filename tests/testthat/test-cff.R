@@ -65,3 +65,21 @@ test_that("Other convertes", {
   expect_false(is.cff(list(a = 1, b = 2)))
   expect_true(is.cff(as.cff(list(a = 1, b = 2))))
 })
+
+
+test_that("Recursive parsing", {
+  complete <- system.file("examples/CITATION_complete.cff",
+    package = "cffr"
+  )
+
+  # Read
+  read <- cff(complete)
+
+  # Test all levels
+  expect_s3_class(read, "cff")
+  expect_s3_class(read$authors, "cff")
+  expect_s3_class(read$authors[[1]], "cff")
+  expect_s3_class(read$references, "cff")
+  expect_s3_class(read$references[[1]]$authors, "cff")
+  expect_s3_class(read$references[[1]]$authors[[1]], "cff")
+})
