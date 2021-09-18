@@ -5,16 +5,16 @@
 clean_str <- function(str) {
   # Collapse to single char
   str <- paste(str, collapse = " ")
-  if (length(str) == 0 || is.null(str) || is.na(str) ||
-    str == "NA") {
+  str <- unlist(str)
+  if (is.null(str) || is.na(str)) {
     return(NULL)
   }
 
   clean <- gsub("[\n\r]", " ", str)
   clean <- gsub("\\s+", " ", clean)
-  clean <- gsub("\\s+", " ", clean)
   clean <- gsub("\\{", "", clean)
   clean <- gsub("\\}", "", clean)
+  clean <- gsub("^NA$", "", clean)
   clean <- trimws(clean)
   # Collapse to single char
   clean <- paste(clean, collapse = " ")

@@ -154,7 +154,33 @@ cff_create <- function(x = ".", keys = NULL,
   }
 
   citobj <- unique(citobj)
-  # Add cffobj
+
+  # Merge DESCRIPTION and CITATION
+
+  cffobjend <- merge_desc_cit(cffobj, citobj)
+
+
+  # Additional keys
+  if (!is.null(keys)) {
+    keys <- keys[names(keys) %in% cff_schema_keys()]
+    cffobjend <- drop_null(cffobjend)
+
+    cffobjend <- cffobjend[setdiff(names(cffobjend), names(keys))]
+    cffobjend <- c(cffobjend, keys)
+  }
+
+
+  # Order
+  cffobjend <- cffobjend[cff_schema_keys()]
+
+  cffobjend <- as.cff(cffobjend)
+  cffobjend
+}
+
+
+#' Merge the information of a parsed description with a parsed citation
+#' @noRd
+merge_desc_cit <- function(cffobj, citobj) {
 
   # Add doi from citation if missing
   if (is.null(cffobj$doi)) {
@@ -182,19 +208,5 @@ cff_create <- function(x = ".", keys = NULL,
     )
   }
 
-  # Additional keys
-  if (!is.null(keys)) {
-    keys <- keys[names(keys) %in% cff_schema_keys()]
-    cffobjend <- drop_null(cffobjend)
-
-    cffobjend <- cffobjend[setdiff(names(cffobjend), names(keys))]
-    cffobjend <- c(cffobjend, keys)
-  }
-
-
-  # Order
-  cffobjend <- cffobjend[cff_schema_keys()]
-
-  cffobjend <- as.cff(cffobjend)
-  cffobjend
+  return(cffobjend)
 }
