@@ -417,6 +417,7 @@ test_that("Test inputs", {
 
 test_that("NULL bibs and others strange errors", {
   bib <- 1
+  expect_null(cff_parse_citation(bib))
   class(bib) <- "bibentry"
   bib <- NULL
   expect_null(cff_parse_citation(bib))

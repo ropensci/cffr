@@ -103,7 +103,7 @@ as.cff <- function(x) {
   # Clean all strings recursively
 
   x <- rapply(x, function(x) {
-    if (is.vector(x)) {
+    if (is.list(x) || length(x) > 1) {
       return(x)
     }
     return(clean_str(x))
