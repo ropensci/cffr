@@ -44,7 +44,7 @@ persons <- c(person("Clark", "Kent"), person("Lois", "Lane"))
 cff_parse_person(persons)
 }
 \seealso{
-\code{\link[=cff_create]{cff_create()}}, \code{\link[utils:person]{utils::person()}}
+\code{\link[=cff_create]{cff_create()}}, \code{vignette("cffr", "cffr")}, \code{\link[utils:person]{utils::person()}}
 
 Other parsers: 
 \code{\link{cff_parse_citation}()}

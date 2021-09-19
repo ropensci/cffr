@@ -44,7 +44,7 @@ cff_validate(full)
 cff_parse_citation(citation("rmarkdown"))
 }
 \seealso{
-\code{\link[=cff_create]{cff_create()}}
+\code{\link[=cff_create]{cff_create()}}, \code{vignette("cffr", "cffr")}, \code{\link[utils:bibentry]{utils::bibentry()}}
 
 Other parsers: 
 \code{\link{cff_parse_person}()}
