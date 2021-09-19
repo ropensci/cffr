@@ -132,6 +132,25 @@ print.cff <- function(x, ...) {
   cat(yaml::as.yaml(x))
 }
 
+# c method
+
+#' @export
+c.cff <-
+  function(..., recursive = FALSE) {
+    args <- list(...)
+    if (!any(vapply(args, inherits, NA, "cff"))) {
+      warning(gettextf(
+        "method is only applicable to %s objects",
+        sQuote("cff")
+      ),
+      domain = NA
+      )
+    }
+    args <- lapply(args, unclass)
+    rval <- do.call("c", args)
+    class(rval) <- "cff"
+    rval
+  }
 
 # Helper----
 

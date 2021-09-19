@@ -7,9 +7,8 @@ test_that("Test citations with installed packages", {
   for (i in seq_len(length(inst))) {
     if (inst[i] %in% installed) {
       desc <- cff_create(inst[i])
-      cit <- cff_parse_citation(citation(inst[i]))
-      full <- as.cff(c(desc, list("preferred-citation" = cit)))
-      expect_true(cff_validate(full))
+      expect_true(length(desc$`preferred-citation`) > 1)
+      expect_true(cff_validate(desc))
     }
   }
 })

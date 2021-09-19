@@ -173,7 +173,7 @@ chiquito_parsed
 # Append to previous authors
 
 # Needs to be append as a list
-newauthors <- append(modobject$authors, list(chiquito_parsed))
+newauthors <- c(modobject$authors, list(chiquito_parsed))
 newauthors
 
 newauthorobject <- cff_create(modobject, keys = list(authors = newauthors))
@@ -224,7 +224,7 @@ references (as lists) and add them to our object:
 
 ```{r references}
 
-refkeys <- list(references = append(list(base_r), list(bookparsed)))
+refkeys <- list(references = c(list(base_r), list(bookparsed)))
 
 refkeys
 
@@ -270,7 +270,7 @@ allkeys <- list(
   # If the field is already present, it would be overridden
   title = "Modifying a 'cff' object",
   authors = newauthors,
-  references = append(list(base_r), list(bookparsed))
+  references = c(list(base_r), list(bookparsed))
 )
 
 tmp2 <- tempfile(fileext = ".cff")
