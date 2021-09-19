@@ -114,7 +114,7 @@
       department: Department
       doi: 10.5281/zenodo.1003150
       edition: 2nd edition
-      end: 456
+      end: '456'
       entry: Chapter 9
       filename: book.zip
       format: Printed book
@@ -141,17 +141,17 @@
       - zu
       license: Apache-2.0
       license-url: https://spdx.org/licenses/Apache-2.0.html#licenseText
-      loc-start: 14
-      loc-end: 54
+      loc-start: '14'
+      loc-end: '54'
       medium: hardcover book
-      month: 3
+      month: '3'
       nihmsid: Don't know what format a NIHMSID is in
       notes: A field for general notes about the reference, usable in other formats such
         as BibTeX.
       number: A general-purpose field for accession numbers, cf. the specifications for
         examples.
-      number-volumes: 7
-      pages: 765
+      number-volumes: '7'
+      pages: '765'
       patent-states:
       - Germany
       - ROI
@@ -166,14 +166,14 @@
         in Citation File Format 1.0.0.
       section: Chapter 2 - "Reference keys"
       status: advance-online
-      start: 123
+      start: '123'
       thesis-type: Doctoral dissertation
       url: http://j.mp
       version: 0.0.1423-BETA
-      volume: 2
+      volume: '2'
       volume-title: Advances in Software Citation
-      year: 2017
-      year-original: 2012
+      year: '2017'
+      year-original: '2012'
       conference:
         name: Entity Project Team Conference entity
         address: 22 Acacia Avenue
@@ -485,7 +485,7 @@
       department: Department
       doi: 10.5281/zenodo.1003150
       edition: 2nd edition
-      end: 123
+      end: '123'
       entry: Chapter 9
       filename: book.zip
       format: Printed book
@@ -512,17 +512,17 @@
       - zu
       license: Apache-2.0
       license-url: https://spdx.org/licenses/Apache-2.0.html#licenseText
-      loc-start: 14
-      loc-end: 54
+      loc-start: '14'
+      loc-end: '54'
       medium: hardcover book
-      month: 3
+      month: '3'
       nihmsid: Don't know what format a NIHMSID is in
       notes: A field for general notes about the reference, usable in other formats such
         as BibTeX.
       number: A general-purpose field for accession numbers, cf. the specifications for
         examples.
-      number-volumes: 7
-      pages: 765
+      number-volumes: '7'
+      pages: '765'
       patent-states:
       - Germany
       - ROI
@@ -537,14 +537,14 @@
         in Citation File Format 1.0.0.
       section: Chapter 2 - "Reference keys"
       status: advance-online
-      start: 123
+      start: '123'
       thesis-type: Doctoral dissertation
       url: http://j.mp
       version: 0.0.1423-BETA
-      volume: 2
+      volume: '2'
       volume-title: Advances in Software Citation
-      year: 2017
-      year-original: 2012
+      year: '2017'
+      year-original: '2012'
       conference:
         name: Entity Project Team Conference entity
         address: 22 Acacia Avenue
@@ -904,7 +904,7 @@
       department: Department
       doi: 10.5281/zenodo.1003150
       edition: 2nd edition
-      end: 456
+      end: '456'
       entry: Chapter 9
       filename: book.zip
       format: Printed book
@@ -931,17 +931,17 @@
       - zu
       license: Apache-2.0
       license-url: https://spdx.org/licenses/Apache-2.0.html#licenseText
-      loc-start: 14
-      loc-end: 54
+      loc-start: '14'
+      loc-end: '54'
       medium: hardcover book
-      month: 3
+      month: '3'
       nihmsid: Don't know what format a NIHMSID is in
       notes: A field for general notes about the reference, usable in other formats such
         as BibTeX.
       number: A general-purpose field for accession numbers, cf. the specifications for
         examples.
-      number-volumes: 7
-      pages: 765
+      number-volumes: '7'
+      pages: '765'
       patent-states:
       - Germany
       - ROI
@@ -956,14 +956,14 @@
         in Citation File Format 1.0.0.
       section: Chapter 2 - "Reference keys"
       status: advance-online
-      start: 123
+      start: '123'
       thesis-type: Doctoral dissertation
       url: http://j.mp
       version: 0.0.1423-BETA
-      volume: 2
+      volume: '2'
       volume-title: Advances in Software Citation
-      year: 2017
-      year-original: 2012
+      year: '2017'
+      year-original: '2012'
       conference:
         name: Entity Project Team Conference entity
         address: 22 Acacia Avenue
@@ -1316,7 +1316,7 @@
       department: Department
       doi: 10.5281/zenodo.1003150
       edition: 2nd edition
-      end: 123
+      end: '123'
       entry: Chapter 9
       filename: book.zip
       format: Printed book
@@ -1343,17 +1343,17 @@
       - zu
       license: Apache-2.0
       license-url: https://spdx.org/licenses/Apache-2.0.html#licenseText
-      loc-start: 14
-      loc-end: 54
+      loc-start: '14'
+      loc-end: '54'
       medium: hardcover book
-      month: 3
+      month: '3'
       nihmsid: Don't know what format a NIHMSID is in
       notes: A field for general notes about the reference, usable in other formats such
         as BibTeX.
       number: A general-purpose field for accession numbers, cf. the specifications for
         examples.
-      number-volumes: 7
-      pages: 765
+      number-volumes: '7'
+      pages: '765'
       patent-states:
       - Germany
       - ROI
@@ -1368,14 +1368,14 @@
         in Citation File Format 1.0.0.
       section: Chapter 2 - "Reference keys"
       status: advance-online
-      start: 123
+      start: '123'
       thesis-type: Doctoral dissertation
       url: http://j.mp
       version: 0.0.1423-BETA
-      volume: 2
+      volume: '2'
       volume-title: Advances in Software Citation
-      year: 2017
-      year-original: 2012
+      year: '2017'
+      year-original: '2012'
       conference:
         name: Entity Project Team Conference entity
         address: 22 Acacia Avenue
