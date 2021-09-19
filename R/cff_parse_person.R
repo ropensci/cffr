@@ -2,7 +2,7 @@
 #'
 #' Parse a person or string to a valid format for a `CITATION.cff` file.
 #'
-#' @seealso [cff_create()], [utils::person()]
+#' @seealso [cff_create()], `vignette("cffr", "cffr")`, [utils::person()]
 #'
 #' @export
 #'

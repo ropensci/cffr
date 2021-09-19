@@ -118,8 +118,8 @@ cff_validate(test)
 
 
 
-Check the [docs](https://dieghernan.github.io/cffr/reference/index.html) to
-learn how to work with `cff` objects.
+Check the [docs](https://dieghernan.github.io/cffr/reference/index.html) 
+and `vignette(package = "cffr")` to learn how to work with `cff` objects.
 
 
 ## Related packages

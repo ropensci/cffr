@@ -2,7 +2,7 @@
 #'
 #' Parse a `bibentry` object to a valid format for a `CITATION.cff` file.
 #'
-#' @seealso [cff_create()]
+#' @seealso [cff_create()], `vignette("cffr", "cffr")`, [utils::bibentry()]
 #'
 #' @export
 #'

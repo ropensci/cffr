@@ -33,6 +33,7 @@
 #'
 #' ```
 #'
+#' `vignette("cffr", "cffr")`
 #' @details
 #'
 #' It is possible to add additional keys not detected by [cff_create()] using
