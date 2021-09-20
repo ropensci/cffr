@@ -150,6 +150,7 @@ test <- cff_create("rmarkdown")
         given-names: Richard
       year: '2021'
       url: https://github.com/rstudio/rmarkdown
+    repository: https://cran.r-project.org/package=rmarkdown
     repository-code: https://github.com/rstudio/rmarkdown
     url: https://pkgs.rstudio.com/rmarkdown/
     date-released: '2021-09-14'
@@ -230,7 +231,7 @@ print(citation("cffr"), bibtex = TRUE)
 #> To cite cffr in publications use:
 #> 
 #>   Hernangómez, D. (2021). cffr: Generate Citation File Format ('cff')
-#>   Metadata for R Packages. R package version 0.0.1.9001.
+#>   Metadata for R Packages. R package version 0.0.1.9002.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -238,7 +239,7 @@ print(citation("cffr"), bibtex = TRUE)
 #>     title = {cffr: Generate Citation File Format ('cff') Metadata for R Packages},
 #>     author = {Diego Hernangómez},
 #>     year = {2021},
-#>     note = {R package version 0.0.1.9001},
+#>     note = {R package version 0.0.1.9002},
 #>     doi = {10.5281/zenodo.5509766},
 #>     url = {https://dieghernan.github.io/cffr/},
 #>   }

@@ -485,6 +485,7 @@
       that previously succeeded. From ''GEOS'' 3.8.0, repair of geometries may also be
       attempted using ''gMakeValid()'', which may, however, return a collection of geometries
       of different types.'
+    repository: https://cran.r-project.org/package=rgeos
     repository-code: https://r-forge.r-project.org/projects/rgeos/
     url: https://trac.osgeo.org/geos/
     identifiers:
@@ -570,6 +571,7 @@
       time-stamped geo-referenced surveillance data, as proposed by Meyer et al. (2012)
       <doi:10.1111/j.1541-0420.2011.01684.x>. A recent overview of the implemented space-time
       modeling frameworks for epidemic phenomena is given by Meyer et al. (2017) <doi:10.18637/jss.v077.i11>.
+    repository: https://cran.r-project.org/package=surveillance
     url: https://surveillance.R-Forge.R-project.org/
     date-released: '2021-03-30'
     contact:

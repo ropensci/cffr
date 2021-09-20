@@ -83,6 +83,7 @@
         data, as proposed by Meyer et al. (2012) <doi:10.1111/j.1541-0420.2011.01684.x>.
         A recent overview of the implemented space-time modeling frameworks for epidemic
         phenomena is given by Meyer et al. (2017) <doi:10.18637/jss.v077.i11>.
+      repository: https://cran.r-project.org/package=surveillance
       url: https://surveillance.R-Forge.R-project.org/
       date-released: '2021-03-30'
       contact:
@@ -92,6 +93,7 @@
         orcid: https://orcid.org/0000-0002-1791-9449
       license: GPL-2.0-only
       year: '2021'
+    repository: https://cran.r-project.org/package=surveillance
     url: https://surveillance.R-Forge.R-project.org/
     date-released: '2021-03-30'
     contact:

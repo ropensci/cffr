@@ -118,6 +118,31 @@ parse_desc_license <- function(pkg) {
   license_char
 }
 
+#' Try to get from CRAN
+#' @noRd
+parse_desc_repository <- function(pkg) {
+  name <- pkg$get("Package")
+  get <- avail[name == avail$Package, c("Repository")]
+
+  get <- clean_str(get)
+
+  if (is.null(get)) {
+    return(NULL)
+  }
+
+  get <- gsub("src/contrib$", "", get)
+
+  if (get == "https://cloud.r-project.org/") {
+    # Canonic url to CRAN
+
+    repos <- paste0("https://cran.r-project.org/package=", name)
+    return(repos)
+  }
+
+  repos <- get
+  repos
+}
+
 #' Mapped to Package & Title
 #' @noRd
 parse_desc_title <- function(pkg) {

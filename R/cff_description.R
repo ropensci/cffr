@@ -19,6 +19,7 @@ cff_description <- function(desc_path = "DESCRIPTION", cff_version = "1.2.0") {
     version = parse_desc_version(pkg),
     authors = parse_desc_authors(pkg),
     abstract = parse_desc_abstract(pkg),
+    repository = parse_desc_repository(pkg),
     "repository-code" = parse_desc_urls(pkg)$repo,
     url = parse_desc_urls(pkg)$url,
     identifiers = parse_desc_urls(pkg)$identifiers,
@@ -31,3 +32,6 @@ cff_description <- function(desc_path = "DESCRIPTION", cff_version = "1.2.0") {
   list_fields <- as.cff(list_fields)
   list_fields
 }
+
+# Packages available
+avail <- as.data.frame(available.packages(repos = "https://cloud.r-project.org"))
