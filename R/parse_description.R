@@ -130,7 +130,7 @@ parse_desc_repository <- function(pkg) {
     return(NULL)
   }
 
-  cran_repo <- as.character(options("repos")$repos["CRAN"])
+  cran_repo <- "https://cloud.r-project.org/"
 
 
   if (length(grep(cran_repo, get) == 1)) {
