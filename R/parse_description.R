@@ -130,16 +130,18 @@ parse_desc_repository <- function(pkg) {
     return(NULL)
   }
 
-  get <- gsub("src/contrib$", "", get)
+  cran_repo <- as.character(options("repos")$repos["CRAN"])
 
-  if (get == "https://cloud.r-project.org/") {
+
+  if (length(grep(cran_repo, get) == 1)) {
     # Canonic url to CRAN
 
     repos <- paste0("https://cran.r-project.org/package=", name)
     return(repos)
   }
 
-  repos <- get
+  repos <- gsub("src/contrib$", "", get)
+
   repos
 }
 

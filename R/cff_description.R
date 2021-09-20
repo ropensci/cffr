@@ -34,4 +34,9 @@ cff_description <- function(desc_path = "DESCRIPTION", cff_version = "1.2.0") {
 }
 
 # Packages available
-avail <- as.data.frame(available.packages(repos = "https://cloud.r-project.org"))
+avail <- as.data.frame(available.packages(
+  repos =
+    as.character(
+      options("repos")$repos["CRAN"]
+    )
+))
