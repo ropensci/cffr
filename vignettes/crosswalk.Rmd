@@ -511,6 +511,7 @@ to CFF schema v1.2.0](https://github.com/citation-file-format/citation-file-form
 This key is extracted from the "BugReports" or "URL" fields on the 
 DESCRIPTION file. **cffr** tries to identify the url of the source
 on the following repositories:
+
  - [GitHub](https://github.com/).
  - [GitLab](https://about.gitlab.com/).
  - [R-Forge](https://r-forge.r-project.org/).
