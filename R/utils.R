@@ -90,6 +90,9 @@ search_on_repos <- function(name,
 #' @noRd
 detect_repos <- function(repos = getOption("repos")) {
 
+  # Not use RSPM
+  repos <- repos[names(repos) != "RSPM"]
+
   # If not set use 0-Cloud
   if (!is.url(repos["CRAN"])) {
     repos["CRAN"] <- "https://cloud.r-project.org/"
