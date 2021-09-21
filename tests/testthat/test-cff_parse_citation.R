@@ -31,6 +31,24 @@ test_that("Test full with CITATION and (option = author)", {
   expect_true(cff_validate(cffobj))
 })
 
+
+test_that("Parsed several citations", {
+
+  # Needs an installed package
+  desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
+  cit_path <- system.file("examples/CITATION_auto", package = "cffr")
+  parsed <- parse_r_citation(desc_path, cit_path)
+  expect_s3_class(parsed, "bibentry")
+
+  # Create citation obj
+  citobj <- cff_parse_citation(parsed)
+
+  expect_s3_class(citobj, "cff")
+  expect_snapshot_output(citobj)
+  expect_length(citobj, 3)
+})
+
+
 test_that("Add wrong field to citation", {
   bib <- bibentry(
     bibtype = "Manual",

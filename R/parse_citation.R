@@ -14,6 +14,7 @@ parse_r_citation <- function(desc_path, cit_path) {
     utils::readCitationFile(cit_path, meta = meta),
     warning = function(cit_path, meta) {
       # Avoid warnings
+      # nocov start
       suppressWarnings(
         utils::readCitationFile(cit_path, meta = meta)
       )
@@ -21,6 +22,7 @@ parse_r_citation <- function(desc_path, cit_path) {
     error = function(x) {
       return(NULL)
     }
+    # nocov end
   )
 
   parsed

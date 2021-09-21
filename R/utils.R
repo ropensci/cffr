@@ -1,6 +1,8 @@
 # Utils functions used on the package
 
 #' Clean strings
+#'
+#' @param str The string to be cleaned
 #' @noRd
 clean_str <- function(str) {
   # Collapse to single char
@@ -32,6 +34,7 @@ clean_str <- function(str) {
 
 #' Drop nulls from list
 #' @source  https://github.com/cboettig/codemeta/blob/master/R/utils.R
+#' @param x The list to be cleaned
 #' @noRd
 drop_null <- function(x) {
   x[lengths(x) != 0]
@@ -47,11 +50,14 @@ print_snapshot <- function(title = "----", obj) {
 }
 
 #' Search a package on available repos
+#' @param name name of the package
+#' @param avail Data frame with the packages available, See
+#' [utils::available.packages()].
+#' @param repos vector of repos
 #' @noRd
-search_on_repos <- function(name) {
-  repos <- detect_repos()
-
-
+search_on_repos <- function(name,
+                            avail = avail_on_init,
+                            repos = detect_repos()) {
   get <- avail[name == avail$Package, "Repository"]
 
   get <- clean_str(get)
@@ -65,7 +71,7 @@ search_on_repos <- function(name) {
 
 
   if (length(grep(cran_repo, get) == 1)) {
-    # Canonic url to CRAN
+    # Canonical url to CRAN
 
     repos <- paste0("https://CRAN.R-project.org/package=", name)
     return(repos)
@@ -78,19 +84,16 @@ search_on_repos <- function(name) {
 
 
 #' Detect current repos
+#'
+#' Detect the current repos of the user. If not set, use Cloud
+#' @param repos Current repos setup
 #' @noRd
-detect_repos <- function() {
-  repos <- getOption("repos")
+detect_repos <- function(repos = getOption("repos")) {
 
   # If not set use 0-Cloud
-  if (!is.substring(repos["CRAN"], "^http")) {
+  if (!is.url(repos["CRAN"])) {
     repos["CRAN"] <- "https://cloud.r-project.org/"
   }
+
   return(repos)
 }
-
-
-# Load this once per session
-avail <- as.data.frame(available.packages(
-  repos = detect_repos(),
-))[, c("Package", "Repository")]

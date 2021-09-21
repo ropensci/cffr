@@ -44,10 +44,6 @@ cff_parse_citation <- function(bib) {
     return(NULL)
   }
 
-  if (is.null(bib)) {
-    return(NULL)
-  }
-
   if (length(bib) > 1) {
     bib <- lapply(bib, cff_parse_citation)
     class(bib) <- "cff"

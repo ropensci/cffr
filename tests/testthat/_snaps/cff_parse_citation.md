@@ -125,6 +125,46 @@
     - type: url
       value: http://rgeos.r-forge.r-project.org/index.html
 
+# Parsed several citations
+
+    - type: manual
+      title: 'rgeos: Interface to Geometry Engine - Open Source (''GEOS'')'
+      authors:
+      - family-names: Bivand
+        given-names: Roger
+        email: Roger.Bivand@nhh.no
+        orcid: https://orcid.org/0000-0003-2392-6140
+      - family-names: Rundel
+        given-names: Colin
+      year: '2020'
+      url: https://CRAN.R-project.org/package=rgeos
+    - type: article
+      title: 'RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic,
+        Character, and Trait Data in R'
+      authors:
+      - family-names: Boettiger
+        given-names: Carl
+      - family-names: Chamberlain
+        given-names: Scott
+      - family-names: Vos
+        given-names: Rutger
+      - family-names: Lapp
+        given-names: Hilmar
+      journal: Methods in Ecology and Evolution
+      year: '2016'
+      volume: '7'
+      doi: 10.1111/2041-210X.12469
+    - type: book
+      title: 'ggplot2: Elegant Graphics for Data Analysis'
+      authors:
+      - family-names: Wickham
+        given-names: Hadley
+      publisher:
+        name: Springer-Verlag New York
+      year: '2016'
+      isbn: 978-3-319-24277-4
+      url: https://ggplot2.tidyverse.org
+
 # Add wrong field to citation
 
     cff-version: 1.2.0

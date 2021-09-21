@@ -125,7 +125,7 @@ parse_desc_repository <- function(pkg) {
   repo <- clean_str(pkg$get("Repository"))
 
   # Repo is url
-  if (is.substring(repo, "^http")) {
+  if (is.url(repo)) {
     return(repo)
   }
 

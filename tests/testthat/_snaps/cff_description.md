@@ -527,3 +527,42 @@
     - credit
     - linked-data
 
+# Search package on CRAN
+
+    cff-version: 1.2.0
+    message: 'To cite package "ggplot2" in publications use:'
+    type: software
+    license: GPL-3.0-only
+    title: 'ggplot2: A Basic Description'
+    version: 0.1.6
+    abstract: A very basic description. Should parse without problems.
+    authors:
+    - family-names: Basic
+      given-names: Marc
+      email: marcbasic@gmail.com
+    preferred-citation:
+      type: manual
+      title: 'ggplot2: A Basic Description'
+      authors:
+      - family-names: Basic
+        given-names: Marc
+        email: marcbasic@gmail.com
+      version: 0.1.6
+      abstract: A very basic description. Should parse without problems.
+      repository: https://CRAN.R-project.org/package=ggplot2
+      repository-code: https://github.com/basic/package
+      url: https://basic.github.io/package
+      contact:
+      - family-names: Basic
+        given-names: Marc
+        email: marcbasic@gmail.com
+      license: GPL-3.0-only
+      year: '2021'
+    repository: https://CRAN.R-project.org/package=ggplot2
+    repository-code: https://github.com/basic/package
+    url: https://basic.github.io/package
+    contact:
+    - family-names: Basic
+      given-names: Marc
+      email: marcbasic@gmail.com
+

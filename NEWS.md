@@ -6,6 +6,7 @@
 -   Rename `cff_schema_definitions_reference()` to
     `cff_schema_definitions_refs()`.
 -   "repository" key is supported.
+-   Added vignette: `vignette("crosswalk", package = "cffr")`.
 
 # cffr 0.0.1
 

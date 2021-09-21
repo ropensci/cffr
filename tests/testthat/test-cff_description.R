@@ -130,3 +130,77 @@ test_that("Parsing r-universe", {
   expect_snapshot_output(parsed)
   expect_true(cff_validate(parsed))
 })
+
+
+test_that("Search package on CRAN", {
+  basic_path <- system.file("examples/DESCRIPTION_basic",
+    package = "cffr"
+  )
+
+  tmp <- tempfile("DESCRIPTION_basic")
+  # Create a temporary file
+  file.copy(basic_path, tmp)
+
+  newfile <- desc::desc_set("Package", "ggplot2", file = tmp)
+
+  parsed <- cff_create(tmp)
+  expect_length(parsed$repository, 1)
+  expect_equal(clean_str(newfile$get("Package")), "ggplot2")
+  expect_equal(parsed$repository, "https://CRAN.R-project.org/package=ggplot2")
+
+
+
+  expect_s3_class(parsed, "cff")
+  expect_snapshot_output(parsed)
+  expect_true(cff_validate(parsed))
+})
+
+
+test_that("Search package on r-universe", {
+  basic_path <- system.file("examples/DESCRIPTION_basic",
+    package = "cffr"
+  )
+
+  tmp <- tempfile("DESCRIPTION_basic")
+  # Create a temporary file
+  file.copy(basic_path, tmp)
+
+
+  # Get packages from my r-universe
+  dhh <- unlist(jsonlite::read_json(
+    "https://dieghernan.r-universe.dev/packages"
+  ))[1]
+
+
+  newpack <- desc::desc(tmp)
+
+  oldtitle <- clean_str(newpack$get("Package"))
+
+  newtitle <- desc::desc_set("Package", dhh, file = tmp)
+
+  expect_false(oldtitle == clean_str(newtitle$get("Package")))
+
+
+  # Configure to search on r-universe
+  newrepos <- c(
+    dieghernan = "https://dieghernan.r-universe.dev",
+    CRAN = "https://cloud.r-project.org"
+  )
+
+  runiverse <- as.data.frame(available.packages(
+    repos = newrepos
+  ))
+
+  expect_equal(
+    search_on_repos(dhh, runiverse),
+    "https://dieghernan.r-universe.dev/"
+  )
+
+
+  # Search now ggplot2, should be canonical url
+
+  expect_equal(
+    search_on_repos("ggplot2", runiverse, newrepos),
+    "https://CRAN.R-project.org/package=ggplot2"
+  )
+})

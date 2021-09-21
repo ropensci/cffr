@@ -133,19 +133,13 @@ print.cff <- function(x, ...) {
 }
 
 # c method
+# Based on c.person (utils package)
+# https://github.com/wch/r-source/blob/trunk/src/library/utils/R/citation.R
 
 #' @export
 c.cff <-
   function(..., recursive = FALSE) {
     args <- list(...)
-    if (!any(vapply(args, inherits, NA, "cff"))) {
-      warning(gettextf(
-        "method is only applicable to %s objects",
-        sQuote("cff")
-      ),
-      domain = NA
-      )
-    }
     args <- lapply(args, unclass)
     rval <- do.call("c", args)
     class(rval) <- "cff"

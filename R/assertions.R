@@ -1,4 +1,5 @@
 #' Check if a string is an email
+#' @param email The string to be evaluated
 #' @noRd
 is.email <- function(email) {
   if (is.null(email)) {
@@ -10,6 +11,7 @@ is.email <- function(email) {
 }
 
 #' Check if a string is an url
+#' @param email The url to be evaluated
 #' @noRd
 is.url <- function(url) {
   if (is.null(url)) {
