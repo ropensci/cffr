@@ -5,7 +5,7 @@ name: Clean pkgdown manually
 
 jobs:
   pkgdown-gh-pages:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -21,10 +21,6 @@ jobs:
         with:
           extra-packages: |
             pkgdown
-            devtools
-            reactable
-            tidyverse
-            scales
           needs: website
 
       - name: Deploy package
