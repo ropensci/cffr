@@ -32,8 +32,3 @@ cff_description <- function(desc_path = "DESCRIPTION", cff_version = "1.2.0") {
   list_fields <- as.cff(list_fields)
   list_fields
 }
-
-# Packages available
-avail <- as.data.frame(available.packages(
-  repos = "https://cloud.r-project.org/"
-))[, c("Package", "Repository")]

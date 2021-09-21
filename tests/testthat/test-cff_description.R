@@ -116,3 +116,17 @@ test_that("Parsing two maintainers", {
   expect_snapshot_output(parsed)
   expect_true(cff_validate(parsed))
 })
+
+test_that("Parsing r-universe", {
+  desc_path <- system.file("examples/DESCRIPTION_r_universe",
+    package = "cffr"
+  )
+
+  parsed <- cff_create(desc_path)
+
+  expect_length(parsed$repository, 1)
+
+  expect_s3_class(parsed, "cff")
+  expect_snapshot_output(parsed)
+  expect_true(cff_validate(parsed))
+})

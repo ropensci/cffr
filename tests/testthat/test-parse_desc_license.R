@@ -1,10 +1,10 @@
-test_that("Parse Licenses on CRAN (Top 50, 98% cov)", {
+test_that("Parse Licenses on CRAN (Top 10)", {
   cran_packs <- read.csv(system.file("extdata/cran_licenses.csv",
     package = "cffr"
   ))
   cran_packs <- cran_packs[order(cran_packs$n, decreasing = TRUE), ]
 
-  sel <- as.character(cran_packs[1:50, "LICENSE"])
+  sel <- as.character(cran_packs[1:10, "LICENSE"])
 
   # Tempfile DESCRIPTION that we use for modifications
   tmp <- tempfile("DESCRIPTION")

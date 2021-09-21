@@ -122,27 +122,26 @@ parse_desc_license <- function(pkg) {
 #' @noRd
 parse_desc_repository <- function(pkg) {
   name <- pkg$get("Package")
-  get <- avail[name == avail$Package, c("Repository")]
+  repo <- clean_str(pkg$get("Repository"))
 
-  get <- clean_str(get)
-
-  if (is.null(get)) {
-    return(NULL)
+  # Repo is url
+  if (is.substring(repo, "^http")) {
+    return(repo)
   }
 
-  cran_repo <- "https://cloud.r-project.org/"
-
-
-  if (length(grep(cran_repo, get) == 1)) {
-    # Canonic url to CRAN
-
-    repos <- paste0("https://cran.r-project.org/package=", name)
-    return(repos)
+  # Repo is CRAN
+  # Canonic url to CRAN
+  if (is.substring(repo, "^CRAN$")) {
+    return(
+      paste0("https://cran.r-project.org/package=", name)
+    )
   }
 
-  repos <- gsub("src/contrib$", "", get)
+  # If not, search on installed repos
 
-  repos
+  repourl <- search_on_repos(name)
+
+  return(repourl)
 }
 
 #' Mapped to Package & Title

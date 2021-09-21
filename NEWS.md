@@ -5,6 +5,7 @@
 -   Auto-generating `preferred-citation` key from DESCRIPTION.
 -   Rename `cff_schema_definitions_reference()` to
     `cff_schema_definitions_refs()`.
+-   "repository" key is supported.
 
 # cffr 0.0.1
 

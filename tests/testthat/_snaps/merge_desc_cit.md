@@ -456,6 +456,71 @@
 ---
 
     cff-version: 1.2.0
+    message: 'To cite package "codemetar" in publications use:'
+    type: software
+    title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
+    version: 0.3.2
+    authors:
+    - family-names: Boettiger
+      given-names: Carl
+      email: cboettig@gmail.com
+      orcid: https://orcid.org/0000-0002-1642-628X
+    - family-names: Salmon
+      given-names: Maëlle
+      orcid: https://orcid.org/0000-0002-2815-0399
+    abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
+      metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
+      to generate, parse, and modify 'codemeta.json' files automatically for R packages,
+      as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
+    repository: https://ropensci.r-universe.dev
+    repository-code: https://github.com/ropensci/codemetar
+    url: https://docs.ropensci.org/codemetar/
+    contact:
+    - family-names: Boettiger
+      given-names: Carl
+      email: cboettig@gmail.com
+      orcid: https://orcid.org/0000-0002-1642-628X
+    keywords:
+    - metadata
+    - codemeta
+    - ropensci
+    - citation
+    - credit
+    - linked-data
+    license: GPL-3.0-only
+    doi: 10.1111/2041-210X.12469
+    preferred-citation:
+      type: article
+      title: 'RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic,
+        Character, and Trait Data in R'
+      authors:
+      - family-names: Boettiger
+        given-names: Carl
+      - family-names: Chamberlain
+        given-names: Scott
+      - family-names: Vos
+        given-names: Rutger
+      - family-names: Lapp
+        given-names: Hilmar
+      journal: Methods in Ecology and Evolution
+      year: '2016'
+      volume: '7'
+      doi: 10.1111/2041-210X.12469
+    references:
+    - type: book
+      title: 'ggplot2: Elegant Graphics for Data Analysis'
+      authors:
+      - family-names: Wickham
+        given-names: Hadley
+      publisher:
+        name: Springer-Verlag New York
+      year: '2016'
+      isbn: 978-3-319-24277-4
+      url: https://ggplot2.tidyverse.org
+
+---
+
+    cff-version: 1.2.0
     message: 'To cite package "rgeos" in publications use:'
     type: software
     title: 'rgeos: Interface to Geometry Engine - Open Source (''GEOS'')'

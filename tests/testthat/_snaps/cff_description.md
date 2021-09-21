@@ -457,3 +457,73 @@
       given-names: Jane
       email: email2@email.edu
 
+# Parsing r-universe
+
+    cff-version: 1.2.0
+    message: 'To cite package "codemetar" in publications use:'
+    type: software
+    license: GPL-3.0-only
+    title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
+    version: 0.3.2
+    abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
+      metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
+      to generate, parse, and modify 'codemeta.json' files automatically for R packages,
+      as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
+    authors:
+    - family-names: Boettiger
+      given-names: Carl
+      email: cboettig@gmail.com
+      orcid: https://orcid.org/0000-0002-1642-628X
+    - family-names: Salmon
+      given-names: Maëlle
+      orcid: https://orcid.org/0000-0002-2815-0399
+    preferred-citation:
+      type: manual
+      title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
+      authors:
+      - family-names: Boettiger
+        given-names: Carl
+        email: cboettig@gmail.com
+        orcid: https://orcid.org/0000-0002-1642-628X
+      - family-names: Salmon
+        given-names: Maëlle
+        orcid: https://orcid.org/0000-0002-2815-0399
+      version: 0.3.2
+      abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
+        metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
+        to generate, parse, and modify 'codemeta.json' files automatically for R packages,
+        as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more
+        generally.
+      repository: https://ropensci.r-universe.dev
+      repository-code: https://github.com/ropensci/codemetar
+      url: https://docs.ropensci.org/codemetar/
+      contact:
+      - family-names: Boettiger
+        given-names: Carl
+        email: cboettig@gmail.com
+        orcid: https://orcid.org/0000-0002-1642-628X
+      keywords:
+      - metadata
+      - codemeta
+      - ropensci
+      - citation
+      - credit
+      - linked-data
+      license: GPL-3.0-only
+      year: '2021'
+    repository: https://ropensci.r-universe.dev
+    repository-code: https://github.com/ropensci/codemetar
+    url: https://docs.ropensci.org/codemetar/
+    contact:
+    - family-names: Boettiger
+      given-names: Carl
+      email: cboettig@gmail.com
+      orcid: https://orcid.org/0000-0002-1642-628X
+    keywords:
+    - metadata
+    - codemeta
+    - ropensci
+    - citation
+    - credit
+    - linked-data
+
