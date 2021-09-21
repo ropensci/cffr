@@ -60,7 +60,7 @@
         operations that previously succeeded. From ''GEOS'' 3.8.0, repair of geometries
         may also be attempted using ''gMakeValid()'', which may, however, return a collection
         of geometries of different types.'
-      repository: https://cran.r-project.org/package=rgeos
+      repository: https://CRAN.R-project.org/package=rgeos
       repository-code: https://r-forge.r-project.org/projects/rgeos/
       url: https://trac.osgeo.org/geos/
       identifiers:
@@ -74,7 +74,7 @@
         orcid: https://orcid.org/0000-0003-2392-6140
       license: GPL-2.0-or-later
       year: '2020'
-    repository: https://cran.r-project.org/package=rgeos
+    repository: https://CRAN.R-project.org/package=rgeos
     repository-code: https://r-forge.r-project.org/projects/rgeos/
     url: https://trac.osgeo.org/geos/
     date-released: '2020-09-07'

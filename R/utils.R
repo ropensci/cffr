@@ -52,7 +52,7 @@ search_on_repos <- function(name) {
   repos <- detect_repos()
 
 
-  get <- avail[name == avail$Package, c("Repository")]
+  get <- avail[name == avail$Package, "Repository"]
 
   get <- clean_str(get)
 
@@ -67,7 +67,7 @@ search_on_repos <- function(name) {
   if (length(grep(cran_repo, get) == 1)) {
     # Canonic url to CRAN
 
-    repos <- paste0("https://cran.r-project.org/package=", name)
+    repos <- paste0("https://CRAN.R-project.org/package=", name)
     return(repos)
   }
 
@@ -90,7 +90,7 @@ detect_repos <- function() {
 }
 
 
-# Load this one per session
+# Load this once per session
 avail <- as.data.frame(available.packages(
   repos = detect_repos(),
 ))[, c("Package", "Repository")]

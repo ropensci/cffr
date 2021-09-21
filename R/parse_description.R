@@ -118,7 +118,7 @@ parse_desc_license <- function(pkg) {
   license_char
 }
 
-#' Try to get from CRAN
+#' Try to get Repository
 #' @noRd
 parse_desc_repository <- function(pkg) {
   name <- pkg$get("Package")
@@ -133,7 +133,7 @@ parse_desc_repository <- function(pkg) {
   # Canonic url to CRAN
   if (is.substring(repo, "^CRAN$")) {
     return(
-      paste0("https://cran.r-project.org/package=", name)
+      paste0("https://CRAN.R-project.org/package=", name)
     )
   }
 
