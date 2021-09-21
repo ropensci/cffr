@@ -44,7 +44,7 @@ cff(system.file("examples/CITATION_basic.cff",
 
 # Use custom params
 test <- cff(
-  message = "A blank file",
+  title = "Manipulating files",
   keywords = c("A", "new", "list", "of", "keywords"),
   authors = list(cff_parse_person("New author"))
 )
@@ -57,17 +57,24 @@ cff_validate(test)
 # Modify with cff_create
 new <- cff_create(test, keys = list(
   "cff-version" = "1.2.0",
-  title = "Manipulating files"
+  message = "A blank file"
 ))
 new
 
 # Would pass
 cff_validate(new)
 
-as.cff(list(
+
+# Convert a list to "cff" object
+cffobj <- as.cff(list(
   "cff-version" = "1.2.0",
   title = "Manipulating files"
 ))
+
+class(cffobj)
+
+# Nice display thanks to yaml package
+cffobj
 }
 \seealso{
 Other core functions: 

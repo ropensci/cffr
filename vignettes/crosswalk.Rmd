@@ -22,15 +22,17 @@ library(cffr)
 
 ```
 
-The goal of this vignette is to provide clarity on how **cffr** extracts the
-metadata of a package and parse it to a valid `CITATION.cff` file.
+The goal of this vignette is to provide an explicit map between the metadata
+fields used by **cffr** and each one of the valid keys of the 
+[Citation File Format schema version
+1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#valid-keys).
 
 
 ## Summary
 
 we summarize here the fields that **cffr** can parse and the original source of
 information for each one of them. The details on each key are presented on the
-next section of the document. The assessment of fields are based om the [Guide
+next section of the document. The assessment of fields are based on the [Guide
 to Citation File Format schema version
 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#valid-keys) [@Druskat_Citation_File_Format_2021].
 
@@ -81,7 +83,7 @@ knitr::kable(df, escape = FALSE)
 
 This key is extracted from the "Description" field of the DESCRIPTION file.
 
-<details><summary>Example</summary>
+<details><summary><strong>Example</strong></summary>
 
 
 ```{r abstract}
@@ -103,12 +105,14 @@ cat(pkg$get("Description"))
 
 </details>
 
+[Back to summary](#summary).
+
 ### authors
 
 This key is parsed from the "Authors" or "Authors\@R" field of the DESCRIPTION
 file. Only persons with the role "aut" or "cre" are considered.
 
-<details><summary>Example</summary>
+<details><summary><strong>Example</strong></summary>
 
 ```{r authors}
 
@@ -126,12 +130,14 @@ authors[vapply(authors, function(x) {
 
 </details>
 
+[Back to summary](#summary).
+
 ### cff-version
 
 This value can be set via the parameters of the `cff_create()`/`cff_write()`
 functions:
 
-<details><summary>Example</summary>
+<details><summary><strong>Example</strong></summary>
 
 ```{r cffversion}
 
@@ -141,6 +147,8 @@ cat(cff_objv110$`cff-version`)
 ```
 
 </details>
+
+[Back to summary](#summary).
 
 ### commit
 
@@ -159,12 +167,15 @@ to CFF schema v1.2.0](https://github.com/citation-file-format/citation-file-form
 >
 
 
+[Back to summary](#summary).
+
+
 ### contact
 
 This key is parsed from the "Authors" or "Authors\@R" field of the DESCRIPTION
 file. Only persons with the role "cre" (i.e, the maintainer(s)) are considered.
 
-<details><summary>Example</summary>
+<details><summary><strong>Example</strong></summary>
 
 ```{r contact}
 
@@ -173,11 +184,12 @@ pkg <- desc::desc(file.path(find.package("rmarkdown"), "DESCRIPTION"))
 
 cff_obj$contact
 
-authors[vapply(authors, function(x) {
-  "cre" %in% x$role
-}, logical(1))]
+pkg$get_author()
 ```
 </details>
+
+
+[Back to summary](#summary).
 
 ### date-released
 
@@ -185,7 +197,7 @@ This key is parsed from the "Date" field or, if not present, from the
 "Date/Publication" field that is present on packages built on CRAN.
 
 
-<details><summary>Example</summary>
+<details><summary><strong>Example</strong></summary>
 
 
 ```{r date-released}
@@ -195,8 +207,13 @@ This key is parsed from the "Date" field or, if not present, from the
 cff_obj <- cff_create("rmarkdown")
 pkg <- desc::desc(file.path(find.package("rmarkdown"), "DESCRIPTION"))
 
-pkg$get("Date/Publication")
-cff_obj$`date-released`
+
+cat(pkg$get("Date/Publication"))
+
+
+cat(cff_obj$`date-released`)
+
+
 
 # A DESCRIPTION file without a Date
 nodate <- system.file("examples/DESCRIPTION_basic", package = "cffr")
@@ -210,7 +227,7 @@ pkgnodate <- desc::desc(tmp)
 cffnodate <- cff_create(tmp)
 
 # Won't appear
-cffnodate$`date-released`
+cat(cffnodate$`date-released`)
 
 pkgnodate
 
@@ -218,29 +235,33 @@ pkgnodate
 
 desc::desc_set("Date", "1999-01-01", file = tmp)
 
-cff_create(tmp)$`date-released`
+cat(cff_create(tmp)$`date-released`)
 ```
 </details>
 
+
+[Back to summary](#summary).
 
 ### doi
 
 This key is parsed from the "doi" field of the 
 [preferred-citation](#preferred-citation) object.
 
-<details><summary>Example</summary>
+<details><summary><strong>Example</strong></summary>
 
 ```{r doi}
 
 cff_doi <- cff_create("cffr")
 
-cff_doi$doi
+cat(cff_doi$doi)
 
-cff_doi$`preferred-citation`$doi
+cat(cff_doi$`preferred-citation`$doi)
 ```
 
 </details>
 
+
+[Back to summary](#summary).
 
 ### identifiers
 
@@ -251,19 +272,25 @@ This key includes all the possible identifiers of the package:
 and the identifiers (if any) not included in the "identifiers" key of 
 [preferred-citation](#preferred-citation).
 
-<details><summary>Example</summary>
+<details><summary><strong>Example</strong></summary>
 
 ```{r identifiers}
 file <- system.file("examples/DESCRIPTION_many_urls", package = "cffr")
 
 pkg <- desc::desc(file)
-pkg$get_urls()
+
+cat(pkg$get_urls())
 
 cat(cff_create(file)$url)
+
 cat(cff_create(file)$`repository-code`)
+
 cff_create(file)$identifiers
 ```
 </details>
+
+
+[Back to summary](#summary).
 
 ### keywords
 
@@ -275,7 +302,7 @@ X-schema.org-keywords: keyword1, keyword2, keyword3
 
 ```
 
-<details><summary>Example</summary>
+<details><summary><strong>Example</strong></summary>
 
 ```{r keyword}
 
@@ -291,7 +318,7 @@ pkgnokeywords <- desc::desc(tmp2)
 cffnokeywords <- cff_create(tmp2)
 
 # Won't appear
-cffnokeywords$keywords
+cat(cffnokeywords$keywords)
 
 pkgnokeywords
 
@@ -299,33 +326,38 @@ pkgnokeywords
 
 desc::desc_set("X-schema.org-keywords", "keyword1, keyword2, keyword3", file = tmp2)
 
-cff_create(tmp2)$keywords
+cat(cff_create(tmp2)$keywords)
 ```
 
 
 </details>
 
 
+[Back to summary](#summary).
+
 ### license
 
 This key is extracted from the "License" field of the DESCRIPTION file.
 
-<details><summary>Example</summary>
+<details><summary><strong>Example</strong></summary>
 
 
 ```{r license}
 
 cff_obj <- cff_create("yaml")
 
-cff_obj$license
+cat(cff_obj$license)
 
 pkg <- desc::desc(file.path(find.package("yaml"), "DESCRIPTION"))
 
-pkg$get("License")
+cat(pkg$get("License"))
 ```
 
 
 </details>
+
+
+[Back to summary](#summary).
 
 ### license-url
 
@@ -343,6 +375,9 @@ to CFF schema v1.2.0](https://github.com/citation-file-format/citation-file-form
 >     ```
 
 
+
+[Back to summary](#summary).
+
 ### message
 
 This key is extracted from the DESCRIPTION field, specifically as:
@@ -355,14 +390,16 @@ msg <- paste0(
 )
 ```
 
-<details><summary>Example</summary>
+<details><summary><strong>Example</strong></summary>
 
 
 ```{r message}
 
-cff_create("jsonlite")$message
+cat(cff_create("jsonlite")$message)
 ```
 </details>
+
+[Back to summary](#summary).
 
 ### preferred-citation
 
@@ -371,7 +408,7 @@ provided, it would select the first citation as the "preferred-citation" and
 the rest of them as [references](#references).
 
 
-<details><summary>Example</summary>
+<details><summary><strong>Example</strong></summary>
 
 
 ```{r preferred-citation}
@@ -385,6 +422,9 @@ citation("rmarkdown")[1]
 </details>
 
 
+
+[Back to summary](#summary).
+
 ### references
 
 This key is extracted from the CITATION file if several references are 
@@ -392,7 +432,7 @@ provided. The first citation is considered as the
 [preferred-citation](#preferred-citation) and the rest of them as "references".
 
 
-<details><summary>Example</summary>
+<details><summary><strong>Example</strong></summary>
 
 
 ```{r references}
@@ -401,10 +441,13 @@ cffobj <- cff_create("rmarkdown")
 
 cffobj$references
 
-print(citation("rmarkdown")[-1], bibtex = TRUE)
+citation("rmarkdown")[-1]
 ```
 </details>
 
+
+
+[Back to summary](#summary).
 
 ### repository
 
@@ -419,7 +462,7 @@ If **cffr** detects that the package is available on CRAN, it would return
 the canonical url form of the package 
 (i.e. <https://CRAN.R-project.org/package=jsonlite>).
 
-<details><summary>Example</summary>
+<details><summary><strong>Example</strong></summary>
 
 ```{r repository}
 
@@ -427,14 +470,14 @@ the canonical url form of the package
 
 inst <- cff_create("jsonlite")
 
-inst$repository
+cat(inst$repository)
 
 # Demo file downloaded from the r-universe
 
 runiv <- system.file("examples/DESCRIPTION_r_universe", package = "cffr")
 runiv_cff <- cff_create(runiv)
 
-runiv_cff$repository
+cat(runiv_cff$repository)
 
 desc::desc(runiv)$get("Repository")
 
@@ -445,19 +488,18 @@ norepo <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 # No repo
 norepo_cff <- cff_create(norepo)
 
-norepo_cff[["repository"]]
+cat(norepo_cff[["repository"]])
 
-# Change the name to a known package
-# Create a temporary file
+# Change the name to a known package on CRAN: ggplot2
+
 tmp <- tempfile("DESCRIPTION")
 file.copy(norepo, tmp)
 
 
-# Change name to a package on CRAN
-
+# Change name
 desc::desc_set("Package", "ggplot2", file = tmp)
 
-cff_create(tmp)[["repository"]]
+cat(cff_create(tmp)[["repository"]])
 
 # Show what happens if another repo is set
 
@@ -478,7 +520,7 @@ unloadNamespace("cffr")
 library(cffr)
 
 
-cff_create(tmp)[["repository"]]
+cat(cff_create(tmp)[["repository"]])
 
 # Now it is the tidyverse repo, due to our new config!
 
@@ -490,6 +532,7 @@ getOption("repos")
 </details>
 
 
+[Back to summary](#summary).
 
 ### repository-artifact
 
@@ -506,6 +549,8 @@ to CFF schema v1.2.0](https://github.com/citation-file-format/citation-file-form
 >     ```
 
 
+[Back to summary](#summary).
+
 ### repository-code
 
 This key is extracted from the "BugReports" or "URL" fields on the 
@@ -518,7 +563,7 @@ on the following repositories:
  - [Bitbucket](https://bitbucket.org/).
 
 
-<details><summary>Example</summary>
+<details><summary><strong>Example</strong></summary>
 
 ```{r repository-code}
 
@@ -531,7 +576,8 @@ cff_create("jsonlite")$`repository-code`
 # GitLab
 
 gitlab <- system.file("examples/DESCRIPTION_gitlab", package = "cffr")
-cff_create(gitlab)$`repository-code`
+
+cat(cff_create(gitlab)$`repository-code`)
 
 
 # Check
@@ -540,6 +586,8 @@ desc::desc(gitlab)
 ```
 </details>
 
+
+[Back to summary](#summary).
 
 ### title
 
@@ -555,16 +603,18 @@ title <- paste0(
 ```
 
 
-<details><summary>Example</summary>
+<details><summary><strong>Example</strong></summary>
 
 ```{r title}
 
 # Installed package
 
-cff_create("testthat")$title
+cat(cff_create("testthat")$title)
 ```
 </details>
 
+
+[Back to summary](#summary).
 
 ### type
 
@@ -572,20 +622,23 @@ Fixed value equal to "software". The other possible value is "dataset". See the
 description on the [Guide
 to CFF schema v1.2.0]https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#type).
 
+
+[Back to summary](#summary).
+
 ### url
 
 This key is extracted from the "BugReports" or "URL" fields on the 
 DESCRIPTION file. It corresponds to the first url that is different to
 [repository-code](#repository-code).
 
-<details><summary>Example</summary>
+<details><summary><strong>Example</strong></summary>
 
 ```{r url}
 
 # Many urls
 manyurls <- system.file("examples/DESCRIPTION_many_urls", package = "cffr")
 
-cff_create(manyurls)$url
+cat(cff_create(manyurls)$url)
 
 # Check
 
@@ -593,6 +646,8 @@ desc::desc(manyurls)
 ```
 </details>
 
+
+[Back to summary](#summary).
 
 ### version
 
@@ -603,8 +658,11 @@ DESCRIPTION file.
 ```{r version}
 
 # Should be (>= 3.0.0)
-cff_create("testthat")$version
+cat(cff_create("testthat")$version)
 ```
 
+
+
+[Back to summary](#summary).
 
 ## References

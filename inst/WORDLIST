@@ -1,4 +1,6 @@
+Bitbucket
 Bliven
+BugReports
 CFF
 CMD
 Chue
@@ -6,6 +8,7 @@ CodeFactor
 DOI
 Druskat
 Egon
+GitLab
 Haines
 Jurriaan
 Konovalov
@@ -26,11 +29,14 @@ codemeta
 codemetar
 coercible
 doi
+dois
 et
 handlr
 https
 json
+jsonlite
 param
 parsers
+repo
 rmarkdown
 zenodo
