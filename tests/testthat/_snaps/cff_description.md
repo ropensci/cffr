@@ -527,6 +527,69 @@
     - credit
     - linked-data
 
+# Parsing Bioconductor
+
+    cff-version: 1.2.0
+    message: 'To cite package "GenomicRanges" in publications use:'
+    type: software
+    license: Artistic-2.0
+    title: 'GenomicRanges: Representation and manipulation of genomic intervals'
+    version: 1.44.0
+    abstract: The ability to efficiently represent and manipulate genomic annotations
+      and alignments is playing a central role when it comes to analyzing high-throughput
+      sequencing data (a.k.a. NGS data). The GenomicRanges package defines general purpose
+      containers for storing and manipulating genomic intervals and variables defined
+      along a genome. More specialized containers for representing and manipulating short
+      alignments against a reference genome, or a matrix-like summarization of an experiment,
+      are defined in the GenomicAlignments and SummarizedExperiment packages, respectively.
+      Both packages build on top of the GenomicRanges infrastructure.
+    authors:
+    - name: Bioconductor Package Maintainer
+      email: maintainer@bioconductor.org
+    - family-names: Aboyoun
+      given-names: P.
+    - family-names: Pagès
+      given-names: H.
+    - family-names: Lawrence
+      given-names: M.
+    preferred-citation:
+      type: manual
+      title: 'GenomicRanges: Representation and manipulation of genomic intervals'
+      authors:
+      - name: Bioconductor Package Maintainer
+        email: maintainer@bioconductor.org
+      - family-names: Aboyoun
+        given-names: P.
+      - family-names: Pagès
+        given-names: H.
+      - family-names: Lawrence
+        given-names: M.
+      version: 1.44.0
+      abstract: The ability to efficiently represent and manipulate genomic annotations
+        and alignments is playing a central role when it comes to analyzing high-throughput
+        sequencing data (a.k.a. NGS data). The GenomicRanges package defines general purpose
+        containers for storing and manipulating genomic intervals and variables defined
+        along a genome. More specialized containers for representing and manipulating
+        short alignments against a reference genome, or a matrix-like summarization of
+        an experiment, are defined in the GenomicAlignments and SummarizedExperiment packages,
+        respectively. Both packages build on top of the GenomicRanges infrastructure.
+      repository: https://bioconductor.org/
+      repository-code: https://github.com/Bioconductor/GenomicRanges
+      url: https://bioconductor.org/packages/GenomicRanges
+      date-released: '2021-05-19'
+      contact:
+      - name: Bioconductor Package Maintainer
+        email: maintainer@bioconductor.org
+      license: Artistic-2.0
+      year: '2021'
+    repository: https://bioconductor.org/
+    repository-code: https://github.com/Bioconductor/GenomicRanges
+    url: https://bioconductor.org/packages/GenomicRanges
+    date-released: '2021-05-19'
+    contact:
+    - name: Bioconductor Package Maintainer
+      email: maintainer@bioconductor.org
+
 # Search package on CRAN
 
     cff-version: 1.2.0

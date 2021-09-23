@@ -132,6 +132,24 @@ test_that("Parsing r-universe", {
 })
 
 
+test_that("Parsing Bioconductor", {
+  desc_path <- system.file("examples/DESCRIPTION_bioconductor",
+    package = "cffr"
+  )
+
+  parsed <- cff_create(desc_path)
+
+  expect_length(parsed$repository, 1)
+  expect_equal(
+    parsed$contact[[1]]$name,
+    "Bioconductor Package Maintainer"
+  )
+
+  expect_s3_class(parsed, "cff")
+  expect_snapshot_output(parsed)
+  expect_true(cff_validate(parsed))
+})
+
 test_that("Search package on CRAN", {
   basic_path <- system.file("examples/DESCRIPTION_basic",
     package = "cffr"

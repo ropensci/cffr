@@ -19,7 +19,6 @@ knitr::opts_chunk$set(
 )
 
 library(cffr)
-
 ```
 
 The goal of this vignette is to provide an explicit map between the metadata
@@ -457,6 +456,12 @@ CRAN or the [r-universe](https://r-universe.dev/)). For packages without this
 field on the DESCRIPTION (that is the typical case for an in-development
 package), **cffr** would try to search the package on any of the 
 default repositories specified on  `options("repos")`.
+
+In the case of [Bioconductor](https://bioconductor.org/) packages, those are
+identified if a
+["biocViews"](http://contributions.bioconductor.org/description.html#biocviews)
+is present on the DESCRIPTION file.
+
 
 If **cffr** detects that the package is available on CRAN, it would return
 the canonical url form of the package 

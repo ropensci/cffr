@@ -48,6 +48,20 @@ cff_parse_person <- function(person) {
     return(person)
   }
 
+  # Special case for Bioconductor
+
+  if (is.substring(person$given, "Bioconductor")) {
+    person <- person(
+      given = paste(
+        clean_str(person$given),
+        clean_str(person$family)
+      ),
+      email = person$email,
+      role = person$role,
+      comment = person$comment
+    )
+  }
+
   # Guess if entity of person.
   is_entity <- is.null(person$family) || is.null(person$given)
 

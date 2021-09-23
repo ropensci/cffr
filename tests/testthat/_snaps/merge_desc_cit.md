@@ -149,6 +149,68 @@
 ---
 
     cff-version: 1.2.0
+    message: 'To cite package "GenomicRanges" in publications use:'
+    type: software
+    title: 'GenomicRanges: Representation and manipulation of genomic intervals'
+    version: 1.44.0
+    authors:
+    - name: Bioconductor Package Maintainer
+      email: maintainer@bioconductor.org
+    - family-names: Aboyoun
+      given-names: P.
+    - family-names: Pagès
+      given-names: H.
+    - family-names: Lawrence
+      given-names: M.
+    abstract: The ability to efficiently represent and manipulate genomic annotations
+      and alignments is playing a central role when it comes to analyzing high-throughput
+      sequencing data (a.k.a. NGS data). The GenomicRanges package defines general purpose
+      containers for storing and manipulating genomic intervals and variables defined
+      along a genome. More specialized containers for representing and manipulating short
+      alignments against a reference genome, or a matrix-like summarization of an experiment,
+      are defined in the GenomicAlignments and SummarizedExperiment packages, respectively.
+      Both packages build on top of the GenomicRanges infrastructure.
+    repository: https://bioconductor.org/
+    repository-code: https://github.com/Bioconductor/GenomicRanges
+    url: https://bioconductor.org/packages/GenomicRanges
+    date-released: '2021-05-19'
+    contact:
+    - name: Bioconductor Package Maintainer
+      email: maintainer@bioconductor.org
+    license: Artistic-2.0
+    doi: 10.1111/2041-210X.12469
+    preferred-citation:
+      type: article
+      title: 'RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic,
+        Character, and Trait Data in R'
+      authors:
+      - family-names: Boettiger
+        given-names: Carl
+      - family-names: Chamberlain
+        given-names: Scott
+      - family-names: Vos
+        given-names: Rutger
+      - family-names: Lapp
+        given-names: Hilmar
+      journal: Methods in Ecology and Evolution
+      year: '2016'
+      volume: '7'
+      doi: 10.1111/2041-210X.12469
+    references:
+    - type: book
+      title: 'ggplot2: Elegant Graphics for Data Analysis'
+      authors:
+      - family-names: Wickham
+        given-names: Hadley
+      publisher:
+        name: Springer-Verlag New York
+      year: '2016'
+      isbn: 978-3-319-24277-4
+      url: https://ggplot2.tidyverse.org
+
+---
+
+    cff-version: 1.2.0
     message: 'To cite package "codemetar" in publications use:'
     type: software
     title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'

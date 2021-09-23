@@ -129,6 +129,14 @@ parse_desc_repository <- function(pkg) {
     return(repo)
   }
 
+  # Check if Bioconductor
+  # biocViews is required in Bioconductor packages
+  # http://contributions.bioconductor.org/description.html#biocviews
+  if (!is.null(clean_str(pkg$get("biocViews")))) {
+    return("https://bioconductor.org/")
+  }
+
+
   # Repo is CRAN
   # Canonic url to CRAN
   if (is.substring(repo, "^CRAN$")) {
