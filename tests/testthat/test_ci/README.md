@@ -2,9 +2,9 @@
 
 **This folder is `.Rbuildignored`**.
 
-This test validates the `cff` parsing for \>5000 packages:
+This test validates the `cff` parsing for \>1500 packages:
 
--   All the packages of every [CRAN Task
+-   Core packages of every [CRAN Task
     Views](https://cran.r-project.org/web/views/) and their dependencies.
 -   All the packages available in the [rOpenSci
     r-universe](https://ropensci.r-universe.dev/) and their dependencies.

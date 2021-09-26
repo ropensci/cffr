@@ -33,7 +33,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
-          cache-version: 901
+          cache-version: 10
           extra-packages: |
             devtools
             remotes
@@ -55,8 +55,7 @@ jobs:
           })
 
           packs <- dplyr::bind_rows(packs)
-          #core <- dplyr::filter(packs, core == TRUE)
-          core <- packs
+          core <- dplyr::filter(packs, core == TRUE)
 
           # rOpenSci packages from r-universe
 
