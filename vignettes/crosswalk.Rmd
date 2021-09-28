@@ -265,11 +265,13 @@ cat(cff_doi$`preferred-citation`$doi)
 ### identifiers
 
 This key includes all the possible identifiers of the package:
--  From the DESCRIPTION field, it includes all the urls not included in
-   [url](#url) or [repository-code](#repository-code).
-- From the CITATION file, it includes all the dois not included in [doi](#doi)
-and the identifiers (if any) not included in the "identifiers" key of 
-[preferred-citation](#preferred-citation).
+  
+  - From the DESCRIPTION field, it includes all the urls not included in
+    [url](#url) or [repository-code](#repository-code).
+  
+  - From the CITATION file, it includes all the dois not included in [doi](#doi)
+    and the identifiers (if any) not included in the "identifiers" key of 
+    [preferred-citation](#preferred-citation).
 
 <details><summary><strong>Example</strong></summary>
 
@@ -624,8 +626,8 @@ cat(cff_create("testthat")$title)
 ### type
 
 Fixed value equal to "software". The other possible value is "dataset". See the
-description on the [Guide
-to CFF schema v1.2.0]https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#type).
+description on the 
+[Guide to CFF schema v1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#type).
 
 
 [Back to summary](#summary).
