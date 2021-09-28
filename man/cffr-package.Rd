@@ -8,11 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-The Citation File Format version 1.2.0 (Druskat, S. et al.
-    (2021) <doi:10.5281/zenodo.5171937>) is a human and machine readable
-    file format which provides citation metadata for software. This
-    package provides core utilities to generate and validate this
-    metadata.
+The Citation File Format version 1.2.0 (Druskat, S. et al. (2021) <doi:10.5281/zenodo.5171937>) is a human and machine readable file format which provides citation metadata for software. This package provides core utilities to generate and validate this metadata.
 }
 \seealso{
 Useful links:

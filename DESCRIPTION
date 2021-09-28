@@ -2,10 +2,7 @@ Package: cffr
 Title: Generate Citation File Format ('cff') Metadata for R Packages
 Version: 0.0.1.9003
 Authors@R: 
-    person(given = "Diego",
-           family = "Hernangómez",
-           role = c("aut", "cre"),
-           email = "diego.hernangomezherrero@gmail.com",
+    person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8457-4658"))
 Description: The Citation File Format version 1.2.0 (Druskat, S. et al.
     (2021) <doi:10.5281/zenodo.5171937>) is a human and machine readable
