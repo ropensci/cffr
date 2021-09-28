@@ -29,7 +29,7 @@ fields used by **cffr** and each one of the valid keys of the
 
 ## Summary
 
-we summarize here the fields that **cffr** can parse and the original source of
+We summarize here the fields that **cffr** can parse and the original source of
 information for each one of them. The details on each key are presented on the
 next section of the document. The assessment of fields are based on the [Guide
 to Citation File Format schema version
@@ -133,7 +133,7 @@ authors[vapply(authors, function(x) {
 
 ### cff-version
 
-This value can be set via the parameters of the `cff_create()`/`cff_write()`
+This key can be set via the parameters of the `cff_create()`/`cff_write()`
 functions:
 
 <details><summary><strong>Example</strong></summary>
@@ -151,7 +151,7 @@ cat(cff_objv110$`cff-version`)
 
 ### commit
 
-This value is not extracted from the metadata of the package. See the
+This key is not extracted from the metadata of the package. See the
 description on the [Guide
 to CFF schema v1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#commit).
 
