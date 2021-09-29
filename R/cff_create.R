@@ -123,8 +123,8 @@ cff_create <- function(x = ".", keys = NULL,
 
       # Parse citation from installation
       citobj <- lapply(citation(x), cff_parse_citation)
-      citobj <- drop_null(citobj)
       if (length(citobj) == 0) citobj <- NULL
+      citobj <- drop_null(citobj)
     } else if (x == ".") {
 
       # In development package
@@ -134,8 +134,8 @@ cff_create <- function(x = ".", keys = NULL,
       if (file.exists(cit_path)) {
         citobj <- parse_r_citation(desc_path, cit_path)
         citobj <- lapply(citobj, cff_parse_citation)
-        citobj <- drop_null(citobj)
         if (length(citobj) == 0) citobj <- NULL
+        citobj <- drop_null(citobj)
       }
       # nocov end
     } else if (isTRUE(grep("DESCRIPTION", x) == 1)) {
@@ -164,10 +164,9 @@ cff_create <- function(x = ".", keys = NULL,
   # Additional keys
   if (!is.null(keys)) {
     keys <- keys[names(keys) %in% cff_schema_keys()]
-    cffobjend <- drop_null(cffobjend)
-
-    cffobjend <- cffobjend[setdiff(names(cffobjend), names(keys))]
-    cffobjend <- c(cffobjend, keys)
+    cffobjendmod <- cffobjend[setdiff(names(cffobjend), names(keys))]
+    cffobjend <- modifyList(cffobjendmod, keys, keep.null = FALSE)
+    cffobjend <- as.cff(cffobjend)
   }
 
 
