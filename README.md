@@ -198,6 +198,7 @@ test <- cff_create("rmarkdown")
 We can validate the result using `cff_validate()`:
 
 ``` r
+
 cff_validate(test)
 #> 
 #> cff_validate results-----
