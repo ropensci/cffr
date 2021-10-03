@@ -14,7 +14,7 @@ URL: https://dieghernan.github.io/cffr/,
     https://github.com/dieghernan/cffr
 BugReports: https://github.com/dieghernan/cffr/issues
 Depends: 
-    R (>= 3.6.0)
+    R (>= 3.3.0)
 Imports: 
     crayon (>= 1.4.1),
     desc (>= 1.3.0),
