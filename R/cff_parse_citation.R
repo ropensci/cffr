@@ -81,6 +81,7 @@ cff_parse_citation <- function(bib) {
     "inproceedings" = "proceedings",
     "manual" = "manual",
     "mastersthesis" = "thesis",
+    "misc" = "generic",
     "phdthesis" = "thesis",
     "proceedings" = "proceedings",
     "techreport" = "report",

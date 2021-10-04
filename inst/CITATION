@@ -5,7 +5,7 @@ vers = paste('R package version', meta$Version)
 
 
 citEntry(
-  entry = 'manual',
+  entry = 'misc',
   title = paste('cffr:', meta$Title),
   author = person(given = "Diego",
                   family = "Hernangómez"),
