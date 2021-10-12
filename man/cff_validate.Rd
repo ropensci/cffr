@@ -4,7 +4,7 @@
 \alias{cff_validate}
 \title{Validate a \code{CITATION.cff} file or a \code{\link{cff}} object}
 \usage{
-cff_validate(x = "./CITATION.cff")
+cff_validate(x = "CITATION.cff")
 }
 \arguments{
 \item{x}{This is expected to be either a \code{\link{cff}} object created

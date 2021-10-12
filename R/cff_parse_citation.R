@@ -165,14 +165,14 @@ cff_parse_citation <- function(bib) {
 
   bb_other <- building_other_persons(parse_cit)
 
-  newlist <- append(
+  parse_cit_result <- append(
     parse_cit[!names(parse_cit) %in% other_persons()],
     bb_other
   )
 
   # Reorder
-  newlist <- newlist[unique(c(ordernames, "identifiers"))]
-  newlist <- as.cff(newlist)
+  parse_cit_result <- parse_cit_result[unique(c(ordernames, "identifiers"))]
+  parse_cit_result <- as.cff(parse_cit_result)
 
-  newlist
+  parse_cit_result
 }
