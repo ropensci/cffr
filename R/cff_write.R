@@ -60,7 +60,7 @@ cff_write <- function(x,
                       cff_version = "1.2.0",
                       validate = TRUE) {
   # On missing use package root
-  if (missing(x)) x <- "."
+  if (missing(x)) x <- getwd()
 
   citat <- cff_create(x,
     keys = keys,

@@ -97,7 +97,8 @@
 #' cff_create(demo_file, keys = list("contact" = new_contact))
 cff_create <- function(x, keys = NULL,
                        cff_version = "1.2.0") {
-  if (missing(x)) x <- "."
+  if (missing(x)) x <- getwd()
+
 
   if (!is.cff(x) && !is.character(x)) {
     stop("x should be a cff or a character",
@@ -128,7 +129,7 @@ cff_create <- function(x, keys = NULL,
       citobj <- lapply(citation(x), cff_parse_citation)
       if (length(citobj) == 0) citobj <- NULL
       citobj <- drop_null(citobj)
-    } else if (x == ".") {
+    } else if (x == getwd()) {
 
       # In development package
       # nocov start
