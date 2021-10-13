@@ -5,7 +5,7 @@
 \title{Write a \code{CITATION.cff} file}
 \usage{
 cff_write(
-  x = ".",
+  x,
   outfile = "CITATION.cff",
   keys = NULL,
   cff_version = "1.2.0",
@@ -16,8 +16,9 @@ cff_write(
 \item{x}{The source that would be used for generating
 the \code{CITATION.cff} file. It could be:
 \itemize{
+\item A missing value. That would retrieve the DESCRIPTION
+file on your in-development package.
 \item A \code{\link{cff}} object,
-\item The path to package root (\code{"."}),
 \item The name of an installed package (\code{"jsonlite"}), or
 \item Path to a DESCRIPTION file (\code{"*/DESCRIPTION*"}).
 }}

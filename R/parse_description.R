@@ -97,17 +97,14 @@ parse_desc_license <- function(pkg) {
   split <- unlist(strsplit(licenses, " \\+ |\\+"))
 
   # Clean leading and trailing blanks
-  split <- gsub("^ | $", "", split)
-  split <- unique(split)
+  split <- unique(trimws(split))
 
   licenses_df <- data.frame(LICENSE = split)
 
   # Read mapping
-  cran_to_spdx <-
-    read.csv(system.file("extdata/cran-to-spdx.csv", package = "cffr"))
 
   # Merge
-  licenses_df <- merge(licenses_df, cran_to_spdx)
+  licenses_df <- merge(licenses_df, cffr::cran_to_spdx)
 
   # Clean results
   licenses_list <- lapply(licenses_df$SPDX, clean_str)

@@ -13,8 +13,9 @@
 #'
 #' @param x The source that would be used for generating
 #'   the [`cff`] object. It could be:
+#'   * A missing value. That would retrieve the DESCRIPTION
+#'     file on your in-development package.
 #'   * An existing [`cff`] object,
-#'   * The path to package root (`"."`),
 #'   * The name of an installed package (`"jsonlite"`), or
 #'   * Path to a DESCRIPTION file (`"*/DESCRIPTION*"`).
 #'
@@ -94,8 +95,10 @@
 #'
 #'
 #' cff_create(demo_file, keys = list("contact" = new_contact))
-cff_create <- function(x = ".", keys = NULL,
+cff_create <- function(x, keys = NULL,
                        cff_version = "1.2.0") {
+  if (missing(x)) x <- "."
+
   if (!is.cff(x) && !is.character(x)) {
     stop("x should be a cff or a character",
       call. = FALSE

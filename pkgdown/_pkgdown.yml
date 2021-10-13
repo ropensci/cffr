@@ -32,6 +32,9 @@ reference:
     desc: Helper functions to parse information.
     contents:
       - has_concept("parsers")
+  - title: Datasets
+    contents:
+      - has_keyword("datasets")
   - title: About the package
     contents:
       - cffr-package

@@ -6,23 +6,30 @@ is.email <- function(email) {
     return(FALSE)
   }
 
-  x <- grepl("@", email)
+  # See https://www.nicebread.de/validating-email-adresses-in-r/
+  x <- grepl("\\<[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\>",
+    as.character(email),
+    ignore.case = TRUE
+  )
   x
 }
 
 #' Check if a string is an url
-#' @param email The url to be evaluated
+#' @param url The url to be evaluated
 #' @noRd
 is.url <- function(url) {
   if (is.null(url)) {
     return(FALSE)
   }
 
-  x <- grepl("^http", url)
+  x <- grepl("^http://|^https://|^ftp://|sftp://", url)
   x
 }
 
 #' Check if a string contains a substring
+#'
+#' @param x string
+#' @param sub subtring to be evaluated
 #' @noRd
 is.substring <- function(x, sub) {
   if (is.null(x)) {
@@ -37,6 +44,7 @@ is.substring <- function(x, sub) {
 }
 
 #' Check if a object is cff
+#' @param x object to be evaluated
 #' @noRd
 is.cff <- function(x) {
   if (unique("cff" %in% class(x))) {
@@ -47,6 +55,7 @@ is.cff <- function(x) {
 }
 
 #' Error if it is not a cff file
+#' @param x file to be evaluated
 #' @noRd
 stopifnotcff <- function(x) {
   if (tools::file_ext(x) != "cff") {
@@ -57,6 +66,7 @@ stopifnotcff <- function(x) {
 }
 
 #' Error if file doesn't exists
+#' @param x file to be evaluated
 #' @noRd
 stopifnotexists <- function(x) {
   if (!file.exists(x)) {

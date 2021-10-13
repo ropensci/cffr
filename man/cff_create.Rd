@@ -4,14 +4,15 @@
 \alias{cff_create}
 \title{Create \code{cff} object}
 \usage{
-cff_create(x = ".", keys = NULL, cff_version = "1.2.0")
+cff_create(x, keys = NULL, cff_version = "1.2.0")
 }
 \arguments{
 \item{x}{The source that would be used for generating
 the \code{\link{cff}} object. It could be:
 \itemize{
+\item A missing value. That would retrieve the DESCRIPTION
+file on your in-development package.
 \item An existing \code{\link{cff}} object,
-\item The path to package root (\code{"."}),
 \item The name of an installed package (\code{"jsonlite"}), or
 \item Path to a DESCRIPTION file (\code{"*/DESCRIPTION*"}).
 }}

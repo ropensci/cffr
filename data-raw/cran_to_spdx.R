@@ -1,5 +1,6 @@
-## code to prepare `cran-to-spdx.csv`
-# Run on 2021-09-02
+## code to prepare `cran_to_spdx` dataset goes here
+
+# Run on 2021-10-13
 library(ggplot2)
 library(dplyr)
 
@@ -8,8 +9,8 @@ cran_packs <- as.data.frame(table(available.packages()[, "License"])) %>%
   select(LICENSE = Var1, n = Freq)
 
 # Add %
-cran_packs$porc <- round(cran_packs$n / sum(cran_packs$n), 6)
-cran_packs$cum <- cumsum(cran_packs$n) / sum(cran_packs$n)
+cran_packs$perc <- 100 * round(cran_packs$n / sum(cran_packs$n), 6)
+cran_packs$cum <- 100 * cumsum(cran_packs$n) / sum(cran_packs$n)
 
 # Write raw
 write.csv(cran_packs,
@@ -31,24 +32,38 @@ paste0(cran_packs[1:20, ]$LICENSE, collapse = " | ")
 
 lic_string <- as.character(cran_packs$LICENSE)
 
+
+
 # Split if needed
-split <- strsplit(lic_string, "\\| | \\+ |\\+")
+split <- unlist(strsplit(lic_string, "\\| | \\+ |\\+"))
 
 # Clean leading and trailing blanks
-split <- gsub("^ | $", "", split)
-split <- unique(split)
+split <- trimws(split)
+split <- sort(unique(split))
 
+split
 # Delete chunks with string FILE
 split <- split[-grep("file", split, ignore.case = TRUE)]
-split <- split[order(split)]
 
-all_licenses <- data.frame(LICENSE = split) %>%
-  write.csv2("data-raw/cran_licenses.csv", row.names = FALSE)
+
+all_licenses <- data.frame(LICENSE = split)
+
+write.csv2(all_licenses,
+  "data-raw/cran_licenses.csv",
+  row.names = FALSE
+)
 
 # Map manually on csv
 
 # Once it is done, write to inst/extdata
 
-mapping <- readr::read_csv2("data-raw/cran_licenses_mapped.csv")
+cran_to_spdx <- read.csv2("data-raw/cran_licenses_mapped.csv")
 
-readr::write_csv(mapping, "inst/extdata/cran-to-spdx.csv", na = "")
+# Check
+cran_to_spdx %>% filter(!(LICENSE %in% all_licenses$LICENSE))
+
+
+
+
+
+usethis::use_data(cran_to_spdx, overwrite = TRUE)

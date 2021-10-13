@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/dieghernan/cffr/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/cffr/actions/workflows/check-full.yaml)
-[![codecov](https://codecov.io/gh/dieghernan/cffr/branch/master/graph/badge.svg)](https://codecov.io/gh/dieghernan/cffr)
+[![codecov](https://codecov.io/gh/dieghernan/cffr/branch/master/graph/badge.svg)](https://app.codecov.io/gh/dieghernan/cffr)
 [![CITATION-cff](https://github.com/dieghernan/cffr/actions/workflows/cff-validator.yml/badge.svg)](https://github.com/dieghernan/cffr/actions/workflows/cff-validator.yml)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.5509766-blue)](https://doi.org/10.5281/zenodo.5509766)
 [![Project Status: Active – The project has reached a stable, usable
@@ -215,7 +215,7 @@ objects.
 -   [**handlr**](https://github.com/ropensci/handlr): Tool for
     converting among citation formats, including `*.cff` files. At the
     time of this writing only CFF v1.1.0 was supported (see
-    [\#24](https://github.com/ropensci/handlr/issues/24)).
+    [#24](https://github.com/ropensci/handlr/issues/24)).
 -   [**codemeta**](https://github.com/cboettig/codemeta)/
     [**codemetar**](https://github.com/ropensci/codemetar) provides
     similar solutions for creating `codemeta.json` file, another format
@@ -231,7 +231,7 @@ print(citation("cffr"), bibtex = TRUE)
 #> To cite cffr in publications use:
 #> 
 #>   Hernangómez, D. (2021). cffr: Generate Citation File Format ('cff')
-#>   Metadata for R Packages. R package version 0.0.1.9003.
+#>   Metadata for R Packages. R package version 0.0.1.9004.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
@@ -239,7 +239,7 @@ print(citation("cffr"), bibtex = TRUE)
 #>     title = {cffr: Generate Citation File Format ('cff') Metadata for R Packages},
 #>     author = {Diego Hernangómez},
 #>     year = {2021},
-#>     note = {R package version 0.0.1.9003},
+#>     note = {R package version 0.0.1.9004},
 #>     doi = {10.5281/zenodo.5509766},
 #>     url = {https://dieghernan.github.io/cffr/},
 #>   }

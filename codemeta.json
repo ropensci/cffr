@@ -4,11 +4,11 @@
   "identifier": "cffr",
   "description": "The Citation File Format version 1.2.0 (Druskat, S. et al. (2021) <doi:10.5281/zenodo.5171937>) is a human and machine readable file format which provides citation metadata for software. This package provides core utilities to generate and validate this metadata.",
   "name": "cffr: Generate Citation File Format ('cff') Metadata for R Packages",
-  "codeRepository": "https://github.com/dieghernan/cffr",
   "relatedLink": "https://dieghernan.github.io/cffr/",
+  "codeRepository": "https://github.com/dieghernan/cffr",
   "issueTracker": "https://github.com/dieghernan/cffr/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.1.9003",
+  "version": "0.0.1.9004",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -147,7 +147,7 @@
     "SystemRequirements": null
   },
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata"],
-  "fileSize": "726.379KB",
+  "fileSize": "806.64KB",
   "citation": [
     {
       "@type": "CreativeWork",
@@ -162,7 +162,7 @@
       "name": "cffr: Generate Citation File Format ('cff') Metadata for R Packages",
       "identifier": "10.5281/zenodo.5509766",
       "url": "https://dieghernan.github.io/cffr/",
-      "description": "R package version 0.0.1.9003",
+      "description": "R package version 0.0.1.9004",
       "@id": "https://doi.org/10.5281/zenodo.5509766",
       "sameAs": "https://doi.org/10.5281/zenodo.5509766"
     },
