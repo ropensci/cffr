@@ -150,7 +150,6 @@ A BibTeX entry for LaTeX users is
 ```{r echo=FALSE}
 toBibtex(citation("cffr"))
 ```
-```
 
 You can also use the [citation provided by GitHub](https://github.com/dieghernan/cffr), 
 that is generated from the information of a 

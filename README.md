@@ -266,8 +266,6 @@ A BibTeX entry for LaTeX users is
     #>   url = {https://www.software.ac.uk/blog/2016-10-06-encouraging-citation-software-introducing-citation-files},
     #> }
 
-\`\`\`
-
 You can also use the [citation provided by
 GitHub](https://github.com/dieghernan/cffr), that is generated from the
 information of a `CITATION.cff` created with **cffr**. See [About
