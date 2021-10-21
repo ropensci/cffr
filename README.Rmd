@@ -140,10 +140,16 @@ and `vignette(package = "cffr")` to learn how to work with `cff` objects.
 
 ## Citation
 
-To cite the **cffr** package in publications use:
+```{r echo=FALSE, results='asis'}
+print(citation("cffr")[1], bibtex = FALSE)
+```
 
-```{r}
-print(citation("cffr"), bibtex = TRUE)
+
+A BibTeX entry for LaTeX users is 
+
+```{r echo=FALSE}
+toBibtex(citation("cffr"))
+```
 ```
 
 You can also use the [citation provided by GitHub](https://github.com/dieghernan/cffr), 

@@ -1,20 +1,17 @@
-citHeader("To cite cffr in publications use:")
+year <- format(Sys.time(), "%Y")
 
-year = format(Sys.time(), "%Y")
-vers = paste('R package version', meta$Version)
-
-
-citEntry(
-  entry = 'misc',
-  title = paste('cffr:', meta$Title),
-  author = person(given = "Diego",
-                  family = "Hernangómez"),
+bibentry(
+  "Manual",
+  header = "To cite the 'cffr' package in publications use:",
+  title = paste("cffr:", meta$Title),
   year = year,
-  note = vers,
+  note = paste("R package version", meta$Version),
+  version = meta$Version,
+  author = person("Diego", "Hernangómez"),
   doi = "10.5281/zenodo.5509766",
-  url = "https://dieghernan.github.io/cffr/",
-  textVersion = paste('Hernangómez, D. (', year, '). cffr: ', meta$Title, '. ', vers, '.', sep = '')
+  url = unlist(strsplit(meta$URL, ","))[1]
 )
+
 
 bibentry(
   "Misc",
