@@ -147,10 +147,10 @@
     "SystemRequirements": null
   },
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata"],
-  "fileSize": "809.037KB",
+  "fileSize": "779.759KB",
   "citation": [
     {
-      "@type": "CreativeWork",
+      "@type": "SoftwareSourceCode",
       "datePublished": "2021",
       "author": [
         {

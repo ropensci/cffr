@@ -35,8 +35,8 @@ and examples for working with .cff more generally.
 
 **cffr** maximizes the data extraction by using both the `DESCRIPTION`
 file and the `CITATION` file (if present) of your package. Note that
-**cffr** works best if your package pass
-`R CMD check/devtools::check()`.
+**cffr** works best if your package pass `R CMD
+check/devtools::check()`.
 
 ## Installation
 
@@ -80,9 +80,9 @@ test <- cff_create("rmarkdown")
 ```
 
 <details>
-<summary>
-<code>CITATION.cff</code> for <strong>rmarkdown</strong>
-</summary>
+
+<summary> <code>CITATION.cff</code> for
+<strong>rmarkdown</strong></summary>
 
     cff-version: 1.2.0
     message: 'To cite package "rmarkdown" in publications use:'
@@ -188,13 +188,17 @@ test <- cff_create("rmarkdown")
       url: https://bookdown.org/yihui/rmarkdown-cookbook
 
 </details>
+
 <p>
+
 <p>
+
 <p>
 
 We can validate the result using `cff_validate()`:
 
 ``` r
+
 cff_validate(test)
 #> 
 #> cff_validate results-----
@@ -207,78 +211,62 @@ objects.
 
 ## Related packages
 
--   [**citation**](https://github.com/pik-piam/citation/): The
+  - [**citation**](https://github.com/pik-piam/citation/): The
     development version (at the time of this writing) includes a new
     function `r2cff` that creates a `CITATION.cff` file (v1.1.0) using
     the information of your `DESCRIPTION` file. It also provide minimal
     validity checks.
--   [**handlr**](https://github.com/ropensci/handlr): Tool for
+  - [**handlr**](https://github.com/ropensci/handlr): Tool for
     converting among citation formats, including `*.cff` files. At the
     time of this writing only CFF v1.1.0 was supported (see
-    [#24](https://github.com/ropensci/handlr/issues/24)).
--   [**codemeta**](https://github.com/cboettig/codemeta)/
+    [\#24](https://github.com/ropensci/handlr/issues/24)).
+  - [**codemeta**](https://github.com/cboettig/codemeta)/
     [**codemetar**](https://github.com/ropensci/codemetar) provides
     similar solutions for creating `codemeta.json` file, another format
     for storing and sharing software metadata.
 
 ## Citation
 
-To cite the **cffr** package in publications use:
+To cite the ‘cffr’ package in publications use:
 
-``` r
-print(citation("cffr"), bibtex = TRUE)
-#> 
-#> To cite cffr in publications use:
-#> 
-#>   Hernangómez, D. (2021). cffr: Generate Citation File Format ('cff')
-#>   Metadata for R Packages. R package version 0.0.1.9004.
-#> 
-#> A BibTeX entry for LaTeX users is
-#> 
-#>   @Misc{,
-#>     title = {cffr: Generate Citation File Format ('cff') Metadata for R Packages},
-#>     author = {Diego Hernangómez},
-#>     year = {2021},
-#>     note = {R package version 0.0.1.9004},
-#>     doi = {10.5281/zenodo.5509766},
-#>     url = {https://dieghernan.github.io/cffr/},
-#>   }
-#> 
-#> References:
-#> 
-#> Druskat S, Spaaks J, Chue Hong N, Haines R, Baker J, Bliven S,
-#> Willighagen E, Pérez-Suárez D, Konovalov A (2021). "Citation File
-#> Format." doi: 10.5281/zenodo.5171937 (URL:
-#> https://doi.org/10.5281/zenodo.5171937).
-#> 
-#> A BibTeX entry for LaTeX users is
-#> 
-#>   @Misc{,
-#>     title = {{Citation File Format}},
-#>     year = {2021},
-#>     version = {1.2.0},
-#>     month = {aug},
-#>     author = {Stephan Druskat and Jurriaan H. Spaaks and Neil {Chue Hong} and Robert Haines and James Baker and Spencer Bliven and Egon Willighagen and David Pérez-Suárez and Alexander Konovalov},
-#>     doi = {10.5281/zenodo.5171937},
-#>     keywords = {citation file format, CFF, citation files, software citation, file format, YAML, software sustainability, research software, credit},
-#>     license = {CC-BY-4.0},
-#>     date-released = {2021-08-09},
-#>   }
-#> 
-#> Wilson R (2016). "Encouraging citation of software - introducing
-#> CITATION files." <URL:
-#> https://www.software.ac.uk/blog/2016-10-06-encouraging-citation-software-introducing-citation-files>.
-#> 
-#> A BibTeX entry for LaTeX users is
-#> 
-#>   @Misc{,
-#>     author = {Robin Wilson},
-#>     title = {Encouraging citation of software - introducing CITATION files.},
-#>     year = {2016},
-#>     month = {6},
-#>     url = {https://www.software.ac.uk/blog/2016-10-06-encouraging-citation-software-introducing-citation-files},
-#>   }
-```
+Hernangómez D (2021). *cffr: Generate Citation File Format (‘cff’)
+Metadata for R Packages*. doi: 10.5281/zenodo.5509766 (URL:
+<https://doi.org/10.5281/zenodo.5509766>), R package version 0.0.1.9004,
+\<URL: <https://dieghernan.github.io/cffr/>\>.
+
+A BibTeX entry for LaTeX users is
+
+    #> @Manual{,
+    #>   title = {cffr: Generate Citation File Format ('cff') Metadata for R Packages},
+    #>   year = {2021},
+    #>   note = {R package version 0.0.1.9004},
+    #>   version = {0.0.1.9004},
+    #>   author = {Diego Hernangómez},
+    #>   doi = {10.5281/zenodo.5509766},
+    #>   url = {https://dieghernan.github.io/cffr/},
+    #> }
+    #> 
+    #> @Misc{,
+    #>   title = {{Citation File Format}},
+    #>   year = {2021},
+    #>   version = {1.2.0},
+    #>   month = {aug},
+    #>   author = {Stephan Druskat and Jurriaan H. Spaaks and Neil {Chue Hong} and Robert Haines and James Baker and Spencer Bliven and Egon Willighagen and David Pérez-Suárez and Alexander Konovalov},
+    #>   doi = {10.5281/zenodo.5171937},
+    #>   keywords = {citation file format, CFF, citation files, software citation, file format, YAML, software sustainability, research software, credit},
+    #>   license = {CC-BY-4.0},
+    #>   date-released = {2021-08-09},
+    #> }
+    #> 
+    #> @Misc{,
+    #>   author = {Robin Wilson},
+    #>   title = {Encouraging citation of software - introducing CITATION files.},
+    #>   year = {2016},
+    #>   month = {6},
+    #>   url = {https://www.software.ac.uk/blog/2016-10-06-encouraging-citation-software-introducing-citation-files},
+    #> }
+
+\`\`\`
 
 You can also use the [citation provided by
 GitHub](https://github.com/dieghernan/cffr), that is generated from the
@@ -289,9 +277,9 @@ for more info.
 
 # References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references">
 
-<div id="ref-Druskat_Citation_File_Format_2021" class="csl-entry">
+<div id="ref-Druskat_Citation_File_Format_2021">
 
 Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, Robert Haines,
 James Baker, Spencer Bliven, Egon Willighagen, David Pérez-Suárez, and
