@@ -83,3 +83,31 @@ test_that("Recursive parsing", {
   expect_s3_class(read$references[[1]]$authors, "cff")
   expect_s3_class(read$references[[1]]$authors[[1]], "cff")
 })
+
+
+test_that("Fuzzy matching of keys on cff", {
+  expect_message(cff(
+    tittle = "a",
+    cff_version = "ar",
+    version = "200",
+    messange = "Fix my keys"
+  ))
+
+  cffobj <- suppressMessages(
+    cff(
+      tittle = "a",
+      cff_version = "1.2.0",
+      version = "200",
+      anthor = list(list(
+        "family-names" = "a",
+        "given-names" = "b"
+      )),
+      messange = "Fix my keys"
+    )
+  )
+
+  expect_true(is.cff(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+
+  expect_snapshot_output(print_snapshot("Fuzzy keys", cffobj))
+})

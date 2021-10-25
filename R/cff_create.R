@@ -167,7 +167,7 @@ cff_create <- function(x, keys = NULL,
 
   # Additional keys
   if (!is.null(keys)) {
-    keys <- keys[names(keys) %in% cff_schema_keys()]
+    keys <- fuzzy_keys(keys)
     cffobjendmod <- cffobjend[setdiff(names(cffobjend), names(keys))]
     cffobjend <- modifyList(cffobjendmod, keys, keep.null = FALSE)
     cffobjend <- as.cff(cffobjend)

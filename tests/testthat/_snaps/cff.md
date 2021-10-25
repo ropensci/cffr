@@ -1682,3 +1682,19 @@
     
     ---
 
+# Fuzzy matching of keys on cff
+
+    
+    
+    ## Fuzzy keys 
+    
+    title: a
+    cff-version: 1.2.0
+    version: '200'
+    authors:
+    - family-names: a
+      given-names: b
+    message: Fix my keys
+    
+    ---
+

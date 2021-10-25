@@ -79,6 +79,8 @@ cff <- function(path, ...) {
     stopifnotcff(path)
     cffobj <- yaml::read_yaml(path)
   } else if (length(cffobj) != 0) {
+    cffobj <- fuzzy_keys(cffobj)
+
     cffobj <- cffobj
   } else {
     # If nothing is provided use a minimal cff

@@ -52,3 +52,19 @@ test_that("Auto generate preferred citations", {
   )
   expect_snapshot_output(cff_create(rgeos))
 })
+
+test_that("Fuzzy match on cff_create", {
+  newobject <- cff_create(cff())
+  newkeys <- list(
+    "url" = "https://ropensci.org/",
+    "version" = "0.0.1",
+    "repository" = "https://github.com/user/repo",
+    # If the field is already present, it would be overridden
+    tittle = "Modifying a 'cff' object"
+  )
+  modobject <- cff_create(newobject, keys = newkeys)
+  expect_snapshot_output(print_snapshot(
+    "Fuzzy match on cff_create",
+    modobject
+  ))
+})
