@@ -12,7 +12,8 @@ as.cff(x)
 \arguments{
 \item{path}{The path to a \code{CITATION.cff} file.}
 
-\item{...}{Named arguments to be used for creating a \code{\link{cff}} object.}
+\item{...}{Named arguments to be used for creating a \code{\link{cff}} object. See
+\strong{Details}.}
 
 \item{x}{a character string for the \code{\link{as.cff}} default method}
 }
@@ -24,13 +25,37 @@ A class and utility methods for reading, creating and holding CFF
 information.
 }
 \details{
-If no parameters are supplied (the default behavior), a minimal
-valid \code{cff} object is created.
-
 This object can be manipulated using \code{\link[=cff_create]{cff_create()}}.
 
 \strong{Note that} this function reads \code{CITATION.cff} files. If you want to
-create \code{cff} objects from DESCRIPTION files use \code{\link[=cff_create]{cff_create()}}
+create \code{cff} objects from DESCRIPTION files use \code{\link[=cff_create]{cff_create()}}.
+
+If no additional \code{...} parameters are supplied (the default behavior),
+a minimal valid \code{cff} object is created. Valid parameters are those
+specified on \code{\link[=cff_schema_keys]{cff_schema_keys()}}:\tabular{l}{
+   valid cff keys \cr
+   cff-version \cr
+   message \cr
+   type \cr
+   license \cr
+   title \cr
+   version \cr
+   doi \cr
+   abstract \cr
+   authors \cr
+   preferred-citation \cr
+   repository \cr
+   repository-artifact \cr
+   repository-code \cr
+   url \cr
+   date-released \cr
+   contact \cr
+   keywords \cr
+   references \cr
+   commit \cr
+   identifiers \cr
+   license-url \cr
+}
 }
 \examples{
 

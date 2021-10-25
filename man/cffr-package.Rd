@@ -27,6 +27,7 @@ Useful links:
 Other contributors:
 \itemize{
 \item João Martins [reviewer]
+\item Scott Chamberlain [reviewer]
 }
 }
 \keyword{internal}

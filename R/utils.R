@@ -100,3 +100,58 @@ detect_repos <- function(repos = getOption("repos")) {
 
   return(repos)
 }
+
+#' Function for fuzzy matching the names of the keys
+#'
+#' @description
+#' Proposed by @sckott
+#' @inheritParams cff_create
+#' @noRd
+fuzzy_keys <- function(keys) {
+  valid_keys <- cff_schema_keys()
+
+  names <- names(keys)
+  # Check valid keys as is
+  is_valid_key <- names %in% valid_keys
+
+  # If not all are valid try to fuzzy match
+  if (isFALSE(all(is_valid_key))) {
+    names_fuzzy <- names[!(is_valid_key)]
+
+    keys_match <- lapply(names_fuzzy,
+      agrep, valid_keys,
+      ignore.case = TRUE,
+      value = TRUE,
+      fixed = FALSE
+    )
+
+
+    # Modify NULL correspondences
+    keys_match <- unlist(lapply(
+      keys_match,
+      function(x) {
+        if (length(x) == 0) {
+          return("No match")
+        }
+        return(x[1])
+      }
+    ))
+
+    # Message
+    message(crayon::magenta(
+      "Found mispelled keys. Trying to map:",
+      paste("\n", names_fuzzy, "->", keys_match, collapse = "")
+    ))
+
+    # Modify names
+
+    names[!is_valid_key] <- keys_match
+  }
+
+  new_keys <- keys
+  names(new_keys) <- names
+
+  new_keys <- new_keys[names %in% valid_keys]
+
+  return(new_keys)
+}

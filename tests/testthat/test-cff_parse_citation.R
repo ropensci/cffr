@@ -8,7 +8,7 @@ test_that("Test citations with installed packages", {
     if (inst[i] %in% installed) {
       desc <- cff_create(inst[i])
       expect_true(length(desc$`preferred-citation`) > 1)
-      expect_true(cff_validate(desc))
+      expect_true(cff_validate(desc, verbose = FALSE))
     }
   }
 })
@@ -28,7 +28,7 @@ test_that("Test full with CITATION and (option = author)", {
 
   expect_s3_class(cffobj, "cff")
   expect_snapshot_output(cffobj)
-  expect_true(cff_validate(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 
@@ -69,7 +69,7 @@ test_that("Add wrong field to citation", {
   )
 
   expect_snapshot_output(cffobj)
-  expect_true(cff_validate(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 test_that("Fix wrong orcid", {
@@ -96,7 +96,7 @@ test_that("Fix wrong orcid", {
   )
 
   expect_snapshot_output(cffobj)
-  expect_true(cff_validate(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 test_that("Several identifiers and duplicates", {
@@ -127,7 +127,7 @@ test_that("Several identifiers and duplicates", {
   )
 
   expect_snapshot_output(cffobj)
-  expect_true(cff_validate(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 test_that("Test keywords and urls", {
@@ -152,7 +152,7 @@ test_that("Test keywords and urls", {
   )
 
   expect_snapshot_output(cffobj)
-  expect_true(cff_validate(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 
@@ -171,7 +171,7 @@ test_that("Article", {
     keys = list(references = list(bibparsed))
   )
 
-  expect_true(cff_validate(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 
@@ -192,7 +192,7 @@ test_that("Book", {
     keys = list(references = list(bibparsed))
   )
 
-  expect_true(cff_validate(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 test_that("InBook", {
@@ -212,7 +212,7 @@ test_that("InBook", {
     keys = list(references = list(bibparsed))
   )
 
-  expect_true(cff_validate(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 test_that("InCollection", {
@@ -233,7 +233,7 @@ test_that("InCollection", {
     keys = list(references = list(bibparsed))
   )
 
-  expect_true(cff_validate(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 
@@ -253,7 +253,7 @@ test_that("InProceedings", {
     keys = list(references = list(bibparsed))
   )
 
-  expect_true(cff_validate(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 
@@ -273,7 +273,7 @@ test_that("Manual", {
     keys = list(references = list(bibparsed))
   )
 
-  expect_true(cff_validate(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 
@@ -294,7 +294,7 @@ test_that("MastersThesis", {
     keys = list(references = list(bibparsed))
   )
 
-  expect_true(cff_validate(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 
@@ -315,7 +315,7 @@ test_that("PhdThesis", {
     keys = list(references = list(bibparsed))
   )
 
-  expect_true(cff_validate(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 
@@ -334,7 +334,7 @@ test_that("Proceedings", {
     keys = list(references = list(bibparsed))
   )
 
-  expect_true(cff_validate(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 test_that("TechReport", {
@@ -353,7 +353,7 @@ test_that("TechReport", {
     keys = list(references = list(bibparsed))
   )
 
-  expect_true(cff_validate(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 test_that("Unpublished", {
@@ -372,7 +372,7 @@ test_that("Unpublished", {
     keys = list(references = list(bibparsed))
   )
 
-  expect_true(cff_validate(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 
@@ -404,7 +404,7 @@ test_that("Parse persons on CITATION", {
     keys = list(references = list(bibparsed))
   )
 
-  expect_true(cff_validate(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 test_that("Test inputs", {
@@ -429,7 +429,7 @@ test_that("Test inputs", {
     keys = list(references = list(bibparsed))
   )
 
-  expect_true(cff_validate(cffobj))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 test_that("NULL bibs and others strange errors", {

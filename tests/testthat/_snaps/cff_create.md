@@ -176,3 +176,28 @@
     - type: url
       value: http://rgeos.r-forge.r-project.org/index.html
 
+# Fuzzy match on cff_create
+
+    
+    
+    ## Fuzzy match on cff_create 
+    
+    cff-version: 1.2.0
+    message: If you use this software, please cite it using these metadata.
+    title: Modifying a 'cff' object
+    version: 0.0.1
+    authors:
+    - family-names: Doe
+      given-names: John
+    preferred-citation:
+      type: manual
+      title: My Research Software
+      authors:
+      - family-names: Doe
+        given-names: John
+      year: '2021'
+    repository: https://github.com/user/repo
+    url: https://ropensci.org/
+    
+    ---
+

@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# cffr <img src="man/figures/logo.png" align="right" width="120"/>
+# cffr <a href='https://dieghernan.github.io/cffr/'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 
@@ -25,15 +25,19 @@ knitr::opts_chunk$set(
 [![codecov](https://codecov.io/gh/dieghernan/cffr/branch/master/graph/badge.svg)](https://app.codecov.io/gh/dieghernan/cffr)
 [![CITATION-cff](https://github.com/dieghernan/cffr/actions/workflows/cff-validator.yml/badge.svg)](https://github.com/dieghernan/cffr/actions/workflows/cff-validator.yml)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.5509766-blue)](https://doi.org/10.5281/zenodo.5509766)
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/dieghernan/cffr)
+[![Project Status: Active – The project has reached a stable, usable state and
+is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+![GitHub code size in
+bytes](https://img.shields.io/github/languages/code-size/dieghernan/cffr)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/cffr/badge)](https://www.codefactor.io/repository/github/dieghernan/cffr)
 [![peer-review](https://badges.ropensci.org/463_status.svg)](https://github.com/ropensci/software-review/issues/463)
+
 <!-- badges: end -->
 
 [Citation File Format (CFF)](https://citation-file-format.github.io/)
-[@Druskat_Citation_File_Format_2021] (v1.2.0) are plain text files with human- and
-machine-readable citation information for software (and datasets). Code
+[@Druskat_Citation_File_Format_2021] (v1.2.0) are plain text files with human-
+and machine-readable citation information for software (and datasets). Code
 developers can include them in their repositories to let others know how to
 correctly cite their software.
 
@@ -43,15 +47,24 @@ citation information is rendered on the repository page, and also provided as
 BibTeX snippet which users can simply copy.
 
 **cffr** provides utilities to generate, parse, modify and validate
-`CITATION.cff` files automatically for **R**
-packages, as well as tools and examples
-for working with .cff more generally.
+`CITATION.cff` files automatically for **R** packages, as well as tools and
+examples for working with .cff more generally.
 
-**cffr** maximizes the data extraction by using both the `DESCRIPTION` file 
-and the `CITATION` file (if present) of your package. Note that **cffr** works
-best if your package pass `R CMD check/devtools::check()`.
+**cffr** maximizes the data extraction by using both the `DESCRIPTION` file and
+the `CITATION` file (if present) of your package. Note that **cffr** works best
+if your package pass `R CMD check/devtools::check()`.
 
+## Related projects
 
+[The CodeMeta Project](https://codemeta.github.io/) [@codemeta_2_0] creates a
+concept vocabulary that can be used to standardize the exchange of software
+metadata across repositories and organizations. One of the many uses of a
+`codemeta.json` file (created following the standards defined on The CodeMeta
+Project) is to provide citation metadata such as title, authors, publication
+year, and venue [@aligning_codemeta]. The packages
+[**codemeta**](https://github.com/cboettig/codemeta)/
+[**codemetar**](https://github.com/ropensci/codemetar) allows to generate
+`codemeta.json` files from R packages metadata.
 
 ## Installation
 
@@ -76,16 +89,15 @@ install.packages("cffr")
 ## Example
 
 By default most often from within your package folder you'll simply run
-`cff_write()`, that creates a `cff` object, write it on a `CITATION.cff`
-file and validates it on a single command.
+`cff_write()`, that creates a `cff` object, write it on a `CITATION.cff` file
+and validates it on a single command.
 
-However, **cffr** provides also custom print methods and mechanisms that
-allows you to customize the `CITATION.cff` and integrate them in your 
-workflows.
+However, **cffr** provides also custom print methods and mechanisms that allows
+you to customize the `CITATION.cff` and integrate them in your workflows.
 
-This is a basic example which shows you how to create a `cff` object 
-(see `?cff` for more info). In this case, we are creating a `cff` object
-from the metadata of the **rmarkdown** package:
+This is a basic example which shows you how to create a `cff` object (see `?cff`
+for more info). In this case, we are creating a `cff` object from the metadata
+of the **rmarkdown** package:
 
 ```{r }
 library(cffr)
@@ -106,7 +118,9 @@ test
 </details>
 
 <p>
+
 <p>
+
 <p>
 
 We can validate the result using `cff_validate()`:
@@ -116,27 +130,23 @@ We can validate the result using `cff_validate()`:
 cff_validate(test)
 ```
 
-
-
-Check the [docs](https://dieghernan.github.io/cffr/reference/index.html) 
-and `vignette(package = "cffr")` to learn how to work with `cff` objects.
-
+Check the [docs](https://dieghernan.github.io/cffr//reference/index.html) and
+`vignette(package = "cffr")` to learn how to work with `cff` objects.
 
 ## Related packages
 
-- [**citation**](https://github.com/pik-piam/citation/): The development 
-  version (at the time of this writing) includes a new function `r2cff` that
-  creates a `CITATION.cff` file (v1.1.0) using the information of your 
-  `DESCRIPTION` file. It also provide minimal validity checks.
-- [**handlr**](https://github.com/ropensci/handlr): Tool for converting among 
-  citation formats, including `*.cff` files. At the time of
-  this writing only CFF v1.1.0 was supported (see
-  [#24](https://github.com/ropensci/handlr/issues/24)).
-- [**codemeta**](https://github.com/cboettig/codemeta)/
-  [**codemetar**](https://github.com/ropensci/codemetar) provides similar 
-  solutions for creating `codemeta.json` file, another format for storing and
-  sharing software metadata.
-
+-   [**citation**](https://github.com/pik-piam/citation/): The development
+    version (at the time of this writing) includes a new function `r2cff` that
+    creates a `CITATION.cff` file (v1.1.0) using the information of your
+    `DESCRIPTION` file. It also provide minimal validity checks.
+-   [**handlr**](https://github.com/ropensci/handlr): Tool for converting among
+    citation formats, including `*.cff` files. At the time of this writing only
+    CFF v1.1.0 was supported (see
+    [#24](https://github.com/ropensci/handlr/issues/24)).
+-   [**codemeta**](https://github.com/cboettig/codemeta)/
+    [**codemetar**](https://github.com/ropensci/codemetar) provides similar
+    solutions for creating `codemeta.json` file, another format for storing and
+    sharing software metadata.
 
 ## Citation
 
@@ -144,17 +154,16 @@ and `vignette(package = "cffr")` to learn how to work with `cff` objects.
 print(citation("cffr")[1], bibtex = FALSE)
 ```
 
-
-A BibTeX entry for LaTeX users is 
+A BibTeX entry for LaTeX users is
 
 ```{r echo=FALSE}
 toBibtex(citation("cffr"))
 ```
 
-You can also use the [citation provided by GitHub](https://github.com/dieghernan/cffr), 
-that is generated from the information of a 
-`CITATION.cff` created with **cffr**. See 
-[About CITATION files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
+You can also use the [citation provided by
+GitHub](https://github.com/dieghernan/cffr), that is generated from the
+information of a `CITATION.cff` created with **cffr**. See [About CITATION
+files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
 for more info.
 
 # References
