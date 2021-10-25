@@ -46,7 +46,7 @@
 #' # If a CITATION file (note that is not .cff) it throws an error
 #' cff_validate(system.file("CITATION", package = "cffr"))
 #' }
-cff_validate <- function(x = "./CITATION.cff") {
+cff_validate <- function(x = "CITATION.cff") {
   message_obj <- ifelse(is.cff(x),
     "cff object",
     ".cff file"

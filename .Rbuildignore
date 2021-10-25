@@ -21,3 +21,4 @@
 ^tests/testthat/test_ci$
 ^doc$
 ^Meta$
+^CONTRIBUTING\.md$

@@ -13,8 +13,9 @@
 #'
 #' @param x The source that would be used for generating
 #'   the `CITATION.cff` file. It could be:
+#'   * A missing value. That would retrieve the DESCRIPTION
+#'     file on your in-development package.
 #'   * A [`cff`] object,
-#'   * The path to package root (`"."`),
 #'   * The name of an installed package (`"jsonlite"`), or
 #'   * Path to a DESCRIPTION file (`"*/DESCRIPTION*"`).
 #'
@@ -53,11 +54,14 @@
 #'
 #' When creating and writing a `CITATION.cff` for the first time, the function
 #' adds "CITATION.cff" to ".Rbuildignore".
-cff_write <- function(x = ".",
+cff_write <- function(x,
                       outfile = "CITATION.cff",
                       keys = NULL,
                       cff_version = "1.2.0",
                       validate = TRUE) {
+  # On missing use package root
+  if (missing(x)) x <- getwd()
+
   citat <- cff_create(x,
     keys = keys,
     cff_version = cff_version

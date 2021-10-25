@@ -213,17 +213,11 @@ other_persons <- function() {
 #' @noRd
 other_persons_entity <- function() {
   entities <- c(
-    # "contact",
     "conference",
     "database-provider",
-    # "editors",
-    # "editors-series",
     "institution",
     "location",
     "publisher"
-    # "recipients",
-    # "senders",
-    # "translators"
   )
 
   entities
