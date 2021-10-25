@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# cffr <img src="man/figures/logo.png" align="right" width="120"/>
+# cffr <a href='https://dieghernan.github.io/cffr/'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 
@@ -16,6 +16,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 bytes](https://img.shields.io/github/languages/code-size/dieghernan/cffr)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/cffr/badge)](https://www.codefactor.io/repository/github/dieghernan/cffr)
 [![peer-review](https://badges.ropensci.org/463_status.svg)](https://github.com/ropensci/software-review/issues/463)
+
 <!-- badges: end -->
 
 [Citation File Format (CFF)](https://citation-file-format.github.io/)
@@ -37,6 +38,19 @@ and examples for working with .cff more generally.
 file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
+
+## Related projects
+
+[The CodeMeta Project](https://codemeta.github.io/) (Jones et al. 2017)
+creates a concept vocabulary that can be used to standardize the
+exchange of software metadata across repositories and organizations. One
+of the many uses of a `codemeta.json` file (created following the
+standards defined on The CodeMeta Project) is to provide citation
+metadata such as title, authors, publication year, and venue (Fenner
+2021). The packages
+[**codemeta**](https://github.com/cboettig/codemeta)/
+[**codemetar**](https://github.com/ropensci/codemetar) allows to
+generate `codemeta.json` files from R packages metadata.
 
 ## Installation
 
@@ -201,9 +215,9 @@ cff_validate(test)
 #> Congratulations! This cff object is valid
 ```
 
-Check the [docs](https://dieghernan.github.io/cffr/reference/index.html)
-and `vignette(package = "cffr")` to learn how to work with `cff`
-objects.
+Check the
+[docs](https://dieghernan.github.io/cffr//reference/index.html) and
+`vignette(package = "cffr")` to learn how to work with `cff` objects.
 
 ## Related packages
 
@@ -279,6 +293,22 @@ Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, Robert Haines,
 James Baker, Spencer Bliven, Egon Willighagen, David Pérez-Suárez, and
 Alexander Konovalov. 2021. “Citation File Format.”
 <https://doi.org/10.5281/zenodo.5171937>.
+
+</div>
+
+<div id="ref-aligning_codemeta" class="csl-entry">
+
+Fenner, Martin. 2021. “Aligning the CodeMeta Vocabulary for Scientific
+Software with Schema.org.” <https://doi.org/10.5438/a49j-x692>.
+
+</div>
+
+<div id="ref-codemeta_2_0" class="csl-entry">
+
+Jones, Matthew B., Carl Boettiger, Abby Cabunoc Mayes, Arfon Smith,
+Peter Slaughter, Kyle Niemeyer, Yolanda Gil, et al. 2017. “CodeMeta: An
+Exchange Schema for Software Metadata.”
+<https://doi.org/10.5063/schema/codemeta-2.0>.
 
 </div>
 
