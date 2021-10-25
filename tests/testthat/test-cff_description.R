@@ -225,3 +225,48 @@ test_that("Search package on r-universe", {
     "https://CRAN.R-project.org/package=ggplot2"
   )
 })
+
+
+test_that("Validate keywords", {
+  desc_path <- system.file("examples/DESCRIPTION_basic",
+    package = "cffr"
+  )
+
+  tmp <- tempfile("DESCRIPTION_keyword")
+
+  copy <- file.copy(desc_path, tmp)
+
+  cffobj <- cff_create(tmp)
+  expect_null(cffobj$keywords)
+
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+
+  # Add keywords
+  silent <- desc::desc_set("X-schema.org-keywords",
+    "keyword1, keyword1, keyword3",
+    file = tmp
+  )
+  cffobj2 <- cff_create(tmp)
+  expect_length(cffobj2$keywords, 2)
+  expect_equal(cffobj2$keywords, c("keyword1", "keyword3"))
+  expect_true(cff_validate(cffobj2, verbose = FALSE))
+
+  # Single keyword
+  silent <- desc::desc_set("X-schema.org-keywords",
+    "keyword1, keyword1",
+    file = tmp
+  )
+  cffobj3 <- cff_create(tmp)
+  expect_length(cffobj3$keywords, 2)
+  expect_equal(cffobj3$keywords, c("keyword1", "r-package"))
+  expect_true(cff_validate(cffobj3, verbose = FALSE))
+
+  # NULL case keyword
+  silent <- desc::desc_set("X-schema.org-keywords",
+    "r-package",
+    file = tmp
+  )
+  cffobj4 <- cff_create(tmp)
+  expect_null(cffobj4$keywords)
+  expect_true(cff_validate(cffobj4, verbose = FALSE))
+})

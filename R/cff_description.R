@@ -25,7 +25,7 @@ cff_description <- function(desc_path = "DESCRIPTION", cff_version = "1.2.0") {
     identifiers = parse_desc_urls(pkg)$identifiers,
     "date-released" = parse_desc_date_released(pkg),
     contact = parse_desc_contacts(pkg),
-    keywords = unlist(parse_desc_keywords(pkg)),
+    keywords = parse_desc_keywords(pkg),
     license = unlist(parse_desc_license(pkg))
   )
 

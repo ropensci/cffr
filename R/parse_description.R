@@ -79,7 +79,18 @@ parse_desc_keywords <- function(pkg) {
   }
 
   kword <- unlist(strsplit(kword, ", "))
-  kword <- strsplit(unique(kword), ",")
+  kword <- unlist(strsplit(unique(kword), ","))
+
+  # Hack: The validator doesn't seem to recognize when keyword is
+  # unique. I add a new keyword r-package
+
+  if (length(kword) == 1) kword <- unique(c(kword, "r-package"))
+
+  # If still is 1 return NULL
+  if (length(kword) == 1) {
+    return(NULL)
+  }
+
 
   kword
 }

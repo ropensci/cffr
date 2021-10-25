@@ -173,9 +173,11 @@ clean_jsonlite <- function(cit_temp) {
 # Validate schema
 #' @noRd
 validate_schema <- function(cit_temp, schema_temp) {
-  x <- jsonvalidate::json_validate(cit_temp,
-    schema_temp,
-    verbose = TRUE
+  x <- suppressMessages(
+    jsonvalidate::json_validate(cit_temp,
+      schema_temp,
+      verbose = TRUE
+    )
   )
 
   x
