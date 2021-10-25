@@ -30,6 +30,7 @@
 #'
 #' @param x This is expected to be either a [`cff`] object created
 #'   with [cff_create()] or the path to a `CITATION.cff` file to be validated.
+#' @inheritParams cff_write
 #'
 #' @examples
 #' # Full .cff example
@@ -46,7 +47,7 @@
 #' # If a CITATION file (note that is not .cff) it throws an error
 #' cff_validate(system.file("CITATION", package = "cffr"))
 #' }
-cff_validate <- function(x = "CITATION.cff") {
+cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
   message_obj <- ifelse(is.cff(x),
     "cff object",
     ".cff file"
@@ -106,22 +107,27 @@ cff_validate <- function(x = "CITATION.cff") {
   # Validate
   result <- validate_schema(cit_temp, schema_temp)
 
-  message("\ncff_validate results-----")
+  if (verbose) message("\ncff_validate results-----")
   if (result == FALSE) {
-    message(
-      crayon::red(
-        "Oops! This ", message_obj,
-        "has the following errors:\n\n"
+    if (verbose) {
+      message(
+        crayon::red(
+          "Oops! This ", message_obj,
+          "has the following errors:\n\n"
+        )
       )
-    )
-    print(attributes(result)$errors)
+
+      print(attributes(result)$errors)
+    }
     return(invisible(FALSE))
   } else {
-    message(crayon::green(
-      "Congratulations! This",
-      message_obj,
-      "is valid"
-    ))
+    if (verbose) {
+      message(crayon::green(
+        "Congratulations! This",
+        message_obj,
+        "is valid"
+      ))
+    }
     return(invisible(TRUE))
   }
 }

@@ -37,7 +37,7 @@ test_that("Validate all DESCRIPTION files", {
       expect_true(cffobj$`preferred-citation`$year == dat)
     }
 
-    expect_true(cff_validate(cffobj))
+    expect_true(cff_validate(cffobj, verbose = FALSE))
   }
 })
 

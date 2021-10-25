@@ -9,17 +9,31 @@
 #' @family core functions
 #'
 #' @param path The path to a `CITATION.cff` file.
-#' @param ... Named arguments to be used for creating a [`cff`] object.
+#' @param ... Named arguments to be used for creating a [`cff`] object. See
+#' **Details**.
 #'
 #' @details
-#' If no parameters are supplied (the default behavior), a minimal
-#' valid `cff` object is created.
 #'
 #' This object can be manipulated using [cff_create()].
 #'
 #' **Note that** this function reads `CITATION.cff` files. If you want to
-#' create `cff` objects from DESCRIPTION files use [cff_create()]
+#' create `cff` objects from DESCRIPTION files use [cff_create()].
 #'
+#' If no additional `...` parameters are supplied (the default behavior),
+#' a minimal valid `cff` object is created. Valid parameters are those
+#' specified on [cff_schema_keys()]:
+#'
+#'
+#'
+#' ```{r, echo=FALSE}
+#'
+#'
+#' valid_keys <- cff_schema_keys()
+#'
+#' knitr::kable(valid_keys, col.names = "valid cff keys")
+#'
+#'
+#' ```
 #' @export
 #' @examples
 #'

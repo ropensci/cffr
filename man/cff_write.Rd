@@ -9,7 +9,8 @@ cff_write(
   outfile = "CITATION.cff",
   keys = NULL,
   cff_version = "1.2.0",
-  validate = TRUE
+  validate = TRUE,
+  verbose = TRUE
 )
 }
 \arguments{
@@ -33,6 +34,9 @@ file on your in-development package.
 
 \item{validate}{Logical \code{TRUE/FALSE}. Should the new file be validated using
 \code{\link[=cff_validate]{cff_validate()}}?}
+
+\item{verbose}{Logical \code{TRUE/FALSE}. On \code{TRUE} the function would display
+informative messages.}
 }
 \value{
 A \code{CITATION.cff} file and an (invisible) \code{\link{cff}} object.

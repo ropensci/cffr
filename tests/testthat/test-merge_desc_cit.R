@@ -15,6 +15,6 @@ test_that("Merge all DESCRIPTION files with CITATION_basic", {
 
     expect_snapshot_output(merged)
 
-    expect_true(cff_validate(merged))
+    expect_true(cff_validate(merged, verbose = FALSE))
   }
 })

@@ -3,15 +3,15 @@ test_that("Validate full CITATION.cff", {
     package = "cffr"
   )
   expect_message(cff_validate(full))
-  expect_true(cff_validate(full))
+  expect_true(cff_validate(full, verbose = FALSE))
+  expect_silent(cff_validate(full, verbose = FALSE))
 })
 
 test_that("Validate minimal CITATION.cff", {
   full <- system.file("examples/CITATION_skeleton.cff",
     package = "cffr"
   )
-  expect_message(cff_validate(full))
-  expect_true(cff_validate(full))
+  expect_true(cff_validate(full, verbose = FALSE))
 })
 
 test_that("Validate error CITATION.cff", {
@@ -19,13 +19,13 @@ test_that("Validate error CITATION.cff", {
     package = "cffr"
   )
   expect_message(cff_validate(err))
-  expect_false(suppressMessages(cff_validate(err)))
+  expect_false(cff_validate(err, verbose = FALSE))
   expect_snapshot_output(cff_validate(err))
 })
 
 test_that("Validate cffr objects from installed packages", {
   cffr <- cff_create("jsonlite")
-  expect_true(cff_validate(cffr))
+  expect_true(cff_validate(cffr, verbose = FALSE))
 })
 
 

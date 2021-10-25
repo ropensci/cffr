@@ -4,11 +4,14 @@
 \alias{cff_validate}
 \title{Validate a \code{CITATION.cff} file or a \code{\link{cff}} object}
 \usage{
-cff_validate(x = "CITATION.cff")
+cff_validate(x = "CITATION.cff", verbose = TRUE)
 }
 \arguments{
 \item{x}{This is expected to be either a \code{\link{cff}} object created
 with \code{\link[=cff_create]{cff_create()}} or the path to a \code{CITATION.cff} file to be validated.}
+
+\item{verbose}{Logical \code{TRUE/FALSE}. On \code{TRUE} the function would display
+informative messages.}
 }
 \value{
 A message indicating the result of the validation and an invisible

@@ -4,7 +4,8 @@ Version: 0.0.1.9004
 Authors@R: c(
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8457-4658")),
-    person("João", "Martins", role = "rev")
+    person("João", "Martins", role = "rev"),
+    person("Scott", "Chamberlain", role = "rev")
   )
 Description: The Citation File Format version 1.2.0 (Druskat, S. et al.
     (2021) <doi:10.5281/zenodo.5171937>) is a human and machine readable

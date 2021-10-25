@@ -16,7 +16,7 @@ test_that("Compare blank cff with skeleton", {
   expect_true(all(unlist(fromfile) == unlist(fromfunction)))
 
   # Validate
-  expect_true(cff_validate(fromfunction))
+  expect_true(cff_validate(fromfunction, verbose = FALSE))
 })
 
 test_that("Walk trough full lifecycle", {
@@ -27,7 +27,7 @@ test_that("Walk trough full lifecycle", {
   # Read
   read <- cff(complete)
   expect_s3_class(read, "cff")
-  expect_true(cff_validate(read))
+  expect_true(cff_validate(read, verbose = FALSE))
   expect_snapshot_output(print_snapshot("Read object", read))
 
   # Modify
@@ -42,12 +42,12 @@ test_that("Walk trough full lifecycle", {
 
   # Write
   tmp <- tempfile(fileext = ".cff")
-  suppressMessages(cff_write(modify, outfile = tmp, validate = FALSE))
+  cff_write(modify, outfile = tmp, validate = FALSE, verbose = FALSE)
   stopifnotexists(tmp)
   stopifnotcff(tmp)
 
   # Validate
-  expect_true(cff_validate(tmp))
+  expect_true(cff_validate(tmp, verbose = FALSE))
 
   file.remove(tmp)
 })

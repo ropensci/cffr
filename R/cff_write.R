@@ -27,6 +27,9 @@
 #' @param validate Logical `TRUE/FALSE`. Should the new file be validated using
 #'   [cff_validate()]?
 #'
+#' @param verbose Logical `TRUE/FALSE`. On `TRUE` the function would display
+#'   informative messages.
+#'
 #' @export
 #'
 #' @inheritParams cff_create
@@ -58,7 +61,8 @@ cff_write <- function(x,
                       outfile = "CITATION.cff",
                       keys = NULL,
                       cff_version = "1.2.0",
-                      validate = TRUE) {
+                      validate = TRUE,
+                      verbose = TRUE) {
   # On missing use package root
   if (missing(x)) x <- getwd()
 
@@ -102,7 +106,7 @@ cff_write <- function(x,
   )
 
   writeLines(addcomment, outfile)
-  message(crayon::green(outfile, "generated"))
+  if (verbose) message(crayon::green(outfile, "generated"))
 
   # Add CITATION.cff to .Rbuildignore
   if (!is.cff(x) && x == "." && file.exists(".Rbuildignore")) {
@@ -114,14 +118,19 @@ cff_write <- function(x,
       ignore <- c(ignore, "^CITATION\\.cff$")
       ignore <- unique(ignore)
 
-      message(crayon::blue("Adding ", outfile, "to .Rbuildignore"))
+      if (verbose) {
+        message(crayon::blue(
+          "Adding ",
+          outfile, "to .Rbuildignore"
+        ))
+      }
       writeLines(ignore, ".Rbuildignore")
     }
     # nocov end
   }
 
   if (validate) {
-    cff_validate(outfile)
+    cff_validate(outfile, verbose)
   }
 
   return(invisible(citat))
