@@ -4,7 +4,9 @@
 #' information.
 #'
 #' @name cff
-#' @return A `cff` list object.
+#' @return 
+#' A `cff` object. Under the hood, a `cff` object is a regular [list()]
+#' object with a special [print()] method.
 #'
 #' @family core functions
 #'
