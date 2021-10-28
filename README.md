@@ -302,8 +302,8 @@ Alexander Konovalov. 2021. “Citation File Format.”
 
 <div id="ref-aligning_codemeta">
 
-Fenner, Martin. 2021. “Aligning the Codemeta Vocabulary for Scientific
-Software with Schema.org.” <https://doi.org/10.5438/a49j-x692>.
+Fenner, Martin. 2021. “Aligning the CodeMeta Vocabulary for Scientific
+Software with schema.org.” <https://doi.org/10.5438/a49j-x692>.
 
 </div>
 
