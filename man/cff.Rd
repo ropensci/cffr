@@ -34,7 +34,7 @@ create \code{cff} objects from DESCRIPTION files use \code{\link[=cff_create]{cf
 If no additional \code{...} parameters are supplied (the default behavior),
 a minimal valid \code{cff} object is created. Valid parameters are those
 specified on \code{\link[=cff_schema_keys]{cff_schema_keys()}}:\tabular{l}{
-   valid cff keys \cr
+   \strong{valid cff keys} \cr
    cff-version \cr
    message \cr
    type \cr

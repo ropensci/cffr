@@ -32,7 +32,7 @@
 #'
 #' valid_keys <- cff_schema_keys()
 #'
-#' knitr::kable(valid_keys, col.names = "valid cff keys")
+#' knitr::kable(valid_keys, col.names = "**valid cff keys**")
 #'
 #'
 #' ```
