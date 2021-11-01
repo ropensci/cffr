@@ -1,20 +1,19 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# cffr <a href='https://dieghernan.github.io/cffr/'><img src="man/figures/logo.png" align="right" height="139"/></a>
+# cffr <a href='https://docs.ropensci.org/cffr/'><img src="man/figures/logo.png" align="right" height="139"/></a>
 
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml)
-[![codecov](https://codecov.io/gh/dieghernan/cffr/branch/master/graph/badge.svg)](https://app.codecov.io/gh/dieghernan/cffr)
+[![codecov](https://codecov.io/gh/ropensci/cffr/branch/main/graph/badge.svg?token=YRO3XL8RWK)](https://app.codecov.io/gh/ropensci/cffr)
 [![CITATION-cff](https://github.com/ropensci/cffr/actions/workflows/cff-validator.yml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/cff-validator.yml)
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.5509766-blue)](https://doi.org/10.5281/zenodo.5509766)
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 ![GitHub code size in
-bytes](https://img.shields.io/github/languages/code-size/dieghernan/cffr)
-[![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/cffr/badge)](https://www.codefactor.io/repository/github/dieghernan/cffr)
+bytes](https://img.shields.io/github/languages/code-size/ropensci/cffr)
 [![peer-review](https://badges.ropensci.org/463_status.svg)](https://github.com/ropensci/software-review/issues/463)
 
 <!-- badges: end -->
@@ -236,9 +235,9 @@ cff_validate(test)
 #> Congratulations! This cff object is valid
 ```
 
-Check the
-[docs](https://dieghernan.github.io/cffr//reference/index.html) and
-`vignette(package = "cffr")` to learn how to work with `cff` objects.
+Check the [docs](https://docs.ropensci.org/cffr/reference/index.html)
+and `vignette(package = "cffr")` to learn how to work with `cff`
+objects.
 
 ## Related packages
 
@@ -263,7 +262,7 @@ To cite the ‘cffr’ package in publications use:
 Hernangómez D (2021). *cffr: Generate Citation File Format (‘cff’)
 Metadata for R Packages*. doi: 10.5281/zenodo.5509766 (URL:
 <https://doi.org/10.5281/zenodo.5509766>), R package version 0.0.1.9004,
-\<URL: <https://dieghernan.github.io/cffr/>\>.
+\<URL: <https://docs.ropensci.org/cffr/>\>.
 
 A BibTeX entry for LaTeX users is
 
@@ -274,7 +273,7 @@ A BibTeX entry for LaTeX users is
     #>   version = {0.0.1.9004},
     #>   author = {Diego Hernangómez},
     #>   doi = {10.5281/zenodo.5509766},
-    #>   url = {https://dieghernan.github.io/cffr/},
+    #>   url = {https://docs.ropensci.org/cffr/},
     #> }
     #> 
     #> @Misc{,
