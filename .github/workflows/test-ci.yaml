@@ -33,7 +33,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
-          cache-version: 10
+          cache-version: 100
           extra-packages: |
             devtools
             remotes
