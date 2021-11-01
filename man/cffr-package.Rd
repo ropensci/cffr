@@ -17,8 +17,8 @@ utilities to generate and validate this metadata.
 Useful links:
 \itemize{
 \item \url{https://dieghernan.github.io/cffr/}
-\item \url{https://github.com/dieghernan/cffr}
-\item Report bugs at \url{https://github.com/dieghernan/cffr/issues}
+\item \url{https://github.com/ropensci/cffr}
+\item Report bugs at \url{https://github.com/ropensci/cffr/issues}
 }
 }
 \author{

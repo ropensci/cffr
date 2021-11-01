@@ -28,7 +28,7 @@ preferred-citation:
   version: 0.0.1.9004
   doi: 10.5281/zenodo.5509766
   url: https://dieghernan.github.io/cffr/
-repository-code: https://github.com/dieghernan/cffr
+repository-code: https://github.com/ropensci/cffr
 url: https://dieghernan.github.io/cffr/
 contact:
 - family-names: Hernangómez
