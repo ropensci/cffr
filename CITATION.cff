@@ -1,6 +1,6 @@
 # -----------------------------------------------------------
 # CITATION file created with {cffr} R package, v0.0.1.9004
-# See also: https://dieghernan.github.io/cffr/
+# See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
 cff-version: 1.2.0
@@ -27,9 +27,9 @@ preferred-citation:
   year: '2021'
   version: 0.0.1.9004
   doi: 10.5281/zenodo.5509766
-  url: https://dieghernan.github.io/cffr/
+  url: https://docs.ropensci.org/cffr/
 repository-code: https://github.com/ropensci/cffr
-url: https://dieghernan.github.io/cffr/
+url: https://docs.ropensci.org/cffr/
 contact:
 - family-names: Hernangómez
   given-names: Diego
