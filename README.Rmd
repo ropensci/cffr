@@ -85,19 +85,22 @@ if your package pass `R CMD check/devtools::check()`.
 You can install the developing version of **cffr** with:
 
 ```{r, eval=FALSE}
-devtools::install_github("dieghernan/cffr")
+devtools::install_github("ropensci/cffr")
 ```
 
 Alternatively, you can install **cffr** using the
-[r-universe](https://dieghernan.r-universe.dev/ui#builds):
+[r-universe](https://ropensci.r-universe.dev/ui#builds):
 
 ```{r, eval=FALSE}
+
 # Enable this universe
 options(repos = c(
-  dieghernan = "https://dieghernan.r-universe.dev",
-  CRAN = "https://cloud.r-project.org"
-))
-install.packages("cffr")
+    ropensci = 'https://ropensci.r-universe.dev',
+    CRAN = 'https://cloud.r-project.org'))
+
+# Install some packages
+install.packages('cffr')
+
 ```
 
 ### Example
