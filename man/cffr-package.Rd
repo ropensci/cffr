@@ -16,8 +16,7 @@ utilities to generate and validate this metadata.
 \seealso{
 Useful links:
 \itemize{
-\item \url{https://dieghernan.github.io/cffr/}
-\item \url{https://github.com/ropensci/cffr}
+\item <https://dieghernan.github.io/cffr/, https://github.com/ropensci/cffr>
 \item Report bugs at \url{https://github.com/ropensci/cffr/issues}
 }
 }
