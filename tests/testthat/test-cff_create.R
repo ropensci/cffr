@@ -7,7 +7,6 @@ test_that("Error if file not exists", {
 test_that("Test installed packages", {
   expect_silent(cff_create("jsonlite"))
   expect_silent(cff_create("yaml"))
-  expect_silent(cff_create("jsonvalidate"))
 })
 
 test_that("Test error formats on inputs", {
