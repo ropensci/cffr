@@ -23,17 +23,11 @@ jobs:
         with:
           use-public-rspm: true
 
-      # This is needed for workflows running on
-      # ubuntu-20.04 or later
-      - name: Install V8
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt-get install -y libv8-dev
-
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
           extra-packages: |
             ropensci/cffr
+            V8
 
       - name: Update CITATION.cff
         run: |
