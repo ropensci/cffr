@@ -4,7 +4,7 @@
 \alias{cff_create}
 \title{Create \code{cff} object}
 \usage{
-cff_create(x, keys = NULL, cff_version = "1.2.0")
+cff_create(x, keys = list(), cff_version = "1.2.0")
 }
 \arguments{
 \item{x}{The source that would be used for generating

@@ -96,12 +96,12 @@ Alternatively, you can install **cffr** using the
 
 # Enable this universe
 options(repos = c(
-    ropensci = 'https://ropensci.r-universe.dev',
-    CRAN = 'https://cloud.r-project.org'))
+  ropensci = "https://ropensci.r-universe.dev",
+  CRAN = "https://cloud.r-project.org"
+))
 
 # Install some packages
-install.packages('cffr')
-
+install.packages("cffr")
 ```
 
 ### Example

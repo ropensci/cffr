@@ -32,8 +32,8 @@ Recently
 [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
 [Zenodo](https://twitter.com/ZENODO_ORG/status/1420357001490706442) and
 [Zotero](https://twitter.com/zotero/status/1420515377390530560) have
-included full support of this citation format. GitHub support is of
-special interest:
+included full support of this citation format (Druskat 2021). GitHub
+support is of special interest:
 
 *See [Customize your repository/About CITATION
 files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)*
@@ -66,8 +66,8 @@ and examples for working with .cff more generally.
 
 **cffr** maximizes the data extraction by using both the `DESCRIPTION`
 file and the `CITATION` file (if present) of your package. Note that
-**cffr** works best if your package pass
-`R CMD check/devtools::check()`.
+**cffr** works best if your package pass `R CMD
+check/devtools::check()`.
 
 ### Installation
 
@@ -81,13 +81,15 @@ Alternatively, you can install **cffr** using the
 [r-universe](https://ropensci.r-universe.dev/ui#builds):
 
 ``` r
+
 # Enable this universe
 options(repos = c(
-    ropensci = 'https://ropensci.r-universe.dev',
-    CRAN = 'https://cloud.r-project.org'))
+  ropensci = "https://ropensci.r-universe.dev",
+  CRAN = "https://cloud.r-project.org"
+))
 
 # Install some packages
-install.packages('cffr')
+install.packages("cffr")
 ```
 
 ### Example
@@ -112,9 +114,9 @@ test <- cff_create("rmarkdown")
 ```
 
 <details>
-<summary>
-<code>CITATION.cff</code> for <strong>rmarkdown</strong>
-</summary>
+
+<summary> <code>CITATION.cff</code> for
+<strong>rmarkdown</strong></summary>
 
     cff-version: 1.2.0
     message: 'To cite package "rmarkdown" in publications use:'
@@ -220,13 +222,17 @@ test <- cff_create("rmarkdown")
       url: https://bookdown.org/yihui/rmarkdown-cookbook
 
 </details>
+
 <p>
+
 <p>
+
 <p>
 
 We can validate the result using `cff_validate()`:
 
 ``` r
+
 cff_validate(test)
 #> 
 #> cff_validate results-----
@@ -239,16 +245,16 @@ objects.
 
 ## Related packages
 
--   [**citation**](https://github.com/pik-piam/citation/): The
+  - [**citation**](https://github.com/pik-piam/citation/): The
     development version (at the time of this writing) includes a new
     function `r2cff` that creates a `CITATION.cff` file (v1.1.0) using
     the information of your `DESCRIPTION` file. It also provide minimal
     validity checks.
--   [**handlr**](https://github.com/ropensci/handlr): Tool for
+  - [**handlr**](https://github.com/ropensci/handlr): Tool for
     converting among citation formats, including `*.cff` files. At the
     time of this writing only CFF v1.1.0 was supported (see
-    [#24](https://github.com/ropensci/handlr/issues/24)).
--   [**codemeta**](https://github.com/cboettig/codemeta)/
+    [\#24](https://github.com/ropensci/handlr/issues/24)).
+  - [**codemeta**](https://github.com/cboettig/codemeta)/
     [**codemetar**](https://github.com/ropensci/codemetar) provides
     similar solutions for creating `codemeta.json` file, another format
     for storing and sharing software metadata.
@@ -273,26 +279,6 @@ A BibTeX entry for LaTeX users is
     #>   doi = {10.5281/zenodo.5509766},
     #>   url = {https://docs.ropensci.org/cffr/},
     #> }
-    #> 
-    #> @Misc{,
-    #>   title = {{Citation File Format}},
-    #>   year = {2021},
-    #>   version = {1.2.0},
-    #>   month = {aug},
-    #>   author = {Stephan Druskat and Jurriaan H. Spaaks and Neil {Chue Hong} and Robert Haines and James Baker and Spencer Bliven and Egon Willighagen and David Pérez-Suárez and Alexander Konovalov},
-    #>   doi = {10.5281/zenodo.5171937},
-    #>   keywords = {citation file format, CFF, citation files, software citation, file format, YAML, software sustainability, research software, credit},
-    #>   license = {CC-BY-4.0},
-    #>   date-released = {2021-08-09},
-    #> }
-    #> 
-    #> @Misc{,
-    #>   author = {Robin Wilson},
-    #>   title = {Encouraging citation of software - introducing CITATION files.},
-    #>   year = {2016},
-    #>   month = {6},
-    #>   url = {https://www.software.ac.uk/blog/2016-10-06-encouraging-citation-software-introducing-citation-files},
-    #> }
 
 You can also use the [citation provided by
 GitHub](https://github.com/ropensci/cffr), that is generated from the
@@ -303,9 +289,17 @@ for more info.
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references">
 
-<div id="ref-Druskat_Citation_File_Format_2021" class="csl-entry">
+<div id="ref-making_software">
+
+Druskat, Stephan. 2021. “Making software citation easi(er) - The
+Citation File Format and its integrations.” Zenodo.
+<https://doi.org/10.5281/zenodo.5529914>.
+
+</div>
+
+<div id="ref-Druskat_Citation_File_Format_2021">
 
 Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, Robert Haines,
 James Baker, Spencer Bliven, Egon Willighagen, David Pérez-Suárez, and
@@ -314,15 +308,14 @@ Alexander Konovalov. 2021. “Citation File Format.”
 
 </div>
 
-<div id="ref-aligning_codemeta" class="csl-entry">
+<div id="ref-aligning_codemeta">
 
 Fenner, Martin. 2021. “Aligning the CodeMeta Vocabulary for Scientific
-Software with <span class="nocase">schema.org</span>.”
-<https://doi.org/10.5438/a49j-x692>.
+Software with schema.org.” <https://doi.org/10.5438/a49j-x692>.
 
 </div>
 
-<div id="ref-codemeta_2_0" class="csl-entry">
+<div id="ref-codemeta_2_0">
 
 Jones, Matthew B., Carl Boettiger, Abby Cabunoc Mayes, Arfon Smith,
 Peter Slaughter, Kyle Niemeyer, Yolanda Gil, et al. 2017. “CodeMeta: An
