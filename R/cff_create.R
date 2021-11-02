@@ -95,7 +95,7 @@
 #'
 #'
 #' cff_create(demo_file, keys = list("contact" = new_contact))
-cff_create <- function(x, keys = NULL,
+cff_create <- function(x, keys = list(),
                        cff_version = "1.2.0") {
   if (missing(x)) x <- getwd()
 

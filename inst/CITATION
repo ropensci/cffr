@@ -12,7 +12,6 @@ bibentry(
   url = unlist(strsplit(meta$URL, ","))[1]
 )
 
-
 bibentry(
   "Misc",
   header = "References:",
@@ -39,9 +38,11 @@ bibentry(
 )
 
 bibentry("Misc",
-  author = person("Robin", "Wilson"),
-  title = "Encouraging citation of software - introducing CITATION files.",
-  year = 2016,
-  month = 6,
-  url = "https://www.software.ac.uk/blog/2016-10-06-encouraging-citation-software-introducing-citation-files"
+  author = person("Stephan", "Druskat"),
+  title = "Making software citation easi(er) - The Citation File Format and its integrations",
+  year = 2021,
+  version = 1,
+  month = "sep",
+  doi = "10.5281/zenodo.5529914",
+  url = "https://doi.org/10.5281/zenodo.5529914"
 )

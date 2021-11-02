@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.1 (2021-08-10)",
+  "runtimePlatform": "R version 4.1.2 (2021-11-01)",
   "author": [
     {
       "@type": "Person",
@@ -147,7 +147,7 @@
     "SystemRequirements": null
   },
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata"],
-  "fileSize": "788.067KB",
+  "fileSize": "788.799KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -223,16 +223,19 @@
     },
     {
       "@type": "CreativeWork",
-      "datePublished": "2016",
+      "datePublished": "2021",
       "author": [
         {
           "@type": "Person",
-          "givenName": "Robin",
-          "familyName": "Wilson"
+          "givenName": "Stephan",
+          "familyName": "Druskat"
         }
       ],
-      "name": "Encouraging citation of software - introducing CITATION files.",
-      "url": "https://www.software.ac.uk/blog/2016-10-06-encouraging-citation-software-introducing-citation-files"
+      "name": "Making software citation easi(er) - The Citation File Format and its integrations",
+      "identifier": "10.5281/zenodo.5529914",
+      "url": "https://doi.org/10.5281/zenodo.5529914",
+      "@id": "https://doi.org/10.5281/zenodo.5529914",
+      "sameAs": "https://doi.org/10.5281/zenodo.5529914"
     }
   ]
 }

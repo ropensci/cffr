@@ -59,7 +59,7 @@
 #' adds "CITATION.cff" to ".Rbuildignore".
 cff_write <- function(x,
                       outfile = "CITATION.cff",
-                      keys = NULL,
+                      keys = list(),
                       cff_version = "1.2.0",
                       validate = TRUE,
                       verbose = TRUE) {

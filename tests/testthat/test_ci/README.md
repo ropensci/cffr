@@ -12,7 +12,7 @@ This test validates the `cff` parsing for \>1500 packages:
     https://r-universe.dev/organizations/.
 
 This test is deployed in [GitHub
-Actions](https://github.com/dieghernan/cffr/actions/workflows/test-ci.yaml) and
+Actions](https://github.com/ropensci/cffr/actions/workflows/test-ci.yaml) and
 the results are uploaded as an artifact. We use here Windows and MacOS binaries
 for speeding up the process.
 

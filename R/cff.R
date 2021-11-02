@@ -5,7 +5,7 @@
 #'
 #' @name cff
 #' @return
-#' A `cff` object. Under the hood, a `cff` object is a regular [list()]
+#' A `cff` object. Under the hood, a `cff` object is a regular [list]
 #' object with a special [print()] method.
 #'
 #' @family core functions

@@ -1,5 +1,8 @@
 # cffr (development version)
-
+-   `cffr` is part now of rOpenSci.
+-   Update on docs and README.
+-   Add fuzzy match on `keys` parameter.
+-   New dataset: `cran_to_spdx`.
 -   Add DOI <https://doi.org/10.5281/zenodo.5509766>
 -   Citation of installed packages extracted using `citation().`
 -   Auto-generating `preferred-citation` key from DESCRIPTION.
