@@ -44,7 +44,7 @@ This format is becoming popular within the software citation ecosystem. Recently
 [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
 [Zenodo](https://twitter.com/ZENODO_ORG/status/1420357001490706442) and
 [Zotero](https://twitter.com/zotero/status/1420515377390530560) have included
-full support of this citation format. GitHub support is of special interest:
+full support of this citation format [@making_software]. GitHub support is of special interest:
 
 *See [Customize your repository/About CITATION
 files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)*
@@ -175,7 +175,7 @@ print(citation("cffr")[1], bibtex = FALSE)
 A BibTeX entry for LaTeX users is
 
 ```{r echo=FALSE}
-toBibtex(citation("cffr"))
+toBibtex(citation("cffr")[1])
 ```
 
 You can also use the [citation provided by
