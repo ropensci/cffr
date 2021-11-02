@@ -5,7 +5,7 @@ name: update-docs
 
 jobs:
   update-docs:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -34,7 +34,7 @@ jobs:
         run: |
 
           pkgdev::update_docs()
-          
+
           testthat::test_local()
 
         shell: Rscript {0}

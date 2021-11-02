@@ -22,12 +22,21 @@ test_that("Test in mock package", {
     to = file.path("inst", "CITATION")
   )
 
+  # Create Rbuildignore
+
+  file.create(".Rbuildignore", showWarnings = FALSE)
+  expect_true(file.exists(".Rbuildignore"))
+
   cffobj <- cff_create()
+
 
   expect_message(cff_write(), "Congratulations! This .cff file is valid")
 
   expect_true(file.exists("CITATION.cff"))
 
+  ignore <- readLines(".Rbuildignore")
+
+  expect_true(("^CITATION\\.cff$" %in% ignore))
   # Revert to initial wd
   setwd(current_dir)
 

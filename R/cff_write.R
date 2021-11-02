@@ -109,8 +109,7 @@ cff_write <- function(x,
   if (verbose) message(crayon::green(outfile, "generated"))
 
   # Add CITATION.cff to .Rbuildignore
-  if (!is.cff(x) && x == "." && file.exists(".Rbuildignore")) {
-    # nocov start
+  if (!is.cff(x) && x == getwd() && file.exists(".Rbuildignore")) {
     ignore <- readLines(".Rbuildignore")
 
     # If not already
@@ -126,7 +125,6 @@ cff_write <- function(x,
       }
       writeLines(ignore, ".Rbuildignore")
     }
-    # nocov end
   }
 
   if (validate) {
