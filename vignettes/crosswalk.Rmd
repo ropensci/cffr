@@ -2,7 +2,7 @@
 title: "Crosswalk"
 subtitle: "From R to CFF"
 author: Diego Hernangómez
-bibliography: bibtex.bib
+bibliography: ../bibtex.bib
 output: 
   rmarkdown::html_vignette:
     toc: true

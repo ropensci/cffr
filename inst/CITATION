@@ -12,7 +12,6 @@ bibentry(
   url = unlist(strsplit(meta$URL, ","))[1]
 )
 
-
 bibentry(
   "Misc",
   header = "References:",

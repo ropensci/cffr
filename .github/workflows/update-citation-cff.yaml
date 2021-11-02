@@ -3,10 +3,11 @@ on:
   release:
     types: [published]
   push:
-    tags: ['*']
     paths:
       - DESCRIPTION
       - inst/CITATION
+    tags: 
+      - ['*']
   workflow_dispatch:
 
 name: Update CITATION.cff
