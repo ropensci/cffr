@@ -6,8 +6,6 @@ on:
     paths:
       - DESCRIPTION
       - inst/CITATION
-    tags: 
-      - '*'
   workflow_dispatch:
 
 name: Update CITATION.cff
