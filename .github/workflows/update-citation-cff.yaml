@@ -1,4 +1,9 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/master/examples
+# The action runs when:
+# - A new release is published
+# - The DESCRIPTION or inst/CITATION are modified
+# - Can be run manually
+# For customizing the triggers, visit https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows
 on:
   release:
     types: [published]
@@ -12,7 +17,7 @@ name: Update CITATION.cff
 
 jobs:
   update-citation-cff:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
