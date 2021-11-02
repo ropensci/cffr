@@ -33,12 +33,7 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
           extra-packages: |
-            dieghernan/cffr
-
-# When on CRAN, use instead
-         # extra-packages: |
-         #  cffr
-
+            ropensci/cffr
 
       - name: Update CITATION.cff
         run: |
@@ -46,9 +41,12 @@ jobs:
           library(cffr)
 
           # Customize with your own code
-          # Mind the indentation!
+          # See https://docs.ropensci.org/cffr/articles/cffr.html
+          
+          # Write your own keys
+          mykeys <- list()
 
-          cff_write()
+          cff_write(keys = mykeys)
 
         shell: Rscript {0}
 
