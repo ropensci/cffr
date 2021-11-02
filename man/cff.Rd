@@ -75,7 +75,7 @@ test <- cff(
   authors = list(cff_parse_person("New author"))
 )
 test
-
+\donttest{
 # Would fail
 cff_validate(test)
 
@@ -89,6 +89,7 @@ new
 
 # Would pass
 cff_validate(new)
+}
 
 
 # Convert a list to "cff" object

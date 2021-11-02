@@ -54,7 +54,6 @@
 #'   authors = list(cff_parse_person("New author"))
 #' )
 #' test
-#' 
 #' \donttest{
 #' # Would fail
 #' cff_validate(test)
