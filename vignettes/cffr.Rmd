@@ -3,7 +3,7 @@ title: "Manipulating Citations with cffr"
 output: 
   rmarkdown::html_vignette:
     toc: true
-bibliography: ../bibtex.bib
+bibliography: bibtex.bib
 vignette: >
   %\VignetteIndexEntry{Manipulating Citations with cffr}
   %\VignetteEngine{knitr::rmarkdown}
