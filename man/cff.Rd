@@ -18,7 +18,7 @@ as.cff(x)
 \item{x}{a character string for the \code{\link{as.cff}} default method}
 }
 \value{
-A \code{cff} object. Under the hood, a \code{cff} object is a regular \link{list}
+A \code{cff} object. Under the hood, a \code{cff} object is a regular \code{\link{list}}
 object with a special \code{\link[=print]{print()}} method.
 }
 \description{
