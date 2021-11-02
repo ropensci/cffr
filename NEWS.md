@@ -1,4 +1,4 @@
-# cffr (development version)
+# cffr 0.0.2
 -   `cffr` is part now of rOpenSci.
 -   Update on docs and README.
 -   Add fuzzy match on `keys` parameter.
@@ -11,6 +11,7 @@
 -   "repository" key is supported.
 -   Added vignette: `vignette("crosswalk", package = "cffr")`.
 -   Add support to Bioconductor packages.
+-   New function: `cff_gha_update()`.
 
 # cffr 0.0.1
 

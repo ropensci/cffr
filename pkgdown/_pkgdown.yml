@@ -35,6 +35,9 @@ reference:
   - title: Datasets
     contents:
       - has_keyword("datasets")
+  - title: GitHub Action
+    contents:
+      - cff_gha_update
   - title: About the package
     contents:
       - cffr-package

@@ -151,6 +151,19 @@ cff_validate(test)
 Check the [docs](https://docs.ropensci.org/cffr/reference/index.html) and
 `vignette(package = "cffr")` to learn how to work with `cff` objects.
 
+### Keep your `CITATION.cff` file up-to-date
+
+You could use GitHub Actions. Use `cff_gha_update()`function
+to install a GitHub Action that would update your `CITATION.cff` file on the
+following events:
+
+- When you publish a new release of the package on your GitHub repo.
+- Each time that you modify your DESCRIPTION or inst/CITATION files.
+- The action can be run also manually.
+
+See the example workflow file [here](https://github.com/ropensci/cffr/blob/main/.github/workflows/update-citation-cff.yaml).
+
+
 ## Related packages
 
 -   [**citation**](https://github.com/pik-piam/citation/): The development

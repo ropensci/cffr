@@ -27,6 +27,25 @@ test_that("Test in mock package", {
   file.create(".Rbuildignore", showWarnings = FALSE)
   expect_true(file.exists(".Rbuildignore"))
 
+  # Add action
+  cff_gha_update()
+
+  expect_message(
+    cff_gha_update(),
+    paste(
+      "File update-citation-cff.yaml already installed.",
+      "Use overwrite = TRUE for overwrite"
+    )
+  )
+  cff_gha_update(overwrite = TRUE)
+
+  expect_true(file.exists(file.path(
+    ".github",
+    "workflows",
+    "update-citation-cff.yaml"
+  )))
+
+
   cffobj <- cff_create()
 
 
@@ -37,6 +56,7 @@ test_that("Test in mock package", {
   ignore <- readLines(".Rbuildignore")
 
   expect_true(("^CITATION\\.cff$" %in% ignore))
+  expect_true(("^\\.github$" %in% ignore))
   # Revert to initial wd
   setwd(current_dir)
 
