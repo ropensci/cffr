@@ -54,7 +54,7 @@
 #'   authors = list(cff_parse_person("New author"))
 #' )
 #' test
-#'
+#' \donttest{
 #' # Would fail
 #' cff_validate(test)
 #'
@@ -68,6 +68,7 @@
 #'
 #' # Would pass
 #' cff_validate(new)
+#' }
 cff <- function(path, ...) {
   if (!missing(path) && is.cff(path)) {
     return(path)
