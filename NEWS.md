@@ -1,4 +1,9 @@
+# cffr 0.1.0
+
+-   First CRAN release
+
 # cffr 0.0.2
+
 -   `cffr` is part now of rOpenSci.
 -   Update on docs and README.
 -   Add fuzzy match on `keys` parameter.

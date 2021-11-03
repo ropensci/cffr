@@ -289,7 +289,7 @@ To cite the ‘cffr’ package in publications use:
 
 Hernangómez D (2021). *cffr: Generate Citation File Format (‘cff’)
 Metadata for R Packages*. doi: 10.5281/zenodo.5509765 (URL:
-<https://doi.org/10.5281/zenodo.5509765>), R package version 0.0.2,
+<https://doi.org/10.5281/zenodo.5509765>), R package version 0.1.0,
 \<URL: <https://docs.ropensci.org/cffr/>\>.
 
 A BibTeX entry for LaTeX users is
@@ -297,8 +297,8 @@ A BibTeX entry for LaTeX users is
     #> @Manual{,
     #>   title = {cffr: Generate Citation File Format ('cff') Metadata for R Packages},
     #>   year = {2021},
-    #>   note = {R package version 0.0.2},
-    #>   version = {0.0.2},
+    #>   note = {R package version 0.1.0},
+    #>   version = {0.1.0},
     #>   author = {Diego Hernangómez},
     #>   doi = {10.5281/zenodo.5509765},
     #>   url = {https://docs.ropensci.org/cffr/},
