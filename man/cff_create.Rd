@@ -45,7 +45,7 @@ your package, \strong{cffr} would auto-generate a \code{preferred-citation} key 
 the information provided on that file. On
 }
 \examples{
-
+\donttest{
 # Installed package
 cff_create("jsonlite")
 
@@ -81,6 +81,7 @@ new_contact <- append(
 
 
 cff_create(demo_file, keys = list("contact" = new_contact))
+}
 }
 \seealso{
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.

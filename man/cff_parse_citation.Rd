@@ -21,7 +21,7 @@ This is a helper function designed to help on adding or
 replacing the auto-generated authors of the package. See \strong{Examples}.
 }
 \examples{
-
+\donttest{
 bib <- citation("base")
 bib
 
@@ -42,6 +42,7 @@ cff_validate(full)
 # Several citations
 
 cff_parse_citation(citation("rmarkdown"))
+}
 }
 \seealso{
 \code{\link[=cff_create]{cff_create()}}, \code{vignette("cffr", "cffr")}, \code{\link[utils:bibentry]{utils::bibentry()}}

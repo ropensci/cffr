@@ -18,7 +18,7 @@
 #' replacing the auto-generated authors of the package. See **Examples**.
 #'
 #' @examples
-#'
+#' \donttest{
 #' bib <- citation("base")
 #' bib
 #'
@@ -39,6 +39,7 @@
 #' # Several citations
 #'
 #' cff_parse_citation(citation("rmarkdown"))
+#' }
 cff_parse_citation <- function(bib) {
   if (!inherits(bib, "bibentry")) {
     return(NULL)
