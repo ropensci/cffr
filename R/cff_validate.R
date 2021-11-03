@@ -33,6 +33,7 @@
 #' @inheritParams cff_write
 #'
 #' @examples
+#' \donttest{
 #' # Full .cff example
 #' cff_validate(system.file("examples/CITATION_complete.cff", package = "cffr"))
 #'
@@ -40,10 +41,10 @@
 #' cffr <- cff_create("jsonlite")
 #' class(cffr)
 #' cff_validate(cffr)
-#'
+#' }
+#' \dontrun{
 #' # .cff with errors
 #' cff_validate(system.file("examples/CITATION_error.cff", package = "cffr"))
-#' \dontrun{
 #' # If a CITATION file (note that is not .cff) it throws an error
 #' cff_validate(system.file("CITATION", package = "cffr"))
 #' }
