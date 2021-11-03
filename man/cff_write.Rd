@@ -54,6 +54,7 @@ When creating and writing a \code{CITATION.cff} for the first time, the function
 adds "CITATION.cff" to ".Rbuildignore".
 }
 \examples{
+\donttest{
 tmpfile <- tempfile(fileext = ".cff")
 cff_obj <- cff_write("jsonlite", outfile = tmpfile)
 
@@ -61,6 +62,7 @@ cff_obj
 
 # Force clean-up
 file.remove(tmpfile)
+}
 }
 \seealso{
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.

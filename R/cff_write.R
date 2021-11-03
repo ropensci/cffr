@@ -46,6 +46,7 @@
 #'
 #' ```
 #' @examples
+#' \donttest{
 #' tmpfile <- tempfile(fileext = ".cff")
 #' cff_obj <- cff_write("jsonlite", outfile = tmpfile)
 #'
@@ -53,6 +54,7 @@
 #'
 #' # Force clean-up
 #' file.remove(tmpfile)
+#' }
 #' @details
 #'
 #' When creating and writing a `CITATION.cff` for the first time, the function
