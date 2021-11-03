@@ -24,6 +24,15 @@
       "@id": "https://orcid.org/0000-0001-8457-4658"
     }
   ],
+  "copyrightHolder": [
+    {
+      "@type": "Person",
+      "givenName": "Diego",
+      "familyName": "Hernangómez",
+      "email": "diego.hernangomezherrero@gmail.com",
+      "@id": "https://orcid.org/0000-0001-8457-4658"
+    }
+  ],
   "maintainer": [
     {
       "@type": "Person",
@@ -147,7 +156,7 @@
     "SystemRequirements": null
   },
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata"],
-  "fileSize": "806.81KB",
+  "fileSize": "806.639KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

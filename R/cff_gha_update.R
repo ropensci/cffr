@@ -59,7 +59,7 @@ cff_gha_update <- function(path = ".",
       ignore <- unique(ignore)
 
       message(crayon::blue(
-        "Adding ^\\.github$",
+        "Adding .github",
         "to .Rbuildignore"
       ))
 

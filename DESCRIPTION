@@ -2,7 +2,7 @@ Package: cffr
 Title: Generate Citation File Format ('cff') Metadata for R Packages
 Version: 0.0.2
 Authors@R: c(
-    person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre"),
+    person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658")),
     person("João", "Martins", role = "rev",
            comment = c(ORCID = "0000-0001-7961-4280")),

@@ -83,6 +83,14 @@ if your package pass `R CMD check/devtools::check()`.
 
 ### Installation
 
+Install **cffr** from CRAN:
+
+<!-- Aspirational, not yet released -->
+```{r, eval=FALSE}
+install.packages("cffr")
+```
+
+
 You can install the developing version of **cffr** with:
 
 ```{r, eval=FALSE}
@@ -153,13 +161,22 @@ Check the [docs](https://docs.ropensci.org/cffr/reference/index.html) and
 
 ### Keep your `CITATION.cff` file up-to-date
 
-You could use GitHub Actions. Use `cff_gha_update()`function
-to install a GitHub Action that would update your `CITATION.cff` file on the
+The easiest way for keeping you `CITATION.cff` file up-tp-date is using
+GitHub Actions. Use `cff_gha_update()`function to install a GitHub Action 
+that would update your `CITATION.cff` file on the
 following events:
 
 - When you publish a new release of the package on your GitHub repo.
 - Each time that you modify your DESCRIPTION or inst/CITATION files.
 - The action can be run also manually.
+
+```{r, eval=FALSE}
+cff_gha_update()
+
+#> Installing update-citation-cff.yaml on './.github/workflows'
+#> Adding .github to .Rbuildignore
+```
+
 
 See the example workflow file [here](https://github.com/ropensci/cffr/blob/main/.github/workflows/update-citation-cff.yaml).
 
