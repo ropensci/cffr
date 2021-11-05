@@ -104,7 +104,19 @@ install.packages("cffr")
 
 By default most often from within your package folder you’ll simply run
 `cff_write()`, that creates a `cff` object, write it on a `CITATION.cff`
-file and validates it on a single command.
+file and validates it on a single command:
+
+``` r
+library(cffr)
+ 
+# For in-development packages
+cff_write()
+#> 
+#> CITATION.cff generated
+#>
+#> cff_validate results-----
+#> Congratulations! This .cff file is valid
+```
 
 However, **cffr** provides also custom print methods and mechanisms that
 allows you to customize the `CITATION.cff` and integrate them in your

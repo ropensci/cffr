@@ -28,6 +28,7 @@ preferred-citation:
   version: 0.1.0
   doi: 10.5281/zenodo.5509765
   url: https://docs.ropensci.org/cffr/
+repository: https://CRAN.R-project.org/package=cffr
 repository-code: https://github.com/ropensci/cffr
 url: https://docs.ropensci.org/cffr/
 contact:
