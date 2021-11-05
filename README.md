@@ -5,6 +5,9 @@
 
 <!-- badges: start -->
 
+[![CRAN-status](https://www.r-pkg.org/badges/version/cffr)](https://CRAN.R-project.org/package=cffr)
+[![CRAN-results](https://cranchecks.info/badges/worst/cffr)](https://cran.r-project.org/web/checks/check_results_cffr.html)
+[![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/cffr?color=blue)](https://cran.r-project.org/package=cffr)
 [![R-CMD-check](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml)
 [![codecov](https://codecov.io/gh/ropensci/cffr/branch/main/graph/badge.svg?token=YRO3XL8RWK)](https://app.codecov.io/gh/ropensci/cffr)
 [![r-universe](https://ropensci.r-universe.dev/badges/cffr)](https://ropensci.r-universe.dev/)
@@ -71,9 +74,7 @@ file and the `CITATION` file (if present) of your package. Note that
 
 ### Installation
 
-Install **cffr** from CRAN:
-
-<!-- Aspirational, not yet released -->
+Install **cffr** from [CRAN](https://CRAN.R-project.org/package=cffr):
 
 ``` r
 install.packages("cffr")
