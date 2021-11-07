@@ -1,3 +1,7 @@
+# cffr 0.1.1
+
+-   Include `pages` on `cff_parse_citation()` .
+
 # cffr 0.1.0
 
 -   First CRAN release

@@ -122,15 +122,14 @@ and validates it on a single command:
 ```{r, eval=FALSE}
 
 library(cffr)
- 
+
 # For in-development packages
 cff_write()
-#> 
+#>
 #> CITATION.cff generated
 #>
 #> cff_validate results-----
 #> Congratulations! This .cff file is valid
-
 ```
 
 However, **cffr** provides also custom print methods and mechanisms that allows

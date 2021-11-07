@@ -8,13 +8,19 @@
   "codeRepository": "https://github.com/ropensci/cffr",
   "issueTracker": "https://github.com/ropensci/cffr/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 4.1.2 (2021-11-01)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -156,7 +162,7 @@
     "SystemRequirements": null
   },
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata"],
-  "fileSize": "806.189KB",
+  "fileSize": "807.036KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -171,7 +177,7 @@
       "name": "cffr: Generate Citation File Format ('cff') Metadata for R Packages",
       "identifier": "10.5281/zenodo.5509765",
       "url": "https://docs.ropensci.org/cffr/",
-      "description": "R package version 0.1.0",
+      "description": "R package version 0.1.1",
       "@id": "https://doi.org/10.5281/zenodo.5509765",
       "sameAs": "https://doi.org/10.5281/zenodo.5509765"
     },

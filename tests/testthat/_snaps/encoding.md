@@ -116,6 +116,7 @@
       year: '2016'
       volume: '70'
       number: '10'
+      pages: 1--35
       doi: 10.18637/jss.v070.i10
     - type: article
       title: Spatio-Temporal Analysis of Epidemic Phenomena Using the R Package surveillance
@@ -130,5 +131,6 @@
       year: '2017'
       volume: '77'
       number: '11'
+      pages: 1--55
       doi: 10.18637/jss.v077.i11
 
