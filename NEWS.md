@@ -1,4 +1,4 @@
-# cffr (development version)
+# cffr 0.1.1
 
 -   Include `pages` on `cff_parse_citation()` .
 
