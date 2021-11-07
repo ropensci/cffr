@@ -34,6 +34,7 @@
       journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
+      pages: 352--357
       doi: 10.1111/2041-210X.12469
     references:
     - type: book
@@ -83,6 +84,7 @@
       journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
+      pages: 352--357
       doi: 10.1111/2041-210X.12469
     references:
     - type: book
@@ -133,6 +135,7 @@
       journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
+      pages: 352--357
       doi: 10.1111/2041-210X.12469
     references:
     - type: book
@@ -195,6 +198,7 @@
       journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
+      pages: 352--357
       doi: 10.1111/2041-210X.12469
     references:
     - type: book
@@ -259,6 +263,7 @@
       journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
+      pages: 352--357
       doi: 10.1111/2041-210X.12469
     references:
     - type: book
@@ -330,6 +335,7 @@
       journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
+      pages: 352--357
       doi: 10.1111/2041-210X.12469
     references:
     - type: book
@@ -388,6 +394,7 @@
       journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
+      pages: 352--357
       doi: 10.1111/2041-210X.12469
     references:
     - type: book
@@ -450,6 +457,7 @@
       journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
+      pages: 352--357
       doi: 10.1111/2041-210X.12469
     references:
     - type: book
@@ -502,6 +510,7 @@
       journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
+      pages: 352--357
       doi: 10.1111/2041-210X.12469
     references:
     - type: book
@@ -567,6 +576,7 @@
       journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
+      pages: 352--357
       doi: 10.1111/2041-210X.12469
     references:
     - type: book
@@ -642,6 +652,7 @@
       journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
+      pages: 352--357
       doi: 10.1111/2041-210X.12469
     references:
     - type: book
@@ -724,6 +735,7 @@
       journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
+      pages: 352--357
       doi: 10.1111/2041-210X.12469
     references:
     - type: book
@@ -784,6 +796,7 @@
       journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
+      pages: 352--357
       doi: 10.1111/2041-210X.12469
     references:
     - type: book
@@ -848,6 +861,7 @@
       journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
+      pages: 352--357
       doi: 10.1111/2041-210X.12469
     references:
     - type: book
