@@ -68,7 +68,7 @@ schema.json.
 # Acknowledgements
 
 I would like to thank Carl Boettiger, Maëlle Salmon and the rest of contributors
-of the codemetar [@codemetar2021] package. This package was the primary
+of the codemetar package [@codemetar2021]. This package was the primary
 inspiration for developing cffr and shares a common goal of increasing awareness
 on the efforts of software developers.
 
