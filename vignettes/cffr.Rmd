@@ -44,21 +44,16 @@ full support of this citation format [@making_software].
 
 GitHub support is of special interest:
 
-*See [Customize your repository/About CITATION
-files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)*
-
-<blockquote>
-
-When you add a CITATION.cff file to the default branch of your repository, it is
-automatically linked from the repository landing page. This makes it easy for
-other users to cite your software project, using the information you've
-provided.
-
-```{r echo=FALSE, out.width="80%", fig.align='center', fig.alt="citation-link"}
-knitr::include_graphics("citation-link.png")
+```{r echo=FALSE, out.width="400", fig.align='center', fig.alt="GitHub-link"}
+knitr::include_graphics("tweet-1.png")
 ```
 
-</blockquote>
+*--- Nat Friedman (\@natfriedman) [July 27,
+2021](https://twitter.com/natfriedman/status/1420122675813441540?ref_src=twsrc%5Etfw)*
+
+See [Customize your repository/About CITATION
+files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
+for more info.
 
 ## Creating a `CITATION.cff` file for my R package
 

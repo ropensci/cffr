@@ -22,6 +22,10 @@ bytes](https://img.shields.io/github/languages/code-size/ropensci/cffr)
 
 <!-- badges: end -->
 
+**cffr** provides utilities to generate, parse, modify and validate
+`CITATION.cff` files automatically for **R** packages, as well as tools
+and examples for working with .cff more generally.
+
 ## What is a `CITATION.cff` file?
 
 [Citation File Format (CFF)](https://citation-file-format.github.io/)
@@ -38,15 +42,14 @@ Recently
 included full support of this citation format (Druskat 2021). GitHub
 support is of special interest:
 
-*See [Customize your repository/About CITATION
-files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)*
+<img src="vignettes/tweet-1.png" title="GitHub-link" alt="GitHub-link" width="400" style="display: block; margin: auto;" />
 
-> When you add a CITATION.cff file to the default branch of your
-> repository, it is automatically linked from the repository landing
-> page. This makes it easy for other users to cite your software
-> project, using the information you’ve provided.
+*— Nat Friedman (@natfriedman) [July 27,
+2021](https://twitter.com/natfriedman/status/1420122675813441540?ref_src=twsrc%5Etfw)*
 
-<img src="vignettes/citation-link.png" title="citation-link" alt="citation-link" width="80%" style="display: block; margin: auto;" />
+See [Customize your repository/About CITATION
+files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
+for more info.
 
 ### Related projects
 
@@ -62,10 +65,6 @@ metadata such as title, authors, publication year, and venue (Fenner
 generate `codemeta.json` files from R packages metadata.
 
 ## The cffr package
-
-**cffr** provides utilities to generate, parse, modify and validate
-`CITATION.cff` files automatically for **R** packages, as well as tools
-and examples for working with .cff more generally.
 
 **cffr** maximizes the data extraction by using both the `DESCRIPTION`
 file and the `CITATION` file (if present) of your package. Note that

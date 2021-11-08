@@ -1,13 +1,13 @@
 ---
-title: "Crosswalk"
-subtitle: "From R to CFF"
+title: "From R to CFF"
+subtitle: "Crosswalk"
 author: Diego Hernangómez
 bibliography: bibtex.bib
 output: 
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{Crosswalk}
+  %\VignetteIndexEntry{From R to CFF}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
