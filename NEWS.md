@@ -1,6 +1,7 @@
 # cffr 0.1.1
 
 -   Include `pages` on `cff_parse_citation()` .
+-   Accepted on JOSS [![DOI](https://joss.theoj.org/papers/10.21105/joss.03900/status.svg)](https://doi.org/10.21105/joss.03900)
 
 # cffr 0.1.0
 

@@ -1,16 +1,18 @@
-year <- format(Sys.time(), "%Y")
 
 bibentry(
-  "Manual",
-  header = "To cite the 'cffr' package in publications use:",
-  title = paste("cffr:", meta$Title),
-  year = year,
-  note = paste("R package version", meta$Version),
-  version = meta$Version,
+  "Article",
+  doi = "10.21105/joss.03900",
+  url = "https://doi.org/10.21105/joss.03900",
+  year = 2021,
+  publisher = "The Open Journal",
+  volume = 6,
+  number = 67,
+  pages = 3900,
   author = person("Diego", "Hernangómez"),
-  doi = "10.5281/zenodo.5509765",
-  url = unlist(strsplit(meta$URL, ","))[1]
+  title = "cffr: Generate Citation File Format Metadata for R Packages",
+  journal = "Journal of Open Source Software"
 )
+
 
 bibentry(
   "Misc",
