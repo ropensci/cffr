@@ -162,10 +162,10 @@
     "SystemRequirements": null
   },
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata"],
-  "fileSize": "562.971KB",
+  "fileSize": "564.982KB",
   "citation": [
     {
-      "@type": "SoftwareSourceCode",
+      "@type": "ScholarlyArticle",
       "datePublished": "2021",
       "author": [
         {
@@ -174,12 +174,22 @@
           "familyName": "Hernangómez"
         }
       ],
-      "name": "cffr: Generate Citation File Format ('cff') Metadata for R Packages",
-      "identifier": "10.5281/zenodo.5509765",
-      "url": "https://docs.ropensci.org/cffr/",
-      "description": "R package version 0.1.1",
-      "@id": "https://doi.org/10.5281/zenodo.5509765",
-      "sameAs": "https://doi.org/10.5281/zenodo.5509765"
+      "name": "cffr: Generate Citation File Format Metadata for R Packages",
+      "identifier": "10.21105/joss.03900",
+      "url": "https://doi.org/10.21105/joss.03900",
+      "pagination": "3900",
+      "@id": "https://doi.org/10.21105/joss.03900",
+      "sameAs": "https://doi.org/10.21105/joss.03900",
+      "isPartOf": {
+        "@type": "PublicationIssue",
+        "issueNumber": "67",
+        "datePublished": "2021",
+        "isPartOf": {
+          "@type": ["PublicationVolume", "Periodical"],
+          "volumeNumber": "6",
+          "name": "Journal of Open Source Software"
+        }
+      }
     },
     {
       "@type": "CreativeWork",
