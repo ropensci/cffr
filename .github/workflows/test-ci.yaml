@@ -98,9 +98,6 @@ jobs:
           # Update
           update.packages(type = "binary")
 
-          # Malformed CITATION
-          remove.packages(c("photosearcher"))
-
         shell: Rscript {0}
 
 
