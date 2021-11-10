@@ -178,7 +178,7 @@ Check the [docs](https://docs.ropensci.org/cffr/reference/index.html) and
 
 ### Keep your `CITATION.cff` file up-to-date
 
-The easiest way for keeping you `CITATION.cff` file up-tp-date is using GitHub
+The easiest way for keeping you `CITATION.cff` file up-to-date is using GitHub
 Actions. Use `cff_gha_update()`function to install a GitHub Action that would
 update your `CITATION.cff` file on the following events:
 

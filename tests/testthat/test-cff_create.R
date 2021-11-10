@@ -24,7 +24,7 @@ test_that("Validate all DESCRIPTION files", {
   ), pattern = "^DESC", full.names = TRUE)
 
   for (i in seq_len(length(allfiles))) {
-    cffobj <- cff_create(allfiles[i])
+    cffobj <- cff_create(allfiles[i], gh_keywords = FALSE)
     # Check that all have preferred citation
     expect_false(is.null(cffobj$`preferred-citation`))
 
@@ -44,12 +44,12 @@ test_that("Auto generate preferred citations", {
   rgeos <- system.file("examples/DESCRIPTION_rgeos",
     package = "cffr"
   )
-  expect_snapshot_output(cff_create(rgeos))
+  expect_snapshot_output(cff_create(rgeos, gh_keywords = FALSE))
 
   basicdate <- system.file("examples/DESCRIPTION_basicdate",
     package = "cffr"
   )
-  expect_snapshot_output(cff_create(rgeos))
+  expect_snapshot_output(cff_create(basicdate, gh_keywords = FALSE))
 })
 
 test_that("Fuzzy match on cff_create", {

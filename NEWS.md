@@ -1,7 +1,10 @@
 # cffr 0.1.1
 
+-   Accepted on JOSS
+    [![DOI](https://joss.theoj.org/papers/10.21105/joss.03900/status.svg)](https://doi.org/10.21105/joss.03900)
 -   Include `pages` on `cff_parse_citation()` .
--   Accepted on JOSS [![DOI](https://joss.theoj.org/papers/10.21105/joss.03900/status.svg)](https://doi.org/10.21105/joss.03900)
+-   New `gh_keywords` parameter on `cff_create()` /`cff_write()`. If `TRUE`, it
+    would include GitHub repo topics as keywords.
 
 # cffr 0.1.0
 

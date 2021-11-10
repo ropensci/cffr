@@ -63,6 +63,7 @@ cff_write <- function(x,
                       outfile = "CITATION.cff",
                       keys = list(),
                       cff_version = "1.2.0",
+                      gh_keywords = TRUE,
                       validate = TRUE,
                       verbose = TRUE) {
   # On missing use package root
@@ -70,7 +71,8 @@ cff_write <- function(x,
 
   citat <- cff_create(x,
     keys = keys,
-    cff_version = cff_version
+    cff_version = cff_version,
+    gh_keywords = gh_keywords
   )
 
 

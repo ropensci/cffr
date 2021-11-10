@@ -23,6 +23,8 @@
 #'   **Details**.
 #' @param cff_version The Citation File Format schema version that the
 #'   `CITATION.cff` file adheres to for providing the citation metadata.
+#' @param gh_keywords Logical `TRUE/FALSE`. If the package is hosted on
+#'   GitHub, would you like to add the repo topics as keywords?
 #'
 #' @seealso
 #' ```{r, echo=FALSE, results='asis'}
@@ -96,8 +98,10 @@
 #'
 #' cff_create(demo_file, keys = list("contact" = new_contact))
 #' }
-cff_create <- function(x, keys = list(),
-                       cff_version = "1.2.0") {
+cff_create <- function(x,
+                       keys = list(),
+                       cff_version = "1.2.0",
+                       gh_keywords = TRUE) {
   if (missing(x)) x <- getwd()
 
 
@@ -156,7 +160,9 @@ cff_create <- function(x, keys = list(),
       stop("No DESCRIPTION file found with ", x, call. = FALSE)
     }
 
-    cffobj <- cff_description(desc_path, cff_version)
+    cffobj <- cff_description(desc_path, cff_version,
+      gh_keywords = gh_keywords
+    )
   }
 
   citobj <- unique(citobj)

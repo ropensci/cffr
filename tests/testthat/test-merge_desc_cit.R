@@ -7,7 +7,7 @@ test_that("Merge all DESCRIPTION files with CITATION_basic", {
     package = "cffr"
   )
   for (i in seq_len(length(allfiles))) {
-    desc_parse <- cff_description(allfiles[i])
+    desc_parse <- cff_description(allfiles[i], gh_keywords = FALSE)
     generate_cit <- parse_r_citation(allfiles[i], citpath)
     parse_cit <- lapply(generate_cit, cff_parse_citation)
     merged <- merge_desc_cit(desc_parse, parse_cit)

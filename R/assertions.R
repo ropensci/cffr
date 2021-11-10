@@ -54,6 +54,18 @@ is.cff <- function(x) {
   }
 }
 
+#' Check if a object is cff
+#' @param x object to be evaluated
+#' @noRd
+is.github <- function(x) {
+  res <- isTRUE(grep(
+    "^http[a-z]://github.com/",
+    x["repository-code"]
+  ) == 1)
+
+  return(res)
+}
+
 #' Error if it is not a cff file
 #' @param x file to be evaluated
 #' @noRd

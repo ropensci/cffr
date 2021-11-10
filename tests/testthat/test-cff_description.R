@@ -1,7 +1,7 @@
 test_that("Parse date", {
   desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
 
-  parsed <- cff_create(desc_path)
+  parsed <- cff_create(desc_path, gh_keywords = FALSE)
 
   expect_false(is.null(parsed$`date-released`))
 
@@ -13,7 +13,7 @@ test_that("Parse date", {
 test_that("Parse date in another format", {
   desc_path <- system.file("examples/DESCRIPTION_basicdate", package = "cffr")
 
-  parsed <- cff_create(desc_path)
+  parsed <- cff_create(desc_path, gh_keywords = FALSE)
 
   expect_false(is.null(parsed$`date-released`))
 
@@ -37,7 +37,7 @@ test_that("No date parsed in DESCRIPTION without it", {
 test_that("Parsing many urls", {
   desc_path <- system.file("examples/DESCRIPTION_many_urls", package = "cffr")
 
-  parsed <- cff_create(desc_path)
+  parsed <- cff_create(desc_path, gh_keywords = FALSE)
 
   expect_length(parsed$`repository-code`, 1)
   expect_length(parsed$url, 1)
@@ -68,7 +68,7 @@ test_that("Parsing many persons", {
     package = "cffr"
   )
 
-  parsed <- cff_create(desc_path)
+  parsed <- cff_create(desc_path, gh_keywords = FALSE)
 
 
   expect_length(parsed$authors, 4)
@@ -89,7 +89,7 @@ test_that("Parsing many persons", {
 test_that("Parsing wrong urls", {
   desc_path <- system.file("examples/DESCRIPTION_wrong_urls", package = "cffr")
 
-  parsed <- cff_create(desc_path)
+  parsed <- cff_create(desc_path, gh_keywords = FALSE)
 
   expect_null(parsed$`repository-code`)
   expect_length(parsed$url, 1)
@@ -107,7 +107,7 @@ test_that("Parsing two maintainers", {
     package = "cffr"
   )
 
-  parsed <- cff_create(desc_path)
+  parsed <- cff_create(desc_path, gh_keywords = FALSE)
 
   expect_length(parsed$authors, 3)
   expect_length(parsed$contact, 2)
@@ -122,7 +122,7 @@ test_that("Parsing r-universe", {
     package = "cffr"
   )
 
-  parsed <- cff_create(desc_path)
+  parsed <- cff_create(desc_path, gh_keywords = FALSE)
 
   expect_length(parsed$repository, 1)
 
@@ -137,7 +137,7 @@ test_that("Parsing Bioconductor", {
     package = "cffr"
   )
 
-  parsed <- cff_create(desc_path)
+  parsed <- cff_create(desc_path, gh_keywords = FALSE)
 
   expect_length(parsed$repository, 1)
   expect_equal(
@@ -161,7 +161,7 @@ test_that("Search package on CRAN", {
 
   newfile <- desc::desc_set("Package", "ggplot2", file = tmp)
 
-  parsed <- cff_create(tmp)
+  parsed <- cff_create(tmp, gh_keywords = FALSE)
   expect_length(parsed$repository, 1)
   expect_equal(clean_str(newfile$get("Package")), "ggplot2")
   expect_equal(parsed$repository, "https://CRAN.R-project.org/package=ggplot2")
@@ -269,4 +269,65 @@ test_that("Validate keywords", {
   cffobj4 <- cff_create(tmp)
   expect_null(cffobj4$keywords)
   expect_true(cff_validate(cffobj4, verbose = FALSE))
+})
+
+
+test_that("Parse keywords from GH", {
+  skip_on_cran()
+  skip_if_offline()
+  skip_if(
+    nchar(Sys.getenv("GITHUB_TOKEN")) == 0,
+    "No GITHUB_TOKEN environment variable found"
+  )
+
+  desc_path <- system.file("examples/DESCRIPTION_basic",
+    package = "cffr"
+  )
+
+  tmp <- tempfile("DESCRIPTION_keyword_gh")
+
+  copy <- file.copy(desc_path, tmp)
+
+  cffobj <- cff_create(tmp)
+  expect_null(cffobj$keywords)
+
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+
+  # A site with no topics
+  silent <- desc::desc_set("BugReports",
+    "https://github.com/dieghernan/cfftest/issues",
+    file = tmp
+  )
+
+  cffobjnokeys <- cff_create(tmp)
+  expect_true(cff_validate(cffobjnokeys, verbose = FALSE))
+  expect_null(cffobjnokeys$keywords)
+
+  # Add keywords from url
+  silent <- desc::desc_set("URL",
+    "https://github.com/ropensci/cffr",
+    file = tmp
+  )
+
+  silent <- desc::desc_set("BugReports",
+    "https://github.com/ropensci/cffr/issues",
+    file = tmp
+  )
+
+  cffobj1 <- cff_create(tmp)
+  expect_true(cff_validate(cffobj1, verbose = FALSE))
+  expect_false(is.null(cffobj1$keywords))
+
+  # Concatenate keywords of both sources
+
+  # Add keywords
+  silent <- desc::desc_set("X-schema.org-keywords",
+    "keyword1",
+    file = tmp
+  )
+
+  cffobj2 <- cff_create(tmp)
+  expect_true(cff_validate(cffobj2, verbose = FALSE))
+
+  expect_true(length(cffobj2$keywords) > length(cffobj1$keywords))
 })

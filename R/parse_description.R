@@ -261,3 +261,75 @@ parse_desc_version <- function(pkg) {
 
   version
 }
+
+#' Extract topics as keywords for GH hosted packages
+#' @noRd
+parse_ghtopics <- function(x) {
+  # Only for GitHub repos
+  if (!is.github(x)) {
+    return(NULL)
+  }
+
+  # Get topics from repo
+  api_url <- paste0(
+    "https://api.github.com/repos", "/",
+    gsub(
+      "^http[a-z]://github.com/", "",
+      x["repository-code"]
+    )
+  )
+
+  tmpfile <- tempfile(fileext = ".json")
+
+  # See if GH_TOKEN is set on Renv
+  # I have an issue on testing, I reach
+  # fast the GH api limit (no auth)
+  # Need to auth to increase limit
+  ghtoken <- Sys.getenv("GITHUB_TOKEN")
+
+  # nocov start
+
+  # If GHTOKEN
+  if (nchar(ghtoken) > 1) {
+    res <- tryCatch(download.file(api_url,
+      tmpfile,
+      quiet = TRUE,
+      headers = c(Authorization = ghtoken)
+    ),
+    warning = function(e) {
+      return(TRUE)
+    },
+    error = function(e) {
+      return(TRUE)
+    }
+    )
+  } else {
+    # Regular call
+    res <- tryCatch(download.file(api_url,
+      tmpfile,
+      quiet = TRUE
+    ),
+    warning = function(e) {
+      return(TRUE)
+    },
+    error = function(e) {
+      return(TRUE)
+    }
+    )
+  }
+
+  # nocov end
+  if (isTRUE(res)) {
+    return(NULL)
+  }
+
+  remotetopics <- lapply(jsonlite::read_json(tmpfile)$topics, clean_str)
+  remotetopics <- unique(unlist(remotetopics))
+
+  # If no topics NULL
+  if (is.null(remotetopics)) {
+    return(NULL)
+  }
+
+  return(remotetopics)
+}
