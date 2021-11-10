@@ -9,6 +9,7 @@ cff_write(
   outfile = "CITATION.cff",
   keys = list(),
   cff_version = "1.2.0",
+  gh_keywords = TRUE,
   validate = TRUE,
   verbose = TRUE
 )
@@ -31,6 +32,9 @@ file on your in-development package.
 
 \item{cff_version}{The Citation File Format schema version that the
 \code{CITATION.cff} file adheres to for providing the citation metadata.}
+
+\item{gh_keywords}{Logical \code{TRUE/FALSE}. If the package is hosted on
+GitHub, would you like to add the repo topics as keywords?}
 
 \item{validate}{Logical \code{TRUE/FALSE}. Should the new file be validated using
 \code{\link[=cff_validate]{cff_validate()}}?}

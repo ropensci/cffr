@@ -48,6 +48,9 @@ keywords:
 - citation-files
 - cff
 - metadata
+- citation-file-format
+- r
+- r-package
 references:
 - type: generic
   title: Citation File Format

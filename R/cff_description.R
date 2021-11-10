@@ -1,6 +1,8 @@
 
 #' @noRd
-cff_description <- function(desc_path = "DESCRIPTION", cff_version = "1.2.0") {
+cff_description <- function(desc_path = "DESCRIPTION",
+                            cff_version = "1.2.0",
+                            gh_keywords = TRUE) {
   pkg <- desc::desc(desc_path)
   pkg$coerce_authors_at_r()
 
@@ -28,6 +30,16 @@ cff_description <- function(desc_path = "DESCRIPTION", cff_version = "1.2.0") {
     keywords = parse_desc_keywords(pkg),
     license = unlist(parse_desc_license(pkg))
   )
+
+  if (gh_keywords) {
+    ghtopics <- parse_ghtopics(list_fields)
+    list_fields$keywords <- unique(
+      c(
+        list_fields$keywords,
+        ghtopics
+      )
+    )
+  }
 
   list_fields <- as.cff(list_fields)
   list_fields

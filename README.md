@@ -214,6 +214,13 @@ test <- cff_create("rmarkdown")
       given-names: Yihui
       email: xie@yihui.name
       orcid: https://orcid.org/0000-0003-0645-5666
+    keywords:
+    - literate-programming
+    - markdown
+    - pandoc
+    - r
+    - r-package
+    - rmarkdown
     references:
     - type: book
       title: 'R Markdown: The Definitive Guide'
@@ -262,7 +269,7 @@ objects.
 
 ### Keep your `CITATION.cff` file up-to-date
 
-The easiest way for keeping you `CITATION.cff` file up-tp-date is using
+The easiest way for keeping you `CITATION.cff` file up-to-date is using
 GitHub Actions. Use `cff_gha_update()`function to install a GitHub
 Action that would update your `CITATION.cff` file on the following
 events:

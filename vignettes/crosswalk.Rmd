@@ -333,6 +333,31 @@ cat(cff_create(tmp2)$keywords)
 
 </details>
 
+Additionally, if the source code of the package is hosted on GitHub, **cffr**
+can retrieve the topics of your repo via the 
+[GitHub API](https://docs.github.com/en/rest) and include those topics as 
+keywords. This option is controlled via the `gh_keywords` parameter:
+
+<details><summary><strong>Example</strong></summary>
+
+```{r ghkeyword}
+
+# Get cff object from jsonvalidate
+
+jsonval <- cff_create("jsonvalidate")
+
+# Keywords are retrieved from the GitHub repo
+
+jsonval
+
+# Check keywords
+jsonval$keywords
+
+# The repo
+jsonval$`repository-code`
+```
+
+</details>
 
 [Back to summary](#summary).
 
