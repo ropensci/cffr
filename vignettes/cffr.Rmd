@@ -30,17 +30,17 @@ information of the following files:
 
 ## What is a `CITATION.cff` file?
 
-[Citation File Format (CFF)](https://citation-file-format.github.io/)
-[@Druskat_Citation_File_Format_2021] (v1.2.0) are plain text files with human-
-and machine-readable citation information for software (and datasets). Code
-developers can include them in their repositories to let others know how to
-correctly cite their software.
+[Citation File Format (CFF](https://citation-file-format.github.io/))
+[@druskat2021] (v1.2.0) are plain text files with human- and machine-readable
+citation information for software (and datasets). Code developers can include
+them in their repositories to let others know how to correctly cite their
+software.
 
 This format is becoming popular within the software citation ecosystem. Recently
 [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
 [Zenodo](https://twitter.com/ZENODO_ORG/status/1420357001490706442) and
 [Zotero](https://twitter.com/zotero/status/1420515377390530560) have included
-full support of this citation format [@making_software].
+full support of this citation format [@druskat2021a].
 
 GitHub support is of special interest:
 
