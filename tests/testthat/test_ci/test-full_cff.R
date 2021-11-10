@@ -8,19 +8,6 @@ test_that("Test ALL installed packages", {
 
   l <- nrow(installed)
 
-  if (interactive()) {
-    size <- 3000
-    if (l > size) {
-      s <- sort(sample(seq_len(l), size))
-      installed <- installed[s, ]
-
-      expect_snapshot_output(print_snapshot(
-        "Interactive detected",
-        paste("Running on a sample of size:", nrow(installed))
-      ))
-    }
-  }
-
   # Initial set of packages
   write.csv(installed, "allpackages.csv", row.names = FALSE)
   expect_snapshot_output(print_snapshot("Summary", paste(
@@ -47,7 +34,7 @@ test_that("Test ALL installed packages", {
 
     # Add cffobj
     cffobj <- suppressMessages(
-      cff_create(pkg)
+      cff_create(pkg, gh_keywords = FALSE)
     )
 
     s <- suppressMessages(cff_validate(cffobj))
