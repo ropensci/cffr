@@ -47,9 +47,8 @@ jobs:
           options(repos = c(
             CRAN = "https://cloud.r-project.org"
           ))
+
           allviews <- ctv::available.views()
-
-
           packs <- lapply(seq_len(length(allviews)), function(x) {
             allviews[[x]]$packagelist
           })
@@ -58,48 +57,43 @@ jobs:
           core <- dplyr::filter(packs, core == TRUE)
 
           # rOpenSci packages from r-universe
-
-          options(repos = c(
-            ropensci = "https://ropensci.r-universe.dev",
-            ropenscireviewtools = 'https://ropensci-review-tools.r-universe.dev',
-            CRAN = "https://cloud.r-project.org"
-          ))
-
           ropensci <- unlist(jsonlite::read_json("https://ropensci.r-universe.dev/packages"))
           ropenscireviewtools <- unlist(jsonlite::read_json("https://ropenscireviewtools.r-universe.dev/packages"))
 
-
           # R-lib packages
           rlib <- unlist(jsonlite::read_json("https://r-lib.r-universe.dev/packages"))
-
+          
           # R-forge packages
           rforge <- unlist(jsonlite::read_json("https://r-forge.r-universe.dev/packages"))
-
+          
           # R-Studio packages
           rstudio <- unlist(jsonlite::read_json("https://rstudio.r-universe.dev/packages"))
-
+          
           # rspatial packages
           rspatial <- unlist(jsonlite::read_json("https://r-spatial.r-universe.dev/packages"))
-
+          
+          # Gather packages
           all <- sort(unique(c(core$name, ropensci, ropenscireviewtools, rlib, rforge, rstudio, rspatial)))
 
           # Check packages not installed yet
           instpack <- as.character(installed.packages()[, "Package"])
-
           toinstall <- setdiff(all, instpack)
+
+          # Install
+
+          options(repos = c(
+            ropensci = "https://ropensci.r-universe.dev",
+            ropenscireviewtools = "https://ropensci-review-tools.r-universe.dev",
+            CRAN = "https://cloud.r-project.org"
+          ))
 
           install.packages(toinstall,
             dependencies = TRUE,
             verbose = TRUE, quiet = TRUE,
             type = "binary"
           )
-
-
           # Update
           update.packages(type = "binary")
-
-          # Malformed CITATION
-          # remove.packages(c("photosearcher"))
 
         shell: Rscript {0}
 
