@@ -33,7 +33,7 @@ We summarize here the fields that **cffr** can parse and the original source of
 information for each one of them. The details on each key are presented on the
 next section of the document. The assessment of fields are based on the [Guide
 to Citation File Format schema version
-1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#valid-keys) [@Druskat_Citation_File_Format_2021].
+1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#valid-keys) [@druskat2021].
 
 ```{r summary , echo=FALSE}
 
