@@ -30,7 +30,7 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
           extra-packages: |
-            ropensci/cffr
+            cffr
             V8
 
       - name: Update CITATION.cff
@@ -40,10 +40,11 @@ jobs:
 
           # Customize with your own code
           # See https://docs.ropensci.org/cffr/articles/cffr.html
-          
+
           # Write your own keys
           mykeys <- list()
 
+          # Create your CITATION.cff file
           cff_write(keys = mykeys)
 
         shell: Rscript {0}
