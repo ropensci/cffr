@@ -1,0 +1,106 @@
+---
+title: "cffr: Generate Citation File Format Metadata for R Packages"
+subtitle: "JOSS paper"
+tags:
+  - R
+  - cff
+  - citation
+  - credit
+  - metadata
+author: Diego Hernangómez
+date: 09 November 2021
+output: rmarkdown::html_vignette
+bibliography: paper.bib
+vignette: >
+  %\VignetteIndexEntry{cffr: Generate Citation File Format Metadata for R Packages}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.03900/status.svg)](https://doi.org/10.21105/joss.03900)
+
+## Summary
+
+The Citation File Format project [@druskat_citation_2021] defines a standardized
+format for providing software or datasets citation metadata in plaintext files
+that are easy to read by both humans and machines.
+
+This metadata format is being adopted by GitHub as the primary format for its
+built-in citation support [@github_about_citation]. Other leading archives for
+scientific software, including Zenodo and Zotero [@druskat_stephan_making_2021],
+have included as well support for CITATION.cff files in their GitHub
+integration.
+
+The cffr package provides utilities to generate and validate these CITATION.cff
+files automatically for R [@R_2021] packages by parsing the DESCRIPTION file and
+the native R citation file. The package also includes utilities and examples for
+parsing components as persons and additional citations, as well as several
+vignettes which illustrate both the basic usage of the package as well as some
+more technical details about the metadata extraction process.
+
+## Statement of need
+
+Citation of research software on research project is often omitted [@salmon2021]
+. Among many reasons why software is not cited, one is the lack of a clear
+citation information from package developers.
+
+Some of the main reasons for citing software used on research are:
+
+1.  **Reproducibility**: Software and their versions are important information
+    to include in any research project. It helps peers to understand and
+    reproduce effectively the results of any work. Including versions is also
+    crucial as a way of recording the context of your manuscript when software
+    changes.
+2.  **Developer Credit:** On the context of Free and Open Source Software
+    (FOSS), many of the software developers themselves are also researches.
+    Receive credit for software development shouldn't be different from the
+    credit received on other formats, as books or articles.
+
+CITATION.cff files provides a clear citation rules for software. The format is
+easily readable by humans and also can be parsed by appropriate software. The
+adoption of GitHub of this format sends a strong message that research software
+is something worthy of citation, and therefore deserves credit.
+
+The cffr package allow R software developers to create CITATION.cff files from
+the metadata already included on the package. Additionally, the package also
+include validation tools via the jsonvalidate package [@jsonvalidate2021], that
+allow developers to assess the validity of the file created using the latest CFF
+schema.json.
+
+## Acknowledgements
+
+I would like to thank [Carl
+Boettiger](https://ropensci.org/author/carl-boettiger/), [Maëlle
+Salmon](https://ropensci.org/author/ma%C3%ABlle-salmon/) and the rest of
+contributors of the [codemetar](https://docs.ropensci.org/codemetar/) package.
+This package was the primary inspiration for developing cffr and shares a common
+goal of increasing awareness on the efforts of software developers.
+
+I would like also to thank [João Martins](https://zambujo.github.io/) and [Scott
+Chamberlain](https://ropensci.org//author/scott-chamberlain/) for thorough
+reviews, that helps improving the package and the documentation as well as
+[Emily Riederer](https://emilyriederer.netlify.app/) for handling the [review
+process](https://github.com/ropensci/software-review/issues/463).
+
+## Citation
+
+Hernangómez, D., (2021). cffr: Generate Citation File Format Metadata for R
+Packages. Journal of Open Source Software, 6(67), 3900,
+<https://doi.org/10.21105/joss.03900>
+
+```bibtex
+@article{hernangomez2021,
+  doi = {10.21105/joss.03900},
+  url = {https://doi.org/10.21105/joss.03900},
+  year = {2021},
+  publisher = {The Open Journal},
+  volume = {6},
+  number = {67},
+  pages = {3900},
+  author = {Diego Hernangómez},
+  title = {cffr: Generate Citation File Format Metadata for R Packages},
+  journal = {Journal of Open Source Software}
+}
+```
+
+## References
