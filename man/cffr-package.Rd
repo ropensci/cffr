@@ -2,31 +2,31 @@
 % Please edit documentation in R/cffr-package.R
 \docType{package}
 \name{cffr-package}
-\alias{cffr-package}
 \alias{cffr}
+\alias{cffr-package}
 \title{cffr: Generate Citation File Format ('cff') Metadata for R Packages}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-The Citation File Format version 1.2.0 (Druskat, S. et al. (2021)
-\doi{10.5281/zenodo.5171937} is a human and machine readable file format
-which provides citation metadata for software. This package provides core
-utilities to generate and validate this metadata.
+The Citation File Format version 1.2.0 <doi:10.5281/zenodo.5171937> is a human and machine readable file format which provides citation metadata for software. This package provides core utilities to generate and validate this metadata.
 }
 \seealso{
 Useful links:
 \itemize{
-\item <https://docs.ropensci.org/cffr/, https://github.com/ropensci/cffr>
-\item Report bugs at \url{https://github.com/ropensci/cffr/issues}
+  \item \url{https://docs.ropensci.org/cffr/}
+  \item \url{https://github.com/ropensci/cffr}
+  \item Report bugs at \url{https://github.com/ropensci/cffr/issues}
 }
+
 }
 \author{
-\strong{Maintainer}: Diego Hernangómez (\href{https://orcid.org/0000-0001-8457-4658}{ORCID})
+\strong{Maintainer}: Diego Hernangómez \email{diego.hernangomezherrero@gmail.com} (\href{https://orcid.org/0000-0001-8457-4658}{ORCID}) [copyright holder]
 
 Other contributors:
 \itemize{
-\item João Martins [reviewer]
-\item Scott Chamberlain [reviewer]
+  \item João Martins (\href{https://orcid.org/0000-0001-7961-4280}{ORCID}) [reviewer]
+  \item Scott Chamberlain (\href{https://orcid.org/0000-0003-1444-9135}{ORCID}) [reviewer]
 }
+
 }
 \keyword{internal}
