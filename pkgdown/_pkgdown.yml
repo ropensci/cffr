@@ -7,6 +7,9 @@ template:
       creator: "@dhernangomez"
       card: summary_large_image
 
+development:
+  mode: auto
+
 repo:
   branch: main
 
