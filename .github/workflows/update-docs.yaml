@@ -1,23 +1,26 @@
 on:
+  push:
+    branches:
+      - main
+      - master
   workflow_dispatch:
 
 name: update-docs
 
 jobs:
   update-docs:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      
     steps:
       - uses: actions/checkout@v2
-
+      
       - uses: r-lib/actions/setup-pandoc@v1
 
       - uses: r-lib/actions/setup-r@v1
         with:
           use-public-rspm: true
-
+          
       # This is needed for workflows running on
       # ubuntu-20.04 or later
       - name: Install V8
@@ -27,16 +30,17 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
+          cache-version: 99
           extra-packages: |
             rcmdcheck
+            pkgdown
             dieghernan/pkgdev
+          needs: website
 
       - name: Update docs
         run: |
-
+          
           pkgdev::update_docs()
-
-          testthat::test_local()
 
         shell: Rscript {0}
 
@@ -67,3 +71,10 @@ jobs:
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
+
+      - name: Deploy package
+        run: |
+          git config --local user.name "$GITHUB_ACTOR"
+          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'
+
