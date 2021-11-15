@@ -14,7 +14,7 @@ DESC=($(git diff --cached --name-only | grep -Ei '^DESCRIPTION$'))
 CIT=($(git diff --cached --name-only | grep -Ei '^inst\/CITATION$'))
 
 # If DESCRIPTION staged but not CITATION.cff
-if [[ ! -z "DESC" && -z "$CITATION" ]]; then
+if [[ ! -z "$DESC" && -z "$CITATION" ]]; then
   if [[ DESCRIPTION -nt CITATION.cff ]]; then
     echo -e "CITATION.cff may be outdated; please use cff_write()\n$MSG"
     exit 1
