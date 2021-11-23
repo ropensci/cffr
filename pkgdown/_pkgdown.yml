@@ -42,6 +42,22 @@ reference:
     contents:
       - cffr-package
 
+navbar:
+  components:
+    home: ~
+    articles:
+      text: Articles
+      menu:
+        - text: From R to CFF
+          href: /articles/crosswalk.html
+        - text: 'cffr: Generate Citation File Format Metadata for R Packages'
+          href: /articles/paper.html
+        - text: -----
+        - text: 'cffr: Create a CITATION.cff File for your R Package'
+          href: 'https://ropensci.org/blog/2021/11/23/cffr/'
+        - text: 'How I Test cffr on (about) 2,000 Packages'
+          href: https://ropensci.org/blog/2021/11/23/how-i-test-cffr/
+
 authors:
   Diego Hernangómez:
     href: 'https://dieghernan.github.io/'

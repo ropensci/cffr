@@ -1,5 +1,7 @@
 ---
 title: "Manipulating Citations with cffr"
+description: >
+  Learn how to modify `cff` objects.
 output: 
   rmarkdown::html_vignette:
     toc: true
