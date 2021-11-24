@@ -83,6 +83,8 @@ year, and venue [@fenner2021]. The packages
 the `CITATION` file (if present) of your package. Note that **cffr** works best
 if your package pass `R CMD check/devtools::check()`.
 
+See [some projects already using **cffr**](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
+
 ### Installation
 
 Install **cffr** from [CRAN](https://CRAN.R-project.org/package=cffr):
@@ -146,11 +148,7 @@ test <- cff_create("rmarkdown")
 ```
 
 <details>
-
-<summary>
-
-<code>CITATION.cff</code> for <strong>rmarkdown</strong>
-
+<summary><code>CITATION.cff</code> for <strong>rmarkdown</strong>
 </summary>
 
 ```{r, echo=FALSE, comment=""}
@@ -198,7 +196,7 @@ cff_gha_update()
 See the example workflow file
 [here](https://github.com/ropensci/cffr/blob/main/.github/workflows/update-citation-cff.yaml).
 
-#### Git pre-commit hook [![[Experimental]](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)
+#### Git pre-commit hook [![Experimental](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)
 
 You can also use a [git pre-commit
 hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workflow_hooks):
