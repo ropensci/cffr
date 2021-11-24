@@ -71,6 +71,9 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass `R CMD
 check/devtools::check()`.
 
+See [some projects already using
+**cffr**](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
+
 ### Installation
 
 Install **cffr** from [CRAN](https://CRAN.R-project.org/package=cffr):
@@ -136,10 +139,7 @@ test <- cff_create("rmarkdown")
 
 <details>
 
-<summary>
-
-<code>CITATION.cff</code> for <strong>rmarkdown</strong>
-
+<summary><code>CITATION.cff</code> for <strong>rmarkdown</strong>
 </summary>
 
     cff-version: 1.2.0
