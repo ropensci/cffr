@@ -1,6 +1,8 @@
 ---
 title: "cffr: Generate Citation File Format Metadata for R Packages"
 subtitle: "JOSS paper"
+description: >
+  Paper published on The Journal of Open Source Software.
 tags:
   - R
   - cff
