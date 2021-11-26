@@ -1,3 +1,11 @@
+# cffr (development version)
+
+-   Add new functions for working with git pre-commit hooks
+    [![[Experimental]](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg):
+
+    -   `cff_git_hook_install()`
+    -   `cff_git_hook_remove()`
+
 # cffr 0.1.1
 
 -   Accepted on JOSS

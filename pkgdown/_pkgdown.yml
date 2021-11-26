@@ -7,6 +7,9 @@ template:
       creator: "@dhernangomez"
       card: summary_large_image
 
+development:
+  mode: auto
+
 repo:
   branch: main
 
@@ -35,9 +38,9 @@ reference:
   - title: Datasets
     contents:
       - has_keyword("datasets")
-  - title: GitHub Action
+  - title: Continuous Integration
     contents:
-      - cff_gha_update
+      - has_concept("git")
   - title: About the package
     contents:
       - cffr-package

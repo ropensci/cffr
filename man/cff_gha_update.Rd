@@ -32,3 +32,8 @@ Triggers on your action can be modified, see
 cff_gha_update()
 }
 }
+\seealso{
+Other git: 
+\code{\link{cff_git_hook}}
+}
+\concept{git}
