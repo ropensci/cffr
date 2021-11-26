@@ -81,7 +81,8 @@ year, and venue [@fenner2021]. The packages
 
 **cffr** maximizes the data extraction by using both the `DESCRIPTION` file and
 the `CITATION` file (if present) of your package. Note that **cffr** works best
-if your package pass `R CMD check/devtools::check()`.
+if your package pass 
+`R CMD check/devtools::check()`.
 
 See [some projects already using **cffr**](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
@@ -160,10 +161,6 @@ test
 
 <p>
 
-<p>
-
-<p>
-
 We can validate the result using `cff_validate()`:
 
 ```{r }
@@ -196,7 +193,7 @@ cff_gha_update()
 See the example workflow file
 [here](https://github.com/ropensci/cffr/blob/main/.github/workflows/update-citation-cff.yaml).
 
-#### Git pre-commit hook ![Experimental](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)
+#### Git pre-commit hook [![Experimental](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 
 You can also use a [git pre-commit
 hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workflow_hooks):
@@ -210,6 +207,14 @@ hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workf
 A specific pre-commit hook can be installed with `cff_git_hook_install()`. If
 you want to use a pre-commit hook, please make sure you have the **testthat**
 package installed.
+
+### Learn more
+
+Check the following articles to learn more about *cffr**:
+
+-   [cffr: Create a CITATION.cff File for your R Package](https://ropensci.org/blog/2021/11/23/cffr/)
+-   [How I Test cffr on (about) 2,000 Packages using GitHub Actions and R-universe](https://ropensci.org/blog/2021/11/23/how-i-test-cffr/)
+
 
 ## Related packages
 

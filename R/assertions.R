@@ -70,6 +70,10 @@ is.github <- function(x) {
 #' @param x file to be evaluated
 #' @noRd
 stopifnotcff <- function(x) {
+  if (is.cff(x)) {
+    return(invisible())
+  }
+
   if (tools::file_ext(x) != "cff") {
     stop(x, " is not a .cff file or a 'cff' object",
       call. = FALSE

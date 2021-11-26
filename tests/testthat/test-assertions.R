@@ -46,3 +46,22 @@ test_that("Check is.url", {
     )
   )
 })
+
+
+test_that("Check stop if not cff", {
+  obj <- cff()
+
+  expect_silent(stopifnotcff(obj))
+
+  file <- system.file("examples/CITATION_skeleton.cff",
+    package = "cffr"
+  )
+
+  expect_silent(stopifnotcff(file))
+
+  # Error
+
+  err <- "Some string"
+
+  expect_error(stopifnotcff(err))
+})
