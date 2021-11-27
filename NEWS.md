@@ -6,6 +6,9 @@
     -   `cff_git_hook_install()`
     -   `cff_git_hook_remove()`
 
+-   Add other functions:
+    -   `cff_authors_to_person()`
+
 # cffr 0.1.1
 
 -   Accepted on JOSS

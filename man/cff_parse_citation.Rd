@@ -48,6 +48,7 @@ cff_parse_citation(citation("rmarkdown"))
 \code{\link[=cff_create]{cff_create()}}, \code{vignette("cffr", "cffr")}, \code{\link[utils:bibentry]{utils::bibentry()}}
 
 Other parsers: 
+\code{\link{cff_authors_to_person}()},
 \code{\link{cff_parse_person}()}
 }
 \concept{parsers}

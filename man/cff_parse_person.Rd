@@ -47,6 +47,7 @@ cff_parse_person(persons)
 \code{\link[=cff_create]{cff_create()}}, \code{vignette("cffr", "cffr")}, \code{\link[utils:person]{utils::person()}}
 
 Other parsers: 
+\code{\link{cff_authors_to_person}()},
 \code{\link{cff_parse_citation}()}
 }
 \concept{parsers}

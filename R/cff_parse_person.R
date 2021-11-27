@@ -127,3 +127,77 @@ cff_parse_person <- function(person) {
   parsed_person <- as.cff(parsed_person)
   parsed_person
 }
+
+#' Convert a `cff` `authors` key to an R `person` object
+#'
+#' Parse an authors key of a `cff` object to an R [utils::person()] object.
+#'
+#' @family parsers
+#'
+#' @seealso [utils::person()]
+#'
+#' @param cff_authors A list of authors from a `cff` object, either
+#'   generated with [cff_parse_person()] or [cff_create()].
+#'
+#' @return A `person` object
+#'
+#' @export
+#'
+#' @examples
+#'
+#' rmark <- cff_create("rmarkdown")
+#'
+#' rmark$authors
+#'
+#' cff_authors_to_person(rmark$authors)
+#'
+#'
+#' # From cff_parse_person
+#'
+#' cff_aut <- cff_parse_person("Julio Iglesias <fake@email.com>")
+#' cff_authors_to_person(cff_aut)
+cff_authors_to_person <- function(cff_authors) {
+  stopifnotcff(cff_authors)
+
+  # If is named is a single person, need to move it to a list
+  if (!is.null(names(cff_authors))) cff_authors <- list(cff_authors)
+
+  final_person <- NULL
+
+  for (i in seq_len(length(cff_authors))) {
+    pers <- cff_authors[i][[1]]
+
+
+    is_entity <- is.null(pers$`family-names`)
+
+    # Construct a R person object
+
+    old_names <- names(pers)
+    if (is_entity) {
+      newnames <- gsub("name", "given", old_names)
+    } else {
+      new_names <- gsub("family-names", "family", old_names)
+      new_names <- gsub("given-names", "given", new_names)
+    }
+
+    names(pers) <- new_names
+
+    # Create comments
+    params <- pers[new_names %in% c("given", "family", "email", "role")]
+
+    comments <- pers[!new_names %in% c("given", "family", "email", "role")]
+    comments <- unlist(comments)
+
+    def <- c(params, list(comment = comments))
+    def
+
+    pers_r <- do.call("person", def)
+
+    if (is.null(final_person)) {
+      final_person <- pers_r
+    } else {
+      final_person <- c(final_person, pers_r)
+    }
+  }
+  return(final_person)
+}
