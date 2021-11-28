@@ -286,13 +286,15 @@
 # Book
 
     type: book
-    title: A Language and Environment for Statistical Computing
+    title: 'PETSc for Partial Differential Equations: Numerical Solutions in C and Python'
     authors:
-    - name: R Core Team
-    year: '2021'
-    month: '8'
+    - family-names: Bueler
+      given-names: Ed
     publisher:
-      name: Graham Hill
+      name: SIAM Press
+    url: https://github.com/bueler/p4pdes
+    isbn: '978111976304'
+    year: '2021'
 
 # InBook
 
@@ -304,26 +306,33 @@
     month: '8'
     publisher:
       name: Graham Hill
+    section: Chapter 2
+    notes: InBook
 
 # InCollection
 
     type: generic
-    title: A Language and Environment for Statistical Computing
+    title: 'ReproZip: Computational Reproducibility With Ease'
     authors:
     - name: R Core Team
+    collection-title: Proceedings of the 2016 ACM SIGMOD International Conference on Management
+      of Data (SIGMOD)
     year: '2021'
     month: '8'
     publisher:
       name: Graham Hill
+    section: A chapter
 
 # InProceedings
 
     type: proceedings
-    title: A Language and Environment for Statistical Computing
+    title: A book
     authors:
     - name: R Core Team
+    collection-title: A Language and Environment for Statistical Computing
     year: '2021'
     month: '8'
+    notes: InProceedings
 
 # Manual
 
@@ -341,6 +350,8 @@
     authors:
     - name: R Core Team
     year: '2021'
+    institution:
+      name: Trinity College
     month: '8'
 
 # PhdThesis
@@ -350,6 +361,8 @@
     authors:
     - name: R Core Team
     year: '2021'
+    institution:
+      name: Trinity College
     month: '8'
 
 # Proceedings

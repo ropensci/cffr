@@ -57,10 +57,27 @@ cff_parse_citation <- function(bib) {
   # to lowercase
   names(parse_cit) <- tolower(names(parse_cit))
 
+
+  # Rename fields ----
   # rename authors
   nm <- names(parse_cit)
   nm[nm == "author"] <- "authors"
+
+  # rename chapter
+  nm[nm == "chapter"] <- "section"
+
+  # rename school
+
+  nm[nm == "school"] <- "institution"
+
+  # Handle booktitle
+
+  if ("booktitle" %in% nm) {
+    nm[nm == "title"] <- "collection-title"
+    nm[nm == "booktitle"] <- "title"
+  }
   names(parse_cit) <- nm
+
 
 
   # Handle type ----
@@ -73,6 +90,9 @@ cff_parse_citation <- function(bib) {
 
 
   type <- clean_str(tolower(attr(unclass(bib)[[1]], "bibtype")))
+
+  if (type == "inbook") parse_cit$notes <- "InBook"
+  if (type == "inproceedings") parse_cit$notes <- "InProceedings"
 
   type <- switch(type,
     "article" = "article",

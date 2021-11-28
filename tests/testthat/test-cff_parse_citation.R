@@ -177,12 +177,12 @@ test_that("Article", {
 
 test_that("Book", {
   bib <- bibentry("Book",
-    title = "A Language and Environment for Statistical Computing",
-    year = "2021",
-    month = "August",
-    publisher = "Graham Hill",
-    chapter = "A chapter",
-    author = person("R Core Team")
+    author = person("Ed", "Bueler"),
+    title = "PETSc for Partial Differential Equations: Numerical Solutions in C and Python",
+    publisher = "SIAM Press",
+    url = "https://github.com/bueler/p4pdes",
+    isbn = 978111976304,
+    year = "2021"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -201,7 +201,7 @@ test_that("InBook", {
     year = "2021",
     month = "August",
     publisher = "Graham Hill",
-    chapter = "A chapter",
+    chapter = "Chapter 2",
     author = person("R Core Team")
   )
 
@@ -217,8 +217,8 @@ test_that("InBook", {
 
 test_that("InCollection", {
   bib <- bibentry("InCollection",
-    title = "A Language and Environment for Statistical Computing",
-    booktitle = "A book",
+    title = "Proceedings of the 2016 ACM SIGMOD International Conference on Management of Data (SIGMOD)",
+    booktitle = "ReproZip: Computational Reproducibility With Ease",
     year = "2021",
     month = "August",
     publisher = "Graham Hill",
@@ -260,7 +260,6 @@ test_that("InProceedings", {
 test_that("Manual", {
   bib <- bibentry("Manual",
     title = "A Language and Environment for Statistical Computing",
-    title = "A book",
     year = "2021",
     month = "August",
     author = person("R Core Team")
