@@ -174,7 +174,7 @@ cff_authors_to_person <- function(cff_authors) {
 
     old_names <- names(pers)
     if (is_entity) {
-      newnames <- gsub("name", "given", old_names)
+      new_names <- gsub("name", "given", old_names)
     } else {
       new_names <- gsub("family-names", "family", old_names)
       new_names <- gsub("given-names", "given", new_names)

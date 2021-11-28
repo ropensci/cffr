@@ -15,3 +15,11 @@
      [9] "Winston Chang <winston@rstudio.com>"                                         
     [10] "Richard Iannone <rich@rstudio.com> (<https://orcid.org/0000-0003-3925-190X>)"
 
+# Deparse entity
+
+    [1] "R Consortium (R worldwide)"
+
+# Deparse mixed
+
+    [1] "Julio Iglesias"             "R Consortium (R worldwide)"
+

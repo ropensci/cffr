@@ -14,3 +14,28 @@ test_that("Deparse several persons", {
 
   expect_snapshot_output(cff_authors_to_person(all$authors))
 })
+
+
+test_that("Deparse entity", {
+  cff_authors <- cff_parse_person(person(
+    given = "R Consortium",
+    comment = c(
+      address = "R worldwide"
+    )
+  ))
+  expect_snapshot_output(cff_authors_to_person(cff_authors))
+})
+
+test_that("Deparse mixed", {
+  mix <- c(
+    person("Julio", "Iglesias"),
+    person("R Consortium",
+      comment = c(
+        address = "R worldwide"
+      )
+    )
+  )
+  cff_mix <- cff_parse_person(mix)
+
+  expect_snapshot_output(cff_authors_to_person(cff_mix))
+})
