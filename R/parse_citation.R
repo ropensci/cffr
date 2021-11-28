@@ -118,9 +118,27 @@ building_doi <- function(parse_cit) {
 #' BB for month
 #' @noRd
 building_month <- function(parse_cit) {
+  mnt <- parse_cit$month
 
+  if (is.null(mnt) || is.na(mnt)) {
+    return(NULL)
+  }
+
+  # Guess if a valid integer is provided and output
+  mnt_num <- tryCatch(as.numeric(mnt),
+    warning = function(e) {
+      return(FALSE)
+    }
+  )
+
+  if (is.numeric(mnt_num) && mnt_num > 0 && mnt_num <= 12) {
+    res <- clean_str(mnt_num)
+    return(res)
+  }
+
+  # else transform
   # Get month, everything in lowercase
-  month <- clean_str(tolower(parse_cit$month))
+  month <- clean_str(tolower(mnt))
 
   # Index on abbreviation
   res <- clean_str(which(tolower(month.abb) == month))

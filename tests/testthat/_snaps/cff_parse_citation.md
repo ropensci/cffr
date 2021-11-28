@@ -296,6 +296,23 @@
     isbn: '978111976304'
     year: '2021'
 
+# Book with editor
+
+    type: book
+    title: 'PETSc for Partial Differential Equations: Numerical Solutions in C and Python'
+    authors:
+    - family-names: Bueler
+      given-names: Ed
+    editors:
+    - family-names: editor
+      given-names: An
+    publisher:
+      name: SIAM Press
+    url: https://github.com/bueler/p4pdes
+    isbn: '978111976304'
+    year: '2021'
+    month: '11'
+
 # InBook
 
     type: book
@@ -392,6 +409,7 @@
     authors:
     - name: R Core Team
     year: '2021'
+    month: '8'
 
 # Parse persons on CITATION
 

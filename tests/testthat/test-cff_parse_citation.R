@@ -195,6 +195,27 @@ test_that("Book", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
+test_that("Book with editor", {
+  bib <- bibentry("Book",
+    author = person("Ed", "Bueler"),
+    editor = person("An", "editor"),
+    title = "PETSc for Partial Differential Equations: Numerical Solutions in C and Python",
+    publisher = "SIAM Press",
+    url = "https://github.com/bueler/p4pdes",
+    isbn = 978111976304,
+    year = "2021",
+    month = 11
+  )
+
+  bibparsed <- cff_parse_citation(bib)
+  expect_snapshot_output(bibparsed)
+
+  cffobj <- cff_create(cff(),
+    keys = list(references = list(bibparsed))
+  )
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+})
+
 test_that("InBook", {
   bib <- bibentry("InBook",
     title = "A Language and Environment for Statistical Computing",

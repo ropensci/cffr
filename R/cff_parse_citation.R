@@ -59,9 +59,13 @@ cff_parse_citation <- function(bib) {
 
 
   # Rename fields ----
-  # rename authors
   nm <- names(parse_cit)
+
+  # rename authors
   nm[nm == "author"] <- "authors"
+
+  # rename editor
+  nm[nm == "editor"] <- "editors"
 
   # rename chapter
   nm[nm == "chapter"] <- "section"
