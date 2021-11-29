@@ -186,24 +186,36 @@ test <- cff_create("rmarkdown")
       authors:
       - family-names: Allaire
         given-names: JJ
+        email: jj@rstudio.com
       - family-names: Xie
         given-names: Yihui
+        email: xie@yihui.name
+        orcid: https://orcid.org/0000-0003-0645-5666
       - family-names: McPherson
         given-names: Jonathan
+        email: jonathan@rstudio.com
       - family-names: Luraschi
         given-names: Javier
+        email: javier@rstudio.com
       - family-names: Ushey
         given-names: Kevin
+        email: kevin@rstudio.com
       - family-names: Atkins
         given-names: Aron
+        email: aron@rstudio.com
       - family-names: Wickham
         given-names: Hadley
+        email: hadley@rstudio.com
       - family-names: Cheng
         given-names: Joe
+        email: joe@rstudio.com
       - family-names: Chang
         given-names: Winston
+        email: winston@rstudio.com
       - family-names: Iannone
         given-names: Richard
+        email: rich@rstudio.com
+        orcid: https://orcid.org/0000-0003-3925-190X
       year: '2021'
       url: https://github.com/rstudio/rmarkdown
     repository: https://CRAN.R-project.org/package=rmarkdown

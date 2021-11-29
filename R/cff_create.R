@@ -184,6 +184,9 @@ cff_create <- function(x,
   # Order
   cffobjend <- cffobjend[cff_schema_keys()]
 
+  # Enhance authors info
+  cffobjend$`preferred-citation`$authors <- enhance_pref_authors(cffobjend)
+
   cffobjend <- as.cff(cffobjend)
   cffobjend
 }
@@ -220,4 +223,44 @@ merge_desc_cit <- function(cffobj, citobj) {
   }
 
   return(cffobjend)
+}
+
+#' Enhance authors info from preferred-citation using metadata from DESCRIPTION
+#' @noRd
+enhance_pref_authors <- function(cffobjend) {
+
+  # Create index of authors extracted from DESCRIPTION (First cff level)
+  auth_desc <- cffobjend$authors
+  key_aut_desc <- lapply(auth_desc, function(x) {
+    l <- list(x["family-names"], x["given-names"], x["name"])
+    l <- unlist(drop_null(l))
+    tolower(paste0(l, collapse = ""))
+  })
+  names(auth_desc) <- unlist(key_aut_desc)
+
+  # Create index of authors from preferred-citation
+  auth_pref <- cffobjend$`preferred-citation`$authors
+  key_aut_cit <- lapply(auth_pref, function(x) {
+    l <- list(x["family-names"], x["given-names"], x["name"])
+    l <- unlist(drop_null(l))
+    tolower(paste0(l, collapse = ""))
+  })
+  names(auth_pref) <- unlist(key_aut_cit)
+
+  # Add missing keys to authors
+  enhancedauth <- lapply(names(auth_pref), function(x) {
+    newdata <- auth_desc[x]
+    olddata <- auth_pref[x]
+
+    # New fields only
+    oldkeys <- names(olddata[[1]])
+    newkeys <- names(newdata[[1]])
+    fieldstoadd <- newdata[[1]][!newkeys %in% oldkeys]
+
+    newinfo <- c(olddata[[1]], fieldstoadd)
+
+    newinfo
+  })
+
+  enhancedauth
 }
