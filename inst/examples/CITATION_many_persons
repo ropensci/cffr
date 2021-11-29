@@ -1,0 +1,11 @@
+bibentry(
+  "Misc",
+  author = c(
+    person("Diego", "Hernangómez"),
+    person("Joe", "Doe"),
+    person("Pepe", "Doe"),
+    person("I am an entity")
+  ),
+  title = "manypersons: A fake citation",
+  year = 2021
+)

@@ -1,0 +1,12 @@
+Package: base
+Version: 4.1.0
+Priority: base
+Title: The R Base Package
+Description: Base R functions.
+License: Part of R 4.1.0
+Suggests: methods
+Built: R 4.1.0; ; 2021-05-18 09:05:59 UTC; unix
+Authors@R: c(
+    person("R Core Team", email = "do-use-Contact-address@r-project.org", role = "cre"),
+    person("contributors worldwide", role = "aut")
+  )

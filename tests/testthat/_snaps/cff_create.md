@@ -151,3 +151,87 @@
     
     ---
 
+# Test enhanced author: person
+
+    cff-version: 1.2.0
+    message: 'To cite package "manypersons" in publications use:'
+    type: software
+    license: GPL-3.0-only
+    title: 'manypersons: A lot of persons'
+    version: 0.1.6
+    abstract: Overkill desc with many persons. Try this
+    authors:
+    - family-names: Hernangómez
+      given-names: Diego
+      email: fake@gmail.com
+      orcid: https://orcid.org/0000-0001-8457-4658
+    - family-names: Doe
+      given-names: Joe
+      affiliation: This One
+      country: ES
+    - family-names: Doe
+      given-names: Pepe
+      email: fake@gmail.com
+    - name: I am an entity
+      date-end: '2020-01-01'
+    preferred-citation:
+      type: generic
+      authors:
+      - family-names: Hernangómez
+        given-names: Diego
+        email: fake@gmail.com
+        orcid: https://orcid.org/0000-0001-8457-4658
+      - family-names: Doe
+        given-names: Joe
+        affiliation: This One
+        country: ES
+      - family-names: Doe
+        given-names: Pepe
+        email: fake@gmail.com
+      - name: I am an entity
+        date-end: '2020-01-01'
+      title: 'manypersons: A fake citation'
+      year: '2021'
+    repository-code: https://github.com/many/persons
+    url: https://many.github.io/persons
+    contact:
+    - family-names: Hernangómez
+      given-names: Diego
+      email: fake@gmail.com
+      orcid: https://orcid.org/0000-0001-8457-4658
+    - name: I am an entity
+      date-end: '2020-01-01'
+    keywords:
+    - metadata
+    - cffr
+    - ropensci
+    - citation
+    - credit
+    - linked-data
+    - one
+    - two
+
+# Test enhanced author: entity
+
+    cff-version: 1.2.0
+    message: 'To cite package "base" in publications use:'
+    type: software
+    title: 'base: The R Base Package'
+    version: 4.1.0
+    abstract: Base R functions.
+    authors:
+    - name: R Core Team
+      email: do-use-Contact-address@r-project.org
+    - name: contributors worldwide
+    preferred-citation:
+      type: manual
+      title: 'R: A Language and Environment for Statistical Computing'
+      authors:
+      - name: R Core Team
+        email: do-use-Contact-address@r-project.org
+      year: '2021'
+      url: https://www.R-project.org/
+    contact:
+    - name: R Core Team
+      email: do-use-Contact-address@r-project.org
+

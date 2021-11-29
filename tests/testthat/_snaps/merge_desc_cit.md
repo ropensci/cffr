@@ -215,6 +215,52 @@
 ---
 
     cff-version: 1.2.0
+    message: 'To cite package "base" in publications use:'
+    type: software
+    title: 'base: The R Base Package'
+    version: 4.1.0
+    authors:
+    - name: R Core Team
+      email: do-use-Contact-address@r-project.org
+    - name: contributors worldwide
+    abstract: Base R functions.
+    contact:
+    - name: R Core Team
+      email: do-use-Contact-address@r-project.org
+    doi: 10.1111/2041-210X.12469
+    preferred-citation:
+      type: article
+      title: 'RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic,
+        Character, and Trait Data in R'
+      journal: Methods in Ecology and Evolution
+      authors:
+      - family-names: Boettiger
+        given-names: Carl
+      - family-names: Chamberlain
+        given-names: Scott
+      - family-names: Vos
+        given-names: Rutger
+      - family-names: Lapp
+        given-names: Hilmar
+      year: '2016'
+      volume: '7'
+      pages: 352--357
+      doi: 10.1111/2041-210X.12469
+    references:
+    - type: book
+      authors:
+      - family-names: Wickham
+        given-names: Hadley
+      title: 'ggplot2: Elegant Graphics for Data Analysis'
+      publisher:
+        name: Springer-Verlag New York
+      year: '2016'
+      isbn: 978-3-319-24277-4
+      url: https://ggplot2.tidyverse.org
+
+---
+
+    cff-version: 1.2.0
     message: 'To cite package "codemetar" in publications use:'
     type: software
     title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'

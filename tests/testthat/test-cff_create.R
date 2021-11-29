@@ -67,3 +67,39 @@ test_that("Fuzzy match on cff_create", {
     modobject
   ))
 })
+
+test_that("Test enhanced author: person", {
+
+  # Needs an installed package
+  desc_path <- system.file("examples/DESCRIPTION_many_persons", package = "cffr")
+  cit_path <- system.file("examples/CITATION_many_persons", package = "cffr")
+  parsed <- parse_r_citation(desc_path, cit_path)
+  expect_s3_class(parsed, "bibentry")
+
+  # Create cff
+  cffobj <- cff_create(desc_path, keys = list(
+    "preferred-citation" = cff_parse_citation(parsed)
+  ))
+
+  expect_s3_class(cffobj, "cff")
+  expect_snapshot_output(cffobj)
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+})
+
+test_that("Test enhanced author: entity", {
+
+  # Needs an installed package
+  desc_path <- system.file("examples/DESCRIPTION_entity", package = "cffr")
+  cit_path <- system.file("examples/CITATION_entity", package = "cffr")
+  parsed <- parse_r_citation(desc_path, cit_path)
+  expect_s3_class(parsed, "bibentry")
+
+  # Create cff
+  cffobj <- cff_create(desc_path, keys = list(
+    "preferred-citation" = cff_parse_citation(parsed)
+  ))
+
+  expect_s3_class(cffobj, "cff")
+  expect_snapshot_output(cffobj)
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+})
