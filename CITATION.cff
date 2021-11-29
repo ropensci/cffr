@@ -20,10 +20,6 @@ authors:
   orcid: https://orcid.org/0000-0001-8457-4658
 preferred-citation:
   type: article
-  title: 'cffr: Generate Citation File Format Metadata for R Packages'
-  authors:
-  - family-names: Hernangómez
-    given-names: Diego
   doi: 10.21105/joss.03900
   url: https://doi.org/10.21105/joss.03900
   year: '2021'
@@ -32,6 +28,12 @@ preferred-citation:
   volume: '6'
   number: '67'
   pages: '3900'
+  authors:
+  - family-names: Hernangómez
+    given-names: Diego
+    email: diego.hernangomezherrero@gmail.com
+    orcid: https://orcid.org/0000-0001-8457-4658
+  title: 'cffr: Generate Citation File Format Metadata for R Packages'
   journal: Journal of Open Source Software
 repository: https://CRAN.R-project.org/package=cffr
 repository-code: https://github.com/ropensci/cffr
@@ -48,15 +50,12 @@ keywords:
 - citation-files
 - cff
 - metadata
-- citation-file-format
-- cran
-- r
-- r-package
-- ropensci
-- rstats
 references:
 - type: generic
   title: Citation File Format
+  year: '2021'
+  version: 1.2.0
+  month: '8'
   authors:
   - family-names: Druskat
     given-names: Stephan
@@ -76,9 +75,6 @@ references:
     given-names: David
   - family-names: Konovalov
     given-names: Alexander
-  year: '2021'
-  version: 1.2.0
-  month: '8'
   doi: 10.5281/zenodo.5171937
   keywords:
   - citation file format
@@ -93,10 +89,10 @@ references:
   license: CC-BY-4.0
   date-released: '2021-08-09'
 - type: generic
-  title: Making software citation easi(er) - The Citation File Format and its integrations
   authors:
   - family-names: Druskat
     given-names: Stephan
+  title: Making software citation easi(er) - The Citation File Format and its integrations
   year: '2021'
   version: '1'
   month: '9'

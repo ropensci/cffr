@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.2 (2021-11-01)",
+  "runtimePlatform": "R version 4.1.0 (2021-05-18)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -49,6 +49,18 @@
     }
   ],
   "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "bibtex",
+      "name": "bibtex",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=bibtex"
+    },
     {
       "@type": "SoftwareApplication",
       "identifier": "knitr",
@@ -175,7 +187,7 @@
   },
   "isPartOf": "https://ropensci.org",
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata"],
-  "fileSize": "582.301KB",
+  "fileSize": "604.354KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
