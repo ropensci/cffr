@@ -47,19 +47,24 @@ jobs:
           options(repos = c(
             CRAN = "https://cloud.r-project.org"
           ))
-
+          
           allviews <- ctv::available.views()
           packs <- lapply(seq_len(length(allviews)), function(x) {
-            allviews[[x]]$packagelist
+            df <- allviews[[x]]$packagelist
+            tibble::add_column(df, view = allviews[[x]]$name)
           })
-
           packs <- dplyr::bind_rows(packs)
           core <- dplyr::filter(packs, core == TRUE)
-
+          
+          # Selected views with several packages
+          sel_views <- packs[packs$view %in% c("TimeSeries", "Distributions"), ]
+          
           # rOpenSci packages from r-universe
           ropensci <- unlist(jsonlite::read_json("https://ropensci.r-universe.dev/packages"))
-          ropenscireviewtools <- unlist(jsonlite::read_json("https://ropenscireviewtools.r-universe.dev/packages"))
-
+          ropenscireviewtools <- unlist(
+            jsonlite::read_json("https://ropenscireviewtools.r-universe.dev/packages")
+          )
+          
           # R-lib packages
           rlib <- unlist(jsonlite::read_json("https://r-lib.r-universe.dev/packages"))
           
@@ -72,27 +77,35 @@ jobs:
           # rspatial packages
           rspatial <- unlist(jsonlite::read_json("https://r-spatial.r-universe.dev/packages"))
           
+          # My universes packages
+          dieghernan <- unlist(jsonlite::read_json("https://dieghernan.r-universe.dev/packages"))
+          ropenspain <- unlist(jsonlite::read_json("https://ropenspain.r-universe.dev/packages"))
+          ropengov <- unlist(jsonlite::read_json("https://ropengov.r-universe.dev/packages"))
+          
           # Gather packages
-          all <- sort(unique(c(core$name, ropensci, ropenscireviewtools, rlib, rforge, rstudio, rspatial)))
-
+          all <- sort(unique(c(
+            core$name, sel_views$name, ropensci, ropenscireviewtools, rlib, rforge, rstudio, rspatial,
+            dieghernan, ropenspain, ropengov
+          )))
+          
           # Check packages not installed yet
           instpack <- as.character(installed.packages()[, "Package"])
           toinstall <- setdiff(all, instpack)
-
+          
           # Install
-
           options(repos = c(
             ropensci = "https://ropensci.r-universe.dev",
             ropenscireviewtools = "https://ropensci-review-tools.r-universe.dev",
             CRAN = "https://cloud.r-project.org"
           ))
-
+          
           install.packages(toinstall,
             dependencies = TRUE,
             verbose = TRUE, quiet = TRUE,
             type = "binary"
           )
-          # Update
+          
+          # Update binary
           update.packages(type = "binary")
 
         shell: Rscript {0}
