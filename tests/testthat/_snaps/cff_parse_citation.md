@@ -98,6 +98,7 @@
     - type: article
       title: 'RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic,
         Character, and Trait Data in R'
+      journal: Methods in Ecology and Evolution
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -107,16 +108,15 @@
         given-names: Rutger
       - family-names: Lapp
         given-names: Hilmar
-      journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
       pages: 352--357
       doi: 10.1111/2041-210X.12469
     - type: book
-      title: 'ggplot2: Elegant Graphics for Data Analysis'
       authors:
       - family-names: Wickham
         given-names: Hadley
+      title: 'ggplot2: Elegant Graphics for Data Analysis'
       publisher:
         name: Springer-Verlag New York
       year: '2016'
@@ -142,6 +142,7 @@
     - type: article
       title: 'RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic,
         Character, and Trait Data in R'
+      journal: Methods in Ecology and Evolution
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -151,16 +152,15 @@
         given-names: Rutger
       - family-names: Lapp
         given-names: Hilmar
-      journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
       pages: 352--357
       doi: 10.1111/2041-210X.12469
     - type: book
-      title: 'ggplot2: Elegant Graphics for Data Analysis'
       authors:
       - family-names: Wickham
         given-names: Hadley
+      title: 'ggplot2: Elegant Graphics for Data Analysis'
       publisher:
         name: Springer-Verlag New York
       year: '2016'
@@ -230,9 +230,9 @@
     references:
     - type: manual
       title: A Language and Environment for Statistical Computing
+      year: '2022'
       authors:
       - name: R Core Team
-      year: '2022'
       url: https://www.R-project.org/
       doi: 10.5281/zenodo.5366600
       identifiers:
@@ -261,9 +261,9 @@
     references:
     - type: manual
       title: A Language and Environment for Statistical Computing
+      year: '2022'
       authors:
       - name: R Core Team
-      year: '2022'
       url: https://www.R-project.org/
       keywords:
       - Some
@@ -278,18 +278,18 @@
 
     type: article
     title: A Language and Environment for Statistical Computing
-    authors:
-    - name: R Core Team
     year: '2021'
     journal: JOSS
+    authors:
+    - name: R Core Team
 
 # Book
 
     type: book
-    title: 'PETSc for Partial Differential Equations: Numerical Solutions in C and Python'
     authors:
     - family-names: Bueler
       given-names: Ed
+    title: 'PETSc for Partial Differential Equations: Numerical Solutions in C and Python'
     publisher:
       name: SIAM Press
     url: https://github.com/bueler/p4pdes
@@ -299,13 +299,13 @@
 # Book with editor
 
     type: book
-    title: 'PETSc for Partial Differential Equations: Numerical Solutions in C and Python'
     authors:
     - family-names: Bueler
       given-names: Ed
     editors:
     - family-names: editor
       given-names: An
+    title: 'PETSc for Partial Differential Equations: Numerical Solutions in C and Python'
     publisher:
       name: SIAM Press
     url: https://github.com/bueler/p4pdes
@@ -317,107 +317,107 @@
 
     type: book
     title: A Language and Environment for Statistical Computing
-    authors:
-    - name: R Core Team
     year: '2021'
     month: '8'
     publisher:
       name: Graham Hill
     section: Chapter 2
+    authors:
+    - name: R Core Team
     notes: InBook
 
 # InCollection
 
     type: generic
-    title: 'ReproZip: Computational Reproducibility With Ease'
-    authors:
-    - name: R Core Team
     collection-title: Proceedings of the 2016 ACM SIGMOD International Conference on Management
       of Data (SIGMOD)
+    title: 'ReproZip: Computational Reproducibility With Ease'
     year: '2021'
     month: '8'
     publisher:
       name: Graham Hill
     section: A chapter
+    authors:
+    - name: R Core Team
 
 # InProceedings
 
     type: proceedings
-    title: A book
-    authors:
-    - name: R Core Team
     collection-title: A Language and Environment for Statistical Computing
+    title: A book
     year: '2021'
     month: '8'
+    authors:
+    - name: R Core Team
     notes: InProceedings
 
 # Manual
 
     type: manual
     title: A Language and Environment for Statistical Computing
-    authors:
-    - name: R Core Team
     year: '2021'
     month: '8'
+    authors:
+    - name: R Core Team
 
 # MastersThesis
 
     type: thesis
     title: A Language and Environment for Statistical Computing
-    authors:
-    - name: R Core Team
     year: '2021'
     institution:
       name: Trinity College
     month: '8'
+    authors:
+    - name: R Core Team
 
 # PhdThesis
 
     type: thesis
     title: A Language and Environment for Statistical Computing
-    authors:
-    - name: R Core Team
     year: '2021'
     institution:
       name: Trinity College
     month: '8'
+    authors:
+    - name: R Core Team
 
 # Proceedings
 
     type: proceedings
     title: A Language and Environment for Statistical Computing
-    authors:
-    - name: R Core Team
     year: '2021'
     month: '8'
+    authors:
+    - name: R Core Team
 
 # TechReport
 
     type: report
     title: A Language and Environment for Statistical Computing
-    authors:
-    - name: R Core Team
     year: '2021'
     institution:
       name: MIT
     month: '8'
+    authors:
+    - name: R Core Team
 
 # Unpublished
 
     type: unpublished
     title: A Language and Environment for Statistical Computing
-    authors:
-    - name: R Core Team
     year: '2021'
     month: '8'
+    authors:
+    - name: R Core Team
 
 # Parse persons on CITATION
 
     type: manual
     title: A Language and Environment for Statistical Computing
+    year: '2021'
     authors:
     - name: R Core Team
-    year: '2021'
     contact:
     - family-names: name
       given-names: A

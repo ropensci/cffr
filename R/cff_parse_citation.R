@@ -125,7 +125,7 @@ cff_parse_citation <- function(bib) {
     valid]
 
   # We would use it at the end
-  ordernames <- unique(c("type", "title", "authors", names(parse_cit)))
+  ordernames <- unique(c("type", names(parse_cit)))
 
   # Clean strings that are not authors or other persons
   cleaned <- lapply(
@@ -177,8 +177,6 @@ cff_parse_citation <- function(bib) {
       bb_url$identifiers
     )
   }
-
-
 
   # Keywords
   if ("keywords" %in% names(parse_cit)) {
