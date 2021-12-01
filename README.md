@@ -228,6 +228,13 @@ test <- cff_create("rmarkdown")
       given-names: Yihui
       email: xie@yihui.name
       orcid: https://orcid.org/0000-0003-0645-5666
+    keywords:
+    - literate-programming
+    - markdown
+    - pandoc
+    - r
+    - r-package
+    - rmarkdown
     references:
     - type: book
       title: 'R Markdown: The Definitive Guide'

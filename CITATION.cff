@@ -50,6 +50,12 @@ keywords:
 - citation-files
 - cff
 - metadata
+- citation-file-format
+- cran
+- r
+- r-package
+- ropensci
+- rstats
 references:
 - type: generic
   title: Citation File Format
