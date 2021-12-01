@@ -157,8 +157,7 @@ building_url <- function(parse_cit) {
   ## Parse url: see bug with cff_create("rgeos")
   if (is.character(parse_cit$url)) {
     allurls <- as.character(parse_cit[names(parse_cit) == "url"])
-    allurls <- unlist(strsplit(allurls, " "))
-    allurls <- unlist(strsplit(allurls, ","))
+    allurls <- unlist(strsplit(allurls, " |,|\\n"))
   } else {
     allurls <- parse_cit$url
   }
