@@ -155,13 +155,28 @@ test_that("Test keywords and urls", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
+# Real world examples
 
 test_that("Article", {
   bib <- bibentry("Article",
-    title = "A Language and Environment for Statistical Computing",
-    year = "2021",
-    journal = "JOSS",
-    author = person("R Core Team")
+    key = "article",
+    title = "Bit-Vector Algorithms for Binary Constraint Satisfaction and Subgraph Isomorphism",
+    author = "Julian R. Ullmann",
+    year = 2011,
+    month = "feb",
+    journal = "ACM Journal of Experimental Algorithmics",
+    publisher = "Association for Computing Machinery",
+    address = "New York, NY, USA",
+    volume = 15,
+    number = "1.6",
+    pages = "1--64",
+    doi = "10.1145/1671970.1921702",
+    issn = "1084-6654",
+    url = "https://doi.org/10.1145/1671970.1921702",
+    issue_date = 2010,
+    articleno = "1.6",
+    numpages = 64,
+    keywords = "constraint propagation, signature file, prematching, constraint satisfaction, binary constraints, graph indexing, bit-vector, focus search, molecule matching, subgraph isomorphism, AllDifferent constraint, backtrack, domain reduction, forward checking"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -177,12 +192,18 @@ test_that("Article", {
 
 test_that("Book", {
   bib <- bibentry("Book",
-    author = person("Ed", "Bueler"),
-    title = "PETSc for Partial Differential Equations: Numerical Solutions in C and Python",
-    publisher = "SIAM Press",
-    url = "https://github.com/bueler/p4pdes",
-    isbn = 978111976304,
-    year = "2021"
+    key = "book",
+    title = "Gray's anatomy",
+    author = "Henry Gray and Peter L. Williams and Roger Warwick",
+    year = "1973",
+    publisher = "Longman London",
+    address = "London, United Kingdom",
+    pages = "xvi, 1471 p.",
+    isbn = "0443010110",
+    edition = "35th ed.; edited by Roger Warwick and Peter L. Williams with the assistance of others.",
+    type = "Book",
+    language = "English",
+    subjects = "Human anatomy"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -195,16 +216,16 @@ test_that("Book", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
-test_that("Book with editor", {
-  bib <- bibentry("Book",
-    author = person("Ed", "Bueler"),
-    editor = person("An", "editor"),
-    title = "PETSc for Partial Differential Equations: Numerical Solutions in C and Python",
-    publisher = "SIAM Press",
-    url = "https://github.com/bueler/p4pdes",
-    isbn = 978111976304,
-    year = "2021",
-    month = 11
+test_that("Booklet", {
+  bib <- bibentry("Booklet",
+    key = "booklet",
+    title = "The title of the work",
+    author = "Peter Caxton",
+    howpublished = "How it was published",
+    address = "The address of the publisher",
+    month = 7,
+    year = 1993,
+    note = "An optional note"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -213,17 +234,55 @@ test_that("Book with editor", {
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
   )
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+})
+
+test_that("Conference", {
+  # R does not handle conference, however this is the same
+  # than InProceedings
+
+  bib <- bibentry("InProceedings",
+    key = "conference",
+    author = "Peter Draper",
+    title = "The title of the work",
+    booktitle = "The title of the book",
+    year = 1993,
+    editor = "The editor",
+    volume = 4,
+    series = 5,
+    pages = 213,
+    address = "The address of the publisher",
+    month = 7,
+    organization = "The organization",
+    publisher = "The publisher",
+    note = "An optional note"
+  )
+
+  bibparsed <- cff_parse_citation(bib)
+  expect_snapshot_output(bibparsed)
+
+  cffobj <- cff_create(cff(),
+    keys = list(references = list(bibparsed))
+  )
+
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 test_that("InBook", {
   bib <- bibentry("InBook",
-    title = "A Language and Environment for Statistical Computing",
-    year = "2021",
-    month = "August",
-    publisher = "Graham Hill",
-    chapter = "Chapter 2",
-    author = person("R Core Team")
+    key = "inbook",
+    author = "Peter Eston",
+    title = "The title of the work",
+    chapter = 8,
+    pages = "201-213",
+    publisher = "The name of the publisher",
+    year = 1993,
+    volume = 4,
+    series = 5,
+    address = "The address of the publisher",
+    edition = 3,
+    month = 7,
+    note = "An optional note"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -238,13 +297,21 @@ test_that("InBook", {
 
 test_that("InCollection", {
   bib <- bibentry("InCollection",
-    title = "Proceedings of the 2016 ACM SIGMOD International Conference on Management of Data (SIGMOD)",
-    booktitle = "ReproZip: Computational Reproducibility With Ease",
-    year = "2021",
-    month = "August",
-    publisher = "Graham Hill",
-    chapter = "A chapter",
-    author = person("R Core Team")
+    key = "InCollection",
+    author = "Peter Farindon",
+    title = "The title of the work",
+    booktitle = "The title of the book",
+    publisher = "The name of the publisher",
+    year = 1993,
+    editor = "The editor",
+    volume = 4,
+    series = 5,
+    chapter = 8,
+    pages = "201-213",
+    address = "The address of the publisher",
+    edition = 3,
+    month = 7,
+    note = "An optional note"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -260,11 +327,22 @@ test_that("InCollection", {
 
 test_that("InProceedings", {
   bib <- bibentry("InProceedings",
-    title = "A Language and Environment for Statistical Computing",
-    booktitle = "A book",
-    year = "2021",
-    month = "August",
-    author = person("R Core Team")
+    key = "inproceedings",
+    author = "Paul Holleis and Matthias Wagner and Sebastian Böhm and Johan Koolwaaij",
+    title = "Studying Mobile Context-Aware Social Services in the Wild",
+    year = "2010",
+    isbn = "9781605589343",
+    publisher = "Association for Computing Machinery",
+    address = "New York, NY, USA",
+    url = "https://doi.org/10.1145/1868914.1868941",
+    doi = "10.1145/1868914.1868941",
+    abstract = "We have implemented and evaluated IYOUIT, a context-aware application for the mobile phone that promotes a digital lifestyle, sharing, and life-logging approach for people on the go. The service incorporates context management technology to abstract data about and around the user into meaningful interpretations of the user's digital trace in the real world. Complementary to the public release of our service, we have conducted a longitudinal field study with 19 users for a period of one month. In this paper, we present findings from this coordinated user trial and provide researchers with advice on the design and implementation of similar systems.",
+    booktitle = "Proceedings of the 6th Nordic Conference on Human-Computer Interaction: Extending Boundaries",
+    pages = "207–216",
+    numpages = "10",
+    keywords = "mobile services, context awareness, social networking",
+    location = "Reykjavik, Iceland",
+    series = "NordiCHI '10"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -280,10 +358,15 @@ test_that("InProceedings", {
 
 test_that("Manual", {
   bib <- bibentry("Manual",
-    title = "A Language and Environment for Statistical Computing",
-    year = "2021",
-    month = "August",
-    author = person("R Core Team")
+    key = "manual",
+    title = "The title of the work",
+    author = "Peter Gainsford",
+    organization = "The organization",
+    address = "The address of the publisher",
+    edition = 3,
+    month = 7,
+    year = 1993,
+    note = "An optional note"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -299,12 +382,14 @@ test_that("Manual", {
 
 test_that("MastersThesis", {
   bib <- bibentry("MastersThesis",
-    title = "A Language and Environment for Statistical Computing",
-    title = "A book",
-    year = "2021",
-    school = "Trinity College",
-    month = "August",
-    author = person("R Core Team")
+    key = "masterthesis",
+    author = "Peter Harwood",
+    title = "The title of the work",
+    school = "The school of the thesis",
+    year = 1993,
+    address = "The address of the publisher",
+    month = 7,
+    note = "An optional note"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -318,14 +403,37 @@ test_that("MastersThesis", {
 })
 
 
+test_that("Misc", {
+  bib <- bibentry("Misc",
+    key = "misc",
+    author = "Peter Isley",
+    title = "The title of the work",
+    howpublished = "How it was published",
+    month = 7,
+    year = 1993,
+    note = "An optional note"
+  )
+
+  bibparsed <- cff_parse_citation(bib)
+  expect_snapshot_output(bibparsed)
+
+  cffobj <- cff_create(cff(),
+    keys = list(references = list(bibparsed))
+  )
+
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+})
+
 test_that("PhdThesis", {
   bib <- bibentry("PhdThesis",
-    title = "A Language and Environment for Statistical Computing",
-    title = "A book",
-    year = "2021",
-    school = "Trinity College",
-    month = "August",
-    author = person("R Core Team")
+    key = "phdthesis",
+    author = "Peter Joslin",
+    title = "The title of the work",
+    school = "The school of the thesis",
+    year = 1993,
+    address = "The address of the publisher",
+    month = 7,
+    note = "An optional note"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -341,10 +449,15 @@ test_that("PhdThesis", {
 
 test_that("Proceedings", {
   bib <- bibentry("Proceedings",
-    title = "A Language and Environment for Statistical Computing",
-    year = "2021",
-    month = "August",
-    author = person("R Core Team")
+    key = "proc",
+    editor = "Yolande Berbers and Willy Zwaenepoel",
+    title = "Proceedings of the 6th European Conference on Computer Systems",
+    booktitle = "Proceedings of the 6th European Conference on Computer Systems",
+    publisher = "ACM",
+    venue = "Leuven, Belgium",
+    month = "apr",
+    year = 2006,
+    isbn = "1-59593-322-02",
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -357,13 +470,60 @@ test_that("Proceedings", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
+test_that("Proceedings with custom key", {
+  bib <- bibentry("Proceedings",
+    key = "proc",
+    title = "Proceedings of the 6th European Conference on Computer Systems",
+    booktitle = "Proceedings of the 6th European Conference on Computer Systems",
+    publisher = "ACM",
+    venue = "Leuven, Belgium",
+    month = "apr",
+    year = 2006,
+    isbn = "1-59593-322-02",
+  )
+
+  bibparsed <- cff_parse_citation(bib)
+  expect_snapshot_output(bibparsed)
+
+  cffobj <- cff_create(cff(),
+    keys = list(references = list(bibparsed))
+  )
+
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+})
+
+test_that("Proceedings with auto key", {
+  bib <- bibentry("Proceedings",
+    title = "Proceedings of the 6th European Conference on Computer Systems",
+    booktitle = "Proceedings of the 6th European Conference on Computer Systems",
+    publisher = "ACM",
+    venue = "Leuven, Belgium",
+    month = "apr",
+    year = 2006,
+    isbn = "1-59593-322-02",
+  )
+
+  bibparsed <- cff_parse_citation(bib)
+  expect_snapshot_output(bibparsed)
+
+  cffobj <- cff_create(cff(),
+    keys = list(references = list(bibparsed))
+  )
+
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+})
+
+
 test_that("TechReport", {
   bib <- bibentry("TechReport",
-    title = "A Language and Environment for Statistical Computing",
-    year = "2021",
-    institution = "MIT",
-    month = "aug",
-    author = person("R Core Team")
+    author       = "Peter Lambert",
+    title        = "The title of the work",
+    institution  = "The institution that published",
+    year         = 1993,
+    number       = 2,
+    address      = "The address of the publisher",
+    month        = 7,
+    note         = "An optional note"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -378,11 +538,11 @@ test_that("TechReport", {
 
 test_that("Unpublished", {
   bib <- bibentry("Unpublished",
-    title = "A Language and Environment for Statistical Computing",
-    year = "2021",
-    note = "Not published",
-    month = "8",
-    author = person("R Core Team")
+    author       = "Peter Marcheford",
+    title        = "The title of the work",
+    note         = "An optional note",
+    month        = 7,
+    year         = 1993
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -404,7 +564,7 @@ test_that("Parse persons on CITATION", {
     contact = person("A", "name"),
     conference = person("A", "conference"),
     "database-provider" = person("Database", "provider"),
-    editors = person("A", "editor"),
+    editor = person("A", "editor"),
     "editors-series" = person("A", "editor series"),
     "institution" = person("A", "institution"),
     "location" = person("A", "location"),

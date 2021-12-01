@@ -94,6 +94,7 @@
       - family-names: Rundel
         given-names: Colin
       year: '2020'
+      notes: R package version 0.5-7
       url: https://CRAN.R-project.org/package=rgeos
     - type: article
       title: 'RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic,
@@ -138,6 +139,7 @@
       - family-names: Rundel
         given-names: Colin
       year: '2020'
+      notes: R package version 0.5-7
       url: https://CRAN.R-project.org/package=rgeos
     - type: article
       title: 'RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic,
@@ -277,139 +279,296 @@
 # Article
 
     type: article
-    title: A Language and Environment for Statistical Computing
-    year: '2021'
-    journal: JOSS
+    title: Bit-Vector Algorithms for Binary Constraint Satisfaction and Subgraph Isomorphism
     authors:
-    - name: R Core Team
+    - family-names: Ullmann
+      given-names: Julian R.
+    year: '2011'
+    month: '2'
+    journal: ACM Journal of Experimental Algorithmics
+    publisher:
+      name: Association for Computing Machinery
+      city: New York, NY, USA
+    volume: '15'
+    number: '1.6'
+    pages: 1--64
+    doi: 10.1145/1671970.1921702
+    issn: 1084-6654
+    url: https://doi.org/10.1145/1671970.1921702
+    keywords:
+    - constraint propagation
+    - signature file
+    - prematching
+    - constraint satisfaction
+    - binary constraints
+    - graph indexing
+    - bit-vector
+    - focus search
+    - molecule matching
+    - subgraph isomorphism
+    - AllDifferent constraint
+    - backtrack
+    - domain reduction
+    - forward checking
 
 # Book
 
     type: book
+    title: Gray's anatomy
     authors:
-    - family-names: Bueler
-      given-names: Ed
-    title: 'PETSc for Partial Differential Equations: Numerical Solutions in C and Python'
+    - family-names: Gray
+      given-names: Henry
+    - family-names: Williams
+      given-names: Peter L.
+    - family-names: Warwick
+      given-names: Roger
+    year: '1973'
     publisher:
-      name: SIAM Press
-    url: https://github.com/bueler/p4pdes
-    isbn: '978111976304'
-    year: '2021'
+      name: Longman London
+      city: London, United Kingdom
+    pages: xvi, 1471 p.
+    isbn: '0443010110'
+    edition: 35th ed.; edited by Roger Warwick and Peter L. Williams with the assistance
+      of others.
 
-# Book with editor
+# Booklet
 
-    type: book
+    type: pamphlet
+    title: The title of the work
     authors:
-    - family-names: Bueler
-      given-names: Ed
+    - family-names: Caxton
+      given-names: Peter
+    medium: How it was published
+    month: '7'
+    year: '1993'
+    notes: An optional note
+
+# Conference
+
+    type: conference-paper
+    authors:
+    - family-names: Draper
+      given-names: Peter
+    title: The title of the work
+    collection-title: The title of the book
+    year: '1993'
     editors:
-    - family-names: editor
-      given-names: An
-    title: 'PETSc for Partial Differential Equations: Numerical Solutions in C and Python'
+    - name: The editor
+    volume: '4'
+    pages: '213'
+    month: '7'
     publisher:
-      name: SIAM Press
-    url: https://github.com/bueler/p4pdes
-    isbn: '978111976304'
-    year: '2021'
-    month: '11'
+      name: The publisher
+      city: The address of the publisher
+    notes: An optional note
+    institution:
+      name: The organization
+    conference:
+      name: The title of the book The address of the publisher
+    location:
+      name: The address of the publisher
 
 # InBook
 
     type: book
-    title: A Language and Environment for Statistical Computing
-    year: '2021'
-    month: '8'
-    publisher:
-      name: Graham Hill
-    section: Chapter 2
     authors:
-    - name: R Core Team
-    notes: InBook
+    - family-names: Eston
+      given-names: Peter
+    title: The title of the work
+    section: '8'
+    pages: 201-213
+    publisher:
+      name: The name of the publisher
+      city: The address of the publisher
+    year: '1993'
+    volume: '4'
+    edition: '3'
+    month: '7'
+    notes: An optional note
+    collection-title: '5'
 
 # InCollection
 
     type: generic
-    collection-title: Proceedings of the 2016 ACM SIGMOD International Conference on Management
-      of Data (SIGMOD)
-    title: 'ReproZip: Computational Reproducibility With Ease'
-    year: '2021'
-    month: '8'
-    publisher:
-      name: Graham Hill
-    section: A chapter
     authors:
-    - name: R Core Team
+    - family-names: Farindon
+      given-names: Peter
+    title: The title of the work
+    collection-title: The title of the book
+    publisher:
+      name: The name of the publisher
+      city: The address of the publisher
+    year: '1993'
+    editors:
+    - name: The editor
+    volume: '4'
+    section: '8'
+    pages: 201-213
+    edition: '3'
+    month: '7'
+    notes: An optional note
 
 # InProceedings
 
-    type: proceedings
-    collection-title: A Language and Environment for Statistical Computing
-    title: A book
-    year: '2021'
-    month: '8'
+    type: conference-paper
     authors:
-    - name: R Core Team
-    notes: InProceedings
+    - family-names: Holleis
+      given-names: Paul
+    - family-names: Wagner
+      given-names: Matthias
+    - family-names: Böhm
+      given-names: Sebastian
+    - family-names: Koolwaaij
+      given-names: Johan
+    title: Studying Mobile Context-Aware Social Services in the Wild
+    year: '2010'
+    isbn: '9781605589343'
+    publisher:
+      name: Association for Computing Machinery
+      city: New York, NY, USA
+    url: https://doi.org/10.1145/1868914.1868941
+    doi: 10.1145/1868914.1868941
+    abstract: We have implemented and evaluated IYOUIT, a context-aware application for
+      the mobile phone that promotes a digital lifestyle, sharing, and life-logging approach
+      for people on the go. The service incorporates context management technology to
+      abstract data about and around the user into meaningful interpretations of the user's
+      digital trace in the real world. Complementary to the public release of our service,
+      we have conducted a longitudinal field study with 19 users for a period of one month.
+      In this paper, we present findings from this coordinated user trial and provide
+      researchers with advice on the design and implementation of similar systems.
+    collection-title: 'Proceedings of the 6th Nordic Conference on Human-Computer Interaction:
+      Extending Boundaries'
+    pages: 207–216
+    keywords:
+    - mobile services
+    - context awareness
+    - social networking
+    location:
+      name: New York, NY, USA
+    conference:
+      name: 'Proceedings of the 6th Nordic Conference on Human-Computer Interaction: Extending
+        Boundaries New York, NY, USA'
 
 # Manual
 
     type: manual
-    title: A Language and Environment for Statistical Computing
-    year: '2021'
-    month: '8'
+    title: The title of the work
     authors:
-    - name: R Core Team
+    - family-names: Gainsford
+      given-names: Peter
+    edition: '3'
+    month: '7'
+    year: '1993'
+    notes: An optional note
+    institution:
+      name: The organization
 
 # MastersThesis
 
     type: thesis
-    title: A Language and Environment for Statistical Computing
-    year: '2021'
-    institution:
-      name: Trinity College
-    month: '8'
     authors:
-    - name: R Core Team
+    - family-names: Harwood
+      given-names: Peter
+    title: The title of the work
+    department: The school of the thesis
+    year: '1993'
+    month: '7'
+    notes: An optional note
+    thesis-type: Master's Thesis
+
+# Misc
+
+    type: generic
+    authors:
+    - family-names: Isley
+      given-names: Peter
+    title: The title of the work
+    medium: How it was published
+    month: '7'
+    year: '1993'
+    notes: An optional note
 
 # PhdThesis
 
     type: thesis
-    title: A Language and Environment for Statistical Computing
-    year: '2021'
-    institution:
-      name: Trinity College
-    month: '8'
     authors:
-    - name: R Core Team
+    - family-names: Joslin
+      given-names: Peter
+    title: The title of the work
+    department: The school of the thesis
+    year: '1993'
+    month: '7'
+    notes: An optional note
+    thesis-type: PhD Thesis
 
 # Proceedings
 
     type: proceedings
-    title: A Language and Environment for Statistical Computing
-    year: '2021'
-    month: '8'
+    editors:
+    - name: Yolande Berbers and Willy Zwaenepoel
+    title: Proceedings of the 6th European Conference on Computer Systems
+    collection-title: Proceedings of the 6th European Conference on Computer Systems
+    publisher:
+      name: ACM
+    month: '4'
+    year: '2006'
+    isbn: 1-59593-322-02
     authors:
-    - name: R Core Team
+    - name: Yolande Berbers and Willy Zwaenepoel
+      alias: BibTeX key from editor
+
+# Proceedings with custom key
+
+    type: proceedings
+    title: Proceedings of the 6th European Conference on Computer Systems
+    collection-title: Proceedings of the 6th European Conference on Computer Systems
+    publisher:
+      name: ACM
+    month: '4'
+    year: '2006'
+    isbn: 1-59593-322-02
+    authors:
+    - name: proc
+      alias: BibTeX key
+
+# Proceedings with auto key
+
+    type: proceedings
+    title: Proceedings of the 6th European Conference on Computer Systems
+    collection-title: Proceedings of the 6th European Conference on Computer Systems
+    publisher:
+      name: ACM
+    month: '4'
+    year: '2006'
+    isbn: 1-59593-322-02
+    authors:
+    - name: BibTeX key
+      alias: BibTeX key
 
 # TechReport
 
     type: report
-    title: A Language and Environment for Statistical Computing
-    year: '2021'
-    institution:
-      name: MIT
-    month: '8'
     authors:
-    - name: R Core Team
+    - family-names: Lambert
+      given-names: Peter
+    title: The title of the work
+    institution:
+      name: The institution that published
+    year: '1993'
+    number: '2'
+    month: '7'
+    notes: An optional note
 
 # Unpublished
 
     type: unpublished
-    title: A Language and Environment for Statistical Computing
-    year: '2021'
-    month: '8'
     authors:
-    - name: R Core Team
+    - family-names: Marcheford
+      given-names: Peter
+    title: The title of the work
+    notes: An optional note
+    month: '7'
+    year: '1993'
 
 # Parse persons on CITATION
 
@@ -426,11 +585,9 @@
     database-provider:
       name: Database provider
     editors:
-    - family-names: editor
-      given-names: A
+    - name: A editor
     editors-series:
-    - family-names: series
-      given-names: A editor
+    - name: A editor series
     institution:
       name: A institution
     location:

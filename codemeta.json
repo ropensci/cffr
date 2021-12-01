@@ -51,18 +51,6 @@
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
-      "identifier": "bibtex",
-      "name": "bibtex",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=bibtex"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "knitr",
       "name": "knitr",
       "provider": {
@@ -187,7 +175,7 @@
   },
   "isPartOf": "https://ropensci.org",
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata"],
-  "fileSize": "604.354KB",
+  "fileSize": "616.216KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

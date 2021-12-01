@@ -231,6 +231,8 @@
         email: do-use-Contact-address@r-project.org
       year: '2021'
       url: https://www.R-project.org/
+      institution:
+        name: R Foundation for Statistical Computing
     contact:
     - name: R Core Team
       email: do-use-Contact-address@r-project.org

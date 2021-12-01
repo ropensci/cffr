@@ -189,13 +189,31 @@ building_url <- function(parse_cit) {
 building_other_persons <- function(parse_cit) {
   others <- drop_null(parse_cit[other_persons()])
 
+  # Select subsets
+  all_pers <- other_persons()
+  toent <- other_persons_entity()
+  toent_forced <- entity_forced()
+
+  toauto_end <- all_pers[!all_pers %in% c(toent, toent_forced)]
+  toent_end <- toent[!toent %in% toent_forced]
+
   # Parse as entity
-  toentity <- others[names(others) %in% other_persons_entity()]
+  toentity <- others[names(others) %in% toent_end]
   toentity <- lapply(toentity, function(x) {
     list(name = clean_str(x))
   })
-  toperson <- others[!names(others) %in% other_persons_entity()]
+
+  # As persons but forced to a single field
+  toentity_forced <- others[names(others) %in% toent_forced]
+  toentity_forced <- lapply(toentity_forced, function(x) {
+    person(clean_str(
+      paste(x, collapse = " and ")
+    ))
+  })
+
+  toperson <- others[names(others) %in% toauto_end]
   toperson <- lapply(toperson, as.person)
+  toperson <- c(toperson, toentity_forced)
 
   toperson <- lapply(toperson, function(x) {
     lapply(x, cff_parse_person)
@@ -212,19 +230,18 @@ building_other_persons <- function(parse_cit) {
 other_persons <- function() {
   pers_ent <- c(
     "contact",
-    "conference",
-    "database-provider",
     "editors",
     "editors-series",
-    "institution",
-    "location",
-    "publisher",
     "recipients",
     "senders",
     "translators"
   )
 
-  pers_ent
+  pers_ent <- sort(unique(c(
+    pers_ent,
+    other_persons_entity(),
+    entity_forced()
+  )))
 }
 
 #' Vector other persons to be parsed as entities
@@ -239,4 +256,14 @@ other_persons_entity <- function() {
   )
 
   entities
+}
+
+#' Force this to entity, even thought they may be persons as well
+#' @noRd
+entity_forced <- function() {
+  forced <- c(
+    "editors",
+    "editors-series"
+  )
+  forced
 }
