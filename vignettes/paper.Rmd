@@ -1,6 +1,6 @@
 ---
-title: "cffr: Generate Citation File Format Metadata for R Packages"
-subtitle: "JOSS paper"
+title: "JOSS paper"
+subtitle: "cffr: Generate Citation File Format Metadata for R Packages"
 description: >
   Paper published on The Journal of Open Source Software.
 tags:
@@ -13,8 +13,9 @@ author: Diego Hernangómez
 date: 09 November 2021
 output: rmarkdown::html_vignette
 bibliography: paper.bib
+link-citations: yes
 vignette: >
-  %\VignetteIndexEntry{cffr: Generate Citation File Format Metadata for R Packages}
+  %\VignetteIndexEntry{JOSS paper}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

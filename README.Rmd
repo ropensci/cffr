@@ -1,6 +1,7 @@
 ---
 output: github_document
 bibliography: vignettes/bibtex.bib
+link-citations: yes
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -84,7 +85,51 @@ the `CITATION` file (if present) of your package. Note that **cffr** works best
 if your package pass 
 `R CMD check/devtools::check()`.
 
-See [some projects already using **cffr**](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
+```{r count_cffr, echo=FALSE, results='asis'}
+cat("\n")
+
+today <- Sys.Date()
+
+# Try get the count of GitHub repos here
+
+ghtoken <- paste("token", Sys.getenv("GITHUB_TOKEN"))
+tmpfile <- tempfile(fileext = ".json")
+# Get numbers of repos
+api_url <- "https://api.github.com/search/code?q=cffr+extension:cff+filename:CITATION"
+
+res <- tryCatch(download.file(api_url,
+  tmpfile,
+  quiet = TRUE,
+  headers = c(Authorization = ghtoken)
+),
+warning = function(e) {
+  return(TRUE)
+},
+error = function(e) {
+  return(TRUE)
+}
+)
+
+# If not successful
+
+if (isTRUE(res)) {
+  cat(paste0(
+    "\n", "See [some projects already using **cffr**]",
+    "(https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code)",
+    "."
+  ))
+} else {
+  nreps <- as.integer(jsonlite::read_json(tmpfile)$total_count)
+
+  cat(paste0(
+    "As per ", today, " there are at least ", nreps, " repos on GitHub using **cffr**. ",
+    "[Check them out here]",
+    "(https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code)."
+  ))
+}
+cat("\n")
+```
+
 
 ### Installation
 
@@ -239,7 +284,7 @@ print(citation("cffr")[1], bibtex = FALSE)
 
 A BibTeX entry for LaTeX users is
 
-```{r echo=FALSE}
+```{r echo=FALSE, comment=''}
 toBibtex(citation("cffr")[1])
 ```
 

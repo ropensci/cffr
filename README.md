@@ -29,18 +29,18 @@ and examples for working with .cff more generally.
 ## What is a `CITATION.cff` file?
 
 [Citation File Format (CFF](https://citation-file-format.github.io/))
-(Druskat et al. 2021) (v1.2.0) are plain text files with human- and
-machine-readable citation information for software (and datasets). Code
-developers can include them in their repositories to let others know how
-to correctly cite their software.
+([Druskat et al. 2021](#ref-druskat2021)) (v1.2.0) are plain text files
+with human- and machine-readable citation information for software (and
+datasets). Code developers can include them in their repositories to let
+others know how to correctly cite their software.
 
 This format is becoming popular within the software citation ecosystem.
 Recently
 [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
 [Zenodo](https://twitter.com/ZENODO_ORG/status/1420357001490706442) and
 [Zotero](https://twitter.com/zotero/status/1420515377390530560) have
-included full support of this citation format (Druskat 2021). GitHub
-support is of special interest:
+included full support of this citation format ([Druskat
+2021](#ref-druskat2021a)). GitHub support is of special interest:
 
 <img src="vignettes/tweet-1.png" title="GitHub-link" alt="GitHub-link" width="400" style="display: block; margin: auto;" />
 
@@ -49,17 +49,17 @@ support is of special interest:
 
 See [Enhanced support for citations on
 GitHub](https://github.blog/2021-08-19-enhanced-support-citations-github/)
-(Smith 2021) for more info.
+([Smith 2021](#ref-smith2021)) for more info.
 
 ### Related projects
 
-[The CodeMeta Project](https://codemeta.github.io/) (Jones et al. 2017)
-creates a concept vocabulary that can be used to standardize the
-exchange of software metadata across repositories and organizations. One
-of the many uses of a `codemeta.json` file (created following the
-standards defined on The CodeMeta Project) is to provide citation
-metadata such as title, authors, publication year, and venue (Fenner
-2021). The packages
+[The CodeMeta Project](https://codemeta.github.io/) ([Jones et al.
+2017](#ref-jones2017)) creates a concept vocabulary that can be used to
+standardize the exchange of software metadata across repositories and
+organizations. One of the many uses of a `codemeta.json` file (created
+following the standards defined on The CodeMeta Project) is to provide
+citation metadata such as title, authors, publication year, and venue
+([Fenner 2021](#ref-fenner2021)). The packages
 [**codemeta**](https://github.com/cboettig/codemeta)/
 [**codemetar**](https://github.com/ropensci/codemetar) allows to
 generate `codemeta.json` files from R packages metadata.
@@ -71,8 +71,9 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-See [some projects already using
-**cffr**](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
+As per 2021-12-02 there are at least 46 repos on GitHub using **cffr**.
+[Check them out
+here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
 ### Installation
 
@@ -356,18 +357,18 @@ R Packages.” *Journal of Open Source Software*, *6*(67), 3900. doi:
 
 A BibTeX entry for LaTeX users is
 
-    #> @Article{,
-    #>   doi = {10.21105/joss.03900},
-    #>   url = {https://doi.org/10.21105/joss.03900},
-    #>   year = {2021},
-    #>   publisher = {The Open Journal},
-    #>   volume = {6},
-    #>   number = {67},
-    #>   pages = {3900},
-    #>   author = {Diego Hernangómez},
-    #>   title = {cffr: Generate Citation File Format Metadata for R Packages},
-    #>   journal = {Journal of Open Source Software},
-    #> }
+    @Article{,
+      doi = {10.21105/joss.03900},
+      url = {https://doi.org/10.21105/joss.03900},
+      year = {2021},
+      publisher = {The Open Journal},
+      volume = {6},
+      number = {67},
+      pages = {3900},
+      author = {Diego Hernangómez},
+      title = {cffr: Generate Citation File Format Metadata for R Packages},
+      journal = {Journal of Open Source Software},
+    }
 
 You can also use the [citation provided by
 GitHub](https://github.com/ropensci/cffr), that is generated from the
