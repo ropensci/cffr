@@ -27,10 +27,11 @@ are:
 }
 }
 \note{
-\strong{R} does not have full support for BibTeX. Specifically, \strong{InBook} has
+\strong{R} does not have full support for BibTex. Specifically, \strong{InBook} has
 limited support and \strong{Conference} is not supported. The latter would be
-parsed as \strong{InProceedings} (Patashnik (1988)). See \code{\link[=citation]{citation()}} for more
-info.
+parsed as \strong{InProceedings} (Patashnik (1988)).
+
+See \code{\link[=bibentry]{bibentry()}} for more info.
 }
 \examples{
 # Reading .bib files
@@ -57,5 +58,8 @@ Bibliographies for LATEX, Etc. Retrieved December 1, 2021, from
 }
 \seealso{
 \code{\link[=citation]{citation()}}, \code{\link[=bibentry]{bibentry()}}, \code{\link[knitr:write_bib]{knitr::write_bib()}}.
+
+Other bibtex: 
+\code{\link{encoded_utf_to_latex}()}
 }
 \concept{bibtex}

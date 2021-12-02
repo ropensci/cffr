@@ -83,3 +83,24 @@ test_that("Read Error", {
 
   expect_error(cff_read_bib(file))
 })
+
+test_that("UTF Encoding", {
+  skip_on_cran()
+
+  range <- 1:511
+
+  ascii_table <- data.frame(
+    dec = range,
+    utf8 = intToUtf8(range, multiple = TRUE)
+  )
+
+  # Add latex using base approach
+  ascii_table$latex_base <- tools::encoded_text_to_latex(ascii_table$utf8,
+    encoding = "UTF-8"
+  )
+
+  # With cffr
+  ascii_table$latex_cffr <- encoded_utf_to_latex(ascii_table$utf8)
+
+  expect_snapshot_output(ascii_table)
+})
