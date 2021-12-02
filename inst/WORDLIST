@@ -38,6 +38,7 @@ Pérez
 README
 RStudio
 Rbuildignore
+RefManageR
 Reproducibility
 Riederer
 SPDX
@@ -50,6 +51,7 @@ Zenodo
 Zotero
 al
 annote
+bibtex
 biocViews
 booktitle
 cff
@@ -76,6 +78,7 @@ plaintext
 pre
 rOpenSci
 repo
+repos
 rmarkdown
 testthat
 zenodo

@@ -7,8 +7,7 @@
 cff_parse_citation(bib)
 }
 \arguments{
-\item{bib}{A \code{bibentry} object, either created with \code{\link[utils:citation]{utils::citation()}} or
-with \code{\link[utils:bibentry]{utils::bibentry()}}.}
+\item{bib}{A \code{bibentry} object, either created with \code{\link[=bibentry]{bibentry()}}.}
 }
 \value{
 A \code{\link{cff}} object ready to be used on \code{\link[=cff_create]{cff_create()}}.
@@ -79,7 +78,8 @@ Bibliographies for LATEX, Etc. Retrieved December 1, 2021, from
 }
 }
 \seealso{
-\code{\link[=cff_create]{cff_create()}}, \code{vignette("cffr", "cffr")}, \code{\link[utils:bibentry]{utils::bibentry()}}
+\code{\link[=cff_create]{cff_create()}}, \code{vignette("cffr", "cffr")}, \code{\link[=bibentry]{bibentry()}},
+\code{\link[=cff_read_bib]{cff_read_bib()}}
 
 Other parsers: 
 \code{\link{cff_authors_to_person}()},

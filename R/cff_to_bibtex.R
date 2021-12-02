@@ -1,5 +1,8 @@
-
-
+#' Create a BibTeX entry from a CITATION file or a `cff` object
+#'
+#'
+#' @family bibtex
+#' @noRd
 cff_to_bibtex <- function(x) {
   stopifnotcff(x)
 

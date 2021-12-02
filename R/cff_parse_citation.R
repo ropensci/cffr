@@ -2,14 +2,14 @@
 #'
 #' Parse a `bibentry` object to a valid format for a `CITATION.cff` file.
 #'
-#' @seealso [cff_create()], `vignette("cffr", "cffr")`, [utils::bibentry()]
+#' @seealso [cff_create()], `vignette("cffr", "cffr")`, [bibentry()],
+#' [cff_read_bib()]
 #'
 #' @export
 #'
 #' @family parsers
 #'
-#' @param bib A `bibentry` object, either created with [utils::citation()] or
-#' with [utils::bibentry()].
+#' @param bib A `bibentry` object, either created with [bibentry()].
 #'
 #' @return A [`cff`] object ready to be used on [cff_create()].
 #'
