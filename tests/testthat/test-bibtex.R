@@ -86,8 +86,8 @@ test_that("Read Error", {
 
 test_that("UTF Encoding", {
   skip_on_cran()
-  skip_if(R.Version()$major < 4,"On old R version")
-  
+  skip_if(R.Version()$major < 4, "On old R version")
+
   range <- 1:511
 
   utf8 <- intToUtf8(range, multiple = TRUE)
