@@ -203,7 +203,7 @@ single_bibtex2r <- function(init, end, lines) {
 #' @export
 #'
 #' @examples
-#'
+#' \dontrun{
 #' # Full range of supported characters on R
 #' library(tools)
 #'
@@ -223,6 +223,7 @@ single_bibtex2r <- function(init, end, lines) {
 #' ascii_table$latex_cffr <- encoded_utf_to_latex(ascii_table$utf8)
 #'
 #' ascii_table
+#' }
 encoded_utf_to_latex <- function(x) {
   encoded <- enc2utf8(x)
   out <- encoded_text_to_latex(encoded, encoding = "UTF-8")
