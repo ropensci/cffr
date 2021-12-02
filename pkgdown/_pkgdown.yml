@@ -4,31 +4,27 @@ template:
     ganalytics: G-0DP42JKT92
   opengraph:
     twitter:
-      creator: "@dhernangomez"
+      creator: '@dhernangomez'
       card: summary_large_image
-
 development:
   mode: auto
-
 repo:
   branch: main
-
 reference:
   - title: Main function
-    desc: The main function of the package
-          and likely to be the only one you
-          would need.
+    desc: >-
+      The main function of the package and likely to be the only one you would
+      need.
     contents:
       - cff_write
   - title: Other core functions
-    desc: Create, write and manipulate files and objects.
+    desc: 'Create, write and manipulate files and objects.'
     contents:
       - has_concept("core functions")
-      - -cff_write
   - title: Citation File Format schema
-    desc: These functions provides lists
-          of valid keys and fields as defined
-          by the CFF schema.json **(v1.2.0)**.
+    desc: >-
+      These functions provides lists of valid keys and fields as defined by the
+      CFF schema.json **(v1.2.0)**.
     contents:
       - has_concept("schema")
   - title: Parsers
@@ -44,25 +40,31 @@ reference:
   - title: About the package
     contents:
       - cffr-package
-
 navbar:
   structure:
-    left:  [intro, reference, articles, tutorials, media, news]
-    right: [search, github]
+    left:
+      - intro
+      - reference
+      - articles
+      - tutorials
+      - media
+      - news
+    right:
+      - search
+      - github
   components:
     media:
       text: Media
       menu:
-      - text: rOpenSci
-      - text: 'cffr: Create a CITATION.cff File for your R Package'
-        href: 'https://ropensci.org/blog/2021/11/23/cffr/'
-      - text: 'How I Test cffr on (about) 2,000 Packages'
-        href: 'https://ropensci.org/blog/2021/11/23/how-i-test-cffr/'
-      - text: ---
-      - text: Podcasts
-      - text: 'R Weekly Highlights: Issue 2021-W48 Highlights'
-        href: 'https://share.fireside.fm/episode/87RSVeFz+4R-j8_xW'
-
+        - text: rOpenSci
+        - text: 'cffr: Create a CITATION.cff File for your R Package'
+          href: 'https://ropensci.org/blog/2021/11/23/cffr/'
+        - text: 'How I Test cffr on (about) 2,000 Packages'
+          href: 'https://ropensci.org/blog/2021/11/23/how-i-test-cffr/'
+        - text: '---'
+        - text: Podcasts
+        - text: 'R Weekly Highlights: Issue 2021-W48 Highlights'
+          href: 'https://share.fireside.fm/episode/87RSVeFz+4R-j8_xW'
 authors:
   Diego Hernangómez:
     href: 'https://dieghernan.github.io/'
