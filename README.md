@@ -29,7 +29,7 @@ and examples for working with .cff more generally.
 ## What is a `CITATION.cff` file?
 
 [Citation File Format (CFF](https://citation-file-format.github.io/))
-([Druskat et al. 2021](#ref-druskat2021)) (v1.2.0) are plain text files
+(Druskat et al. [2021](#ref-druskat2021)) (v1.2.0) are plain text files
 with human- and machine-readable citation information for software (and
 datasets). Code developers can include them in their repositories to let
 others know how to correctly cite their software.
@@ -39,8 +39,8 @@ Recently
 [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
 [Zenodo](https://twitter.com/ZENODO_ORG/status/1420357001490706442) and
 [Zotero](https://twitter.com/zotero/status/1420515377390530560) have
-included full support of this citation format ([Druskat
-2021](#ref-druskat2021a)). GitHub support is of special interest:
+included full support of this citation format (Druskat
+[2021](#ref-druskat2021a)). GitHub support is of special interest:
 
 <img src="vignettes/tweet-1.png" title="GitHub-link" alt="GitHub-link" width="400" style="display: block; margin: auto;" />
 
@@ -49,17 +49,17 @@ included full support of this citation format ([Druskat
 
 See [Enhanced support for citations on
 GitHub](https://github.blog/2021-08-19-enhanced-support-citations-github/)
-([Smith 2021](#ref-smith2021)) for more info.
+(Smith [2021](#ref-smith2021)) for more info.
 
 ### Related projects
 
-[The CodeMeta Project](https://codemeta.github.io/) ([Jones et al.
-2017](#ref-jones2017)) creates a concept vocabulary that can be used to
+[The CodeMeta Project](https://codemeta.github.io/) (Jones et al.
+[2017](#ref-jones2017)) creates a concept vocabulary that can be used to
 standardize the exchange of software metadata across repositories and
 organizations. One of the many uses of a `codemeta.json` file (created
 following the standards defined on The CodeMeta Project) is to provide
 citation metadata such as title, authors, publication year, and venue
-([Fenner 2021](#ref-fenner2021)). The packages
+(Fenner [2021](#ref-fenner2021)). The packages
 [**codemeta**](https://github.com/cboettig/codemeta)/
 [**codemetar**](https://github.com/ropensci/codemetar) allows to
 generate `codemeta.json` files from R packages metadata.
@@ -68,8 +68,8 @@ generate `codemeta.json` files from R packages metadata.
 
 **cffr** maximizes the data extraction by using both the `DESCRIPTION`
 file and the `CITATION` file (if present) of your package. Note that
-**cffr** works best if your package pass
-`R CMD check/devtools::check()`.
+**cffr** works best if your package pass `R CMD
+check/devtools::check()`.
 
 As per 2021-12-03 there are at least 46 repos on GitHub using **cffr**.
 [Check them out
@@ -93,6 +93,7 @@ Alternatively, you can install **cffr** using the
 [r-universe](https://ropensci.r-universe.dev/ui#builds):
 
 ``` r
+
 # Enable this universe
 options(repos = c(
   ropensci = "https://ropensci.r-universe.dev",
@@ -110,6 +111,7 @@ By default most often from within your package folder you’ll simply run
 file and validates it on a single command:
 
 ``` r
+
 library(cffr)
 
 # For in-development packages
@@ -137,8 +139,8 @@ test <- cff_create("rmarkdown")
 ```
 
 <details>
-<summary>
-<code>CITATION.cff</code> for <strong>rmarkdown</strong>
+
+<summary><code>CITATION.cff</code> for <strong>rmarkdown</strong>
 </summary>
 
     cff-version: 1.2.0
@@ -269,11 +271,13 @@ test <- cff_create("rmarkdown")
       url: https://bookdown.org/yihui/rmarkdown-cookbook
 
 </details>
+
 <p>
 
 We can validate the result using `cff_validate()`:
 
 ``` r
+
 cff_validate(test)
 #> 
 #> cff_validate results-----
@@ -293,9 +297,11 @@ GitHub Actions. Use `cff_gha_update()`function to install a GitHub
 Action that would update your `CITATION.cff` file on the following
 events:
 
--   When you publish a new release of the package on your GitHub repo.
--   Each time that you modify your DESCRIPTION or inst/CITATION files.
--   The action can be run also manually.
+  - When you publish a new release of the package on your GitHub repo.
+  - Each time that you modify your DESCRIPTION or inst/CITATION files.
+  - The action can be run also manually.
+
+<!-- end list -->
 
 ``` r
 cff_gha_update()
@@ -327,23 +333,23 @@ make sure you have the **testthat** package installed.
 
 Check the following articles to learn more about \*cffr\*\*:
 
--   [cffr: Create a CITATION.cff File for your R
+  - [cffr: Create a CITATION.cff File for your R
     Package](https://ropensci.org/blog/2021/11/23/cffr/)
--   [How I Test cffr on (about) 2,000 Packages using GitHub Actions and
+  - [How I Test cffr on (about) 2,000 Packages using GitHub Actions and
     R-universe](https://ropensci.org/blog/2021/11/23/how-i-test-cffr/)
 
 ## Related packages
 
--   [**citation**](https://github.com/pik-piam/citation/): The
+  - [**citation**](https://github.com/pik-piam/citation/): The
     development version (at the time of this writing) includes a new
     function `r2cff` that creates a `CITATION.cff` file (v1.1.0) using
     the information of your `DESCRIPTION` file. It also provide minimal
     validity checks.
--   [**handlr**](https://github.com/ropensci/handlr): Tool for
+  - [**handlr**](https://github.com/ropensci/handlr): Tool for
     converting among citation formats, including `*.cff` files. At the
     time of this writing only CFF v1.1.0 was supported (see
-    [#24](https://github.com/ropensci/handlr/issues/24)).
--   [**codemeta**](https://github.com/cboettig/codemeta)/
+    [\#24](https://github.com/ropensci/handlr/issues/24)).
+  - [**codemeta**](https://github.com/cboettig/codemeta)/
     [**codemetar**](https://github.com/ropensci/codemetar) provides
     similar solutions for creating `codemeta.json` file, another format
     for storing and sharing software metadata.
@@ -379,9 +385,9 @@ for more info.
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references">
 
-<div id="ref-druskat2021a" class="csl-entry">
+<div id="ref-druskat2021a">
 
 Druskat, Stephan. 2021. “Making Software Citation Easi(er) - the
 Citation File Format and Its Integrations,” September.
@@ -389,7 +395,7 @@ Citation File Format and Its Integrations,” September.
 
 </div>
 
-<div id="ref-druskat2021" class="csl-entry">
+<div id="ref-druskat2021">
 
 Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, Robert Haines,
 James Baker, Spencer Bliven, Egon Willighagen, David Pérez-Suárez, and
@@ -398,7 +404,7 @@ Alexander Konovalov. 2021. “Citation File Format,” August.
 
 </div>
 
-<div id="ref-fenner2021" class="csl-entry">
+<div id="ref-fenner2021">
 
 Fenner, Martin. 2021. “We Need Your Feedback: Aligning the CodeMeta
 Vocabulary for Scientific Software with Schema.org.”
@@ -406,7 +412,7 @@ Vocabulary for Scientific Software with Schema.org.”
 
 </div>
 
-<div id="ref-jones2017" class="csl-entry">
+<div id="ref-jones2017">
 
 Jones, Matthew B, Carl Boettiger, Abby Cabunoc Mayes, Arfon Smith, Peter
 Slaughter, Kyle Niemeyer, Yolanda Gil, et al. 2017. *CodeMeta: An
@@ -415,7 +421,7 @@ Exchange Schema for Software Metadata*. KNB Data Repository.
 
 </div>
 
-<div id="ref-smith2021" class="csl-entry">
+<div id="ref-smith2021">
 
 Smith, Arfon. 2021. “Enhanced Support for Citations on GitHub.”
 <https://github.blog/2021-08-19-enhanced-support-citations-github/>.
