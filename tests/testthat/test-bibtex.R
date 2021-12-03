@@ -4,6 +4,7 @@ test_that("Read bibtex example", {
   )
   parsed <- cff_read_bib(file)
 
+
   expect_snapshot_output(toBibtex(parsed))
 })
 test_that("Read bibtex example cff", {
@@ -19,6 +20,11 @@ test_that("Read bibtex full", {
     package = "cffr"
   )
   parsed <- cff_read_bib(file)
+
+  expect_s3_class(parsed, "bibentry", exact = TRUE)
+
+  # Test that is a named vector with the keys
+  expect_equal(names(parsed), unname(unlist(parsed$key)))
 
   expect_snapshot_output(toBibtex(parsed))
 })
@@ -82,6 +88,16 @@ test_that("Read Error", {
   )
 
   expect_error(cff_read_bib(file))
+})
+
+test_that("No key", {
+  file <- system.file("examples/bibtex_nokey.bib",
+    package = "cffr"
+  )
+
+  expect_warning(cff_read_bib(file))
+
+  parsed <- suppressWarnings(cff_read_bib(file))
 })
 
 test_that("UTF Encoding", {

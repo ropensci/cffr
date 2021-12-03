@@ -22,12 +22,13 @@
 #'
 #' ## Entry types considered
 #'
-#' - **Article**, **Book**, **Booklet**, **InCollection**, **InProceedings**,
+#' - **Article**, **Book**, **InBook**, **InCollection**, **InProceedings**,
 #'  **Manual**, **MastersThesis**, **Misc**, **PhDThesis**, **Proceedings**,
 #'  **TechReport**, **Unpublished**. See [bibentry()] for more information.
 #'
-#'  Note that **Conference** is not implemented in [bibentry()], however is
-#'  equivalent to **InProceedings**  (Patashnik (1988)).
+#'  Note that **Booklet** and **Conference** are not implemented in
+#'  [bibentry()], however the latter is equivalent to **InProceedings**
+#'  (Patashnik (1988)).
 #'
 #' ## Fields considered
 #'
@@ -75,6 +76,9 @@ cff_parse_citation <- function(bib) {
   if (!inherits(bib, "bibentry")) {
     return(NULL)
   }
+
+  ## Unname
+  bib <- unname(bib)
 
   if (length(bib) > 1) {
     bib <- lapply(bib, cff_parse_citation)

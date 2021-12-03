@@ -176,6 +176,9 @@ cff_create <- function(x,
   if (!is.null(keys)) {
     keys <- fuzzy_keys(keys)
     cffobjendmod <- cffobjend[setdiff(names(cffobjend), names(keys))]
+
+
+
     cffobjend <- modifyList(cffobjendmod, keys, keep.null = FALSE)
     cffobjend <- as.cff(cffobjend)
   }

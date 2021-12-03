@@ -11,8 +11,7 @@ cff_read_bib(file)
 \item{file}{The path to a \code{.bib} file.}
 }
 \value{
-\code{\link[=cff_read_bib]{cff_read_bib()}} returns a \verb{citation, bibentry} object as produced by
-\code{\link[=citation]{citation()}}
+\code{\link[=cff_read_bib]{cff_read_bib()}} returns a \code{bibentry} object as produced by \code{\link[=bibentry]{bibentry()}}.
 }
 \description{
 Functions for reading and creating \code{.bib} files.
@@ -27,8 +26,9 @@ are:
 }
 }
 \note{
-\strong{R} does not support \strong{Conference} BibTex entries. However, this entry is
-equivalent to \strong{InProceedings} according to Patashnik (1988).
+\strong{R} does not support \strong{Booklet} and \strong{Conference} BibTeX entries.
+However, the latter is equivalent to \strong{InProceedings} according to
+Patashnik (1988).
 
 See \code{\link[=bibentry]{bibentry()}} for more info.
 }
@@ -56,7 +56,7 @@ Bibliographies for LATEX, Etc. Retrieved December 1, 2021, from
 \url{https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf}.
 }
 \seealso{
-\code{\link[=citation]{citation()}}, \code{\link[=bibentry]{bibentry()}}, \code{\link[knitr:write_bib]{knitr::write_bib()}}.
+\code{\link[=bibentry]{bibentry()}}, \code{\link[knitr:write_bib]{knitr::write_bib()}}.
 
 Other bibtex: 
 \code{\link{encoded_utf_to_latex}()}

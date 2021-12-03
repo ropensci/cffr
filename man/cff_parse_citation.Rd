@@ -23,13 +23,14 @@ This function tries to adapt a \code{bibentry} object (generated with \code{\lin
 or \code{\link[=citEntry]{citEntry()}}) to the CFF standard.
 \subsection{Entry types considered}{
 \itemize{
-\item \strong{Article}, \strong{Book}, \strong{Booklet}, \strong{InCollection}, \strong{InProceedings},
+\item \strong{Article}, \strong{Book}, \strong{InBook}, \strong{InCollection}, \strong{InProceedings},
 \strong{Manual}, \strong{MastersThesis}, \strong{Misc}, \strong{PhDThesis}, \strong{Proceedings},
 \strong{TechReport}, \strong{Unpublished}. See \code{\link[=bibentry]{bibentry()}} for more information.
 }
 
-Note that \strong{Conference} is not implemented in \code{\link[=bibentry]{bibentry()}}, however is
-equivalent to \strong{InProceedings}  (Patashnik (1988)).
+Note that \strong{Booklet} and \strong{Conference} are not implemented in
+\code{\link[=bibentry]{bibentry()}}, however the latter is equivalent to \strong{InProceedings}
+(Patashnik (1988)).
 }
 
 \subsection{Fields considered}{

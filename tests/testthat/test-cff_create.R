@@ -103,3 +103,22 @@ test_that("Test enhanced author: entity", {
   expect_snapshot_output(cffobj)
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
+
+test_that("Test overrides on list", {
+
+  # Test
+  desc_path <- system.file("examples/DESCRIPTION_entity", package = "cffr")
+  keys <- bibentry("Misc",
+    title = "An",
+    author = "override"
+  )
+  keys <- cff_parse_citation(keys)
+
+  # Create cff
+  cffobj <- cff_create(desc_path, keys = list(
+    "preferred-citation" = keys
+  ))
+
+  expect_s3_class(cffobj, "cff")
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+})

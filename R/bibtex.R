@@ -5,14 +5,13 @@
 #' @name bibtex
 #'
 #' @return
-#' [cff_read_bib()] returns a `citation, bibentry` object as produced by
-#' [citation()]
+#' [cff_read_bib()] returns a `bibentry` object as produced by [bibentry()].
 #'
 #' @family bibtex
 #'
 #' @param file The path to a `.bib` file.
 #'
-#' @seealso [citation()], [bibentry()], [knitr::write_bib()].
+#' @seealso [bibentry()], [knitr::write_bib()].
 #'
 #' @details
 #'
@@ -27,8 +26,9 @@
 #'
 #' @note
 #'
-#' **R** does not support **Conference** BibTex entries. However, this entry is
-#' equivalent to **InProceedings** according to Patashnik (1988).
+#' **R** does not support **Booklet** and **Conference** BibTeX entries.
+#' However, the latter is equivalent to **InProceedings** according to
+#' Patashnik (1988).
 #'
 #' See [bibentry()] for more info.
 #'
@@ -76,8 +76,8 @@ cff_read_bib <- function(file) {
 
   final <- do.call("c", final)
 
-  # Add citation class
-  class(final) <- unique(c("citation", class(final)))
+  # Add names
+  names(final) <- final$key
   final
 }
 
@@ -154,7 +154,18 @@ single_bibtex2r <- function(init, end, lines) {
     params$bibtype <- "InProceedings"
   }
 
-  params$key <- headd2[2]
+  # Handle key
+  key <- headd2[2]
+  if (is.na(key) | is.null(key) | key == "") {
+    warning("On .bib file: I detected entry ",
+      params$bibtype, " ", params$author,
+      "without key",
+      call. = FALSE
+    )
+    key <- NULL
+  }
+
+  params$key <- key
 
   # Try to parse with bibentry function
   citend <- try(do.call("bibentry", params), silent = TRUE)

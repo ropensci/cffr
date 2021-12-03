@@ -239,19 +239,6 @@
       crossref = {Crossref},
       keywords = {key1, key2},
     }
-    
-    @InProceedings{no-gnats,
-      title = {No Gnats Are Taken for Granite},
-      author = {Rocky Gneisser},
-      pages = {133--139},
-      crossref = {gg-proceedings},
-    }
-    
-    @Proceedings{gg-proceedings,
-      title = {Proceed},
-      year = {1988},
-      editor = {{Gerald Ford and Jimmy Carter}},
-    }
 
 # Read bibtex full cff
 
@@ -479,20 +466,6 @@
       keywords:
       - key1
       - key2
-    - type: conference-paper
-      title: No Gnats Are Taken for Granite
-      authors:
-      - family-names: Gneisser
-        given-names: Rocky
-      pages: 133--139
-    - type: proceedings
-      title: Proceed
-      year: '1988'
-      editors:
-      - name: Gerald Ford and Jimmy Carter
-      authors:
-      - name: Gerald Ford and Jimmy Carter
-        alias: BibTeX key from editor
 
 # Read bibtex misc
 
