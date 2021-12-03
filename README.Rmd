@@ -91,8 +91,10 @@ cat("\n")
 today <- Sys.Date()
 
 # Try get the count of GitHub repos here
+token <- (Sys.getenv(c("GITHUB_PAT", "GITHUB_TOKEN")))
+token <- token[!token %in% c(NA, NULL, "")][1]
 
-ghtoken <- paste("token", Sys.getenv("GITHUB_TOKEN"))
+ghtoken <- paste("token", token)
 tmpfile <- tempfile(fileext = ".json")
 # Get numbers of repos
 api_url <- "https://api.github.com/search/code?q=cffr+extension:cff+filename:CITATION"

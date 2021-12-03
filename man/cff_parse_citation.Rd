@@ -28,8 +28,8 @@ or \code{\link[=citEntry]{citEntry()}}) to the CFF standard.
 \strong{TechReport}, \strong{Unpublished}. See \code{\link[=bibentry]{bibentry()}} for more information.
 }
 
-Note that \strong{Conference} is not implemented in \code{\link[=bibentry]{bibentry()}}, and \strong{InBook}
-is internally considered as a \strong{Book}.
+Note that \strong{Conference} is not implemented in \code{\link[=bibentry]{bibentry()}}, however is
+equivalent to \strong{InProceedings}  (Patashnik (1988)).
 }
 
 \subsection{Fields considered}{

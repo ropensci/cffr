@@ -26,8 +26,8 @@
 #'  **Manual**, **MastersThesis**, **Misc**, **PhDThesis**, **Proceedings**,
 #'  **TechReport**, **Unpublished**. See [bibentry()] for more information.
 #'
-#'  Note that **Conference** is not implemented in [bibentry()], and **InBook**
-#'  is internally considered as a **Book**.
+#'  Note that **Conference** is not implemented in [bibentry()], however is
+#'  equivalent to **InProceedings**  (Patashnik (1988)).
 #'
 #' ## Fields considered
 #'

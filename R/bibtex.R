@@ -27,9 +27,8 @@
 #'
 #' @note
 #'
-#' **R** does not have full support for BibTex. Specifically, **InBook** has
-#' limited support and **Conference** is not supported. The latter would be
-#' parsed as **InProceedings** (Patashnik (1988)).
+#' **R** does not support **Conference** BibTex entries. However, this entry is
+#' equivalent to **InProceedings** according to Patashnik (1988).
 #'
 #' See [bibentry()] for more info.
 #'
@@ -228,7 +227,10 @@ encoded_utf_to_latex <- function(x) {
   encoded <- enc2utf8(x)
   out <- encoded_text_to_latex(encoded, encoding = "UTF-8")
   out <- gsub("(?<=\\\\)a ", " ", out, perl = TRUE, ignore.case = FALSE)
-  out <- gsub("(?<=\\\\)a(?=[[:punct:]])", "", out, perl = TRUE, ignore.case = FALSE)
+  out <- gsub("(?<=\\\\)a(?=[[:punct:]])", "", out,
+    perl = TRUE,
+    ignore.case = FALSE
+  )
   out <- gsub("(?<=\\\\)k ", " ", out, perl = TRUE, ignore.case = FALSE)
   out
 }

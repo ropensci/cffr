@@ -27,9 +27,8 @@ are:
 }
 }
 \note{
-\strong{R} does not have full support for BibTex. Specifically, \strong{InBook} has
-limited support and \strong{Conference} is not supported. The latter would be
-parsed as \strong{InProceedings} (Patashnik (1988)).
+\strong{R} does not support \strong{Conference} BibTex entries. However, this entry is
+equivalent to \strong{InProceedings} according to Patashnik (1988).
 
 See \code{\link[=bibentry]{bibentry()}} for more info.
 }

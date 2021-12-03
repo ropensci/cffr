@@ -285,7 +285,11 @@ parse_ghtopics <- function(x) {
   # I have an issue on testing, I reach
   # fast the GH api limit (no auth)
   # Need to auth to increase limit
-  ghtoken <- paste("token", Sys.getenv("GITHUB_TOKEN"))
+  # Try to get an stored token
+  token <- (Sys.getenv(c("GITHUB_PAT", "GITHUB_TOKEN")))
+  token <- token[!token %in% c(NA, NULL, "")][1]
+
+  ghtoken <- paste("token", token)
 
   # nocov start
 
