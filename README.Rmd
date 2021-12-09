@@ -297,3 +297,7 @@ files](https://docs.github.com/en/repositories/managing-your-repositorys-setting
 for more info.
 
 ## References
+
+<div id="refs"></div>
+
+[![rofooter](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
