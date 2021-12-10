@@ -71,7 +71,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass `R CMD
 check/devtools::check()`.
 
-As per 2021-12-09 there are at least 50 repos on GitHub using **cffr**.
+As per 2021-12-10 there are at least 50 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
@@ -363,7 +363,7 @@ R Packages.” *Journal of Open Source Software*, *6*(67), 3900. doi:
 
 A BibTeX entry for LaTeX users is
 
-    @Article{,
+    @Article{hernangomez2021,
       doi = {10.21105/joss.03900},
       url = {https://doi.org/10.21105/joss.03900},
       year = {2021},
