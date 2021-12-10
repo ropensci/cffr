@@ -9,6 +9,7 @@ bibentry(
   number = 67,
   pages = 3900,
   author = person("Diego", "Hernangómez"),
+  key = "hernangomez2021",
   title = "cffr: Generate Citation File Format Metadata for R Packages",
   journal = "Journal of Open Source Software"
 )
