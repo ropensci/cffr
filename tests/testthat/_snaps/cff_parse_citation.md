@@ -484,3 +484,45 @@
     - name: I am the key
       alias: BibTeX key
 
+# Skip misc without title
+
+    cff-version: 1.2.0
+    message: If you use this software, please cite it using these metadata.
+    title: My Research Software
+    authors:
+    - family-names: Doe
+      given-names: John
+    preferred-citation:
+      type: manual
+      title: My Research Software
+      authors:
+      - family-names: Doe
+        given-names: John
+      year: '2021'
+
+# Skip misc without title, not skipping the good one
+
+    cff-version: 1.2.0
+    message: If you use this software, please cite it using these metadata.
+    title: My Research Software
+    authors:
+    - family-names: Doe
+      given-names: John
+    preferred-citation:
+      type: manual
+      title: My Research Software
+      authors:
+      - family-names: Doe
+        given-names: John
+      year: '2021'
+    references:
+    - type: generic
+      title: 'rromeo: An R Client for SHERPA/RoMEO API'
+      authors:
+      - family-names: Grenié
+        given-names: Matthias
+      - family-names: Gruson
+        given-names: Hugo
+      year: '2019'
+      url: https://CRAN.R-project.org/package=rromeo
+

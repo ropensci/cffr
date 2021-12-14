@@ -6,7 +6,7 @@
 NULL
 
 # import stuffs
-#' @importFrom utils download.file as.person read.csv person
+#' @importFrom utils download.file as.person read.csv person capture.output
 #' installed.packages  packageDescription citation available.packages
 #' modifyList
 NULL

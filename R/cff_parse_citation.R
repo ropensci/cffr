@@ -104,6 +104,19 @@ cff_parse_citation <- function(bib) {
   ## Adapt core BibTeX names ----
   parsed_fields <- parse_core_bibtex_fields(bib_unlist)
 
+  ## If no title (case of some Misc) then return null
+
+  if (!("title" %in% names(parsed_fields))) {
+    entry <- capture.output(print(bib, bibtex = FALSE))
+
+    message(
+      "Skipping entry without title:\n\t",
+      entry
+    )
+
+    return(NULL)
+  }
+
   ## Merge all----
   ### keep initial order----
   # Append info keeping the initial order but adding cff type at the beginning

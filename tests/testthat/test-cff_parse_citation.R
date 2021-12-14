@@ -520,3 +520,75 @@ test_that("Test entry without author but has a key", {
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
+
+
+test_that("Skip misc without title", {
+  bib <- bibentry(
+    bibtype = "misc",
+    author = c(person("SHERPA/RoMEO")),
+    url = "http://www.sherpa.ac.uk/romeo/",
+    year = 2018
+  )
+
+  expect_message(cff_parse_citation(bib))
+
+  bibparsed <- cff_parse_citation(bib)
+
+  expect_null(bibparsed)
+
+  cffobj <- cff_create(cff(),
+    keys = list(references = list(bibparsed))
+  )
+
+  expect_snapshot_output(cffobj)
+
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+})
+
+
+test_that("Skip misc without title, not skipping the good one", {
+  bib <- c(
+    bibentry(
+      bibtype = "misc",
+      author = c(person("SHERPA/RoMEO")),
+      url = "http://www.sherpa.ac.uk/romeo/",
+      year = 2018
+    ),
+    bibentry(
+      bibtype = "misc",
+      title = "{rromeo}: An {R} Client for {SHERPA/RoMEO} {API}",
+      author = c(
+        person("Matthias", "Grenié"),
+        person("Hugo", "Gruson")
+      ),
+      year = 2019,
+      header = "To cite this package in publications, please use:",
+      url = "https://CRAN.R-project.org/package=rromeo"
+    )
+  )
+
+
+
+  expect_message(cff_parse_citation(bib))
+
+  bibparsed <- cff_parse_citation(bib)
+
+  expect_length(bibparsed, 2)
+
+  expect_null(bibparsed[[1]])
+
+  expect_s3_class(bibparsed[[2]], "cff")
+
+  cffobj <- cff_create(cff(),
+    keys = list(references = bibparsed)
+  )
+
+  expect_snapshot_output(cffobj)
+
+  expect_equal(
+    cffobj$references[[1]]$title,
+    "rromeo: An R Client for SHERPA/RoMEO API"
+  )
+
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+})
