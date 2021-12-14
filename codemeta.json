@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.2 (2021-11-01)",
+  "runtimePlatform": "R version 4.1.0 (2021-05-18)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -175,7 +175,7 @@
   },
   "isPartOf": "https://ropensci.org",
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata"],
-  "fileSize": "570.827KB",
+  "fileSize": "577.095KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -203,77 +203,6 @@
           "name": "Journal of Open Source Software"
         }
       }
-    },
-    {
-      "@type": "CreativeWork",
-      "datePublished": "2021",
-      "author": [
-        {
-          "@type": "Person",
-          "givenName": "Stephan",
-          "familyName": "Druskat"
-        },
-        {
-          "@type": "Person",
-          "givenName": "Jurriaan H.",
-          "familyName": "Spaaks"
-        },
-        {
-          "@type": "Person",
-          "givenName": "Neil",
-          "familyName": "Chue Hong"
-        },
-        {
-          "@type": "Person",
-          "givenName": "Robert",
-          "familyName": "Haines"
-        },
-        {
-          "@type": "Person",
-          "givenName": "James",
-          "familyName": "Baker"
-        },
-        {
-          "@type": "Person",
-          "givenName": "Spencer",
-          "familyName": "Bliven"
-        },
-        {
-          "@type": "Person",
-          "givenName": "Egon",
-          "familyName": "Willighagen"
-        },
-        {
-          "@type": "Person",
-          "givenName": "David",
-          "familyName": "Pérez-Suárez"
-        },
-        {
-          "@type": "Person",
-          "givenName": "Alexander",
-          "familyName": "Konovalov"
-        }
-      ],
-      "name": "{Citation File Format}",
-      "identifier": "10.5281/zenodo.5171937",
-      "@id": "https://doi.org/10.5281/zenodo.5171937",
-      "sameAs": "https://doi.org/10.5281/zenodo.5171937"
-    },
-    {
-      "@type": "CreativeWork",
-      "datePublished": "2021",
-      "author": [
-        {
-          "@type": "Person",
-          "givenName": "Stephan",
-          "familyName": "Druskat"
-        }
-      ],
-      "name": "Making software citation easi(er) - The Citation File Format and its integrations",
-      "identifier": "10.5281/zenodo.5529914",
-      "url": "https://doi.org/10.5281/zenodo.5529914",
-      "@id": "https://doi.org/10.5281/zenodo.5529914",
-      "sameAs": "https://doi.org/10.5281/zenodo.5529914"
     }
   ]
 }

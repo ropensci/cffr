@@ -1,6 +1,7 @@
 ---
 output: github_document
-bibliography: vignettes/bibtex.bib
+bibliography: inst/REFERENCES.bib
+link-citations: yes
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -42,17 +43,17 @@ examples for working with .cff more generally.
 ## What is a `CITATION.cff` file?
 
 [Citation File Format (CFF](https://citation-file-format.github.io/))
-[@druskat2021] (v1.2.0) are plain text files with human- and machine-readable
-citation information for software (and datasets). Code developers can include
-them in their repositories to let others know how to correctly cite their
-software.
+[@druskat_citation_2021] (v1.2.0) are plain text files with human- and
+machine-readable citation information for software (and datasets). Code
+developers can include them in their repositories to let others know how to
+correctly cite their software.
 
 This format is becoming popular within the software citation ecosystem. Recently
 [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
 [Zenodo](https://twitter.com/ZENODO_ORG/status/1420357001490706442) and
 [Zotero](https://twitter.com/zotero/status/1420515377390530560) have included
-full support of this citation format [@druskat2021a]. GitHub support is of
-special interest:
+full support of this citation format [@druskat_stephan_making_2021]. GitHub
+support is of special interest:
 
 ```{r echo=FALSE, out.width="400", fig.align='center', fig.alt="GitHub-link"}
 knitr::include_graphics("vignettes/tweet-1.png")
@@ -84,7 +85,45 @@ the `CITATION` file (if present) of your package. Note that **cffr** works best
 if your package pass 
 `R CMD check/devtools::check()`.
 
-See [some projects already using **cffr**](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
+```{r count_cffr, echo=FALSE, results='asis'}
+cat("\n")
+today <- Sys.Date()
+# Try get the count of GitHub repos here
+token <- (Sys.getenv(c("GITHUB_PAT", "GITHUB_TOKEN")))
+token <- token[!token %in% c(NA, NULL, "")][1]
+ghtoken <- paste("token", token)
+tmpfile <- tempfile(fileext = ".json")
+# Get numbers of repos
+api_url <- "https://api.github.com/search/code?q=cffr+extension:cff+filename:CITATION"
+res <- tryCatch(download.file(api_url,
+  tmpfile,
+  quiet = TRUE,
+  headers = c(Authorization = ghtoken)
+),
+warning = function(e) {
+  return(TRUE)
+},
+error = function(e) {
+  return(TRUE)
+}
+)
+# If not successful
+if (isTRUE(res)) {
+  cat(paste0(
+    "\n", "See [some projects already using **cffr**]",
+    "(https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code)",
+    "."
+  ))
+} else {
+  nreps <- as.integer(jsonlite::read_json(tmpfile)$total_count)
+  cat(paste0(
+    "As per ", today, " there are at least ", nreps, " repos on GitHub using **cffr**. ",
+    "[Check them out here]",
+    "(https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code)."
+  ))
+}
+cat("\n")
+```
 
 ### Installation
 
@@ -149,7 +188,11 @@ test <- cff_create("rmarkdown")
 ```
 
 <details>
-<summary><code>CITATION.cff</code> for <strong>rmarkdown</strong>
+
+<summary>
+
+<code>CITATION.cff</code> for <strong>rmarkdown</strong>
+
 </summary>
 
 ```{r, echo=FALSE, comment=""}
@@ -210,11 +253,12 @@ package installed.
 
 ### Learn more
 
-Check the following articles to learn more about *cffr**:
+Check the following articles to learn more about **cffr**:
 
--   [cffr: Create a CITATION.cff File for your R Package](https://ropensci.org/blog/2021/11/23/cffr/)
--   [How I Test cffr on (about) 2,000 Packages using GitHub Actions and R-universe](https://ropensci.org/blog/2021/11/23/how-i-test-cffr/)
-
+-   [cffr: Create a CITATION.cff File for your R
+    Package](https://ropensci.org/blog/2021/11/23/cffr/)
+-   [How I Test cffr on (about) 2,000 Packages using GitHub Actions and
+    R-universe](https://ropensci.org/blog/2021/11/23/how-i-test-cffr/)
 
 ## Related packages
 
@@ -239,7 +283,7 @@ print(citation("cffr")[1], bibtex = FALSE)
 
 A BibTeX entry for LaTeX users is
 
-```{r echo=FALSE}
+```{r echo=FALSE, comment=''}
 toBibtex(citation("cffr")[1])
 ```
 
@@ -250,3 +294,8 @@ files](https://docs.github.com/en/repositories/managing-your-repositorys-setting
 for more info.
 
 ## References
+
+::: {#refs}
+:::
+
+[![rofooter](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

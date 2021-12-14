@@ -8,43 +8,8 @@ bibentry(
   volume = 6,
   number = 67,
   pages = 3900,
+  key = "hernangomez2021",
   author = person("Diego", "Hernangómez"),
   title = "cffr: Generate Citation File Format Metadata for R Packages",
   journal = "Journal of Open Source Software"
-)
-
-
-bibentry(
-  "Misc",
-  header = "References:",
-  title = "{Citation File Format}",
-  year = 2021,
-  version = "1.2.0",
-  month = "aug",
-  author = c(
-    person("Stephan", "Druskat"),
-    person("Jurriaan H.", "Spaaks"),
-    person("Neil", "Chue Hong"),
-    person("Robert", "Haines"),
-    person("James", "Baker"),
-    person("Spencer", "Bliven"),
-    person("Egon", "Willighagen"),
-    person("David", "Pérez-Suárez"),
-    person("Alexander", "Konovalov")
-  ),
-  doi = "10.5281/zenodo.5171937",
-  keywords = paste("citation file format, CFF, citation files, software citation,",
-                    "file format, YAML, software sustainability, research software, credit"),
-  license = "CC-BY-4.0",
-  "date-released" = "2021-08-09"
-)
-
-bibentry("Misc",
-  author = person("Stephan", "Druskat"),
-  title = "Making software citation easi(er) - The Citation File Format and its integrations",
-  year = 2021,
-  version = 1,
-  month = "sep",
-  doi = "10.5281/zenodo.5529914",
-  url = "https://doi.org/10.5281/zenodo.5529914"
 )

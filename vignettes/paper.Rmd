@@ -12,7 +12,8 @@ tags:
 author: Diego Hernangómez
 date: 09 November 2021
 output: rmarkdown::html_vignette
-bibliography: paper.bib
+bibliography: REFERENCES.bib
+link-citations: yes
 vignette: >
   %\VignetteIndexEntry{cffr: Generate Citation File Format Metadata for R Packages}
   %\VignetteEngine{knitr::rmarkdown}
@@ -90,7 +91,7 @@ Hernangómez, D., (2021). cffr: Generate Citation File Format Metadata for R
 Packages. Journal of Open Source Software, 6(67), 3900,
 <https://doi.org/10.21105/joss.03900>
 
-```bibtex
+``` bibtex
 @article{hernangomez2021,
   doi = {10.21105/joss.03900},
   url = {https://doi.org/10.21105/joss.03900},
