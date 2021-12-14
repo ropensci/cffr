@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.0 (2021-05-18)",
+  "runtimePlatform": "R version 4.1.2 (2021-11-01)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -175,7 +175,7 @@
   },
   "isPartOf": "https://ropensci.org",
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata"],
-  "fileSize": "592.54KB",
+  "fileSize": "595.373KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

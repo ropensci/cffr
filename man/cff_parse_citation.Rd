@@ -7,7 +7,8 @@
 cff_parse_citation(bib)
 }
 \arguments{
-\item{bib}{A \code{bibentry} object, either created with \code{\link[=bibentry]{bibentry()}}.}
+\item{bib}{A \code{bibentry} object, either created with \code{\link[=bibentry]{bibentry()}}
+(preferred) or \code{\link[=citEntry]{citEntry()}}.}
 }
 \value{
 A \code{\link{cff}} object ready to be used on \code{\link[=cff_create]{cff_create()}}.

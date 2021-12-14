@@ -8,7 +8,7 @@
 #'
 #' @family parsers
 #'
-#' @param bib A `bibentry` object, either created with [bibentry()] 
+#' @param bib A `bibentry` object, either created with [bibentry()]
 #'   (preferred) or [citEntry()].
 #'
 #' @return A [`cff`] object ready to be used on [cff_create()].
