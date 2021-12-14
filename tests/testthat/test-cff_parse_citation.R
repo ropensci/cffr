@@ -195,6 +195,25 @@ test_that("Book", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
+
+test_that("Booklet", {
+  bib <- bibentry("Booklet",
+    author = "G. H. Gonnet and R. Baeza-Yates",
+    title = "Handbook of algorithms and data structures",
+    howpublished = "booklet",
+    year = "1991",
+  )
+
+  bibparsed <- cff_parse_citation(bib)
+  expect_snapshot_output(bibparsed)
+
+  cffobj <- cff_create(cff(),
+    keys = list(references = list(bibparsed))
+  )
+
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+})
+
 test_that("InBook", {
   bib <- bibentry("InBook",
     title = "A Language and Environment for Statistical Computing",
@@ -438,4 +457,66 @@ test_that("NULL bibs and others strange errors", {
   class(bib) <- "bibentry"
   bib <- NULL
   expect_null(cff_parse_citation(bib))
+})
+
+
+
+
+test_that("Test entry without author", {
+  bib <- bibentry("Proceedings",
+    editor = "Yolande Berbers and Willy Zwaenepoel",
+    title = "Proceedings of the 6th European Conference on Computer Systems",
+    booktitle = "Proceedings of the 6th European Conference on Computer Systems",
+    publisher = "ACM",
+    venue = "Leuven, Belgium",
+    month = "apr",
+    year = 2006,
+    isbn = "1-59593-322-02",
+  )
+
+  bibparsed <- cff_parse_citation(bib)
+
+  expect_identical(
+    bibparsed$authors[[1]]$name,
+    bibparsed$editors[[1]]$name
+  )
+
+
+  expect_snapshot_output(bibparsed)
+
+  cffobj <- cff_create(cff(),
+    keys = list(references = list(bibparsed))
+  )
+
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+})
+
+
+test_that("Test entry without author but has a key", {
+  bib <- bibentry("Misc",
+    key = "I am the key",
+    title = "Proceedings of the 6th European Conference on Computer Systems",
+    booktitle = "Proceedings of the 6th European Conference on Computer Systems",
+    publisher = "ACM",
+    venue = "Leuven, Belgium",
+    month = "apr",
+    year = 2006,
+    isbn = "1-59593-322-02",
+  )
+
+  bibparsed <- cff_parse_citation(bib)
+
+  expect_identical(
+    bibparsed$authors[[1]]$name,
+    bib$key
+  )
+
+
+  expect_snapshot_output(bibparsed)
+
+  cffobj <- cff_create(cff(),
+    keys = list(references = list(bibparsed))
+  )
+
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })

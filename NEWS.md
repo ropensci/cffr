@@ -6,6 +6,13 @@
     -   `cff_git_hook_install()`
     -   `cff_git_hook_remove()`
 
+-   `cff_parse_citation()` extracts more information of authors, based on the
+    fields provided on the DESCRIPTION file.
+
+-   `cff_parse_citation()` does a better job extracting information from
+    `bibentry()` /BibTeX and mapping it to `preferred-citation/references`
+    fields of CFF.
+
 # cffr 0.1.1
 
 -   Accepted on JOSS

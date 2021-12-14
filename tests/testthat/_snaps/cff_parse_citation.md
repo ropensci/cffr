@@ -94,10 +94,12 @@
       - family-names: Rundel
         given-names: Colin
       year: '2020'
+      notes: R package version 0.5-7
       url: https://CRAN.R-project.org/package=rgeos
     - type: article
       title: 'RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic,
         Character, and Trait Data in R'
+      journal: Methods in Ecology and Evolution
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -107,16 +109,15 @@
         given-names: Rutger
       - family-names: Lapp
         given-names: Hilmar
-      journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
       pages: 352--357
       doi: 10.1111/2041-210X.12469
     - type: book
-      title: 'ggplot2: Elegant Graphics for Data Analysis'
       authors:
       - family-names: Wickham
         given-names: Hadley
+      title: 'ggplot2: Elegant Graphics for Data Analysis'
       publisher:
         name: Springer-Verlag New York
       year: '2016'
@@ -138,10 +139,12 @@
       - family-names: Rundel
         given-names: Colin
       year: '2020'
+      notes: R package version 0.5-7
       url: https://CRAN.R-project.org/package=rgeos
     - type: article
       title: 'RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic,
         Character, and Trait Data in R'
+      journal: Methods in Ecology and Evolution
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -151,16 +154,15 @@
         given-names: Rutger
       - family-names: Lapp
         given-names: Hilmar
-      journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
       pages: 352--357
       doi: 10.1111/2041-210X.12469
     - type: book
-      title: 'ggplot2: Elegant Graphics for Data Analysis'
       authors:
       - family-names: Wickham
         given-names: Hadley
+      title: 'ggplot2: Elegant Graphics for Data Analysis'
       publisher:
         name: Springer-Verlag New York
       year: '2016'
@@ -230,9 +232,9 @@
     references:
     - type: manual
       title: A Language and Environment for Statistical Computing
+      year: '2022'
       authors:
       - name: R Core Team
-      year: '2022'
       url: https://www.R-project.org/
       doi: 10.5281/zenodo.5366600
       identifiers:
@@ -261,9 +263,9 @@
     references:
     - type: manual
       title: A Language and Environment for Statistical Computing
+      year: '2022'
       authors:
       - name: R Core Team
-      year: '2022'
       url: https://www.R-project.org/
       keywords:
       - Some
@@ -278,115 +280,140 @@
 
     type: article
     title: A Language and Environment for Statistical Computing
-    authors:
-    - name: R Core Team
     year: '2021'
     journal: JOSS
+    authors:
+    - name: R Core Team
 
 # Book
 
     type: book
     title: A Language and Environment for Statistical Computing
-    authors:
-    - name: R Core Team
     year: '2021'
     month: '8'
     publisher:
       name: Graham Hill
+    section: A chapter
+    authors:
+    - name: R Core Team
+
+# Booklet
+
+    type: pamphlet
+    authors:
+    - family-names: Gonnet
+      given-names: G. H.
+    - family-names: Baeza-Yates
+      given-names: R.
+    title: Handbook of algorithms and data structures
+    medium: booklet
+    year: '1991'
 
 # InBook
 
     type: book
     title: A Language and Environment for Statistical Computing
-    authors:
-    - name: R Core Team
     year: '2021'
     month: '8'
     publisher:
       name: Graham Hill
+    section: A chapter
+    authors:
+    - name: R Core Team
 
 # InCollection
 
     type: generic
     title: A Language and Environment for Statistical Computing
-    authors:
-    - name: R Core Team
+    collection-title: A book
     year: '2021'
     month: '8'
     publisher:
       name: Graham Hill
+    section: A chapter
+    authors:
+    - name: R Core Team
 
 # InProceedings
 
-    type: proceedings
+    type: conference-paper
     title: A Language and Environment for Statistical Computing
-    authors:
-    - name: R Core Team
+    collection-title: A book
     year: '2021'
     month: '8'
+    authors:
+    - name: R Core Team
+    conference:
+      name: A book
 
 # Manual
 
     type: manual
     title: A Language and Environment for Statistical Computing
-    authors:
-    - name: R Core Team
     year: '2021'
     month: '8'
+    authors:
+    - name: R Core Team
 
 # MastersThesis
 
     type: thesis
     title: A Language and Environment for Statistical Computing
+    year: '2021'
+    department: Trinity College
+    month: '8'
     authors:
     - name: R Core Team
-    year: '2021'
-    month: '8'
+    thesis-type: Master's Thesis
 
 # PhdThesis
 
     type: thesis
     title: A Language and Environment for Statistical Computing
+    year: '2021'
+    department: Trinity College
+    month: '8'
     authors:
     - name: R Core Team
-    year: '2021'
-    month: '8'
+    thesis-type: PhD Thesis
 
 # Proceedings
 
     type: proceedings
     title: A Language and Environment for Statistical Computing
-    authors:
-    - name: R Core Team
     year: '2021'
     month: '8'
+    authors:
+    - name: R Core Team
 
 # TechReport
 
     type: report
     title: A Language and Environment for Statistical Computing
-    authors:
-    - name: R Core Team
     year: '2021'
     institution:
       name: MIT
     month: '8'
+    authors:
+    - name: R Core Team
 
 # Unpublished
 
     type: unpublished
     title: A Language and Environment for Statistical Computing
+    year: '2021'
+    notes: Not published
+    month: '8'
     authors:
     - name: R Core Team
-    year: '2021'
 
 # Parse persons on CITATION
 
     type: manual
     title: A Language and Environment for Statistical Computing
+    year: '2021'
     authors:
     - name: R Core Team
-    year: '2021'
     contact:
     - family-names: name
       given-names: A
@@ -395,11 +422,9 @@
     database-provider:
       name: Database provider
     editors:
-    - family-names: editor
-      given-names: A
+    - name: A editor
     editors-series:
-    - family-names: series
-      given-names: A editor
+    - name: A editor series
     institution:
       name: A institution
     location:
@@ -428,4 +453,34 @@
     year: '2021'
     publisher:
       name: Random House
+
+# Test entry without author
+
+    type: proceedings
+    editors:
+    - name: Yolande Berbers and Willy Zwaenepoel
+    title: Proceedings of the 6th European Conference on Computer Systems
+    collection-title: Proceedings of the 6th European Conference on Computer Systems
+    publisher:
+      name: ACM
+    month: '4'
+    year: '2006'
+    isbn: 1-59593-322-02
+    authors:
+    - name: Yolande Berbers and Willy Zwaenepoel
+      alias: BibTeX key from editor
+
+# Test entry without author but has a key
+
+    type: generic
+    title: Proceedings of the 6th European Conference on Computer Systems
+    collection-title: Proceedings of the 6th European Conference on Computer Systems
+    publisher:
+      name: ACM
+    month: '4'
+    year: '2006'
+    isbn: 1-59593-322-02
+    authors:
+    - name: I am the key
+      alias: BibTeX key
 

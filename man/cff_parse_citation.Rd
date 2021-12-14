@@ -7,8 +7,7 @@
 cff_parse_citation(bib)
 }
 \arguments{
-\item{bib}{A \code{bibentry} object, either created with \code{\link[utils:citation]{utils::citation()}} or
-with \code{\link[utils:bibentry]{utils::bibentry()}}.}
+\item{bib}{A \code{bibentry} object, either created with \code{\link[=bibentry]{bibentry()}}.}
 }
 \value{
 A \code{\link{cff}} object ready to be used on \code{\link[=cff_create]{cff_create()}}.
@@ -19,6 +18,31 @@ Parse a \code{bibentry} object to a valid format for a \code{CITATION.cff} file.
 \details{
 This is a helper function designed to help on adding or
 replacing the auto-generated authors of the package. See \strong{Examples}.
+
+This function tries to adapt a \code{bibentry} object (generated with \code{\link[=bibentry]{bibentry()}}
+or \code{\link[=citEntry]{citEntry()}}) to the CFF standard.
+\subsection{Entry types considered}{
+\itemize{
+\item \strong{Article}, \strong{Book}, \strong{Booklet}, \strong{InBook}, \strong{InCollection},
+\strong{InProceedings}, \strong{Manual}, \strong{MastersThesis}, \strong{Misc}, \strong{PhDThesis},
+\strong{Proceedings}, \strong{TechReport}, \strong{Unpublished}. See \code{\link[=bibentry]{bibentry()}}
+for more information.
+}
+
+Note that \strong{Conference} is not implemented in
+\code{\link[=bibentry]{bibentry()}}, however is equivalent to \strong{InProceedings} (Patashnik (1988)).
+}
+
+\subsection{Fields considered}{
+\itemize{
+\item \strong{address}, \strong{author}, \strong{booktitle}, \strong{chapter}, \strong{edition},
+\strong{editor}, \strong{howpublished}, \strong{institution},  \strong{journal}, \strong{key},
+\strong{month}, \strong{note}, \strong{number}, \strong{organization}, \strong{pages},
+\strong{publisher}, \strong{school}, \strong{series}, \strong{title}, \strong{type}, \strong{year}.
+}
+
+\strong{annote} and \strong{crossref} fields are ignored.
+}
 }
 \examples{
 \donttest{
@@ -44,8 +68,18 @@ cff_validate(full)
 cff_parse_citation(citation("rmarkdown"))
 }
 }
+\references{
+\itemize{
+\item Patashnik, O. (1988, February). \emph{BIBTEXTING}. BibTeX - Process
+Bibliographies for LATEX, Etc. Retrieved December 1, 2021, from
+\url{https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf}
+\item Haines, R., & The Ruby Citation File Format Developers. (2021).
+\emph{Ruby CFF Library (Version 0.9.0)} (Computer software).
+\url{https://doi.org/10.5281/zenodo.1184077}
+}
+}
 \seealso{
-\code{\link[=cff_create]{cff_create()}}, \code{vignette("cffr", "cffr")}, \code{\link[utils:bibentry]{utils::bibentry()}}
+\code{\link[=cff_create]{cff_create()}}, \code{vignette("cffr", "cffr")}, \code{\link[=bibentry]{bibentry()}}
 
 Other parsers: 
 \code{\link{cff_parse_person}()}

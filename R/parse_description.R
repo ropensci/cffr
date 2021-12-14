@@ -285,25 +285,31 @@ parse_ghtopics <- function(x) {
   # I have an issue on testing, I reach
   # fast the GH api limit (no auth)
   # Need to auth to increase limit
-  ghtoken <- Sys.getenv("GITHUB_TOKEN")
+  # Try to get an stored token
+  token <- (Sys.getenv(c("GITHUB_PAT", "GITHUB_TOKEN")))
+  token <- token[!token %in% c(NA, NULL, "")][1]
+
+  ghtoken <- paste("token", token)
 
   # nocov start
 
-  # If GHTOKEN
-  if (nchar(ghtoken) > 1) {
-    res <- tryCatch(download.file(api_url,
-      tmpfile,
-      quiet = TRUE,
-      headers = c(Authorization = ghtoken)
-    ),
-    warning = function(e) {
-      return(TRUE)
-    },
-    error = function(e) {
-      return(TRUE)
-    }
-    )
-  } else {
+  # Try with GHTOKEN
+  res <- tryCatch(download.file(api_url,
+    tmpfile,
+    quiet = TRUE,
+    headers = c(Authorization = ghtoken)
+  ),
+  warning = function(e) {
+    return(TRUE)
+  },
+  error = function(e) {
+    return(TRUE)
+  }
+  )
+
+  # If it fails try with normal call
+  if (isTRUE(res)) {
+
     # Regular call
     res <- tryCatch(download.file(api_url,
       tmpfile,

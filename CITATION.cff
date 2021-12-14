@@ -20,10 +20,6 @@ authors:
   orcid: https://orcid.org/0000-0001-8457-4658
 preferred-citation:
   type: article
-  title: 'cffr: Generate Citation File Format Metadata for R Packages'
-  authors:
-  - family-names: Hernangómez
-    given-names: Diego
   doi: 10.21105/joss.03900
   url: https://doi.org/10.21105/joss.03900
   year: '2021'
@@ -32,6 +28,12 @@ preferred-citation:
   volume: '6'
   number: '67'
   pages: '3900'
+  authors:
+  - family-names: Hernangómez
+    given-names: Diego
+    email: diego.hernangomezherrero@gmail.com
+    orcid: https://orcid.org/0000-0001-8457-4658
+  title: 'cffr: Generate Citation File Format Metadata for R Packages'
   journal: Journal of Open Source Software
 repository: https://CRAN.R-project.org/package=cffr
 repository-code: https://github.com/ropensci/cffr
