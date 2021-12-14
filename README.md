@@ -141,10 +141,7 @@ test <- cff_create("rmarkdown")
 
 <details>
 
-<summary>
-
-<code>CITATION.cff</code> for <strong>rmarkdown</strong>
-
+<summary><code>CITATION.cff</code> for <strong>rmarkdown</strong>
 </summary>
 
     cff-version: 1.2.0
@@ -289,7 +286,7 @@ cff_validate(test)
 ```
 
 Check the [docs](https://docs.ropensci.org/cffr/reference/index.html)
-and `vignette(package = "cffr")` to learn how to work with `cff`
+and `vignette("cffr", package = "cffr")` to learn how to work with `cff`
 objects.
 
 ### Keep your `CITATION.cff` file up-to-date
