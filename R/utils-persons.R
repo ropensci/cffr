@@ -1,4 +1,4 @@
-bibtex_person_von_last_first_jr <- function(x) {
+bibtex_pers_von_last_first_jr <- function(x) {
 
   # Protect commas on brackets to avoid error on splitting
   protected <- gsub(",(?![^\\}]*(\\{|$))", "@comma@",
@@ -83,7 +83,7 @@ bibtex_person_von_last_first_jr <- function(x) {
   return(end_list)
 }
 
-bibtex_person_von_last_first <- function(x) {
+bibtex_pers_von_last_first <- function(x) {
   # Protect commas on brackets to avoid error on splitting
   protected <- gsub(",(?![^\\}]*(\\{|$))", "@comma@",
     x,
@@ -165,7 +165,7 @@ bibtex_person_von_last_first <- function(x) {
 
 
 
-bibtex_person_first_von_last <- function(x) {
+bibtex_pers_first_von_last <- function(x) {
 
   # Based on Tame the BeaST
   # http://tug.ctan.org/info/bibtex/tamethebeast/ttb_en.pdf
@@ -280,15 +280,15 @@ as_person_bibtex <- function(x) {
 
   if (commas == 0) {
     # Case A
-    end_list <- bibtex_person_first_von_last(x)
+    end_list <- bibtex_pers_first_von_last(x)
   } else if (commas == 1) {
     # Case B
-    end_list <- bibtex_person_von_last_first(x)
+    end_list <- bibtex_pers_von_last_first(x)
   } else if (commas == 2) {
     # Case C
-    end_list <- bibtex_person_von_last_first_jr(x)
+    end_list <- bibtex_pers_von_last_first_jr(x)
   } else {
-    # Not considered by bibtex. everything to family
+    # Not considered by BibTeX. everything to family
     end_list <- list(family = paste(x, collapse = " "))
   }
 

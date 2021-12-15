@@ -1,9 +1,9 @@
 #' Parse a person to `cff`
 #'
 #' @description
-#' Parse a person or string to a valid format for a `CITATION.cff` file. This is a
-#' helper function designed to help on adding or eplacing the auto-generated
-#' authors of the package.
+#' Parse a person or string to a valid format for a `CITATION.cff` file. This
+#' is a helper function designed to help on adding or replacing the
+#' auto-generated authors of the package.
 #'
 #' @seealso [cff_create()], `vignette("cffr", "cffr")`, [utils::person()]
 #'
@@ -22,17 +22,18 @@
 #' * For `cff_parse_person()`: A `person` object or a character coercible to
 #'  `person`. See [person()] for details.
 #' * For `cff_parse_person_bibtex()`: A string with the definition of an author
-#'  or several authors, using the standard BiBTeX notation. See Markey (2007)
+#'  or several authors, using the standard BibTeX notation. See Markey (2007)
 #'  for a full explanation.
 #'
 #' See **Examples** for more information.
 #'
 #' @references
-#' Patashnik O (1988). "BIBTEXTING."
-#' <https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf>.
+#' - Patashnik, O. (1988, February). *BIBTEXTING*. BibTeX - Process
+#'   Bibliographies for LATEX, Etc. Retrieved December 1, 2021, from
+#'   <https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf>
 #'
-#' Markey N (2007). "Tame the BeaST" *The B to X of BibTEX*, version 1.4.
-#' <http://tug.ctan.org/info/bibtex/tamethebeast/ttb_en.pdf>.
+#' - Markey N (2007). "Tame the BeaST" *The B to X of BibTeX, version 1.4*.
+#'   <http://tug.ctan.org/info/bibtex/tamethebeast/ttb_en.pdf>.
 #'
 #' @examples
 #' # Parse a person object
@@ -151,7 +152,7 @@ cff_parse_person <- function(person) {
 #'
 #' @examples
 #'
-#' # Or you can use BibTEX style if you prefer
+#' # Or you can use BibTeX style if you prefer
 #'
 #' x <- "Frank Sinatra and Dean Martin and Davis, Jr., Sammy and Joey Bishop"
 #'

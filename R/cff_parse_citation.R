@@ -47,7 +47,7 @@
 #'
 #' - Haines, R., & The Ruby Citation File Format Developers. (2021).
 #'   *Ruby CFF Library (Version 0.9.0)* (Computer software).
-#'   <https://doi.org/10.5281/zenodo.1184077>
+#'   \doi{10.5281/zenodo.1184077}.
 #'
 #' @examples
 #' \donttest{

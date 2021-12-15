@@ -1,4 +1,4 @@
-#' Use a git pre-commit hook \if{html}{\figure{lifecycle-experimental.svg}{options: alt="[Experimental]"}}
+#' Use a git pre-commit hook `r lifecycle::badge("experimental")`
 #'
 #' @description
 #'

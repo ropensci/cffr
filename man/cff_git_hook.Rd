@@ -4,7 +4,7 @@
 \alias{cff_git_hook}
 \alias{cff_git_hook_install}
 \alias{cff_git_hook_remove}
-\title{Use a git pre-commit hook \if{html}{\figure{lifecycle-experimental.svg}{options: alt="[Experimental]"}}}
+\title{Use a git pre-commit hook \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}}
 \usage{
 cff_git_hook_install()
 

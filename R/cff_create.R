@@ -115,6 +115,7 @@ cff_create <- function(x,
 
   # Set initially citobj to NULL
   citobj <- NULL
+  desc_path <- NULL
 
   # Paths
   if (is.cff(x)) {
@@ -170,6 +171,16 @@ cff_create <- function(x,
   # Merge DESCRIPTION and CITATION
 
   cffobjend <- merge_desc_cit(cffobj, citobj)
+
+  # Add software dependencies
+
+  deps <- parse_dependencies(desc_path, instpack)
+
+  cffobjend$references <- c(
+    cffobjend$references,
+    deps
+  )
+
 
 
   # Additional keys
@@ -263,4 +274,70 @@ enhance_pref_authors <- function(cffobjend) {
   })
 
   enhancedauth
+}
+
+
+parse_dependencies <- function(desc_path,
+                               instpack = as.character(
+                                 installed.packages()[, "Package"]
+                               )) {
+  if (!is.character(desc_path)) {
+    return(NULL)
+  }
+  if (!file.exists(desc_path)) {
+    return(NULL)
+  }
+
+  getdeps <- desc::desc(desc_path)
+
+  deps <- getdeps$get_deps()
+
+  # Adapt version
+
+  deps$version_clean <- gsub("*", "", deps$version, fixed = TRUE)
+
+
+  av_deps <- deps[deps$package %in% c("R", instpack), ]
+
+
+
+  # Get references from DESCRIPTION of dependencies
+  cff_deps <- lapply(seq_len(nrow(av_deps)), function(y) {
+    n <- av_deps[y, ]
+
+    if (n$package == "R") {
+      mod <- cff_parse_citation(citation()[1])
+      mod$type <- "software"
+    } else {
+      mod <- try(cff_description(file.path(find.package(n$package), "DESCRIPTION"),
+        gh_keywords = FALSE
+      ), silent = TRUE)
+
+      if (inherits(mod, "try-error")) {
+        return(NULL)
+      }
+
+      # Simplified version of the cff obj
+      # Avoid cluttering the output
+    }
+    mod$version <- ifelse(is.na(n$version_clean), NULL,
+      n$version_clean
+    )
+    mod <- drop_null(mod)
+    mod <- mod[
+      names(mod) %in% c(
+        "type", "title", "version", "authors",
+        "repository", "repository-code",
+        "url", "license"
+      )
+    ]
+
+    mod <- as.cff(mod)
+  })
+
+  cff_deps <- drop_null(cff_deps)
+
+  class(cff_deps) <- "cff"
+
+  return(cff_deps)
 }

@@ -513,6 +513,8 @@ citation("rmarkdown")[1]
 This key is extracted from the CITATION file if several references are provided.
 The first citation is considered as the
 [preferred-citation](#preferred-citation) and the rest of them as "references".
+It also extracts the package dependencies and adds those to this fields with a
+`type: software` key.
 
 <details>
 

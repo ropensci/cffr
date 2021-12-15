@@ -44,12 +44,19 @@ test_that("Auto generate preferred citations", {
   rgeos <- system.file("examples/DESCRIPTION_rgeos",
     package = "cffr"
   )
-  expect_snapshot_output(cff_create(rgeos, gh_keywords = FALSE))
+
+  expect_snapshot_output(cff_create(rgeos,
+    gh_keywords = FALSE,
+    keys = list(references = NULL)
+  ))
 
   basicdate <- system.file("examples/DESCRIPTION_basicdate",
     package = "cffr"
   )
-  expect_snapshot_output(cff_create(basicdate, gh_keywords = FALSE))
+  expect_snapshot_output(cff_create(basicdate,
+    gh_keywords = FALSE,
+    keys = list(references = NULL)
+  ))
 })
 
 test_that("Fuzzy match on cff_create", {

@@ -17,9 +17,9 @@ See \strong{Details}.}
 A \code{\link{cff}} object ready to be used on \code{\link[=cff_create]{cff_create()}}.
 }
 \description{
-Parse a person or string to a valid format for a \code{CITATION.cff} file. This is a
-helper function designed to help on adding or eplacing the auto-generated
-authors of the package.
+Parse a person or string to a valid format for a \code{CITATION.cff} file. This
+is a helper function designed to help on adding or replacing the
+auto-generated authors of the package.
 }
 \details{
 The \code{person} parameter of the function could be:
@@ -27,7 +27,7 @@ The \code{person} parameter of the function could be:
 \item For \code{cff_parse_person()}: A \code{person} object or a character coercible to
 \code{person}. See \code{\link[=person]{person()}} for details.
 \item For \code{cff_parse_person_bibtex()}: A string with the definition of an author
-or several authors, using the standard BiBTeX notation. See Markey (2007)
+or several authors, using the standard BibTeX notation. See Markey (2007)
 for a full explanation.
 }
 
@@ -56,7 +56,7 @@ persons <- c(person("Clark", "Kent"), person("Lois", "Lane"))
 
 cff_parse_person(persons)
 
-# Or you can use BibTEX style if you prefer
+# Or you can use BibTeX style if you prefer
 
 x <- "Frank Sinatra and Dean Martin and Davis, Jr., Sammy and Joey Bishop"
 
@@ -65,11 +65,13 @@ cff_parse_person_bibtex(x)
 cff_parse_person_bibtex("Herbert von Karajan")
 }
 \references{
-Patashnik O (1988). "BIBTEXTING."
-\url{https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf}.
-
-Markey N (2007). "Tame the BeaST" \emph{The B to X of BibTEX}, version 1.4.
+\itemize{
+\item Patashnik, O. (1988, February). \emph{BIBTEXTING}. BibTeX - Process
+Bibliographies for LATEX, Etc. Retrieved December 1, 2021, from
+\url{https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf}
+\item Markey N (2007). "Tame the BeaST" \emph{The B to X of BibTeX, version 1.4}.
 \url{http://tug.ctan.org/info/bibtex/tamethebeast/ttb_en.pdf}.
+}
 }
 \seealso{
 \code{\link[=cff_create]{cff_create()}}, \code{vignette("cffr", "cffr")}, \code{\link[utils:person]{utils::person()}}

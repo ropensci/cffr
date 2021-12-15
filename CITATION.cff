@@ -56,3 +56,189 @@ keywords:
 - r-package
 - ropensci
 - rstats
+references:
+- type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  authors:
+  - name: R Core Team
+  url: https://www.R-project.org/
+  version: '>= 3.6.0'
+- type: software
+  title: 'crayon: Colored Terminal Output'
+  version: '>= 1.4.1'
+  authors:
+  - family-names: Csárdi
+    given-names: Gábor
+    email: csardi.gabor@gmail.com
+  repository: https://CRAN.R-project.org/package=crayon
+  repository-code: https://github.com/r-lib/crayon
+  url: https://github.com/r-lib/crayon#readme
+  license: MIT
+- type: software
+  title: 'desc: Manipulate DESCRIPTION Files'
+  version: '>= 1.3.0'
+  authors:
+  - family-names: Csárdi
+    given-names: Gábor
+    email: csardi.gabor@gmail.com
+  - family-names: Müller
+    given-names: Kirill
+  - family-names: Hester
+    given-names: Jim
+    email: james.f.hester@gmail.com
+  repository: https://CRAN.R-project.org/package=desc
+  repository-code: https://github.com/r-lib/desc
+  url: https://github.com/r-lib/desc#readme
+  license: MIT
+- type: software
+  title: 'jsonlite: A Simple and Robust JSON Parser and Generator for R'
+  version: '>= 1.7.2'
+  authors:
+  - family-names: Ooms
+    given-names: Jeroen
+    email: jeroen@berkeley.edu
+    orcid: https://orcid.org/0000-0002-4035-0289
+  repository: https://CRAN.R-project.org/package=jsonlite
+  repository-code: https://github.com/jeroen/jsonlite
+  url: https://arxiv.org/abs/1403.2805
+  license: MIT
+- type: software
+  title: 'jsonvalidate: Validate ''JSON'' Schema'
+  version: '>= 1.1.0'
+  authors:
+  - family-names: FitzJohn
+    given-names: Rich
+    email: rich.fitzjohn@gmail.com
+  - family-names: Ashton
+    given-names: Rob
+  - family-names: Buus
+    given-names: Mathias
+  - family-names: Poberezkin
+    given-names: Evgeny
+  repository: https://CRAN.R-project.org/package=jsonvalidate
+  repository-code: https://github.com/ropensci/jsonvalidate
+  url: https://docs.ropensci.org/jsonvalidate/
+  license: MIT
+- type: software
+  title: 'lifecycle: Manage the Life Cycle of your Package Functions'
+  version: '>= 1.0.0'
+  authors:
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@rstudio.com
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+    orcid: https://orcid.org/0000-0003-4757-117X
+  repository: https://CRAN.R-project.org/package=lifecycle
+  repository-code: https://github.com/r-lib/lifecycle
+  url: https://lifecycle.r-lib.org/
+  license: MIT
+- type: software
+  title: 'yaml: Methods to Convert R Data to YAML and Back'
+  version: '>= 2.2.1'
+  authors:
+  - family-names: Stephens
+    given-names: Jeremy
+    email: jeremy.f.stephens@vumc.org
+  - family-names: Simonov
+    given-names: Kirill
+  - family-names: Xie
+    given-names: Yihui
+  - family-names: Dong
+    given-names: Zhuoer
+  - family-names: Wickham
+    given-names: Hadley
+  - family-names: Horner
+    given-names: Jeffrey
+  - name: reikoch
+  - family-names: Beasley
+    given-names: Will
+  - family-names: O'Connor
+    given-names: Brendan
+  - family-names: Warnes
+    given-names: Gregory R.
+  repository: https://CRAN.R-project.org/package=yaml
+  repository-code: https://github.com/viking/r-yaml
+  url: https://github.com/viking/r-yaml/
+  license: BSD-3-Clause
+- type: software
+  title: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
+  authors:
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  repository: https://CRAN.R-project.org/package=knitr
+  repository-code: https://github.com/yihui/knitr
+  url: https://yihui.org/knitr/
+  license: GPL-1.0-only
+- type: software
+  title: 'rmarkdown: Dynamic Documents for R'
+  authors:
+  - family-names: Allaire
+    given-names: JJ
+    email: jj@rstudio.com
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  - family-names: McPherson
+    given-names: Jonathan
+    email: jonathan@rstudio.com
+  - family-names: Luraschi
+    given-names: Javier
+    email: javier@rstudio.com
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevin@rstudio.com
+  - family-names: Atkins
+    given-names: Aron
+    email: aron@rstudio.com
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  - family-names: Cheng
+    given-names: Joe
+    email: joe@rstudio.com
+  - family-names: Chang
+    given-names: Winston
+    email: winston@rstudio.com
+  - family-names: Iannone
+    given-names: Richard
+    email: rich@rstudio.com
+    orcid: https://orcid.org/0000-0003-3925-190X
+  repository: https://CRAN.R-project.org/package=rmarkdown
+  repository-code: https://github.com/rstudio/rmarkdown
+  url: https://pkgs.rstudio.com/rmarkdown/
+  license: GPL-3.0-only
+- type: software
+  title: 'testthat: Unit Testing for R'
+  version: '>= 3.0.0'
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  repository: https://CRAN.R-project.org/package=testthat
+  repository-code: https://github.com/r-lib/testthat
+  url: https://testthat.r-lib.org
+  license: MIT
+- type: software
+  title: 'usethis: Automate Package and Project Setup'
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+    orcid: https://orcid.org/0000-0003-4757-117X
+  - family-names: Bryan
+    given-names: Jennifer
+    email: jenny@rstudio.com
+    orcid: https://orcid.org/0000-0002-6983-2759
+  - family-names: Barrett
+    given-names: Malcolm
+    email: malcolmbarrett@gmail.com
+    orcid: https://orcid.org/0000-0003-0299-5825
+  repository: https://CRAN.R-project.org/package=usethis
+  repository-code: https://github.com/r-lib/usethis
+  url: https://usethis.r-lib.org
+  license: MIT

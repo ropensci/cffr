@@ -1,7 +1,10 @@
 test_that("Parse date", {
   desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
 
-  parsed <- cff_create(desc_path, gh_keywords = FALSE)
+  parsed <- cff_create(desc_path,
+    gh_keywords = FALSE,
+    keys = list(references = NULL)
+  )
 
   expect_false(is.null(parsed$`date-released`))
 
@@ -13,7 +16,10 @@ test_that("Parse date", {
 test_that("Parse date in another format", {
   desc_path <- system.file("examples/DESCRIPTION_basicdate", package = "cffr")
 
-  parsed <- cff_create(desc_path, gh_keywords = FALSE)
+  parsed <- cff_create(desc_path,
+    gh_keywords = FALSE,
+    keys = list(references = NULL)
+  )
 
   expect_false(is.null(parsed$`date-released`))
 
@@ -26,7 +32,9 @@ test_that("Parse date in another format", {
 test_that("No date parsed in DESCRIPTION without it", {
   desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
-  parsed <- cff_create(desc_path)
+  parsed <- cff_create(desc_path,
+    keys = list(references = NULL)
+  )
 
   expect_true(is.null(parsed$`date-released`))
 
@@ -37,7 +45,10 @@ test_that("No date parsed in DESCRIPTION without it", {
 test_that("Parsing many urls", {
   desc_path <- system.file("examples/DESCRIPTION_many_urls", package = "cffr")
 
-  parsed <- cff_create(desc_path, gh_keywords = FALSE)
+  parsed <- cff_create(desc_path,
+    gh_keywords = FALSE,
+    keys = list(references = NULL)
+  )
 
   expect_length(parsed$`repository-code`, 1)
   expect_length(parsed$url, 1)
@@ -51,9 +62,9 @@ test_that("Parsing many urls", {
 test_that("Parsing Gitlab", {
   desc_path <- system.file("examples/DESCRIPTION_gitlab", package = "cffr")
 
-  parsed <- cff_create(desc_path)
-
-  parsed
+  parsed <- cff_create(desc_path,
+    keys = list(references = NULL)
+  )
 
   expect_length(parsed$`repository-code`, 1)
   expect_length(parsed$url, 1)
@@ -68,7 +79,10 @@ test_that("Parsing many persons", {
     package = "cffr"
   )
 
-  parsed <- cff_create(desc_path, gh_keywords = FALSE)
+  parsed <- cff_create(desc_path,
+    gh_keywords = FALSE,
+    keys = list(references = NULL)
+  )
 
 
   expect_length(parsed$authors, 4)
@@ -89,7 +103,10 @@ test_that("Parsing many persons", {
 test_that("Parsing wrong urls", {
   desc_path <- system.file("examples/DESCRIPTION_wrong_urls", package = "cffr")
 
-  parsed <- cff_create(desc_path, gh_keywords = FALSE)
+  parsed <- cff_create(desc_path,
+    gh_keywords = FALSE,
+    keys = list(references = NULL)
+  )
 
   expect_null(parsed$`repository-code`)
   expect_length(parsed$url, 1)
@@ -107,7 +124,10 @@ test_that("Parsing two maintainers", {
     package = "cffr"
   )
 
-  parsed <- cff_create(desc_path, gh_keywords = FALSE)
+  parsed <- cff_create(desc_path,
+    gh_keywords = FALSE,
+    keys = list(references = NULL)
+  )
 
   expect_length(parsed$authors, 3)
   expect_length(parsed$contact, 2)
@@ -122,7 +142,10 @@ test_that("Parsing r-universe", {
     package = "cffr"
   )
 
-  parsed <- cff_create(desc_path, gh_keywords = FALSE)
+  parsed <- cff_create(desc_path,
+    gh_keywords = FALSE,
+    keys = list(references = NULL)
+  )
 
   expect_length(parsed$repository, 1)
 
@@ -137,7 +160,10 @@ test_that("Parsing Bioconductor", {
     package = "cffr"
   )
 
-  parsed <- cff_create(desc_path, gh_keywords = FALSE)
+  parsed <- cff_create(desc_path,
+    gh_keywords = FALSE,
+    keys = list(references = NULL)
+  )
 
   expect_length(parsed$repository, 1)
   expect_equal(
