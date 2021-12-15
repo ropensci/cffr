@@ -176,12 +176,10 @@ cff_create <- function(x,
 
   deps <- parse_dependencies(desc_path, instpack)
 
-  cffobjend$references <- c(
+  cffobjend$references <- unique(c(
     cffobjend$references,
     deps
-  )
-
-
+  ))
 
   # Additional keys
   if (!is.null(keys)) {
@@ -281,12 +279,14 @@ parse_dependencies <- function(desc_path,
                                instpack = as.character(
                                  installed.packages()[, "Package"]
                                )) {
+  # nocov start
   if (!is.character(desc_path)) {
     return(NULL)
   }
   if (!file.exists(desc_path)) {
     return(NULL)
   }
+  # nocov end
 
   getdeps <- desc::desc(desc_path)
 
@@ -296,6 +296,8 @@ parse_dependencies <- function(desc_path,
 
   deps$version_clean <- gsub("*", "", deps$version, fixed = TRUE)
 
+  # Dedupe rows
+  deps <- unique(deps[, c("package", "version_clean")])
 
   av_deps <- deps[deps$package %in% c("R", instpack), ]
 
@@ -336,6 +338,8 @@ parse_dependencies <- function(desc_path,
   })
 
   cff_deps <- drop_null(cff_deps)
+
+  cff_deps <- unique(cff_deps)
 
   class(cff_deps) <- "cff"
 
