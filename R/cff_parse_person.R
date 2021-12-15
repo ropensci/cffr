@@ -8,14 +8,28 @@
 #'
 #' @family parsers
 #'
-#' @param person A `person` object or a character coercible to `person`. See
-#'   [utils::person()].
+#' @param person See **Details**.
 #'
 #' @return A [`cff`] object ready to be used on [cff_create()].
 #'
 #' @details
 #' This is a helper function designed to help on adding or
 #' replacing the auto-generated authors of the package. See **Examples**.
+#'
+#' `person` could be:
+#'
+#' * For `cff_parse_person()`: A `person` object or a character coercible to
+#'  `person`. See [person()] for details.
+#' * For `cff_parse_person_bibtex()`: A string with the definition of an author
+#'  or several authors, using the standard BiBTeX notation. See Markey (2007)
+#'  for a full explanation.
+#'
+#' @references
+#' Patashnik O (1988). "BIBTEXTING."
+#' <https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf>.
+#'
+#' Markey N (2007). "Tame the BeaST" *The B to X of BibTEX*, version 1.4.
+#' <http://tug.ctan.org/info/bibtex/tamethebeast/ttb_en.pdf>.
 #'
 #' @examples
 #' # Parse a person object
@@ -126,4 +140,74 @@ cff_parse_person <- function(person) {
 
   parsed_person <- as.cff(parsed_person)
   parsed_person
+}
+
+#' @rdname cff_parse_person
+#'
+#' @export
+#'
+#' @examples
+#'
+#' # Using bibtex style
+#'
+#' x <- "Frank Sinatra and Dean Martin and Davis, Jr., Sammy and Joey Bishop"
+#'
+#' cff_parse_person_bibtex(x)
+#'
+#' cff_parse_person_bibtex("Herbert von Karajan")
+cff_parse_person_bibtex <- function(person) {
+  person <- trimws(person)
+
+  # Protect and on brackets
+  # Lower
+  protected <- gsub("(and)(?![^\\}]*(\\{|$))", "@nd@",
+    person,
+    perl = TRUE
+  )
+
+  # upper
+  protected <- gsub("AND(?![^\\}]*(\\{|$))", "@ND@",
+    protected,
+    perl = TRUE
+  )
+
+
+  auths <- unlist(strsplit(protected, " and | AND "))
+
+  # Unprotec
+  auths_un <- gsub("@nd@", "and", auths)
+  auths_un <- gsub("@ND@", "AND", auths_un)
+
+
+  bibtex_auths <- lapply(auths_un, as_person_bibtex)
+
+
+  end <- lapply(bibtex_auths, function(x) {
+    if (is.null(x$given)) {
+      ent <- c(x$von, x$family, x$jr)
+      ent <- clean_str(paste(ent, collapse = " "))
+
+      l <- list(name = ent)
+      l <- as.cff(l)
+    } else {
+      l <- list(
+        "family-names" = x$family,
+        "given-names" = x$given,
+        "name-particle" = x$von,
+        "name-suffix" = x$jr
+      )
+
+      l <- as.cff(l)
+    }
+  })
+
+  # Handle single author
+  if (length(end) == 1) {
+    end <- end[[1]]
+  } else {
+    # Need the class
+    class(end) <- "cff"
+  }
+
+  return(end)
 }

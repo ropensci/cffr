@@ -2,13 +2,15 @@
 % Please edit documentation in R/cff_parse_person.R
 \name{cff_parse_person}
 \alias{cff_parse_person}
+\alias{cff_parse_person_bibtex}
 \title{Parse a person to \code{cff}}
 \usage{
 cff_parse_person(person)
+
+cff_parse_person_bibtex(person)
 }
 \arguments{
-\item{person}{A \code{person} object or a character coercible to \code{person}. See
-\code{\link[utils:person]{utils::person()}}.}
+\item{person}{See \strong{Details}.}
 }
 \value{
 A \code{\link{cff}} object ready to be used on \code{\link[=cff_create]{cff_create()}}.
@@ -19,6 +21,15 @@ Parse a person or string to a valid format for a \code{CITATION.cff} file.
 \details{
 This is a helper function designed to help on adding or
 replacing the auto-generated authors of the package. See \strong{Examples}.
+
+\code{person} could be:
+\itemize{
+\item For \code{cff_parse_person()}: A \code{person} object or a character coercible to
+\code{person}. See \code{\link[=person]{person()}} for details.
+\item For \code{cff_parse_person_bibtex()}: A string with the definition of an author
+or several authors, using the standard BiBTeX notation. See Markey (2007)
+for a full explanation.
+}
 }
 \examples{
 # Parse a person object
@@ -42,6 +53,21 @@ cff_parse_person("Julio Iglesias <fake@email.com>")
 persons <- c(person("Clark", "Kent"), person("Lois", "Lane"))
 
 cff_parse_person(persons)
+
+# Using bibtex style
+
+x <- "Frank Sinatra and Dean Martin and Davis, Jr., Sammy and Joey Bishop"
+
+cff_parse_person_bibtex(x)
+
+cff_parse_person_bibtex("Herbert von Karajan")
+}
+\references{
+Patashnik O (1988). "BIBTEXTING."
+\url{https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf}.
+
+Markey N (2007). "Tame the BeaST" \emph{The B to X of BibTEX}, version 1.4.
+\url{http://tug.ctan.org/info/bibtex/tamethebeast/ttb_en.pdf}.
 }
 \seealso{
 \code{\link[=cff_create]{cff_create()}}, \code{vignette("cffr", "cffr")}, \code{\link[utils:person]{utils::person()}}
