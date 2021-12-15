@@ -1,6 +1,9 @@
 #' Parse a person to `cff`
-#'
-#' Parse a person or string to a valid format for a `CITATION.cff` file.
+#' 
+#' @description
+#' Parse a person or string to a valid format for a `CITATION.cff` file. This is a 
+#' helper function designed to help on adding or eplacing the auto-generated 
+#' authors of the package.
 #'
 #' @seealso [cff_create()], `vignette("cffr", "cffr")`, [utils::person()]
 #'
@@ -8,21 +11,21 @@
 #'
 #' @family parsers
 #'
-#' @param person See **Details**.
+#' @param person A `person` object created with [person()] or a character string. 
+#'   See **Details**.
 #'
 #' @return A [`cff`] object ready to be used on [cff_create()].
 #'
 #' @details
-#' This is a helper function designed to help on adding or
-#' replacing the auto-generated authors of the package. See **Examples**.
-#'
-#' `person` could be:
+#' The `person` parameter of the function could be:
 #'
 #' * For `cff_parse_person()`: A `person` object or a character coercible to
 #'  `person`. See [person()] for details.
 #' * For `cff_parse_person_bibtex()`: A string with the definition of an author
 #'  or several authors, using the standard BiBTeX notation. See Markey (2007)
 #'  for a full explanation.
+#'
+#' See **Examples** for more information.
 #'
 #' @references
 #' Patashnik O (1988). "BIBTEXTING."
@@ -148,7 +151,7 @@ cff_parse_person <- function(person) {
 #'
 #' @examples
 #'
-#' # Using bibtex style
+#' # Or you can use BibTEX style if you prefer
 #'
 #' x <- "Frank Sinatra and Dean Martin and Davis, Jr., Sammy and Joey Bishop"
 #'
