@@ -1,8 +1,8 @@
 #' Parse a person to `cff`
-#' 
+#'
 #' @description
-#' Parse a person or string to a valid format for a `CITATION.cff` file. This is a 
-#' helper function designed to help on adding or eplacing the auto-generated 
+#' Parse a person or string to a valid format for a `CITATION.cff` file. This is a
+#' helper function designed to help on adding or eplacing the auto-generated
 #' authors of the package.
 #'
 #' @seealso [cff_create()], `vignette("cffr", "cffr")`, [utils::person()]
@@ -11,7 +11,7 @@
 #'
 #' @family parsers
 #'
-#' @param person A `person` object created with [person()] or a character string. 
+#' @param person A `person` object created with [person()] or a character string.
 #'   See **Details**.
 #'
 #' @return A [`cff`] object ready to be used on [cff_create()].

@@ -10,19 +10,19 @@ cff_parse_person(person)
 cff_parse_person_bibtex(person)
 }
 \arguments{
-\item{person}{See \strong{Details}.}
+\item{person}{A \code{person} object created with \code{\link[=person]{person()}} or a character string.
+See \strong{Details}.}
 }
 \value{
 A \code{\link{cff}} object ready to be used on \code{\link[=cff_create]{cff_create()}}.
 }
 \description{
-Parse a person or string to a valid format for a \code{CITATION.cff} file.
+Parse a person or string to a valid format for a \code{CITATION.cff} file. This is a
+helper function designed to help on adding or eplacing the auto-generated
+authors of the package.
 }
 \details{
-This is a helper function designed to help on adding or
-replacing the auto-generated authors of the package. See \strong{Examples}.
-
-\code{person} could be:
+The \code{person} parameter of the function could be:
 \itemize{
 \item For \code{cff_parse_person()}: A \code{person} object or a character coercible to
 \code{person}. See \code{\link[=person]{person()}} for details.
@@ -30,6 +30,8 @@ replacing the auto-generated authors of the package. See \strong{Examples}.
 or several authors, using the standard BiBTeX notation. See Markey (2007)
 for a full explanation.
 }
+
+See \strong{Examples} for more information.
 }
 \examples{
 # Parse a person object
@@ -54,7 +56,7 @@ persons <- c(person("Clark", "Kent"), person("Lois", "Lane"))
 
 cff_parse_person(persons)
 
-# Using bibtex style
+# Or you can use BibTEX style if you prefer
 
 x <- "Frank Sinatra and Dean Martin and Davis, Jr., Sammy and Joey Bishop"
 
