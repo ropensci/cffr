@@ -13,7 +13,7 @@
 #' @param ascii Whether to write the entries using ASCII characters only or not.
 #'
 #' @export
-#'
+#' @family bibtex
 #' @details
 #'
 #' For security reasons, if the file already exists the function would create
