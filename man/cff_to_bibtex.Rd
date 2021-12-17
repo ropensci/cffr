@@ -46,6 +46,7 @@ Bibliographies for LATEX, Etc. Retrieved December 1, 2021, from
 \code{\link[=cff_parse_citation]{cff_parse_citation()}}, \code{\link[=bibentry]{bibentry()}}, \code{\link[=toBibtex]{toBibtex()}}
 
 Other bibtex: 
-\code{\link{cff_extract_to_bibtex}()}
+\code{\link{cff_extract_to_bibtex}()},
+\code{\link{encoded_utf_to_latex}()}
 }
 \concept{bibtex}

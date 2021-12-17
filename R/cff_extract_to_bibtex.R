@@ -19,6 +19,8 @@
 #' @return A `bibentry` object or a list of `bibentry` objects. This could
 #' be parsed to BibTeX using [toBibtex()]
 #'
+#' @export
+#'
 #' @examples
 #'
 #' jsonvalidate <- cff_extract_to_bibtex("jsonvalidate")
@@ -27,11 +29,11 @@
 #'
 #' toBibtex(jsonvalidate)
 #'
-#' yaml <- cff_extract_to_bibtex("yaml", "references")
+#' lite <- cff_extract_to_bibtex("jsonlite", "references")
 #'
-#' yaml
+#' lite
 #'
-#' toBibtex(yaml)
+#' toBibtex(lite)
 cff_extract_to_bibtex <- function(x,
                                   what = "preferred") {
   if (!(what %in% c("preferred", "references", "all"))) {
