@@ -31,16 +31,6 @@ obj <- cff_to_bibtex(package)
 obj
 
 toBibtex(obj)
-
-# References
-l <- lapply(package$references, cff_to_bibtex)
-
-# Flatten
-l <- do.call(c, l)
-
-l
-
-toBibtex(l)
 }
 \references{
 \itemize{
@@ -54,5 +44,8 @@ Bibliographies for LATEX, Etc. Retrieved December 1, 2021, from
 }
 \seealso{
 \code{\link[=cff_parse_citation]{cff_parse_citation()}}, \code{\link[=bibentry]{bibentry()}}, \code{\link[=toBibtex]{toBibtex()}}
+
+Other bibtex: 
+\code{\link{cff_extract_to_bibtex}()}
 }
 \concept{bibtex}

@@ -6,8 +6,9 @@
     -   `cff_git_hook_install()`
     -   `cff_git_hook_remove()`
 
--   New functions:
+-   New BibTeX functions:
 
+    -   `cff_extract_to_bibtex`
     -   `cff_to_bibtex()`
     -   `cff_parse_person_bibtex()`
 
@@ -54,3 +55,4 @@
 # cffr 0.0.1
 
 -   First stable release
+

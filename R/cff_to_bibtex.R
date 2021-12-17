@@ -33,16 +33,6 @@
 #' obj
 #'
 #' toBibtex(obj)
-#'
-#' # References
-#' l <- lapply(package$references, cff_to_bibtex)
-#'
-#' # Flatten
-#' l <- do.call(c, l)
-#'
-#' l
-#'
-#' toBibtex(l)
 cff_to_bibtex <- function(x) {
   stopifnotcff(x)
 
