@@ -11,6 +11,7 @@
     -   `cff_extract_to_bibtex`
     -   `cff_to_bibtex()`
     -   `cff_parse_person_bibtex()`
+    -   `write_bib()`
 
 -   `cff_parse_citation()` extracts more information of authors, based on the
     fields provided on the DESCRIPTION file.
@@ -55,4 +56,3 @@
 # cffr 0.0.1
 
 -   First stable release
-

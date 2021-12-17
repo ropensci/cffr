@@ -43,14 +43,15 @@ jsonvalidate
 
 toBibtex(jsonvalidate)
 
-yaml <- cff_extract_to_bibtex("yaml", "references")
+lite <- cff_extract_to_bibtex("jsonlite", "references")
 
-yaml
+lite
 
-toBibtex(yaml)
+toBibtex(lite)
 }
 \seealso{
 Other bibtex: 
-\code{\link{cff_to_bibtex}()}
+\code{\link{cff_to_bibtex}()},
+\code{\link{encoded_utf_to_latex}()}
 }
 \concept{bibtex}
