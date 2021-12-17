@@ -303,6 +303,8 @@ parse_dependencies <- function(desc_path,
 
 
 
+
+
   # Get references from DESCRIPTION of dependencies
   cff_deps <- lapply(seq_len(nrow(av_deps)), function(y) {
     n <- av_deps[y, ]
@@ -312,9 +314,7 @@ parse_dependencies <- function(desc_path,
       mod$type <- "software"
       mod["date-released"] <- clean_str(Sys.Date())
     } else {
-      mod <- try(cff_description(file.path(find.package(n$package), "DESCRIPTION"),
-        gh_keywords = FALSE
-      ), silent = TRUE)
+      mod <- try(cff_parse_citation(citation(n$package)[1]))
 
       if (inherits(mod, "try-error")) {
         return(NULL)
@@ -323,8 +323,11 @@ parse_dependencies <- function(desc_path,
       # Simplified version of the cff obj
       # Avoid cluttering the output
     }
-    mod$version <- ifelse(is.na(n$version_clean), NULL,
-      n$version_clean
+
+
+    mod$version <- ifelse(is.na(n$version_clean),
+      NULL,
+      paste(n$version_clean)
     )
     mod <- drop_null(mod)
 
@@ -338,16 +341,7 @@ parse_dependencies <- function(desc_path,
     }
 
     mod$year <- year
-
-
-
-    mod <- mod[
-      names(mod) %in% c(
-        "type", "title", "version", "authors", "year",
-        "repository", "repository-code",
-        "url", "license"
-      )
-    ]
+    mod$notes <- NULL
 
     mod <- as.cff(mod)
   })

@@ -1,6 +1,6 @@
 #' Create a BibTeX entry from a CITATION file or a `cff` object
 #'
-#' Creates a `bibentry` object ([bibeentry()]) from a `cff` object
+#' Creates a `bibentry` object ([bibentry()]) from a `cff` object
 #'
 #' @param x The source that would be used for generating
 #'   the [`cff`] object. It could be:

@@ -19,7 +19,7 @@ A \code{bibentry} object that can be parsed to BibTeX format with
 \code{\link[=toBibtex]{toBibtex()}}
 }
 \description{
-Creates a \code{bibentry} object (\code{\link[=bibeentry]{bibeentry()}}) from a \code{cff} object
+Creates a \code{bibentry} object (\code{\link[=bibentry]{bibentry()}}) from a \code{cff} object
 }
 \examples{
 

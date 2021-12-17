@@ -224,7 +224,7 @@ test_that("From plain cff", {
 })
 
 test_that("From file", {
-  file <- system.file("inst/examples/CITATION_complete.cff",
+  file <- system.file("examples/CITATION_complete.cff",
     package = "cffr"
   )
 

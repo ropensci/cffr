@@ -6,6 +6,11 @@
     -   `cff_git_hook_install()`
     -   `cff_git_hook_remove()`
 
+-   New functions:
+
+    -   `cff_to_bibtex()`
+    -   `cff_parse_person_bibtex()`
+
 -   `cff_parse_citation()` extracts more information of authors, based on the
     fields provided on the DESCRIPTION file.
 
@@ -13,10 +18,8 @@
     `bibentry()` /BibTeX and mapping it to `preferred-citation/references`
     fields of CFF.
 
--   New helper function `cff_parse_person_bibtex()`.
-
 -   Now **cffr** extracts also information of the package dependencies and adds
-    the corresponding keys to the `references` field.
+    the main citation of the dependencies to the `references` field.
 
 -   Add a new dependency: `lifecycle`.
 

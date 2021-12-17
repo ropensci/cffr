@@ -274,43 +274,31 @@ test <- cff_create("rmarkdown")
       - name: R Core Team
       year: '2021'
       url: https://www.R-project.org/
+      institution:
+        name: R Foundation for Statistical Computing
+      date-released: '2021-12-17'
       version: '>= 3.0'
-    - type: software
-      title: 'tools: Tools for Package Development'
+    - type: manual
+      title: 'R: A Language and Environment for Statistical Computing'
       authors:
-      - family-names: Team
-        given-names: R Core
-        email: do-use-Contact-address@r-project.org
+      - name: R Core Team
       year: '2021'
-    - type: software
-      title: 'utils: The R Utils Package'
-      authors:
-      - family-names: Team
-        given-names: R Core
-        email: do-use-Contact-address@r-project.org
-      - family-names: worldwide
-        given-names: contributors
-      year: '2021'
-    - type: software
+      url: https://www.R-project.org/
+      institution:
+        name: R Foundation for Statistical Computing
+    - type: manual
       title: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
-      version: '>= 1.22'
       authors:
       - family-names: Xie
         given-names: Yihui
-        email: xie@yihui.name
-        orcid: https://orcid.org/0000-0003-0645-5666
-      repository: https://CRAN.R-project.org/package=knitr
-      repository-code: https://github.com/yihui/knitr
-      url: https://yihui.org/knitr/
-      license: GPL-1.0-only
       year: '2021'
-    - type: software
+      url: https://yihui.org/knitr/
+      version: '>= 1.22'
+    - type: manual
       title: 'yaml: Methods to Convert R Data to YAML and Back'
-      version: '>= 2.1.19'
       authors:
       - family-names: Stephens
         given-names: Jeremy
-        email: jeremy.f.stephens@vumc.org
       - family-names: Simonov
         given-names: Kirill
       - family-names: Xie
@@ -328,14 +316,11 @@ test <- cff_create("rmarkdown")
         given-names: Brendan
       - family-names: Warnes
         given-names: Gregory R.
-      repository: https://CRAN.R-project.org/package=yaml
-      repository-code: https://github.com/viking/r-yaml
-      url: https://github.com/viking/r-yaml/
-      license: BSD-3-Clause
-      year: '2020'
-    - type: software
+      year: '2021'
+      url: https://CRAN.R-project.org/package=yaml
+      version: '>= 2.1.19'
+    - type: manual
       title: 'htmltools: Tools for HTML'
-      version: '>= 0.3.5'
       authors:
       - family-names: Cheng
         given-names: Joe
@@ -358,15 +343,12 @@ test <- cff_create("rmarkdown")
       - family-names: Allen
         given-names: Jeff
         email: jeff@rstudio.com
-      repository: https://CRAN.R-project.org/package=htmltools
-      repository-code: https://github.com/rstudio/htmltools
-      url: https://github.com/rstudio/htmltools
-      license: GPL-2.0-or-later
       year: '2021'
-    - type: software
+      url: https://CRAN.R-project.org/package=htmltools
+      version: '>= 0.3.5'
+    - type: manual
       title: 'evaluate: Parsing and Evaluation Tools that Provide More Details than the
         Default'
-      version: '>= 0.13'
       authors:
       - family-names: Wickham
         given-names: Hadley
@@ -374,51 +356,38 @@ test <- cff_create("rmarkdown")
         given-names: Yihui
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
-      repository: https://CRAN.R-project.org/package=evaluate
-      repository-code: https://github.com/r-lib/evaluate
-      url: https://github.com/r-lib/evaluate
-      license: MIT
-      year: '2019'
-    - type: software
-      title: 'jsonlite: A Simple and Robust JSON Parser and Generator for R'
+      year: '2021'
+      url: https://CRAN.R-project.org/package=evaluate
+      version: '>= 0.13'
+    - type: article
+      title: 'The jsonlite Package: A Practical and Consistent Mapping Between JSON Data
+        and R Objects'
       authors:
       - family-names: Ooms
         given-names: Jeroen
-        email: jeroen@berkeley.edu
-        orcid: https://orcid.org/0000-0002-4035-0289
-      repository: https://CRAN.R-project.org/package=jsonlite
-      repository-code: https://github.com/jeroen/jsonlite
+      journal: arXiv:1403.2805 [stat.CO]
+      year: '2021'
       url: https://arxiv.org/abs/1403.2805
-      license: MIT
-      year: '2020'
-    - type: software
+    - type: manual
       title: 'tinytex: Helper Functions to Install and Maintain TeX Live, and Compile
         LaTeX Documents'
-      version: '>= 0.31'
       authors:
       - family-names: Xie
         given-names: Yihui
-        email: xie@yihui.name
-        orcid: https://orcid.org/0000-0003-0645-5666
-      repository: https://CRAN.R-project.org/package=tinytex
-      repository-code: https://github.com/yihui/tinytex
+      year: '2021'
       url: https://github.com/yihui/tinytex
-      license: MIT
-      year: '2021'
-    - type: software
+      version: '>= 0.31'
+    - type: manual
       title: 'xfun: Supporting Functions for Packages Maintained by ''Yihui Xie'''
-      version: '>= 0.21'
       authors:
       - family-names: Xie
         given-names: Yihui
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
-      repository: https://CRAN.R-project.org/package=xfun
-      repository-code: https://github.com/yihui/xfun
-      url: https://github.com/yihui/xfun
-      license: MIT
       year: '2021'
-    - type: software
+      url: https://CRAN.R-project.org/package=xfun
+      version: '>= 0.21'
+    - type: manual
       title: 'jquerylib: Obtain ''jQuery'' as an HTML Dependency Object'
       authors:
       - family-names: Sievert
@@ -428,31 +397,19 @@ test <- cff_create("rmarkdown")
       - family-names: Cheng
         given-names: Joe
         email: joe@rstudio.com
-      repository: https://CRAN.R-project.org/package=jquerylib
-      license: MIT
       year: '2021'
-    - type: software
-      title: 'methods: Formal Methods and Classes'
-      authors:
-      - family-names: Team
-        given-names: R Core
-        email: do-use-Contact-address@r-project.org
-      year: '2021'
-    - type: software
+      url: https://CRAN.R-project.org/package=jquerylib
+    - type: manual
       title: 'stringr: Simple, Consistent Wrappers for Common String Operations'
-      version: '>= 1.2.0'
       authors:
       - family-names: Wickham
         given-names: Hadley
         email: hadley@rstudio.com
-      repository: https://CRAN.R-project.org/package=stringr
-      repository-code: https://github.com/tidyverse/stringr
-      url: http://stringr.tidyverse.org
-      license: GPL-2.0-only
-      year: '2019'
-    - type: software
+      year: '2021'
+      url: https://CRAN.R-project.org/package=stringr
+      version: '>= 1.2.0'
+    - type: manual
       title: 'shiny: Web Application Framework for R'
-      version: '>= 1.6.0'
       authors:
       - family-names: Chang
         given-names: Winston
@@ -485,29 +442,23 @@ test <- cff_create("rmarkdown")
         given-names: Alan
       - family-names: Borges
         given-names: Barbara
-      repository: https://CRAN.R-project.org/package=shiny
-      repository-code: https://github.com/rstudio/shiny
-      url: https://shiny.rstudio.com/
-      license: GPL-3.0-only
       year: '2021'
-    - type: software
-      title: 'testthat: Unit Testing for R'
-      version: '>= 3.0.0'
+      url: https://CRAN.R-project.org/package=shiny
+      version: '>= 1.6.0'
+    - type: article
       authors:
       - family-names: Wickham
         given-names: Hadley
-        email: hadley@rstudio.com
-      repository: https://CRAN.R-project.org/package=testthat
-      repository-code: https://github.com/r-lib/testthat
-      url: https://testthat.r-lib.org
-      license: MIT
+      title: 'testthat: Get Started with Testing'
+      journal: The R Journal
       year: '2021'
-    - type: software
+      volume: '3'
+      pages: 5--10
+      url: https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf
+      version: '>= 3.0.0'
+    - type: manual
       title: 'digest: Create Compact Hash Digests of R Objects'
       authors:
-      - family-names: Eddelbuettel
-        given-names: Dirk
-        email: edd@debian.org
       - family-names: Lucas
         given-names: Dirk Eddelbuettel with contributions by Antoine
         email: edd@debian.org
@@ -555,12 +506,9 @@ test <- cff_create("rmarkdown")
         given-names: Dirk
       - family-names: Chang.
         given-names: and Winston
-      repository: https://CRAN.R-project.org/package=digest
-      repository-code: https://github.com/eddelbuettel/digest
-      url: http://dirk.eddelbuettel.com/code/digest.html
-      license: GPL-2.0-or-later
       year: '2021'
-    - type: software
+      url: https://CRAN.R-project.org/package=digest
+    - type: manual
       title: 'vctrs: Vector Helpers'
       authors:
       - family-names: Wickham
@@ -572,12 +520,9 @@ test <- cff_create("rmarkdown")
       - family-names: Vaughan
         given-names: Davis
         email: davis@rstudio.com
-      repository: https://CRAN.R-project.org/package=vctrs
-      repository-code: https://github.com/r-lib/vctrs
-      url: https://vctrs.r-lib.org/
-      license: MIT
       year: '2021'
-    - type: software
+      url: https://CRAN.R-project.org/package=vctrs
+    - type: manual
       title: 'tibble: Simple Data Frames'
       authors:
       - family-names: Müller
@@ -586,32 +531,42 @@ test <- cff_create("rmarkdown")
       - family-names: Wickham
         given-names: Hadley
         email: hadley@rstudio.com
-      repository: https://CRAN.R-project.org/package=tibble
-      repository-code: https://github.com/tidyverse/tibble
-      url: https://tibble.tidyverse.org/
-      license: MIT
       year: '2021'
-    - type: software
+      url: https://CRAN.R-project.org/package=tibble
+    - type: manual
       title: 'fs: Cross-Platform File System Operations Based on ''libuv'''
       authors:
       - family-names: Hester
         given-names: Jim
-        email: james.f.hester@gmail.com
       - family-names: Wickham
         given-names: Hadley
         email: hadley@rstudio.com
-      repository: https://CRAN.R-project.org/package=fs
-      repository-code: https://github.com/r-lib/fs
-      url: http://fs.r-lib.org
-      license: GPL-3.0-only
-      year: '2020'
-    - type: software
+      - family-names: Csárdi
+        given-names: Gábor
+        email: csardi.gabor@gmail.com
+      year: '2021'
+      url: https://CRAN.R-project.org/package=fs
+    - type: manual
+      title: 'rsconnect: Deployment Interface for R Markdown Documents and Shiny Applications'
+      authors:
+      - family-names: Atkins
+        given-names: Aron
+        email: aron@rstudio.com
+      - family-names: McPherson
+        given-names: Jonathan
+        email: jonathan@rstudio.com
+      - family-names: Allaire
+        given-names: JJ
+      year: '2021'
+      url: https://CRAN.R-project.org/package=rsconnect
+    - type: manual
       title: 'withr: Run Code ''With'' Temporarily Modified Global State'
-      version: '>= 2.4.2'
       authors:
       - family-names: Hester
         given-names: Jim
-        email: jim.hester@rstudio.com
+      - family-names: Henry
+        given-names: Lionel
+        email: lionel@rstudio.com
       - family-names: Müller
         given-names: Kirill
         email: krlmlr+r@mailbox.org
@@ -623,14 +578,11 @@ test <- cff_create("rmarkdown")
         email: hadley@rstudio.com
       - family-names: Chang
         given-names: Winston
-      repository: https://CRAN.R-project.org/package=withr
-      repository-code: https://github.com/r-lib/withr
-      url: https://withr.r-lib.org
-      license: MIT
       year: '2021'
-    - type: software
+      url: https://CRAN.R-project.org/package=withr
+      version: '>= 2.4.2'
+    - type: manual
       title: 'bslib: Custom ''Bootstrap'' ''Sass'' Themes for ''shiny'' and ''rmarkdown'''
-      version: '>= 0.2.5.1'
       authors:
       - family-names: Sievert
         given-names: Carson
@@ -639,14 +591,11 @@ test <- cff_create("rmarkdown")
       - family-names: Cheng
         given-names: Joe
         email: joe@rstudio.com
-      repository: https://CRAN.R-project.org/package=bslib
-      repository-code: https://github.com/rstudio/bslib
-      url: https://rstudio.github.io/bslib/
-      license: MIT
       year: '2021'
-    - type: software
+      url: https://CRAN.R-project.org/package=bslib
+      version: '>= 0.2.5.1'
+    - type: manual
       title: 'sass: Syntactically Awesome Style Sheets (''Sass'')'
-      version: '>= 0.4.0'
       authors:
       - family-names: Cheng
         given-names: Joe
@@ -666,11 +615,9 @@ test <- cff_create("rmarkdown")
         given-names: Carson
         email: carson@rstudio.com
         orcid: https://orcid.org/0000-0002-4958-2844
-      repository: https://CRAN.R-project.org/package=sass
-      repository-code: https://github.com/rstudio/sass
-      url: https://github.com/rstudio/sass
-      license: MIT
       year: '2021'
+      url: https://CRAN.R-project.org/package=sass
+      version: '>= 0.4.0'
 
 </details>
 <p>
