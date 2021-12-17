@@ -314,7 +314,9 @@ parse_dependencies <- function(desc_path,
       mod$type <- "software"
       mod["date-released"] <- clean_str(Sys.Date())
     } else {
-      mod <- try(cff_parse_citation(citation(n$package)[1]))
+      mod <- try(cff_parse_citation(citation(n$package)[1]),
+        silent = TRUE
+      )
 
       if (inherits(mod, "try-error")) {
         return(NULL)
