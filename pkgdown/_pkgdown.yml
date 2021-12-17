@@ -31,6 +31,11 @@ reference:
     desc: Helper functions to parse information.
     contents:
       - has_concept("parsers")
+  - title: BibTeX
+    desc: Convert CFF to BibTeX and viceverse
+    contents:
+      - has_concept("bibtex")
+      - cff_parse_citation
   - title: Datasets
     contents:
       - has_keyword("datasets")

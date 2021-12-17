@@ -191,10 +191,10 @@ building_other_persons <- function(parse_cit) {
   # Select subsets
   all_pers <- other_persons()
   toent <- other_persons_entity()
-  toent_forced <- entity_forced()
+  toent_pers <- entity_person()
 
-  toauto_end <- all_pers[!all_pers %in% c(toent, toent_forced)]
-  toent_end <- toent[!toent %in% toent_forced]
+  toauto_end <- all_pers[!all_pers %in% c(toent, toent_pers)]
+  toent_end <- toent[!toent %in% toent_pers]
 
   # Parse as entity
   toentity <- others[names(others) %in% toent_end]
@@ -202,24 +202,28 @@ building_other_persons <- function(parse_cit) {
     list(name = clean_str(x))
   })
 
-  # As persons but forced to a single field
-  toentity_forced <- others[names(others) %in% toent_forced]
-  toentity_forced <- lapply(toentity_forced, function(x) {
-    person(clean_str(
-      paste(x, collapse = " and ")
-    ))
+  # As persons or entities using bibtex
+  toentity_pers <- others[names(others) %in% toent_pers]
+  toentity_pers <- lapply(toentity_pers, function(x) {
+    bibtex <- paste(x, collapse = " and ")
+
+    end <- cff_parse_person_bibtex(bibtex)
+
+    # If has names then it should be moved to a lower level on a list
+    if (!is.null(names(end))) end <- list(end)
+
+    return(end)
   })
 
   toperson <- others[names(others) %in% toauto_end]
   toperson <- lapply(toperson, as.person)
-  toperson <- c(toperson, toentity_forced)
 
   toperson <- lapply(toperson, function(x) {
     lapply(x, cff_parse_person)
   })
 
   # Bind and reorder
-  parsedothers <- c(toentity, toperson)
+  parsedothers <- c(toentity, toperson, toentity_pers)
   parsedothers <- parsedothers[names(others)]
 }
 
@@ -239,8 +243,10 @@ other_persons <- function() {
   pers_ent <- sort(unique(c(
     pers_ent,
     other_persons_entity(),
-    entity_forced()
+    entity_person()
   )))
+
+  return(pers_ent)
 }
 
 #' Vector other persons to be parsed as entities
@@ -257,9 +263,9 @@ other_persons_entity <- function() {
   entities
 }
 
-#' Force this to entity, even thought they may be persons as well
+#' This may be entities or persons
 #' @noRd
-entity_forced <- function() {
+entity_person <- function() {
   forced <- c(
     "editors",
     "editors-series"

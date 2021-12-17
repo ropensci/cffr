@@ -422,9 +422,13 @@
     database-provider:
       name: Database provider
     editors:
-    - name: A editor
+    - family-names: editor
+      given-names: A
+    - name: Ben and Jerry
     editors-series:
-    - name: A editor series
+    - family-names: series
+      given-names: A
+      name-particle: editor
     institution:
       name: A institution
     location:
@@ -458,7 +462,10 @@
 
     type: proceedings
     editors:
-    - name: Yolande Berbers and Willy Zwaenepoel
+    - family-names: Berbers
+      given-names: Yolande
+    - family-names: Zwaenepoel
+      given-names: Willy
     title: Proceedings of the 6th European Conference on Computer Systems
     collection-title: Proceedings of the 6th European Conference on Computer Systems
     publisher:

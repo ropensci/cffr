@@ -403,7 +403,7 @@ test_that("Parse persons on CITATION", {
     contact = person("A", "name"),
     conference = person("A", "conference"),
     "database-provider" = person("Database", "provider"),
-    editors = person("A", "editor"),
+    editors = c(person("A", "editor"), person("{Ben and Jerry}")),
     "editors-series" = person("A", "editor series"),
     "institution" = person("A", "institution"),
     "location" = person("A", "location"),
@@ -478,7 +478,7 @@ test_that("Test entry without author", {
 
   expect_identical(
     bibparsed$authors[[1]]$name,
-    bibparsed$editors[[1]]$name
+    paste(bib$editor, collapse = " and ")
   )
 
 

@@ -29,7 +29,7 @@ and examples for working with .cff more generally.
 ## What is a `CITATION.cff` file?
 
 [Citation File Format (CFF](https://citation-file-format.github.io/))
-(Druskat et al. [2021](#ref-druskat_citation_2021)) (v1.2.0) are plain
+([Druskat et al. 2021](#ref-druskat_citation_2021)) (v1.2.0) are plain
 text files with human- and machine-readable citation information for
 software (and datasets). Code developers can include them in their
 repositories to let others know how to correctly cite their software.
@@ -39,8 +39,8 @@ Recently
 [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
 [Zenodo](https://twitter.com/ZENODO_ORG/status/1420357001490706442) and
 [Zotero](https://twitter.com/zotero/status/1420515377390530560) have
-included full support of this citation format (Druskat
-[2021](#ref-druskat_stephan_making_2021)). GitHub support is of special
+included full support of this citation format ([Druskat
+2021](#ref-druskat_stephan_making_2021)). GitHub support is of special
 interest:
 
 <img src="vignettes/tweet-1.png" title="GitHub-link" alt="GitHub-link" width="400" style="display: block; margin: auto;" />
@@ -50,17 +50,17 @@ interest:
 
 See [Enhanced support for citations on
 GitHub](https://github.blog/2021-08-19-enhanced-support-citations-github/)
-(Smith [2021](#ref-smith2021)) for more info.
+([Smith 2021](#ref-smith2021)) for more info.
 
 ### Related projects
 
-[The CodeMeta Project](https://codemeta.github.io/) (Jones et al.
-[2017](#ref-jones2017)) creates a concept vocabulary that can be used to
+[The CodeMeta Project](https://codemeta.github.io/) ([Jones et al.
+2017](#ref-jones2017)) creates a concept vocabulary that can be used to
 standardize the exchange of software metadata across repositories and
 organizations. One of the many uses of a `codemeta.json` file (created
 following the standards defined on The CodeMeta Project) is to provide
 citation metadata such as title, authors, publication year, and venue
-(Fenner [2021](#ref-fenner2021)). The packages
+([Fenner 2021](#ref-fenner2021)). The packages
 [**codemeta**](https://github.com/cboettig/codemeta)/
 [**codemetar**](https://github.com/ropensci/codemetar) allows to
 generate `codemeta.json` files from R packages metadata.
@@ -69,10 +69,10 @@ generate `codemeta.json` files from R packages metadata.
 
 **cffr** maximizes the data extraction by using both the `DESCRIPTION`
 file and the `CITATION` file (if present) of your package. Note that
-**cffr** works best if your package pass `R CMD
-check/devtools::check()`.
+**cffr** works best if your package pass
+`R CMD check/devtools::check()`.
 
-As per 2021-12-15 there are at least 52 repos on GitHub using **cffr**.
+As per 2021-12-17 there are at least 52 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
@@ -94,7 +94,6 @@ Alternatively, you can install **cffr** using the
 [r-universe](https://ropensci.r-universe.dev/ui#builds):
 
 ``` r
-
 # Enable this universe
 options(repos = c(
   ropensci = "https://ropensci.r-universe.dev",
@@ -112,7 +111,6 @@ By default most often from within your package folder you’ll simply run
 file and validates it on a single command:
 
 ``` r
-
 library(cffr)
 
 # For in-development packages
@@ -140,8 +138,8 @@ test <- cff_create("rmarkdown")
 ```
 
 <details>
-
-<summary><code>CITATION.cff</code> for <strong>rmarkdown</strong>
+<summary>
+<code>CITATION.cff</code> for <strong>rmarkdown</strong>
 </summary>
 
     cff-version: 1.2.0
@@ -274,6 +272,7 @@ test <- cff_create("rmarkdown")
       title: 'R: A Language and Environment for Statistical Computing'
       authors:
       - name: R Core Team
+      year: '2021'
       url: https://www.R-project.org/
       version: '>= 3.0'
     - type: software
@@ -282,6 +281,7 @@ test <- cff_create("rmarkdown")
       - family-names: Team
         given-names: R Core
         email: do-use-Contact-address@r-project.org
+      year: '2021'
     - type: software
       title: 'utils: The R Utils Package'
       authors:
@@ -290,6 +290,7 @@ test <- cff_create("rmarkdown")
         email: do-use-Contact-address@r-project.org
       - family-names: worldwide
         given-names: contributors
+      year: '2021'
     - type: software
       title: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
       version: '>= 1.22'
@@ -302,6 +303,7 @@ test <- cff_create("rmarkdown")
       repository-code: https://github.com/yihui/knitr
       url: https://yihui.org/knitr/
       license: GPL-1.0-only
+      year: '2021'
     - type: software
       title: 'yaml: Methods to Convert R Data to YAML and Back'
       version: '>= 2.1.19'
@@ -330,6 +332,7 @@ test <- cff_create("rmarkdown")
       repository-code: https://github.com/viking/r-yaml
       url: https://github.com/viking/r-yaml/
       license: BSD-3-Clause
+      year: '2020'
     - type: software
       title: 'htmltools: Tools for HTML'
       version: '>= 0.3.5'
@@ -359,6 +362,7 @@ test <- cff_create("rmarkdown")
       repository-code: https://github.com/rstudio/htmltools
       url: https://github.com/rstudio/htmltools
       license: GPL-2.0-or-later
+      year: '2021'
     - type: software
       title: 'evaluate: Parsing and Evaluation Tools that Provide More Details than the
         Default'
@@ -374,6 +378,7 @@ test <- cff_create("rmarkdown")
       repository-code: https://github.com/r-lib/evaluate
       url: https://github.com/r-lib/evaluate
       license: MIT
+      year: '2019'
     - type: software
       title: 'jsonlite: A Simple and Robust JSON Parser and Generator for R'
       authors:
@@ -385,6 +390,7 @@ test <- cff_create("rmarkdown")
       repository-code: https://github.com/jeroen/jsonlite
       url: https://arxiv.org/abs/1403.2805
       license: MIT
+      year: '2020'
     - type: software
       title: 'tinytex: Helper Functions to Install and Maintain TeX Live, and Compile
         LaTeX Documents'
@@ -398,6 +404,7 @@ test <- cff_create("rmarkdown")
       repository-code: https://github.com/yihui/tinytex
       url: https://github.com/yihui/tinytex
       license: MIT
+      year: '2021'
     - type: software
       title: 'xfun: Supporting Functions for Packages Maintained by ''Yihui Xie'''
       version: '>= 0.21'
@@ -410,6 +417,7 @@ test <- cff_create("rmarkdown")
       repository-code: https://github.com/yihui/xfun
       url: https://github.com/yihui/xfun
       license: MIT
+      year: '2021'
     - type: software
       title: 'jquerylib: Obtain ''jQuery'' as an HTML Dependency Object'
       authors:
@@ -422,12 +430,14 @@ test <- cff_create("rmarkdown")
         email: joe@rstudio.com
       repository: https://CRAN.R-project.org/package=jquerylib
       license: MIT
+      year: '2021'
     - type: software
       title: 'methods: Formal Methods and Classes'
       authors:
       - family-names: Team
         given-names: R Core
         email: do-use-Contact-address@r-project.org
+      year: '2021'
     - type: software
       title: 'stringr: Simple, Consistent Wrappers for Common String Operations'
       version: '>= 1.2.0'
@@ -439,6 +449,47 @@ test <- cff_create("rmarkdown")
       repository-code: https://github.com/tidyverse/stringr
       url: http://stringr.tidyverse.org
       license: GPL-2.0-only
+      year: '2019'
+    - type: software
+      title: 'shiny: Web Application Framework for R'
+      version: '>= 1.6.0'
+      authors:
+      - family-names: Chang
+        given-names: Winston
+        email: winston@rstudio.com
+        orcid: https://orcid.org/0000-0002-1576-2126
+      - family-names: Cheng
+        given-names: Joe
+        email: joe@rstudio.com
+      - family-names: Allaire
+        given-names: JJ
+        email: jj@rstudio.com
+      - family-names: Sievert
+        given-names: Carson
+        email: carson@rstudio.com
+        orcid: https://orcid.org/0000-0002-4958-2844
+      - family-names: Schloerke
+        given-names: Barret
+        email: barret@rstudio.com
+        orcid: https://orcid.org/0000-0001-9986-114X
+      - family-names: Xie
+        given-names: Yihui
+        email: yihui@rstudio.com
+      - family-names: Allen
+        given-names: Jeff
+        email: jeff@rstudio.com
+      - family-names: McPherson
+        given-names: Jonathan
+        email: jonathan@rstudio.com
+      - family-names: Dipert
+        given-names: Alan
+      - family-names: Borges
+        given-names: Barbara
+      repository: https://CRAN.R-project.org/package=shiny
+      repository-code: https://github.com/rstudio/shiny
+      url: https://shiny.rstudio.com/
+      license: GPL-3.0-only
+      year: '2021'
     - type: software
       title: 'testthat: Unit Testing for R'
       version: '>= 3.0.0'
@@ -450,6 +501,7 @@ test <- cff_create("rmarkdown")
       repository-code: https://github.com/r-lib/testthat
       url: https://testthat.r-lib.org
       license: MIT
+      year: '2021'
     - type: software
       title: 'digest: Create Compact Hash Digests of R Objects'
       authors:
@@ -507,6 +559,7 @@ test <- cff_create("rmarkdown")
       repository-code: https://github.com/eddelbuettel/digest
       url: http://dirk.eddelbuettel.com/code/digest.html
       license: GPL-2.0-or-later
+      year: '2021'
     - type: software
       title: 'vctrs: Vector Helpers'
       authors:
@@ -523,6 +576,7 @@ test <- cff_create("rmarkdown")
       repository-code: https://github.com/r-lib/vctrs
       url: https://vctrs.r-lib.org/
       license: MIT
+      year: '2021'
     - type: software
       title: 'tibble: Simple Data Frames'
       authors:
@@ -536,30 +590,28 @@ test <- cff_create("rmarkdown")
       repository-code: https://github.com/tidyverse/tibble
       url: https://tibble.tidyverse.org/
       license: MIT
+      year: '2021'
     - type: software
       title: 'fs: Cross-Platform File System Operations Based on ''libuv'''
       authors:
       - family-names: Hester
         given-names: Jim
+        email: james.f.hester@gmail.com
       - family-names: Wickham
         given-names: Hadley
         email: hadley@rstudio.com
-      - family-names: Csárdi
-        given-names: Gábor
-        email: csardi.gabor@gmail.com
       repository: https://CRAN.R-project.org/package=fs
       repository-code: https://github.com/r-lib/fs
-      url: https://fs.r-lib.org
-      license: MIT
+      url: http://fs.r-lib.org
+      license: GPL-3.0-only
+      year: '2020'
     - type: software
       title: 'withr: Run Code ''With'' Temporarily Modified Global State'
       version: '>= 2.4.2'
       authors:
       - family-names: Hester
         given-names: Jim
-      - family-names: Henry
-        given-names: Lionel
-        email: lionel@rstudio.com
+        email: jim.hester@rstudio.com
       - family-names: Müller
         given-names: Kirill
         email: krlmlr+r@mailbox.org
@@ -575,6 +627,7 @@ test <- cff_create("rmarkdown")
       repository-code: https://github.com/r-lib/withr
       url: https://withr.r-lib.org
       license: MIT
+      year: '2021'
     - type: software
       title: 'bslib: Custom ''Bootstrap'' ''Sass'' Themes for ''shiny'' and ''rmarkdown'''
       version: '>= 0.2.5.1'
@@ -590,6 +643,7 @@ test <- cff_create("rmarkdown")
       repository-code: https://github.com/rstudio/bslib
       url: https://rstudio.github.io/bslib/
       license: MIT
+      year: '2021'
     - type: software
       title: 'sass: Syntactically Awesome Style Sheets (''Sass'')'
       version: '>= 0.4.0'
@@ -616,15 +670,14 @@ test <- cff_create("rmarkdown")
       repository-code: https://github.com/rstudio/sass
       url: https://github.com/rstudio/sass
       license: MIT
+      year: '2021'
 
 </details>
-
 <p>
 
 We can validate the result using `cff_validate()`:
 
 ``` r
-
 cff_validate(test)
 #> 
 #> cff_validate results-----
@@ -644,11 +697,9 @@ GitHub Actions. Use `cff_gha_update()`function to install a GitHub
 Action that would update your `CITATION.cff` file on the following
 events:
 
-  - When you publish a new release of the package on your GitHub repo.
-  - Each time that you modify your DESCRIPTION or inst/CITATION files.
-  - The action can be run also manually.
-
-<!-- end list -->
+-   When you publish a new release of the package on your GitHub repo.
+-   Each time that you modify your DESCRIPTION or inst/CITATION files.
+-   The action can be run also manually.
 
 ``` r
 cff_gha_update()
@@ -680,23 +731,23 @@ make sure you have the **testthat** package installed.
 
 Check the following articles to learn more about **cffr**:
 
-  - [cffr: Create a CITATION.cff File for your R
+-   [cffr: Create a CITATION.cff File for your R
     Package](https://ropensci.org/blog/2021/11/23/cffr/)
-  - [How I Test cffr on (about) 2,000 Packages using GitHub Actions and
+-   [How I Test cffr on (about) 2,000 Packages using GitHub Actions and
     R-universe](https://ropensci.org/blog/2021/11/23/how-i-test-cffr/)
 
 ## Related packages
 
-  - [**citation**](https://github.com/pik-piam/citation/): The
+-   [**citation**](https://github.com/pik-piam/citation/): The
     development version (at the time of this writing) includes a new
     function `r2cff` that creates a `CITATION.cff` file (v1.1.0) using
     the information of your `DESCRIPTION` file. It also provide minimal
     validity checks.
-  - [**handlr**](https://github.com/ropensci/handlr): Tool for
+-   [**handlr**](https://github.com/ropensci/handlr): Tool for
     converting among citation formats, including `*.cff` files. At the
     time of this writing only CFF v1.1.0 was supported (see
-    [\#24](https://github.com/ropensci/handlr/issues/24)).
-  - [**codemeta**](https://github.com/cboettig/codemeta)/
+    [#24](https://github.com/ropensci/handlr/issues/24)).
+-   [**codemeta**](https://github.com/cboettig/codemeta)/
     [**codemetar**](https://github.com/ropensci/codemetar) provides
     similar solutions for creating `codemeta.json` file, another format
     for storing and sharing software metadata.
@@ -732,9 +783,9 @@ for more info.
 
 ## References
 
-<div id="refs">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-druskat_stephan_making_2021">
+<div id="ref-druskat_stephan_making_2021" class="csl-entry">
 
 Druskat, Stephan. 2021. “Making Software Citation Easi(er) - the
 Citation File Format and Its Integrations.” Zenodo.
@@ -742,7 +793,7 @@ Citation File Format and Its Integrations.” Zenodo.
 
 </div>
 
-<div id="ref-druskat_citation_2021">
+<div id="ref-druskat_citation_2021" class="csl-entry">
 
 Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, Robert Haines,
 James Baker, Spencer Bliven, Egon Willighagen, David Pérez-Suárez, and
@@ -751,7 +802,7 @@ Alexander Konovalov. 2021. “Citation File Format.”
 
 </div>
 
-<div id="ref-fenner2021">
+<div id="ref-fenner2021" class="csl-entry">
 
 Fenner, Martin. 2021. “We Need Your Feedback: Aligning the CodeMeta
 Vocabulary for Scientific Software with Schema.org.”
@@ -759,7 +810,7 @@ Vocabulary for Scientific Software with Schema.org.”
 
 </div>
 
-<div id="ref-jones2017">
+<div id="ref-jones2017" class="csl-entry">
 
 Jones, Matthew B, Carl Boettiger, Abby Cabunoc Mayes, Arfon Smith, Peter
 Slaughter, Kyle Niemeyer, Yolanda Gil, et al. 2017. *CodeMeta: An
@@ -768,7 +819,7 @@ Exchange Schema for Software Metadata*. KNB Data Repository.
 
 </div>
 
-<div id="ref-smith2021">
+<div id="ref-smith2021" class="csl-entry">
 
 Smith, Arfon. 2021. “Enhanced Support for Citations on GitHub.”
 <https://github.blog/2021-08-19-enhanced-support-citations-github/>.

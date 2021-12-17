@@ -310,6 +310,7 @@ parse_dependencies <- function(desc_path,
     if (n$package == "R") {
       mod <- cff_parse_citation(citation()[1])
       mod$type <- "software"
+      mod["date-released"] <- clean_str(Sys.Date())
     } else {
       mod <- try(cff_description(file.path(find.package(n$package), "DESCRIPTION"),
         gh_keywords = FALSE
@@ -326,9 +327,23 @@ parse_dependencies <- function(desc_path,
       n$version_clean
     )
     mod <- drop_null(mod)
+
+    # Get year
+    date_rel <- mod[["date-released"]]
+
+    if (is.null(date_rel)) {
+      year <- format(Sys.Date(), "%Y")
+    } else {
+      year <- format(as.Date(date_rel), "%Y")
+    }
+
+    mod$year <- year
+
+
+
     mod <- mod[
       names(mod) %in% c(
-        "type", "title", "version", "authors",
+        "type", "title", "version", "authors", "year",
         "repository", "repository-code",
         "url", "license"
       )
