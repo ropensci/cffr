@@ -74,7 +74,7 @@ references:
     given-names: Gábor
     email: csardi.gabor@gmail.com
   year: '2021'
-  url: https://CRAN.R-project.org/package=crayon
+  url: https://github.com/r-lib/crayon#readme
   version: '>= 1.4.1'
 - type: manual
   title: 'desc: Manipulate DESCRIPTION Files'
@@ -88,7 +88,7 @@ references:
     given-names: Jim
     email: james.f.hester@gmail.com
   year: '2021'
-  url: https://CRAN.R-project.org/package=desc
+  url: https://github.com/r-lib/desc#readme
   version: '>= 1.3.0'
 - type: article
   title: 'The jsonlite Package: A Practical and Consistent Mapping Between JSON Data
@@ -113,7 +113,6 @@ references:
   - family-names: Poberezkin
     given-names: Evgeny
   year: '2021'
-  url: https://CRAN.R-project.org/package=jsonvalidate
   version: '>= 1.1.0'
 - type: manual
   title: 'lifecycle: Manage the Life Cycle of your Package Functions'
@@ -126,7 +125,6 @@ references:
     email: hadley@rstudio.com
     orcid: https://orcid.org/0000-0003-4757-117X
   year: '2021'
-  url: https://CRAN.R-project.org/package=lifecycle
   version: '>= 1.0.0'
 - type: manual
   title: 'yaml: Methods to Convert R Data to YAML and Back'
@@ -151,7 +149,7 @@ references:
   - family-names: Warnes
     given-names: Gregory R.
   year: '2021'
-  url: https://CRAN.R-project.org/package=yaml
+  url: https://github.com/viking/r-yaml/
   version: '>= 2.2.1'
 - type: manual
   title: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
@@ -212,4 +210,3 @@ references:
     email: malcolmbarrett@gmail.com
     orcid: https://orcid.org/0000-0003-0299-5825
   year: '2021'
-  url: https://CRAN.R-project.org/package=usethis

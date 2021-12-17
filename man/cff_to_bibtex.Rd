@@ -47,6 +47,7 @@ Bibliographies for LATEX, Etc. Retrieved December 1, 2021, from
 
 Other bibtex: 
 \code{\link{cff_extract_to_bibtex}()},
-\code{\link{encoded_utf_to_latex}()}
+\code{\link{encoded_utf_to_latex}()},
+\code{\link{write_bib}()}
 }
 \concept{bibtex}

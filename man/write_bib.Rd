@@ -47,4 +47,10 @@ write_bib(bib, ascii = TRUE)
 \item \href{https://github.com/ropensci/RefManageR}{RefManageR} package.
 \item \href{https://github.com/GeoBosh/rbibutils/}{rbibutils}
 }
+
+Other bibtex: 
+\code{\link{cff_extract_to_bibtex}()},
+\code{\link{cff_to_bibtex}()},
+\code{\link{encoded_utf_to_latex}()}
 }
+\concept{bibtex}

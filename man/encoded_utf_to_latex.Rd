@@ -47,7 +47,8 @@ ascii_table
 
 Other bibtex: 
 \code{\link{cff_extract_to_bibtex}()},
-\code{\link{cff_to_bibtex}()}
+\code{\link{cff_to_bibtex}()},
+\code{\link{write_bib}()}
 }
 \concept{bibtex}
 \keyword{internal}
