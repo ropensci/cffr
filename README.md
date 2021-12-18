@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass `R CMD
 check/devtools::check()`.
 
-As per 2021-12-17 there are at least 52 repos on GitHub using **cffr**.
+As per 2021-12-18 there are at least 52 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
@@ -278,7 +278,6 @@ test <- cff_create("rmarkdown")
       url: https://www.R-project.org/
       institution:
         name: R Foundation for Statistical Computing
-      date-released: '2021-12-17'
       version: '>= 3.0'
     - type: manual
       title: 'R: A Language and Environment for Statistical Computing'

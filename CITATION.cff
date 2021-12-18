@@ -65,7 +65,6 @@ references:
   url: https://www.R-project.org/
   institution:
     name: R Foundation for Statistical Computing
-  date-released: '2021-12-17'
   version: '>= 3.6.0'
 - type: manual
   title: 'crayon: Colored Terminal Output'
