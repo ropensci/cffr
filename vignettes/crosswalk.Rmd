@@ -45,6 +45,7 @@ origin <- vector(length = length(keys))
 origin[keys == "cff-version"] <- "parameter on function"
 origin[keys == "type"] <- "Fixed value: 'software'"
 origin[keys == "identifiers"] <- "DESCRIPTION/CITATION files"
+origin[keys == "references"] <- "DESCRIPTION/CITATION files"
 
 origin[keys %in% c(
   "message",
@@ -63,8 +64,7 @@ origin[keys %in% c(
 
 origin[keys %in% c(
   "doi",
-  "preferred-citation",
-  "references"
+  "preferred-citation"
 )] <- "CITATION file"
 
 
