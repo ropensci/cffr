@@ -312,7 +312,8 @@ parse_dependencies <- function(desc_path,
     if (n$package == "R") {
       mod <- cff_parse_citation(citation()[1])
       mod$type <- "software"
-      mod["date-released"] <- clean_str(Sys.Date())
+      mod$year <- format(Sys.Date(), "%Y")
+
     } else {
       mod <- try(cff_parse_citation(citation(n$package)[1]),
         silent = TRUE
