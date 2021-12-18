@@ -71,7 +71,7 @@ origin[keys %in% c(
 origin[origin == FALSE] <- "Not parsed by cffr"
 
 df <- data.frame(
-  key = paste0("<a href='#", keys, "'>", keys, "</strong>"),
+  key = paste0("<a href='#", keys, "'>", keys, "</a>"),
   source = origin
 )
 
