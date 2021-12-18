@@ -69,3 +69,13 @@ test_that("Get same results with both", {
 
   expect_identical(s4, b4)
 })
+
+test_that("R Core Team", {
+  p <- cff_parse_person(person("R Core", "Team"))
+
+  expect_equal(p$name, "R Core Team")
+
+  p <- cff_parse_person("R Core Team")
+
+  expect_equal(p$name, "R Core Team")
+})

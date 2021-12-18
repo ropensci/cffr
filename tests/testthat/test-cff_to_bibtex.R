@@ -231,3 +231,8 @@ test_that("From file", {
   bib <- cff_to_bibtex(file)
   expect_snapshot_output(toBibtex(bib))
 })
+
+test_that("NULL", {
+  s <- NULL
+  expect_null(cff_to_bibtex(s))
+})

@@ -8,7 +8,7 @@
 
 -   New BibTeX functions:
 
-    -   `cff_extract_to_bibtex`
+    -   `cff_extract_to_bibtex()`
     -   `cff_to_bibtex()`
     -   `cff_parse_person_bibtex()`
     -   `write_bib()`

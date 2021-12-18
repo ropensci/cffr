@@ -59,7 +59,12 @@ cff_extract_to_bibtex <- function(x,
   }
 
   pref <- cff_to_bibtex(obj)
-  ref <- lapply(obj$references, cff_to_bibtex)
-  ref <- do.call(c, ref)
-  return(c(pref, ref))
+
+  if (!is.null(obj$references)) {
+    ref <- lapply(obj$references, cff_to_bibtex)
+    ref <- do.call(c, ref)
+    return(c(pref, ref))
+  }
+
+  return(pref)
 }

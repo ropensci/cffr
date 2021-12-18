@@ -80,6 +80,22 @@ cff_parse_person <- function(person) {
     )
   }
 
+  # Special case for R Core Team
+
+
+  if (is.substring(clean_str(person$given), "R Core") &
+    is.substring(person$family, "Team")) {
+    person <- person(
+      given = paste(
+        clean_str(person$given),
+        clean_str(person$family)
+      ),
+      email = person$email,
+      role = person$role,
+      comment = person$comment
+    )
+  }
+
   # Guess if entity of person.
   is_entity <- is.null(person$family) || is.null(person$given)
 

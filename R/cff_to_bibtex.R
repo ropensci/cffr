@@ -34,6 +34,10 @@
 #'
 #' toBibtex(obj)
 cff_to_bibtex <- function(x) {
+  if (is.null(x)) {
+    return(NULL)
+  }
+
   stopifnotcff(x)
 
   # Read cff of CITATION.cff file
