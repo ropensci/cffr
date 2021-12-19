@@ -51,3 +51,41 @@ test_that("Write ASCII", {
   expect_snapshot_file(file)
   file.remove(file)
 })
+
+test_that("Test append", {
+  bib <- bibentry("Misc",
+    title = "My title",
+    author = "Fran Herrero"
+  )
+
+  file <- file.path(tempdir(), "append.bib")
+  expect_silent(write_bib(bib, file, verbose = FALSE, append = FALSE))
+
+  # Initial lines
+  lines1 <- readLines(file)
+
+  # Append
+  bib2 <- bibentry("Misc",
+    key = "key2",
+    title = "Another title",
+    author = "Ian Henderson"
+  )
+
+
+  write_bib(bib2, file, verbose = FALSE, append = TRUE)
+  expect_snapshot_file(file)
+
+  lines2 <- readLines(file)
+
+  # First lines identical, more lines on append
+  expect_true(all(lines1 == lines2[seq_len(length(lines1))]))
+
+  expect_gt(length(lines2), length(lines1))
+
+  # Overwrite
+  write_bib(bib2, file, verbose = FALSE, append = FALSE)
+  lines3 <- readLines(file)
+
+  expect_false(all(lines1 == lines3[seq_len(length(lines1))]))
+  expect_lt(length(lines3), length(lines2))
+})
