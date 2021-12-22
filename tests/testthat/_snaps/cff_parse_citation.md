@@ -377,7 +377,6 @@
     pages: '123'
     publisher:
       name: Graham Hill
-      address: Madrid, ES
     notes: A note
     institution:
       name: An org
@@ -453,8 +452,9 @@
     month: '8'
     publisher:
       name: Publishing Co.
-      address: Some address, FR
     notes: A note
+    location:
+      name: Some address, FR
     authors:
     - name: Aaronson
       alias: BibTeX key from editor

@@ -162,7 +162,11 @@ cff_parse_citation <- function(bib) {
 
   ## Treat address----
   # Usually the address of the publisher as per BibTeX
-  if (!is.null(merged_person_ok$publisher)) {
+  if (!is.null(merged_person_ok$publisher) &
+    !(merged_person_ok$type %in% c(
+      "conference", "conference-paper",
+      "proceedings"
+    ))) {
     merged_person_ok$publisher$address <- merged_person_ok$address
   }
 
@@ -303,6 +307,13 @@ parse_bibtex_for_cff <- function(bib) {
     conf <- person(bib$booktitle)
 
     init_cff_obj$conference <- cff_parse_person(conf)
+    init_cff_obj$location <- cff_parse_person(loc)
+  }
+
+  # Tweak proceedings (bx proceedings)
+  if (init_cff_obj$type == "proceedings") {
+    init_cff_obj$`collection-title` <- clean_str(bib$booktitle)
+    loc <- person(bib$address)
     init_cff_obj$location <- cff_parse_person(loc)
   }
 
