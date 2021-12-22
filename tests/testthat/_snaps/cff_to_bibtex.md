@@ -62,8 +62,9 @@
 # InProceedings to bibtex
 
     @InProceedings{aberdeenbayer:1999,
+      address = {Murray Hill, New Jersey},
       author = {John Aberdeen and Samuel Bayer and Sasha Caskey and Laurie Damianos and Alan Goldschen and Lynette Hirschman and Dan Loehr and Hugo Trapper},
-      booktitle = {Proceedings of the IJCAI-99 Workshop on Knowledge and Reasoning in Practical Dialogue Systems Murray Hill, New Jersey},
+      booktitle = {Proceedings of the IJCAI-99 Workshop on Knowledge and Reasoning in Practical Dialogue Systems},
       editor = {Jan Alexandersson},
       organization = {IJCAI},
       pages = {81--86},

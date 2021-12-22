@@ -158,10 +158,16 @@ test_that("Test keywords and urls", {
 
 test_that("Article", {
   bib <- bibentry("Article",
+    author = person("R Core Team"),
     title = "A Language and Environment for Statistical Computing",
-    year = "2021",
     journal = "JOSS",
-    author = person("R Core Team")
+    year = "2021",
+    # Optional
+    volume = "vol1",
+    number = 3,
+    pages = "3--7",
+    month = "January",
+    note = "a note"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -177,12 +183,14 @@ test_that("Article", {
 
 test_that("Book", {
   bib <- bibentry("Book",
+    author = person("R Core Team"),
+    editor = "{Barnes and Noble}",
     title = "A Language and Environment for Statistical Computing",
+    publisher = "Graham and Hill",
     year = "2021",
+    # Optional
     month = "August",
-    publisher = "Graham Hill",
     chapter = "A chapter",
-    author = person("R Core Team")
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -198,10 +206,14 @@ test_that("Book", {
 
 test_that("Booklet", {
   bib <- bibentry("Booklet",
-    author = "G. H. Gonnet and R. Baeza-Yates",
     title = "Handbook of algorithms and data structures",
+    # Optional
+    author = "G. H. Gonnet and R. Baeza-Yates",
     howpublished = "booklet",
+    address = "Barcelona, ES",
+    month = "apr",
     year = "1991",
+    note = "A note"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -216,12 +228,22 @@ test_that("Booklet", {
 
 test_that("InBook", {
   bib <- bibentry("InBook",
+    author = person("R Core Team"),
+    editor = "{McGraw Hill}",
     title = "A Language and Environment for Statistical Computing",
-    year = "2021",
-    month = "August",
-    publisher = "Graham Hill",
     chapter = "A chapter",
-    author = person("R Core Team")
+    pages = "3--7",
+    publisher = "Graham Hill",
+    year = "2021",
+    # Optional
+    volume = "vol1",
+    number = 3,
+    series = "The {R} series",
+    type = "A chapter",
+    address = "Barcelona, ES",
+    edition = "Second",
+    month = "January",
+    note = "a note"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -236,13 +258,23 @@ test_that("InBook", {
 
 test_that("InCollection", {
   bib <- bibentry("InCollection",
+    author = person("R Core Team"),
     title = "A Language and Environment for Statistical Computing",
     booktitle = "A book",
-    year = "2021",
-    month = "August",
     publisher = "Graham Hill",
+    year = "2021",
+    # Optional
+    editor = "{McGraw Hill}",
+    volume = "vol1",
+    number = 3,
+    series = "The {R} series",
+    type = "Some type",
     chapter = "A chapter",
-    author = person("R Core Team")
+    pages = 123,
+    address = "Madrid, ES",
+    edition = "Third",
+    month = "August",
+    note = "A note"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -258,11 +290,20 @@ test_that("InCollection", {
 
 test_that("InProceedings", {
   bib <- bibentry("InProceedings",
+    author = person("R Core Team"),
     title = "A Language and Environment for Statistical Computing",
     booktitle = "A book",
     year = "2021",
-    month = "August",
-    author = person("R Core Team")
+    # Optional
+    editor = "{McGraw Hill}",
+    volume = "vol1",
+    number = 3,
+    series = "The {R} series",
+    pages = 123,
+    address = "Madrid, ES",
+    organization = "An org",
+    publisher = "Graham Hill",
+    note = "A note"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -279,10 +320,15 @@ test_that("InProceedings", {
 test_that("Manual", {
   bib <- bibentry("Manual",
     title = "A Language and Environment for Statistical Computing",
-    title = "A book",
-    year = "2021",
+
+    # Optional
+    author = person("R Core Team"),
+    organization = "An org",
+    address = "Leganes, ES",
+    edition = "Fourth",
     month = "August",
-    author = person("R Core Team")
+    year = "2021",
+    note = "A note"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -298,12 +344,38 @@ test_that("Manual", {
 
 test_that("MastersThesis", {
   bib <- bibentry("MastersThesis",
+    author = person("R Core Team"),
     title = "A Language and Environment for Statistical Computing",
-    title = "A book",
-    year = "2021",
     school = "Trinity College",
+    year = "2021",
+
+    # Optional
+    type = "Master thesis",
+    address = "Leganes, Madrid",
     month = "August",
-    author = person("R Core Team")
+    note = "A note"
+  )
+
+  bibparsed <- cff_parse_citation(bib)
+  expect_snapshot_output(bibparsed)
+
+  cffobj <- cff_create(cff(),
+    keys = list(references = list(bibparsed))
+  )
+
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+})
+
+
+test_that("Misc", {
+  bib <- bibentry("Misc",
+    # Optional
+    author = person("R Core Team"),
+    title = "A Language and Environment for Statistical Computing",
+    howpublished = "CD-ROM",
+    month = 1,
+    year = "2021",
+    note = "A note"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -319,12 +391,16 @@ test_that("MastersThesis", {
 
 test_that("PhdThesis", {
   bib <- bibentry("PhdThesis",
+    author = person("R Core Team"),
     title = "A Language and Environment for Statistical Computing",
-    title = "A book",
-    year = "2021",
     school = "Trinity College",
+    year = "2021",
+
+    # Optional
+    type = "Some type",
+    address = "Leganes, Madrid",
     month = "August",
-    author = person("R Core Team")
+    note = "A note"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -342,8 +418,17 @@ test_that("Proceedings", {
   bib <- bibentry("Proceedings",
     title = "A Language and Environment for Statistical Computing",
     year = "2021",
+
+    # Optional
+    editor = "Aaronson",
+    volume = 1,
+    number = 3,
+    series = "The {R} series",
+    address = "Some address, FR",
     month = "August",
-    author = person("R Core Team")
+    organization = "An org",
+    publisher = "{Publishing Co.}",
+    note = "A note"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -358,11 +443,16 @@ test_that("Proceedings", {
 
 test_that("TechReport", {
   bib <- bibentry("TechReport",
+    author = person("R Core Team"),
     title = "A Language and Environment for Statistical Computing",
-    year = "2021",
     institution = "MIT",
+    year = "2021",
+    # Optional
+    type = "Some type",
+    number = 900,
+    address = "An address, FR",
     month = "aug",
-    author = person("R Core Team")
+    note = "Some note"
   )
 
   bibparsed <- cff_parse_citation(bib)
@@ -377,11 +467,13 @@ test_that("TechReport", {
 
 test_that("Unpublished", {
   bib <- bibentry("Unpublished",
+    author = person("R Core Team"),
     title = "A Language and Environment for Statistical Computing",
+    note = "Preprint",
+
+    # Optional
     year = "2021",
-    note = "Not published",
     month = "8",
-    author = person("R Core Team")
   )
 
   bibparsed <- cff_parse_citation(bib)

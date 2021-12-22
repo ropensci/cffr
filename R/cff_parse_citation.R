@@ -163,8 +163,19 @@ cff_parse_citation <- function(bib) {
   ## Treat address----
   # Usually the address of the publisher as per BibTeX
   if (!is.null(merged_person_ok$publisher)) {
-    merged_person_ok$publisher$city <- merged_person_ok$address
+    merged_person_ok$publisher$address <- merged_person_ok$address
   }
+
+  # If this is a conference-paper then add to conference
+  if (!is.null(merged_person_ok$conference)) {
+    merged_person_ok$conference$address <- merged_person_ok$address
+  }
+
+  # If is a report, add to institution
+  if (merged_person_ok$type == "report" & !is.null(merged_person_ok$institution)) {
+    merged_person_ok$institution$address <- merged_person_ok$address
+  }
+
 
   # Remove non-valid names so far
   validnames <- cff_schema_definitions_refs()
@@ -289,15 +300,22 @@ parse_bibtex_for_cff <- function(bib) {
 
 
     loc <- person(bib$address)
-    conf <- person(bib$booktitle, comment = c("city" = bib$address))
+    conf <- person(bib$booktitle)
 
     init_cff_obj$conference <- cff_parse_person(conf)
     init_cff_obj$location <- cff_parse_person(loc)
   }
 
+  # Tweak bx booklet, bx_manual, bx *thesis
+  if (init_cff_obj$type %in% c("pamphlet", "manual", "thesis")) {
+    loc <- person(bib$address)
+    init_cff_obj$location <- cff_parse_person(loc)
+  }
+
+
+
 
   # Clean final list
-  init_cff_obj <- lapply(init_cff_obj, clean_str)
   init_cff_obj <- drop_null(init_cff_obj)
   return(init_cff_obj)
 }

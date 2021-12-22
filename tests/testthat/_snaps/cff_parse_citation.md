@@ -279,133 +279,210 @@
 # Article
 
     type: article
-    title: A Language and Environment for Statistical Computing
-    year: '2021'
-    journal: JOSS
     authors:
     - name: R Core Team
+    title: A Language and Environment for Statistical Computing
+    journal: JOSS
+    year: '2021'
+    volume: vol1
+    number: '3'
+    pages: 3--7
+    month: '1'
+    notes: a note
 
 # Book
 
     type: book
-    title: A Language and Environment for Statistical Computing
-    year: '2021'
-    month: '8'
-    publisher:
-      name: Graham Hill
-    section: A chapter
     authors:
     - name: R Core Team
+    editors:
+    - name: Barnes and Noble
+    title: A Language and Environment for Statistical Computing
+    publisher:
+      name: Graham and Hill
+    year: '2021'
+    month: '8'
+    section: A chapter
 
 # Booklet
 
     type: pamphlet
+    title: Handbook of algorithms and data structures
     authors:
     - family-names: Gonnet
       given-names: G. H.
     - family-names: Baeza-Yates
       given-names: R.
-    title: Handbook of algorithms and data structures
     medium: booklet
+    month: '4'
     year: '1991'
+    notes: A note
+    location:
+      name: Barcelona, ES
 
 # InBook
 
     type: book
-    title: A Language and Environment for Statistical Computing
-    year: '2021'
-    month: '8'
-    publisher:
-      name: Graham Hill
-    section: A chapter
     authors:
     - name: R Core Team
+    editors:
+    - name: McGraw Hill
+    title: A Language and Environment for Statistical Computing
+    section: A chapter A chapter
+    pages: 3--7
+    publisher:
+      name: Graham Hill
+      address: Barcelona, ES
+    year: '2021'
+    volume: vol1
+    number: '3'
+    edition: Second
+    month: '1'
+    notes: a note
+    collection-title: The R series
 
 # InCollection
 
     type: generic
-    title: A Language and Environment for Statistical Computing
-    collection-title: A book
-    year: '2021'
-    month: '8'
-    publisher:
-      name: Graham Hill
-    section: A chapter
     authors:
     - name: R Core Team
+    title: A Language and Environment for Statistical Computing
+    collection-title: A book
+    publisher:
+      name: Graham Hill
+      address: Madrid, ES
+    year: '2021'
+    editors:
+    - name: McGraw Hill
+    volume: vol1
+    number: '3'
+    section: Some type A chapter
+    pages: '123'
+    edition: Third
+    month: '8'
+    notes: A note
 
 # InProceedings
 
     type: conference-paper
+    authors:
+    - name: R Core Team
     title: A Language and Environment for Statistical Computing
     collection-title: A book
     year: '2021'
-    month: '8'
-    authors:
-    - name: R Core Team
+    editors:
+    - name: McGraw Hill
+    volume: vol1
+    number: '3'
+    pages: '123'
+    publisher:
+      name: Graham Hill
+      address: Madrid, ES
+    notes: A note
+    institution:
+      name: An org
     conference:
       name: A book
+      address: Madrid, ES
+    location:
+      name: Madrid, ES
 
 # Manual
 
     type: manual
     title: A Language and Environment for Statistical Computing
-    year: '2021'
-    month: '8'
     authors:
     - name: R Core Team
+    edition: Fourth
+    month: '8'
+    year: '2021'
+    notes: A note
+    institution:
+      name: An org
+    location:
+      name: Leganes, ES
 
 # MastersThesis
 
     type: thesis
-    title: A Language and Environment for Statistical Computing
-    year: '2021'
-    department: Trinity College
-    month: '8'
     authors:
     - name: R Core Team
+    title: A Language and Environment for Statistical Computing
+    department: Trinity College
+    year: '2021'
+    month: '8'
+    notes: A note
     thesis-type: Master's Thesis
+    location:
+      name: Leganes, Madrid
+
+# Misc
+
+    type: generic
+    authors:
+    - name: R Core Team
+    title: A Language and Environment for Statistical Computing
+    medium: CD-ROM
+    month: '1'
+    year: '2021'
+    notes: A note
 
 # PhdThesis
 
     type: thesis
-    title: A Language and Environment for Statistical Computing
-    year: '2021'
-    department: Trinity College
-    month: '8'
     authors:
     - name: R Core Team
+    title: A Language and Environment for Statistical Computing
+    department: Trinity College
+    year: '2021'
+    month: '8'
+    notes: A note
     thesis-type: PhD Thesis
+    location:
+      name: Leganes, Madrid
 
 # Proceedings
 
     type: proceedings
     title: A Language and Environment for Statistical Computing
     year: '2021'
+    editors:
+    - name: Aaronson
+    volume: '1'
+    number: '3'
     month: '8'
+    publisher:
+      name: Publishing Co.
+      address: Some address, FR
+    notes: A note
     authors:
-    - name: R Core Team
+    - name: Aaronson
+      alias: BibTeX key from editor
 
 # TechReport
 
     type: report
-    title: A Language and Environment for Statistical Computing
-    year: '2021'
-    institution:
-      name: MIT
-    month: '8'
     authors:
     - name: R Core Team
+    title: A Language and Environment for Statistical Computing
+    institution:
+      name: MIT
+      address: An address, FR
+    year: '2021'
+    number: '900'
+    month: '8'
+    notes: Some note
+    section: Some type
 
 # Unpublished
 
     type: unpublished
-    title: A Language and Environment for Statistical Computing
-    year: '2021'
-    notes: Not published
-    month: '8'
     authors:
     - name: R Core Team
+    title: A Language and Environment for Statistical Computing
+    notes: Preprint
+    year: '2021'
+    month: '8'
 
 # Parse persons on CITATION
 
