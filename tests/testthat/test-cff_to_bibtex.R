@@ -1,31 +1,46 @@
 test_that("Article to bibtex", {
   bib <- bibentry("Article",
-    author = "Marvin Belzer",
-    title = "Intentional Social Action and We-Intentions",
-    journal = "Analyse & Kritik",
-    year = 2001,
-    volume = 8,
-    number = 1,
-    pages = "86--106",
+    key = "knuth:1984",
+    author = person("R Core Team"),
+    title = "Literate Programming",
+    journal = "The Computer Journal",
+    year = "1984",
+    # Optional
+    volume = "27",
+    number = 2,
+    pages = "97--111",
+    month = "January",
     keywords = c("Some", "simple", "keywords")
   )
-
-  bibparsed <- cff_parse_citation(bib)
-  bib <- cff_to_bibtex(bibparsed)
+  expect_snapshot_output(toBibtex(bib))
+  x <- cff_parse_citation(bib)
+  bib <- cff_to_bibtex(x)
   expect_snapshot_output(toBibtex(bib))
 })
 
 
 test_that("Book to bibtex", {
   bib <- bibentry("Book",
-    author = "Salwa K. Abd-El-Hafiz and Victor R. Basili",
-    title = "Process-Centered Requirements Engineering",
-    publisher = "John Wiley and Sons",
-    year = 1996,
-    address = "New York",
-    ISBN = "0863801935 (Research Studies Press)",
+    key = "latex:companion",
+    author = "Frank Mittelbach and Michel Gossens
+            and Johannes Braams and David Carlisle
+            and Chris Rowley",
+    editor = "{Barnes and Noble}",
+    title = "The LaTeX Companion",
+    publisher = "Addison-Wesley Professional",
+    year = "2004",
+    # Optional
+    volume = "3",
+    number = 7,
+    series = "The LateX Books",
+    address = "Santa Monica",
+    edition = "Fourth",
+    month = "August",
+    note = "Example modified for testing purposes",
+    keywords = c("Two, keyword")
   )
 
+  expect_snapshot_output(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
   expect_snapshot_output(toBibtex(bib))
@@ -34,20 +49,28 @@ test_that("Book to bibtex", {
 
 test_that("Booklet to bibtex", {
   bib <- bibentry("Booklet",
-    author = "G. H. Gonnet and R. Baeza-Yates",
-    title = "Handbook of algorithms and data structures",
-    howpublished = "booklet",
-    year = "1991",
+    key = "Mustermann2016",
+    title = "Java Booklet",
+    # Optional
+    author = "Max Mustermann",
+    howpublished = "Internet",
+    address = "Stuttgart",
+    month = "feb",
+    year = "2016",
+    note = "Example modified from Jabref",
+    keywords = "java"
   )
 
+  expect_snapshot_output(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
   expect_snapshot_output(toBibtex(bib))
 })
 
-test_that("InBook to bibtex", {
+test_that("InBook to bibtex with pages", {
   bib <- bibentry("InBook",
     year = "2003",
+    month = "oct",
     pages = "175--196",
     title = "Architectural Mismatch Tolerance",
     chapter = "Tolerances and Other Notes",
@@ -57,12 +80,16 @@ test_that("InBook to bibtex", {
     submission_id = "12884_1074884456",
     ISBN = "3-540-40727-8",
     editor = "A. Lalanda",
+    edition = "Fifth",
     publisher = "Springer",
     volume = "2677",
+    number = "234",
+    address = "Lozoya",
     series = "Lecture Notes in Computer Science",
     type = "Architecting Dependable Systems",
   )
 
+  expect_snapshot_output(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
   expect_snapshot_output(toBibtex(bib))
@@ -81,6 +108,7 @@ test_that("InCollection to bibtex", {
     topic = "interrogatives;nl-semantics;polarity;"
   )
 
+  expect_snapshot_output(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
   expect_snapshot_output(toBibtex(bib))
@@ -99,11 +127,13 @@ test_that("InProceedings to bibtex", {
     year = 1999,
     editor = "Jan Alexandersson",
     pages = "81--86",
+    series = "A Series",
     organization = "IJCAI",
     publisher = "International Joint Conference on Artificial Intelligence",
     address = "Murray Hill, New Jersey",
   )
 
+  expect_snapshot_output(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
   expect_snapshot_output(toBibtex(bib))
@@ -121,6 +151,7 @@ test_that("Manual to bibtex", {
     howpublished = "CD-Rom",
   )
 
+  expect_snapshot_output(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
   expect_snapshot_output(toBibtex(bib))
@@ -134,10 +165,12 @@ test_that("MastersThesis to bibtex", {
                     Parsed Corpus: The Special Case of Comma",
     school = "Department of Computer Engineering and Information
                     Science, Bilkent University, Turkey",
+    address = "Ankara, Turkey",
     year = 1996,
     note = "Forthcoming",
   )
 
+  expect_snapshot_output(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
   expect_snapshot_output(toBibtex(bib))
@@ -154,6 +187,7 @@ test_that("PhdThesis to bibtex", {
     address = "Edinburgh",
   )
 
+  expect_snapshot_output(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
   expect_snapshot_output(toBibtex(bib))
@@ -165,7 +199,7 @@ test_that("Proceedings to bibtex", {
     author = "Chandrabrose Aravindan",
     title = "An Abductive Framework for Negation in Disjunctive
                     Logic Programming",
-    booktitle = "{JELIA}'96",
+    organization = "{JELIA}'96",
     year = 1996,
     editor = "Jose Julio Alferes and Luis Moniz Pereira and Eva Orlowska",
     publisher = "Springer-Verlag",
@@ -173,6 +207,7 @@ test_that("Proceedings to bibtex", {
     missinginfo = "pages",
   )
 
+  expect_snapshot_output(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
   expect_snapshot_output(toBibtex(bib))
@@ -188,6 +223,7 @@ test_that("TechReport to bibtex", {
     address = "Pittsburgh, PA 15260",
   )
 
+  expect_snapshot_output(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
   expect_snapshot_output(toBibtex(bib))
@@ -202,11 +238,36 @@ test_that("Unpublished to bibtex", {
     missinginfo = "Date is  guess.",
   )
 
+  expect_snapshot_output(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
   expect_snapshot_output(toBibtex(bib))
 })
 
+
+test_that("particle names", {
+  bib <- bibentry("Book",
+    title        = "A Handbook for Scholars",
+    author       = person("Mary-Claire", "van Leunen"),
+    year         = 1979,
+    publisher    = "Knopf"
+  )
+
+
+  bibparsed <- cff_parse_citation(bib)
+  bibparsed$authors <- cff_parse_person_bibtex("van Leunen, Mary-Claire and Davis, Jr., Sammy")
+
+  cffobj <- cff_create(cff(),
+    keys = list(references = list(bibparsed))
+  )
+
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+
+  expect_snapshot_output(bibparsed)
+
+  bib <- cff_to_bibtex(bibparsed)
+  expect_snapshot_output(toBibtex(bib))
+})
 
 test_that("From plain cff with pref citation", {
   s <- cff()

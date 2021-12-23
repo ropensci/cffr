@@ -238,6 +238,7 @@ cff_schema_definitions_refs <- function() {
     "scope",
     "section",
     "senders",
+    "start",
     "status",
     "term",
     "thesis-type",

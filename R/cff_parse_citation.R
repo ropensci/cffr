@@ -175,8 +175,8 @@ cff_parse_citation <- function(bib) {
     merged_person_ok$conference$address <- merged_person_ok$address
   }
 
-  # If is a report, add to institution
-  if (merged_person_ok$type == "report" & !is.null(merged_person_ok$institution)) {
+  # If is a report or a thesis, add to institution
+  if (merged_person_ok$type %in% c("report", "thesis") & !is.null(merged_person_ok$institution)) {
     merged_person_ok$institution$address <- merged_person_ok$address
   }
 
@@ -215,7 +215,13 @@ cff_parse_citation <- function(bib) {
   ## keywords----
   if ("keywords" %in% names(parse_cit)) {
     newkeys <- trimws(unique(unlist(strsplit(parse_cit$keywords, ","))))
-    parse_cit$keywords <- newkeys
+    length(newkeys)
+    # A single keyword creates error
+    if (length(newkeys) > 1) {
+      parse_cit$keywords <- newkeys
+    } else {
+      parse_cit$keywords <- NULL
+    }
   }
 
 
@@ -254,7 +260,7 @@ parse_bibtex_for_cff <- function(bib) {
     "article" = "article",
     "book" = "book",
     "booklet" = "pamphlet",
-    "conference" = "conference",
+    "conference" = "conference-paper",
     "inbook" = "book",
     # "incollection" = ,
     "inproceedings" = "conference-paper",
@@ -282,14 +288,14 @@ parse_bibtex_for_cff <- function(bib) {
 
   # Else add this to cff section, along with chapter
   if (init_type %in% c("inbook", "incollection", "techreport")) {
-    init_cff_obj$section <- clean_str(c(bib$type, bib$chapter))
+    init_cff_obj$section <- clean_str(bib$chapter)
   }
 
   # Tweak organizations: In manual and conferences use the cff
   # institution. BibTeX doesn't prescribe use of orgs. and institutions
   # altogether
 
-  if (init_cff_obj$type %in% c("manual", "conference", "conference-paper")) {
+  if (init_cff_obj$type %in% c("manual")) {
     init_cff_obj$institution <- clean_str(bib$organization)
   }
 
@@ -298,27 +304,30 @@ parse_bibtex_for_cff <- function(bib) {
     init_cff_obj$`collection-title` <- clean_str(bib$series)
   }
 
-  # Tweak conference-paper (bx inproceedings)
-  if (init_cff_obj$type == "conference-paper") {
+  # Tweak conference-paper and proceedings (bx inproceedings)
+  if (init_cff_obj$type %in% c("conference-paper", "proceedings")) {
     init_cff_obj$`collection-title` <- clean_str(bib$booktitle)
 
 
     loc <- person(bib$address)
-    conf <- person(bib$booktitle)
+    org <- person(bib$organization)
+    conf <- person(bib$series)
 
     init_cff_obj$conference <- cff_parse_person(conf)
+    init_cff_obj$institution <- cff_parse_person(org)
     init_cff_obj$location <- cff_parse_person(loc)
   }
 
-  # Tweak proceedings (bx proceedings)
-  if (init_cff_obj$type == "proceedings") {
-    init_cff_obj$`collection-title` <- clean_str(bib$booktitle)
-    loc <- person(bib$address)
-    init_cff_obj$location <- cff_parse_person(loc)
+
+  # Tweak thesis bx *thesis
+  if (init_cff_obj$type %in% c("thesis")) {
+    school <- person(bib$school)
+    init_cff_obj$institution <- cff_parse_person(school)
   }
 
-  # Tweak bx booklet, bx_manual, bx *thesis
-  if (init_cff_obj$type %in% c("pamphlet", "manual", "thesis")) {
+
+  # Tweak bx booklet, bx_manual,
+  if (init_cff_obj$type %in% c("pamphlet", "manual")) {
     loc <- person(bib$address)
     init_cff_obj$location <- cff_parse_person(loc)
   }
@@ -344,17 +353,20 @@ parse_core_bibtex_fields <- function(parse_cit) {
   # publisher school series title type year
 
   # No mapping needed (direct mapping)
-  # edition institution journal month number pages publisher title volume year
+  # edition institution journal month publisher title volume year
 
   # Mapped:
-  # author booktitle chapter editor howpublished note school
+  # author booktitle chapter editor howpublished note number school
   nm[nm == "author"] <- "authors"
   nm[nm == "booktitle"] <- "collection-title"
   nm[nm == "chapter"] <- "section"
   nm[nm == "editor"] <- "editors"
   nm[nm == "howpublished"] <- "medium"
   nm[nm == "note"] <- "notes"
-  nm[nm == "school"] <- "department"
+  nm[nm == "number"] <- "issue"
+
+
+
 
   # Not mapped:
   # address annote crossref key organization series type
@@ -366,8 +378,23 @@ parse_core_bibtex_fields <- function(parse_cit) {
 
   names(parse_cit) <- nm
 
+
+
+  # Treat pages
+
+  pages <- parse_cit$pages
+  if (!is.null(pages)) {
+    spl <- unlist(strsplit(pages, "--"))
+
+    parse_cit$start <- spl[1]
+
+    if (length(spl) > 1) parse_cit$end <- paste(spl[-1], collapse = "--")
+  }
+
   # We need to remove the type from BibTeX, already parsed on
-  parse_cit <- parse_cit[nm != "type"]
+  parse_cit <- parse_cit[!nm %in% c("type", "pages")]
+
+
 
   return(parse_cit)
 }
@@ -384,30 +411,38 @@ tweak_author <- function(merged, key) {
     return(merged)
   }
 
-  # If no author add editor as authors
+  # If no author add editor as authors with an alias
   if (!is.null(merged$editors)) {
+    edits <- merged$editors
 
-    # Create editors
-    fam <- merged$editors$family
-    giv <- merged$editors$given
-    end <- paste(giv, fam)
-    end <- paste(end, collapse = " and ")
-    edit <- person(
-      given = clean_str(end),
-      comment = c("alias" = "BibTeX key from editor")
-    )
-    merged$authors <- edit
+
+    edits_parsed <- lapply(edits, function(x) {
+      un <- unclass(x)
+      un[[1]]$comment <- list(alias = "editor")
+
+      class(un) <- "person"
+      return(un)
+    })
+
+    edits_parsed <- do.call(c, edits_parsed)
+
+    merged$authors <- edits_parsed
     return(merged)
   }
 
   # If no editors, the recommended approach is to include a key field
-  if (is.null(key)) key <- "BibTeX key"
+  if (!is.null(key)) {
+    # Add alias for easy identification
+    bibkey <- person(family = key, comment = c(alias = "BibTeX key"))
 
-  # Add alias for easy identification
-  bibkey <- person(key, comment = c(alias = "BibTeX key"))
+    merged$authors <- bibkey
 
-  merged$authors <- bibkey
+    return(merged)
+  }
 
+  # If nothing then use missing and return
+
+  merged$authors <- person(family = "missing")
 
   return(merged)
 }

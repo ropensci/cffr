@@ -73,9 +73,9 @@ cff_to_bibtex <- function(x) {
     "book" = "book",
     "manual" = "manual",
     "unpublished" = "unpublished",
-    "conference" = "proceedings",
-    "proceedings" = "proceedings",
+    "conference" = "inproceedings",
     "conference-paper" = "inproceedings",
+    "proceedings" = "proceedings",
     "magazine-article" = "article",
     "newspaper-article" = "article",
     "pamphlet" = "booklet",
@@ -96,12 +96,23 @@ cff_to_bibtex <- function(x) {
     }
   }
 
+  # Check if it may be an incollection
+  # Hint: is misc with collection-title and publisher
+
+  if (tobibentry$bibtype == "misc" & !is.null(x$`collection-title`) &
+    !is.null(x$publisher)) {
+    tobibentry$bibtype <- "incollection"
+  }
+
+
   # address----
   # BibTeX 'address' is taken from the publisher (book, others) or the
   # conference (inproceedings).
 
   if (tobibentry$bibtype %in% c("proceedings", "inproceedings")) {
     addr_search <- x$conference
+  } else if (tobibentry$bibtype == "techreport") {
+    addr_search <- x$institution
   } else {
     addr_search <- x$publisher
   }
@@ -117,11 +128,18 @@ cff_to_bibtex <- function(x) {
     collapse = ", "
   ))
 
+  # As a fallback, use also location
+  if (is.null(tobibentry$address) &
+    !is.null(x$location)) {
+    tobibentry$address <- x$location$name
+  }
+
+
 
   # author----
   aut <- x$authors
   author <- lapply(aut, function(y) {
-    if (!is.null(y$name)) {
+    if ("name" %in% names(y)) {
       # Person protected on family
       person(family = clean_str(y$name))
     } else {
@@ -141,9 +159,13 @@ cff_to_bibtex <- function(x) {
   # booktitle ----
 
   # Only for incollections and inproceedings
-  if (tobibentry$bibtype == "incollection") {
+  if (tobibentry$bibtype %in% c("incollection", "inproceedings")) {
     tobibentry$booktitle <- x$`collection-title`
-  } else if (tobibentry$bibtype == "inproceedings") {
+  }
+
+  # Fallback to conference name
+
+  if (tobibentry$bibtype == "inproceedings" & is.null(tobibentry$booktitle)) {
     tobibentry$booktitle <- x$conference$name
   }
 
@@ -204,10 +226,18 @@ cff_to_bibtex <- function(x) {
     tobibentry$institution <- x$institution$name
   }
 
+
+  # Fallback for techreport, search on affiliation first author
+  if (tobibentry$bibtype == "techreport" & is.null(tobibentry$institution)) {
+    tobibentry$institution <- x$authors[[1]]$affiliation
+  }
+
   # journal----
   tobibentry$journal <- x$journal
 
-  # key: First two given of author and year----
+  # key First two given of author and year----
+
+
 
   aut_sur <- lapply(tobibentry$author$family[1:2], clean_str)
   aut_sur <- tolower(paste0(unlist(aut_sur), collapse = ""))
@@ -237,25 +267,36 @@ cff_to_bibtex <- function(x) {
   tobibentry$note <- x$notes
 
   # number----
-  tobibentry$number <- x$number
+  tobibentry$number <- x$issue
 
   # pages ----
 
-  tobibentry$pages <- x$pages
+  p <- unique(c(x$start, x$end))
 
+  if (!is.null(p)) tobibentry$pages <- paste(p, collapse = "--")
 
   # publisher ----
   tobibentry$publisher <- x$publisher$name
 
   # school ----
-  tobibentry$school <- x$department
+  # In thesis
+  if (x$type == "thesis") {
+    tobibentry$school <- tobibentry$institution
+    tobibentry$institution <- NULL
+  }
+
 
   # series----
   if (tobibentry$bibtype %in% c(
-    "book", "inbook",
-    "proceedings"
+    "book", "inbook"
   )) {
     tobibentry$series <- x$`collection-title`
+  }
+
+  if (tobibentry$bibtype %in% c(
+    "proceedings", "inproceedings"
+  )) {
+    tobibentry$series <- x$conference$name
   }
 
   # title ----
@@ -265,9 +306,17 @@ cff_to_bibtex <- function(x) {
   # volume----
   tobibentry$volume <- x$volume
 
-  # year
+  # year ----
 
   tobibentry$year <- x$year
+
+  # Fallback
+
+  if (is.null(tobibentry$year) && !is.null(x$`date-released`)) {
+    # Should be YYYY-MM-DD to be valid on cff, so
+
+    tobibentry$year <- substr(x$`date-released`, 1, 4)
+  }
 
   # Keywords
   if (!is.null(x$keywords)) {
@@ -283,6 +332,35 @@ cff_to_bibtex <- function(x) {
   tobibentry$issn <- x$issn
   tobibentry$license <- x$license
   tobibentry$url <- x$url
+
+
+  # Guess inbook ----
+
+  if (tobibentry$bibtype == "book" & !is.null(
+    c(tobibentry$chapter, tobibentry$pages)
+  )) {
+    tobibentry$bibtype <- "inbook"
+  }
+
+  # Not use author in proceedings ----
+
+  if (x$type == "proceedings") {
+    tobibentry$author <- NULL
+  }
+
+  # sort ----
+  # based on default by
+  # https://flamingtempura.github.io/bibtex-tidy/
+  tosort <- c(
+    "title", "author", "year", "month", "day", "journal", "booktitle",
+    "publisher", "address", "editor", "series", "volume", "number", "pages",
+    "doi", "isbn", "issn", "url", "note"
+  )
+
+  unique <- unique(c(tosort, names(tobibentry)))
+  sorted <- unique[unique %in% names(tobibentry)]
+  tobibentry <- tobibentry[sorted]
+
 
   bib <- do.call(bibentry, tobibentry)
 

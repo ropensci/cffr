@@ -30,8 +30,9 @@
         given-names: Hilmar
       year: '2016'
       volume: '7'
-      pages: 352--357
       doi: 10.1111/2041-210X.12469
+      start: '352'
+      end: '357'
     repository-code: https://github.com/test/package
     url: https://test.github.io/package/
     contact:

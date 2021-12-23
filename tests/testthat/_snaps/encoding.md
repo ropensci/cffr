@@ -115,9 +115,10 @@
       journal: Journal of Statistical Software
       year: '2016'
       volume: '70'
-      number: '10'
-      pages: 1--35
+      issue: '10'
       doi: 10.18637/jss.v070.i10
+      start: '1'
+      end: '35'
     - type: article
       authors:
       - family-names: Meyer
@@ -130,7 +131,8 @@
       journal: Journal of Statistical Software
       year: '2017'
       volume: '77'
-      number: '11'
-      pages: 1--55
+      issue: '11'
       doi: 10.18637/jss.v077.i11
+      start: '1'
+      end: '55'
 

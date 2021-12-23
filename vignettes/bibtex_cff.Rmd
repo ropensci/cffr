@@ -35,8 +35,6 @@ thisart <- bibentry("Article",
   journal = "The {cffr} package",
   year = 2022,
   volume = "Vignettes",
-  abstract = "An (un) opinionated crosswalk between {BibTeX} and {CFF}. This article presents a crosswalk between BibTeX and Citation File Format, as
-  it is performed by the cffr package (R software)."
 )
 cat("  \n")
 thisart
@@ -58,7 +56,7 @@ and [Leslie
 Lamport](https://en.wikipedia.org/wiki/Leslie_Lamport "Leslie Lamport") back in
 1985. An example structure of a BibTeX entry would be:
 
-``` {.bib}
+``` bib
 @book{einstein1921,
     title        = {Relativity: The Special and the General Theory},
     author       = {Einstein, A.},
@@ -139,26 +137,36 @@ Regarding the entries, `bibentry()` does not implement the **\@conference**
 entry. However, we can replace that key by **\@inproceedings** given that the
 definition is identical:
 
-```{r try-conf}
+```{r try-conf, eval=FALSE}
 
 try(bibentry("Conference",
   key = "conference",
   author = "Peter Draper",
-  title = "The title of the work",
-  booktitle = "The title of the book",
+  title = "Title",
+  booktitle = "Conference",
   year = 1993
 ))
+#> Error in (function (bibtype, textVersion, header = NULL, footer = NULL,  :
+#>   'bibtype' has to be one of Article, Book, Booklet, InBook, InCollection,
+#>      InProceedings, Manual, MastersThesis, Misc, PhdThesis, Proceedings,
+#>      TechReport, Unpublished
 
 # Replace by InProceedings
 inpr <- bibentry("InProceedings",
   key = "conference",
   author = "Peter Draper",
-  title = "The title of the work",
-  booktitle = "The title of the book",
+  title = "Title",
+  booktitle = "Conference",
   year = 1993
 )
 
-print(inpr, style = "citation")
+toBibtex(inpr)
+#> @InProceedings{conference,
+#>   author = {Peter Draper},
+#>   title = {Title},
+#>   booktitle = {Conference},
+#>   year = {1993},
+#> }
 ```
 
 ### Fields {#fields}
@@ -222,9 +230,9 @@ would be ignored on the raw implementation of BibTeX:
 
 There is a strict relation between Entries and Fields on BibTeX. Dependending on
 the type of entries, some fields are required while others are optional or even
-ignored. On the following table, required field are flagged as **r** and
-optional fields are flagged as **o.** Fields with an asterisk (**\***) denotes
-that there are some degree of optionality on the requirement of the field, see
+ignored. On the following table, required field are flagged as **\*** and
+optional fields are flagged as **-**. Fields on parenthesis **()** denotes that
+there are some degree of optionality on the requirement of the field, see
 @patashnik1988 for more information.
 
 ```{r entry_fields, echo=FALSE}
@@ -321,37 +329,22 @@ to CFF and another for conversions from CFF to BibTeX
 For converting general BibTeX entries to CFF types, the following crosswalk is
 proposed:
 
-+---------------------------------+---------------------------+
-| BibTeX                          | CFF                       |
-+=================================+===========================+
-| **\@article**                   | article                   |
-+---------------------------------+---------------------------+
-| **\@book**                      | book                      |
-+---------------------------------+---------------------------+
-| **\@booklet**                   | pamphlet                  |
-+---------------------------------+---------------------------+
-| **\@conference**                | conference                |
-+---------------------------------+---------------------------+
-| **\@inbook**                    | book                      |
-+---------------------------------+---------------------------+
-| **\@incollection**              | generic                   |
-+---------------------------------+---------------------------+
-| **\@inproceedings**             | conference-paper          |
-+---------------------------------+---------------------------+
-| **\@manual**                    | manual                    |
-+---------------------------------+---------------------------+
-| **\@mastersthesis**             | thesis                    |
-+---------------------------------+---------------------------+
-| **\@misc**                      | generic                   |
-+---------------------------------+---------------------------+
-| **\@phdthesis**                 | thesis                    |
-+---------------------------------+---------------------------+
-| **\@proceedings**               | proceedings               |
-+---------------------------------+---------------------------+
-| **\@techreport**                | report                    |
-+---------------------------------+---------------------------+
-| **\@unpublished**               | unpublished               |
-+---------------------------------+---------------------------+
+| BibTeX              | CFF              |
+|---------------------|------------------|
+| **\@article**       | article          |
+| **\@book**          | book             |
+| **\@booklet**       | pamphlet         |
+| **\@conference**    | conference       |
+| **\@inbook**        | book             |
+| **\@incollection**  | generic          |
+| **\@inproceedings** | conference-paper |
+| **\@manual**        | manual           |
+| **\@mastersthesis** | thesis           |
+| **\@misc**          | generic          |
+| **\@phdthesis**     | thesis           |
+| **\@proceedings**   | proceedings      |
+| **\@techreport**    | report           |
+| **\@unpublished**   | unpublished      |
 
 : Entry/Type crosswalk: From BibteX to CFF
 
@@ -407,43 +400,27 @@ Would be parsed as:
 cff_parse_citation(inpr)
 ```
 
-
-
 ### Fields/Key crosswalk
 
 There is a large degree of similarity between the definition and names of some
 BibTeX fields and CFF keys. On the following cases, the equivalence is almost
 straightforward:
 
-+-----------------------------------------------+-------------------------------+
-| BibTeX                                        | CFF                           |
-+===============================================+===============================+
-| author                                        | authors                       |
-+-----------------------------------------------+-------------------------------+
-| edition                                       | edition                       |
-+-----------------------------------------------+-------------------------------+
-| editor                                        | editors                       |
-+-----------------------------------------------+-------------------------------+
-| institution                                   | institution                   |
-+-----------------------------------------------+-------------------------------+
-| journal                                       | journal                       |
-+-----------------------------------------------+-------------------------------+
-| month                                         | month                         |
-+-----------------------------------------------+-------------------------------+
-| note                                          | notes                         |
-+-----------------------------------------------+-------------------------------+
-| number                                        | number                        |
-+-----------------------------------------------+-------------------------------+
-| pages                                         | pages                         |
-+-----------------------------------------------+-------------------------------+
-| publisher                                     | publisher                     |
-+-----------------------------------------------+-------------------------------+
-| title                                         | title                         |
-+-----------------------------------------------+-------------------------------+
-| volume                                        | volume                        |
-+-----------------------------------------------+-------------------------------+
-| year                                          | year                          |
-+-----------------------------------------------+-------------------------------+
+| BibTeX      | CFF         |
+|-------------|-------------|
+| author      | authors     |
+| edition     | edition     |
+| editor      | editors     |
+| institution | institution |
+| journal     | journal     |
+| month       | month       |
+| note        | notes       |
+| number      | number      |
+| pages       | pages       |
+| publisher   | publisher   |
+| title       | title       |
+| volume      | volume      |
+| year        | year        |
 
 : Fields: BibTeX/CFF direct mapping
 
