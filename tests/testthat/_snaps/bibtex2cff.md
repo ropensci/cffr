@@ -1,9 +1,9 @@
 # Article
 
     type: article
+    title: Literate Programming
     authors:
     - name: R Core Team
-    title: Literate Programming
     journal: The Computer Journal
     year: '1984'
     volume: '27'
@@ -16,6 +16,7 @@
 # Book
 
     type: book
+    title: The LaTeX Companion
     authors:
     - family-names: Mittelbach
       given-names: Frank
@@ -29,7 +30,6 @@
       given-names: Chris
     editors:
     - name: Barnes and Noble
-    title: The LaTeX Companion
     publisher:
       name: Addison-Wesley Professional
       address: Santa Monica
@@ -52,15 +52,16 @@
     - family-names: Mustermann
       given-names: Max
     medium: Internet
+    location:
+      name: Stuttgart
     month: '2'
     year: '2016'
     notes: Example modified from Jabref
-    location:
-      name: Stuttgart
 
 # Conference
 
     type: conference-paper
+    title: On Notions of Information Transfer in VLSI Circuits
     authors:
     - family-names: Oaho
       given-names: Alfred V.
@@ -68,7 +69,6 @@
       given-names: Jeffrey D.
     - family-names: Yannakakis
       given-names: Mihalis
-    title: On Notions of Information Transfer in VLSI Circuits
     collection-title: Proc. Fifteenth Annual ACM STOC
     year: '1983'
     editors:
@@ -78,6 +78,8 @@
       given-names: Mihalis
     volume: '41'
     issue: '17'
+    location:
+      name: Boston
     publisher:
       name: Academic Press
     notes: Example modified for testing purposes
@@ -88,12 +90,11 @@
       address: Boston
     institution:
       name: ACM
-    location:
-      name: Boston
 
 # InBook
 
     type: book
+    title: A Framework for Freeness Analysis
     authors:
     - family-names: King
       given-names: A.
@@ -102,7 +103,6 @@
       given-names: E
     - family-names: Succi
       given-names: G
-    title: A Framework for Freeness Analysis
     section: 7, 14
     publisher:
       name: Kluwer Academic Publishers
@@ -120,10 +120,10 @@
 # InCollection
 
     type: generic
+    title: Knowledge-Based Methods for WSD
     authors:
     - family-names: Mihalcea
       given-names: Rada
-    title: Knowledge-Based Methods for WSD
     collection-title: 'Word Sense Disambiguation: Algorithms and Applications'
     publisher:
       name: Springer
@@ -146,6 +146,7 @@
 # InProceedings
 
     type: conference-paper
+    title: On Notions of Information Transfer in VLSI Circuits
     authors:
     - family-names: Oaho
       given-names: Alfred V.
@@ -153,7 +154,6 @@
       given-names: Jeffrey D.
     - family-names: Yannakakis
       given-names: Mihalis
-    title: On Notions of Information Transfer in VLSI Circuits
     collection-title: Proc. Fifteenth Annual ACM STOC
     year: '1983'
     editors:
@@ -163,6 +163,8 @@
       given-names: Mihalis
     volume: '41'
     issue: '17'
+    location:
+      name: Boston
     publisher:
       name: Academic Press
     notes: Example modified for testing purposes
@@ -173,8 +175,6 @@
       address: Boston
     institution:
       name: ACM
-    location:
-      name: Boston
 
 # Manual
 
@@ -182,36 +182,36 @@
     title: A Language and Environment for Statistical Computing
     authors:
     - name: R Core Team
+    location:
+      name: Vienna, Austria
     edition: Fourth
     month: '8'
     year: '2021'
     notes: Example modified for testing purposes
     institution:
       name: R Foundation for Statistical Computing
-    location:
-      name: Vienna, Austria
 
 # MastersThesis
 
     type: thesis
+    title: An examination of keystroke dynamics for continuous user authentication
     authors:
     - family-names: Alsolami
       given-names: Eesa
-    title: An examination of keystroke dynamics for continuous user authentication
     year: '2012'
     month: '8'
     notes: Example modified for testing purposes
-    thesis-type: Master's Thesis
     institution:
       name: Queensland University of Technology
       address: Queensland, NZ
+    thesis-type: Master's Thesis
 
 # Misc
 
     type: generic
+    title: A Language and Environment for Statistical Computing
     authors:
     - name: R Core Team
-    title: A Language and Environment for Statistical Computing
     medium: CD-ROM
     month: '1'
     year: '2021'
@@ -220,22 +220,24 @@
 # PhdThesis
 
     type: thesis
+    title: An examination of keystroke dynamics for continuous user authentication
     authors:
     - family-names: Alsolami
       given-names: Eesa
-    title: An examination of keystroke dynamics for continuous user authentication
     year: '2012'
     month: '8'
     notes: Example modified for testing purposes
-    thesis-type: PhD Thesis
     institution:
       name: Queensland University of Technology
       address: Queensland, NZ
+    thesis-type: PhD Thesis
 
 # Proceedings
 
     type: proceedings
     title: Proc. Fifteenth Annual STOC
+    authors:
+    - name: anonymous
     year: '1983'
     editors:
     - family-names: Oz
@@ -244,6 +246,8 @@
       given-names: Mihalis
     volume: '1'
     issue: '17'
+    location:
+      name: Boston, US
     month: '8'
     publisher:
       name: Academic Press
@@ -253,25 +257,16 @@
       address: Boston, US
     institution:
       name: The OX Association for Computing Machinery
-    location:
-      name: Boston, US
-    authors:
-    - family-names: Oz
-      given-names: Wizard V.
-      alias: editor
-    - family-names: Yannakakis
-      given-names: Mihalis
-      alias: editor
 
 # TechReport
 
     type: report
+    title: Naive tools for studying compilation histories
     authors:
     - family-names: Jadud
       given-names: Matthew C.
     - family-names: Fincher
       given-names: Sally A.
-    title: Naive tools for studying compilation histories
     institution:
       name: University of Kent Canterbury
       address: Computing Laboratory, University of Kent, Canterbury, Kent, CT2 7NF
@@ -283,10 +278,10 @@
 # Unpublished
 
     type: unpublished
+    title: Demonstratives
     authors:
     - family-names: Kaplan
       given-names: D.
-    title: Demonstratives
     notes: Unpublished manuscript, UCLA
     year: '1977'
     month: '8'
@@ -294,52 +289,46 @@
 # Test entry without author
 
     type: proceedings
+    title: Proceedings of the 6th European Conference on Computer Systems
+    authors:
+    - name: anonymous
     editors:
     - family-names: Berbers
       given-names: Yolande
     - family-names: Zwaenepoel
       given-names: Willy
-    title: Proceedings of the 6th European Conference on Computer Systems
     collection-title: Proceedings of the 6th European Conference on Computer Systems
     publisher:
       name: ACM
     month: '4'
     year: '2006'
     isbn: 1-59593-322-02
-    authors:
-    - family-names: Berbers
-      given-names: Yolande
-      alias: editor
-    - family-names: Zwaenepoel
-      given-names: Willy
-      alias: editor
 
 # Test entry without author but has a key
 
     type: generic
     title: Proceedings of the 6th European Conference on Computer Systems
+    authors:
+    - name: anonymous
     collection-title: Proceedings of the 6th European Conference on Computer Systems
     publisher:
       name: ACM
     month: '4'
     year: '2006'
     isbn: 1-59593-322-02
-    authors:
-    - name: I am the key
-      alias: BibTeX key
 
 # Test entry without author and key
 
     type: generic
     title: Proceedings of the 6th European Conference on Computer Systems
+    authors:
+    - name: anonymous
     collection-title: Proceedings of the 6th European Conference on Computer Systems
     publisher:
       name: ACM
     month: '4'
     year: '2006'
     isbn: 1-59593-322-02
-    authors:
-    - name: missing
 
 # Skip misc without title
 
@@ -382,4 +371,38 @@
         given-names: Hugo
       year: '2019'
       url: https://CRAN.R-project.org/package=rromeo
+
+# Check extended BibLatex Fields
+
+    type: article
+    title: Computation of methodology hyphen independent ionic solvation free energies
+      from molecular simulations
+    authors:
+    - family-names: Kastenholz
+      given-names: M. A.
+    - family-names: Hünenbergerb
+      given-names: Philippe H.
+    journal: J. Chem. Phys.
+    year: '2006'
+    notes: Example modified for testing purposes
+    date-published: '2006-03-15'
+    filename: a_file.pdf
+    issue-title: Semantic 3D Media and Content
+    translators:
+    - family-names: Wicksteed
+      given-names: P. H.
+    - family-names: Cornford
+      given-names: F. M.
+    date-accessed: '2006-10-01'
+    pages: '528'
+    abstract: The computation of ionic solvation free energies from atomistic simulations
+      is a surprisingly difficult problem that has found no satisfactory solution for
+      more than 15 years.
+    doi: 10.1063/1.2172593
+    isbn: 0-816-52066-6
+    issn: 0097-8493
+    url: http://www.ctan.org
+    start: '55'
+    end: '65'
+    month: '3'
 

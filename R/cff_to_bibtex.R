@@ -138,6 +138,7 @@ cff_to_bibtex <- function(x) {
 
   # author----
   aut <- x$authors
+
   author <- lapply(aut, function(y) {
     if ("name" %in% names(y)) {
       # Person protected on family
@@ -160,7 +161,7 @@ cff_to_bibtex <- function(x) {
 
   # Only for incollections and inproceedings
   if (tobibentry$bibtype %in% c("incollection", "inproceedings")) {
-    tobibentry$booktitle <- x$`collection-title`
+    tobibentry$booktitle <- x[["collection-title"]]
   }
 
   # Fallback to conference name
@@ -253,6 +254,13 @@ cff_to_bibtex <- function(x) {
   # month----
   m <- x$month
 
+  # Fallback
+
+  if (is.null(m) && !is.null(x$`date-published`)) {
+    # Should be YYYY-MM-DD to be valid on cff, so
+    m <- as.integer(format(as.Date(x$`date-published`), "%m"))
+  }
+
   # Try to parse to 3 month string
   m_int <- suppressWarnings(as.integer(m))
   m_letters <- clean_str(tolower(month.abb[m_int]))
@@ -263,11 +271,15 @@ cff_to_bibtex <- function(x) {
     tobibentry$month <- clean_str(m)
   }
 
+
+
   # note ----
   tobibentry$note <- x$notes
 
   # number----
-  tobibentry$number <- x$issue
+
+
+  tobibentry$number <- x[["issue"]]
 
   # pages ----
 
@@ -323,18 +335,8 @@ cff_to_bibtex <- function(x) {
     tobibentry$keywords <- paste(x$keywords, collapse = ", ")
   }
 
-
-  # Add other interesting fields
-
-  tobibentry$doi <- x$doi
-  tobibentry$date <- x$`date-published`
-  tobibentry$isbn <- x$isbn
-  tobibentry$issn <- x$issn
-  tobibentry$license <- x$license
-  tobibentry$url <- x$url
-
-
   # Guess inbook ----
+  # inbook is a book where chapter or pages are present
 
   if (tobibentry$bibtype == "book" & !is.null(
     c(tobibentry$chapter, tobibentry$pages)
@@ -342,11 +344,58 @@ cff_to_bibtex <- function(x) {
     tobibentry$bibtype <- "inbook"
   }
 
-  # Not use author in proceedings ----
+  # Handle anonymous author
+  # If anonymous and not needed, then not use it
 
-  if (x$type == "proceedings") {
-    tobibentry$author <- NULL
+
+  if (!is.null(x$authors[[1]]$name)) {
+    if (x$authors[[1]]$name == "anonymous" &
+      tobibentry$bibtype %in% c(
+        "booklet", "manual",
+        "misc", "proceedings"
+      )) {
+      tobibentry$author <- NULL
+    }
   }
+
+  # Add other interesting fields for BibLateX ----
+
+  tobibentry$abstract <- x$abstract
+  tobibentry$doi <- x$doi
+  tobibentry$date <- x$`date-published`
+  tobibentry$file <- x$filename
+  tobibentry$issuetitle <- x$`issue-title`
+  tobibentry$isbn <- x$isbn
+  tobibentry$issn <- x$issn
+  tobibentry$pagetotal <- x$pages
+  tobibentry$url <- x$url
+  tobibentry$urldate <- x$`date-accessed`
+  tobibentry$version <- x$version
+  # Translators
+  trns <- x$translators
+
+  trnsbib <- lapply(trns, function(y) {
+    if ("name" %in% names(y)) {
+      # Person protected on family
+      paste0("{", clean_str(y$name), "}")
+    } else {
+      fam <- clean_str(paste(
+        clean_str(y$`name-particle`),
+        clean_str(y$`family-names`)
+      ))
+      jr <- clean_str(y$`name-suffix`)
+
+      given <- clean_str(y$`given-names`)
+
+      paste(c(fam, jr, given), collapse = ", ")
+    }
+  })
+
+  tobibentry$translator <- paste(unlist(trnsbib), collapse = " and ")
+
+
+
+
 
   # sort ----
   # based on default by

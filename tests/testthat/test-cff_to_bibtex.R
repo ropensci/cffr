@@ -196,7 +196,6 @@ test_that("PhdThesis to bibtex", {
 
 test_that("Proceedings to bibtex", {
   bib <- bibentry("Proceedings",
-    author = "Chandrabrose Aravindan",
     title = "An Abductive Framework for Negation in Disjunctive
                     Logic Programming",
     organization = "{JELIA}'96",
@@ -296,4 +295,94 @@ test_that("From file", {
 test_that("NULL", {
   s <- NULL
   expect_null(cff_to_bibtex(s))
+})
+
+
+test_that("Test anonymous", {
+  bib <- bibentry("Booklet",
+    title = "A booklet"
+  )
+
+
+  back <- cff_to_bibtex(cff_parse_citation(bib))
+  expect_snapshot_output(toBibtex(back))
+
+
+  bib <- bibentry("manual",
+    title = "A manual"
+  )
+
+
+  back <- cff_to_bibtex(cff_parse_citation(bib))
+  expect_snapshot_output(toBibtex(back))
+
+  bib <- bibentry("misc",
+    title = "A misc"
+  )
+
+
+  back <- cff_to_bibtex(cff_parse_citation(bib))
+  expect_snapshot_output(toBibtex(back))
+
+  bib <- bibentry("proceedings",
+    title = "proceedings",
+    year = 1984
+  )
+
+
+  back <- cff_to_bibtex(cff_parse_citation(bib))
+  expect_snapshot_output(toBibtex(back))
+})
+
+test_that("Fallback month", {
+  bib <- bibentry("Article",
+    title = "An Article",
+    author = "John Doe",
+    journal = "El Adelantado de Segovia",
+    year = "1678",
+    date = "1678-04-23"
+  )
+
+  expect_snapshot_output(toBibtex(bib))
+  x <- cff_parse_citation(bib)
+
+  # Delete here the month
+  x$month <- NULL
+
+  bibback <- cff_to_bibtex(x)
+  expect_snapshot_output(toBibtex(bibback))
+})
+
+
+test_that("Test BibLateX entry", {
+  bib <- bibentry("Article",
+    author = "M. A. Kastenholz, and Philippe H. Hünenbergerb",
+    title = "Computation of methodology hyphen independent ionic solvation
+                  free energies from molecular simulations",
+    journal = "J. Chem. Phys.",
+    year = 2006,
+    note = "Example modified for testing purposes",
+    pages = "55--65",
+
+    # Additional BibLatex Fields
+    date = "2006-03-15",
+    file = "a_file.pdf",
+    issuetitle = "Semantic {3D} Media and Content",
+    translator = "Wicksteed, P. H. and {The translator factory}",
+    urldate = "2006-10-01",
+    pagetotal = 528,
+    abstract = "The computation of ionic solvation free energies from
+                  atomistic simulations is a surprisingly difficult problem that
+                  has found no satisfactory solution for more than 15 years.",
+    doi = "10.1063/1.2172593",
+    isbn = "0-816-52066-6",
+    issn = "0097-8493",
+    url = "http://www.ctan.org"
+  )
+  expect_snapshot_output(toBibtex(bib))
+  x <- cff_parse_citation(bib)
+
+
+  parsed <- cff_to_bibtex(x)
+  expect_snapshot_output(toBibtex(parsed))
 })

@@ -259,7 +259,6 @@
 # Proceedings to bibtex
 
     @Proceedings{,
-      author = {Chandrabrose Aravindan},
       title = {An Abductive Framework for Negation in Disjunctive
                         Logic Programming},
       organization = {{JELIA}'96},
@@ -272,7 +271,7 @@
 
 ---
 
-    @Proceedings{aravindan:1996,
+    @Proceedings{anonymous:1996,
       title = {An Abductive Framework for Negation in Disjunctive Logic Programming},
       year = {1996},
       publisher = {Springer-Verlag},
@@ -388,7 +387,107 @@
       howpublished = {Hardcover book},
       institution = {Entity Project Team Conference entity},
       keywords = {Software, Citation},
+      abstract = {Description of the book.},
       date = {2017-10-31},
-      license = {Apache-2.0},
+      file = {book.zip},
+      issuetitle = {Special Issue on Software Citation},
+      pagetotal = {765},
+      urldate = {2017-10-31},
+      version = {0.0.1423-BETA},
+      translator = {van der Real Person, IV, One Truly and {Entity Project Team Conference entity}},
+    }
+
+# Test anonymous
+
+    @Booklet{anonymous,
+      title = {A booklet},
+    }
+
+---
+
+    @Manual{anonymous,
+      title = {A manual},
+    }
+
+---
+
+    @Misc{anonymous,
+      title = {A misc},
+    }
+
+---
+
+    @Proceedings{anonymous:1984,
+      title = {proceedings},
+      year = {1984},
+    }
+
+# Fallback month
+
+    @Article{,
+      title = {An Article},
+      author = {John Doe},
+      journal = {El Adelantado de Segovia},
+      year = {1678},
+      date = {1678-04-23},
+    }
+
+---
+
+    @Article{doe:1678,
+      title = {An Article},
+      author = {John Doe},
+      year = {1678},
+      month = {apr},
+      journal = {El Adelantado de Segovia},
+      date = {1678-04-23},
+    }
+
+# Test BibLateX entry
+
+    @Article{,
+      author = {M. A. Kastenholz and Philippe H. Hünenbergerb},
+      title = {Computation of methodology hyphen independent ionic solvation
+                      free energies from molecular simulations},
+      journal = {J. Chem. Phys.},
+      year = {2006},
+      note = {Example modified for testing purposes},
+      pages = {55--65},
+      date = {2006-03-15},
+      file = {a_file.pdf},
+      issuetitle = {Semantic {3D} Media and Content},
+      translator = {Wicksteed, P. H. and {The translator factory}},
+      urldate = {2006-10-01},
+      pagetotal = {528},
+      abstract = {The computation of ionic solvation free energies from
+                      atomistic simulations is a surprisingly difficult problem that
+                      has found no satisfactory solution for more than 15 years.},
+      doi = {10.1063/1.2172593},
+      isbn = {0-816-52066-6},
+      issn = {0097-8493},
+      url = {http://www.ctan.org},
+    }
+
+---
+
+    @Article{kastenholzh?nenbergerb:2006,
+      title = {Computation of methodology hyphen independent ionic solvation free energies from molecular simulations},
+      author = {M. A. Kastenholz and Philippe H. Hünenbergerb},
+      year = {2006},
+      month = {mar},
+      journal = {J. Chem. Phys.},
+      pages = {55--65},
+      doi = {10.1063/1.2172593},
+      isbn = {0-816-52066-6},
+      issn = {0097-8493},
+      url = {http://www.ctan.org},
+      note = {Example modified for testing purposes},
+      abstract = {The computation of ionic solvation free energies from atomistic simulations is a surprisingly difficult problem that has found no satisfactory solution for more than 15 years.},
+      date = {2006-03-15},
+      file = {a_file.pdf},
+      issuetitle = {Semantic 3D Media and Content},
+      pagetotal = {528},
+      urldate = {2006-10-01},
+      translator = {Wicksteed, P. H. and {The translator factory}},
     }
 

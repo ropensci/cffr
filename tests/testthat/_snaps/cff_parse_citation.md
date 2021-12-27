@@ -99,7 +99,6 @@
     - type: article
       title: 'RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic,
         Character, and Trait Data in R'
-      journal: Methods in Ecology and Evolution
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -109,16 +108,17 @@
         given-names: Rutger
       - family-names: Lapp
         given-names: Hilmar
+      journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
       doi: 10.1111/2041-210X.12469
       start: '352'
       end: '357'
     - type: book
+      title: 'ggplot2: Elegant Graphics for Data Analysis'
       authors:
       - family-names: Wickham
         given-names: Hadley
-      title: 'ggplot2: Elegant Graphics for Data Analysis'
       publisher:
         name: Springer-Verlag New York
       year: '2016'
@@ -145,7 +145,6 @@
     - type: article
       title: 'RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic,
         Character, and Trait Data in R'
-      journal: Methods in Ecology and Evolution
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -155,16 +154,17 @@
         given-names: Rutger
       - family-names: Lapp
         given-names: Hilmar
+      journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
       doi: 10.1111/2041-210X.12469
       start: '352'
       end: '357'
     - type: book
+      title: 'ggplot2: Elegant Graphics for Data Analysis'
       authors:
       - family-names: Wickham
         given-names: Hadley
-      title: 'ggplot2: Elegant Graphics for Data Analysis'
       publisher:
         name: Springer-Verlag New York
       year: '2016'
@@ -234,9 +234,9 @@
     references:
     - type: manual
       title: A Language and Environment for Statistical Computing
-      year: '2022'
       authors:
       - name: R Core Team
+      year: '2022'
       url: https://www.R-project.org/
       doi: 10.5281/zenodo.5366600
       identifiers:
@@ -265,9 +265,9 @@
     references:
     - type: manual
       title: A Language and Environment for Statistical Computing
-      year: '2022'
       authors:
       - name: R Core Team
+      year: '2022'
       url: https://www.R-project.org/
       keywords:
       - Some
@@ -282,11 +282,13 @@
 
     type: manual
     title: A Language and Environment for Statistical Computing
-    year: '2021'
     authors:
     - name: R Core Team
+    year: '2021'
     contact:
     - family-names: name
+      given-names: A
+    - family-names: contact
       given-names: A
     conference:
       name: A conference
@@ -297,21 +299,19 @@
       given-names: A
     - name: Ben and Jerry
     editors-series:
-    - family-names: series
-      given-names: A
-      name-particle: editor
-    institution:
-      name: A institution
-    location:
-      name: A location
+    - family-names: editor series
+      given-names: An
+    - name: Another
     publisher:
       name: A publisher
+      address: A location
     recipients:
     - family-names: recipient
       given-names: A
     senders:
-    - family-names: sender
-      given-names: A
+    - name: A Sender
+    - family-names: Sender
+      given-names: Another
     translators:
     - family-names: one
       given-names: Translator

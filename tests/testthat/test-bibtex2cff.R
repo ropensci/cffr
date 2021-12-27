@@ -347,8 +347,7 @@ test_that("TechReport", {
     # Optional
     type = "techreport",
     number = "3-03",
-    address = "Computing Laboratory, University of Kent, Canterbury,
-		 Kent, CT2 7NF",
+    address = "Computing Laboratory, University of Kent, Canterbury, Kent, CT2 7NF",
     month = "mar",
     note = "Example modified for testing purposes"
   )
@@ -399,15 +398,8 @@ test_that("Test entry without author", {
   bibparsed <- cff_parse_citation(bib)
 
   expect_identical(
-    bibparsed$authors[[1]]$alias,
-    "editor"
-  )
-
-  bibparsed$authors[[1]][1:2]
-
-  expect_identical(
-    bibparsed$authors[[1]][1:2],
-    bibparsed$editors[[1]][1:2]
+    bibparsed$authors[[1]]$name,
+    "anonymous"
   )
 
   expect_snapshot_output(bibparsed)
@@ -436,7 +428,7 @@ test_that("Test entry without author but has a key", {
 
   expect_identical(
     bibparsed$authors[[1]]$name,
-    bib$key
+    "anonymous"
   )
 
 
@@ -465,7 +457,7 @@ test_that("Test entry without author and key", {
 
   expect_identical(
     bibparsed$authors[[1]]$name,
-    "missing"
+    "anonymous"
   )
 
 
@@ -545,6 +537,43 @@ test_that("Skip misc without title, not skipping the good one", {
   expect_equal(
     cffobj$references[[1]]$title,
     "rromeo: An R Client for SHERPA/RoMEO API"
+  )
+
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+})
+
+
+test_that("Check extended BibLatex Fields", {
+  bib <- bibentry("Article",
+    author = "M. A. Kastenholz, and Philippe H. Hünenbergerb",
+    title = "Computation of methodology hyphen independent ionic solvation
+                  free energies from molecular simulations",
+    journal = "J. Chem. Phys.",
+    year = 2006,
+    note = "Example modified for testing purposes",
+    pages = "55--65",
+
+    # Additional BibLatex Fields
+    date = "2006-03-15",
+    file = "a_file.pdf",
+    issuetitle = "Semantic {3D} Media and Content",
+    translator = "Wicksteed, P. H. and Cornford, F. M.",
+    urldate = "2006-10-01",
+    pagetotal = 528,
+    abstract = "The computation of ionic solvation free energies from
+                  atomistic simulations is a surprisingly difficult problem that
+                  has found no satisfactory solution for more than 15 years.",
+    doi = "10.1063/1.2172593",
+    isbn = "0-816-52066-6",
+    issn = "0097-8493",
+    url = "http://www.ctan.org"
+  )
+
+  bibparsed <- cff_parse_citation(bib)
+  expect_snapshot_output(bibparsed)
+
+  cffobj <- cff_create(cff(),
+    keys = list(references = list(bibparsed))
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))

@@ -1,12 +1,18 @@
 ---
 title: "BibTeX and CFF"
-subtitle: An (un) opinionated crosswalk
+subtitle: A potential crosswalk
 bibliography: REFERENCES.bib
 author: Diego Hernangómez
 description: >-
-  This article presents a crosswalk between BibTeX and Citation File Format, as
-  it is performed by the cffr package (R software).
+  This article presents a crosswalk between BibTeX and Citation File Format 
+  [@druskat_citation_2021], as it is performed by the cffr package 
+  [@hernangomez2021].
+abstract: >-
+  This article presents a crosswalk between BibTeX and Citation File Format 
+  [@druskat_citation_2021], as it is performed by the cffr package 
+  [@hernangomez2021].
 link-citations: yes
+documentclass: article
 output: 
   rmarkdown::html_vignette:
     toc: true
@@ -21,6 +27,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+options(width = 60)
 ```
 
 ## Citation
@@ -29,7 +37,7 @@ Please cite this article as:
 
 ```{r cit, echo=FALSE, results='asis'}
 thisart <- bibentry("Article",
-  title = "{BibTeX} and {CFF} using",
+  title = "{BibTeX} and {CFF}, a potential crosswalk",
   key = "hernangomez2022",
   author = "Diego Hernangómez",
   journal = "The {cffr} package",
@@ -38,12 +46,20 @@ thisart <- bibentry("Article",
 )
 cat("  \n")
 thisart
+
 ```
 
 A BibTex entry for LaTeX users:
 
-```{r bib, echo=FALSE, comment=""}
-toBibtex(thisart)
+``` bibtex
+@article{hernangomez2022,
+	title        = {{BibTeX} and {CFF}, a potential crosswalk},
+	author       = {Diego Hernangómez},
+	year         = 2022,
+	journal      = {The {cffr} package},
+	volume       = {Vignettes}
+}
+
 ```
 
 ## BibTeX and R
@@ -56,7 +72,7 @@ and [Leslie
 Lamport](https://en.wikipedia.org/wiki/Leslie_Lamport "Leslie Lamport") back in
 1985. An example structure of a BibTeX entry would be:
 
-``` bib
+``` bibtex
 @book{einstein1921,
     title        = {Relativity: The Special and the General Theory},
     author       = {Einstein, A.},
@@ -93,7 +109,7 @@ The final results of the entry as a text string would be parsed as[^1]:
 [^1]: By default R Pandoc would generate the cite on the Chicago author-date
     format [@rmarkdowncookbook2020]
 
-```{r, results='asis'}
+```{r echo=FALSE, results='asis'}
 
 entry
 ```
@@ -133,43 +149,11 @@ BibTeX[^2] are:
 -   **\@unpublished**: A document having an author and title, but not formally
     published.
 
-Regarding the entries, `bibentry()` does not implement the **\@conference**
-entry. However, we can replace that key by **\@inproceedings** given that the
-definition is identical:
+Regarding the entries, `bibentry()` **R** function does not implement
+**\@conference** . However, we can replace that key by **\@inproceedings** given
+that the definition is identical.
 
-```{r try-conf, eval=FALSE}
-
-try(bibentry("Conference",
-  key = "conference",
-  author = "Peter Draper",
-  title = "Title",
-  booktitle = "Conference",
-  year = 1993
-))
-#> Error in (function (bibtype, textVersion, header = NULL, footer = NULL,  :
-#>   'bibtype' has to be one of Article, Book, Booklet, InBook, InCollection,
-#>      InProceedings, Manual, MastersThesis, Misc, PhdThesis, Proceedings,
-#>      TechReport, Unpublished
-
-# Replace by InProceedings
-inpr <- bibentry("InProceedings",
-  key = "conference",
-  author = "Peter Draper",
-  title = "Title",
-  booktitle = "Conference",
-  year = 1993
-)
-
-toBibtex(inpr)
-#> @InProceedings{conference,
-#>   author = {Peter Draper},
-#>   title = {Title},
-#>   booktitle = {Conference},
-#>   year = {1993},
-#> }
-```
-
-### Fields {#fields}
+### Fields
 
 As in the case of Entries, @patashnik1988 provides also a definition for each of
 the possible standard BibTeX fields[^3]. An entry can include other fields that
@@ -228,7 +212,7 @@ would be ignored on the raw implementation of BibTeX:
 -   **year**: The year of publication or, for an unpublished work, the year it
     was written. Generally it should consist of four numerals, such as `1984`.
 
-There is a strict relation between Entries and Fields on BibTeX. Dependending on
+There is a strict relation between Entries and Fields on BibTeX. Depending on
 the type of entries, some fields are required while others are optional or even
 ignored. On the following table, required field are flagged as **\*** and
 optional fields are flagged as **-**. Fields on parenthesis **()** denotes that
@@ -261,8 +245,9 @@ knitr::kable(t2,
 ```
 
 It can be observed that just a subset of fields is required in any of the
-[Entries](#entries). The rest are optional and, strictly speaking, not necessary
-if no listed on the optional field of *Table 1*.
+Entries. For example, **title**, **year** and **author** are either required or
+optional on almost every entry, while **crossref**, **annote** or **key** are
+never required.
 
 ## Citation File Format
 
@@ -286,28 +271,32 @@ for citing and referring to related works[^4]:
 
 These two keys are expected to be
 [`definition.reference`](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreference)
-objects, therefore they may contain the following keys
+objects, therefore they may contain the following keys:
 
-```{r refkeys, results='asis', message=FALSE, warning=FALSE}
+```{r refkeys, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 library(cffr)
 
+# Fill with whites
+l <- c(cff_schema_definitions_refs(), rep("", 4))
 
-refkeys <- matrix(cff_schema_definitions_refs(), ncol = 7, byrow = TRUE)
+
+refkeys <- matrix(l, ncol = 5, byrow = TRUE)
 
 knitr::kable(refkeys,
   caption = "Valid keys on CFF `definition-reference` objects"
 )
 ```
 
-These keys are the equivalent to the [fields](#fields) of BibTeX, with the
+These keys are the equivalent to the fields of BibTeX (see [Fields]), with the
 exception of the key **type**. On CFF, this key defines the type of work[^5],
-therefore this is the equivalent to the BibteX [entries](#entries).
+therefore this is the equivalent to the BibteX entries (see
+[Entries](#entries)).
 
 [^5]: See a complete list of possible values of CFF type on the [Guide to
     Citation File Format schema version
     1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype).
 
-## Proposed crosswalk between BibTeX and CFF
+## Proposed crosswalk
 
 The **cffr** package [@hernangomez2021] provides utilities from converting
 BibTeX entries (via the **R** base function `bibentry()`) to CFF files and
@@ -318,87 +307,76 @@ been implemented. This crosswalk is based partially on
 [^6]: Note that this software performs only the conversion from CFF to BibTeX,
     however **cffr** can perform the conversion in both directions.
 
-As there is not a perfect one-by-one relationship between both formats, it is
-needed to provide two different approaches: one from the conversion from BibTeX
-to CFF and another for conversions from CFF to BibTeX
+On the following two section I present an overview of the proposed mapping
+between the Entries and Fields of BibTeX and the CFF keys. After this initial
+mapping, I propose further transformations to improve the compatibility between
+both systems using different [Entry Models].
 
 ### Entry/Type crosswalk
-
-#### BibTeX to CFF
 
 For converting general BibTeX entries to CFF types, the following crosswalk is
 proposed:
 
-| BibTeX              | CFF              |
-|---------------------|------------------|
-| **\@article**       | article          |
-| **\@book**          | book             |
-| **\@booklet**       | pamphlet         |
-| **\@conference**    | conference       |
-| **\@inbook**        | book             |
-| **\@incollection**  | generic          |
-| **\@inproceedings** | conference-paper |
-| **\@manual**        | manual           |
-| **\@mastersthesis** | thesis           |
-| **\@misc**          | generic          |
-| **\@phdthesis**     | thesis           |
-| **\@proceedings**   | proceedings      |
-| **\@techreport**    | report           |
-| **\@unpublished**   | unpublished      |
+| BibTeX Entry        | Value of CFF key: type | Notes              |
+|---------------------|------------------------|--------------------|
+| **\@article**       | article                |                    |
+| **\@book**          | book                   |                    |
+| **\@booklet**       | pamphlet               |                    |
+| **\@conference**    | conference-paper       |                    |
+| **\@inbook**        | book                   | See [Entry Models] |
+| **\@incollection**  | generic                | See [Entry Models] |
+| **\@inproceedings** | conference-paper       |                    |
+| **\@manual**        | manual                 |                    |
+| **\@mastersthesis** | thesis                 | See [Entry Models] |
+| **\@misc**          | generic                |                    |
+| **\@phdthesis**     | thesis                 | See [Entry Models] |
+| **\@proceedings**   | proceedings            |                    |
+| **\@techreport**    | report                 |                    |
+| **\@unpublished**   | unpublished            |                    |
 
 : Entry/Type crosswalk: From BibteX to CFF
 
-For example the following **\@article:**
+Also, given that CFF provides with a [wide range of allowed
+values](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype)
+on type, the following conversion would be performed from CFF to BibTeX:
 
-```{r entry_b2c, echo=FALSE, comment=""}
++------------------+------------------------+---------------------------------+
+| Value of CFF     | BibTeX Entry           | Notes                           |
+| key: type        |                        |                                 |
++==================+========================+=================================+
+| book             | **\@book** **/         | See [Entry Models]              |
+|                  | \@inbook**             |                                 |
++------------------+------------------------+---------------------------------+
+| conference       | **\@inproceedings**    |                                 |
++------------------+------------------------+---------------------------------+
+| conference-paper | **\@inproceedings**    |                                 |
++------------------+------------------------+---------------------------------+
+| magazine-article | **\@article**          |                                 |
++------------------+------------------------+---------------------------------+
+| manual           | **\@manual**           |                                 |
++------------------+------------------------+---------------------------------+
+| n                | **\@article**          |                                 |
+| ewspaper-article |                        |                                 |
++------------------+------------------------+---------------------------------+
+| pamphlet         | **\@booklet**          |                                 |
++------------------+------------------------+---------------------------------+
+| proceedings      | **\@proceedings**      |                                 |
++------------------+------------------------+---------------------------------+
+| report           | **\@techreport**       |                                 |
++------------------+------------------------+---------------------------------+
+| thesis           | **\@mastersthesis /    | See [Entry Models]              |
+|                  | \@phdthesis**          |                                 |
++------------------+------------------------+---------------------------------+
+| unpublished      | **\@unpublished**      |                                 |
++------------------+------------------------+---------------------------------+
+| generic          | **\@misc /             | Under specific conditions, see  |
+|                  | \@incollection**       | [Entry Models]                  |
++------------------+------------------------+---------------------------------+
+| \<any other      | **\@misc**             |                                 |
+| value>           |                        |                                 |
++------------------+------------------------+---------------------------------+
 
-article <- bibentry("Article",
-  title = "Genetic Programming and Standardization in Water Temperature Modelling",
-  journal = "Advances in Civil Engineering",
-  volume = "2009",
-  pages = "1--10",
-  year = "2009",
-  month = "sep",
-  key = "Arganis:2009",
-  publisher = "Hindawi Limited",
-  author = "Maritza Arganis and Rafael Val and Jordi Prats and Katya Rodriguez and Ramon Dominguez and Josep Dolz",
-  doi = "10.1155/2009/353960",
-  keywords = "genetic algorithms, genetic programming"
-)
-
-toBibtex(article)
-```
-
-Would be converted to the following CFF format
-
-```{r echo=FALSE, comment=""}
-cff_parse_citation(article)
-```
-
-And an **\@inproceedings** entry:
-
-```{r echo=FALSE, comment=""}
-inpr <- bibentry("InProceedings",
-  author = "A. Demir and E. Cilden and F. Polat",
-  booktitle = "2017 IEEE 29th International Conference on Tools with Artificial Intelligence (ICTAI)",
-  title = "A Concept Filtering Approach for Diverse Density to Discover Subgoals in Reinforcement Learning",
-  year = 2017,
-  key = "8371915",
-  issn = "2375-0197",
-  doi = "10.1109/ICTAI.2017.00012",
-  publisher = "IEEE Computer Society",
-  address = "Los Alamitos, CA, USA",
-  month = "nov"
-)
-
-toBibtex(inpr)
-```
-
-Would be parsed as:
-
-```{r echo=FALSE, comment=""}
-cff_parse_citation(inpr)
-```
+: Entry/Type crosswalk: From CFF to BibteX
 
 ### Fields/Key crosswalk
 
@@ -406,22 +384,58 @@ There is a large degree of similarity between the definition and names of some
 BibTeX fields and CFF keys. On the following cases, the equivalence is almost
 straightforward:
 
-| BibTeX      | CFF         |
-|-------------|-------------|
-| author      | authors     |
-| edition     | edition     |
-| editor      | editors     |
-| institution | institution |
-| journal     | journal     |
-| month       | month       |
-| note        | notes       |
-| number      | number      |
-| pages       | pages       |
-| publisher   | publisher   |
-| title       | title       |
-| volume      | volume      |
-| year        | year        |
+| BibTeX Field     | CFF key            |
+|------------------|--------------------|
+| **address**      | See [Entry Models] |
+| ***annote***     | \-                 |
+| **author**       | authors            |
+| **booktitle**    | collection-title   |
+| **chapter**      | section            |
+| ***crossref***   | \-                 |
+| **edition**      | edition            |
+| **editor**       | editors            |
+| **howpublished** | medium             |
+| **institution**  | See [Entry Models] |
+| **journal**      | journal            |
+| ***key***        | \-                 |
+| **month**        | month              |
+| **note**         | notes              |
+| **number**       | issue              |
+| **organization** | See [Entry Models] |
+| **pages**        | start & end        |
+| **publisher**    | publisher          |
+| **school**       | See [Entry Models] |
+| **series**       | See [Entry Models] |
+| **title**        | title              |
+| ***type***       | \-                 |
+| **volume**       | volume             |
+| **year**         | year               |
 
-: Fields: BibTeX/CFF direct mapping
+: BibTeX - CFF Field/Key crosswalk
+
+Additionally, there are other additional CFF keys that have a correspondence
+with BibLaTeX fields. We propose also to include these fields on the
+crosswalk[^7], although they are not part of the core BibTeX fields definition.
+
+[^7]: See @biblatexcheatsheet for a preview of the accepted BibLaTeX fields.
+
+| BibLaTeX Field | CFF key        |
+|----------------|----------------|
+| abstract       | abstract       |
+| date           | date-published |
+| doi            | doi            |
+| file           | filename       |
+| isbn           | isbn           |
+| issn           | issn           |
+| issuetitle     | issue-title    |
+| pagetotal      | pages          |
+| translator     | translators    |
+| url            | url            |
+| urldate        | date-accessed  |
+| version        | version        |
+
+: BibLaTeX - CFF Field/Key crosswalk
+
+### Entry Models
 
 ## References
