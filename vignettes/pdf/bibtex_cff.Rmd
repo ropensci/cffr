@@ -1,27 +1,32 @@
 ---
-title: "BibTeX and CFF"
+title: "\\BibTeX\\ and CFF"
 subtitle: A potential crosswalk
 bibliography: REFERENCES.bib
 author: Diego Hernangómez
-description: >-
-  This article presents a crosswalk between BibTeX and Citation File Format 
+abstract: >-
+  This article presents a crosswalk between \BibTeX\ and Citation File Format 
   [@druskat_citation_2021], as it is performed by the cffr package 
   [@hernangomez2021].
 link-citations: yes
 documentclass: article
-output: 
-  rmarkdown::html_vignette:
-    toc: true
-vignette: >
-  %\VignetteIndexEntry{BibTeX and CFF}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+urlcolor: blue
+linkcolor: brown
+header-includes:
+  \usepackage{fvextra}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+output:
+  pdf_document:
+    latex_engine: pdflatex
+    keep_tex: true
+    includes:
+      in_header: preamble.tex
 ---
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = ""
+  comment = "",
+  tidy = "styler"
 )
 
 options(width = 60)
@@ -44,7 +49,7 @@ cat("  \n")
 thisart
 ```
 
-A BibTeX entry for LaTeX users:
+A \BibTeX\ entry for \LaTeX\ users:
 
 ``` bibtex
 @article{hernangomez2022,
@@ -56,14 +61,15 @@ A BibTeX entry for LaTeX users:
 }
 ```
 
-## BibTeX and R
+## \BibTeX\ and R
 
-[BibTeX](https://en.wikipedia.org/wiki/BibTeX) is a well-known format for
+[\BibTeX](https://en.wikipedia.org/wiki/BibTeX) is a well-known format for
 storing references that may be reused by another software, like
-[LaTeX](https://en.wikipedia.org/wiki/LaTeX). BibTeX was created by [Oren
+[\LaTeX\](<https://en.wikipedia.org/wiki/LaTeX> "LaTeX"). \BibTeX\ was created
+by [Oren
 Patashnik](https://en.wikipedia.org/wiki/Oren_Patashnik "Oren Patashnik") and
 [Leslie Lamport](https://en.wikipedia.org/wiki/Leslie_Lamport "Leslie Lamport")
-back in 1985. An example structure of a BibTeX entry would be:
+back in 1985. An example structure of a \BibTeX\ entry would be:
 
 ``` bibtex
 @book{einstein1921,
@@ -82,7 +88,7 @@ This entry then can be used on a document and include references to it.
 On **R** [@R_2021], we can replicate this structure using the `bibentry()` and
 `toBibtex()` functions:
 
-```{r bibentry, comment="#>"}
+```{r bibentry}
 
 entry <- bibentry("Book",
   key = "einstein1921",
@@ -107,20 +113,20 @@ The final results of the entry as a text string would be parsed as[^1]:
 entry
 ```
 
-## BibTeX definitions
+## \BibTeX\ definitions
 
-@patashnik1988 provides a comprehensive explanation of the BibTeX formats. We
+@patashnik1988 provides a comprehensive explanation of the \BibTeX\ formats. We
 can distinguish between **Entries** and **Fields**.
 
 ### Entries {#entries}
 
 Each entry type defines a different type of work. The 14 entry types defined on
-BibTeX[^2] are:
+\BibTeX\ [^2] are:
 
-[^2]: Other implementations similar to BibTeX, as
+[^2]: Other implementations similar to \BibTeX\, as
     [BibLaTeX](https://www.ctan.org/pkg/biblatex), expand the definitions of
     entries including other types as **online**, **software** or **dataset**. On
-    BibTeX these entries should be reclassified to **misc**.
+    \BibTeX\ these entries should be reclassified to **misc**.
 
 -   **\@article**: An article from a journal or magazine.
 -   **\@book**: A book with an explicit publisher.
@@ -149,8 +155,8 @@ that the definition is identical.
 ### Fields
 
 As in the case of Entries, @patashnik1988 provides also a definition for each of
-the possible standard BibTeX fields[^3]. An entry can include other fields that
-would be ignored on the raw implementation of BibTeX:
+the possible standard \BibTeX\ fields[^3]. An entry can include other fields that
+would be ignored on the raw implementation of \BibTeX\:
 
 [^3]: As in the case of the entries, other implementations based on BibTeX may
     recognize additional fields.
@@ -159,8 +165,8 @@ would be ignored on the raw implementation of BibTeX:
     **institution**.
 -   **annote**: An annotation. It is not used by the standard bibliography
     styles, but may be used by others that produce an annotated bibliography.
--   **author**: The name(s) of the author(s), in the format described in the
-    LaTeX book [@lamport86latex].
+-   **author**: The name(s) of the author(s), in the format described n the
+    \LaTeX book [@lamport86latex].
 -   **booktitle**: Title of a book, part of which is being cited. For **\@book**
     entries, use the **title** field instead.
 -   **chapter**: A chapter (or section or whatever) number.
@@ -227,7 +233,11 @@ knitr::kable(t1,
   align = c("l", rep("c", 6)),
   caption = "BibTeX, required fields by entry"
 )
+```
 
+\pagebreak
+
+```{r entry_fields2, echo=FALSE}
 t2 <- bibtex_field_entry[, c(1, 8:13)]
 
 knitr::kable(t2,
@@ -282,7 +292,7 @@ knitr::kable(refkeys,
 
 These keys are the equivalent to the fields of BibTeX (see [Fields]), with the
 exception of the key **type**. On CFF, this key defines the type of work[^5],
-therefore this is the equivalent to the BibTeX entries (see
+therefore this is the equivalent to the BibteX entries (see
 [Entries](#entries)).
 
 [^5]: See a complete list of possible values of CFF type on the [Guide to
@@ -327,7 +337,7 @@ proposed:
 | **\@techreport**    | report                 |                    |
 | **\@unpublished**   | unpublished            |                    |
 
-: Entry/Type crosswalk: From BibTeX to CFF
+: Entry/Type crosswalk: From BibteX to CFF
 
 Also, given that CFF provides with a [wide range of allowed
 values](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype)
@@ -369,7 +379,7 @@ on type, the following conversion would be performed from CFF to BibTeX:
 | value>           |                        |                                 |
 +------------------+------------------------+---------------------------------+
 
-: Entry/Type crosswalk: From CFF to BibTeX
+: Entry/Type crosswalk: From CFF to BibteX
 
 ### Fields/Key crosswalk
 
@@ -534,6 +544,8 @@ cff_parse_citation(bib)
 toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
+\pagebreak
+
 ### Book/InBook
 
 In terms of field required on BibTeX, the only difference between **\@Book** and
@@ -544,56 +556,49 @@ for \@Book these fields are not even optional. So we propose here to identify an
 Another specificities are that **series** field is mapped to collection-title
 and **address** is mapped as the address of the publisher (CFF).
 
-+---------------------+-----------------------+-----------------------+
-| BibTeX              | CFF                   | Note                  |
-+=====================+=======================+=======================+
-| **\@Book**          | book                  |                       |
-+---------------------+-----------------------+-----------------------+
-| **\@InBook**        | book                  | For identifying an    |
-|                     |                       | \@InBook in CFF,      |
-|                     |                       | assess if **chapter** |
-|                     |                       | or                    |
-|                     |                       | **pages**/start-end   |
-|                     |                       | information is        |
-|                     |                       | available             |
-+---------------------+-----------------------+-----------------------+
-| **author\***        | authors               |                       |
-+---------------------+-----------------------+-----------------------+
-| **editor\***        | editors               |                       |
-+---------------------+-----------------------+-----------------------+
-| **title\***         | title                 |                       |
-+---------------------+-----------------------+-----------------------+
-| **publisher\***     | publisher             |                       |
-+---------------------+-----------------------+-----------------------+
-| **year\***          | year                  |                       |
-+---------------------+-----------------------+-----------------------+
-| **chapter\***       | section               | Only required on      |
-|                     |                       | **\@InBook**          |
-+---------------------+-----------------------+-----------------------+
-| **pages\***         | start and end         | Only required on      |
-|                     |                       | **\@InBook**          |
-+---------------------+-----------------------+-----------------------+
-| **volume**          | volume                |                       |
-+---------------------+-----------------------+-----------------------+
-| **number**          | issue                 |                       |
-+---------------------+-----------------------+-----------------------+
-| **series**          | collection-title      |                       |
-+---------------------+-----------------------+-----------------------+
-| **address**         | address property of   | As a fallback, the    |
-|                     | publisher             | field location (CFF)  |
-|                     |                       | can be used           |
-+---------------------+-----------------------+-----------------------+
-| **edition**         | edition               |                       |
-+---------------------+-----------------------+-----------------------+
-| **month**           | month                 | As a fallback,        |
-|                     |                       | **month** could be    |
-|                     |                       | extracted also from   |
-|                     |                       | **date** (BibLaTeX    |
-|                     |                       | field)/               |
-|                     |                       | date-published (CFF)  |
-+---------------------+-----------------------+-----------------------+
-| **note**            | notes                 |                       |
-+---------------------+-----------------------+-----------------------+
++--------------------+------------------+-------------------------------------+
+| BibTeX             | CFF              | Note                                |
++====================+==================+=====================================+
+| **\@Book**         | book             |                                     |
++--------------------+------------------+-------------------------------------+
+| **\@InBook**       | book             | For identifying an \@InBook in CFF, |
+|                    |                  | assess if **chapter** or            |
+|                    |                  | **pages**/start-end information is  |
+|                    |                  | available                           |
++--------------------+------------------+-------------------------------------+
+| **author\***       | authors          |                                     |
++--------------------+------------------+-------------------------------------+
+| **editor\***       | editors          |                                     |
++--------------------+------------------+-------------------------------------+
+| **title\***        | title            |                                     |
++--------------------+------------------+-------------------------------------+
+| **publisher\***    | publisher        |                                     |
++--------------------+------------------+-------------------------------------+
+| **year\***         | year             |                                     |
++--------------------+------------------+-------------------------------------+
+| **chapter\***      | section          | Only required on **\@InBook**       |
++--------------------+------------------+-------------------------------------+
+| **pages\***        | start and end    | Only required on **\@InBook**       |
++--------------------+------------------+-------------------------------------+
+| **volume**         | volume           |                                     |
++--------------------+------------------+-------------------------------------+
+| **number**         | issue            |                                     |
++--------------------+------------------+-------------------------------------+
+| **series**         | colle            |                                     |
+|                    | ction-title      |                                     |
++--------------------+------------------+-------------------------------------+
+| **address**        | address property | As a fallback, the field location   |
+|                    | of publisher     | (CFF) can be used                   |
++--------------------+------------------+-------------------------------------+
+| **edition**        | edition          |                                     |
++--------------------+------------------+-------------------------------------+
+| **month**          | month            | As a fallback, **month** could be   |
+|                    |                  | extracted also from **date**        |
+|                    |                  | (BibLaTeX field)/ date-published    |
+|                    |                  | (CFF)                               |
++--------------------+------------------+-------------------------------------+
+| **note**           | notes            |                                     |
++--------------------+------------------+-------------------------------------+
 
 : Book/InBook model
 
@@ -632,7 +637,7 @@ cff_parse_citation(bib)
 
 [*From CFF to BibTeX*]{.ul}
 
-```{r,  echo=FALSE}
+```{r}
 toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
@@ -656,7 +661,7 @@ toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 
 [*CFF entry*]{.ul}
 
-```{r echo=FALSE,}
+```{r echo=FALSE}
 
 bib <- bibentry("InBook",
   author = "Glynn Winskel and Mogens Nielsen",
@@ -675,39 +680,41 @@ cff_parse_citation(bib)
 
 [*From CFF to BibTeX*]{.ul}
 
-```{r echo=FALSE,}
+```{r echo=FALSE}
 toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
+
+\pagebreak
 
 ### Booklet
 
 In \@Booklet **address** is mapped to location.
 
-+------------------------+------------------+---------------------------------+
-| BibTeX                 | CFF              | Note                            |
-+========================+==================+=================================+
-| **\@ Booklet**         | pamphlet         |                                 |
-+------------------------+------------------+---------------------------------+
-| **title\***            | title            |                                 |
-+------------------------+------------------+---------------------------------+
-| **author\***           | authors          |                                 |
-+------------------------+------------------+---------------------------------+
-| **howpublished**       | medium           |                                 |
-+------------------------+------------------+---------------------------------+
-| **address**            | location         |                                 |
-+------------------------+------------------+---------------------------------+
-| **month**              | month            | As a fallback, **month** could  |
-|                        |                  | be extracted also from **date** |
-|                        |                  | (BibLaTeX field)/               |
-|                        |                  | date-published (CFF)            |
-+------------------------+------------------+---------------------------------+
-| **year**               | year             | As a fallback, **year** could   |
-|                        |                  | be extracted also from **date** |
-|                        |                  | (BibLaTeX field)/               |
-|                        |                  | date-published (CFF)            |
-+------------------------+------------------+---------------------------------+
-| **note**               | notes            |                                 |
-+------------------------+------------------+---------------------------------+
++-------------------------+------------------+--------------------------------+
+| BibTeX                  | CFF              | Note                           |
++=========================+==================+================================+
+| **\@Booklet**           | pamphlet         |                                |
++-------------------------+------------------+--------------------------------+
+| **title\***             | title            |                                |
++-------------------------+------------------+--------------------------------+
+| **author**              | authors          |                                |
++-------------------------+------------------+--------------------------------+
+| **howpublished**        | medium           |                                |
++-------------------------+------------------+--------------------------------+
+| **address**             | location         |                                |
++-------------------------+------------------+--------------------------------+
+| **month**               | month            | As a fallback, **month** could |
+|                         |                  | be extracted also from         |
+|                         |                  | **date** (BibLaTeX field)/     |
+|                         |                  | date-published (CFF)           |
++-------------------------+------------------+--------------------------------+
+| **year**                | year             | As a fallback, **year** could  |
+|                         |                  | be extracted also from         |
+|                         |                  | **date** (BibLaTeX field)/     |
+|                         |                  | date-published (CFF)           |
++-------------------------+------------------+--------------------------------+
+| **note**                | notes            |                                |
++-------------------------+------------------+--------------------------------+
 
 : Booklet model
 
@@ -728,7 +735,7 @@ In \@Booklet **address** is mapped to location.
 
 [*CFF entry*]{.ul}
 
-```{r echo=FALSE, }
+```{r echo=FALSE}
 
 bib <- bibentry("Booklet",
   title        = "The Programming of Computer Art",
@@ -744,9 +751,11 @@ cff_parse_citation(bib)
 
 [*From CFF to BibTeX*]{.ul}
 
-```{r echo=FALSE, }
+```{r echo=FALSE}
 toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
+
+\pagebreak
 
 ### Conference/InProceedings
 
@@ -773,7 +782,7 @@ toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 
 [*CFF entry*]{.ul}
 
-```{r echo=FALSE,}
+```{r echo=FALSE}
 
 bib <- bibentry("InProceedings",
   title        = "On Notions of Information Transfer in {VLSI} Circuits",
@@ -795,7 +804,7 @@ cff_parse_citation(bib)
 
 [*From CFF to BibTeX*]{.ul}
 
-```{r echo=FALSE,}
+```{r echo=FALSE}
 toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 

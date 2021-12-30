@@ -296,10 +296,26 @@ parse_dependencies <- function(desc_path,
 
   deps$version_clean <- gsub("*", "", deps$version, fixed = TRUE)
 
+  # Save copy for later
+  origdeps <- deps
+
   # Dedupe rows
   deps <- unique(deps[, c("package", "version_clean")])
 
+
+  # Get dependency type and add to scope
+  scope <- vapply(deps$package,
+    FUN.VALUE = character(1),
+    function(x) {
+      y <- origdeps[origdeps$package == x, "type"]
+
+      y[1]
+    }
+  )
+  deps$scope <- scope
+
   av_deps <- deps[deps$package %in% c("R", instpack), ]
+
 
 
 
@@ -311,10 +327,9 @@ parse_dependencies <- function(desc_path,
 
     if (n$package == "R") {
       mod <- cff_parse_citation(citation()[1])
-      mod$type <- "software"
       mod$year <- format(Sys.Date(), "%Y")
     } else {
-      mod <- try(cff_parse_citation(citation(n$package)[1]),
+      mod <- try(cff_parse_citation(citation(n$package, auto = TRUE)[1]),
         silent = TRUE
       )
 
@@ -326,11 +341,12 @@ parse_dependencies <- function(desc_path,
       # Avoid cluttering the output
     }
 
-
+    mod$type <- "software"
     mod$version <- ifelse(is.na(n$version_clean),
       NULL,
       paste(n$version_clean)
     )
+
     mod <- drop_null(mod)
 
     # Get year
@@ -343,7 +359,7 @@ parse_dependencies <- function(desc_path,
     }
 
     mod$year <- year
-    mod$notes <- NULL
+    mod$notes <- clean_str(n$scope)
 
     mod <- as.cff(mod)
   })

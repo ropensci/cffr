@@ -279,7 +279,8 @@ test <- cff_create("rmarkdown")
       institution:
         name: R Foundation for Statistical Computing
       version: '>= 3.0'
-    - type: manual
+      notes: Depends
+    - type: software
       title: 'R: A Language and Environment for Statistical Computing'
       authors:
       - name: R Core Team
@@ -289,15 +290,19 @@ test <- cff_create("rmarkdown")
       url: https://www.R-project.org/
       institution:
         name: R Foundation for Statistical Computing
-    - type: manual
+      notes: Imports
+    - type: software
       title: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
       authors:
       - family-names: Xie
         given-names: Yihui
+        email: xie@yihui.name
+        orcid: https://orcid.org/0000-0003-0645-5666
       year: '2021'
-      url: https://yihui.org/knitr/
+      notes: Imports
+      url: https://CRAN.R-project.org/package=knitr
       version: '>= 1.22'
-    - type: manual
+    - type: software
       title: 'yaml: Methods to Convert R Data to YAML and Back'
       authors:
       - family-names: Stephens
@@ -320,9 +325,10 @@ test <- cff_create("rmarkdown")
       - family-names: Warnes
         given-names: Gregory R.
       year: '2021'
+      notes: Imports
       url: https://CRAN.R-project.org/package=yaml
       version: '>= 2.1.19'
-    - type: manual
+    - type: software
       title: 'htmltools: Tools for HTML'
       authors:
       - family-names: Cheng
@@ -347,9 +353,10 @@ test <- cff_create("rmarkdown")
         given-names: Jeff
         email: jeff@rstudio.com
       year: '2021'
+      notes: Imports
       url: https://CRAN.R-project.org/package=htmltools
       version: '>= 0.3.5'
-    - type: manual
+    - type: software
       title: 'evaluate: Parsing and Evaluation Tools that Provide More Details than the
         Default'
       authors:
@@ -360,27 +367,32 @@ test <- cff_create("rmarkdown")
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
       year: '2021'
+      notes: Imports
       url: https://CRAN.R-project.org/package=evaluate
       version: '>= 0.13'
-    - type: article
-      title: 'The jsonlite Package: A Practical and Consistent Mapping Between JSON Data
-        and R Objects'
+    - type: software
+      title: 'jsonlite: A Simple and Robust JSON Parser and Generator for R'
       authors:
       - family-names: Ooms
         given-names: Jeroen
-      journal: arXiv:1403.2805 [stat.CO]
+        email: jeroen@berkeley.edu
+        orcid: https://orcid.org/0000-0002-4035-0289
       year: '2021'
-      url: https://arxiv.org/abs/1403.2805
-    - type: manual
+      notes: Imports
+      url: https://CRAN.R-project.org/package=jsonlite
+    - type: software
       title: 'tinytex: Helper Functions to Install and Maintain TeX Live, and Compile
         LaTeX Documents'
       authors:
       - family-names: Xie
         given-names: Yihui
+        email: xie@yihui.name
+        orcid: https://orcid.org/0000-0003-0645-5666
       year: '2021'
-      url: https://github.com/yihui/tinytex
+      notes: Imports
+      url: https://CRAN.R-project.org/package=tinytex
       version: '>= 0.31'
-    - type: manual
+    - type: software
       title: 'xfun: Supporting Functions for Packages Maintained by ''Yihui Xie'''
       authors:
       - family-names: Xie
@@ -388,9 +400,10 @@ test <- cff_create("rmarkdown")
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
       year: '2021'
+      notes: Imports
       url: https://CRAN.R-project.org/package=xfun
       version: '>= 0.21'
-    - type: manual
+    - type: software
       title: 'jquerylib: Obtain ''jQuery'' as an HTML Dependency Object'
       authors:
       - family-names: Sievert
@@ -401,17 +414,19 @@ test <- cff_create("rmarkdown")
         given-names: Joe
         email: joe@rstudio.com
       year: '2021'
+      notes: Imports
       url: https://CRAN.R-project.org/package=jquerylib
-    - type: manual
+    - type: software
       title: 'stringr: Simple, Consistent Wrappers for Common String Operations'
       authors:
       - family-names: Wickham
         given-names: Hadley
         email: hadley@rstudio.com
       year: '2021'
+      notes: Imports
       url: https://CRAN.R-project.org/package=stringr
       version: '>= 1.2.0'
-    - type: manual
+    - type: software
       title: 'shiny: Web Application Framework for R'
       authors:
       - family-names: Chang
@@ -446,21 +461,20 @@ test <- cff_create("rmarkdown")
       - family-names: Borges
         given-names: Barbara
       year: '2021'
+      notes: Suggests
       url: https://CRAN.R-project.org/package=shiny
       version: '>= 1.6.0'
-    - type: article
-      title: 'testthat: Get Started with Testing'
+    - type: software
+      title: 'testthat: Unit Testing for R'
       authors:
       - family-names: Wickham
         given-names: Hadley
-      journal: The R Journal
+        email: hadley@rstudio.com
       year: '2021'
-      volume: '3'
-      url: https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf
-      start: '5'
-      end: '10'
+      notes: Suggests
+      url: https://CRAN.R-project.org/package=testthat
       version: '>= 3.0.0'
-    - type: manual
+    - type: software
       title: 'digest: Create Compact Hash Digests of R Objects'
       authors:
       - family-names: Lucas
@@ -511,8 +525,9 @@ test <- cff_create("rmarkdown")
       - family-names: Chang.
         given-names: and Winston
       year: '2021'
+      notes: Suggests
       url: https://CRAN.R-project.org/package=digest
-    - type: manual
+    - type: software
       title: 'vctrs: Vector Helpers'
       authors:
       - family-names: Wickham
@@ -525,8 +540,9 @@ test <- cff_create("rmarkdown")
         given-names: Davis
         email: davis@rstudio.com
       year: '2021'
+      notes: Suggests
       url: https://CRAN.R-project.org/package=vctrs
-    - type: manual
+    - type: software
       title: 'tibble: Simple Data Frames'
       authors:
       - family-names: Müller
@@ -536,8 +552,9 @@ test <- cff_create("rmarkdown")
         given-names: Hadley
         email: hadley@rstudio.com
       year: '2021'
+      notes: Suggests
       url: https://CRAN.R-project.org/package=tibble
-    - type: manual
+    - type: software
       title: 'fs: Cross-Platform File System Operations Based on ''libuv'''
       authors:
       - family-names: Hester
@@ -549,8 +566,9 @@ test <- cff_create("rmarkdown")
         given-names: Gábor
         email: csardi.gabor@gmail.com
       year: '2021'
+      notes: Suggests
       url: https://CRAN.R-project.org/package=fs
-    - type: manual
+    - type: software
       title: 'rsconnect: Deployment Interface for R Markdown Documents and Shiny Applications'
       authors:
       - family-names: Atkins
@@ -562,8 +580,9 @@ test <- cff_create("rmarkdown")
       - family-names: Allaire
         given-names: JJ
       year: '2021'
+      notes: Suggests
       url: https://CRAN.R-project.org/package=rsconnect
-    - type: manual
+    - type: software
       title: 'withr: Run Code ''With'' Temporarily Modified Global State'
       authors:
       - family-names: Hester
@@ -583,9 +602,10 @@ test <- cff_create("rmarkdown")
       - family-names: Chang
         given-names: Winston
       year: '2021'
+      notes: Suggests
       url: https://CRAN.R-project.org/package=withr
       version: '>= 2.4.2'
-    - type: manual
+    - type: software
       title: 'bslib: Custom ''Bootstrap'' ''Sass'' Themes for ''shiny'' and ''rmarkdown'''
       authors:
       - family-names: Sievert
@@ -596,9 +616,10 @@ test <- cff_create("rmarkdown")
         given-names: Joe
         email: joe@rstudio.com
       year: '2021'
+      notes: Suggests
       url: https://CRAN.R-project.org/package=bslib
       version: '>= 0.2.5.1'
-    - type: manual
+    - type: software
       title: 'sass: Syntactically Awesome Style Sheets (''Sass'')'
       authors:
       - family-names: Cheng
@@ -620,6 +641,7 @@ test <- cff_create("rmarkdown")
         email: carson@rstudio.com
         orcid: https://orcid.org/0000-0002-4958-2844
       year: '2021'
+      notes: Suggests
       url: https://CRAN.R-project.org/package=sass
       version: '>= 0.4.0'
 

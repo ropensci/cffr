@@ -21,7 +21,8 @@
     fields of CFF.
 
 -   Now **cffr** extracts also information of the package dependencies and adds
-    the main citation of the dependencies to the `references` field.
+    the main citation of the dependencies to the `references` field, using
+    `citation(auto = TRUE)`.
 
 -   Add a new dependency: `lifecycle`.
 
