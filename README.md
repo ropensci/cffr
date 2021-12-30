@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2021-12-27 there are at least 53 repos on GitHub using **cffr**.
+As per 2021-12-30 there are at least 61 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
@@ -738,8 +738,8 @@ for more info.
 
 <div id="ref-druskat_stephan_making_2021" class="csl-entry">
 
-Druskat, Stephan. 2021. “Making Software Citation Easi(er) - the
-Citation File Format and Its Integrations.” Zenodo.
+Druskat, Stephan. 2021. “Making Software Citation Easi(er) - The
+Citation File Format and Its Integrations.”
 <https://doi.org/10.5281/zenodo.5529914>.
 
 </div>

@@ -282,7 +282,7 @@ parse_bibtex_fields <- function(parse_cit) {
   if ("keywords" %in% nm) {
     kwords <- unlist(parse_cit["keywords" == nm])
     kwords <- clean_str(paste(kwords, collapse = ", "))
-    kwords <- trimws(unique(unlist(strsplit(kwords, ","))))
+    kwords <- trimws(unique(unlist(strsplit(kwords, ",|;"))))
     parse_cit$keywords <- unique(kwords)
   }
 

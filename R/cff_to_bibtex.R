@@ -344,14 +344,14 @@ cff_to_bibtex <- function(x) {
     tobibentry$bibtype <- "inbook"
   }
 
-  # Handle anonymous author
+  # Handle anonymous author----
   # If anonymous and not needed, then not use it
 
 
   if (!is.null(x$authors[[1]]$name)) {
     if (x$authors[[1]]$name == "anonymous" &
       tobibentry$bibtype %in% c(
-        "booklet", "manual",
+        "booklet", "manual", "book", "inbook",
         "misc", "proceedings"
       )) {
       tobibentry$author <- NULL

@@ -7,7 +7,6 @@ output:
     toc: true
 bibliography: REFERENCES.bib
 link-citations: yes
-nocite: '@*'
 vignette: >
   %\VignetteIndexEntry{Manipulating Citations with cffr}
   %\VignetteEngine{knitr::rmarkdown}

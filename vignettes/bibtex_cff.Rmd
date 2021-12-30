@@ -25,7 +25,7 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = ""
 )
 
 options(width = 60)
@@ -46,20 +46,18 @@ thisart <- bibentry("Article",
 )
 cat("  \n")
 thisart
-
 ```
 
 A BibTex entry for LaTeX users:
 
 ``` bibtex
 @article{hernangomez2022,
-	title        = {{BibTeX} and {CFF}, a potential crosswalk},
-	author       = {Diego Hernangómez},
-	year         = 2022,
-	journal      = {The {cffr} package},
-	volume       = {Vignettes}
+    title        = {{BibTeX} and {CFF}, a potential crosswalk},
+    author       = {Diego Hernangómez},
+    year         = 2022,
+    journal      = {The {cffr} package},
+    volume       = {Vignettes}
 }
-
 ```
 
 ## BibTeX and R
@@ -340,41 +338,21 @@ Also, given that CFF provides with a [wide range of allowed
 values](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype)
 on type, the following conversion would be performed from CFF to BibTeX:
 
-+------------------+------------------------+---------------------------------+
-| Value of CFF     | BibTeX Entry           | Notes                           |
-| key: type        |                        |                                 |
-+==================+========================+=================================+
-| book             | **\@book** **/         | See [Entry Models]              |
-|                  | \@inbook**             |                                 |
-+------------------+------------------------+---------------------------------+
-| conference       | **\@inproceedings**    |                                 |
-+------------------+------------------------+---------------------------------+
-| conference-paper | **\@inproceedings**    |                                 |
-+------------------+------------------------+---------------------------------+
-| magazine-article | **\@article**          |                                 |
-+------------------+------------------------+---------------------------------+
-| manual           | **\@manual**           |                                 |
-+------------------+------------------------+---------------------------------+
-| n                | **\@article**          |                                 |
-| ewspaper-article |                        |                                 |
-+------------------+------------------------+---------------------------------+
-| pamphlet         | **\@booklet**          |                                 |
-+------------------+------------------------+---------------------------------+
-| proceedings      | **\@proceedings**      |                                 |
-+------------------+------------------------+---------------------------------+
-| report           | **\@techreport**       |                                 |
-+------------------+------------------------+---------------------------------+
-| thesis           | **\@mastersthesis /    | See [Entry Models]              |
-|                  | \@phdthesis**          |                                 |
-+------------------+------------------------+---------------------------------+
-| unpublished      | **\@unpublished**      |                                 |
-+------------------+------------------------+---------------------------------+
-| generic          | **\@misc /             | Under specific conditions, see  |
-|                  | \@incollection**       | [Entry Models]                  |
-+------------------+------------------------+---------------------------------+
-| \<any other      | **\@misc**             |                                 |
-| value>           |                        |                                 |
-+------------------+------------------------+---------------------------------+
+| Value of CFF key: type | BibTeX Entry                      | Notes                                         |
+|------------------------|-----------------------------------|-----------------------------------------------|
+| book                   | **\@book** **/ \@inbook**         | See [Entry Models]                            |
+| conference             | **\@inproceedings**               |                                               |
+| conference-paper       | **\@inproceedings**               |                                               |
+| magazine-article       | **\@article**                     |                                               |
+| manual                 | **\@manual**                      |                                               |
+| n ewspaper-article     | **\@article**                     |                                               |
+| pamphlet               | **\@booklet**                     |                                               |
+| proceedings            | **\@proceedings**                 |                                               |
+| report                 | **\@techreport**                  |                                               |
+| thesis                 | **\@mastersthesis / \@phdthesis** | See [Entry Models]                            |
+| unpublished            | **\@unpublished**                 |                                               |
+| generic                | **\@misc / \@incollection**       | Under specific conditions, see [Entry Models] |
+| \<any other value>     | **\@misc**                        |                                               |
 
 : Entry/Type crosswalk: From CFF to BibteX
 
@@ -421,21 +399,236 @@ crosswalk[^7], although they are not part of the core BibTeX fields definition.
 
 | BibLaTeX Field | CFF key        |
 |----------------|----------------|
-| abstract       | abstract       |
-| date           | date-published |
-| doi            | doi            |
-| file           | filename       |
-| isbn           | isbn           |
-| issn           | issn           |
-| issuetitle     | issue-title    |
-| pagetotal      | pages          |
-| translator     | translators    |
-| url            | url            |
-| urldate        | date-accessed  |
-| version        | version        |
+| **abstract**   | abstract       |
+| **date**       | date-published |
+| **doi**        | doi            |
+| **file**       | filename       |
+| **isbn**       | isbn           |
+| **issn**       | issn           |
+| **issuetitle** | issue-title    |
+| **pagetotal**  | pages          |
+| **translator** | translators    |
+| **url**        | url            |
+| **urldate**    | date-accessed  |
+| **version**    | version        |
 
 : BibLaTeX - CFF Field/Key crosswalk
 
-### Entry Models
+## Entry Models
+
+This section presents the specific mapping proposed for each of the BibTeX
+entries, providing further information on how each field is treated.
+
+### Article
+
+The crosswalk of \@Article does not require any special treatment.
+
++---------------+---------------+---------------------------------------------+
+| BibTeX        | CFF           | Note                                        |
++===============+===============+=============================================+
+| **\@Article** | article       | When converting CFF to BibTeX, CFF keys     |
+|               |               | *magazine-article* and *newspaper-article*  |
+|               |               | are converted to **\@Article**.             |
++---------------+---------------+---------------------------------------------+
+| **author\***  | authors       |                                             |
++---------------+---------------+---------------------------------------------+
+| **title\***   | title         |                                             |
++---------------+---------------+---------------------------------------------+
+| **journal\*** | journal       |                                             |
++---------------+---------------+---------------------------------------------+
+| **year\***    | year          |                                             |
++---------------+---------------+---------------------------------------------+
+| **volume**    | volume        |                                             |
++---------------+---------------+---------------------------------------------+
+| **number**    | issue         |                                             |
++---------------+---------------+---------------------------------------------+
+| **pages**     | start and end | Separated by `--,` i.e,                     |
+|               |               |                                             |
+|               |               | pages = `3--5` (BibTeX)                     |
+|               |               |                                             |
+|               |               | would be parsed as                          |
+|               |               |                                             |
+|               |               | `start: 3`                                  |
+|               |               |                                             |
+|               |               | `end: 5`                                    |
+|               |               |                                             |
+|               |               | on CFF                                      |
++---------------+---------------+---------------------------------------------+
+| **month**     | month         | As a fallback, **month** could be extracted |
+|               |               | also from **date** (BibLaTeX field)/        |
+|               |               | date-published (CFF)                        |
++---------------+---------------+---------------------------------------------+
+| **note**      | notes         |                                             |
++---------------+---------------+---------------------------------------------+
+
+: Article model
+
+**Examples**
+
+[*BibTeX entry*]{.ul}
+
+``` bibtex
+@Article{1981:surveys:bernstein,
+  author =       "P. A. Bernstein and N. Goldman",
+  title =        "Concurrency Control in Distributed Database Systems",
+  journal =      "ACM Computing Surveys",
+  publisher =    "ACM Press",
+  address =      "New York, NY, USA",
+  year =         "1981",
+  volume =       "13",
+  month =        "jun",
+  number =       "2",
+  pages =        "185--221",
+  keywords =     "Concurrency control; deadlock; distributed database
+                 management systems; locking; serializability;
+                 synchronization; timestamp ordering; timestamps;
+                 two-phase commit; two-phase locking",
+  annote =       "unsupported",
+}
+```
+
+[*CFF entry*]{.ul}
+
+```{r echo=FALSE}
+
+bib <- bibentry("Article",
+  author = "P. A. Bernstein and N. Goldman",
+  title = "Concurrency Control in Distributed Database Systems",
+  journal = "ACM Computing Surveys",
+  publisher = "ACM Press",
+  address = "New York, NY, USA",
+  year = "1981",
+  volume = "13",
+  month = "jun",
+  number = "2",
+  pages = "185--221",
+  keywords = "Concurrency control; deadlock; distributed database
+                 management systems; locking; serializability;
+                 synchronization; timestamp ordering; timestamps;
+                 two-phase commit; two-phase locking",
+  annote = "unsupported",
+)
+
+cff_parse_citation(bib)
+```
+
+[*From CFF to BibTeX*]{.ul}
+
+```{r echo=FALSE}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
+```
+
+### Book/InBook
+
+In terms of field required on BibTeX, the only difference between **\@Book** and
+**\@InBook** is that the latter requires also a **chapter** or **pages**, while
+for \@Book these fields are not even optional. So we propose here to identify an
+**\@InBook** on CFF as a book with chapter and start-end fields (CFF).
+
+Another specificities are that **series** field is mapped to collection-title
+and **address** is mapped as the address of the publisher (CFF).
+
+| BibTeX          | CFF                           | Note                                                                                                      |
+|-----------------|-------------------------------|-----------------------------------------------------------------------------------------------------------|
+| **\@Book**      | book                          |                                                                                                           |
+| **\@InBook**    | book                          | For identifying an \@InBook in CFF, assess if **chapter** or **pages**/start-end information is available |
+| **author\***    | authors                       |                                                                                                           |
+| **editor\***    | editors                       |                                                                                                           |
+| **title\***     | title                         |                                                                                                           |
+| **publisher\*** | publisher                     |                                                                                                           |
+| **year\***      | year                          |                                                                                                           |
+| **chapter\***   | section                       | Only required on **\@InBook**                                                                             |
+| **pages\***     | start and end                 | Only required on **\@InBook**                                                                             |
+| **volume**      | volume                        |                                                                                                           |
+| **number**      | issue                         |                                                                                                           |
+| **series**      | collection-title              |                                                                                                           |
+| **address**     | address property of publisher | As a fallback, the field location (CFF) can be used                                                       |
+| **edition**     | edition                       |                                                                                                           |
+| **month**       | month                         | As a fallback, **month** could be extracted also from **date** (BibLaTeX field)/ date-published (CFF)     |
+| **note**        | notes                         |                                                                                                           |
+
+: Book/InBook model
+
+**Examples: Book**
+
+[*BibTeX entry*]{.ul}
+
+``` bibtex
+@book{10.5555/218623,
+    editor       = {Abramsky, S. and Gabbay, Dov M. and Maibaum, T. S. E.},
+    title        = {Handbook of Logic in Computer Science: Semantic Modelling},
+    year         = 1995,
+    volume       = 4,
+    isbn         = {0198537808},
+    publisher    = {Oxford University Press, Inc.},
+    address      = {USA}
+}
+```
+
+[*CFF entry*]{.ul}
+
+```{r echo=FALSE}
+
+bib <- bibentry("Book",
+  editor = "S. Abramsky and Dov M. Gabbay and T. S. E. Maibaum",
+  title = "Handbook of Logic in Computer Science: Semantic Modelling",
+  volume = 4,
+  year = 1995,
+  isbn = "0198537808",
+  publisher = "Oxford University Press, Inc.",
+  address = "USA"
+)
+
+cff_parse_citation(bib)
+```
+
+[*From CFF to BibTeX*]{.ul}
+
+```{r}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
+```
+
+**Examples: InBook**
+
+[*BibTeX entry*]{.ul}
+
+``` bibtex
+@inbook{10.5555/218623-1,
+    author       = {Winskel, Glynn and Nielsen, Mogens},
+    chapter      = {Models for Concurrency},
+    editor       = {Abramsky, S. and Gabbay, Dov M. and Maibaum, T. S. E.},
+    title        = {Handbook of Logic in Computer Science: Semantic Modelling},
+    year         = 1995,
+    volume       = 4,
+    isbn         = {0198537808},
+    publisher    = {Oxford University Press, Inc.},
+    address      = {USA}
+}
+```
+
+[*CFF entry*]{.ul}
+
+```{r echo=FALSE}
+
+bib <- bibentry("InBook",
+  author = "Glynn Winskel and Mogens Nielsen",
+  chapter = "Models for Concurrency",
+  editor = "S. Abramsky and Dov M. Gabbay and T. S. E. Maibaum",
+  title = "Handbook of Logic in Computer Science: Semantic Modelling",
+  year = 1995,
+  volume = 4,
+  isbn = "01985378082",
+  publisher = "Oxford University Press, Inc.",
+  address = "USA"
+)
+
+cff_parse_citation(bib)
+```
+
+[*From CFF to BibTeX*]{.ul}
+
+```{r echo=FALSE}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
+```
 
 ## References
