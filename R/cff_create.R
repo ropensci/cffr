@@ -25,7 +25,8 @@
 #'   `CITATION.cff` file adheres to for providing the citation metadata.
 #' @param gh_keywords Logical `TRUE/FALSE`. If the package is hosted on
 #'   GitHub, would you like to add the repo topics as keywords?
-#'
+#' @param dependencies Logical `TRUE/FALSE`. Would you like to add the
+#'   of your package to the `reference` key?
 #' @seealso
 #' ```{r, echo=FALSE, results='asis'}
 #'
@@ -101,7 +102,8 @@
 cff_create <- function(x,
                        keys = list(),
                        cff_version = "1.2.0",
-                       gh_keywords = TRUE) {
+                       gh_keywords = TRUE,
+                       dependencies = TRUE) {
   if (missing(x)) x <- getwd()
 
 
@@ -173,13 +175,14 @@ cff_create <- function(x,
   cffobjend <- merge_desc_cit(cffobj, citobj)
 
   # Add software dependencies
+  if (dependencies) {
+    deps <- parse_dependencies(desc_path, instpack)
 
-  deps <- parse_dependencies(desc_path, instpack)
-
-  cffobjend$references <- unique(c(
-    cffobjend$references,
-    deps
-  ))
+    cffobjend$references <- unique(c(
+      cffobjend$references,
+      deps
+    ))
+  }
 
   # Additional keys
   if (!is.null(keys)) {

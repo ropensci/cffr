@@ -4,7 +4,13 @@
 \alias{cff_create}
 \title{Create \code{cff} object}
 \usage{
-cff_create(x, keys = list(), cff_version = "1.2.0", gh_keywords = TRUE)
+cff_create(
+  x,
+  keys = list(),
+  cff_version = "1.2.0",
+  gh_keywords = TRUE,
+  dependencies = TRUE
+)
 }
 \arguments{
 \item{x}{The source that would be used for generating
@@ -25,6 +31,9 @@ file on your in-development package.
 
 \item{gh_keywords}{Logical \code{TRUE/FALSE}. If the package is hosted on
 GitHub, would you like to add the repo topics as keywords?}
+
+\item{dependencies}{Logical \code{TRUE/FALSE}. Would you like to add the
+of your package to the \code{reference} key?}
 }
 \value{
 A \code{\link{cff}} list object.

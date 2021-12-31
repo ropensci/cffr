@@ -10,6 +10,7 @@ cff_write(
   keys = list(),
   cff_version = "1.2.0",
   gh_keywords = TRUE,
+  dependencies = TRUE,
   validate = TRUE,
   verbose = TRUE
 )
@@ -35,6 +36,9 @@ file on your in-development package.
 
 \item{gh_keywords}{Logical \code{TRUE/FALSE}. If the package is hosted on
 GitHub, would you like to add the repo topics as keywords?}
+
+\item{dependencies}{Logical \code{TRUE/FALSE}. Would you like to add the
+of your package to the \code{reference} key?}
 
 \item{validate}{Logical \code{TRUE/FALSE}. Should the new file be validated using
 \code{\link[=cff_validate]{cff_validate()}}?}

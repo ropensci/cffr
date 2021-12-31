@@ -514,7 +514,7 @@ This key is extracted from the CITATION file if several references are provided.
 The first citation is considered as the
 [preferred-citation](#preferred-citation) and the rest of them as "references".
 It also extracts the package dependencies and adds those to this fields using
-the main `citation()` of each dependency.
+`citation(auto = TRUE)` on each dependency.
 
 <details>
 

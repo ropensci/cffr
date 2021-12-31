@@ -41,9 +41,8 @@
 #'
 #'
 #' @references
-#' - Patashnik, O. (1988, February). *BIBTEXTING*. BibTeX - Process
-#'   Bibliographies for LATEX, Etc. Retrieved December 1, 2021, from
-#'   <https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf>
+#' - Patashnik, Oren. "BIBTEXTING" February 1988.
+#'   <https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf>.
 #'
 #' - Haines, R., & The Ruby Citation File Format Developers. (2021).
 #'   *Ruby CFF Library (Version 0.9.0)* (Computer software).

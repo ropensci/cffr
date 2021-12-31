@@ -1,5 +1,20 @@
 # cffr (development version)
 
+-   Now **cffr** extracts also information of the package dependencies and adds
+    the main citation of the dependencies to the `references` field, using
+    `citation(auto = TRUE)`.
+
+    -   New `dependencies` parameter on `cff_create()` and `cff_write()`.
+
+-   Other improvements on `cff_parse_citation():`
+
+    -   `cff_parse_citation()` extracts more information of authors, based on
+        the fields provided on the DESCRIPTION file.
+
+    -   `cff_parse_citation()` does a better job extracting information from
+        `bibentry()` /BibTeX and mapping it to `preferred-citation/references`
+        fields of CFF.
+
 -   Add new functions for working with git pre-commit hooks
     [![Experimental](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental):
 
@@ -12,17 +27,6 @@
     -   `cff_to_bibtex()`
     -   `cff_parse_person_bibtex()`
     -   `write_bib()`
-
--   `cff_parse_citation()` extracts more information of authors, based on the
-    fields provided on the DESCRIPTION file.
-
--   `cff_parse_citation()` does a better job extracting information from
-    `bibentry()` /BibTeX and mapping it to `preferred-citation/references`
-    fields of CFF.
-
--   Now **cffr** extracts also information of the package dependencies and adds
-    the main citation of the dependencies to the `references` field, using
-    `citation(auto = TRUE)`.
 
 -   Add a new dependency: `lifecycle`.
 

@@ -7,6 +7,11 @@ description: >-
   This article presents a crosswalk between BibTeX and Citation File Format 
   [@druskat_citation_2021], as it is performed by the cffr package 
   [@hernangomez2021].
+abstract: >-
+  This article presents a crosswalk between BibTeX and Citation File Format 
+  [@druskat_citation_2021], as it is performed by the cffr package 
+  [@hernangomez2021]. Several crosswalk models specific for each BibTeX entry
+  type [@patashnik1988] are proposed.
 link-citations: yes
 documentclass: article
 output: 
@@ -32,7 +37,7 @@ options(width = 60)
 Please cite this article as:
 
 ```{r cit, echo=FALSE, results='asis'}
-thisart <- bibentry("Article",
+thisart <- bibentry("article",
   title = "{BibTeX} and {CFF}, a potential crosswalk",
   key = "hernangomez2022",
   author = "Diego Hernangómez",
@@ -59,11 +64,12 @@ A BibTeX entry for LaTeX users:
 ## BibTeX and R
 
 [BibTeX](https://en.wikipedia.org/wiki/BibTeX) is a well-known format for
-storing references that may be reused by another software, like
-[LaTeX](https://en.wikipedia.org/wiki/LaTeX). BibTeX was created by [Oren
+storing references created by [Oren
 Patashnik](https://en.wikipedia.org/wiki/Oren_Patashnik "Oren Patashnik") and
 [Leslie Lamport](https://en.wikipedia.org/wiki/Leslie_Lamport "Leslie Lamport")
-back in 1985. An example structure of a BibTeX entry would be:
+back in 1985. BibTeX that may be reused by another software, like
+[LaTeX](https://en.wikipedia.org/wiki/LaTeX), for adding references to a work.
+An example structure of a BibTeX entry would be:
 
 ``` bibtex
 @book{einstein1921,
@@ -84,7 +90,7 @@ On **R** [@R_2021], we can replicate this structure using the `bibentry()` and
 
 ```{r bibentry, comment="#>"}
 
-entry <- bibentry("Book",
+entry <- bibentry("book",
   key = "einstein1921",
   title = "Relativity: The Special and the General Theory",
   author = person("A.", "Einstein"),
@@ -209,10 +215,10 @@ There is a strict relation between Entries and Fields on BibTeX. Depending on
 the type of entries, some fields are required while others are optional or even
 ignored. On the following table, required field are flagged as **\*** and
 optional fields are flagged as **-**. Fields on parenthesis **()** denotes that
-there are some degree of optionality on the requirement of the field, see
+there are some degree of flexibility on the requirement of the field, see
 @patashnik1988 for more information.
 
-```{r entry_fields, echo=FALSE}
+```{r entry_fields1, echo=FALSE}
 
 bibtex_field_entry <- read.csv(system.file("extdata/bibtex_field_entry.csv",
   package = "cffr"
@@ -227,7 +233,9 @@ knitr::kable(t1,
   align = c("l", rep("c", 6)),
   caption = "BibTeX, required fields by entry"
 )
+```
 
+```{r entry_fields2, echo=FALSE}
 t2 <- bibtex_field_entry[, c(1, 8:13)]
 
 knitr::kable(t2,
@@ -333,173 +341,169 @@ Also, given that CFF provides with a [wide range of allowed
 values](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype)
 on type, the following conversion would be performed from CFF to BibTeX:
 
-+------------------+------------------------+---------------------------------+
-| Value of CFF     | BibTeX Entry           | Notes                           |
-| key: type        |                        |                                 |
-+==================+========================+=================================+
-| book             | **\@book** **/         | See [Entry Models]              |
-|                  | \@inbook**             |                                 |
-+------------------+------------------------+---------------------------------+
-| conference       | **\@inproceedings**    |                                 |
-+------------------+------------------------+---------------------------------+
-| conference-paper | **\@inproceedings**    |                                 |
-+------------------+------------------------+---------------------------------+
-| magazine-article | **\@article**          |                                 |
-+------------------+------------------------+---------------------------------+
-| manual           | **\@manual**           |                                 |
-+------------------+------------------------+---------------------------------+
-| n                | **\@article**          |                                 |
-| ewspaper-article |                        |                                 |
-+------------------+------------------------+---------------------------------+
-| pamphlet         | **\@booklet**          |                                 |
-+------------------+------------------------+---------------------------------+
-| proceedings      | **\@proceedings**      |                                 |
-+------------------+------------------------+---------------------------------+
-| report           | **\@techreport**       |                                 |
-+------------------+------------------------+---------------------------------+
-| thesis           | **\@mastersthesis /    | See [Entry Models]              |
-|                  | \@phdthesis**          |                                 |
-+------------------+------------------------+---------------------------------+
-| unpublished      | **\@unpublished**      |                                 |
-+------------------+------------------------+---------------------------------+
-| generic          | **\@misc /             | Under specific conditions, see  |
-|                  | \@incollection**       | [Entry Models]                  |
-+------------------+------------------------+---------------------------------+
-| \<any other      | **\@misc**             |                                 |
-| value>           |                        |                                 |
-+------------------+------------------------+---------------------------------+
++---------------------+--------------------------+----------------------------+
+| Value of CFF key:   | BibTeX Entry             | Notes                      |
+| type                |                          |                            |
++=====================+==========================+============================+
+| book                | **\@book** **/           | See [Entry Models]         |
+|                     | \@inbook**               |                            |
++---------------------+--------------------------+----------------------------+
+| conference          | **\@inproceedings**      |                            |
++---------------------+--------------------------+----------------------------+
+| conference-paper    | **\@inproceedings**      |                            |
++---------------------+--------------------------+----------------------------+
+| magazine-article    | **\@article**            |                            |
++---------------------+--------------------------+----------------------------+
+| manual              | **\@manual**             |                            |
++---------------------+--------------------------+----------------------------+
+| newspaper-article   | **\@article**            |                            |
++---------------------+--------------------------+----------------------------+
+| pamphlet            | **\@booklet**            |                            |
++---------------------+--------------------------+----------------------------+
+| proceedings         | **\@proceedings**        |                            |
++---------------------+--------------------------+----------------------------+
+| report              | **\@techreport**         |                            |
++---------------------+--------------------------+----------------------------+
+| thesis              | **\@mastersthesis /      | See [Entry Models]         |
+|                     | \@phdthesis**            |                            |
++---------------------+--------------------------+----------------------------+
+| unpublished         | **\@unpublished**        |                            |
++---------------------+--------------------------+----------------------------+
+| generic             | **\@misc /               | Under specific conditions, |
+|                     | \@incollection**         | see [Entry Models]         |
++---------------------+--------------------------+----------------------------+
+| \<any other value>  | **\@misc**               |                            |
++---------------------+--------------------------+----------------------------+
 
 : Entry/Type crosswalk: From CFF to BibTeX
 
 ### Fields/Key crosswalk
 
 There is a large degree of similarity between the definition and names of some
-BibTeX fields and CFF keys. On the following cases, the equivalence is almost
-straightforward:
+BibTeX fields and CFF keys[^7]. On the following cases, the equivalence is
+almost straightforward:
 
-| BibTeX Field     | CFF key            |
-|------------------|--------------------|
-| **address**      | See [Entry Models] |
-| ***annote***     | \-                 |
-| **author**       | authors            |
-| **booktitle**    | collection-title   |
-| **chapter**      | section            |
-| ***crossref***   | \-                 |
-| **edition**      | edition            |
-| **editor**       | editors            |
-| **howpublished** | medium             |
-| **institution**  | See [Entry Models] |
-| **journal**      | journal            |
-| ***key***        | \-                 |
-| **month**        | month              |
-| **note**         | notes              |
-| **number**       | issue              |
-| **organization** | See [Entry Models] |
-| **pages**        | start & end        |
-| **publisher**    | publisher          |
-| **school**       | See [Entry Models] |
-| **series**       | See [Entry Models] |
-| **title**        | title              |
-| ***type***       | \-                 |
-| **volume**       | volume             |
-| **year**         | year               |
+[^7]: To avoid errors on the interpretation, names in **bold** correspond to
+    BibTeX fields while the same number on [underscore]{.ul} would refer to CFF.
+
+| BibTeX Field     | CFF key                   |
+|------------------|---------------------------|
+| **address**      | See [Entry Models]        |
+| ***annote***     | \-                        |
+| **author**       | [authors]{.ul}            |
+| **booktitle**    | [collection-title]{.ul}   |
+| **chapter**      | [section]{.ul}            |
+| ***crossref***   | \-                        |
+| **edition**      | [edition]{.ul}            |
+| **editor**       | [editors]{.ul}            |
+| **howpublished** | [medium]{.ul}             |
+| **institution**  | See [Entry Models]        |
+| **journal**      | [journal]{.ul}            |
+| ***key***        | \-                        |
+| **month**        | [month]{.ul}              |
+| **note**         | [notes]{.ul}              |
+| **number**       | [issue]{.ul}              |
+| **organization** | See [Entry Models]        |
+| **pages**        | [start]{.ul} & [end]{.ul} |
+| **publisher**    | [publisher]{.ul}          |
+| **school**       | See [Entry Models]        |
+| **series**       | See [Entry Models]        |
+| **title**        | [title]{.ul}              |
+| ***type***       | \-                        |
+| **volume**       | [volume]{.ul}             |
+| **year**         | [year]{.ul}               |
 
 : BibTeX - CFF Field/Key crosswalk
 
 Additionally, there are other additional CFF keys that have a correspondence
 with BibLaTeX fields. We propose also to include these fields on the
-crosswalk[^7], although they are not part of the core BibTeX fields definition.
+crosswalk[^8], although they are not part of the core BibTeX fields definition.
 
-[^7]: See @biblatexcheatsheet for a preview of the accepted BibLaTeX fields.
+[^8]: See @biblatexcheatsheet for a preview of the accepted BibLaTeX fields.
 
-| BibLaTeX Field | CFF key        |
-|----------------|----------------|
-| **abstract**   | abstract       |
-| **date**       | date-published |
-| **doi**        | doi            |
-| **file**       | filename       |
-| **isbn**       | isbn           |
-| **issn**       | issn           |
-| **issuetitle** | issue-title    |
-| **pagetotal**  | pages          |
-| **translator** | translators    |
-| **url**        | url            |
-| **urldate**    | date-accessed  |
-| **version**    | version        |
+| BibLaTeX Field | CFF key               |
+|----------------|-----------------------|
+| **abstract**   | [abstract]{.ul}       |
+| **date**       | [date-published]{.ul} |
+| **doi**        | [doi]{.ul}            |
+| **file**       | [filename]{.ul}       |
+| **isbn**       | [isbn]{.ul}           |
+| **issn**       | [issn]{.ul}           |
+| **issuetitle** | [issue-title]{.ul}    |
+| **pagetotal**  | [pages]{.ul}          |
+| **translator** | [translators]{.ul}    |
+| **url**        | [url]{.ul}            |
+| **urldate**    | [date-accessed]{.ul}  |
+| **version**    | [version]{.ul}        |
 
 : BibLaTeX - CFF Field/Key crosswalk
 
 ## Entry Models
 
 This section presents the specific mapping proposed for each of the BibTeX
-entries, providing further information on how each field is treated.
+entries, providing further information on how each field is treated. Examples
+are adapted from the [xampl.bib](https://tug.org/texmf-docs/bibtex/xampl.bib)
+file provided with the bibtex package [@patashnik].
 
-### Article
+### article
 
-The crosswalk of \@Article does not require any special treatment.
+The crosswalk of **\@article** does not require any special treatment.
 
-+-----------------+-----------------+-----------------------------------------+
-| BibTeX          | CFF             | Note                                    |
-+=================+=================+=========================================+
-| **\@Article**   | article         | When converting CFF to BibTeX, CFF keys |
-|                 |                 | *magazine-article* and                  |
-|                 |                 | *newspaper-article* are converted to    |
-|                 |                 | **\@Article**.                          |
-+-----------------+-----------------+-----------------------------------------+
-| **author\***    | authors         |                                         |
-+-----------------+-----------------+-----------------------------------------+
-| **title\***     | title           |                                         |
-+-----------------+-----------------+-----------------------------------------+
-| **journal\***   | journal         |                                         |
-+-----------------+-----------------+-----------------------------------------+
-| **year\***      | year            |                                         |
-+-----------------+-----------------+-----------------------------------------+
-| **volume**      | volume          |                                         |
-+-----------------+-----------------+-----------------------------------------+
-| **number**      | issue           |                                         |
-+-----------------+-----------------+-----------------------------------------+
-| **pages**       | start and end   | Separated by `--,` i.e,                 |
-|                 |                 |                                         |
-|                 |                 | pages = `3--5` (BibTeX)                 |
-|                 |                 |                                         |
-|                 |                 | would be parsed as                      |
-|                 |                 |                                         |
-|                 |                 | `start: 3`                              |
-|                 |                 |                                         |
-|                 |                 | `end: 5`                                |
-|                 |                 |                                         |
-|                 |                 | on CFF                                  |
-+-----------------+-----------------+-----------------------------------------+
-| **month**       | month           | As a fallback, **month** could be       |
-|                 |                 | extracted also from **date** (BibLaTeX  |
-|                 |                 | field)/ date-published (CFF)            |
-+-----------------+-----------------+-----------------------------------------+
-| **note**        | notes           |                                         |
-+-----------------+-----------------+-----------------------------------------+
++------------------+----------------------+-----------------------------------+
+| BibTeX           | CFF                  | Note                              |
++==================+======================+===================================+
+| **\@article**    | [type: article]{.ul} | When converting CFF to BibTeX,    |
+|                  |                      | [type magazine-article]{.ul} and  |
+|                  |                      | [newspaper-article]{.ul} are      |
+|                  |                      | converted to **\@article**.       |
++------------------+----------------------+-----------------------------------+
+| **author\***     | [authors]{.ul}       |                                   |
++------------------+----------------------+-----------------------------------+
+| **title\***      | [title]{.ul}         |                                   |
++------------------+----------------------+-----------------------------------+
+| **journal\***    | [journal]{.ul}       |                                   |
++------------------+----------------------+-----------------------------------+
+| **year\***       | [year]{.ul}          |                                   |
++------------------+----------------------+-----------------------------------+
+| **volume**       | [volume]{.ul}        |                                   |
++------------------+----------------------+-----------------------------------+
+| **number**       | [issue]{.ul}         |                                   |
++------------------+----------------------+-----------------------------------+
+| **pages**        | [start]{.ul} and     | Separated by `--`, i.e,           |
+|                  | [end]{.ul}           |                                   |
+|                  |                      | **pages** = {3--5}                |
+|                  |                      |                                   |
+|                  |                      | would be parsed as                |
+|                  |                      |                                   |
+|                  |                      | [start]{.ul}: 3                   |
+|                  |                      |                                   |
+|                  |                      | [end]{.ul}: 5                     |
++------------------+----------------------+-----------------------------------+
+| **month**        | [month]{.ul}         | As a fallback, **month** could be |
+|                  |                      | extracted also from **date**      |
+|                  |                      | (BibLaTeX field)/                 |
+|                  |                      | [date-published]{.ul}             |
++------------------+----------------------+-----------------------------------+
+| **note**         | [notes]{.ul}         |                                   |
++------------------+----------------------+-----------------------------------+
 
-: Article model
+: **\@article** Model
 
 **Examples**
 
 [*BibTeX entry*]{.ul}
 
 ``` bibtex
-@Article{1981:surveys:bernstein,
-  author =       "P. A. Bernstein and N. Goldman",
-  title =        "Concurrency Control in Distributed Database Systems",
-  journal =      "ACM Computing Surveys",
-  publisher =    "ACM Press",
-  address =      "New York, NY, USA",
-  year =         "1981",
-  volume =       "13",
-  month =        "jun",
-  number =       "2",
-  pages =        "185--221",
-  keywords =     "Concurrency control; deadlock; distributed database
-                 management systems; locking; serializability;
-                 synchronization; timestamp ordering; timestamps;
-                 two-phase commit; two-phase locking",
-  annote =       "unsupported",
+@article{article-full,
+    title        = {The Gnats and Gnus Document Preparation System},
+    author       = {Leslie A. Aamport},
+    year         = 1986,
+    month        = jul,
+    journal      = {{G-Animal's} Journal},
+    volume       = 41,
+    number       = 7,
+    pages        = {73+},
+    note         = {This is a full ARTICLE entry}
 }
 ```
 
@@ -507,22 +511,16 @@ The crosswalk of \@Article does not require any special treatment.
 
 ```{r echo=FALSE}
 
-bib <- bibentry("Article",
-  author = "P. A. Bernstein and N. Goldman",
-  title = "Concurrency Control in Distributed Database Systems",
-  journal = "ACM Computing Surveys",
-  publisher = "ACM Press",
-  address = "New York, NY, USA",
-  year = "1981",
-  volume = "13",
-  month = "jun",
-  number = "2",
-  pages = "185--221",
-  keywords = "Concurrency control; deadlock; distributed database
-                 management systems; locking; serializability;
-                 synchronization; timestamp ordering; timestamps;
-                 two-phase commit; two-phase locking",
-  annote = "unsupported",
+bib <- bibentry("article",
+  title        = "The Gnats and Gnus Document Preparation System",
+  author       = "Leslie A. Aamport",
+  year         = 1986,
+  month        = "jul",
+  journal      = "{G-Animal's} Journal",
+  volume       = 41,
+  number       = 7,
+  pages        = "73+",
+  note         = "This is a full ARTICLE entry"
 )
 
 cff_parse_citation(bib)
@@ -534,82 +532,82 @@ cff_parse_citation(bib)
 toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
-### Book/InBook
+### book/inbook
 
-In terms of field required on BibTeX, the only difference between **\@Book** and
-**\@InBook** is that the latter requires also a **chapter** or **pages**, while
-for \@Book these fields are not even optional. So we propose here to identify an
-**\@InBook** on CFF as a book with chapter and start-end fields (CFF).
+In terms of field required on BibTeX, the only difference between **\@book** and
+**\@inbook** is that the latter requires also a **chapter** or **pages**, while
+for **\@book** these fields are not even optional. So we propose here to
+identify an **\@inbook** on CFF as a [book]{.ul} with [section]{.ul} and
+[start]{.ul}-[end]{.ul} fields (CFF).
 
-Another specificities are that **series** field is mapped to collection-title
-and **address** is mapped as the address of the publisher (CFF).
+Another specificity is that **series** field is mapped to
+[collection-title]{.ul} and **address** is mapped as the [address]{.ul} of the
+[publisher]{.ul} (CFF).
 
-+---------------------+-----------------------+-----------------------+
-| BibTeX              | CFF                   | Note                  |
-+=====================+=======================+=======================+
-| **\@Book**          | book                  |                       |
-+---------------------+-----------------------+-----------------------+
-| **\@InBook**        | book                  | For identifying an    |
-|                     |                       | \@InBook in CFF,      |
-|                     |                       | assess if **chapter** |
-|                     |                       | or                    |
-|                     |                       | **pages**/start-end   |
-|                     |                       | information is        |
-|                     |                       | available             |
-+---------------------+-----------------------+-----------------------+
-| **author\***        | authors               |                       |
-+---------------------+-----------------------+-----------------------+
-| **editor\***        | editors               |                       |
-+---------------------+-----------------------+-----------------------+
-| **title\***         | title                 |                       |
-+---------------------+-----------------------+-----------------------+
-| **publisher\***     | publisher             |                       |
-+---------------------+-----------------------+-----------------------+
-| **year\***          | year                  |                       |
-+---------------------+-----------------------+-----------------------+
-| **chapter\***       | section               | Only required on      |
-|                     |                       | **\@InBook**          |
-+---------------------+-----------------------+-----------------------+
-| **pages\***         | start and end         | Only required on      |
-|                     |                       | **\@InBook**          |
-+---------------------+-----------------------+-----------------------+
-| **volume**          | volume                |                       |
-+---------------------+-----------------------+-----------------------+
-| **number**          | issue                 |                       |
-+---------------------+-----------------------+-----------------------+
-| **series**          | collection-title      |                       |
-+---------------------+-----------------------+-----------------------+
-| **address**         | address property of   | As a fallback, the    |
-|                     | publisher             | field location (CFF)  |
-|                     |                       | can be used           |
-+---------------------+-----------------------+-----------------------+
-| **edition**         | edition               |                       |
-+---------------------+-----------------------+-----------------------+
-| **month**           | month                 | As a fallback,        |
-|                     |                       | **month** could be    |
-|                     |                       | extracted also from   |
-|                     |                       | **date** (BibLaTeX    |
-|                     |                       | field)/               |
-|                     |                       | date-published (CFF)  |
-+---------------------+-----------------------+-----------------------+
-| **note**            | notes                 |                       |
-+---------------------+-----------------------+-----------------------+
++------------------------+--------------------------+--------------------------+
+| BibTeX                 | CFF                      | Note                     |
++========================+==========================+==========================+
+| **\@book**             | [type: book]{.ul}        |                          |
++------------------------+--------------------------+--------------------------+
+| **\@inbook**           | [type: book]{.ul}        | For identifying an       |
+|                        |                          | **\@inbook** in CFF,     |
+|                        |                          | assess if [section]{.ul} |
+|                        |                          | or                       |
+|                        |                          | [start]{.ul}-[end]{.ul}  |
+|                        |                          | information is available |
++------------------------+--------------------------+--------------------------+
+| **author\***           | [authors]{.ul}           |                          |
++------------------------+--------------------------+--------------------------+
+| **editor\***           | [editors]{.ul}           |                          |
++------------------------+--------------------------+--------------------------+
+| **title\***            | [title]{.ul}             |                          |
++------------------------+--------------------------+--------------------------+
+| **publisher\***        | [publisher]{.ul}         |                          |
++------------------------+--------------------------+--------------------------+
+| **year\***             | [year]{.ul}              |                          |
++------------------------+--------------------------+--------------------------+
+| **chapter\***          | [section]{.ul}           | Only required on         |
+|                        |                          | **\@inbook**             |
++------------------------+--------------------------+--------------------------+
+| **pages\***            | [start]{.ul} and         | Only required on         |
+|                        | [end]{.ul}               | **\@inbook**             |
++------------------------+--------------------------+--------------------------+
+| **volume**             | [volume]{.ul}            |                          |
++------------------------+--------------------------+--------------------------+
+| **number**             | [issue]{.ul}             |                          |
++------------------------+--------------------------+--------------------------+
+| **series**             | [collection-title]{.ul}  |                          |
++------------------------+--------------------------+--------------------------+
+| **address**            | [address]{.ul} property  | As a fallback, the field |
+|                        | of [publisher]{.ul}      | [location]{.ul} can be   |
+|                        |                          | used                     |
++------------------------+--------------------------+--------------------------+
+| **edition**            | [edition]{.ul}           |                          |
++------------------------+--------------------------+--------------------------+
+| **month**              | [month]{.ul}             | See **Note** on          |
+|                        |                          | [article]                |
++------------------------+--------------------------+--------------------------+
+| **note**               | [notes]{.ul}             |                          |
++------------------------+--------------------------+--------------------------+
 
-: Book/InBook model
+: **\@book/\@inbook** Model
 
-**Examples: Book**
+**Examples: book**
 
 [*BibTeX entry*]{.ul}
 
 ``` bibtex
-@book{10.5555/218623,
-    editor       = {Abramsky, S. and Gabbay, Dov M. and Maibaum, T. S. E.},
-    title        = {Handbook of Logic in Computer Science: Semantic Modelling},
-    year         = 1995,
-    volume       = 4,
-    isbn         = {0198537808},
-    publisher    = {Oxford University Press, Inc.},
-    address      = {USA}
+@book{book-full,
+    title        = {Seminumerical Algorithms},
+    author       = {Donald E. Knuth},
+    year         = 1981,
+    month        = 10,
+    publisher    = {Addison-Wesley},
+    address      = {Reading, Massachusetts},
+    series       = {The Art of Computer Programming},
+    volume       = 2,
+    note         = {This is a full BOOK entry},
+    edition      = {Second}
 }
 ```
 
@@ -618,13 +616,16 @@ and **address** is mapped as the address of the publisher (CFF).
 ```{r echo=FALSE}
 
 bib <- bibentry("Book",
-  editor = "S. Abramsky and Dov M. Gabbay and T. S. E. Maibaum",
-  title = "Handbook of Logic in Computer Science: Semantic Modelling",
-  volume = 4,
-  year = 1995,
-  isbn = "0198537808",
-  publisher = "Oxford University Press, Inc.",
-  address = "USA"
+  title = "Seminumerical Algorithms",
+  author = "Donald E. Knuth",
+  year = 1981,
+  month = 10,
+  publisher = "Addison-Wesley",
+  address = "Reading, Massachusetts",
+  series = "The Art of Computer Programming",
+  volume = 2,
+  note = "This is a full BOOK entry",
+  edition = "Second"
 )
 
 cff_parse_citation(bib)
@@ -636,21 +637,25 @@ cff_parse_citation(bib)
 toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
-**Examples: InBook**
+**Examples: inbook**
 
 [*BibTeX entry*]{.ul}
 
 ``` bibtex
 @inbook{10.5555/218623-1,
-    author       = {Winskel, Glynn and Nielsen, Mogens},
-    chapter      = {Models for Concurrency},
-    editor       = {Abramsky, S. and Gabbay, Dov M. and Maibaum, T. S. E.},
-    title        = {Handbook of Logic in Computer Science: Semantic Modelling},
-    year         = 1995,
-    volume       = 4,
-    isbn         = {0198537808},
-    publisher    = {Oxford University Press, Inc.},
-    address      = {USA}
+    title        = {Fundamental Algorithms},
+    author       = {Donald E. Knuth},
+    year         = 1973,
+    month        = 10,
+    publisher    = {Addison-Wesley},
+    address      = {Reading, Massachusetts},
+    series       = {The Art of Computer Programming},
+    volume       = 1,
+    pages        = {10--119},
+    note         = {This is a full INBOOK entry},
+    edition      = {Second},
+    type         = {Section},
+    chapter      = {1.2}
 }
 ```
 
@@ -658,16 +663,20 @@ toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 
 ```{r echo=FALSE,}
 
-bib <- bibentry("InBook",
-  author = "Glynn Winskel and Mogens Nielsen",
-  chapter = "Models for Concurrency",
-  editor = "S. Abramsky and Dov M. Gabbay and T. S. E. Maibaum",
-  title = "Handbook of Logic in Computer Science: Semantic Modelling",
-  year = 1995,
-  volume = 4,
-  isbn = "01985378082",
-  publisher = "Oxford University Press, Inc.",
-  address = "USA"
+bib <- bibentry("inbook",
+  title        = "Fundamental Algorithms",
+  author       = "Donald E. Knuth",
+  year         = 1973,
+  month        = 10,
+  publisher    = "Addison-Wesley",
+  address      = "Reading, Massachusetts",
+  series       = "The Art of Computer Programming",
+  volume       = 1,
+  pages        = "10--119",
+  note         = "This is a full INBOOK entry",
+  edition      = "Second",
+  type         = "Section",
+  chapter      = "1.2"
 )
 
 cff_parse_citation(bib)
@@ -679,37 +688,36 @@ cff_parse_citation(bib)
 toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
-### Booklet
+### booklet
 
-In \@Booklet **address** is mapped to location.
+In **\@booklet** **address** is mapped to [location]{.ul}.
 
-+------------------------+------------------+---------------------------------+
-| BibTeX                 | CFF              | Note                            |
-+========================+==================+=================================+
-| **\@ Booklet**         | pamphlet         |                                 |
-+------------------------+------------------+---------------------------------+
-| **title\***            | title            |                                 |
-+------------------------+------------------+---------------------------------+
-| **author\***           | authors          |                                 |
-+------------------------+------------------+---------------------------------+
-| **howpublished**       | medium           |                                 |
-+------------------------+------------------+---------------------------------+
-| **address**            | location         |                                 |
-+------------------------+------------------+---------------------------------+
-| **month**              | month            | As a fallback, **month** could  |
-|                        |                  | be extracted also from **date** |
-|                        |                  | (BibLaTeX field)/               |
-|                        |                  | date-published (CFF)            |
-+------------------------+------------------+---------------------------------+
-| **year**               | year             | As a fallback, **year** could   |
-|                        |                  | be extracted also from **date** |
-|                        |                  | (BibLaTeX field)/               |
-|                        |                  | date-published (CFF)            |
-+------------------------+------------------+---------------------------------+
-| **note**               | notes            |                                 |
-+------------------------+------------------+---------------------------------+
++-----------------------------+------------------+----------------------------+
+| BibTeX                      | CFF              | Note                       |
++=============================+==================+============================+
+| **\@booklet**               | [type:           |                            |
+|                             | pamphlet]{.ul}   |                            |
++-----------------------------+------------------+----------------------------+
+| **title\***                 | [title]{.ul}     |                            |
++-----------------------------+------------------+----------------------------+
+| **author\***                | [authors]{.ul}   |                            |
++-----------------------------+------------------+----------------------------+
+| **howpublished**            | [medium]{.ul}    |                            |
++-----------------------------+------------------+----------------------------+
+| **address**                 | [location]{.ul}  |                            |
++-----------------------------+------------------+----------------------------+
+| **month**                   | [month]{.ul}     | See **Note** on [article]  |
++-----------------------------+------------------+----------------------------+
+| **year**                    | [year]{.ul}      | As a fallback, **year**    |
+|                             |                  | could be extracted also    |
+|                             |                  | from **date** (BibLaTeX    |
+|                             |                  | field)/                    |
+|                             |                  | [date-published]{.ul}      |
++-----------------------------+------------------+----------------------------+
+| **note**                    | [notes]{.ul}     |                            |
++-----------------------------+------------------+----------------------------+
 
-: Booklet model
+: **\@booklet** Model
 
 **Examples**
 
@@ -722,6 +730,7 @@ In \@Booklet **address** is mapped to location.
     date         = {1988-03-14},
     month        = feb,
     address      = {Stanford, California},
+    note         = {This is a full BOOKLET entry},
     howpublished = {Vernier Art Center}
 }
 ```
@@ -730,12 +739,13 @@ In \@Booklet **address** is mapped to location.
 
 ```{r echo=FALSE, }
 
-bib <- bibentry("Booklet",
-  title        = "The Programming of Computer Art",
-  author       = "Jill C. Knvth",
-  date         = "1988-03-14",
-  month        = "feb",
-  address      = "Stanford, California",
+bib <- bibentry("booklet",
+  title = "The Programming of Computer Art",
+  author = "Jill C. Knvth",
+  date = "1988-03-14",
+  month = "feb",
+  address = "Stanford, California",
+  note = "This is a full BOOKLET entry",
   howpublished = "Vernier Art Center"
 )
 
@@ -748,7 +758,56 @@ cff_parse_citation(bib)
 toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
-### Conference/InProceedings
+### conference/inproceedings
+
+Note that in this case, **organization** is mapped to [institution]{.ul}, as
+BibTeX does not prescribe the use of **institution** on these entries.
+
++-------------------------+---------------------------+-----------------------+
+| BibTeX                  | CFF                       | Note                  |
++=========================+===========================+=======================+
+| **\@conference /        | [type:                    | CFF entries with      |
+| \@inproceedings**       | conference-paper]{.ul}    | [type]{.ul}           |
+|                         |                           | =conference are       |
+|                         |                           | mapped back to        |
+|                         |                           | **\@inproceedings**.  |
++-------------------------+---------------------------+-----------------------+
+| **author\***            | [authors]{.ul}            |                       |
++-------------------------+---------------------------+-----------------------+
+| **title\***             | [title]{.ul}              |                       |
++-------------------------+---------------------------+-----------------------+
+| **booktitle\***         | [collection-title]{.ul}   |                       |
++-------------------------+---------------------------+-----------------------+
+| **year\***              | [year]{.ul}               |                       |
++-------------------------+---------------------------+-----------------------+
+| **editor**              | [editors]{.ul}            |                       |
++-------------------------+---------------------------+-----------------------+
+| **volume**              | [volume]{.ul}             |                       |
++-------------------------+---------------------------+-----------------------+
+| **number**              | [issue]{.ul}              |                       |
++-------------------------+---------------------------+-----------------------+
+| **series**              | [conference]{.ul}         |                       |
++-------------------------+---------------------------+-----------------------+
+| **pages**               | [start]{.ul} and          | See **Note** on       |
+|                         | [end]{.ul}                | [article]             |
++-------------------------+---------------------------+-----------------------+
+| **address**             | [location]{.ul}           | As a fallback,        |
+|                         |                           | [address]{.ul}        |
+|                         |                           | property of           |
+|                         |                           | [conference]{.ul} can |
+|                         |                           | be used               |
++-------------------------+---------------------------+-----------------------+
+| **month**               | [month]{.ul}              | See **Note** on       |
+|                         |                           | [article]             |
++-------------------------+---------------------------+-----------------------+
+| **organization**        | [institution]{.ul}        |                       |
++-------------------------+---------------------------+-----------------------+
+| **publisher**           | [publisher]{.ul}          |                       |
++-------------------------+---------------------------+-----------------------+
+| **note**                | [notes]{.ul}              |                       |
++-------------------------+---------------------------+-----------------------+
+
+: **\@conference/\@inproceedings** Model
 
 **Examples**
 
@@ -775,7 +834,7 @@ toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 
 ```{r echo=FALSE,}
 
-bib <- bibentry("InProceedings",
+bib <- bibentry("inproceedings",
   title        = "On Notions of Information Transfer in {VLSI} Circuits",
   author       = "Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis",
   year         = 1983,
@@ -788,6 +847,384 @@ bib <- bibentry("InProceedings",
   pages        = "133--139",
   editor       = "Wizard V. Oz and Mihalis Yannakakis",
   organization = "The OX Association for Computing Machinery"
+)
+
+cff_parse_citation(bib)
+```
+
+[*From CFF to BibTeX*]{.ul}
+
+```{r echo=FALSE,}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
+```
+
+### incollection
+
+As **booktitle** is a required field, we propose to map that field to
+[collection-title]{.ul} and the [type]{.ul} to [generic]{.ul}. Therefore, an
+**\@incollection** is a [type: generic]{.ul} with a [collection-title]{.ul} key.
+
++-------------------------+-------------------------+-------------------------+
+| **BibTeX**              | CFF                     | Note                    |
++=========================+=========================+=========================+
+| **\@incollection**      | [type: generic]{.ul}    | Including a             |
+|                         |                         | [collection-title]{.ul} |
+|                         |                         | value                   |
++-------------------------+-------------------------+-------------------------+
+| **author\***            | [authors]{.ul}          |                         |
++-------------------------+-------------------------+-------------------------+
+| **title\***             | [title]{.ul}            |                         |
++-------------------------+-------------------------+-------------------------+
+| **booktitle\***         | [collection-title]{.ul} |                         |
++-------------------------+-------------------------+-------------------------+
+| **publisher\***         | [publisher]{.ul}        |                         |
++-------------------------+-------------------------+-------------------------+
+| **year\***              | [year]{.ul}             |                         |
++-------------------------+-------------------------+-------------------------+
+| **editor**              | [editors]{.ul}          |                         |
++-------------------------+-------------------------+-------------------------+
+| **volume**              | [volume]{.ul}           |                         |
++-------------------------+-------------------------+-------------------------+
+| **number**              | [issue]{.ul}            |                         |
++-------------------------+-------------------------+-------------------------+
+| **series**              | [series]{.ul}           |                         |
++-------------------------+-------------------------+-------------------------+
+| **type**                | \-                      | Ignored                 |
++-------------------------+-------------------------+-------------------------+
+| **chapter**             | [section]{.ul}          |                         |
++-------------------------+-------------------------+-------------------------+
+| **pages**               | [start]{.ul} and        | See **Note** on         |
+|                         | [end]{.ul}              | [article]               |
++-------------------------+-------------------------+-------------------------+
+| **address**             | [address]{.ul} property | See **Note** on         |
+|                         | of [publisher]{.ul}     | [book/inbook]           |
++-------------------------+-------------------------+-------------------------+
+| **edition**             | [edition]{.ul}          |                         |
++-------------------------+-------------------------+-------------------------+
+| **month**               | [month]{.ul}            | See **Note** on         |
+|                         |                         | [article]               |
++-------------------------+-------------------------+-------------------------+
+| **note**                | [notes]{.ul}            |                         |
++-------------------------+-------------------------+-------------------------+
+
+: **\@incollection** Model
+
+**Examples**
+
+[*BibTeX entry*]{.ul}
+
+``` bibtex
+@incollection{incollection-full,
+    title        = {Semigroups of Recurrences},
+    author       = {Daniel D. Lincoll},
+    year         = 1977,
+    month        = sep,
+    booktitle    = {High Speed Computer and Algorithm Organization},
+    publisher    = {Academic Press},
+    address      = {New York},
+    series       = {Fast Computers},
+    number       = 23,
+    pages        = {179--183},
+    note         = {This is a full INCOLLECTION entry},
+    editor       = {David J. Lipcoll and D. H. Lawrie and A. H. Sameh},
+    chapter      = 3,
+    type         = {Part},
+    edition      = {Third}
+}
+```
+
+[*CFF entry*]{.ul}
+
+```{r echo=FALSE,}
+
+bib <- bibentry("incollection",
+  title        = "Semigroups of Recurrences",
+  author       = "Daniel D. Lincoll",
+  year         = 1977,
+  month        = "sep",
+  booktitle    = "High Speed Computer and Algorithm Organization",
+  publisher    = "Academic Press",
+  address      = "New York",
+  series       = "Fast Computers",
+  number       = 23,
+  pages        = "179--183",
+  note         = "This is a full INCOLLECTION entry",
+  editor       = "David J. Lipcoll and D. H. Lawrie and A. H. Sameh",
+  chapter      = 3,
+  type         = "Part",
+  edition      = "Third"
+)
+
+cff_parse_citation(bib)
+```
+
+[*From CFF to BibTeX*]{.ul}
+
+```{r echo=FALSE,}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
+```
+
+### manual
+
+As in the case of [conference/inproceedings], **organization** is mapped to
+[institution]{.ul}.
+
++--------------------------+-----------------------------+---------------------+
+| **BibTeX**               | CFF                         | Note                |
++==========================+=============================+=====================+
+| **\@manual**             | [type: manual]{.ul}         |                     |
++--------------------------+-----------------------------+---------------------+
+| **title\***              | [title]{.ul}                |                     |
++--------------------------+-----------------------------+---------------------+
+| **author**               | [authors]{.ul}              |                     |
++--------------------------+-----------------------------+---------------------+
+| **organization**         | [institution]{.ul}          |                     |
++--------------------------+-----------------------------+---------------------+
+| **address**              | [location]{.ul}             |                     |
++--------------------------+-----------------------------+---------------------+
+| **edition**              | [edition]{.ul}              |                     |
++--------------------------+-----------------------------+---------------------+
+| **month**                | [month]{.ul}                | See **Note** on     |
+|                          |                             | [article]           |
++--------------------------+-----------------------------+---------------------+
+| **year**                 | [year]{.ul}                 | See **Note** on     |
+|                          |                             | [booklet]           |
++--------------------------+-----------------------------+---------------------+
+| **note**                 | [notes]{.ul}                |                     |
++--------------------------+-----------------------------+---------------------+
+
+: **\@manual** Model
+
+**Examples**
+
+[*BibTeX entry*]{.ul}
+
+Note that **month** can't be parsed to a single integer in the range `1--12` as
+required on CFF, so it is not parsed to avoid validation errors.
+
+``` bibtex
+@manual{manual-full,
+  title        = {The Definitive Computer Manual},
+    author       = {Larry Manmaker},
+    year         = 1986,
+    month        = {apr-may},
+    address      = {Silicon Valley},
+    note         = {This is a full MANUAL entry},
+    organization = {Chips-R-Us},
+    edition      = {Silver}
+}
+```
+
+[*CFF entry*]{.ul}
+
+```{r echo=FALSE,}
+
+bib <- bibentry("Manual",
+  title        = "The Definitive Computer Manual",
+  author       = "Larry Manmaker",
+  year         = 1986,
+  month        = "apr-may",
+  address      = "Silicon Valley",
+  note         = "This is a full MANUAL entry",
+  organization = "Chips-R-Us",
+  edition      = "Silver"
+)
+
+cff_parse_citation(bib)
+```
+
+[*From CFF to BibTeX*]{.ul}
+
+```{r echo=FALSE,}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
+```
+
+### mastersthesis/phdthesis (TBD)
+
+### misc
+
+The crosswalk of **\@misc** does not require any special treatment. This entry
+does not require any field.
+
+Note als that it is mapped to [type: generic]{.ul} as [incollection], but in
+this case **booktitle** is not even an option, so the proposed definition should
+cover both **\@misc** and **\@incollection** without problems.
+
++--------------------------+-----------------------------+---------------------+
+| **BibTeX**               | CFF                         | Note                |
++==========================+=============================+=====================+
+| **\@misc**               | [type: generic]{.ul}        |                     |
++--------------------------+-----------------------------+---------------------+
+| **author**               | [authors]{.ul}              |                     |
++--------------------------+-----------------------------+---------------------+
+| **title**                | [title]{.ul}                |                     |
++--------------------------+-----------------------------+---------------------+
+| **howpublished**         | [medium]{.ul}               |                     |
++--------------------------+-----------------------------+---------------------+
+| **month**                | [month]{.ul}                | See **Note** on     |
+|                          |                             | [article]           |
++--------------------------+-----------------------------+---------------------+
+| **year**                 | [year]{.ul}                 | See **Note** on     |
+|                          |                             | [booklet]           |
++--------------------------+-----------------------------+---------------------+
+| **note**                 | [notes]{.ul}                |                     |
++--------------------------+-----------------------------+---------------------+
+
+: **\@misc** Model
+
+**Examples**
+
+[*BibTeX entry*]{.ul}
+
+``` bibtex
+@misc{misc-full,
+    title        = {Handing out random pamphlets in airports},
+    author       = {Joe-Bob Missilany},
+    year         = 1984,
+    month        = oct,
+    note         = {This is a full MISC entry},
+    howpublished = {Handed out at O'Hare}
+}
+```
+
+[*CFF entry*]{.ul}
+
+```{r echo=FALSE,}
+
+bib <- bibentry("Misc",
+  title        = "Handing out random pamphlets in airports",
+  year         = 1984,
+  month        = "oct",
+  note         = "This is a MISC entry",
+  howpublished = "Handed out at O'Hare"
+)
+
+cff_parse_citation(bib)
+```
+
+[*From CFF to BibTeX*]{.ul}
+
+```{r echo=FALSE,}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
+```
+
+### proceedings (TBD)
+
+### techreport
+
++--------------------------+-----------------------------+---------------------+
+| **BibTeX**               | CFF                         | Note                |
++==========================+=============================+=====================+
+| **\@techreport**         | [type: report]{.ul}         |                     |
++--------------------------+-----------------------------+---------------------+
+| **author\***             | [authors]{.ul}              |                     |
++--------------------------+-----------------------------+---------------------+
+| **title\***              | [title]{.ul}                |                     |
++--------------------------+-----------------------------+---------------------+
+| **institution\***        | [institution]{.ul}          |                     |
++--------------------------+-----------------------------+---------------------+
+| **year\***               | [year]{.ul}                 |                     |
++--------------------------+-----------------------------+---------------------+
+| **type**                 | \-                          | Ignored             |
++--------------------------+-----------------------------+---------------------+
+| **number**               | [issue]{.ul}                |                     |
++--------------------------+-----------------------------+---------------------+
+| **address**              | [address]{.ul} property of  | See **Note** on     |
+|                          | [institution]{.ul}          | [book/inbook]       |
++--------------------------+-----------------------------+---------------------+
+| **month**                | [month]{.ul}                | See **Note** on     |
+|                          |                             | [article]           |
++--------------------------+-----------------------------+---------------------+
+| **note**                 | [notes]{.ul}                |                     |
++--------------------------+-----------------------------+---------------------+
+
+: **\@techreport** Model
+
+**Examples**
+
+[*BibTeX entry*]{.ul}
+
+``` bibtex
+@techreport{techreport-full,
+    title        = {A Sorting Algorithm},
+    author       = {Tom Terrific},
+    year         = 1988,
+    month        = oct,
+    address      = {Computer Science Department, Fanstord, California},
+    number       = 7,
+    note         = {This is a full TECHREPORT entry},
+    institution  = {Fanstord University},
+    type         = {Wishful Research Result}
+}
+```
+
+[*CFF entry*]{.ul}
+
+```{r echo=FALSE,}
+
+bib <- bibentry("techreport",
+  title = "A Sorting Algorithm",
+  author = "Tom Terrific",
+  year = 1988,
+  month = "oct",
+  address = "Computer Science Department, Fanstord, California",
+  number = 7,
+  note = "This is a full TECHREPORT entry",
+  institution = "Fanstord University",
+  type = "Wishful Research Result"
+)
+
+cff_parse_citation(bib)
+```
+
+[*From CFF to BibTeX*]{.ul}
+
+```{r echo=FALSE,}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
+```
+
+### unpublished
+
++--------------------------+-----------------------------+---------------------+
+| **BibTeX**               | CFF                         | Note                |
++==========================+=============================+=====================+
+| **\@unpublished**        | [type: unpublished]{.ul}    |                     |
++--------------------------+-----------------------------+---------------------+
+| **author\***             | [authors]{.ul}              |                     |
++--------------------------+-----------------------------+---------------------+
+| **title\***              | [title]{.ul}                |                     |
++--------------------------+-----------------------------+---------------------+
+| **note\***               | [notes]{.ul}                |                     |
++--------------------------+-----------------------------+---------------------+
+| **month**                | [month]{.ul}                | See **Note** on     |
+|                          |                             | [article]           |
++--------------------------+-----------------------------+---------------------+
+| **year**                 | [year]{.ul}                 | See **Note** on     |
+|                          |                             | [booklet]           |
++--------------------------+-----------------------------+---------------------+
+
+: **\@unpublished** Model
+
+**Examples**
+
+[*BibTeX entry*]{.ul}
+
+``` bibtex
+@unpublished{unpublished-minimal,
+    title        = {Lower Bounds for Wishful Research Results},
+    author       = {Ulrich Underwood and Ned Net and Paul Pot},
+    note         = {Talk at Fanstord University (this is a minimal UNPUBLISHED entry)}
+}
+```
+
+[*CFF entry*]{.ul}
+
+```{r echo=FALSE,}
+
+bib <- bibentry("unpublished",
+  title        = "Lower Bounds for Wishful Research Results",
+  author       = "Ulrich Underwood and Ned Net and Paul Pot",
+  note         = "Talk at Fanstord University (this is a minimal UNPUBLISHED entry)"
 )
 
 cff_parse_citation(bib)

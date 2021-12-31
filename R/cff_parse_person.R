@@ -28,12 +28,12 @@
 #' See **Examples** for more information.
 #'
 #' @references
-#' - Patashnik, O. (1988, February). *BIBTEXTING*. BibTeX - Process
-#'   Bibliographies for LATEX, Etc. Retrieved December 1, 2021, from
-#'   <https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf>
+#' - Patashnik, Oren. "BIBTEXTING" February 1988.
+#'   <https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf>.
 #'
-#' - Markey N (2007). "Tame the BeaST" *The B to X of BibTeX, version 1.4*.
-#'   <http://tug.ctan.org/info/bibtex/tamethebeast/ttb_en.pdf>.
+#' - Markey, Nicolas. "Tame the BeaST."
+#'   *The B to X of BibTeX, Version 1.4* (October 2007).
+#'   <https://osl.ugr.es/CTAN/info/bibtex/tamethebeast/ttb_en.pdf>.
 #'
 #' @examples
 #' # Parse a person object
