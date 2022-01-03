@@ -26,3 +26,4 @@
 ^CRAN-RELEASE$
 ^vignettes/pdf$
 ^pdf$
+^CRAN-SUBMISSION$
