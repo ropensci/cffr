@@ -185,7 +185,7 @@
       authors:
       - family-names: Doe
         given-names: John
-      year: '2021'
+      year: '2022'
     references:
     - type: manual
       title: favoritefood is not valid on cff schema
@@ -207,7 +207,7 @@
       authors:
       - family-names: Doe
         given-names: John
-      year: '2021'
+      year: '2022'
     references:
     - type: manual
       title: Wrong orcid fixed by cffr
@@ -230,7 +230,7 @@
       authors:
       - family-names: Doe
         given-names: John
-      year: '2021'
+      year: '2022'
     references:
     - type: manual
       title: A Language and Environment for Statistical Computing
@@ -261,7 +261,7 @@
       authors:
       - family-names: Doe
         given-names: John
-      year: '2021'
+      year: '2022'
     references:
     - type: manual
       title: A Language and Environment for Statistical Computing

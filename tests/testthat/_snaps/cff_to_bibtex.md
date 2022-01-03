@@ -347,10 +347,10 @@
 
 # From plain cff with pref citation
 
-    @Manual{doe:2021,
+    @Manual{doe:2022,
       title = {My Research Software},
       author = {John Doe},
-      year = {2021},
+      year = {2022},
       month = {mar},
       editor = {A name},
     }

@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.1.1.9000
+# CITATION file created with {cffr} R package, v0.2.0
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
@@ -8,7 +8,7 @@ message: 'To cite package "cffr" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'cffr: Generate Citation File Format (''cff'') Metadata for R Packages'
-version: 0.1.1.9000
+version: 0.2.0
 doi: 10.21105/joss.03900
 abstract: The Citation File Format version 1.2.0 <doi:10.5281/zenodo.5171937> is a
   human and machine readable file format which provides citation metadata for software.
@@ -63,7 +63,7 @@ references:
   - name: R Core Team
   location:
     name: Vienna, Austria
-  year: '2021'
+  year: '2022'
   url: https://www.R-project.org/
   institution:
     name: R Foundation for Statistical Computing
@@ -75,7 +75,7 @@ references:
   - family-names: Csárdi
     given-names: Gábor
     email: csardi.gabor@gmail.com
-  year: '2021'
+  year: '2022'
   notes: Imports
   url: https://CRAN.R-project.org/package=crayon
   version: '>= 1.4.1'
@@ -90,7 +90,7 @@ references:
   - family-names: Hester
     given-names: Jim
     email: james.f.hester@gmail.com
-  year: '2021'
+  year: '2022'
   notes: Imports
   url: https://CRAN.R-project.org/package=desc
   version: '>= 1.3.0'
@@ -101,7 +101,7 @@ references:
     given-names: Jeroen
     email: jeroen@berkeley.edu
     orcid: https://orcid.org/0000-0002-4035-0289
-  year: '2021'
+  year: '2022'
   notes: Imports
   url: https://CRAN.R-project.org/package=jsonlite
   version: '>= 1.7.2'
@@ -117,7 +117,7 @@ references:
     given-names: Mathias
   - family-names: Poberezkin
     given-names: Evgeny
-  year: '2021'
+  year: '2022'
   notes: Imports
   url: https://CRAN.R-project.org/package=jsonvalidate
   version: '>= 1.1.0'
@@ -131,7 +131,7 @@ references:
     given-names: Hadley
     email: hadley@rstudio.com
     orcid: https://orcid.org/0000-0003-4757-117X
-  year: '2021'
+  year: '2022'
   notes: Imports
   url: https://CRAN.R-project.org/package=lifecycle
   version: '>= 1.0.0'
@@ -157,7 +157,7 @@ references:
     given-names: Brendan
   - family-names: Warnes
     given-names: Gregory R.
-  year: '2021'
+  year: '2022'
   notes: Imports
   url: https://CRAN.R-project.org/package=yaml
   version: '>= 2.2.1'
@@ -168,7 +168,7 @@ references:
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
-  year: '2021'
+  year: '2022'
   notes: Suggests
   url: https://CRAN.R-project.org/package=knitr
 - type: software
@@ -206,7 +206,7 @@ references:
     given-names: Richard
     email: rich@rstudio.com
     orcid: https://orcid.org/0000-0003-3925-190X
-  year: '2021'
+  year: '2022'
   notes: Suggests
   url: https://CRAN.R-project.org/package=rmarkdown
 - type: software
@@ -215,7 +215,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@rstudio.com
-  year: '2021'
+  year: '2022'
   notes: Suggests
   url: https://CRAN.R-project.org/package=testthat
   version: '>= 3.0.0'
@@ -234,6 +234,6 @@ references:
     given-names: Malcolm
     email: malcolmbarrett@gmail.com
     orcid: https://orcid.org/0000-0003-0299-5825
-  year: '2021'
+  year: '2022'
   notes: Suggests
   url: https://CRAN.R-project.org/package=usethis

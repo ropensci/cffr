@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2021-12-31 there are at least 61 repos on GitHub using **cffr**.
+As per 2022-01-03 there are at least 65 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
@@ -274,7 +274,7 @@ test <- cff_create("rmarkdown")
       - name: R Core Team
       location:
         name: Vienna, Austria
-      year: '2021'
+      year: '2022'
       url: https://www.R-project.org/
       institution:
         name: R Foundation for Statistical Computing
@@ -286,7 +286,7 @@ test <- cff_create("rmarkdown")
       - name: R Core Team
       location:
         name: Vienna, Austria
-      year: '2021'
+      year: '2022'
       url: https://www.R-project.org/
       institution:
         name: R Foundation for Statistical Computing
@@ -298,7 +298,7 @@ test <- cff_create("rmarkdown")
         given-names: Yihui
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
-      year: '2021'
+      year: '2022'
       notes: Imports
       url: https://CRAN.R-project.org/package=knitr
       version: '>= 1.22'
@@ -324,7 +324,7 @@ test <- cff_create("rmarkdown")
         given-names: Brendan
       - family-names: Warnes
         given-names: Gregory R.
-      year: '2021'
+      year: '2022'
       notes: Imports
       url: https://CRAN.R-project.org/package=yaml
       version: '>= 2.1.19'
@@ -352,7 +352,7 @@ test <- cff_create("rmarkdown")
       - family-names: Allen
         given-names: Jeff
         email: jeff@rstudio.com
-      year: '2021'
+      year: '2022'
       notes: Imports
       url: https://CRAN.R-project.org/package=htmltools
       version: '>= 0.3.5'
@@ -366,7 +366,7 @@ test <- cff_create("rmarkdown")
         given-names: Yihui
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
-      year: '2021'
+      year: '2022'
       notes: Imports
       url: https://CRAN.R-project.org/package=evaluate
       version: '>= 0.13'
@@ -377,7 +377,7 @@ test <- cff_create("rmarkdown")
         given-names: Jeroen
         email: jeroen@berkeley.edu
         orcid: https://orcid.org/0000-0002-4035-0289
-      year: '2021'
+      year: '2022'
       notes: Imports
       url: https://CRAN.R-project.org/package=jsonlite
     - type: software
@@ -388,7 +388,7 @@ test <- cff_create("rmarkdown")
         given-names: Yihui
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
-      year: '2021'
+      year: '2022'
       notes: Imports
       url: https://CRAN.R-project.org/package=tinytex
       version: '>= 0.31'
@@ -399,7 +399,7 @@ test <- cff_create("rmarkdown")
         given-names: Yihui
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
-      year: '2021'
+      year: '2022'
       notes: Imports
       url: https://CRAN.R-project.org/package=xfun
       version: '>= 0.21'
@@ -413,7 +413,7 @@ test <- cff_create("rmarkdown")
       - family-names: Cheng
         given-names: Joe
         email: joe@rstudio.com
-      year: '2021'
+      year: '2022'
       notes: Imports
       url: https://CRAN.R-project.org/package=jquerylib
     - type: software
@@ -422,7 +422,7 @@ test <- cff_create("rmarkdown")
       - family-names: Wickham
         given-names: Hadley
         email: hadley@rstudio.com
-      year: '2021'
+      year: '2022'
       notes: Imports
       url: https://CRAN.R-project.org/package=stringr
       version: '>= 1.2.0'
@@ -460,7 +460,7 @@ test <- cff_create("rmarkdown")
         given-names: Alan
       - family-names: Borges
         given-names: Barbara
-      year: '2021'
+      year: '2022'
       notes: Suggests
       url: https://CRAN.R-project.org/package=shiny
       version: '>= 1.6.0'
@@ -470,7 +470,7 @@ test <- cff_create("rmarkdown")
       - family-names: Wickham
         given-names: Hadley
         email: hadley@rstudio.com
-      year: '2021'
+      year: '2022'
       notes: Suggests
       url: https://CRAN.R-project.org/package=testthat
       version: '>= 3.0.0'
@@ -524,7 +524,7 @@ test <- cff_create("rmarkdown")
         given-names: Dirk
       - family-names: Chang.
         given-names: and Winston
-      year: '2021'
+      year: '2022'
       notes: Suggests
       url: https://CRAN.R-project.org/package=digest
     - type: software
@@ -539,7 +539,7 @@ test <- cff_create("rmarkdown")
       - family-names: Vaughan
         given-names: Davis
         email: davis@rstudio.com
-      year: '2021'
+      year: '2022'
       notes: Suggests
       url: https://CRAN.R-project.org/package=vctrs
     - type: software
@@ -551,7 +551,7 @@ test <- cff_create("rmarkdown")
       - family-names: Wickham
         given-names: Hadley
         email: hadley@rstudio.com
-      year: '2021'
+      year: '2022'
       notes: Suggests
       url: https://CRAN.R-project.org/package=tibble
     - type: software
@@ -565,7 +565,7 @@ test <- cff_create("rmarkdown")
       - family-names: Csárdi
         given-names: Gábor
         email: csardi.gabor@gmail.com
-      year: '2021'
+      year: '2022'
       notes: Suggests
       url: https://CRAN.R-project.org/package=fs
     - type: software
@@ -579,7 +579,7 @@ test <- cff_create("rmarkdown")
         email: jonathan@rstudio.com
       - family-names: Allaire
         given-names: JJ
-      year: '2021'
+      year: '2022'
       notes: Suggests
       url: https://CRAN.R-project.org/package=rsconnect
     - type: software
@@ -601,7 +601,7 @@ test <- cff_create("rmarkdown")
         email: hadley@rstudio.com
       - family-names: Chang
         given-names: Winston
-      year: '2021'
+      year: '2022'
       notes: Suggests
       url: https://CRAN.R-project.org/package=withr
       version: '>= 2.4.2'
@@ -615,7 +615,7 @@ test <- cff_create("rmarkdown")
       - family-names: Cheng
         given-names: Joe
         email: joe@rstudio.com
-      year: '2021'
+      year: '2022'
       notes: Suggests
       url: https://CRAN.R-project.org/package=bslib
       version: '>= 0.2.5.1'
@@ -640,7 +640,7 @@ test <- cff_create("rmarkdown")
         given-names: Carson
         email: carson@rstudio.com
         orcid: https://orcid.org/0000-0002-4958-2844
-      year: '2021'
+      year: '2022'
       notes: Suggests
       url: https://CRAN.R-project.org/package=sass
       version: '>= 0.4.0'

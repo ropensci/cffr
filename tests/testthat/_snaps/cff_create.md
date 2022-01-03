@@ -145,7 +145,7 @@
       authors:
       - family-names: Doe
         given-names: John
-      year: '2021'
+      year: '2022'
     repository: https://github.com/user/repo
     url: https://ropensci.org/
     

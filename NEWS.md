@@ -1,4 +1,4 @@
-# cffr (development version)
+# cffr 0.2.0
 
 -   Now **cffr** extracts also information of the package dependencies and adds
     the main citation of the dependencies to the `references` field, using
