@@ -99,7 +99,6 @@
     - type: article
       title: 'RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic,
         Character, and Trait Data in R'
-      journal: Methods in Ecology and Evolution
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -109,15 +108,17 @@
         given-names: Rutger
       - family-names: Lapp
         given-names: Hilmar
+      journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
-      pages: 352--357
       doi: 10.1111/2041-210X.12469
+      start: '352'
+      end: '357'
     - type: book
+      title: 'ggplot2: Elegant Graphics for Data Analysis'
       authors:
       - family-names: Wickham
         given-names: Hadley
-      title: 'ggplot2: Elegant Graphics for Data Analysis'
       publisher:
         name: Springer-Verlag New York
       year: '2016'
@@ -144,7 +145,6 @@
     - type: article
       title: 'RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic,
         Character, and Trait Data in R'
-      journal: Methods in Ecology and Evolution
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -154,15 +154,17 @@
         given-names: Rutger
       - family-names: Lapp
         given-names: Hilmar
+      journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
-      pages: 352--357
       doi: 10.1111/2041-210X.12469
+      start: '352'
+      end: '357'
     - type: book
+      title: 'ggplot2: Elegant Graphics for Data Analysis'
       authors:
       - family-names: Wickham
         given-names: Hadley
-      title: 'ggplot2: Elegant Graphics for Data Analysis'
       publisher:
         name: Springer-Verlag New York
       year: '2016'
@@ -183,7 +185,7 @@
       authors:
       - family-names: Doe
         given-names: John
-      year: '2021'
+      year: '2022'
     references:
     - type: manual
       title: favoritefood is not valid on cff schema
@@ -205,7 +207,7 @@
       authors:
       - family-names: Doe
         given-names: John
-      year: '2021'
+      year: '2022'
     references:
     - type: manual
       title: Wrong orcid fixed by cffr
@@ -228,13 +230,13 @@
       authors:
       - family-names: Doe
         given-names: John
-      year: '2021'
+      year: '2022'
     references:
     - type: manual
       title: A Language and Environment for Statistical Computing
-      year: '2022'
       authors:
       - name: R Core Team
+      year: '2022'
       url: https://www.R-project.org/
       doi: 10.5281/zenodo.5366600
       identifiers:
@@ -259,13 +261,13 @@
       authors:
       - family-names: Doe
         given-names: John
-      year: '2021'
+      year: '2022'
     references:
     - type: manual
       title: A Language and Environment for Statistical Computing
-      year: '2022'
       authors:
       - name: R Core Team
+      year: '2022'
       url: https://www.R-project.org/
       keywords:
       - Some
@@ -276,223 +278,17 @@
       - type: url
         value: https://google.com/
 
-# Article
-
-    type: article
-    authors:
-    - name: R Core Team
-    title: A Language and Environment for Statistical Computing
-    journal: JOSS
-    year: '2021'
-    volume: vol1
-    number: '3'
-    pages: 3--7
-    month: '1'
-    notes: a note
-
-# Book
-
-    type: book
-    authors:
-    - name: R Core Team
-    editors:
-    - name: Barnes and Noble
-    title: A Language and Environment for Statistical Computing
-    publisher:
-      name: Graham and Hill
-    year: '2021'
-    month: '8'
-    section: A chapter
-
-# Booklet
-
-    type: pamphlet
-    title: Handbook of algorithms and data structures
-    authors:
-    - family-names: Gonnet
-      given-names: G. H.
-    - family-names: Baeza-Yates
-      given-names: R.
-    medium: booklet
-    month: '4'
-    year: '1991'
-    notes: A note
-    location:
-      name: Barcelona, ES
-
-# InBook
-
-    type: book
-    authors:
-    - name: R Core Team
-    editors:
-    - name: McGraw Hill
-    title: A Language and Environment for Statistical Computing
-    section: A chapter A chapter
-    pages: 3--7
-    publisher:
-      name: Graham Hill
-      address: Barcelona, ES
-    year: '2021'
-    volume: vol1
-    number: '3'
-    edition: Second
-    month: '1'
-    notes: a note
-    collection-title: The R series
-
-# InCollection
-
-    type: generic
-    authors:
-    - name: R Core Team
-    title: A Language and Environment for Statistical Computing
-    collection-title: A book
-    publisher:
-      name: Graham Hill
-      address: Madrid, ES
-    year: '2021'
-    editors:
-    - name: McGraw Hill
-    volume: vol1
-    number: '3'
-    section: Some type A chapter
-    pages: '123'
-    edition: Third
-    month: '8'
-    notes: A note
-
-# InProceedings
-
-    type: conference-paper
-    authors:
-    - name: R Core Team
-    title: A Language and Environment for Statistical Computing
-    collection-title: A book
-    year: '2021'
-    editors:
-    - name: McGraw Hill
-    volume: vol1
-    number: '3'
-    pages: '123'
-    publisher:
-      name: Graham Hill
-      address: Madrid, ES
-    notes: A note
-    institution:
-      name: An org
-    conference:
-      name: A book
-      address: Madrid, ES
-    location:
-      name: Madrid, ES
-
-# Manual
-
-    type: manual
-    title: A Language and Environment for Statistical Computing
-    authors:
-    - name: R Core Team
-    edition: Fourth
-    month: '8'
-    year: '2021'
-    notes: A note
-    institution:
-      name: An org
-    location:
-      name: Leganes, ES
-
-# MastersThesis
-
-    type: thesis
-    authors:
-    - name: R Core Team
-    title: A Language and Environment for Statistical Computing
-    department: Trinity College
-    year: '2021'
-    month: '8'
-    notes: A note
-    thesis-type: Master's Thesis
-    location:
-      name: Leganes, Madrid
-
-# Misc
-
-    type: generic
-    authors:
-    - name: R Core Team
-    title: A Language and Environment for Statistical Computing
-    medium: CD-ROM
-    month: '1'
-    year: '2021'
-    notes: A note
-
-# PhdThesis
-
-    type: thesis
-    authors:
-    - name: R Core Team
-    title: A Language and Environment for Statistical Computing
-    department: Trinity College
-    year: '2021'
-    month: '8'
-    notes: A note
-    thesis-type: PhD Thesis
-    location:
-      name: Leganes, Madrid
-
-# Proceedings
-
-    type: proceedings
-    title: A Language and Environment for Statistical Computing
-    year: '2021'
-    editors:
-    - name: Aaronson
-    volume: '1'
-    number: '3'
-    month: '8'
-    publisher:
-      name: Publishing Co.
-      address: Some address, FR
-    notes: A note
-    authors:
-    - name: Aaronson
-      alias: BibTeX key from editor
-
-# TechReport
-
-    type: report
-    authors:
-    - name: R Core Team
-    title: A Language and Environment for Statistical Computing
-    institution:
-      name: MIT
-      address: An address, FR
-    year: '2021'
-    number: '900'
-    month: '8'
-    notes: Some note
-    section: Some type
-
-# Unpublished
-
-    type: unpublished
-    authors:
-    - name: R Core Team
-    title: A Language and Environment for Statistical Computing
-    notes: Preprint
-    year: '2021'
-    month: '8'
-
 # Parse persons on CITATION
 
     type: manual
     title: A Language and Environment for Statistical Computing
-    year: '2021'
     authors:
     - name: R Core Team
+    year: '2021'
     contact:
     - family-names: name
+      given-names: A
+    - family-names: contact
       given-names: A
     conference:
       name: A conference
@@ -503,21 +299,19 @@
       given-names: A
     - name: Ben and Jerry
     editors-series:
-    - family-names: series
-      given-names: A
-      name-particle: editor
-    institution:
-      name: A institution
-    location:
-      name: A location
+    - family-names: editor series
+      given-names: An
+    - name: Another
     publisher:
       name: A publisher
+      address: A location
     recipients:
     - family-names: recipient
       given-names: A
     senders:
-    - family-names: sender
-      given-names: A
+    - name: A Sender
+    - family-names: Sender
+      given-names: Another
     translators:
     - family-names: one
       given-names: Translator
@@ -534,79 +328,4 @@
     year: '2021'
     publisher:
       name: Random House
-
-# Test entry without author
-
-    type: proceedings
-    editors:
-    - family-names: Berbers
-      given-names: Yolande
-    - family-names: Zwaenepoel
-      given-names: Willy
-    title: Proceedings of the 6th European Conference on Computer Systems
-    collection-title: Proceedings of the 6th European Conference on Computer Systems
-    publisher:
-      name: ACM
-    month: '4'
-    year: '2006'
-    isbn: 1-59593-322-02
-    authors:
-    - name: Yolande Berbers and Willy Zwaenepoel
-      alias: BibTeX key from editor
-
-# Test entry without author but has a key
-
-    type: generic
-    title: Proceedings of the 6th European Conference on Computer Systems
-    collection-title: Proceedings of the 6th European Conference on Computer Systems
-    publisher:
-      name: ACM
-    month: '4'
-    year: '2006'
-    isbn: 1-59593-322-02
-    authors:
-    - name: I am the key
-      alias: BibTeX key
-
-# Skip misc without title
-
-    cff-version: 1.2.0
-    message: If you use this software, please cite it using these metadata.
-    title: My Research Software
-    authors:
-    - family-names: Doe
-      given-names: John
-    preferred-citation:
-      type: manual
-      title: My Research Software
-      authors:
-      - family-names: Doe
-        given-names: John
-      year: '2021'
-
-# Skip misc without title, not skipping the good one
-
-    cff-version: 1.2.0
-    message: If you use this software, please cite it using these metadata.
-    title: My Research Software
-    authors:
-    - family-names: Doe
-      given-names: John
-    preferred-citation:
-      type: manual
-      title: My Research Software
-      authors:
-      - family-names: Doe
-        given-names: John
-      year: '2021'
-    references:
-    - type: generic
-      title: 'rromeo: An R Client for SHERPA/RoMEO API'
-      authors:
-      - family-names: Grenié
-        given-names: Matthias
-      - family-names: Gruson
-        given-names: Hugo
-      year: '2019'
-      url: https://CRAN.R-project.org/package=rromeo
 

@@ -41,9 +41,8 @@
 #'
 #'
 #' @references
-#' - Patashnik, O. (1988, February). *BIBTEXTING*. BibTeX - Process
-#'   Bibliographies for LATEX, Etc. Retrieved December 1, 2021, from
-#'   <https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf>
+#' - Patashnik, Oren. "BIBTEXTING" February 1988.
+#'   <https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf>.
 #'
 #' - Haines, R., & The Ruby Citation File Format Developers. (2021).
 #'   *Ruby CFF Library (Version 0.9.0)* (Computer software).
@@ -86,28 +85,13 @@ cff_parse_citation <- function(bib) {
     return(bib)
   }
 
-  # Parsing ----
+  # Parse BibTeX entry ----
 
-  ## Extract type and additional transforms ----
-  parsed_cff <- parse_bibtex_for_cff(bib)
-
-  # Start building fields
-  bib_unlist <- drop_null(unclass(bib)[[1]])
-
-  # Keywords may be duplicated, unify
-  if ("keywords" %in% names(bib_unlist)) {
-    kword <- unlist(bib_unlist[names(bib_unlist) == "keywords"])
-    kword2 <- clean_str(paste(kword, collapse = ", "))
-    newkeys <- trimws(unique(unlist(strsplit(kword2, ","))))
-    bib_unlist$keywords <- paste(newkeys, collapse = ",")
-  }
-
-  ## Adapt core BibTeX names ----
-  parsed_fields <- parse_core_bibtex_fields(bib_unlist)
+  parse_cit <- parse_bibtex_entry(bib)
 
   ## If no title (case of some Misc) then return null
 
-  if (!("title" %in% names(parsed_fields))) {
+  if (!("title" %in% names(parse_cit))) {
     entry <- capture.output(print(bib, bibtex = FALSE))
 
     message(
@@ -118,72 +102,51 @@ cff_parse_citation <- function(bib) {
     return(NULL)
   }
 
-  ## Merge all----
-  ### keep initial order----
-  # Append info keeping the initial order but adding cff type at the beginning
-  # We would use it at the end
-  order_name <- c(
-    "type", names(parsed_fields),
-    names(parsed_cff)
-  )
 
-  # Appending, priority is given on parsed_cff
-  merged <- c(
-    parsed_cff,
-    parsed_fields[!names(parsed_fields) %in% names(parsed_cff)]
-  )
+  # Parse BibTeX fields ----
+  parsed_fields <- parse_bibtex_fields(parse_cit)
 
+
+  # Create BibTeX person models ----
+  parsed_fields <- parse_bibtex_person_models(parsed_fields)
+  # Parse persons ----
   # Special case: authors
   # Some keys does not strictly require authors, so we create one for cff
-  key <- clean_str(attr(unclass(bib)[[1]], "key"))
-  merged <- tweak_author(merged, key)
+  # https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors
+  if (is.null(parsed_fields$authors)) parsed_fields$authors <- person(family = "anonymous")
 
-
-  # Parse author and entities----
-  ## On CFF reference max authors seems to be 10
-  ## Bug with urltools
 
   ## authors ----
   parse_all_authors <- drop_null(
-    lapply(merged$authors, cff_parse_person)
+    lapply(parsed_fields$authors, cff_parse_person)
   )
-  merged$authors <- unique(parse_all_authors)
+  parsed_fields$authors <- unique(parse_all_authors)
 
-  ## other person or entities ----
-  parse_other_persons <- building_other_persons(merged)
 
-  keep <- !names(merged) %in% names(parse_other_persons)
+  ## other persons----
+  parse_other_persons <- building_other_persons(parsed_fields)
 
-  merged_person_ok <- c(
-    merged[keep],
+  # Keep order here, we would use it later
+  init_ord <- names(parsed_fields)
+
+  parse_cit <- c(
+    parsed_fields[!names(parsed_fields) %in% names(parse_other_persons)],
     parse_other_persons
   )
-  merged_person_ok <- drop_null(merged_person_ok)
-
-  ## Treat address----
-  # Usually the address of the publisher as per BibTeX
-  if (!is.null(merged_person_ok$publisher)) {
-    merged_person_ok$publisher$address <- merged_person_ok$address
-  }
-
-  # If this is a conference-paper then add to conference
-  if (!is.null(merged_person_ok$conference)) {
-    merged_person_ok$conference$address <- merged_person_ok$address
-  }
-
-  # If is a report, add to institution
-  if (merged_person_ok$type == "report" & !is.null(merged_person_ok$institution)) {
-    merged_person_ok$institution$address <- merged_person_ok$address
-  }
-
-
-  # Remove non-valid names so far
-  validnames <- cff_schema_definitions_refs()
-  parse_cit <- merged_person_ok[names(merged_person_ok) %in%
-    c(validnames)]
-
 
   # Building blocks----
+
+  # Fallback for year and month: use date-published
+
+  if (is.null(parse_cit$month) & !is.null(parse_cit$`date-published`)) {
+    parse_cit$month <- format(as.Date(parse_cit$`date-published`), "%m")
+  }
+
+
+  if (is.null(parse_cit$year) & !is.null(parse_cit$`date-published`)) {
+    parse_cit$year <- format(as.Date(parse_cit$`date-published`), "%Y")
+  }
+
   ## month ----
   parse_cit$month <- building_month(parse_cit)
 
@@ -208,49 +171,53 @@ cff_parse_citation <- function(bib) {
     )
   }
 
-  ## keywords----
-  if ("keywords" %in% names(parse_cit)) {
-    newkeys <- trimws(unique(unlist(strsplit(parse_cit$keywords, ","))))
-    parse_cit$keywords <- newkeys
-  }
+
+  # Last step: Field models----
+
+  # Initial order but starting with type, title, authors
+  final_order <- unique(c(
+    "type", "title", "authors",
+    init_ord,
+    names(parse_cit)
+  ))
+
+  parse_cit <- parse_cit[final_order]
+
+  parse_cit <- parse_bibtex_fields_models(parse_cit)
 
 
-  # Prepare output ----
+  # Remove non-valid names
+  validnames <- cff_schema_definitions_refs()
+  parse_cit <- parse_cit[names(parse_cit) %in%
+    c(validnames)]
 
-  # Reorder final object
-  ord <- unique(c(order_name, names(parse_cit)))
-  ord <- ord[ord %in% validnames]
-  parse_cit_result <- as.cff(parse_cit[ord])
+  parse_cit <- drop_null(parse_cit)
+  parse_cit_result <- as.cff(parse_cit)
 
-  parse_cit_result
+  return(parse_cit_result)
 }
 
-#' Adapt information from BibTeX entry to cff standard
-#'
-#' @description
-#' Heavily based on <https://github.com/citation-file-format/ruby-cff>, see
-#' also the latest BibTeX standard available:
-#' <https://osl.ugr.es/CTAN/biblio/bibtex/contrib/doc/btxdoc.pdf>.
-#'  Also perform some adaptations.
-#'
+#' Extract and map BibTeX entry
 #' @noRd
-parse_bibtex_for_cff <- function(bib) {
-
-  # Based on:
-  # https://github.com/citation-file-format/ruby-cff/blob/main/lib/cff/formatter/bibtex_formatter.rb
-
-  init_cff_obj <- list(type = NULL)
-
+parse_bibtex_entry <- function(bib) {
+  # Unclass and manage entry type
   # Extract type from BibTeX
   init_type <- attr(unclass(bib)[[1]], "bibtype")
   init_type <- clean_str(tolower(init_type))
 
-  # Manage type from BibTeX
-  init_cff_obj$type <- switch(init_type,
+
+  parse_cit <- drop_null(unclass(bib)[[1]])
+
+  # Add fields
+  parse_cit$bibtex_entry <- init_type
+
+  # Manage type from BibTeX and convert to CFF
+  # This overwrite the BibTeX type field. Not parsed by this function
+  parse_cit$type <- switch(init_type,
     "article" = "article",
     "book" = "book",
     "booklet" = "pamphlet",
-    "conference" = "conference",
+    "conference" = "conference-paper",
     "inbook" = "book",
     # "incollection" = ,
     "inproceedings" = "conference-paper",
@@ -264,65 +231,13 @@ parse_bibtex_for_cff <- function(bib) {
     "generic"
   )
 
-  # Manage BibTeX (bx) type field, to avoid collusion with cff type
-  # As per BibTeX 0.99b, this field is optional on:
-  # inbook, incollection, masterthesis, phdthesis and techreport
 
-  # If is a thesis add  bx_type to thesis type
-  if (init_type %in% c("phdthesis", "mastersthesis")) {
-    init_cff_obj$`thesis-type` <- switch(init_type,
-      phdthesis = "PhD Thesis",
-      "Master's Thesis"
-    )
-  }
-
-  # Else add this to cff section, along with chapter
-  if (init_type %in% c("inbook", "incollection", "techreport")) {
-    init_cff_obj$section <- clean_str(c(bib$type, bib$chapter))
-  }
-
-  # Tweak organizations: In manual and conferences use the cff
-  # institution. BibTeX doesn't prescribe use of orgs. and institutions
-  # altogether
-
-  if (init_cff_obj$type %in% c("manual", "conference", "conference-paper")) {
-    init_cff_obj$institution <- clean_str(bib$organization)
-  }
-
-  # Tweak book: Use bx_series as collection-title
-  if (init_cff_obj$type == "book") {
-    init_cff_obj$`collection-title` <- clean_str(bib$series)
-  }
-
-  # Tweak conference-paper (bx inproceedings)
-  if (init_cff_obj$type == "conference-paper") {
-    init_cff_obj$`collection-title` <- clean_str(bib$booktitle)
-
-
-    loc <- person(bib$address)
-    conf <- person(bib$booktitle)
-
-    init_cff_obj$conference <- cff_parse_person(conf)
-    init_cff_obj$location <- cff_parse_person(loc)
-  }
-
-  # Tweak bx booklet, bx_manual, bx *thesis
-  if (init_cff_obj$type %in% c("pamphlet", "manual", "thesis")) {
-    loc <- person(bib$address)
-    init_cff_obj$location <- cff_parse_person(loc)
-  }
-
-
-
-
-  # Clean final list
-  init_cff_obj <- drop_null(init_cff_obj)
-  return(init_cff_obj)
+  return(parse_cit)
 }
 
 #' Adapt names from R citation()/BibTeX to cff format
 #' @noRd
-parse_core_bibtex_fields <- function(parse_cit) {
+parse_bibtex_fields <- function(parse_cit) {
   # to lowercase
   names(parse_cit) <- tolower(names(parse_cit))
 
@@ -333,20 +248,46 @@ parse_core_bibtex_fields <- function(parse_cit) {
   # publisher school series title type year
 
   # No mapping needed (direct mapping)
-  # edition institution journal month number pages publisher title volume year
+  # edition journal month publisher title volume year
 
   # Mapped:
-  # author booktitle chapter editor howpublished note school
+  # author booktitle chapter editor howpublished note number
+
   nm[nm == "author"] <- "authors"
   nm[nm == "booktitle"] <- "collection-title"
   nm[nm == "chapter"] <- "section"
   nm[nm == "editor"] <- "editors"
   nm[nm == "howpublished"] <- "medium"
   nm[nm == "note"] <- "notes"
-  nm[nm == "school"] <- "department"
+  nm[nm == "number"] <- "issue"
+  nm[nm == "address"] <- "location"
+  nm[nm == "pages"] <- "bibtex_pages" # This would be removed later
+
+  # Parse some fields from BibLaTeX
+  nm[nm == "date"] <- "date-published"
+  nm[nm == "file"] <- "filename"
+  nm[nm == "issuetitle"] <- "issue-title"
+  nm[nm == "translator"] <- "translators"
+  nm[nm == "urldate"] <- "date-accessed"
+  nm[nm == "pagetotal"] <- "pages"
+
+  # Other BibLaTeX fields that does not require any mapping
+  # abstract, doi, isbn, issn, url, version
+
+
+  cff_schema_definitions_refs()
+
+  # Keywords may be duplicated, unify
+  if ("keywords" %in% nm) {
+    kwords <- unlist(parse_cit["keywords" == nm])
+    kwords <- clean_str(paste(kwords, collapse = ", "))
+    kwords <- trimws(unique(unlist(strsplit(kwords, ",|;"))))
+    parse_cit$keywords <- unique(kwords)
+  }
+
 
   # Not mapped:
-  # address annote crossref key organization series type
+  # annote crossref key organization series type
   #
   # Fields address, organization, series and type already treated on
   # parse_bibtex_for_cff()/main function
@@ -355,48 +296,132 @@ parse_core_bibtex_fields <- function(parse_cit) {
 
   names(parse_cit) <- nm
 
-  # We need to remove the type from BibTeX, already parsed on
-  parse_cit <- parse_cit[nm != "type"]
+  # Remove all instances of keywords except the first one
+  index <- which(nm == "keywords")
+  if (length(index) > 1) parse_cit <- parse_cit[-index[-1]]
+
+  # Additionally, need to delete keywords if length is less than 2, errors on validation
+  if (length(parse_cit$keywords) < 2) {
+    parse_cit$keywords <- NULL
+  }
+
+  # Treat location ----
+
+  loc <- parse_cit$location
+
+  if (!is.null(loc)) parse_cit$location <- person(family = loc)
+
+
+
+  # Treat dates----
+  datpub <- parse_cit$`date-published`
+
+
+  if (!is.null(datpub)) {
+    datepub <- as.Date(as.character(datpub), optional = TRUE)
+    if (is.na(datepub)) {
+      parse_cit$`date-published` <- NULL
+    } else {
+      parse_cit$`date-published` <- as.character(datepub)
+    }
+  }
+
+  datacc <- parse_cit$`date-accessed`
+
+
+  if (!is.null(datacc)) {
+    datacc <- as.Date(as.character(datacc), optional = TRUE)
+    if (is.na(datacc)) {
+      parse_cit$`date-accessed` <- NULL
+    } else {
+      parse_cit$`date-accessed` <- as.character(datacc)
+    }
+  }
+
+  # Treat pages
+
+  pages <- parse_cit$bibtex_pages
+  if (!is.null(pages)) {
+    spl <- unlist(strsplit(pages, "--"))
+
+    parse_cit$start <- spl[1]
+
+    if (length(spl) > 1) parse_cit$end <- paste(spl[-1], collapse = "--")
+  }
 
   return(parse_cit)
 }
 
-
-#' Special case for authors
-#'
-#' Some BibTeX entry types does not require authors, while this
-#' is required for cff. Try to get info
-#'
+#' Modify mapping of some org. fields on BibTeX to CFF
 #' @noRd
-tweak_author <- function(merged, key) {
-  if (!is.null(merged$authors)) {
-    return(merged)
+parse_bibtex_person_models <- function(parsed_fields) {
+
+  # Manual
+  if (parsed_fields$bibtex_entry == "manual") {
+    parsed_fields$institution <- parsed_fields$organization
+  } else if (parsed_fields$bibtex_entry %in% c(
+    "conference", "inproceedings",
+    "proceedings"
+  )) {
+    # Conference, InProceedings, Proceedings
+    if (!is.null(parsed_fields$series)) parsed_fields$conference <- person(family = parsed_fields$series)
+
+    if (!is.null(parsed_fields$organization)) parsed_fields$institution <- person(family = parsed_fields$organization)
+  } else if (parsed_fields$bibtex_entry %in% c("mastersthesis", "phdthesis")) {
+    # Mastersthesis, PhdThesis
+    parsed_fields$institution <- person(family = parsed_fields$school)
   }
 
-  # If no author add editor as authors
-  if (!is.null(merged$editors)) {
+  return(parsed_fields)
+}
 
-    # Create editors
-    fam <- merged$editors$family
-    giv <- merged$editors$given
-    end <- paste(giv, fam)
-    end <- paste(end, collapse = " and ")
-    edit <- person(
-      given = clean_str(end),
-      comment = c("alias" = "BibTeX key from editor")
+
+#' Adapt cff keys to bibtex entries
+#' @noRd
+parse_bibtex_fields_models <- function(parse_cit) {
+
+
+  # thesis type ----
+  if (parse_cit$bibtex_entry %in% c("phdthesis", "mastersthesis")) {
+    parse_cit$`thesis-type` <- switch(parse_cit$bibtex_entry,
+      phdthesis = "PhD Thesis",
+      "Master's Thesis"
     )
-    merged$authors <- edit
-    return(merged)
   }
 
-  # If no editors, the recommended approach is to include a key field
-  if (is.null(key)) key <- "BibTeX key"
+  # address----
 
-  # Add alias for easy identification
-  bibkey <- person(key, comment = c(alias = "BibTeX key"))
+  if (!is.null(parse_cit$location)) {
 
-  merged$authors <- bibkey
+    # Usually the address of the publisher as per BibTeX
+    if (!is.null(parse_cit$publisher) &
+      !(parse_cit$bibtex_entry %in% c(
+        "conference", "inproceedings",
+        "proceedings"
+      ))) {
+      parse_cit$publisher$address <- parse_cit$location$name
+      parse_cit$location <- NULL
+    }
 
+    parse_cit$conference
 
-  return(merged)
+    # If this is a conference then add to conference
+    if (!is.null(parse_cit$conference)) {
+      parse_cit$conference$address <- parse_cit$location$name
+    }
+
+    # If is a report or a thesis, add to institution
+    if (parse_cit$bibtex_entry %in% c("techreport", "phdthesis", "mastersthesis") &
+      !is.null(parse_cit$institution)) {
+      parse_cit$institution$address <- parse_cit$location$name
+      parse_cit$location <- NULL
+    }
+  }
+  # Book, InBook: collection-title. Use series field
+
+  if (parse_cit$bibtex_entry %in% c("book", "inbook")) {
+    parse_cit$`collection-title` <- clean_str(parse_cit$series)
+  }
+
+  return(parse_cit)
 }

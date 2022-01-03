@@ -1,0 +1,33 @@
+---
+title: "\\BibTeX\\ and CFF"
+subtitle: A potential crosswalk
+bibliography: REFERENCES.bib
+author: Diego Hernangómez
+abstract: >-
+  This article presents a crosswalk between \BibTeX\ and Citation File Format 
+  [@druskat_citation_2021], as it is performed by the cffr package 
+  [@hernangomez2021].
+link-citations: yes
+documentclass: article
+urlcolor: blue
+linkcolor: brown
+header-includes:
+  \usepackage{fvextra}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+output:
+  pdf_document:
+    latex_engine: pdflatex
+    keep_tex: true
+    includes:
+      in_header: preamble.tex
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "",
+  tidy = "styler"
+)
+
+options(width = 60)
+```

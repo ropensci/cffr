@@ -66,11 +66,11 @@ cff_parse_person_bibtex("Herbert von Karajan")
 }
 \references{
 \itemize{
-\item Patashnik, O. (1988, February). \emph{BIBTEXTING}. BibTeX - Process
-Bibliographies for LATEX, Etc. Retrieved December 1, 2021, from
-\url{https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf}
-\item Markey N (2007). "Tame the BeaST" \emph{The B to X of BibTeX, version 1.4}.
-\url{http://tug.ctan.org/info/bibtex/tamethebeast/ttb_en.pdf}.
+\item Patashnik, Oren. "BIBTEXTING" February 1988.
+\url{https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf}.
+\item Markey, Nicolas. "Tame the BeaST."
+\emph{The B to X of BibTeX, Version 1.4} (October 2007).
+\url{https://osl.ugr.es/CTAN/info/bibtex/tamethebeast/ttb_en.pdf}.
 }
 }
 \seealso{

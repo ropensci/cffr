@@ -13,9 +13,8 @@
 #' @seealso [cff_parse_citation()], [bibentry()], [toBibtex()]
 #'
 #' @references
-#' - Patashnik, O. (1988, February). *BIBTEXTING*. BibTeX - Process
-#'   Bibliographies for LATEX, Etc. Retrieved December 1, 2021, from
-#'   <https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf>
+#' - Patashnik, Oren. "BIBTEXTING" February 1988.
+#'   <https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf>.
 #'
 #' - Haines, R., & The Ruby Citation File Format Developers. (2021).
 #'   *Ruby CFF Library (Version 0.9.0)* (Computer software).
@@ -73,9 +72,9 @@ cff_to_bibtex <- function(x) {
     "book" = "book",
     "manual" = "manual",
     "unpublished" = "unpublished",
-    "conference" = "proceedings",
-    "proceedings" = "proceedings",
+    "conference" = "inproceedings",
     "conference-paper" = "inproceedings",
+    "proceedings" = "proceedings",
     "magazine-article" = "article",
     "newspaper-article" = "article",
     "pamphlet" = "booklet",
@@ -96,12 +95,23 @@ cff_to_bibtex <- function(x) {
     }
   }
 
+  # Check if it may be an incollection
+  # Hint: is misc with collection-title and publisher
+
+  if (tobibentry$bibtype == "misc" & !is.null(x$`collection-title`) &
+    !is.null(x$publisher)) {
+    tobibentry$bibtype <- "incollection"
+  }
+
+
   # address----
   # BibTeX 'address' is taken from the publisher (book, others) or the
   # conference (inproceedings).
 
   if (tobibentry$bibtype %in% c("proceedings", "inproceedings")) {
     addr_search <- x$conference
+  } else if (tobibentry$bibtype == "techreport") {
+    addr_search <- x$institution
   } else {
     addr_search <- x$publisher
   }
@@ -117,11 +127,19 @@ cff_to_bibtex <- function(x) {
     collapse = ", "
   ))
 
+  # As a fallback, use also location
+  if (is.null(tobibentry$address) &
+    !is.null(x$location)) {
+    tobibentry$address <- x$location$name
+  }
+
+
 
   # author----
   aut <- x$authors
+
   author <- lapply(aut, function(y) {
-    if (!is.null(y$name)) {
+    if ("name" %in% names(y)) {
       # Person protected on family
       person(family = clean_str(y$name))
     } else {
@@ -141,9 +159,13 @@ cff_to_bibtex <- function(x) {
   # booktitle ----
 
   # Only for incollections and inproceedings
-  if (tobibentry$bibtype == "incollection") {
-    tobibentry$booktitle <- x$`collection-title`
-  } else if (tobibentry$bibtype == "inproceedings") {
+  if (tobibentry$bibtype %in% c("incollection", "inproceedings")) {
+    tobibentry$booktitle <- x[["collection-title"]]
+  }
+
+  # Fallback to conference name
+
+  if (tobibentry$bibtype == "inproceedings" & is.null(tobibentry$booktitle)) {
     tobibentry$booktitle <- x$conference$name
   }
 
@@ -204,10 +226,18 @@ cff_to_bibtex <- function(x) {
     tobibentry$institution <- x$institution$name
   }
 
+
+  # Fallback for techreport, search on affiliation first author
+  if (tobibentry$bibtype == "techreport" & is.null(tobibentry$institution)) {
+    tobibentry$institution <- x$authors[[1]]$affiliation
+  }
+
   # journal----
   tobibentry$journal <- x$journal
 
-  # key: First two given of author and year----
+  # key First two given of author and year----
+
+
 
   aut_sur <- lapply(tobibentry$author$family[1:2], clean_str)
   aut_sur <- tolower(paste0(unlist(aut_sur), collapse = ""))
@@ -223,6 +253,13 @@ cff_to_bibtex <- function(x) {
   # month----
   m <- x$month
 
+  # Fallback
+
+  if (is.null(m) && !is.null(x$`date-published`)) {
+    # Should be YYYY-MM-DD to be valid on cff, so
+    m <- as.integer(format(as.Date(x$`date-published`), "%m"))
+  }
+
   # Try to parse to 3 month string
   m_int <- suppressWarnings(as.integer(m))
   m_letters <- clean_str(tolower(month.abb[m_int]))
@@ -233,29 +270,44 @@ cff_to_bibtex <- function(x) {
     tobibentry$month <- clean_str(m)
   }
 
+
+
   # note ----
   tobibentry$note <- x$notes
 
   # number----
-  tobibentry$number <- x$number
+
+
+  tobibentry$number <- x[["issue"]]
 
   # pages ----
 
-  tobibentry$pages <- x$pages
+  p <- unique(c(x$start, x$end))
 
+  if (!is.null(p)) tobibentry$pages <- paste(p, collapse = "--")
 
   # publisher ----
   tobibentry$publisher <- x$publisher$name
 
   # school ----
-  tobibentry$school <- x$department
+  # In thesis
+  if (x$type == "thesis") {
+    tobibentry$school <- tobibentry$institution
+    tobibentry$institution <- NULL
+  }
+
 
   # series----
   if (tobibentry$bibtype %in% c(
-    "book", "inbook",
-    "proceedings"
+    "book", "inbook"
   )) {
     tobibentry$series <- x$`collection-title`
+  }
+
+  if (tobibentry$bibtype %in% c(
+    "proceedings", "inproceedings"
+  )) {
+    tobibentry$series <- x$conference$name
   }
 
   # title ----
@@ -265,24 +317,98 @@ cff_to_bibtex <- function(x) {
   # volume----
   tobibentry$volume <- x$volume
 
-  # year
+  # year ----
 
   tobibentry$year <- x$year
+
+  # Fallback
+
+  if (is.null(tobibentry$year) && !is.null(x$`date-released`)) {
+    # Should be YYYY-MM-DD to be valid on cff, so
+
+    tobibentry$year <- substr(x$`date-released`, 1, 4)
+  }
 
   # Keywords
   if (!is.null(x$keywords)) {
     tobibentry$keywords <- paste(x$keywords, collapse = ", ")
   }
 
+  # Guess inbook ----
+  # inbook is a book where chapter or pages are present
 
-  # Add other interesting fields
+  if (tobibentry$bibtype == "book" & !is.null(
+    c(tobibentry$chapter, tobibentry$pages)
+  )) {
+    tobibentry$bibtype <- "inbook"
+  }
 
+  # Handle anonymous author----
+  # If anonymous and not needed, then not use it
+
+
+  if (!is.null(x$authors[[1]]$name)) {
+    if (x$authors[[1]]$name == "anonymous" &
+      tobibentry$bibtype %in% c(
+        "booklet", "manual", "book", "inbook",
+        "misc", "proceedings"
+      )) {
+      tobibentry$author <- NULL
+    }
+  }
+
+  # Add other interesting fields for BibLateX ----
+
+  tobibentry$abstract <- x$abstract
   tobibentry$doi <- x$doi
   tobibentry$date <- x$`date-published`
+  tobibentry$file <- x$filename
+  tobibentry$issuetitle <- x$`issue-title`
   tobibentry$isbn <- x$isbn
   tobibentry$issn <- x$issn
-  tobibentry$license <- x$license
+  tobibentry$pagetotal <- x$pages
   tobibentry$url <- x$url
+  tobibentry$urldate <- x$`date-accessed`
+  tobibentry$version <- x$version
+  # Translators
+  trns <- x$translators
+
+  trnsbib <- lapply(trns, function(y) {
+    if ("name" %in% names(y)) {
+      # Person protected on family
+      paste0("{", clean_str(y$name), "}")
+    } else {
+      fam <- clean_str(paste(
+        clean_str(y$`name-particle`),
+        clean_str(y$`family-names`)
+      ))
+      jr <- clean_str(y$`name-suffix`)
+
+      given <- clean_str(y$`given-names`)
+
+      paste(c(fam, jr, given), collapse = ", ")
+    }
+  })
+
+  tobibentry$translator <- paste(unlist(trnsbib), collapse = " and ")
+
+
+
+
+
+  # sort ----
+  # based on default by
+  # https://flamingtempura.github.io/bibtex-tidy/
+  tosort <- c(
+    "title", "author", "year", "month", "day", "journal", "booktitle",
+    "publisher", "address", "editor", "series", "volume", "number", "pages",
+    "doi", "isbn", "issn", "url", "note"
+  )
+
+  unique <- unique(c(tosort, names(tobibentry)))
+  sorted <- unique[unique %in% names(tobibentry)]
+  tobibentry <- tobibentry[sorted]
+
 
   bib <- do.call(bibentry, tobibentry)
 

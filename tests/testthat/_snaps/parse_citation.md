@@ -131,14 +131,14 @@
     
     To cite the 'rmarkdown' package in publications, please use:
     
-      (2021). rmarkdown: A Basic Description. R package version 0.1.6. URL
+      (2022). rmarkdown: A Basic Description. R package version 0.1.6. URL
       https://rmarkdown.rstudio.com.
     
     A BibTeX entry for LaTeX users is
     
       @Manual{,
         title = {rmarkdown: A Basic Description},
-        year = {2021},
+        year = {2022},
         note = {R package version 0.1.6},
         url = {https://github.com/basic/package},
       }

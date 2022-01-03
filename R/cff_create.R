@@ -25,7 +25,8 @@
 #'   `CITATION.cff` file adheres to for providing the citation metadata.
 #' @param gh_keywords Logical `TRUE/FALSE`. If the package is hosted on
 #'   GitHub, would you like to add the repo topics as keywords?
-#'
+#' @param dependencies Logical `TRUE/FALSE`. Would you like to add the
+#'   of your package to the `reference` key?
 #' @seealso
 #' ```{r, echo=FALSE, results='asis'}
 #'
@@ -101,7 +102,8 @@
 cff_create <- function(x,
                        keys = list(),
                        cff_version = "1.2.0",
-                       gh_keywords = TRUE) {
+                       gh_keywords = TRUE,
+                       dependencies = TRUE) {
   if (missing(x)) x <- getwd()
 
 
@@ -173,13 +175,14 @@ cff_create <- function(x,
   cffobjend <- merge_desc_cit(cffobj, citobj)
 
   # Add software dependencies
+  if (dependencies) {
+    deps <- parse_dependencies(desc_path, instpack)
 
-  deps <- parse_dependencies(desc_path, instpack)
-
-  cffobjend$references <- unique(c(
-    cffobjend$references,
-    deps
-  ))
+    cffobjend$references <- unique(c(
+      cffobjend$references,
+      deps
+    ))
+  }
 
   # Additional keys
   if (!is.null(keys)) {
@@ -296,10 +299,26 @@ parse_dependencies <- function(desc_path,
 
   deps$version_clean <- gsub("*", "", deps$version, fixed = TRUE)
 
+  # Save copy for later
+  origdeps <- deps
+
   # Dedupe rows
   deps <- unique(deps[, c("package", "version_clean")])
 
+
+  # Get dependency type and add to scope
+  scope <- vapply(deps$package,
+    FUN.VALUE = character(1),
+    function(x) {
+      y <- origdeps[origdeps$package == x, "type"]
+
+      y[1]
+    }
+  )
+  deps$scope <- scope
+
   av_deps <- deps[deps$package %in% c("R", instpack), ]
+
 
 
 
@@ -311,10 +330,9 @@ parse_dependencies <- function(desc_path,
 
     if (n$package == "R") {
       mod <- cff_parse_citation(citation()[1])
-      mod$type <- "software"
       mod$year <- format(Sys.Date(), "%Y")
     } else {
-      mod <- try(cff_parse_citation(citation(n$package)[1]),
+      mod <- try(cff_parse_citation(citation(n$package, auto = TRUE)[1]),
         silent = TRUE
       )
 
@@ -326,11 +344,12 @@ parse_dependencies <- function(desc_path,
       # Avoid cluttering the output
     }
 
-
+    mod$type <- "software"
     mod$version <- ifelse(is.na(n$version_clean),
       NULL,
       paste(n$version_clean)
     )
+
     mod <- drop_null(mod)
 
     # Get year
@@ -343,7 +362,7 @@ parse_dependencies <- function(desc_path,
     }
 
     mod$year <- year
-    mod$notes <- NULL
+    mod$notes <- clean_str(n$scope)
 
     mod <- as.cff(mod)
   })

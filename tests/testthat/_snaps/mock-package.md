@@ -18,7 +18,6 @@
       type: article
       title: 'RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic,
         Character, and Trait Data in R'
-      journal: Methods in Ecology and Evolution
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -28,10 +27,12 @@
         given-names: Rutger
       - family-names: Lapp
         given-names: Hilmar
+      journal: Methods in Ecology and Evolution
       year: '2016'
       volume: '7'
-      pages: 352--357
       doi: 10.1111/2041-210X.12469
+      start: '352'
+      end: '357'
     repository-code: https://github.com/test/package
     url: https://test.github.io/package/
     contact:
@@ -40,10 +41,10 @@
       email: marcbasic@gmail.com
     references:
     - type: book
+      title: 'ggplot2: Elegant Graphics for Data Analysis'
       authors:
       - family-names: Wickham
         given-names: Hadley
-      title: 'ggplot2: Elegant Graphics for Data Analysis'
       publisher:
         name: Springer-Verlag New York
       year: '2016'

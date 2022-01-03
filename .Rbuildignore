@@ -24,3 +24,4 @@
 ^CONTRIBUTING\.md$
 ^cran-comments\.md$
 ^CRAN-RELEASE$
+^vignettes/pdf$

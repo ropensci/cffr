@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.1.1.9000
+# CITATION file created with {cffr} R package, v0.2.0
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
@@ -8,7 +8,7 @@ message: 'To cite package "cffr" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'cffr: Generate Citation File Format (''cff'') Metadata for R Packages'
-version: 0.1.1.9000
+version: 0.2.0
 doi: 10.21105/joss.03900
 abstract: The Citation File Format version 1.2.0 <doi:10.5281/zenodo.5171937> is a
   human and machine readable file format which provides citation metadata for software.
@@ -20,21 +20,21 @@ authors:
   orcid: https://orcid.org/0000-0001-8457-4658
 preferred-citation:
   type: article
+  title: 'cffr: Generate Citation File Format Metadata for R Packages'
+  authors:
+  - family-names: Hernangómez
+    given-names: Diego
+    email: diego.hernangomezherrero@gmail.com
+    orcid: https://orcid.org/0000-0001-8457-4658
   doi: 10.21105/joss.03900
   url: https://doi.org/10.21105/joss.03900
   year: '2021'
   publisher:
     name: The Open Journal
   volume: '6'
-  number: '67'
-  pages: '3900'
-  authors:
-  - family-names: Hernangómez
-    given-names: Diego
-    email: diego.hernangomezherrero@gmail.com
-    orcid: https://orcid.org/0000-0001-8457-4658
-  title: 'cffr: Generate Citation File Format Metadata for R Packages'
+  issue: '67'
   journal: Journal of Open Source Software
+  start: '3900'
 repository: https://CRAN.R-project.org/package=cffr
 repository-code: https://github.com/ropensci/cffr
 url: https://docs.ropensci.org/cffr/
@@ -61,21 +61,25 @@ references:
   title: 'R: A Language and Environment for Statistical Computing'
   authors:
   - name: R Core Team
-  year: '2021'
+  location:
+    name: Vienna, Austria
+  year: '2022'
   url: https://www.R-project.org/
   institution:
     name: R Foundation for Statistical Computing
   version: '>= 3.6.0'
-- type: manual
+  notes: Depends
+- type: software
   title: 'crayon: Colored Terminal Output'
   authors:
   - family-names: Csárdi
     given-names: Gábor
     email: csardi.gabor@gmail.com
-  year: '2021'
-  url: https://github.com/r-lib/crayon#readme
+  year: '2022'
+  notes: Imports
+  url: https://CRAN.R-project.org/package=crayon
   version: '>= 1.4.1'
-- type: manual
+- type: software
   title: 'desc: Manipulate DESCRIPTION Files'
   authors:
   - family-names: Csárdi
@@ -86,20 +90,22 @@ references:
   - family-names: Hester
     given-names: Jim
     email: james.f.hester@gmail.com
-  year: '2021'
-  url: https://github.com/r-lib/desc#readme
+  year: '2022'
+  notes: Imports
+  url: https://CRAN.R-project.org/package=desc
   version: '>= 1.3.0'
-- type: article
-  title: 'The jsonlite Package: A Practical and Consistent Mapping Between JSON Data
-    and R Objects'
+- type: software
+  title: 'jsonlite: A Simple and Robust JSON Parser and Generator for R'
   authors:
   - family-names: Ooms
     given-names: Jeroen
-  journal: arXiv:1403.2805 [stat.CO]
-  year: '2021'
-  url: https://arxiv.org/abs/1403.2805
+    email: jeroen@berkeley.edu
+    orcid: https://orcid.org/0000-0002-4035-0289
+  year: '2022'
+  notes: Imports
+  url: https://CRAN.R-project.org/package=jsonlite
   version: '>= 1.7.2'
-- type: manual
+- type: software
   title: 'jsonvalidate: Validate ''JSON'' Schema'
   authors:
   - family-names: FitzJohn
@@ -111,9 +117,11 @@ references:
     given-names: Mathias
   - family-names: Poberezkin
     given-names: Evgeny
-  year: '2021'
+  year: '2022'
+  notes: Imports
+  url: https://CRAN.R-project.org/package=jsonvalidate
   version: '>= 1.1.0'
-- type: manual
+- type: software
   title: 'lifecycle: Manage the Life Cycle of your Package Functions'
   authors:
   - family-names: Henry
@@ -123,9 +131,11 @@ references:
     given-names: Hadley
     email: hadley@rstudio.com
     orcid: https://orcid.org/0000-0003-4757-117X
-  year: '2021'
+  year: '2022'
+  notes: Imports
+  url: https://CRAN.R-project.org/package=lifecycle
   version: '>= 1.0.0'
-- type: manual
+- type: software
   title: 'yaml: Methods to Convert R Data to YAML and Back'
   authors:
   - family-names: Stephens
@@ -147,53 +157,69 @@ references:
     given-names: Brendan
   - family-names: Warnes
     given-names: Gregory R.
-  year: '2021'
-  url: https://github.com/viking/r-yaml/
+  year: '2022'
+  notes: Imports
+  url: https://CRAN.R-project.org/package=yaml
   version: '>= 2.2.1'
-- type: manual
+- type: software
   title: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
   authors:
   - family-names: Xie
     given-names: Yihui
-  year: '2021'
-  url: https://yihui.org/knitr/
-- type: manual
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=knitr
+- type: software
   title: 'rmarkdown: Dynamic Documents for R'
   authors:
   - family-names: Allaire
     given-names: JJ
+    email: jj@rstudio.com
   - family-names: Xie
     given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
   - family-names: McPherson
     given-names: Jonathan
+    email: jonathan@rstudio.com
   - family-names: Luraschi
     given-names: Javier
+    email: javier@rstudio.com
   - family-names: Ushey
     given-names: Kevin
+    email: kevin@rstudio.com
   - family-names: Atkins
     given-names: Aron
+    email: aron@rstudio.com
   - family-names: Wickham
     given-names: Hadley
+    email: hadley@rstudio.com
   - family-names: Cheng
     given-names: Joe
+    email: joe@rstudio.com
   - family-names: Chang
     given-names: Winston
+    email: winston@rstudio.com
   - family-names: Iannone
     given-names: Richard
-  year: '2021'
-  url: https://github.com/rstudio/rmarkdown
-- type: article
+    email: rich@rstudio.com
+    orcid: https://orcid.org/0000-0003-3925-190X
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=rmarkdown
+- type: software
+  title: 'testthat: Unit Testing for R'
   authors:
   - family-names: Wickham
     given-names: Hadley
-  title: 'testthat: Get Started with Testing'
-  journal: The R Journal
-  year: '2021'
-  volume: '3'
-  pages: 5--10
-  url: https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf
+    email: hadley@rstudio.com
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=testthat
   version: '>= 3.0.0'
-- type: manual
+- type: software
   title: 'usethis: Automate Package and Project Setup'
   authors:
   - family-names: Wickham
@@ -208,4 +234,6 @@ references:
     given-names: Malcolm
     email: malcolmbarrett@gmail.com
     orcid: https://orcid.org/0000-0003-0299-5825
-  year: '2021'
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=usethis

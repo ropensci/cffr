@@ -185,8 +185,20 @@ building_url <- function(parse_cit) {
 
 #' BB for other persons
 #' @noRd
-building_other_persons <- function(parse_cit) {
-  others <- drop_null(parse_cit[other_persons()])
+building_other_persons <- function(parsed_fields) {
+  others <- drop_null(parsed_fields[other_persons()])
+
+  # If any is person type (example, editors) then paste and collapse
+
+  others <- lapply(others, function(x) {
+    if (inherits(x, "person")) {
+      x <- paste(x, collapse = " and ")
+    } else {
+      return(x)
+    }
+  })
+
+
 
   # Select subsets
   all_pers <- other_persons()
@@ -215,16 +227,25 @@ building_other_persons <- function(parse_cit) {
     return(end)
   })
 
-  toperson <- others[names(others) %in% toauto_end]
-  toperson <- lapply(toperson, as.person)
 
+  toperson <- others[names(others) %in% toauto_end]
+  toperson <- lapply(toperson, cff_parse_person_bibtex)
+  # This should be vectors, so include on lists
   toperson <- lapply(toperson, function(x) {
-    lapply(x, cff_parse_person)
+    if (!is.null(names(x))) {
+      x <- list(x)
+    } else {
+      x
+    }
   })
+
+
 
   # Bind and reorder
   parsedothers <- c(toentity, toperson, toentity_pers)
   parsedothers <- parsedothers[names(others)]
+
+  return(parsedothers)
 }
 
 

@@ -103,6 +103,8 @@
       orcid: https://orcid.org/0000-0002-1791-9449
     references:
     - type: article
+      title: 'Monitoring Count Time Series in R: Aberration Detection in Public Health
+        Surveillance'
       authors:
       - family-names: Salmon
         given-names: Maëlle
@@ -110,15 +112,15 @@
         given-names: Dirk
       - family-names: Höhle
         given-names: Michael
-      title: 'Monitoring Count Time Series in R: Aberration Detection in Public Health
-        Surveillance'
       journal: Journal of Statistical Software
       year: '2016'
       volume: '70'
-      number: '10'
-      pages: 1--35
+      issue: '10'
       doi: 10.18637/jss.v070.i10
+      start: '1'
+      end: '35'
     - type: article
+      title: Spatio-Temporal Analysis of Epidemic Phenomena Using the R Package surveillance
       authors:
       - family-names: Meyer
         given-names: Sebastian
@@ -126,11 +128,11 @@
         given-names: Leonhard
       - family-names: Höhle
         given-names: Michael
-      title: Spatio-Temporal Analysis of Epidemic Phenomena Using the R Package surveillance
       journal: Journal of Statistical Software
       year: '2017'
       volume: '77'
-      number: '11'
-      pages: 1--55
+      issue: '11'
       doi: 10.18637/jss.v077.i11
+      start: '1'
+      end: '55'
 

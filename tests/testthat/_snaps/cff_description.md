@@ -166,7 +166,7 @@
         given-names: Marc
         email: marcbasic@gmail.com
       license: GPL-3.0-only
-      year: '2021'
+      year: '2022'
     repository-code: https://github.com/test/package
     url: https://test.github.io/package/
     contact:
@@ -233,7 +233,7 @@
       - credit
       - linked-data
       license: GPL-3.0-only
-      year: '2021'
+      year: '2022'
     repository-code: https://gitlab.com/ninijay/methoden
     url: https://ropensci.github.io/codemetar
     contact:
@@ -310,7 +310,7 @@
       - one
       - two
       license: GPL-3.0-only
-      year: '2021'
+      year: '2022'
     repository-code: https://github.com/many/persons
     url: https://many.github.io/persons
     contact:
@@ -377,7 +377,7 @@
       - credit
       - linked-data
       license: MIT
-      year: '2021'
+      year: '2022'
     url: https://httpbin.org/status/404
     contact:
     - family-names: Boettiger
@@ -446,7 +446,7 @@
         given-names: Jane
         email: email2@email.edu
       license: GPL-3.0-only
-      year: '2021'
+      year: '2022'
     repository-code: https://github.com/ropensci/codemetar
     url: https://ropensci.github.io/codemetar
     contact:
@@ -510,7 +510,7 @@
       - credit
       - linked-data
       license: GPL-3.0-only
-      year: '2021'
+      year: '2022'
     repository: https://ropensci.r-universe.dev
     repository-code: https://github.com/ropensci/codemetar
     url: https://docs.ropensci.org/codemetar/
@@ -620,7 +620,7 @@
         given-names: Marc
         email: marcbasic@gmail.com
       license: GPL-3.0-only
-      year: '2021'
+      year: '2022'
     repository: https://CRAN.R-project.org/package=ggplot2
     repository-code: https://github.com/basic/package
     url: https://basic.github.io/package

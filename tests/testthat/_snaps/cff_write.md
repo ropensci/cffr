@@ -26,7 +26,7 @@
         given-names: Marc
         email: marcbasic@gmail.com
       license: GPL-3.0-only
-      year: '2021'
+      year: '2022'
     repository-code: https://github.com/basic/package
     url: https://basic.github.io/package
     date-released: '1900-01-01'
@@ -70,7 +70,7 @@
         given-names: Marc
         email: marcbasic@gmail.com
       license: GPL-3.0-only
-      year: '2021'
+      year: '2022'
     repository-code: https://github.com/basic/package
     url: https://basic.github.io/package
     contact:
@@ -111,7 +111,7 @@
         given-names: Marc
         email: marcbasic@gmail.com
       license: GPL-3.0-only
-      year: '2021'
+      year: '2022'
     repository-code: https://github.com/basic/package
     url: https://basic.github.io/package
     contact:

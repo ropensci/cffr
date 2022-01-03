@@ -86,8 +86,11 @@ knitr::kable(df, escape = FALSE)
 This key is extracted from the "Description" field of the DESCRIPTION file.
 
 <details>
+
 <summary>
+
 <strong>Example</strong>
+
 </summary>
 
 ```{r abstract}
@@ -511,11 +514,14 @@ This key is extracted from the CITATION file if several references are provided.
 The first citation is considered as the
 [preferred-citation](#preferred-citation) and the rest of them as "references".
 It also extracts the package dependencies and adds those to this fields using
-the main `citation()` of each dependency.
+`citation(auto = TRUE)` on each dependency.
 
 <details>
+
 <summary>
+
 <strong>Example</strong>
+
 </summary>
 
 ```{r references}

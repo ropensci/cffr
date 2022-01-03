@@ -9,6 +9,13 @@ test_that("Test installed packages", {
   expect_silent(cff_create("yaml"))
 })
 
+test_that("Test dependencies extraction", {
+  yes <- cff_create("jsonlite")
+  no <- cff_create("jsonlite", dependencies = FALSE)
+
+  expect_true(length(yes$references) > length(no$references))
+})
+
 test_that("Test error formats on inputs", {
   df <- data.frame(x = 1, b = "c")
   expect_error(cff_create(df))

@@ -71,9 +71,8 @@ cff_parse_citation(citation("rmarkdown"))
 }
 \references{
 \itemize{
-\item Patashnik, O. (1988, February). \emph{BIBTEXTING}. BibTeX - Process
-Bibliographies for LATEX, Etc. Retrieved December 1, 2021, from
-\url{https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf}
+\item Patashnik, Oren. "BIBTEXTING" February 1988.
+\url{https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf}.
 \item Haines, R., & The Ruby Citation File Format Developers. (2021).
 \emph{Ruby CFF Library (Version 0.9.0)} (Computer software).
 \doi{10.5281/zenodo.1184077}.
