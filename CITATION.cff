@@ -122,20 +122,6 @@ references:
   url: https://CRAN.R-project.org/package=jsonvalidate
   version: '>= 1.1.0'
 - type: software
-  title: 'lifecycle: Manage the Life Cycle of your Package Functions'
-  authors:
-  - family-names: Henry
-    given-names: Lionel
-    email: lionel@rstudio.com
-  - family-names: Wickham
-    given-names: Hadley
-    email: hadley@rstudio.com
-    orcid: https://orcid.org/0000-0003-4757-117X
-  year: '2022'
-  notes: Imports
-  url: https://CRAN.R-project.org/package=lifecycle
-  version: '>= 1.0.0'
-- type: software
   title: 'yaml: Methods to Convert R Data to YAML and Back'
   authors:
   - family-names: Stephens
@@ -171,6 +157,19 @@ references:
   year: '2022'
   notes: Suggests
   url: https://CRAN.R-project.org/package=knitr
+- type: software
+  title: 'lifecycle: Manage the Life Cycle of your Package Functions'
+  authors:
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@rstudio.com
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+    orcid: https://orcid.org/0000-0003-4757-117X
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=lifecycle
 - type: software
   title: 'rmarkdown: Dynamic Documents for R'
   authors:

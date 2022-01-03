@@ -44,9 +44,8 @@ inst/CITATION files but those changes doesn't make a change on your
 
 In those cases, you can override the check running \verb{git commit --no-verify}
 on the Terminal tab. If you are using
-\href{https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts}{RStudio},
-you can run also this command from a R script by selecting that line and
-sending it to the Terminal using:
+RStudio you can run also this command from a R script by selecting that
+line and sending it to the Terminal using:
 \itemize{
 \item \code{Ctrl+Alt+Enter} (Windows & Linux), or
 \item \code{Cmd+Option+Return} (Mac).

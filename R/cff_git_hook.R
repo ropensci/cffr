@@ -42,9 +42,8 @@
 #'
 #' In those cases, you can override the check running `git commit --no-verify`
 #' on the Terminal tab. If you are using
-#' [RStudio](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts),
-#' you can run also this command from a R script by selecting that line and
-#' sending it to the Terminal using:
+#' RStudio you can run also this command from a R script by selecting that
+#' line and sending it to the Terminal using:
 #'
 #' - `Ctrl+Alt+Enter` (Windows & Linux), or
 #' - `Cmd+Option+Return` (Mac).
