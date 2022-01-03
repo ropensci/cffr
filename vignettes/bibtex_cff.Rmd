@@ -1241,11 +1241,9 @@ The proposed model is similar to [conference/inproceedings]. Note that
 [authors]{.ul} is required on CFF, we would use *anonymous*[^9] when converting
 to CFF and omit it on the conversion back to CFF.
 
-[^9]: As proposed on [**How to deal with unknown individual
-    authors?**](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors),
-    *(Guide to Citation File Format schema version 1.2.0).*
-
-    \
+[^9]: As proposed on [*How to deal with unknown individual
+    authors?*](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors),
+    **(Guide to Citation File Format schema version 1.2.0)**
 
 +-------------------------+---------------------------+-----------------------+
 | BibTeX                  | CFF                       | Note                  |
