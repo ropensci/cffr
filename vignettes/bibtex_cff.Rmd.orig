@@ -33,15 +33,31 @@ vignette: >
 ---
 
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = ""
+)
 
+options(width = 60)
+```
 
 ## Citation
 
 Please cite this article as:
 
-  
-Hernangómez D (2022). "BibTeX and CFF, a potential
-crosswalk." _The cffr package_, *Vignettes*.
+```{r cit, echo=FALSE, results='asis'}
+thisart <- bibentry("article",
+  title = "{BibTeX} and {CFF}, a potential crosswalk",
+  key = "hernangomez2022",
+  author = "Diego Hernangómez",
+  journal = "The {cffr} package",
+  year = 2022,
+  volume = "Vignettes",
+)
+cat("  \n")
+thisart
+```
 
 A \hologo{BibTeX} entry for \LaTeX\ users:
 
@@ -82,8 +98,7 @@ This entry then can be used on a document and include references to it.
 On **R** [@R_2021], we can replicate this structure using the `bibentry()` and
 `toBibtex()` functions:
 
-
-```r
+```{r bibentry, comment="#>"}
 
 entry <- bibentry("book",
   key = "einstein1921",
@@ -96,14 +111,6 @@ entry <- bibentry("book",
 )
 
 toBibtex(entry)
-#> @Book{einstein1921,
-#>   title = {Relativity: The Special and the General Theory},
-#>   author = {A. Einstein},
-#>   year = {1920},
-#>   publisher = {Henry Holt and Company},
-#>   address = {London, United Kingdom},
-#>   isbn = {9781587340925},
-#> }
 ```
 
 The final results of the entry as a text string would be parsed as[^1]:
@@ -111,9 +118,10 @@ The final results of the entry as a text string would be parsed as[^1]:
 [^1]: By default R Pandoc would generate the cite on the Chicago author-date
     format [@rmarkdowncookbook2020]
 
-Einstein A (1920). _Relativity: The Special and the
-General Theory_. Henry Holt and Company, London,
-United Kingdom. ISBN 9781587340925.
+```{r echo=FALSE, results='asis'}
+
+entry
+```
 
 ## \hologo{BibTeX} definitions
 
@@ -222,66 +230,34 @@ there are some degree of flexibility on the requirement of the field, see
 
 \clearpage
 
+```{r entry_fields1, echo=FALSE}
 
-Table: \hologo{BibTeX}, required fields by entry
+bibtex_field_entry <- read.csv(system.file("extdata/bibtex_field_entry.csv",
+  package = "cffr"
+),
+sep = ","
+)
 
-|field        | article | book | booklet | inbook | incollection | conference,inproceedings |
-|:------------|:-------:|:----:|:-------:|:------:|:------------:|:------------------------:|
-|title        |    x    |  x   |    x    |   x    |      x       |            x             |
-|year         |    x    |  x   |    o    |   x    |      x       |            x             |
-|author       |    x    | (x)  |    o    |  (x)   |      x       |            x             |
-|note         |    o    |  o   |    o    |   o    |      o       |            o             |
-|month        |    o    |  o   |    o    |   o    |      o       |            o             |
-|address      |         |  o   |    o    |   o    |      o       |            o             |
-|publisher    |         |  x   |         |   x    |      x       |            o             |
-|editor       |         | (x)  |         |  (x)   |      o       |            o             |
-|number       |    o    | (o)  |         |  (o)   |     (o)      |           (o)            |
-|volume       |    o    | (o)  |         |  (o)   |     (o)      |           (o)            |
-|pages        |    o    |      |         |  (x)   |      o       |            o             |
-|series       |         |  o   |         |   o    |      o       |            o             |
-|booktitle    |         |      |         |        |      x       |            x             |
-|edition      |         |  o   |         |   o    |      o       |                          |
-|type         |         |      |         |   o    |      o       |                          |
-|chapter      |         |      |         |  (x)   |      o       |                          |
-|organization |         |      |         |        |              |            o             |
-|howpublished |         |      |    o    |        |              |                          |
-|institution  |         |      |         |        |              |                          |
-|journal      |    x    |      |         |        |              |                          |
-|school       |         |      |         |        |              |                          |
-|annote       |         |      |         |        |              |                          |
-|crossref     |         |      |         |        |              |                          |
-|key          |         |      |         |        |              |                          |
+t1 <- bibtex_field_entry[, c(1:7)]
+
+knitr::kable(t1,
+  col.names = gsub("\\.", ",", names(t1)),
+  align = c("l", rep("c", 6)),
+  caption = "\\hologo{BibTeX}, required fields by entry"
+)
+
+```
 \clearpage
 
+```{r entry_fields2, echo=FALSE}
+t2 <- bibtex_field_entry[, c(1, 8:13)]
 
-Table: (cont) \hologo{BibTeX}, required fields by entry
-
-|field        | manual | mastersthesis,phdthesis | misc | proceedings | techreport | unpublished |
-|:------------|:------:|:-----------------------:|:----:|:-----------:|:----------:|:-----------:|
-|title        |   x    |            x            |  o   |      x      |     x      |      x      |
-|year         |   o    |            x            |  o   |      x      |     x      |      o      |
-|author       |   o    |            x            |  o   |             |     x      |      x      |
-|note         |   o    |            o            |  o   |      o      |     o      |      x      |
-|month        |   o    |            o            |  o   |      o      |     o      |      o      |
-|address      |   o    |            o            |      |      o      |     o      |             |
-|publisher    |        |                         |      |      o      |            |             |
-|editor       |        |                         |      |      o      |            |             |
-|number       |        |                         |      |     (o)     |     o      |             |
-|volume       |        |                         |      |     (o)     |            |             |
-|pages        |        |                         |      |             |            |             |
-|series       |        |                         |      |      o      |            |             |
-|booktitle    |        |                         |      |             |            |             |
-|edition      |   o    |                         |      |             |            |             |
-|type         |        |            o            |      |             |     o      |             |
-|chapter      |        |                         |      |             |            |             |
-|organization |   o    |                         |      |      o      |            |             |
-|howpublished |        |                         |  o   |             |            |             |
-|institution  |        |                         |      |             |     x      |             |
-|journal      |        |                         |      |             |            |             |
-|school       |        |            x            |      |             |            |             |
-|annote       |        |                         |      |             |            |             |
-|crossref     |        |                         |      |             |            |             |
-|key          |        |                         |      |             |            |             |
+knitr::kable(t2,
+  col.names = gsub("\\.", ",", names(t2)),
+  align = c("l", rep("c", 6)),
+  caption = "(cont) \\hologo{BibTeX}, required fields by entry"
+)
+```
 
 It can be observed that just a subset of fields is required in any of the
 Entries. For example, **title**, **year** and **author** are either required or
@@ -312,26 +288,19 @@ These two keys are expected to be
 [`definition.reference`](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreference)
 objects, therefore they may contain the following keys:
 
+```{r refkeys, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+library(cffr)
 
-Table: Valid keys on CFF `definition-reference` objects
+# Fill with whites
+l <- c(cff_schema_definitions_refs(), rep("", 4))
 
-|                |                  |            |                    |                 |
-|:---------------|:-----------------|:-----------|:-------------------|:----------------|
-|abbreviation    |abstract          |authors     |collection-doi      |collection-title |
-|collection-type |commit            |conference  |contact             |copyright        |
-|data-type       |database-provider |database    |date-accessed       |date-downloaded  |
-|date-published  |date-released     |department  |doi                 |edition          |
-|editors         |editors-series    |end         |entry               |filename         |
-|format          |identifiers       |institution |isbn                |issn             |
-|issue           |issue-date        |issue-title |journal             |keywords         |
-|languages       |license           |license-url |loc-end             |loc-start        |
-|location        |medium            |month       |nihmsid             |notes            |
-|number          |number-volumes    |pages       |patent-states       |pmcid            |
-|publisher       |recipients        |repository  |repository-artifact |repository-code  |
-|scope           |section           |senders     |start               |status           |
-|term            |thesis-type       |title       |translators         |type             |
-|url             |version           |volume      |volume-title        |year             |
-|year-original   |                  |            |                    |                 |
+
+refkeys <- matrix(l, ncol = 5, byrow = TRUE)
+
+knitr::kable(refkeys,
+  caption = "Valid keys on CFF `definition-reference` objects"
+)
+```
 
 These keys are the equivalent to the fields of \hologo{BibTeX} (see [Fields]), with the
 exception of the key **type**. On CFF, this key defines the type of work[^5],
@@ -554,37 +523,27 @@ The crosswalk of **\@article** does not require any special treatment.
 
 [*CFF entry*]{.ul}
 
+```{r echo=FALSE}
 
-```
-type: article
-title: The Gnats and Gnus Document Preparation System
-authors:
-- family-names: Aamport
-  given-names: Leslie A.
-year: '1986'
-month: '7'
-journal: G-Animal's Journal
-volume: '41'
-issue: '7'
-notes: This is a full ARTICLE entry
-start: 73+
+bib <- bibentry("article",
+  title        = "The Gnats and Gnus Document Preparation System",
+  author       = "Leslie A. Aamport",
+  year         = 1986,
+  month        = "jul",
+  journal      = "{G-Animal's} Journal",
+  volume       = 41,
+  number       = 7,
+  pages        = "73+",
+  note         = "This is a full ARTICLE entry"
+)
+
+cff_parse_citation(bib)
 ```
 
 [*From CFF to \hologo{BibTeX}*]{.ul}
 
-
-```
-@Article{aamport:1986,
-  title = {The Gnats and Gnus Document Preparation System},
-  author = {Leslie A. Aamport},
-  year = {1986},
-  month = {jul},
-  journal = {G-Animal's Journal},
-  volume = {41},
-  number = {7},
-  pages = {73+},
-  note = {This is a full ARTICLE entry},
-}
+```{r echo=FALSE}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
 ### book/inbook
@@ -668,40 +627,28 @@ Another specificity is that **series** field is mapped to
 
 [*CFF entry*]{.ul}
 
+```{r echo=FALSE}
 
-```
-type: book
-title: Seminumerical Algorithms
-authors:
-- family-names: Knuth
-  given-names: Donald E.
-year: '1981'
-month: '10'
-publisher:
-  name: Addison-Wesley
-  address: Reading, Massachusetts
-volume: '2'
-notes: This is a full BOOK entry
-edition: Second
-collection-title: The Art of Computer Programming
+bib <- bibentry("Book",
+  title = "Seminumerical Algorithms",
+  author = "Donald E. Knuth",
+  year = 1981,
+  month = 10,
+  publisher = "Addison-Wesley",
+  address = "Reading, Massachusetts",
+  series = "The Art of Computer Programming",
+  volume = 2,
+  note = "This is a full BOOK entry",
+  edition = "Second"
+)
+
+cff_parse_citation(bib)
 ```
 
 [*From CFF to \hologo{BibTeX}*]{.ul}
 
-
-```
-@Book{knuth:1981,
-  title = {Seminumerical Algorithms},
-  author = {Donald E. Knuth},
-  year = {1981},
-  month = {oct},
-  publisher = {Addison-Wesley},
-  address = {Reading, Massachusetts},
-  series = {The Art of Computer Programming},
-  volume = {2},
-  note = {This is a full BOOK entry},
-  edition = {Second},
-}
+```{r,  echo=FALSE}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
 **Examples: inbook**
@@ -728,45 +675,31 @@ collection-title: The Art of Computer Programming
 
 [*CFF entry*]{.ul}
 
+```{r echo=FALSE,}
 
-```
-type: book
-title: Fundamental Algorithms
-authors:
-- family-names: Knuth
-  given-names: Donald E.
-year: '1973'
-month: '10'
-publisher:
-  name: Addison-Wesley
-  address: Reading, Massachusetts
-volume: '1'
-notes: This is a full INBOOK entry
-edition: Second
-section: '1.2'
-start: '10'
-end: '119'
-collection-title: The Art of Computer Programming
+bib <- bibentry("inbook",
+  title        = "Fundamental Algorithms",
+  author       = "Donald E. Knuth",
+  year         = 1973,
+  month        = 10,
+  publisher    = "Addison-Wesley",
+  address      = "Reading, Massachusetts",
+  series       = "The Art of Computer Programming",
+  volume       = 1,
+  pages        = "10--119",
+  note         = "This is a full INBOOK entry",
+  edition      = "Second",
+  type         = "Section",
+  chapter      = "1.2"
+)
+
+cff_parse_citation(bib)
 ```
 
 [*From CFF to \hologo{BibTeX}*]{.ul}
 
-
-```
-@InBook{knuth:1973,
-  title = {Fundamental Algorithms},
-  author = {Donald E. Knuth},
-  year = {1973},
-  month = {oct},
-  publisher = {Addison-Wesley},
-  address = {Reading, Massachusetts},
-  series = {The Art of Computer Programming},
-  volume = {1},
-  pages = {10--119},
-  note = {This is a full INBOOK entry},
-  chapter = {1.2},
-  edition = {Second},
-}
+```{r echo=FALSE,}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
 ### booklet
@@ -818,36 +751,25 @@ In **\@booklet** **address** is mapped to [location]{.ul}.
 
 [*CFF entry*]{.ul}
 
+```{r echo=FALSE, }
 
-```
-type: pamphlet
-title: The Programming of Computer Art
-authors:
-- family-names: Knvth
-  given-names: Jill C.
-date-published: '1988-03-14'
-month: '2'
-location:
-  name: Stanford, California
-notes: This is a full BOOKLET entry
-medium: Vernier Art Center
-year: '1988'
+bib <- bibentry("booklet",
+  title = "The Programming of Computer Art",
+  author = "Jill C. Knvth",
+  date = "1988-03-14",
+  month = "feb",
+  address = "Stanford, California",
+  note = "This is a full BOOKLET entry",
+  howpublished = "Vernier Art Center"
+)
+
+cff_parse_citation(bib)
 ```
 
 [*From CFF to \hologo{BibTeX}*]{.ul}
 
-
-```
-@Booklet{knvth:1988,
-  title = {The Programming of Computer Art},
-  author = {Jill C. Knvth},
-  year = {1988},
-  month = {feb},
-  address = {Stanford, California},
-  note = {This is a full BOOKLET entry},
-  howpublished = {Vernier Art Center},
-  date = {1988-03-14},
-}
+```{r echo=FALSE, }
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
 ### conference/inproceedings
@@ -924,57 +846,30 @@ Note that in this case, **organization** is mapped to [institution]{.ul}, as
 
 [*CFF entry*]{.ul}
 
+```{r echo=FALSE,}
 
-```
-type: conference-paper
-title: On Notions of Information Transfer in VLSI Circuits
-authors:
-- family-names: Oaho
-  given-names: Alfred V.
-- family-names: Ullman
-  given-names: Jeffrey D.
-- family-names: Yannakakis
-  given-names: Mihalis
-year: '1983'
-month: '3'
-collection-title: Proc. Fifteenth Annual ACM Symposium on the Theory of Computing
-publisher:
-  name: Academic Press
-location:
-  name: Boston
-issue: '17'
-editors:
-- family-names: Oz
-  given-names: Wizard V.
-- family-names: Yannakakis
-  given-names: Mihalis
-start: '133'
-end: '139'
-conference:
-  name: All ACM Conferences
-  address: Boston
-institution:
-  name: The OX Association for Computing Machinery
+bib <- bibentry("inproceedings",
+  title        = "On Notions of Information Transfer in {VLSI} Circuits",
+  author       = "Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis",
+  year         = 1983,
+  month        = "mar",
+  booktitle    = "Proc. Fifteenth Annual ACM Symposium on the Theory of Computing",
+  publisher    = "Academic Press",
+  address      = "Boston",
+  series       = "All ACM Conferences",
+  number       = 17,
+  pages        = "133--139",
+  editor       = "Wizard V. Oz and Mihalis Yannakakis",
+  organization = "The OX Association for Computing Machinery"
+)
+
+cff_parse_citation(bib)
 ```
 
 [*From CFF to \hologo{BibTeX}*]{.ul}
 
-
-```
-@InProceedings{oahoullman:1983,
-  title = {On Notions of Information Transfer in VLSI Circuits},
-  author = {Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis},
-  year = {1983},
-  month = {mar},
-  booktitle = {Proc. Fifteenth Annual ACM Symposium on the Theory of Computing},
-  publisher = {Academic Press},
-  address = {Boston},
-  editor = {Wizard V. Oz and Mihalis Yannakakis},
-  series = {All ACM Conferences},
-  number = {17},
-  pages = {133--139},
-  organization = {The OX Association for Computing Machinery},
-}
+```{r echo=FALSE,}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
 ### incollection
@@ -1054,53 +949,33 @@ As **booktitle** is a required field, we propose to map that field to
 
 [*CFF entry*]{.ul}
 
+```{r echo=FALSE,}
 
-```
-type: generic
-title: Semigroups of Recurrences
-authors:
-- family-names: Lincoll
-  given-names: Daniel D.
-year: '1977'
-month: '9'
-collection-title: High Speed Computer and Algorithm Organization
-publisher:
-  name: Academic Press
-  address: New York
-issue: '23'
-notes: This is a full INCOLLECTION entry
-editors:
-- family-names: Lipcoll
-  given-names: David J.
-- family-names: Lawrie
-  given-names: D. H.
-- family-names: Sameh
-  given-names: A. H.
-section: '3'
-edition: Third
-start: '179'
-end: '183'
+bib <- bibentry("incollection",
+  title        = "Semigroups of Recurrences",
+  author       = "Daniel D. Lincoll",
+  year         = 1977,
+  month        = "sep",
+  booktitle    = "High Speed Computer and Algorithm Organization",
+  publisher    = "Academic Press",
+  address      = "New York",
+  series       = "Fast Computers",
+  number       = 23,
+  pages        = "179--183",
+  note         = "This is a full INCOLLECTION entry",
+  editor       = "David J. Lipcoll and D. H. Lawrie and A. H. Sameh",
+  chapter      = 3,
+  type         = "Part",
+  edition      = "Third"
+)
+
+cff_parse_citation(bib)
 ```
 
 [*From CFF to \hologo{BibTeX}*]{.ul}
 
-
-```
-@InCollection{lincoll:1977,
-  title = {Semigroups of Recurrences},
-  author = {Daniel D. Lincoll},
-  year = {1977},
-  month = {sep},
-  booktitle = {High Speed Computer and Algorithm Organization},
-  publisher = {Academic Press},
-  address = {New York},
-  editor = {David J. Lipcoll and D. H. Lawrie and A. H. Sameh},
-  number = {23},
-  pages = {179--183},
-  note = {This is a full INCOLLECTION entry},
-  chapter = {3},
-  edition = {Third},
-}
+```{r echo=FALSE,}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
 ### manual
@@ -1156,35 +1031,26 @@ required on CFF, so it is not parsed to avoid validation errors.
 
 [*CFF entry*]{.ul}
 
+```{r echo=FALSE,}
 
-```
-type: manual
-title: The Definitive Computer Manual
-authors:
-- family-names: Manmaker
-  given-names: Larry
-year: '1986'
-location:
-  name: Silicon Valley
-notes: This is a full MANUAL entry
-edition: Silver
-institution:
-  name: Chips-R-Us
+bib <- bibentry("Manual",
+  title        = "The Definitive Computer Manual",
+  author       = "Larry Manmaker",
+  year         = 1986,
+  month        = "apr-may",
+  address      = "Silicon Valley",
+  note         = "This is a full MANUAL entry",
+  organization = "Chips-R-Us",
+  edition      = "Silver"
+)
+
+cff_parse_citation(bib)
 ```
 
 [*From CFF to \hologo{BibTeX}*]{.ul}
 
-
-```
-@Manual{manmaker:1986,
-  title = {The Definitive Computer Manual},
-  author = {Larry Manmaker},
-  year = {1986},
-  address = {Silicon Valley},
-  note = {This is a full MANUAL entry},
-  edition = {Silver},
-  organization = {Chips-R-Us},
-}
+```{r echo=FALSE,}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
 ### mastersthesis/phdthesis
@@ -1250,34 +1116,26 @@ pattern](https://regex101.com/r/mBWfbs/1) `(?i)(phd)` it would be recognized as
 
 [*CFF entry*]{.ul}
 
+```{r echo=FALSE}
 
-```
-type: thesis
-title: Mastering Thesis Writing
-authors:
-- family-names: Masterly
-  given-names: Edouard
-year: '1988'
-month: '6'
-notes: This is a full MASTERSTHESIS entry
-institution:
-  name: Stanford University
-  address: English Department
-thesis-type: Master's Thesis
+bib <- bibentry("mastersthesis",
+  title        = "Mastering Thesis Writing",
+  author       = "Edouard Masterly",
+  year         = 1988,
+  month        = "jun",
+  address      = "English Department",
+  note         = "This is a full MASTERSTHESIS entry",
+  school       = "Stanford University",
+  type         = "Master's project"
+)
+
+cff_parse_citation(bib)
 ```
 
 [*From CFF to \hologo{BibTeX}*]{.ul}
 
-
-```
-@MastersThesis{masterly:1988,
-  title = {Mastering Thesis Writing},
-  author = {Edouard Masterly},
-  year = {1988},
-  month = {jun},
-  note = {This is a full MASTERSTHESIS entry},
-  school = {Stanford University},
-}
+```{r,  echo=FALSE}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
 **Examples: phdthesis**
@@ -1299,34 +1157,26 @@ thesis-type: Master's Thesis
 
 [*CFF entry*]{.ul}
 
+```{r echo=FALSE,}
 
-```
-type: thesis
-title: 'Fighting Fire with Fire: Festooning French Phrases'
-authors:
-- family-names: Phony-Baloney
-  given-names: F. Phidias
-year: '1988'
-month: '6'
-notes: This is a full PHDTHESIS entry
-institution:
-  name: Fanstord University
-  address: Department of French
-thesis-type: PhD Thesis
+bib <- bibentry("phdthesis",
+  title = "Fighting Fire with Fire: Festooning {F}rench Phrases",
+  author = "F. Phidias Phony-Baloney",
+  year = 1988,
+  month = "jun",
+  address = "Department of French",
+  note = "This is a full PHDTHESIS entry",
+  school = "Fanstord University",
+  type = "{PhD} Dissertation"
+)
+
+cff_parse_citation(bib)
 ```
 
 [*From CFF to \hologo{BibTeX}*]{.ul}
 
-
-```
-@PhdThesis{phony?baloney:1988,
-  title = {Fighting Fire with Fire: Festooning French Phrases},
-  author = {F. Phidias Phony-Baloney},
-  year = {1988},
-  month = {jun},
-  note = {This is a full PHDTHESIS entry},
-  school = {Fanstord University},
-}
+```{r echo=FALSE,}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
 ### misc
@@ -1377,29 +1227,23 @@ cover both **\@misc** and **\@incollection** without problems.
 
 [*CFF entry*]{.ul}
 
+```{r echo=FALSE,}
 
-```
-type: generic
-title: Handing out random pamphlets in airports
-authors:
-- name: anonymous
-year: '1984'
-month: '10'
-notes: This is a MISC entry
-medium: Handed out at O'Hare
+bib <- bibentry("Misc",
+  title        = "Handing out random pamphlets in airports",
+  year         = 1984,
+  month        = "oct",
+  note         = "This is a MISC entry",
+  howpublished = "Handed out at O'Hare"
+)
+
+cff_parse_citation(bib)
 ```
 
 [*From CFF to \hologo{BibTeX}*]{.ul}
 
-
-```
-@Misc{anonymous:1984,
-  title = {Handing out random pamphlets in airports},
-  year = {1984},
-  month = {oct},
-  note = {This is a MISC entry},
-  howpublished = {Handed out at O'Hare},
-}
+```{r echo=FALSE,}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
 ### proceedings
@@ -1469,48 +1313,28 @@ to CFF and omit it on the conversion back to CFF.
 
 [*CFF entry*]{.ul}
 
+```{r echo=FALSE,}
 
-```
-type: proceedings
-title: Proc. Fifteenth Annual ACM Symposium on the Theory of Computing
-authors:
-- name: anonymous
-year: '1983'
-month: '3'
-publisher:
-  name: Academic Press
-location:
-  name: Boston
-issue: '17'
-notes: This is a full PROCEEDINGS entry
-editors:
-- family-names: Oz
-  given-names: Wizard V.
-- family-names: Yannakakis
-  given-names: Mihalis
-conference:
-  name: All ACM Conferences
-  address: Boston
-institution:
-  name: The OX Association for Computing Machinery
+bib <- bibentry("proceedings",
+  title        = "Proc. Fifteenth Annual ACM Symposium on the Theory of Computing",
+  year         = 1983,
+  month        = "mar",
+  publisher    = "Academic Press",
+  address      = "Boston",
+  series       = "All ACM Conferences",
+  number       = 17,
+  note         = "This is a full PROCEEDINGS entry",
+  editor       = "Wizard V. Oz and Mihalis Yannakakis",
+  organization = "The OX Association for Computing Machinery"
+)
+
+cff_parse_citation(bib)
 ```
 
 [*From CFF to \hologo{BibTeX}*]{.ul}
 
-
-```
-@Proceedings{anonymous:1983,
-  title = {Proc. Fifteenth Annual ACM Symposium on the Theory of Computing},
-  year = {1983},
-  month = {mar},
-  publisher = {Academic Press},
-  address = {Boston},
-  editor = {Wizard V. Oz and Mihalis Yannakakis},
-  series = {All ACM Conferences},
-  number = {17},
-  note = {This is a full PROCEEDINGS entry},
-  organization = {The OX Association for Computing Machinery},
-}
+```{r echo=FALSE,}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
 ### techreport
@@ -1563,36 +1387,27 @@ institution:
 
 [*CFF entry*]{.ul}
 
+```{r echo=FALSE,}
 
-```
-type: report
-title: A Sorting Algorithm
-authors:
-- family-names: Terrific
-  given-names: Tom
-year: '1988'
-month: '10'
-issue: '7'
-notes: This is a full TECHREPORT entry
-institution:
-  name: Fanstord University
-  address: Computer Science Department, Fanstord, California
+bib <- bibentry("techreport",
+  title = "A Sorting Algorithm",
+  author = "Tom Terrific",
+  year = 1988,
+  month = "oct",
+  address = "Computer Science Department, Fanstord, California",
+  number = 7,
+  note = "This is a full TECHREPORT entry",
+  institution = "Fanstord University",
+  type = "Wishful Research Result"
+)
+
+cff_parse_citation(bib)
 ```
 
 [*From CFF to \hologo{BibTeX}*]{.ul}
 
-
-```
-@TechReport{terrific:1988,
-  title = {A Sorting Algorithm},
-  author = {Tom Terrific},
-  year = {1988},
-  month = {oct},
-  address = {Computer Science Department, Fanstord, California},
-  number = {7},
-  note = {This is a full TECHREPORT entry},
-  institution = {Fanstord University},
-}
+```{r echo=FALSE,}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
 ### unpublished
@@ -1631,29 +1446,21 @@ institution:
 
 [*CFF entry*]{.ul}
 
+```{r echo=FALSE,}
 
-```
-type: unpublished
-title: Lower Bounds for Wishful Research Results
-authors:
-- family-names: Underwood
-  given-names: Ulrich
-- family-names: Net
-  given-names: Ned
-- family-names: Pot
-  given-names: Paul
-notes: Talk at Fanstord University (this is a minimal UNPUBLISHED entry)
+bib <- bibentry("unpublished",
+  title        = "Lower Bounds for Wishful Research Results",
+  author       = "Ulrich Underwood and Ned Net and Paul Pot",
+  note         = "Talk at Fanstord University (this is a minimal UNPUBLISHED entry)"
+)
+
+cff_parse_citation(bib)
 ```
 
 [*From CFF to \hologo{BibTeX}*]{.ul}
 
-
-```
-@Unpublished{underwoodnet,
-  title = {Lower Bounds for Wishful Research Results},
-  author = {Ulrich Underwood and Ned Net and Paul Pot},
-  note = {Talk at Fanstord University (this is a minimal UNPUBLISHED entry)},
-}
+```{r echo=FALSE,}
+toBibtex(cff_to_bibtex(cff_parse_citation(bib)))
 ```
 
 ## References

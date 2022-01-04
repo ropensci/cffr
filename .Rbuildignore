@@ -27,3 +27,4 @@
 ^vignettes/pdf$
 ^pdf$
 ^CRAN-SUBMISSION$
+^vignettes/bibtex_cff\.Rmd\.orig$
