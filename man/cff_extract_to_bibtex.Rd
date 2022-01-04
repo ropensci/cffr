@@ -36,6 +36,7 @@ Extract the information of a package to BibTeX. This is done by creating a
 with \code{cff_to_bibtex()}.
 }
 \examples{
+\donttest{
 
 jsonvalidate <- cff_extract_to_bibtex("jsonvalidate")
 
@@ -48,6 +49,7 @@ lite <- cff_extract_to_bibtex("jsonlite", "references")
 lite
 
 toBibtex(lite)
+}
 }
 \seealso{
 Other bibtex: 

@@ -22,6 +22,7 @@ A \code{bibentry} object that can be parsed to BibTeX format with
 Creates a \code{bibentry} object (\code{\link[=bibentry]{bibentry()}}) from a \code{cff} object
 }
 \examples{
+\donttest{
 
 # From a cff object
 package <- cff_create("rmarkdown")
@@ -31,6 +32,7 @@ obj <- cff_to_bibtex(package)
 obj
 
 toBibtex(obj)
+}
 }
 \references{
 \itemize{

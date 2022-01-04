@@ -22,6 +22,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #'
 #' jsonvalidate <- cff_extract_to_bibtex("jsonvalidate")
 #'
@@ -34,6 +35,7 @@
 #' lite
 #'
 #' toBibtex(lite)
+#' }
 cff_extract_to_bibtex <- function(x,
                                   what = "preferred") {
   if (!(what %in% c("preferred", "references", "all"))) {

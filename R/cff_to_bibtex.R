@@ -23,6 +23,7 @@
 #' @family bibtex
 #' @export
 #' @examples
+#' \donttest{
 #'
 #' # From a cff object
 #' package <- cff_create("rmarkdown")
@@ -32,6 +33,7 @@
 #' obj
 #'
 #' toBibtex(obj)
+#' }
 cff_to_bibtex <- function(x) {
   if (is.null(x)) {
     return(NULL)

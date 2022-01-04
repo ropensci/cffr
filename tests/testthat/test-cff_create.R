@@ -5,6 +5,7 @@ test_that("Error if file not exists", {
 })
 
 test_that("Test installed packages", {
+  skip_on_cran()
   expect_silent(cff_create("jsonlite"))
   expect_silent(cff_create("yaml"))
 })
