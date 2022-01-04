@@ -218,6 +218,7 @@
         to generate, parse, and modify 'codemeta.json' files automatically for R packages,
         as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more
         generally.
+      repository: https://CRAN.R-project.org/package=codemetar
       repository-code: https://gitlab.com/ninijay/methoden
       url: https://ropensci.github.io/codemetar
       contact:
@@ -234,6 +235,7 @@
       - linked-data
       license: GPL-3.0-only
       year: '2022'
+    repository: https://CRAN.R-project.org/package=codemetar
     repository-code: https://gitlab.com/ninijay/methoden
     url: https://ropensci.github.io/codemetar
     contact:
@@ -436,6 +438,7 @@
         to generate, parse, and modify 'codemeta.json' files automatically for R packages,
         as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more
         generally.
+      repository: https://CRAN.R-project.org/package=codemetar
       repository-code: https://github.com/ropensci/codemetar
       url: https://ropensci.github.io/codemetar
       contact:
@@ -447,6 +450,7 @@
         email: email2@email.edu
       license: GPL-3.0-only
       year: '2022'
+    repository: https://CRAN.R-project.org/package=codemetar
     repository-code: https://github.com/ropensci/codemetar
     url: https://ropensci.github.io/codemetar
     contact:

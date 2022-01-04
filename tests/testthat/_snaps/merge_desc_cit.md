@@ -235,6 +235,7 @@
       metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
       to generate, parse, and modify 'codemeta.json' files automatically for R packages,
       as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
+    repository: https://CRAN.R-project.org/package=codemetar
     repository-code: https://gitlab.com/ninijay/methoden
     url: https://ropensci.github.io/codemetar
     contact:
@@ -434,6 +435,7 @@
       metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
       to generate, parse, and modify 'codemeta.json' files automatically for R packages,
       as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
+    repository: https://CRAN.R-project.org/package=codemetar
     contact:
     - family-names: Boettiger
       given-names: Carl
@@ -781,6 +783,7 @@
       metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
       to generate, parse, and modify 'codemeta.json' files automatically for R packages,
       as well as tools and examples for working with 'codemeta.json' 'JSON-LD' more generally.
+    repository: https://CRAN.R-project.org/package=codemetar
     repository-code: https://github.com/ropensci/codemetar
     url: https://ropensci.github.io/codemetar
     contact:
