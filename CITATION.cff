@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.2.0.9000
+# CITATION file created with {cffr} R package, v0.2.0
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
@@ -50,12 +50,6 @@ keywords:
 - citation-files
 - cff
 - metadata
-- citation-file-format
-- cran
-- r
-- r-package
-- ropensci
-- rstats
 references:
 - type: software
   title: 'R: A Language and Environment for Statistical Computing'
@@ -70,7 +64,7 @@ references:
   version: '>= 3.6.0'
   notes: Depends
 - type: software
-  title: crayon
+  title: 'crayon: Colored Terminal Output'
   authors:
   - family-names: Csárdi
     given-names: Gábor
@@ -78,10 +72,9 @@ references:
   year: '2022'
   notes: Imports
   url: https://CRAN.R-project.org/package=crayon
-  abstract: 'crayon: Colored Terminal Output'
   version: '>= 1.4.1'
 - type: software
-  title: desc
+  title: 'desc: Manipulate DESCRIPTION Files'
   authors:
   - family-names: Csárdi
     given-names: Gábor
@@ -94,10 +87,9 @@ references:
   year: '2022'
   notes: Imports
   url: https://CRAN.R-project.org/package=desc
-  abstract: 'desc: Manipulate DESCRIPTION Files'
   version: '>= 1.3.0'
 - type: software
-  title: jsonlite
+  title: 'jsonlite: A Simple and Robust JSON Parser and Generator for R'
   authors:
   - family-names: Ooms
     given-names: Jeroen
@@ -106,10 +98,9 @@ references:
   year: '2022'
   notes: Imports
   url: https://CRAN.R-project.org/package=jsonlite
-  abstract: 'jsonlite: A Simple and Robust JSON Parser and Generator for R'
   version: '>= 1.7.2'
 - type: software
-  title: jsonvalidate
+  title: 'jsonvalidate: Validate ''JSON'' Schema'
   authors:
   - family-names: FitzJohn
     given-names: Rich
@@ -123,10 +114,9 @@ references:
   year: '2022'
   notes: Imports
   url: https://CRAN.R-project.org/package=jsonvalidate
-  abstract: 'jsonvalidate: Validate ''JSON'' Schema'
   version: '>= 1.1.0'
 - type: software
-  title: yaml
+  title: 'yaml: Methods to Convert R Data to YAML and Back'
   authors:
   - family-names: Stephens
     given-names: Jeremy
@@ -150,10 +140,9 @@ references:
   year: '2022'
   notes: Imports
   url: https://CRAN.R-project.org/package=yaml
-  abstract: 'yaml: Methods to Convert R Data to YAML and Back'
   version: '>= 2.2.1'
 - type: software
-  title: knitr
+  title: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
   authors:
   - family-names: Xie
     given-names: Yihui
@@ -162,9 +151,8 @@ references:
   year: '2022'
   notes: Suggests
   url: https://CRAN.R-project.org/package=knitr
-  abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
 - type: software
-  title: lifecycle
+  title: 'lifecycle: Manage the Life Cycle of your Package Functions'
   authors:
   - family-names: Henry
     given-names: Lionel
@@ -176,9 +164,8 @@ references:
   year: '2022'
   notes: Suggests
   url: https://CRAN.R-project.org/package=lifecycle
-  abstract: 'lifecycle: Manage the Life Cycle of your Package Functions'
 - type: software
-  title: rmarkdown
+  title: 'rmarkdown: Dynamic Documents for R'
   authors:
   - family-names: Allaire
     given-names: JJ
@@ -215,9 +202,8 @@ references:
   year: '2022'
   notes: Suggests
   url: https://CRAN.R-project.org/package=rmarkdown
-  abstract: 'rmarkdown: Dynamic Documents for R'
 - type: software
-  title: testthat
+  title: 'testthat: Unit Testing for R'
   authors:
   - family-names: Wickham
     given-names: Hadley
@@ -225,10 +211,9 @@ references:
   year: '2022'
   notes: Suggests
   url: https://CRAN.R-project.org/package=testthat
-  abstract: 'testthat: Unit Testing for R'
   version: '>= 3.0.0'
 - type: software
-  title: usethis
+  title: 'usethis: Automate Package and Project Setup'
   authors:
   - family-names: Wickham
     given-names: Hadley
@@ -245,4 +230,3 @@ references:
   year: '2022'
   notes: Suggests
   url: https://CRAN.R-project.org/package=usethis
-  abstract: 'usethis: Automate Package and Project Setup'
