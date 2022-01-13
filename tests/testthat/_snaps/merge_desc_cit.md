@@ -372,13 +372,6 @@
       invalid url.
     repository-code: https://github.com/test/package
     url: https://test.github.io/package/
-    identifiers:
-    - type: url
-      value: https://r-forge.r-project.org/projects/test/
-    - type: url
-      value: http://google.ru
-    - type: url
-      value: https://gitlab.com/r-packages/behaviorchange
     contact:
     - family-names: Basic
       given-names: Marc
@@ -404,6 +397,13 @@
       doi: 10.1111/2041-210X.12469
       start: '352'
       end: '357'
+    identifiers:
+    - type: url
+      value: https://r-forge.r-project.org/projects/test/
+    - type: url
+      value: http://google.ru
+    - type: url
+      value: https://gitlab.com/r-packages/behaviorchange
     references:
     - type: book
       title: 'ggplot2: Elegant Graphics for Data Analysis'
@@ -637,9 +637,6 @@
     repository: https://CRAN.R-project.org/package=rgeos
     repository-code: https://r-forge.r-project.org/projects/rgeos/
     url: https://trac.osgeo.org/geos/
-    identifiers:
-    - type: url
-      value: http://rgeos.r-forge.r-project.org/index.html
     date-released: '2020-09-07'
     contact:
     - family-names: Bivand
@@ -667,6 +664,9 @@
       doi: 10.1111/2041-210X.12469
       start: '352'
       end: '357'
+    identifiers:
+    - type: url
+      value: http://rgeos.r-forge.r-project.org/index.html
     references:
     - type: book
       title: 'ggplot2: Elegant Graphics for Data Analysis'
@@ -842,11 +842,6 @@
       package provides utilities to generate, parse, and modify codemeta.jsonld files
       automatically for R packages.
     url: https://httpbin.org/status/404
-    identifiers:
-    - type: url
-      value: https://httpbin.org/status/429
-    - type: url
-      value: https://www.github.es/ropensci/codemeta
     contact:
     - family-names: Boettiger
       given-names: Carl
@@ -880,6 +875,11 @@
       doi: 10.1111/2041-210X.12469
       start: '352'
       end: '357'
+    identifiers:
+    - type: url
+      value: https://httpbin.org/status/429
+    - type: url
+      value: https://www.github.es/ropensci/codemeta
     references:
     - type: book
       title: 'ggplot2: Elegant Graphics for Data Analysis'

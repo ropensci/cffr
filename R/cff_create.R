@@ -234,7 +234,16 @@ merge_desc_cit <- function(cffobj, citobj) {
     )
   }
 
-  return(cffobjend)
+  # Reorder
+  cffobjfinal <- c(
+    cffobjend[!names(cffobjend) %in% c("identifiers", "references")],
+    cffobjend["identifiers"],
+    cffobjend["references"]
+  )
+
+  cffobjfinal <- drop_null(cffobjfinal)
+
+  return(cffobjfinal)
 }
 
 #' Enhance authors info from preferred-citation using metadata from DESCRIPTION
@@ -342,6 +351,8 @@ parse_dependencies <- function(desc_path,
 
       # Simplified version of the cff obj
       # Avoid cluttering the output
+      mod$abstract <- mod$title
+      mod$title <- n$package
     }
 
     mod$type <- "software"

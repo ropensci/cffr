@@ -1,3 +1,9 @@
+# cffr (development version)
+
+-   GitHub Action now runs only on `master` or `main`branch.
+
+-   Better handling of references
+
 # cffr 0.2.0
 
 -   Now **cffr** extracts also information of the package dependencies and adds
