@@ -375,6 +375,20 @@ parse_dependencies <- function(desc_path,
     mod$year <- year
     mod$notes <- clean_str(n$scope)
 
+    # Re-arrange
+    mod <- c(
+      mod[c(
+        "type",
+        "title", "abstract",
+        "notes"
+      )],
+      mod[!names(mod) %in% c(
+        "type",
+        "title", "abstract",
+        "notes"
+      )]
+    )
+
     mod <- as.cff(mod)
   })
 

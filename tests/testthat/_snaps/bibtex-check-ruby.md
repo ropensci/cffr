@@ -20,7 +20,7 @@
       booktitle = {Proceedings of Supercomputing 2015},
       publisher = {ACM/IEEE},
       address = {Austin, Texas, USA},
-      series = {Supercomputing 2015 (SC’15)},
+      series = {Supercomputing 2015 (SC'15)},
       doi = {10.1244/2886907.2879400},
     }
 

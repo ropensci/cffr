@@ -24,7 +24,7 @@ preferred-citation:
       given-names: "Scott"
   title: "The Spack Package Manager: Bringing Order to HPC Software Chaos"
   conference:
-    name: "Supercomputing 2015 (SC’15)"
+    name: "Supercomputing 2015 (SC'15)"
     date-start: 2015-11-15
     date-end: 2015-11-20
     city: "Austin"
