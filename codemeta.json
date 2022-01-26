@@ -4,7 +4,7 @@
   "identifier": "cffr",
   "description": "The Citation File Format version 1.2.0 <doi:10.5281/zenodo.5171937> is a human and machine readable file format which provides citation metadata for software. This package provides core utilities to generate and validate this metadata.",
   "name": "cffr: Generate Citation File Format ('cff') Metadata for R Packages",
-  "relatedLink": "https://docs.ropensci.org/cffr/",
+  "relatedLink": ["https://docs.ropensci.org/cffr/", "https://CRAN.R-project.org/package=cffr"],
   "codeRepository": "https://github.com/ropensci/cffr",
   "issueTracker": "https://github.com/ropensci/cffr/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
@@ -186,8 +186,8 @@
     "SystemRequirements": null
   },
   "isPartOf": "https://ropensci.org",
-  "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata"],
-  "fileSize": "810.745KB",
+  "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata", "r", "r-package", "citation-file-format", "rstats", "ropensci", "cran"],
+  "fileSize": "789.968KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -216,5 +216,14 @@
         }
       }
     }
-  ]
+  ],
+  "releaseNotes": "https://github.com/ropensci/cffr/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/cffr/blob/main/README.md",
+  "contIntegration": ["https://github.com/ropensci/cffr/actions/workflows/check-full.yaml", "https://app.codecov.io/gh/ropensci/cffr", "https://github.com/ropensci/cffr/actions/workflows/cff-validator.yml"],
+  "developmentStatus": ["https://www.repostatus.org/#active", "https://lifecycle.r-lib.org/articles/stages.html#experimental"],
+  "review": {
+    "@type": "Review",
+    "url": "https://github.com/ropensci/software-review/issues/463",
+    "provider": "https://ropensci.org"
+  }
 }

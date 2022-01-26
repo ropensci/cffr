@@ -30,3 +30,4 @@ inst/doc
 cran-comments.md
 CRAN-RELEASE
 CRAN-SUBMISSION
+.github/pkg.lock
