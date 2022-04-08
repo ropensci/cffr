@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.2.1
+# CITATION file created with {cffr} R package, v0.2.2
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
@@ -8,7 +8,7 @@ message: 'To cite package "cffr" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'cffr: Generate Citation File Format (''cff'') Metadata for R Packages'
-version: 0.2.1.9000
+version: 0.2.2
 doi: 10.21105/joss.03900
 abstract: The Citation File Format version 1.2.0 <doi:10.5281/zenodo.5171937> is a
   human and machine readable file format which provides citation metadata for software.

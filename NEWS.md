@@ -1,4 +1,4 @@
-# cffr (development version)
+# cffr 0.2.2
 
 -   **cffr** now uses a local copy of the schema.json for validating. (#33).
 

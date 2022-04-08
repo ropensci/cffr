@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/ropensci/cffr",
   "issueTracker": "https://github.com/ropensci/cffr/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.2.1.9000",
+  "version": "0.2.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -187,7 +187,7 @@
   },
   "isPartOf": "https://ropensci.org",
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata", "r", "r-package", "citation-file-format", "rstats", "ropensci", "cran"],
-  "fileSize": "874.248KB",
+  "fileSize": "876.678KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
