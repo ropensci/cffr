@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.2.1.9000
+# CITATION file created with {cffr} R package, v0.2.1
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
@@ -231,6 +231,7 @@ references:
     given-names: Hadley
     email: hadley@rstudio.com
   year: '2022'
+  url: https://CRAN.R-project.org/package=testthat
   version: '>= 3.0.0'
 - type: software
   title: usethis
