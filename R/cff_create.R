@@ -328,11 +328,6 @@ parse_dependencies <- function(desc_path,
 
   av_deps <- deps[deps$package %in% c("R", instpack), ]
 
-
-
-
-
-
   # Get references from DESCRIPTION of dependencies
   cff_deps <- lapply(seq_len(nrow(av_deps)), function(y) {
     n <- av_deps[y, ]

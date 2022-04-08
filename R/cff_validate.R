@@ -88,25 +88,12 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
 
   clean_jsonlite(cit_temp)
 
-  # Download latest scheme
-  schema_temp <- file.path(tempdir(), "cff_schema.json")
+  # Use local copy of the validator schema
+  schema_local <- system.file("schema/schema.json", package = "cffr")
 
-  jsonschema <- paste0(
-    "https://raw.githubusercontent.com/",
-    "citation-file-format/",
-    "citation-file-format/main/schema.json"
-  )
-
-  if (isFALSE(file.exists(schema_temp))) {
-    download.file(jsonschema,
-      schema_temp,
-      mode = "wb",
-      quiet = TRUE
-    )
-  }
 
   # Validate
-  result <- validate_schema(cit_temp, schema_temp)
+  result <- validate_schema(cit_temp, schema_local)
 
   if (verbose) message("\ncff_validate results-----")
   if (result == FALSE) {

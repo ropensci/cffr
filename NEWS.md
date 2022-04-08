@@ -1,3 +1,7 @@
+# cffr (development version)
+
+-   **cffr** now uses a local copy of the schema.json for validating. (#33).
+
 # cffr 0.2.1
 
 -   GitHub Action now runs only on `master` or `main`branch.

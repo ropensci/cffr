@@ -73,7 +73,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2022-02-18 there are at least 103 repos on GitHub using **cffr**.
+As per 2022-04-08 there are at least 114 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
@@ -136,6 +136,8 @@ library(cffr)
 
 # Example with an installed package
 test <- cff_create("rmarkdown")
+#> Warning in citation(n$package, auto = TRUE): no date field in DESCRIPTION file
+#> of package 'testthat'
 ```
 
 <details>
@@ -148,7 +150,7 @@ test <- cff_create("rmarkdown")
     type: software
     license: GPL-3.0-only
     title: 'rmarkdown: Dynamic Documents for R'
-    version: '2.11'
+    version: '2.13'
     abstract: Convert R Markdown documents into a variety of formats.
     authors:
     - family-names: Allaire
@@ -219,13 +221,13 @@ test <- cff_create("rmarkdown")
         given-names: Richard
         email: rich@rstudio.com
         orcid: https://orcid.org/0000-0003-3925-190X
-      year: '2021'
-      notes: R package version 2.11
+      year: '2022'
+      notes: R package version 2.13
       url: https://github.com/rstudio/rmarkdown
     repository: https://CRAN.R-project.org/package=rmarkdown
     repository-code: https://github.com/rstudio/rmarkdown
     url: https://pkgs.rstudio.com/rmarkdown/
-    date-released: '2021-09-14'
+    date-released: '2022-03-10'
     contact:
     - family-names: Xie
       given-names: Yihui
@@ -282,72 +284,35 @@ test <- cff_create("rmarkdown")
         name: R Foundation for Statistical Computing
       version: '>= 3.0'
     - type: software
-      title: tools
-      abstract: 'R: A Language and Environment for Statistical Computing'
+      title: bslib
+      abstract: 'bslib: Custom ''Bootstrap'' ''Sass'' Themes for ''shiny'' and ''rmarkdown'''
       notes: Imports
       authors:
-      - name: R Core Team
-      location:
-        name: Vienna, Austria
+      - family-names: Sievert
+        given-names: Carson
+        email: carson@rstudio.com
+        orcid: https://orcid.org/0000-0002-4958-2844
+      - family-names: Cheng
+        given-names: Joe
+        email: joe@rstudio.com
       year: '2022'
-      url: https://www.R-project.org/
-      institution:
-        name: R Foundation for Statistical Computing
+      url: https://CRAN.R-project.org/package=bslib
+      version: '>= 0.2.5.1'
     - type: software
-      title: utils
-      abstract: 'R: A Language and Environment for Statistical Computing'
+      title: evaluate
+      abstract: 'evaluate: Parsing and Evaluation Tools that Provide More Details than
+        the Default'
       notes: Imports
       authors:
-      - name: R Core Team
-      location:
-        name: Vienna, Austria
-      year: '2022'
-      url: https://www.R-project.org/
-      institution:
-        name: R Foundation for Statistical Computing
-    - type: software
-      title: knitr
-      abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
-      notes: Imports
-      authors:
+      - family-names: Wickham
+        given-names: Hadley
       - family-names: Xie
         given-names: Yihui
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
       year: '2022'
-      url: https://CRAN.R-project.org/package=knitr
-      version: '>= 1.22'
-    - type: software
-      title: yaml
-      abstract: 'yaml: Methods to Convert R Data to YAML and Back'
-      notes: Imports
-      authors:
-      - family-names: Stephens
-        given-names: Jeremy
-      - family-names: Simonov
-        given-names: Kirill
-      - family-names: Xie
-        given-names: Yihui
-      - family-names: Dong
-        given-names: Zhuoer
-      - family-names: Wickham
-        given-names: Hadley
-      - family-names: Horner
-        given-names: Jeffrey
-      - name: reikoch
-      - family-names: Beasley
-        given-names: Will
-      - family-names: O'Connor
-        given-names: Brendan
-      - family-names: Warnes
-        given-names: Gregory R.
-      - family-names: Quinn
-        given-names: Michael
-      - family-names: Kamvar
-        given-names: Zhian N.
-      year: '2022'
-      url: https://CRAN.R-project.org/package=yaml
-      version: '>= 2.1.19'
+      url: https://CRAN.R-project.org/package=evaluate
+      version: '>= 0.13'
     - type: software
       title: htmltools
       abstract: 'htmltools: Tools for HTML'
@@ -378,57 +343,6 @@ test <- cff_create("rmarkdown")
       url: https://CRAN.R-project.org/package=htmltools
       version: '>= 0.3.5'
     - type: software
-      title: evaluate
-      abstract: 'evaluate: Parsing and Evaluation Tools that Provide More Details than
-        the Default'
-      notes: Imports
-      authors:
-      - family-names: Wickham
-        given-names: Hadley
-      - family-names: Xie
-        given-names: Yihui
-        email: xie@yihui.name
-        orcid: https://orcid.org/0000-0003-0645-5666
-      year: '2022'
-      url: https://CRAN.R-project.org/package=evaluate
-      version: '>= 0.13'
-    - type: software
-      title: jsonlite
-      abstract: 'jsonlite: A Simple and Robust JSON Parser and Generator for R'
-      notes: Imports
-      authors:
-      - family-names: Ooms
-        given-names: Jeroen
-        email: jeroen@berkeley.edu
-        orcid: https://orcid.org/0000-0002-4035-0289
-      year: '2022'
-      url: https://CRAN.R-project.org/package=jsonlite
-    - type: software
-      title: tinytex
-      abstract: 'tinytex: Helper Functions to Install and Maintain TeX Live, and Compile
-        LaTeX Documents'
-      notes: Imports
-      authors:
-      - family-names: Xie
-        given-names: Yihui
-        email: xie@yihui.name
-        orcid: https://orcid.org/0000-0003-0645-5666
-      year: '2022'
-      url: https://CRAN.R-project.org/package=tinytex
-      version: '>= 0.31'
-    - type: software
-      title: xfun
-      abstract: 'xfun: Supporting Functions for Packages Maintained by ''Yihui Xie'''
-      notes: Imports
-      authors:
-      - family-names: Xie
-        given-names: Yihui
-        email: xie@yihui.name
-        orcid: https://orcid.org/0000-0003-0645-5666
-      year: '2022'
-      url: https://CRAN.R-project.org/package=xfun
-      version: '>= 0.21'
-    - type: software
       title: jquerylib
       abstract: 'jquerylib: Obtain ''jQuery'' as an HTML Dependency Object'
       notes: Imports
@@ -442,6 +356,29 @@ test <- cff_create("rmarkdown")
         email: joe@rstudio.com
       year: '2022'
       url: https://CRAN.R-project.org/package=jquerylib
+    - type: software
+      title: jsonlite
+      abstract: 'jsonlite: A Simple and Robust JSON Parser and Generator for R'
+      notes: Imports
+      authors:
+      - family-names: Ooms
+        given-names: Jeroen
+        email: jeroen@berkeley.edu
+        orcid: https://orcid.org/0000-0002-4035-0289
+      year: '2022'
+      url: https://CRAN.R-project.org/package=jsonlite
+    - type: software
+      title: knitr
+      abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
+      notes: Imports
+      authors:
+      - family-names: Xie
+        given-names: Yihui
+        email: xie@yihui.name
+        orcid: https://orcid.org/0000-0003-0645-5666
+      year: '2022'
+      url: https://CRAN.R-project.org/package=knitr
+      version: '>= 1.22'
     - type: software
       title: methods
       abstract: 'R: A Language and Environment for Statistical Computing'
@@ -466,55 +403,87 @@ test <- cff_create("rmarkdown")
       url: https://CRAN.R-project.org/package=stringr
       version: '>= 1.2.0'
     - type: software
-      title: shiny
-      abstract: 'shiny: Web Application Framework for R'
-      notes: Suggests
+      title: tinytex
+      abstract: 'tinytex: Helper Functions to Install and Maintain TeX Live, and Compile
+        LaTeX Documents'
+      notes: Imports
       authors:
-      - family-names: Chang
-        given-names: Winston
-        email: winston@rstudio.com
-        orcid: https://orcid.org/0000-0002-1576-2126
-      - family-names: Cheng
-        given-names: Joe
-        email: joe@rstudio.com
-      - family-names: Allaire
-        given-names: JJ
-        email: jj@rstudio.com
-      - family-names: Sievert
-        given-names: Carson
-        email: carson@rstudio.com
-        orcid: https://orcid.org/0000-0002-4958-2844
-      - family-names: Schloerke
-        given-names: Barret
-        email: barret@rstudio.com
-        orcid: https://orcid.org/0000-0001-9986-114X
       - family-names: Xie
         given-names: Yihui
-        email: yihui@rstudio.com
-      - family-names: Allen
-        given-names: Jeff
-        email: jeff@rstudio.com
-      - family-names: McPherson
-        given-names: Jonathan
-        email: jonathan@rstudio.com
-      - family-names: Dipert
-        given-names: Alan
-      - family-names: Borges
-        given-names: Barbara
+        email: xie@yihui.name
+        orcid: https://orcid.org/0000-0003-0645-5666
       year: '2022'
-      url: https://CRAN.R-project.org/package=shiny
-      version: '>= 1.6.0'
+      url: https://CRAN.R-project.org/package=tinytex
+      version: '>= 0.31'
     - type: software
-      title: testthat
-      abstract: 'testthat: Unit Testing for R'
-      notes: Suggests
+      title: tools
+      abstract: 'R: A Language and Environment for Statistical Computing'
+      notes: Imports
       authors:
+      - name: R Core Team
+      location:
+        name: Vienna, Austria
+      year: '2022'
+      url: https://www.R-project.org/
+      institution:
+        name: R Foundation for Statistical Computing
+    - type: software
+      title: utils
+      abstract: 'R: A Language and Environment for Statistical Computing'
+      notes: Imports
+      authors:
+      - name: R Core Team
+      location:
+        name: Vienna, Austria
+      year: '2022'
+      url: https://www.R-project.org/
+      institution:
+        name: R Foundation for Statistical Computing
+    - type: software
+      title: xfun
+      abstract: 'xfun: Supporting Functions for Packages Maintained by ''Yihui Xie'''
+      notes: Imports
+      authors:
+      - family-names: Xie
+        given-names: Yihui
+        email: xie@yihui.name
+        orcid: https://orcid.org/0000-0003-0645-5666
+      year: '2022'
+      url: https://CRAN.R-project.org/package=xfun
+      version: '>= 0.30'
+    - type: software
+      title: yaml
+      abstract: 'yaml: Methods to Convert R Data to YAML and Back'
+      notes: Imports
+      authors:
+      - family-names: Garbett
+        given-names: Shawn P
+      - family-names: Stephens
+        given-names: Jeremy
+      - family-names: Simonov
+        given-names: Kirill
+      - family-names: Xie
+        given-names: Yihui
+      - family-names: Dong
+        given-names: Zhuoer
       - family-names: Wickham
         given-names: Hadley
-        email: hadley@rstudio.com
+      - family-names: Horner
+        given-names: Jeffrey
+      - name: reikoch
+      - family-names: Beasley
+        given-names: Will
+      - family-names: O'Connor
+        given-names: Brendan
+      - family-names: Warnes
+        given-names: Gregory R.
+      - family-names: Quinn
+        given-names: Michael
+      - family-names: Kamvar
+        given-names: Zhian N.
       year: '2022'
-      url: https://CRAN.R-project.org/package=testthat
-      version: '>= 3.0.0'
+      url: https://CRAN.R-project.org/package=yaml
+      version: '>= 2.1.19'
     - type: software
       title: digest
       abstract: 'digest: Create Compact Hash Digests of R Objects'
@@ -570,35 +539,6 @@ test <- cff_create("rmarkdown")
       year: '2022'
       url: https://CRAN.R-project.org/package=digest
     - type: software
-      title: vctrs
-      abstract: 'vctrs: Vector Helpers'
-      notes: Suggests
-      authors:
-      - family-names: Wickham
-        given-names: Hadley
-        email: hadley@rstudio.com
-      - family-names: Henry
-        given-names: Lionel
-        email: lionel@rstudio.com
-      - family-names: Vaughan
-        given-names: Davis
-        email: davis@rstudio.com
-      year: '2022'
-      url: https://CRAN.R-project.org/package=vctrs
-    - type: software
-      title: tibble
-      abstract: 'tibble: Simple Data Frames'
-      notes: Suggests
-      authors:
-      - family-names: Müller
-        given-names: Kirill
-        email: krlmlr+r@mailbox.org
-      - family-names: Wickham
-        given-names: Hadley
-        email: hadley@rstudio.com
-      year: '2022'
-      url: https://CRAN.R-project.org/package=tibble
-    - type: software
       title: fs
       abstract: 'fs: Cross-Platform File System Operations Based on ''libuv'''
       notes: Suggests
@@ -629,44 +569,16 @@ test <- cff_create("rmarkdown")
       year: '2022'
       url: https://CRAN.R-project.org/package=rsconnect
     - type: software
-      title: withr
-      abstract: 'withr: Run Code ''With'' Temporarily Modified Global State'
+      title: downlit
+      abstract: 'downlit: Syntax Highlighting and Automatic Linking'
       notes: Suggests
       authors:
-      - family-names: Hester
-        given-names: Jim
-      - family-names: Henry
-        given-names: Lionel
-        email: lionel@rstudio.com
-      - family-names: Müller
-        given-names: Kirill
-        email: krlmlr+r@mailbox.org
-      - family-names: Ushey
-        given-names: Kevin
-        email: kevinushey@gmail.com
       - family-names: Wickham
         given-names: Hadley
         email: hadley@rstudio.com
-      - family-names: Chang
-        given-names: Winston
       year: '2022'
-      url: https://CRAN.R-project.org/package=withr
-      version: '>= 2.4.2'
-    - type: software
-      title: bslib
-      abstract: 'bslib: Custom ''Bootstrap'' ''Sass'' Themes for ''shiny'' and ''rmarkdown'''
-      notes: Suggests
-      authors:
-      - family-names: Sievert
-        given-names: Carson
-        email: carson@rstudio.com
-        orcid: https://orcid.org/0000-0002-4958-2844
-      - family-names: Cheng
-        given-names: Joe
-        email: joe@rstudio.com
-      year: '2022'
-      url: https://CRAN.R-project.org/package=bslib
-      version: '>= 0.2.5.1'
+      url: https://CRAN.R-project.org/package=downlit
+      version: '>= 0.4.0'
     - type: software
       title: sass
       abstract: 'sass: Syntactically Awesome Style Sheets (''Sass'')'
@@ -693,6 +605,108 @@ test <- cff_create("rmarkdown")
       year: '2022'
       url: https://CRAN.R-project.org/package=sass
       version: '>= 0.4.0'
+    - type: software
+      title: shiny
+      abstract: 'shiny: Web Application Framework for R'
+      notes: Suggests
+      authors:
+      - family-names: Chang
+        given-names: Winston
+        email: winston@rstudio.com
+        orcid: https://orcid.org/0000-0002-1576-2126
+      - family-names: Cheng
+        given-names: Joe
+        email: joe@rstudio.com
+      - family-names: Allaire
+        given-names: JJ
+        email: jj@rstudio.com
+      - family-names: Sievert
+        given-names: Carson
+        email: carson@rstudio.com
+        orcid: https://orcid.org/0000-0002-4958-2844
+      - family-names: Schloerke
+        given-names: Barret
+        email: barret@rstudio.com
+        orcid: https://orcid.org/0000-0001-9986-114X
+      - family-names: Xie
+        given-names: Yihui
+        email: yihui@rstudio.com
+      - family-names: Allen
+        given-names: Jeff
+        email: jeff@rstudio.com
+      - family-names: McPherson
+        given-names: Jonathan
+        email: jonathan@rstudio.com
+      - family-names: Dipert
+        given-names: Alan
+      - family-names: Borges
+        given-names: Barbara
+      year: '2022'
+      url: https://CRAN.R-project.org/package=shiny
+      version: '>= 1.6.0'
+    - type: software
+      title: testthat
+      abstract: 'testthat: Unit Testing for R'
+      notes: Suggests
+      authors:
+      - family-names: Wickham
+        given-names: Hadley
+        email: hadley@rstudio.com
+      year: '2022'
+      version: '>= 3.0.3'
+    - type: software
+      title: tibble
+      abstract: 'tibble: Simple Data Frames'
+      notes: Suggests
+      authors:
+      - family-names: Müller
+        given-names: Kirill
+        email: krlmlr+r@mailbox.org
+      - family-names: Wickham
+        given-names: Hadley
+        email: hadley@rstudio.com
+      year: '2022'
+      url: https://CRAN.R-project.org/package=tibble
+    - type: software
+      title: vctrs
+      abstract: 'vctrs: Vector Helpers'
+      notes: Suggests
+      authors:
+      - family-names: Wickham
+        given-names: Hadley
+        email: hadley@rstudio.com
+      - family-names: Henry
+        given-names: Lionel
+        email: lionel@rstudio.com
+      - family-names: Vaughan
+        given-names: Davis
+        email: davis@rstudio.com
+      year: '2022'
+      url: https://CRAN.R-project.org/package=vctrs
+    - type: software
+      title: withr
+      abstract: 'withr: Run Code ''With'' Temporarily Modified Global State'
+      notes: Suggests
+      authors:
+      - family-names: Hester
+        given-names: Jim
+      - family-names: Henry
+        given-names: Lionel
+        email: lionel@rstudio.com
+      - family-names: Müller
+        given-names: Kirill
+        email: krlmlr+r@mailbox.org
+      - family-names: Ushey
+        given-names: Kevin
+        email: kevinushey@gmail.com
+      - family-names: Wickham
+        given-names: Hadley
+        email: hadley@rstudio.com
+      - family-names: Chang
+        given-names: Winston
+      year: '2022'
+      url: https://CRAN.R-project.org/package=withr
+      version: '>= 2.4.2'
 
 </details>
 <p>
@@ -768,7 +782,7 @@ Check the following articles to learn more about **cffr**:
 -   [**handlr**](https://github.com/ropensci/handlr): Tool for
     converting among citation formats, including `*.cff` files. At the
     time of this writing only CFF v1.1.0 was supported (see
-    [#24](https://github.com/ropensci/handlr/issues/24)).
+    [\#24](https://github.com/ropensci/handlr/issues/24)).
 -   [**codemeta**](https://github.com/cboettig/codemeta)/
     [**codemetar**](https://github.com/ropensci/codemetar) provides
     similar solutions for creating `codemeta.json` file, another format
