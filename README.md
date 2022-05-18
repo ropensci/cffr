@@ -73,7 +73,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2022-04-08 there are at least 114 repos on GitHub using **cffr**.
+As per 2022-05-18 there are at least 116 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
@@ -148,7 +148,7 @@ test <- cff_create("rmarkdown")
     type: software
     license: GPL-3.0-only
     title: 'rmarkdown: Dynamic Documents for R'
-    version: '2.13'
+    version: '2.14'
     abstract: Convert R Markdown documents into a variety of formats.
     authors:
     - family-names: Allaire
@@ -220,12 +220,12 @@ test <- cff_create("rmarkdown")
         email: rich@rstudio.com
         orcid: https://orcid.org/0000-0003-3925-190X
       year: '2022'
-      notes: R package version 2.13
+      notes: R package version 2.14
       url: https://github.com/rstudio/rmarkdown
     repository: https://CRAN.R-project.org/package=rmarkdown
     repository-code: https://github.com/rstudio/rmarkdown
     url: https://pkgs.rstudio.com/rmarkdown/
-    date-released: '2022-03-10'
+    date-released: '2022-04-25'
     contact:
     - family-names: Xie
       given-names: Yihui
@@ -407,7 +407,7 @@ test <- cff_create("rmarkdown")
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
       year: '2022'
-      url: https://github.com/yihui/tinytex
+      url: https://github.com/rstudio/tinytex
       version: '>= 0.31'
     - type: software
       title: tools
@@ -715,9 +715,9 @@ Check the following articles to learn more about **cffr**:
 ## Citation
 
 Hernangómez D (2021). “cffr: Generate Citation File Format Metadata for
-R Packages.” *Journal of Open Source Software*, *6*(67), 3900. doi:
-10.21105/joss.03900 (URL: <https://doi.org/10.21105/joss.03900>), \<URL:
-<https://doi.org/10.21105/joss.03900>\>.
+R Packages.” *Journal of Open Source Software*, *6*(67), 3900.
+<doi:10.21105/joss.03900> <https://doi.org/10.21105/joss.03900>,
+<https://doi.org/10.21105/joss.03900>.
 
 A BibTeX entry for LaTeX users is
 
