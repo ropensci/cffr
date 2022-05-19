@@ -203,7 +203,7 @@ test_that("Search package on CRAN", {
 test_that("Search package on r-universe", {
   skip_on_cran()
   skip_if_offline()
-  skip("Investigate why suddenly fails")
+  # skip("Investigate why suddenly fails")
 
   basic_path <- system.file("examples/DESCRIPTION_basic",
     package = "cffr"

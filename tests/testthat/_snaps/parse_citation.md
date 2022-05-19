@@ -3,11 +3,11 @@
     
     To cite RNeXML in publications, please use:
     
-    Boettiger C, Chamberlain S, Vos R, Lapp H (2016). "RNeXML: A Package
-    for Reading and Writing Richly Annotated Phylogenetic, Character, and
-    Trait Data in R." _Methods in Ecology and Evolution_, *7*, 352-357.
-    doi: 10.1111/2041-210X.12469 (URL:
-    https://doi.org/10.1111/2041-210X.12469).
+      Boettiger C, Chamberlain S, Vos R, Lapp H (2016). "RNeXML: A Package
+      for Reading and Writing Richly Annotated Phylogenetic, Character, and
+      Trait Data in R." _Methods in Ecology and Evolution_, *7*, 352-357.
+      doi:10.1111/2041-210X.12469
+      <https://doi.org/10.1111/2041-210X.12469>.
     
     A BibTeX entry for LaTeX users is
     
@@ -21,8 +21,8 @@
         doi = {10.1111/2041-210X.12469},
       }
     
-      H. Wickham. ggplot2: Elegant Graphics for Data Analysis.
-      Springer-Verlag New York, 2016.
+    H. Wickham. ggplot2: Elegant Graphics for Data Analysis.
+    Springer-Verlag New York, 2016.
     
     A BibTeX entry for LaTeX users is
     
@@ -41,11 +41,11 @@
     
     To cite RNeXML in publications, please use:
     
-    Boettiger C, Chamberlain S, Vos R, Lapp H (2016). "RNeXML: A Package
-    for Reading and Writing Richly Annotated Phylogenetic, Character, and
-    Trait Data in R." _Methods in Ecology and Evolution_, *7*, 352-357.
-    doi: 10.1111/2041-210X.12469 (URL:
-    https://doi.org/10.1111/2041-210X.12469).
+      Boettiger C, Chamberlain S, Vos R, Lapp H (2016). "RNeXML: A Package
+      for Reading and Writing Richly Annotated Phylogenetic, Character, and
+      Trait Data in R." _Methods in Ecology and Evolution_, *7*, 352-357.
+      doi:10.1111/2041-210X.12469
+      <https://doi.org/10.1111/2041-210X.12469>.
     
     A BibTeX entry for LaTeX users is
     
@@ -59,8 +59,8 @@
         doi = {10.1111/2041-210X.12469},
       }
     
-      H. Wickham. ggplot2: Elegant Graphics for Data Analysis.
-      Springer-Verlag New York, 2016.
+    H. Wickham. ggplot2: Elegant Graphics for Data Analysis.
+    Springer-Verlag New York, 2016.
     
     A BibTeX entry for LaTeX users is
     
@@ -77,9 +77,9 @@
 # Parse CITATION_auto
 
     
-      Roger Bivand and Colin Rundel (2020). rgeos: Interface to Geometry
-      Engine - Open Source ('GEOS'). R package version 0.5-7.
-      https://CRAN.R-project.org/package=rgeos
+    Bivand R, Rundel C (2020). _rgeos: Interface to Geometry Engine - Open
+    Source ('GEOS')_. R package version 0.5-7,
+    <https://CRAN.R-project.org/package=rgeos>.
     
     A BibTeX entry for LaTeX users is
     
@@ -93,11 +93,11 @@
     
     To cite RNeXML in publications, please use:
     
-    Boettiger C, Chamberlain S, Vos R, Lapp H (2016). "RNeXML: A Package
-    for Reading and Writing Richly Annotated Phylogenetic, Character, and
-    Trait Data in R." _Methods in Ecology and Evolution_, *7*, 352-357.
-    doi: 10.1111/2041-210X.12469 (URL:
-    https://doi.org/10.1111/2041-210X.12469).
+      Boettiger C, Chamberlain S, Vos R, Lapp H (2016). "RNeXML: A Package
+      for Reading and Writing Richly Annotated Phylogenetic, Character, and
+      Trait Data in R." _Methods in Ecology and Evolution_, *7*, 352-357.
+      doi:10.1111/2041-210X.12469
+      <https://doi.org/10.1111/2041-210X.12469>.
     
     A BibTeX entry for LaTeX users is
     
@@ -111,8 +111,8 @@
         doi = {10.1111/2041-210X.12469},
       }
     
-      H. Wickham. ggplot2: Elegant Graphics for Data Analysis.
-      Springer-Verlag New York, 2016.
+    H. Wickham. ggplot2: Elegant Graphics for Data Analysis.
+    Springer-Verlag New York, 2016.
     
     A BibTeX entry for LaTeX users is
     
