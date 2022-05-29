@@ -34,7 +34,7 @@ test_that("Test ALL installed packages", {
 
     # Add cffobj
     cffobj <- suppressMessages(
-      cff_create(pkg, gh_keywords = FALSE)
+      cff_create(pkg, gh_keywords = FALSE, dependencies = FALSE)
     )
 
     s <- suppressMessages(cff_validate(cffobj))
@@ -75,7 +75,7 @@ test_that("Test ALL installed packages", {
 
       for (j in seq_len(nrow(errors))) {
         pkg <- errors[j, ]$Package
-        cff <- cff_create(pkg)
+        cff <- cff_create(pkg, gh_keywords = FALSE, dependencies = FALSE)
 
         print_snapshot(paste0(pkg, ": cffr object"), cff)
 
