@@ -67,6 +67,10 @@ navbar:
         - text: 'How I Test cffr on (about) 2,000 Packages'
           href: 'https://ropensci.org/blog/2021/11/23/how-i-test-cffr/'
         - text: '---'
+        - text: Blogs
+        - text: 'How To Call Package Citations in R programming'
+          href: 'https://medium.com/analytics-vidhya/how-to-call-package-citations-in-r-programming-6f01f1176301'
+        - text: '---'
         - text: Podcasts
         - text: 'R Weekly Highlights: Issue 2021-W48 Highlights'
           href: 'https://share.fireside.fm/episode/87RSVeFz+4R-j8_xW'
