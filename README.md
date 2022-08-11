@@ -73,9 +73,8 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2022-07-20 there are at least 145 repos on GitHub using **cffr**.
-[Check them out
-here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
+See [some projects already using
+**cffr**](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
 ### Installation
 
@@ -546,6 +545,16 @@ test <- cff_create("rmarkdown")
         email: csardi.gabor@gmail.com
       year: '2022'
     - type: software
+      title: downlit
+      abstract: 'downlit: Syntax Highlighting and Automatic Linking'
+      notes: Suggests
+      authors:
+      - family-names: Wickham
+        given-names: Hadley
+        email: hadley@rstudio.com
+      year: '2022'
+      version: '>= 0.4.0'
+    - type: software
       title: sass
       abstract: 'sass: Syntactically Awesome Style Sheets (''Sass'')'
       notes: Suggests
@@ -570,6 +579,45 @@ test <- cff_create("rmarkdown")
         orcid: https://orcid.org/0000-0002-4958-2844
       year: '2022'
       version: '>= 0.4.0'
+    - type: software
+      title: shiny
+      abstract: 'shiny: Web Application Framework for R'
+      notes: Suggests
+      authors:
+      - family-names: Chang
+        given-names: Winston
+        email: winston@rstudio.com
+        orcid: https://orcid.org/0000-0002-1576-2126
+      - family-names: Cheng
+        given-names: Joe
+        email: joe@rstudio.com
+      - family-names: Allaire
+        given-names: JJ
+        email: jj@rstudio.com
+      - family-names: Sievert
+        given-names: Carson
+        email: carson@rstudio.com
+        orcid: https://orcid.org/0000-0002-4958-2844
+      - family-names: Schloerke
+        given-names: Barret
+        email: barret@rstudio.com
+        orcid: https://orcid.org/0000-0001-9986-114X
+      - family-names: Xie
+        given-names: Yihui
+        email: yihui@rstudio.com
+      - family-names: Allen
+        given-names: Jeff
+        email: jeff@rstudio.com
+      - family-names: McPherson
+        given-names: Jonathan
+        email: jonathan@rstudio.com
+      - family-names: Dipert
+        given-names: Alan
+      - family-names: Borges
+        given-names: Barbara
+      year: '2022'
+      url: https://shiny.rstudio.com/
+      version: '>= 1.6.0'
     - type: software
       title: testthat
       abstract: 'testthat: Unit Testing for R'
