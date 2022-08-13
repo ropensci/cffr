@@ -1,3 +1,7 @@
+# cffr 0.2.3
+
+-   Fix HTML5 issue as per CRAN request
+
 # cffr 0.2.2
 
 -   **cffr** now uses a local copy of the schema.json for validating. (#33).

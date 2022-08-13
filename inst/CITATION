@@ -11,5 +11,6 @@ bibentry(
   key = "hernangomez2021",
   author = person("Diego", "Hernangómez"),
   title = "cffr: Generate Citation File Format Metadata for R Packages",
-  journal = "Journal of Open Source Software"
+  journal = "Journal of Open Source Software",
+  textVersion = "Hernangómez, D., (2021). cffr: Generate Citation File Format Metadata for R Packages. Journal of Open Source Software, 6(67), 3900, https://doi.org/10.21105/joss.03900"
 )

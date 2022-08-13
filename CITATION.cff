@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.2.2
+# CITATION file created with {cffr} R package, v0.2.3
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
@@ -8,7 +8,7 @@ message: 'To cite package "cffr" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'cffr: Generate Citation File Format (''cff'') Metadata for R Packages'
-version: 0.2.2
+version: 0.2.3
 doi: 10.21105/joss.03900
 abstract: The Citation File Format version 1.2.0 <doi:10.5281/zenodo.5171937> is a
   human and machine readable file format which provides citation metadata for software.
@@ -78,7 +78,7 @@ references:
     given-names: Gábor
     email: csardi.gabor@gmail.com
   year: '2022'
-  url: https://github.com/r-lib/crayon#readme
+  url: https://CRAN.R-project.org/package=crayon
   version: '>= 1.4.1'
 - type: software
   title: desc
@@ -94,6 +94,7 @@ references:
     given-names: Jim
     email: james.f.hester@gmail.com
   year: '2022'
+  url: https://CRAN.R-project.org/package=desc
   version: '>= 1.3.0'
 - type: software
   title: jsonlite
@@ -105,6 +106,7 @@ references:
     email: jeroen@berkeley.edu
     orcid: https://orcid.org/0000-0002-4035-0289
   year: '2022'
+  url: https://CRAN.R-project.org/package=jsonlite
   version: '>= 1.7.2'
 - type: software
   title: jsonvalidate
@@ -121,6 +123,7 @@ references:
   - family-names: Poberezkin
     given-names: Evgeny
   year: '2022'
+  url: https://CRAN.R-project.org/package=jsonvalidate
   version: '>= 1.1.0'
 - type: software
   title: yaml
@@ -153,7 +156,7 @@ references:
   - family-names: Kamvar
     given-names: Zhian N.
   year: '2022'
-  url: https://github.com/vubiostat/r-yaml/
+  url: https://CRAN.R-project.org/package=yaml
   version: '>= 2.2.1'
 - type: software
   title: knitr
@@ -165,7 +168,7 @@ references:
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
   year: '2022'
-  url: https://yihui.org/knitr/
+  url: https://CRAN.R-project.org/package=knitr
 - type: software
   title: lifecycle
   abstract: 'lifecycle: Manage the Life Cycle of your Package Functions'
@@ -179,6 +182,7 @@ references:
     email: hadley@rstudio.com
     orcid: https://orcid.org/0000-0003-4757-117X
   year: '2022'
+  url: https://CRAN.R-project.org/package=lifecycle
 - type: software
   title: rmarkdown
   abstract: 'rmarkdown: Dynamic Documents for R'
@@ -217,6 +221,7 @@ references:
     email: rich@rstudio.com
     orcid: https://orcid.org/0000-0003-3925-190X
   year: '2022'
+  url: https://CRAN.R-project.org/package=rmarkdown
 - type: software
   title: testthat
   abstract: 'testthat: Unit Testing for R'
@@ -226,6 +231,7 @@ references:
     given-names: Hadley
     email: hadley@rstudio.com
   year: '2022'
+  url: https://CRAN.R-project.org/package=testthat
   version: '>= 3.0.0'
 - type: software
   title: usethis
@@ -245,3 +251,4 @@ references:
     email: malcolmbarrett@gmail.com
     orcid: https://orcid.org/0000-0003-0299-5825
   year: '2022'
+  url: https://CRAN.R-project.org/package=usethis
