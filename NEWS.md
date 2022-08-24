@@ -1,3 +1,10 @@
+# cffr (development version)
+
+-   Improve detection of CITATION (**R**) files
+
+-   Auto-generated `preferred-citation` are aligned with the default behavior of
+    auto-generated `citation()` by **R**.
+
 # cffr 0.2.3
 
 -   Fix HTML5 issue as per CRAN request

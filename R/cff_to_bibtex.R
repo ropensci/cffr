@@ -1,4 +1,4 @@
-#' Create a BibTeX entry from a CITATION file or a `cff` object
+#' Create a BibTeX entry from a CITATION.cff file or a `cff` object
 #'
 #' Creates a `bibentry` object ([bibentry()]) from a `cff` object
 #'
@@ -33,6 +33,9 @@
 #' obj
 #'
 #' toBibtex(obj)
+#'
+#' # Same info as
+#' toBibtex(citation("rmarkdown")[1])
 #' }
 cff_to_bibtex <- function(x) {
   if (is.null(x)) {

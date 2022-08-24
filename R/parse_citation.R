@@ -73,10 +73,19 @@ parse_preferred_auto <- function(cffobjend) {
   }
 
   pref$year <- year
+  pref$notes <- NULL
+  if (!is.null(pref$version)) {
+    pref$notes <- paste("R package version", pref$version)
+  }
+  # If it has a repository (CRAN) use that as url
+  if (!is.null(pref$repository)) pref$url <- pref$repository
 
   # Order and output
-  ordernames <- unique(c("type", "title", "authors", names(pref)))
-  pref <- pref[unique(c(ordernames, "identifiers"))]
+  ordernames <- c(
+    "type", "title", "authors", "year",
+    "notes", "url"
+  )
+  pref <- pref[ordernames]
   pref <- as.cff(pref)
 
   pref

@@ -82,3 +82,11 @@ test_that("Fuzzy match on cff_create", {
     modobject
   ))
 })
+
+test_that("Test installed packages vs call to file", {
+  skip_on_cran()
+  call1 <- cff_create("jsonlite")
+  call2 <- cff_create(system.file("DESCRIPTION", package = "jsonlite"))
+
+  expect_identical(call1, call2)
+})

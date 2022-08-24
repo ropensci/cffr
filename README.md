@@ -71,7 +71,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2022-08-13 there are at least 204 repos on GitHub using **cffr**.
+As per 2022-08-24 there are at least 181 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
@@ -146,7 +146,7 @@ test <- cff_create("rmarkdown")
     type: software
     license: GPL-3.0-only
     title: 'rmarkdown: Dynamic Documents for R'
-    version: '2.14'
+    version: '2.15'
     abstract: Convert R Markdown documents into a variety of formats.
     authors:
     - family-names: Allaire
@@ -218,12 +218,12 @@ test <- cff_create("rmarkdown")
         email: rich@rstudio.com
         orcid: https://orcid.org/0000-0003-3925-190X
       year: '2022'
-      notes: R package version 2.14
+      notes: R package version 2.15
       url: https://github.com/rstudio/rmarkdown
     repository: https://CRAN.R-project.org/package=rmarkdown
     repository-code: https://github.com/rstudio/rmarkdown
     url: https://pkgs.rstudio.com/rmarkdown/
-    date-released: '2022-04-25'
+    date-released: '2022-08-16'
     contact:
     - family-names: Xie
       given-names: Yihui
