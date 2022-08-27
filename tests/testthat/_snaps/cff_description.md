@@ -31,19 +31,6 @@
       orcid: https://orcid.org/0000-0003-2392-6140
     - family-names: Rundel
       given-names: Colin
-    preferred-citation:
-      type: manual
-      title: 'rgeos: Interface to Geometry Engine - Open Source (''GEOS'')'
-      authors:
-      - family-names: Bivand
-        given-names: Roger
-        email: Roger.Bivand@nhh.no
-        orcid: https://orcid.org/0000-0003-2392-6140
-      - family-names: Rundel
-        given-names: Colin
-      year: '2020'
-      notes: R package version 0.5-7
-      url: https://CRAN.R-project.org/package=rgeos
     repository: https://CRAN.R-project.org/package=rgeos
     repository-code: https://r-forge.r-project.org/projects/rgeos/
     url: https://trac.osgeo.org/geos/
@@ -70,16 +57,6 @@
     - family-names: Basic
       given-names: Marc
       email: marcbasic@gmail.com
-    preferred-citation:
-      type: manual
-      title: 'basicdescdate: A Basic Description with Date'
-      authors:
-      - family-names: Basic
-        given-names: Marc
-        email: marcbasic@gmail.com
-      year: '1999'
-      notes: R package version 0.1.6
-      url: https://github.com/basic/package
     repository-code: https://github.com/basic/package
     url: https://basic.github.io/package
     date-released: '1999-01-01'
@@ -103,16 +80,6 @@
     - family-names: Basic
       given-names: Marc
       email: marcbasic@gmail.com
-    preferred-citation:
-      type: manual
-      title: 'manyurls: A lot of urls'
-      authors:
-      - family-names: Basic
-        given-names: Marc
-        email: marcbasic@gmail.com
-      year: '2022'
-      notes: R package version 0.1.6
-      url: https://github.com/test/package
     repository-code: https://github.com/test/package
     url: https://test.github.io/package/
     contact:
@@ -147,20 +114,6 @@
     - family-names: Salmon
       given-names: Maëlle
       orcid: https://orcid.org/0000-0002-2815-0399
-    preferred-citation:
-      type: manual
-      title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
-      authors:
-      - family-names: Boettiger
-        given-names: Carl
-        email: cboettig@gmail.com
-        orcid: https://orcid.org/0000-0002-1642-628X
-      - family-names: Salmon
-        given-names: Maëlle
-        orcid: https://orcid.org/0000-0002-2815-0399
-      year: '2022'
-      notes: R package version 0.1.6
-      url: https://CRAN.R-project.org/package=codemetar
     repository: https://CRAN.R-project.org/package=codemetar
     repository-code: https://gitlab.com/ninijay/methoden
     url: https://ropensci.github.io/codemetar
@@ -200,26 +153,6 @@
       email: fake@gmail.com
     - name: I am an entity
       date-end: '2020-01-01'
-    preferred-citation:
-      type: manual
-      title: 'manypersons: A lot of persons'
-      authors:
-      - family-names: Hernangómez
-        given-names: Diego
-        email: fake@gmail.com
-        orcid: https://orcid.org/0000-0001-8457-4658
-      - family-names: Doe
-        given-names: Joe
-        affiliation: This One
-        country: ES
-      - family-names: Doe
-        given-names: Pepe
-        email: fake@gmail.com
-      - name: I am an entity
-        date-end: '2020-01-01'
-      year: '2022'
-      notes: R package version 0.1.6
-      url: https://github.com/many/persons
     repository-code: https://github.com/many/persons
     url: https://many.github.io/persons
     contact:
@@ -255,17 +188,6 @@
       given-names: Carl
       email: cboettig@gmail.com
       orcid: https://orcid.org/0000-0002-1642-628X
-    preferred-citation:
-      type: manual
-      title: 'wrongurls: Generate CodeMeta Metadata for R Packages'
-      authors:
-      - family-names: Boettiger
-        given-names: Carl
-        email: cboettig@gmail.com
-        orcid: https://orcid.org/0000-0002-1642-628X
-      year: '2022'
-      notes: R package version 0.1.0
-      url: https://httpbin.org/status/404
     url: https://httpbin.org/status/404
     contact:
     - family-names: Boettiger
@@ -306,21 +228,6 @@
       email: email2@email.edu
     - family-names: Doo
       given-names: Jane
-    preferred-citation:
-      type: manual
-      title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
-      authors:
-      - family-names: Ok
-        given-names: John
-        email: email@email.edu
-      - family-names: Doe
-        given-names: Jane
-        email: email2@email.edu
-      - family-names: Doo
-        given-names: Jane
-      year: '2022'
-      notes: R package version 0.1.6
-      url: https://CRAN.R-project.org/package=codemetar
     repository: https://CRAN.R-project.org/package=codemetar
     repository-code: https://github.com/ropensci/codemetar
     url: https://ropensci.github.io/codemetar
@@ -352,20 +259,6 @@
     - family-names: Salmon
       given-names: Maëlle
       orcid: https://orcid.org/0000-0002-2815-0399
-    preferred-citation:
-      type: manual
-      title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
-      authors:
-      - family-names: Boettiger
-        given-names: Carl
-        email: cboettig@gmail.com
-        orcid: https://orcid.org/0000-0002-1642-628X
-      - family-names: Salmon
-        given-names: Maëlle
-        orcid: https://orcid.org/0000-0002-2815-0399
-      year: '2022'
-      notes: R package version 0.3.2
-      url: https://ropensci.r-universe.dev
     repository: https://ropensci.r-universe.dev
     repository-code: https://github.com/ropensci/codemetar
     url: https://docs.ropensci.org/codemetar/
@@ -407,21 +300,6 @@
       given-names: H.
     - family-names: Lawrence
       given-names: M.
-    preferred-citation:
-      type: manual
-      title: 'GenomicRanges: Representation and manipulation of genomic intervals'
-      authors:
-      - name: Bioconductor Package Maintainer
-        email: maintainer@bioconductor.org
-      - family-names: Aboyoun
-        given-names: P.
-      - family-names: Pagès
-        given-names: H.
-      - family-names: Lawrence
-        given-names: M.
-      year: '2021'
-      notes: R package version 1.44.0
-      url: https://bioconductor.org/
     repository: https://bioconductor.org/
     repository-code: https://github.com/Bioconductor/GenomicRanges
     url: https://bioconductor.org/packages/GenomicRanges
@@ -443,16 +321,6 @@
     - family-names: Basic
       given-names: Marc
       email: marcbasic@gmail.com
-    preferred-citation:
-      type: manual
-      title: 'ggplot2: A Basic Description'
-      authors:
-      - family-names: Basic
-        given-names: Marc
-        email: marcbasic@gmail.com
-      year: '2022'
-      notes: R package version 0.1.6
-      url: https://CRAN.R-project.org/package=ggplot2
     repository: https://CRAN.R-project.org/package=ggplot2
     repository-code: https://github.com/basic/package
     url: https://basic.github.io/package

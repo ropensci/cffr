@@ -1,9 +1,7 @@
 # cffr (development version)
 
--   Improve detection of CITATION (**R**) files
-
--   Auto-generated `preferred-citation` are aligned with the default behavior of
-    auto-generated `citation()` by **R**.
+-   `preferred-citation` is only produced when a CITATION (**R**) file has been
+    provided with the package (#37).
 
 # cffr 0.2.3
 

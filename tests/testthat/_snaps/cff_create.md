@@ -1,4 +1,4 @@
-# Auto generate preferred citations
+# No auto generate preferred citations
 
     cff-version: 1.2.0
     message: 'To cite package "rgeos" in publications use:'
@@ -31,19 +31,6 @@
       orcid: https://orcid.org/0000-0003-2392-6140
     - family-names: Rundel
       given-names: Colin
-    preferred-citation:
-      type: manual
-      title: 'rgeos: Interface to Geometry Engine - Open Source (''GEOS'')'
-      authors:
-      - family-names: Bivand
-        given-names: Roger
-        email: Roger.Bivand@nhh.no
-        orcid: https://orcid.org/0000-0003-2392-6140
-      - family-names: Rundel
-        given-names: Colin
-      year: '2020'
-      notes: R package version 0.5-7
-      url: https://CRAN.R-project.org/package=rgeos
     repository: https://CRAN.R-project.org/package=rgeos
     repository-code: https://r-forge.r-project.org/projects/rgeos/
     url: https://trac.osgeo.org/geos/
@@ -70,16 +57,6 @@
     - family-names: Basic
       given-names: Marc
       email: marcbasic@gmail.com
-    preferred-citation:
-      type: manual
-      title: 'basicdescdate: A Basic Description with Date'
-      authors:
-      - family-names: Basic
-        given-names: Marc
-        email: marcbasic@gmail.com
-      year: '1999'
-      notes: R package version 0.1.6
-      url: https://github.com/basic/package
     repository-code: https://github.com/basic/package
     url: https://basic.github.io/package
     date-released: '1999-01-01'
@@ -101,13 +78,6 @@
     authors:
     - family-names: Doe
       given-names: John
-    preferred-citation:
-      type: manual
-      title: My Research Software
-      authors:
-      - family-names: Doe
-        given-names: John
-      year: '2022'
     repository: https://github.com/user/repo
     url: https://ropensci.org/
     

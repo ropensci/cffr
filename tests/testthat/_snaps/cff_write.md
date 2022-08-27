@@ -10,16 +10,6 @@
     authors:
     - family-names: Nadie
       given-names: Don
-    preferred-citation:
-      type: manual
-      title: 'basicdesc: A Basic Description'
-      authors:
-      - family-names: Basic
-        given-names: Marc
-        email: marcbasic@gmail.com
-      year: '2022'
-      notes: R package version 0.1.6
-      url: https://github.com/basic/package
     repository-code: https://github.com/basic/package
     url: https://basic.github.io/package
     date-released: '1900-01-01'
@@ -47,16 +37,6 @@
     - family-names: Basic
       given-names: Marc
       email: marcbasic@gmail.com
-    preferred-citation:
-      type: manual
-      title: 'basicdesc: A Basic Description'
-      authors:
-      - family-names: Basic
-        given-names: Marc
-        email: marcbasic@gmail.com
-      year: '2022'
-      notes: R package version 0.1.6
-      url: https://github.com/basic/package
     repository-code: https://github.com/basic/package
     url: https://basic.github.io/package
     contact:
@@ -81,16 +61,6 @@
       given-names: New
       website: https://stackoverflow.com/
       country: IT
-    preferred-citation:
-      type: manual
-      title: 'basicdesc: A Basic Description'
-      authors:
-      - family-names: Basic
-        given-names: Marc
-        email: marcbasic@gmail.com
-      year: '2022'
-      notes: R package version 0.1.6
-      url: https://github.com/basic/package
     repository-code: https://github.com/basic/package
     url: https://basic.github.io/package
     contact:

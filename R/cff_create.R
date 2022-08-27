@@ -126,20 +126,12 @@ cff_create <- function(x,
     cffobj <- x
     cffobj["cff-version"] <- cff_version
   } else {
+    # Detect a package
+    if (x %in% instpack) x <- file.path(find.package(x), "DESCRIPTION")
     # If is on the root create DESCRIPTION path
     if (x == getwd()) x <- file.path(x, "DESCRIPTION")
 
-    # Need to parse with desc_path
-    if (x %in% instpack) {
-
-      # Installed package, have to parse
-      desc_path <- file.path(find.package(x), "DESCRIPTION")
-
-      # Parse citation from installation
-      citobj <- lapply(citation(x), cff_parse_citation)
-      if (length(citobj) == 0) citobj <- NULL
-      citobj <- drop_null(citobj)
-    } else if (isTRUE(grep("DESCRIPTION", x) == 1)) {
+    if (isTRUE(grep("DESCRIPTION", x) == 1)) {
       # Call for a DESCRIPTION file
       desc_path <- x
       # Look if a CITATION file on inst/ folder
@@ -204,8 +196,10 @@ cff_create <- function(x,
   cffobjend <- cffobjend[cff_schema_keys()]
 
   # Enhance authors info
-  cffobjend$`preferred-citation`$authors <- enhance_pref_authors(cffobjend)
 
+  if (!is.null(cffobjend$`preferred-citation`)) {
+    cffobjend$`preferred-citation`$authors <- enhance_pref_authors(cffobjend)
+  }
   cffobjend <- as.cff(cffobjend)
   cffobjend
 }
@@ -214,6 +208,12 @@ cff_create <- function(x,
 #' Merge the information of a parsed description with a parsed citation
 #' @noRd
 merge_desc_cit <- function(cffobj, citobj) {
+
+  # If no citobj then return null
+
+  if (is.null(citobj)) {
+    return(cffobj)
+  }
 
   # Add doi from citation if missing
   if (is.null(cffobj$doi)) {
@@ -232,14 +232,6 @@ merge_desc_cit <- function(cffobj, citobj) {
     citobj[[1]]$identifiers,
     oldids
   )
-
-  # Add auto preferred if not present
-  if (is.null(cffobjend[["preferred-citation"]])) {
-    pref_auto <- parse_preferred_auto(cffobjend)
-    cffobjend <- c(cffobjend,
-      "preferred-citation" = list(pref_auto)
-    )
-  }
 
   # Reorder
   cffobjfinal <- c(

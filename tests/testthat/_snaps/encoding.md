@@ -42,24 +42,6 @@
       orcid: https://orcid.org/0000-0002-1791-9449
     - family-names: Paul
       given-names: Michaela
-    preferred-citation:
-      type: manual
-      title: 'surveillance: Temporal and Spatio-Temporal Modeling and Monitoring of Epidemic
-        Phenomena'
-      authors:
-      - family-names: Höhle
-        given-names: Michael
-        email: hoehle@math.su.se
-        orcid: https://orcid.org/0000-0002-0423-6702
-      - family-names: Meyer
-        given-names: Sebastian
-        email: seb.meyer@fau.de
-        orcid: https://orcid.org/0000-0002-1791-9449
-      - family-names: Paul
-        given-names: Michaela
-      year: '2021'
-      notes: R package version 1.19.1
-      url: https://CRAN.R-project.org/package=surveillance
     repository: https://CRAN.R-project.org/package=surveillance
     url: https://surveillance.R-Forge.R-project.org/
     date-released: '2021-03-30'
