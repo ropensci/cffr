@@ -44,7 +44,7 @@ cff_validate(system.file("CITATION", package = "cffr"))
 
 Other core functions: 
 \code{\link{cff_create}()},
-\code{\link{cff_write}()},
-\code{\link{cff}()}
+\code{\link{cff_read}()},
+\code{\link{cff_write}()}
 }
 \concept{core functions}

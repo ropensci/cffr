@@ -25,7 +25,7 @@ test_that("Walk trough full lifecycle", {
   )
 
   # Read
-  read <- cff(complete)
+  read <- cff_read(complete)
   expect_s3_class(read, "cff")
   expect_true(cff_validate(read, verbose = FALSE))
   expect_snapshot_output(print_snapshot("Read object", read))

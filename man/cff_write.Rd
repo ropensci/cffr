@@ -77,7 +77,7 @@ file.remove(tmpfile)
 
 Other core functions: 
 \code{\link{cff_create}()},
-\code{\link{cff_validate}()},
-\code{\link{cff}()}
+\code{\link{cff_read}()},
+\code{\link{cff_validate}()}
 }
 \concept{core functions}

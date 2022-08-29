@@ -1,12 +1,13 @@
-#' `cff` objects
+#' Read and manipulate `cff` objects
 #'
 #' A class and utility methods for reading, creating and holding CFF
 #' information.
 #'
-#' @name cff
+#' @name cff_read
+#' @aliases cff
 #' @return
-#' A `cff` object. Under the hood, a `cff` object is a regular [`list`]
-#' object with a special [print()] method.
+#' A `cff` object. Under the hood, a `cff` object is a regular [`list`] object
+#' with a special [print()] method.
 #'
 #' @family core functions
 #'
@@ -43,7 +44,7 @@
 #' cff()
 #'
 #' # From file
-#' cff(system.file("examples/CITATION_basic.cff",
+#' cff_read(system.file("examples/CITATION_basic.cff",
 #'   package = "cffr"
 #' ))
 #'
@@ -69,6 +70,14 @@
 #' # Would pass
 #' cff_validate(new)
 #' }
+cff_read <- function(path) {
+  cffobj <- cff(path = path)
+
+  return(cffobj)
+}
+
+#' @rdname cff_read
+#' @export
 cff <- function(path, ...) {
   if (!missing(path) && is.cff(path)) {
     return(path)
@@ -102,7 +111,7 @@ cff <- function(path, ...) {
 
 
 
-#' @rdname cff
+#' @rdname cff_read
 #'
 #' @param x a character string for the [`as.cff`] default method
 #'
