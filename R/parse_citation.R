@@ -49,11 +49,10 @@ parse_package_meta <- function(desc_path) {
   meta
 }
 
-#' DEPRECATED
-#' Used for creating an auto preferred-citation from an
-#' cff object if not present
-#' It mocks citation(auto = meta) of base R
-#' @noRd
+# DEPRECATED
+# Used for creating an auto preferred-citation from an
+# cff object if not present
+# It mocks citation(auto = meta) of base R
 # parse_preferred_auto <- function(cffobjend) {
 #   valid <- cff_schema_definitions_refs()
 #
