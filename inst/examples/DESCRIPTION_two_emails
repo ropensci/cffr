@@ -1,0 +1,37 @@
+Package: MomTrunc
+Type: Package
+Title: Moments of Folded and Doubly Truncated Multivariate
+        Distributions
+Version: 6.0
+Date: 2022-06-15
+Authors@R: 
+  c(person(given = "Christian E.",
+           family = "Galarza",
+           role = c("aut", "cre","trl"),
+           email = c("cgalarza88@gmail.com","chedgala@espol.edu.ec"),
+           comment = c(ORCID = "0000-0002-4818-6006")),
+    person(given = "Raymond",
+           family = "Kan",
+           role = "ctb",
+           comment = c(ORCID = "0000-0002-0578-9974")),
+    person(given = "Victor H.",
+           family = "Lachos",
+           role = c("aut","ths"),
+           email = c("hlachos@gmail.com","hlachos@uconn.edu"),
+           comment = c(ORCID = "0000-0002-7239-2459")))
+Author: Christian E. Galarza [aut, cre, trl]
+    (<https://orcid.org/0000-0002-4818-6006>),
+  Raymond Kan [ctb] (<https://orcid.org/0000-0002-0578-9974>),
+  Victor H. Lachos [aut, ths] (<https://orcid.org/0000-0002-7239-2459>)
+Maintainer: Christian E. Galarza <cgalarza88@gmail.com>
+Description: It computes arbitrary products moments (mean vector and variance-covariance matrix), for some double truncated (and folded) multivariate distributions. These distributions belong to the family of selection elliptical distributions, which includes well known skewed distributions as the unified skew-t distribution (SUT) and its particular cases as the extended skew-t (EST), skew-t (ST) and the symmetric student-t (T) distribution. Analogous normal cases unified skew-normal (SUN), extended skew-normal (ESN), skew-normal (SN), and symmetric normal (N) are also included. Density, probabilities and random deviates are also offered for these members.
+License: GPL (>= 2)
+Depends: R (>= 3.6.0)
+Imports: Rcpp (>= 1.0.1), mvtnorm (>= 1.0.11), tlrmvnmvt (>= 1.1.0),
+        hypergeo
+LinkingTo: Rcpp (>= 1.0.1), RcppArmadillo, mvtnorm
+Suggests: tmvtnorm
+NeedsCompilation: yes
+Packaged: 2022-06-15 18:51:55 UTC; cgala
+Repository: CRAN
+Date/Publication: 2022-06-15 23:10:05 UTC

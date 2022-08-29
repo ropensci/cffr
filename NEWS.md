@@ -2,6 +2,7 @@
 
 -   `preferred-citation` is only produced when a CITATION (**R**) file has been
     provided with the package (#37).
+-   Improve email handling on authors.
 
 # cffr 0.2.3
 

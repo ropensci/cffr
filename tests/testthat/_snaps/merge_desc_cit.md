@@ -766,6 +766,70 @@
 ---
 
     cff-version: 1.2.0
+    message: 'To cite package "MomTrunc" in publications use:'
+    type: software
+    title: 'MomTrunc: Moments of Folded and Doubly Truncated Multivariate Distributions'
+    version: '6.0'
+    authors:
+    - family-names: Galarza
+      given-names: Christian E.
+      email: cgalarza88@gmail.com
+      orcid: https://orcid.org/0000-0002-4818-6006
+    - family-names: Lachos
+      given-names: Victor H.
+      email: hlachos@gmail.com
+      orcid: https://orcid.org/0000-0002-7239-2459
+    abstract: It computes arbitrary products moments (mean vector and variance-covariance
+      matrix), for some double truncated (and folded) multivariate distributions. These
+      distributions belong to the family of selection elliptical distributions, which
+      includes well known skewed distributions as the unified skew-t distribution (SUT)
+      and its particular cases as the extended skew-t (EST), skew-t (ST) and the symmetric
+      student-t (T) distribution. Analogous normal cases unified skew-normal (SUN), extended
+      skew-normal (ESN), skew-normal (SN), and symmetric normal (N) are also included.
+      Density, probabilities and random deviates are also offered for these members.
+    repository: https://CRAN.R-project.org/package=MomTrunc
+    date-released: '2022-06-15'
+    contact:
+    - family-names: Galarza
+      given-names: Christian E.
+      email: cgalarza88@gmail.com
+      orcid: https://orcid.org/0000-0002-4818-6006
+    license: GPL-2.0-or-later
+    doi: 10.1111/2041-210X.12469
+    preferred-citation:
+      type: article
+      title: 'RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic,
+        Character, and Trait Data in R'
+      authors:
+      - family-names: Boettiger
+        given-names: Carl
+      - family-names: Chamberlain
+        given-names: Scott
+      - family-names: Vos
+        given-names: Rutger
+      - family-names: Lapp
+        given-names: Hilmar
+      journal: Methods in Ecology and Evolution
+      year: '2016'
+      volume: '7'
+      doi: 10.1111/2041-210X.12469
+      start: '352'
+      end: '357'
+    references:
+    - type: book
+      title: 'ggplot2: Elegant Graphics for Data Analysis'
+      authors:
+      - family-names: Wickham
+        given-names: Hadley
+      publisher:
+        name: Springer-Verlag New York
+      year: '2016'
+      isbn: 978-3-319-24277-4
+      url: https://ggplot2.tidyverse.org
+
+---
+
+    cff-version: 1.2.0
     message: 'To cite package "codemetar" in publications use:'
     type: software
     title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'

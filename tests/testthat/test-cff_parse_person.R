@@ -79,3 +79,61 @@ test_that("R Core Team", {
 
   expect_equal(p$name, "R Core Team")
 })
+
+
+test_that("Several emails, select first", {
+  pp <- person(
+    given = "John",
+    family = "Doe",
+    role = c("aut", "cre", "trl"),
+    email = c("first_mail@gmail.com", "second_mail@espol.edu.ec")
+  )
+
+  p <- cff_parse_person(pp)
+
+  expect_equal(p$email, "first_mail@gmail.com")
+})
+
+
+test_that("Several emails, select second if first no valid", {
+  pp <- person(
+    given = "John",
+    family = "Doe",
+    role = c("aut", "cre", "trl"),
+    email = c("first_mail_gmail.com", "second_mail@espol.edu.ec")
+  )
+
+  p <- cff_parse_person(pp)
+
+  expect_equal(p$email, "second_mail@espol.edu.ec")
+})
+
+
+
+test_that("No valid emails", {
+  pp <- person(
+    given = "John",
+    family = "Doe",
+    role = c("aut", "cre", "trl"),
+    email = c("first_mail_gmail.com", "second_mail__espol.edu.ec")
+  )
+
+  p <- cff_parse_person(pp)
+
+  expect_equal(p, cff_parse_person(person(
+    given = "John",
+    family = "Doe"
+  )))
+
+  pp2 <- person(
+    given = "John",
+    family = "Doe"
+  )
+
+  p2 <- cff_parse_person(pp2)
+
+  expect_equal(p, cff_parse_person(person(
+    given = "John",
+    family = "Doe"
+  )))
+})

@@ -109,7 +109,9 @@ cff_parse_person <- function(person) {
     parsed_person$"given-names" <- clean_str(person$given)
   }
 
-  email <- ifelse(is.email(person$email), person$email, NA)
+  # Check if several mails (MomTrunc 6.0)
+  valid_emails <- unlist(lapply(person$email, is.email))
+  email <- person$email[valid_emails][1]
   parsed_person$email <- clean_str(email)
 
   # Extract from comments
