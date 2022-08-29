@@ -338,13 +338,6 @@
     authors:
     - family-names: Doe
       given-names: John
-    preferred-citation:
-      type: manual
-      title: My Research Software
-      authors:
-      - family-names: Doe
-        given-names: John
-      year: '2022'
 
 # Skip misc without title, not skipping the good one
 
@@ -354,13 +347,6 @@
     authors:
     - family-names: Doe
       given-names: John
-    preferred-citation:
-      type: manual
-      title: My Research Software
-      authors:
-      - family-names: Doe
-        given-names: John
-      year: '2022'
     references:
     - type: generic
       title: 'rromeo: An R Client for SHERPA/RoMEO API'

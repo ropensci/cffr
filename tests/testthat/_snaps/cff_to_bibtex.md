@@ -345,12 +345,12 @@
       publisher = {Knopf},
     }
 
-# From plain cff with pref citation
+# From plain cff with a citation
 
-    @Manual{doe:2022,
-      title = {My Research Software},
+    @Misc{doe:1999,
+      title = {title},
       author = {John Doe},
-      year = {2022},
+      year = {1999},
       month = {mar},
       editor = {A name},
     }

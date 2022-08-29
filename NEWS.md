@@ -1,3 +1,8 @@
+# cffr (development version)
+
+-   `preferred-citation` is only produced when a CITATION (**R**) file has been
+    provided with the package (#37).
+
 # cffr 0.2.3
 
 -   Fix HTML5 issue as per CRAN request

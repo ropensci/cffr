@@ -104,8 +104,8 @@ cff_create <- function(x,
                        cff_version = "1.2.0",
                        gh_keywords = TRUE,
                        dependencies = TRUE) {
+  # On missing use package root
   if (missing(x)) x <- getwd()
-
 
   if (!is.cff(x) && !is.character(x)) {
     stop("x should be a cff or a character",
@@ -126,32 +126,31 @@ cff_create <- function(x,
     cffobj <- x
     cffobj["cff-version"] <- cff_version
   } else {
-    # Need to parse with desc_path
+    # Detect a package
+    if (x %in% instpack) x <- file.path(find.package(x), "DESCRIPTION")
+    # If is on the root create DESCRIPTION path
+    if (x == getwd()) x <- file.path(x, "DESCRIPTION")
 
-    if (x %in% instpack) {
-
-      # Installed package, have to parse
-      desc_path <- file.path(find.package(x), "DESCRIPTION")
-
-      # Parse citation from installation
-      citobj <- lapply(citation(x), cff_parse_citation)
-      if (length(citobj) == 0) citobj <- NULL
-      citobj <- drop_null(citobj)
-    } else if (x == getwd()) {
-
-      # In development package
-      # nocov start
-      desc_path <- file.path(x, "DESCRIPTION")
-      cit_path <- file.path(x, "inst/CITATION")
+    if (isTRUE(grep("DESCRIPTION", x) == 1)) {
+      # Call for a DESCRIPTION file
+      desc_path <- x
+      # Look if a CITATION file on inst/ folder
+      # for in-development packages
+      cit_path <- gsub("DESCRIPTION$", "inst/CITATION", x)
+      # If it doesn't exists look on the root
+      # this is for call to installed packages with system.file()
+      if (!file.exists(cit_path)) {
+        cit_path <- gsub(
+          "DESCRIPTION$",
+          "CITATION", x
+        )
+      }
       if (file.exists(cit_path)) {
         citobj <- parse_r_citation(desc_path, cit_path)
         citobj <- lapply(citobj, cff_parse_citation)
         if (length(citobj) == 0) citobj <- NULL
         citobj <- drop_null(citobj)
       }
-      # nocov end
-    } else if (isTRUE(grep("DESCRIPTION", x) == 1)) {
-      desc_path <- x
     } else {
       stop("object x: '", x, "' not valid. If it is a package ",
         "you may need to install it.",
@@ -197,8 +196,10 @@ cff_create <- function(x,
   cffobjend <- cffobjend[cff_schema_keys()]
 
   # Enhance authors info
-  cffobjend$`preferred-citation`$authors <- enhance_pref_authors(cffobjend)
 
+  if (!is.null(cffobjend$`preferred-citation`)) {
+    cffobjend$`preferred-citation`$authors <- enhance_pref_authors(cffobjend)
+  }
   cffobjend <- as.cff(cffobjend)
   cffobjend
 }
@@ -207,6 +208,12 @@ cff_create <- function(x,
 #' Merge the information of a parsed description with a parsed citation
 #' @noRd
 merge_desc_cit <- function(cffobj, citobj) {
+
+  # If no citobj then return null
+
+  if (is.null(citobj)) {
+    return(cffobj)
+  }
 
   # Add doi from citation if missing
   if (is.null(cffobj$doi)) {
@@ -225,14 +232,6 @@ merge_desc_cit <- function(cffobj, citobj) {
     citobj[[1]]$identifiers,
     oldids
   )
-
-  # Add auto preferred if not present
-  if (is.null(cffobjend[["preferred-citation"]])) {
-    pref_auto <- parse_preferred_auto(cffobjend)
-    cffobjend <- c(cffobjend,
-      "preferred-citation" = list(pref_auto)
-    )
-  }
 
   # Reorder
   cffobjfinal <- c(

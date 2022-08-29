@@ -268,10 +268,17 @@ test_that("particle names", {
   expect_snapshot_output(toBibtex(bib))
 })
 
-test_that("From plain cff with pref citation", {
+test_that("From plain cff with a citation", {
   s <- cff()
   s <- cff_create(s)
-  s$`preferred-citation`$month <- "3"
+
+  acit <- bibentry(
+    bibtype = "misc", title = "title", year = 1999,
+    author = "John Doe",
+    month = 3
+  )
+
+  s$`preferred-citation` <- cff_parse_citation(acit)
   s$`preferred-citation`$editors <- list(cff_parse_person("A name"))
 
   bib <- cff_to_bibtex(s)

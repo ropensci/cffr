@@ -33,22 +33,14 @@ test_that("Validate all DESCRIPTION files", {
 
   for (i in seq_len(length(allfiles))) {
     cffobj <- cff_create(allfiles[i], gh_keywords = FALSE)
-    # Check that all have preferred citation
-    expect_false(is.null(cffobj$`preferred-citation`))
-
-    # Check year
-    if (is.null(cffobj$`date-released`)) {
-      expect_true(cffobj$`preferred-citation`$year == format(Sys.Date(), "%Y"))
-    } else {
-      dat <- format(as.Date(cffobj$`date-released`), "%Y")
-      expect_true(cffobj$`preferred-citation`$year == dat)
-    }
+    # Check that no preferred citation is created
+    expect_null(cffobj$`preferred-citation`)
 
     expect_true(cff_validate(cffobj, verbose = FALSE))
   }
 })
 
-test_that("Auto generate preferred citations", {
+test_that("No auto generate preferred citations", {
   rgeos <- system.file("examples/DESCRIPTION_rgeos",
     package = "cffr"
   )
@@ -81,4 +73,12 @@ test_that("Fuzzy match on cff_create", {
     "Fuzzy match on cff_create",
     modobject
   ))
+})
+
+test_that("Test installed packages vs call to file", {
+  skip_on_cran()
+  call1 <- cff_create("jsonlite")
+  call2 <- cff_create(system.file("DESCRIPTION", package = "jsonlite"))
+
+  expect_identical(call1, call2)
 })

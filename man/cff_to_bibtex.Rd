@@ -2,7 +2,7 @@
 % Please edit documentation in R/cff_to_bibtex.R
 \name{cff_to_bibtex}
 \alias{cff_to_bibtex}
-\title{Create a BibTeX entry from a CITATION file or a \code{cff} object}
+\title{Create a BibTeX entry from a CITATION.cff file or a \code{cff} object}
 \usage{
 cff_to_bibtex(x)
 }
@@ -32,6 +32,9 @@ obj <- cff_to_bibtex(package)
 obj
 
 toBibtex(obj)
+
+# Same info as
+toBibtex(citation("rmarkdown")[1])
 }
 }
 \references{
