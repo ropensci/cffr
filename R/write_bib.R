@@ -14,13 +14,17 @@
 #'
 #' @export
 #' @family bibtex
+#'
+#' @return Writes an `.bib` file specified on `file` parameter and the
+#' equivalent `Bibtex` object created with [utils::toBibtex()].
+#'
 #' @details
 #'
 #' For security reasons, if the file already exists the function would create
 #' a backup copy on the same directory.
 #'
-#' @seealso
-#' [knitr::write_bib()] and the following packages:
+#' @seealso `vignette("bibtex_cff", "cffr")`, [knitr::write_bib()] and the
+#' following packages:
 #' - [bibtex](https://github.com/ropensci/bibtex) package.
 #' - [RefManageR](https://github.com/ropensci/RefManageR) package.
 #' - [rbibutils](https://github.com/GeoBosh/rbibutils/)

@@ -94,7 +94,7 @@ cff_to_bibtex <- function(x) {
     perl = TRUE
   ))
 
-  if (!is.null(ttype) & x$type == "thesis") {
+  if (!is.null(ttype) && x$type == "thesis") {
     if (grepl("Phd", ttype, ignore.case = TRUE)) {
       tobibentry$bibtype <- "phdthesis"
     }
@@ -103,7 +103,7 @@ cff_to_bibtex <- function(x) {
   # Check if it may be an incollection
   # Hint: is misc with collection-title and publisher
 
-  if (tobibentry$bibtype == "misc" & !is.null(x$`collection-title`) &
+  if (tobibentry$bibtype == "misc" && !is.null(x$`collection-title`) &&
     !is.null(x$publisher)) {
     tobibentry$bibtype <- "incollection"
   }
@@ -133,7 +133,7 @@ cff_to_bibtex <- function(x) {
   ))
 
   # As a fallback, use also location
-  if (is.null(tobibentry$address) &
+  if (is.null(tobibentry$address) &&
     !is.null(x$location)) {
     tobibentry$address <- x$location$name
   }
@@ -170,7 +170,7 @@ cff_to_bibtex <- function(x) {
 
   # Fallback to conference name
 
-  if (tobibentry$bibtype == "inproceedings" & is.null(tobibentry$booktitle)) {
+  if (tobibentry$bibtype == "inproceedings" && is.null(tobibentry$booktitle)) {
     tobibentry$booktitle <- x$conference$name
   }
 
@@ -233,7 +233,7 @@ cff_to_bibtex <- function(x) {
 
 
   # Fallback for techreport, search on affiliation first author
-  if (tobibentry$bibtype == "techreport" & is.null(tobibentry$institution)) {
+  if (tobibentry$bibtype == "techreport" && is.null(tobibentry$institution)) {
     tobibentry$institution <- x$authors[[1]]$affiliation
   }
 
@@ -342,7 +342,7 @@ cff_to_bibtex <- function(x) {
   # Guess inbook ----
   # inbook is a book where chapter or pages are present
 
-  if (tobibentry$bibtype == "book" & !is.null(
+  if (tobibentry$bibtype == "book" && !is.null(
     c(tobibentry$chapter, tobibentry$pages)
   )) {
     tobibentry$bibtype <- "inbook"
@@ -353,7 +353,7 @@ cff_to_bibtex <- function(x) {
 
 
   if (!is.null(x$authors[[1]]$name)) {
-    if (x$authors[[1]]$name == "anonymous" &
+    if (x$authors[[1]]$name == "anonymous" &&
       tobibentry$bibtype %in% c(
         "booklet", "manual", "book", "inbook",
         "misc", "proceedings"

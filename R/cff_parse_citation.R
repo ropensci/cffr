@@ -2,7 +2,7 @@
 #'
 #' Parse a `bibentry` object to a valid format for a `CITATION.cff` file.
 #'
-#' @seealso [cff_create()], `vignette("cffr", "cffr")`, [bibentry()]
+#' @seealso [cff_create()], `vignette("bibtex_cff", "cffr")`, [bibentry()]
 #'
 #' @export
 #'
@@ -113,7 +113,9 @@ cff_parse_citation <- function(bib) {
   # Special case: authors
   # Some keys does not strictly require authors, so we create one for cff
   # https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors
-  if (is.null(parsed_fields$authors)) parsed_fields$authors <- person(family = "anonymous")
+  if (is.null(parsed_fields$authors)) {
+    parsed_fields$authors <- person(family = "anonymous")
+  }
 
 
   ## authors ----
@@ -138,12 +140,12 @@ cff_parse_citation <- function(bib) {
 
   # Fallback for year and month: use date-published
 
-  if (is.null(parse_cit$month) & !is.null(parse_cit$`date-published`)) {
+  if (is.null(parse_cit$month) && !is.null(parse_cit$`date-published`)) {
     parse_cit$month <- format(as.Date(parse_cit$`date-published`), "%m")
   }
 
 
-  if (is.null(parse_cit$year) & !is.null(parse_cit$`date-published`)) {
+  if (is.null(parse_cit$year) && !is.null(parse_cit$`date-published`)) {
     parse_cit$year <- format(as.Date(parse_cit$`date-published`), "%Y")
   }
 
@@ -300,7 +302,8 @@ parse_bibtex_fields <- function(parse_cit) {
   index <- which(nm == "keywords")
   if (length(index) > 1) parse_cit <- parse_cit[-index[-1]]
 
-  # Additionally, need to delete keywords if length is less than 2, errors on validation
+  # Additionally, need to delete keywords if length is less than 2,
+  # errors on validation
   if (length(parse_cit$keywords) < 2) {
     parse_cit$keywords <- NULL
   }
@@ -364,9 +367,12 @@ parse_bibtex_person_models <- function(parsed_fields) {
     "proceedings"
   )) {
     # Conference, InProceedings, Proceedings
-    if (!is.null(parsed_fields$series)) parsed_fields$conference <- person(family = parsed_fields$series)
-
-    if (!is.null(parsed_fields$organization)) parsed_fields$institution <- person(family = parsed_fields$organization)
+    if (!is.null(parsed_fields$series)) {
+      parsed_fields$conference <- person(family = parsed_fields$series)
+    }
+    if (!is.null(parsed_fields$organization)) {
+      parsed_fields$institution <- person(family = parsed_fields$organization)
+    }
   } else if (parsed_fields$bibtex_entry %in% c("mastersthesis", "phdthesis")) {
     # Mastersthesis, PhdThesis
     parsed_fields$institution <- person(family = parsed_fields$school)
@@ -394,7 +400,7 @@ parse_bibtex_fields_models <- function(parse_cit) {
   if (!is.null(parse_cit$location)) {
 
     # Usually the address of the publisher as per BibTeX
-    if (!is.null(parse_cit$publisher) &
+    if (!is.null(parse_cit$publisher) &&
       !(parse_cit$bibtex_entry %in% c(
         "conference", "inproceedings",
         "proceedings"
@@ -411,7 +417,10 @@ parse_bibtex_fields_models <- function(parse_cit) {
     }
 
     # If is a report or a thesis, add to institution
-    if (parse_cit$bibtex_entry %in% c("techreport", "phdthesis", "mastersthesis") &
+    if (parse_cit$bibtex_entry %in% c(
+      "techreport",
+      "phdthesis", "mastersthesis"
+    ) &&
       !is.null(parse_cit$institution)) {
       parse_cit$institution$address <- parse_cit$location$name
       parse_cit$location <- NULL

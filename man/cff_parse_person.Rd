@@ -10,8 +10,8 @@ cff_parse_person(person)
 cff_parse_person_bibtex(person)
 }
 \arguments{
-\item{person}{A \code{person} object created with \code{\link[=person]{person()}} or a character string.
-See \strong{Details}.}
+\item{person}{A \code{person} object created with \code{\link[=person]{person()}} or a
+character string. See \strong{Details}.}
 }
 \value{
 A \code{\link{cff}} object ready to be used on \code{\link[=cff_create]{cff_create()}}.

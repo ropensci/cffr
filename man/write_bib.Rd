@@ -22,6 +22,10 @@ written.}
 
 \item{ascii}{Whether to write the entries using ASCII characters only or not.}
 }
+\value{
+Writes an \code{.bib} file specified on \code{file} parameter and the
+equivalent \code{Bibtex} object created with \code{\link[utils:toLatex]{utils::toBibtex()}}.
+}
 \description{
 Creates a .bib file from a \code{bibentry} object(s)
 }
@@ -41,7 +45,8 @@ write_bib(bib)
 write_bib(bib, ascii = TRUE)
 }
 \seealso{
-\code{\link[knitr:write_bib]{knitr::write_bib()}} and the following packages:
+\code{vignette("bibtex_cff", "cffr")}, \code{\link[knitr:write_bib]{knitr::write_bib()}} and the
+following packages:
 \itemize{
 \item \href{https://github.com/ropensci/bibtex}{bibtex} package.
 \item \href{https://github.com/ropensci/RefManageR}{RefManageR} package.

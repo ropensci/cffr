@@ -84,7 +84,8 @@ test_that("Conference", {
   bib <- bibentry("InProceedings",
     key = "inproceedings-full",
     author = "Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis",
-    title = "On Notions of Information Transfer in {VLSI} Circuits", title = "{Statistical Machine Translation: Rapid Development with Limited Resources",
+    title = "On Notions of Information Transfer in {VLSI} Circuits",
+    title = "{Statistical Machine Translation: Rapid Development with Limited Resources",
     booktitle = "Proc. Fifteenth Annual ACM STOC",
     year = "1983",
     # Optional
@@ -189,7 +190,8 @@ test_that("InProceedings", {
   bib <- bibentry("InProceedings",
     key = "inproceedings-full",
     author = "Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis",
-    title = "On Notions of Information Transfer in {VLSI} Circuits", title = "{Statistical Machine Translation: Rapid Development with Limited Resources",
+    title = "On Notions of Information Transfer in {VLSI} Circuits",
+    title = "{Statistical Machine Translation: Rapid Development with Limited Resources",
     booktitle = "Proc. Fifteenth Annual ACM STOC",
     year = "1983",
     # Optional

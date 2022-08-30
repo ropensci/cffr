@@ -121,6 +121,8 @@ building_doi <- function(parse_cit) {
     doi = clean_str(doi),
     identifiers = identifiers
   )
+
+  return(doi_list)
 }
 
 #' BB for month
@@ -189,6 +191,8 @@ building_url <- function(parse_cit) {
     url = clean_str(url),
     identifiers = identifiers
   )
+
+  return(url_list)
 }
 
 #' BB for other persons

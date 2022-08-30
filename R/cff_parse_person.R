@@ -11,8 +11,8 @@
 #'
 #' @family parsers
 #'
-#' @param person A `person` object created with [person()] or a character string.
-#'   See **Details**.
+#' @param person A `person` object created with [person()] or a
+#'   character string. See **Details**.
 #'
 #' @return A [`cff`] object ready to be used on [cff_create()].
 #'
@@ -83,7 +83,7 @@ cff_parse_person <- function(person) {
   # Special case for R Core Team
 
 
-  if (is.substring(clean_str(person$given), "R Core") &
+  if (is.substring(clean_str(person$given), "R Core") &&
     is.substring(person$family, "Team")) {
     person <- person(
       given = paste(
