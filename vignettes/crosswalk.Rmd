@@ -370,7 +370,8 @@ pkgnokeywords
 # Adding Keywords
 
 desc::desc_set("X-schema.org-keywords", "keyword1, keyword2, keyword3",
-               file = tmp2)
+  file = tmp2
+)
 
 cat(cff_create(tmp2)$keywords)
 ```

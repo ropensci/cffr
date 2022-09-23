@@ -42,7 +42,7 @@ included full support of this citation format ([Druskat
 2021](#ref-druskat_stephan_making_2021)). GitHub support is of special
 interest:
 
-<img src="vignettes/tweet-1.png" title="GitHub-link" alt="GitHub-link" width="400" style="display: block; margin: auto;" />
+<img src="vignettes/tweet-1.png" alt="GitHub-link" width="400" style="display: block; margin: auto;" />
 
 *— Nat Friedman (@natfriedman) [July 27,
 2021](https://twitter.com/natfriedman/status/1420122675813441540?ref_src=twsrc%5Etfw)*
@@ -71,7 +71,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2022-08-29 there are at least 207 repos on GitHub using **cffr**.
+As per 2022-09-23 there are at least 211 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
@@ -146,7 +146,7 @@ test <- cff_create("rmarkdown")
     type: software
     license: GPL-3.0-only
     title: 'rmarkdown: Dynamic Documents for R'
-    version: '2.15'
+    version: '2.16'
     abstract: Convert R Markdown documents into a variety of formats.
     authors:
     - family-names: Allaire
@@ -218,12 +218,12 @@ test <- cff_create("rmarkdown")
         email: rich@rstudio.com
         orcid: https://orcid.org/0000-0003-3925-190X
       year: '2022'
-      notes: R package version 2.15
+      notes: R package version 2.16
       url: https://github.com/rstudio/rmarkdown
     repository: https://CRAN.R-project.org/package=rmarkdown
     repository-code: https://github.com/rstudio/rmarkdown
     url: https://pkgs.rstudio.com/rmarkdown/
-    date-released: '2022-08-16'
+    date-released: '2022-08-24'
     contact:
     - family-names: Xie
       given-names: Yihui
@@ -337,7 +337,7 @@ test <- cff_create("rmarkdown")
         email: jeff@rstudio.com
       year: '2022'
       url: https://CRAN.R-project.org/package=htmltools
-      version: '>= 0.3.5'
+      version: '>= 0.5.1'
     - type: software
       title: jquerylib
       abstract: 'jquerylib: Obtain ''jQuery'' as an HTML Dependency Object'

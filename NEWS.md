@@ -1,4 +1,4 @@
-# cffr (development version)
+# cffr 0.3.0
 
 -   `preferred-citation` is only produced when a CITATION (**R**) file has been
     provided with the package (#37).
