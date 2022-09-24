@@ -86,7 +86,7 @@ cff_git_hook_remove <- function() {
 
   if (file.exists(hookfile)) {
     unlink(hookfile, force = TRUE)
-    message(crayon::blue("Removing git pre-commit hooh"))
+    message(crayon::blue("Removing git pre-commit hook"))
   }
 
   return(invisible())
