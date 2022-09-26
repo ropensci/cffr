@@ -71,7 +71,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2022-09-23 there are at least 211 repos on GitHub using **cffr**.
+As per 2022-09-26 there are at least 36 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
@@ -93,6 +93,7 @@ Alternatively, you can install **cffr** using the
 [r-universe](https://ropensci.r-universe.dev/ui#builds):
 
 ``` r
+
 # Enable this universe
 options(repos = c(
   ropensci = "https://ropensci.r-universe.dev",
@@ -110,6 +111,7 @@ By default most often from within your package folder you’ll simply run
 file and validates it on a single command:
 
 ``` r
+
 library(cffr)
 
 # For in-development packages
@@ -292,7 +294,6 @@ test <- cff_create("rmarkdown")
         given-names: Joe
         email: joe@rstudio.com
       year: '2022'
-      url: https://CRAN.R-project.org/package=bslib
       version: '>= 0.2.5.1'
     - type: software
       title: evaluate
@@ -307,7 +308,7 @@ test <- cff_create("rmarkdown")
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
       year: '2022'
-      url: https://CRAN.R-project.org/package=evaluate
+      url: https://github.com/r-lib/evaluate
       version: '>= 0.13'
     - type: software
       title: htmltools
@@ -336,7 +337,7 @@ test <- cff_create("rmarkdown")
         given-names: Jeff
         email: jeff@rstudio.com
       year: '2022'
-      url: https://CRAN.R-project.org/package=htmltools
+      url: https://github.com/rstudio/htmltools
       version: '>= 0.5.1'
     - type: software
       title: jquerylib
@@ -351,7 +352,6 @@ test <- cff_create("rmarkdown")
         given-names: Joe
         email: joe@rstudio.com
       year: '2022'
-      url: https://CRAN.R-project.org/package=jquerylib
     - type: software
       title: jsonlite
       abstract: 'jsonlite: A Simple and Robust JSON Parser and Generator for R'
@@ -362,7 +362,6 @@ test <- cff_create("rmarkdown")
         email: jeroen@berkeley.edu
         orcid: https://orcid.org/0000-0002-4035-0289
       year: '2022'
-      url: https://CRAN.R-project.org/package=jsonlite
     - type: software
       title: knitr
       abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
@@ -373,7 +372,7 @@ test <- cff_create("rmarkdown")
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
       year: '2022'
-      url: https://CRAN.R-project.org/package=knitr
+      url: https://yihui.org/knitr/
       version: '>= 1.22'
     - type: software
       title: methods
@@ -396,7 +395,6 @@ test <- cff_create("rmarkdown")
         given-names: Hadley
         email: hadley@rstudio.com
       year: '2022'
-      url: https://CRAN.R-project.org/package=stringr
       version: '>= 1.2.0'
     - type: software
       title: tinytex
@@ -409,7 +407,7 @@ test <- cff_create("rmarkdown")
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
       year: '2022'
-      url: https://CRAN.R-project.org/package=tinytex
+      url: https://github.com/rstudio/tinytex
       version: '>= 0.31'
     - type: software
       title: tools
@@ -445,7 +443,7 @@ test <- cff_create("rmarkdown")
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
       year: '2022'
-      url: https://CRAN.R-project.org/package=xfun
+      url: https://github.com/yihui/xfun
       version: '>= 0.30'
     - type: software
       title: yaml
@@ -478,7 +476,7 @@ test <- cff_create("rmarkdown")
       - family-names: Kamvar
         given-names: Zhian N.
       year: '2022'
-      url: https://CRAN.R-project.org/package=yaml
+      url: https://github.com/vubiostat/r-yaml/
       version: '>= 2.1.19'
     - type: software
       title: digest
@@ -533,25 +531,6 @@ test <- cff_create("rmarkdown")
       - family-names: Chang.
         given-names: and Winston
       year: '2022'
-      url: https://CRAN.R-project.org/package=digest
-    - type: software
-      title: dygraphs
-      abstract: 'dygraphs: Interface to ''Dygraphs'' Interactive Time Series Charting
-        Library'
-      notes: Suggests
-      authors:
-      - family-names: Vanderkam
-        given-names: Dan
-      - family-names: Allaire
-        given-names: JJ
-      - family-names: Owen
-        given-names: Jonathan
-      - family-names: Gromer
-        given-names: Daniel
-      - family-names: Thieurmel
-        given-names: Benoit
-      year: '2022'
-      url: https://CRAN.R-project.org/package=dygraphs
     - type: software
       title: fs
       abstract: 'fs: Cross-Platform File System Operations Based on ''libuv'''
@@ -566,22 +545,6 @@ test <- cff_create("rmarkdown")
         given-names: Gábor
         email: csardi.gabor@gmail.com
       year: '2022'
-      url: https://CRAN.R-project.org/package=fs
-    - type: software
-      title: rsconnect
-      abstract: 'rsconnect: Deployment Interface for R Markdown Documents and Shiny Applications'
-      notes: Suggests
-      authors:
-      - family-names: Atkins
-        given-names: Aron
-        email: aron@rstudio.com
-      - family-names: McPherson
-        given-names: Jonathan
-        email: jonathan@rstudio.com
-      - family-names: Allaire
-        given-names: JJ
-      year: '2022'
-      url: https://CRAN.R-project.org/package=rsconnect
     - type: software
       title: downlit
       abstract: 'downlit: Syntax Highlighting and Automatic Linking'
@@ -591,20 +554,7 @@ test <- cff_create("rmarkdown")
         given-names: Hadley
         email: hadley@rstudio.com
       year: '2022'
-      url: https://CRAN.R-project.org/package=downlit
       version: '>= 0.4.0'
-    - type: software
-      title: katex
-      abstract: 'katex: Rendering Math to HTML, ''MathML'', or R-Documentation Format'
-      notes: Suggests
-      authors:
-      - family-names: Ooms
-        given-names: Jeroen
-        email: jeroen@berkeley.edu
-        orcid: https://orcid.org/0000-0002-4035-0289
-      year: '2022'
-      url: https://CRAN.R-project.org/package=katex
-      version: '>= 1.4.0'
     - type: software
       title: sass
       abstract: 'sass: Syntactically Awesome Style Sheets (''Sass'')'
@@ -629,7 +579,6 @@ test <- cff_create("rmarkdown")
         email: carson@rstudio.com
         orcid: https://orcid.org/0000-0002-4958-2844
       year: '2022'
-      url: https://CRAN.R-project.org/package=sass
       version: '>= 0.4.0'
     - type: software
       title: shiny
@@ -668,7 +617,7 @@ test <- cff_create("rmarkdown")
       - family-names: Borges
         given-names: Barbara
       year: '2022'
-      url: https://CRAN.R-project.org/package=shiny
+      url: https://shiny.rstudio.com/
       version: '>= 1.6.0'
     - type: software
       title: testthat
@@ -679,7 +628,6 @@ test <- cff_create("rmarkdown")
         given-names: Hadley
         email: hadley@rstudio.com
       year: '2022'
-      url: https://CRAN.R-project.org/package=testthat
       version: '>= 3.0.3'
     - type: software
       title: tibble
@@ -693,20 +641,6 @@ test <- cff_create("rmarkdown")
         given-names: Hadley
         email: hadley@rstudio.com
       year: '2022'
-      url: https://CRAN.R-project.org/package=tibble
-    - type: software
-      title: tufte
-      abstract: 'tufte: Tufte''s Styles for R Markdown Documents'
-      notes: Suggests
-      authors:
-      - family-names: Xie
-        given-names: Yihui
-        email: xie@yihui.name
-        orcid: https://orcid.org/0000-0003-0645-5666
-      - family-names: Allaire
-        given-names: JJ
-      year: '2022'
-      url: https://CRAN.R-project.org/package=tufte
     - type: software
       title: vctrs
       abstract: 'vctrs: Vector Helpers'
@@ -722,7 +656,7 @@ test <- cff_create("rmarkdown")
         given-names: Davis
         email: davis@rstudio.com
       year: '2022'
-      url: https://CRAN.R-project.org/package=vctrs
+      url: https://vctrs.r-lib.org/
     - type: software
       title: withr
       abstract: 'withr: Run Code ''With'' Temporarily Modified Global State'
@@ -745,7 +679,6 @@ test <- cff_create("rmarkdown")
       - family-names: Chang
         given-names: Winston
       year: '2022'
-      url: https://CRAN.R-project.org/package=withr
       version: '>= 2.4.2'
 
 </details>
@@ -754,6 +687,7 @@ test <- cff_create("rmarkdown")
 We can validate the result using `cff_validate()`:
 
 ``` r
+
 cff_validate(test)
 #> 
 #> cff_validate results-----
@@ -904,3 +838,93 @@ Smith, Arfon. 2021. “Enhanced Support for Citations on GitHub.”
 </div>
 
 [![rofooter](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
+
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+All contributions to this project are gratefully acknowledged using the
+[`allcontributors`
+package](https://github.com/ropenscilabs/allcontributors) following the
+[all-contributors](https://allcontributors.org) specification.
+Contributions of any kind are welcome!
+
+### Code
+
+<table>
+<tr>
+<td align="center">
+<a href="https://github.com/dieghernan">
+<img src="https://avatars.githubusercontent.com/u/25656809?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/cffr/commits?author=dieghernan">dieghernan</a>
+</td>
+<td align="center">
+<a href="https://github.com/ImgBotApp">
+<img src="https://avatars.githubusercontent.com/u/31427850?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/cffr/commits?author=ImgBotApp">ImgBotApp</a>
+</td>
+<td align="center">
+<a href="https://github.com/dpprdan">
+<img src="https://avatars.githubusercontent.com/u/1423562?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/cffr/commits?author=dpprdan">dpprdan</a>
+</td>
+</tr>
+</table>
+
+### Issue Authors
+
+<table>
+<tr>
+<td align="center">
+<a href="https://github.com/Bisaloo">
+<img src="https://avatars.githubusercontent.com/u/10783929?u=38e3754466eaa200e20f0609709467b6331cdfbe&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+author%3ABisaloo">Bisaloo</a>
+</td>
+<td align="center">
+<a href="https://github.com/jeroen">
+<img src="https://avatars.githubusercontent.com/u/216319?u=bfe086cade8ccec09d43f3f2e1bb3b6304dc7ec6&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+author%3Ajeroen">jeroen</a>
+</td>
+<td align="center">
+<a href="https://github.com/joelnitta">
+<img src="https://avatars.githubusercontent.com/u/13459362?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+author%3Ajoelnitta">joelnitta</a>
+</td>
+</tr>
+</table>
+
+### Issue Contributors
+
+<table>
+<tr>
+<td align="center">
+<a href="https://github.com/arfon">
+<img src="https://avatars.githubusercontent.com/u/4483?u=5452ee8991bd226e4b4f15b642ebc861b2a8ac12&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+commenter%3Aarfon">arfon</a>
+</td>
+<td align="center">
+<a href="https://github.com/hainesr">
+<img src="https://avatars.githubusercontent.com/u/143558?u=cd181fd0dfd5b6048ca6fdbb2fd1ef1b331cc4dd&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+commenter%3Ahainesr">hainesr</a>
+</td>
+<td align="center">
+<a href="https://github.com/llrs">
+<img src="https://avatars.githubusercontent.com/u/6818218?u=c0a96a5dc32b3035f057ee75a7679680363b1a89&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+commenter%3Allrs">llrs</a>
+</td>
+</tr>
+</table>
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->

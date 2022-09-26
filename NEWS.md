@@ -1,3 +1,7 @@
+# cffr (development version)
+
+-   Fix typo (#40) by @dpprdan
+
 # cffr 0.3.0
 
 -   `preferred-citation` is only produced when a CITATION (**R**) file has been
