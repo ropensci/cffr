@@ -1,6 +1,7 @@
 # cffr (development version)
 
 -   Fix typo (#40) by @dpprdan
+-   Add new function `cff_from_bibtex()`.
 
 # cffr 0.3.0
 

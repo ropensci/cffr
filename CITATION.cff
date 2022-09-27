@@ -156,6 +156,21 @@ references:
   url: https://github.com/vubiostat/r-yaml/
   version: '>= 2.2.1'
 - type: software
+  title: bibtex
+  abstract: 'bibtex: Bibtex Parser'
+  notes: Suggests
+  authors:
+  - family-names: Francois
+    given-names: Romain
+    email: romain@purrple.cat
+    orcid: https://orcid.org/0000-0002-2444-4226
+  - family-names: Hernangómez
+    given-names: Diego
+    email: diego.hernangomezherrero@gmail.com
+    orcid: https://orcid.org/0000-0001-8457-4658
+  year: '2022'
+  version: '>= 0.5.0'
+- type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
   notes: Suggests
