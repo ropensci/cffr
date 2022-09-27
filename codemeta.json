@@ -51,6 +51,19 @@
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
+      "identifier": "bibtex",
+      "name": "bibtex",
+      "version": ">= 0.5.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=bibtex"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "knitr",
       "name": "knitr",
       "provider": {
@@ -186,8 +199,8 @@
     "SystemRequirements": null
   },
   "isPartOf": "https://ropensci.org",
-  "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata", "r", "r-package", "citation-file-format", "rstats", "ropensci", "cran"],
-  "fileSize": "842.166KB",
+  "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata"],
+  "fileSize": "850.583KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -218,7 +231,6 @@
     }
   ],
   "releaseNotes": "https://github.com/ropensci/cffr/blob/master/NEWS.md",
-  "readme": "https://github.com/ropensci/cffr/blob/main/README.md",
   "contIntegration": ["https://github.com/ropensci/cffr/actions/workflows/check-full.yaml", "https://app.codecov.io/gh/ropensci/cffr", "https://github.com/ropensci/cffr/actions/workflows/cff-validator.yml"],
   "developmentStatus": ["https://www.repostatus.org/#active", "https://lifecycle.r-lib.org/articles/stages.html#experimental"],
   "review": {
