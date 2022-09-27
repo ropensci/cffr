@@ -32,7 +32,7 @@ reference:
     contents:
       - has_concept("parsers")
   - title: BibTeX
-    desc: Convert CFF to BibTeX and viceverse
+    desc: Convert CFF to BibTeX and viceversa
     contents:
       - has_concept("bibtex")
       - cff_parse_citation

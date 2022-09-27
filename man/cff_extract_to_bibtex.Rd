@@ -53,6 +53,7 @@ toBibtex(lite)
 }
 \seealso{
 Other bibtex: 
+\code{\link{cff_from_bibtex}()},
 \code{\link{cff_to_bibtex}()},
 \code{\link{encoded_utf_to_latex}()},
 \code{\link{write_bib}()}
