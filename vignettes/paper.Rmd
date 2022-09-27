@@ -9,8 +9,9 @@ tags:
   - citation
   - credit
   - metadata
-author: Diego Hernangómez
-date: 09 November 2021
+author:
+  -  Diego Hernangómez^[Independent Researcher, https://orcid.org/0000-0001-8457-4658]
+date: "`r as.Date('2021-11-08')`"
 output: rmarkdown::html_vignette
 bibliography: REFERENCES.bib
 link-citations: yes
@@ -74,13 +75,14 @@ schema.json.
 
 I would like to thank [Carl
 Boettiger](https://ropensci.org/author/carl-boettiger/), [Maëlle
-Salmon](https://ropensci.org/author/ma%C3%ABlle-salmon/) and the rest of
-contributors of the [codemetar](https://docs.ropensci.org/codemetar/) package.
-This package was the primary inspiration for developing cffr and shares a common
-goal of increasing awareness on the efforts of software developers.
+Salmon](https://ropensci.org/author/ma%C3%ABlle-salmon/) and the [rest of
+contributors](https://github.com/ropensci/codemetar/graphs/contributors) of the
+codemetar package [@codemetar2021]. This package was the primary inspiration for
+developing cffr and shares a common goal of increasing awareness on the efforts
+of software developers.
 
 I would like also to thank [João Martins](https://zambujo.github.io/) and [Scott
-Chamberlain](https://ropensci.org//author/scott-chamberlain/) for thorough
+Chamberlain](https://ropensci.org/author/scott-chamberlain/) for thorough
 reviews, that helps improving the package and the documentation as well as
 [Emily Riederer](https://emilyriederer.netlify.app/) for handling the [review
 process](https://github.com/ropensci/software-review/issues/463).

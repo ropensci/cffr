@@ -71,9 +71,8 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2022-09-27 there are at least 211 repos on GitHub using **cffr**.
-[Check them out
-here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
+See [some projects already using
+**cffr**](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
 ### Installation
 
@@ -93,6 +92,7 @@ Alternatively, you can install **cffr** using the
 [r-universe](https://ropensci.r-universe.dev/ui#builds):
 
 ``` r
+
 # Enable this universe
 options(repos = c(
   ropensci = "https://ropensci.r-universe.dev",
@@ -110,6 +110,7 @@ By default most often from within your package folder you’ll simply run
 file and validates it on a single command:
 
 ``` r
+
 library(cffr)
 
 # For in-development packages
@@ -229,13 +230,6 @@ test <- cff_create("rmarkdown")
       given-names: Yihui
       email: xie@yihui.name
       orcid: https://orcid.org/0000-0003-0645-5666
-    keywords:
-    - literate-programming
-    - markdown
-    - pandoc
-    - r
-    - r-package
-    - rmarkdown
     references:
     - type: book
       title: 'R Markdown: The Definitive Guide'
@@ -685,6 +679,7 @@ test <- cff_create("rmarkdown")
 We can validate the result using `cff_validate()`:
 
 ``` r
+
 cff_validate(test)
 #> 
 #> cff_validate results-----
@@ -753,7 +748,7 @@ Check the following articles to learn more about **cffr**:
 -   [**handlr**](https://github.com/ropensci/handlr): Tool for
     converting among citation formats, including `*.cff` files. At the
     time of this writing only CFF v1.1.0 was supported (see
-    [#24](https://github.com/ropensci/handlr/issues/24)).
+    [\#24](https://github.com/ropensci/handlr/issues/24)).
 -   [**codemeta**](https://github.com/cboettig/codemeta)/
     [**codemetar**](https://github.com/ropensci/codemetar) provides
     similar solutions for creating `codemeta.json` file, another format
