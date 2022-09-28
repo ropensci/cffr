@@ -30,9 +30,9 @@ This function requires the package \strong{bibtex} (>= 0.5.0), that is listed
 as \code{Suggested} by  \strong{cffr}.
 }
 \examples{
-
-x <- c(
-  "@book{einstein1921,
+if (requireNamespace("bibtex", quietly = TRUE)) {
+  x <- c(
+    "@book{einstein1921,
     title        = {Relativity: The Special and the General Theory},
     author       = {Einstein, Albert},
     year         = 1920,
@@ -40,7 +40,7 @@ x <- c(
     address      = {London, United Kingdom},
     isbn         = 9781587340925
 }",
-  "@misc{misc-full,
+    "@misc{misc-full,
     title        = {Handing out random pamphlets in airports},
     author       = {Joe-Bob Missilany},
     year         = 1984,
@@ -48,14 +48,15 @@ x <- c(
     note         = {This is a full MISC entry},
     howpublished = {Handed out at O'Hare}
 }"
-)
+  )
 
-cff_from_bibtex(x)
+  cff_from_bibtex(x)
 
-# From a file
+  # From a file
 
-x2 <- system.file("examples/example.bib", package = "cffr")
-cff_from_bibtex(x2)
+  x2 <- system.file("examples/example.bib", package = "cffr")
+  cff_from_bibtex(x2)
+}
 }
 \seealso{
 \code{vignette("bibtex_cff", package = "cffr")} to learn about the mapping of
