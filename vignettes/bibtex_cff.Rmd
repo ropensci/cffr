@@ -698,7 +698,7 @@ toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
 
 ```{r echo=FALSE,}
 
-bib <-"@inbook{inbook-full,
+bib <- "@inbook{inbook-full,
     title        = {Fundamental Algorithms},
     author       = {Donald E. Knuth},
     year         = 1973,
@@ -986,7 +986,7 @@ generic]{.underline} with a [collection-title]{.underline} key.
 
 ```{r echo=FALSE,}
 
-bib <-"@incollection{incollection-full,
+bib <- "@incollection{incollection-full,
     title        = {Semigroups of Recurrences},
     author       = {Daniel D. Lincoll},
     year         = 1977,
@@ -1499,7 +1499,6 @@ bib <- "@unpublished{unpublished-minimal,
 }"
 
 cff_from_bibtex(bib)
-
 ```
 
 [*From CFF to BibTeX*]{.underline}

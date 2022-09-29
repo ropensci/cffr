@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.1 (2022-06-23)",
+  "runtimePlatform": "R version 4.2.1 (2022-06-23 ucrt)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -199,8 +199,8 @@
     "SystemRequirements": null
   },
   "isPartOf": "https://ropensci.org",
-  "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata"],
-  "fileSize": "850.583KB",
+  "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata", "r", "r-package", "citation-file-format", "rstats", "ropensci", "cran"],
+  "fileSize": "869.075KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -231,6 +231,7 @@
     }
   ],
   "releaseNotes": "https://github.com/ropensci/cffr/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/cffr/blob/main/README.md",
   "contIntegration": ["https://github.com/ropensci/cffr/actions/workflows/check-full.yaml", "https://app.codecov.io/gh/ropensci/cffr", "https://github.com/ropensci/cffr/actions/workflows/cff-validator.yml"],
   "developmentStatus": ["https://www.repostatus.org/#active", "https://lifecycle.r-lib.org/articles/stages.html#experimental"],
   "review": {
