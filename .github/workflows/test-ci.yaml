@@ -30,6 +30,7 @@ jobs:
       - uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
+          install-r: true
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
@@ -107,7 +108,7 @@ jobs:
           )
 
           # Update binary
-          update.packages(type = "binary")
+          # update.packages(type = "binary")
 
         shell: Rscript {0}
 
@@ -123,19 +124,9 @@ jobs:
 
         shell: Rscript {0}
 
-      - name: Display results
+        # Report on success
+      - name: Report success
+        shell: bash
         run: |
-          cat(paste(
-            readLines("tests/testthat/test_ci/_snaps/full_cff.md"),
-            collapse = "\n"
-          ))
-
-        shell: Rscript {0}
-
-     # Upload artifact
-      - uses: actions/upload-artifact@v2
-        with:
-          name: test-ci-${{ runner.os }}
-          path: |
-            tests/testthat/test_ci/_snaps/full_cff.md
-            tests/testthat/test_ci/allpackages.csv
+          # OK :)
+          cat ./tests/testthat/test_ci/_snaps/full_cff.md >$GITHUB_STEP_SUMMARY
