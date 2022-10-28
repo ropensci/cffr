@@ -102,7 +102,7 @@ jobs:
             CRAN = "https://cloud.r-project.org"
           ))
 
-          message("Installing packages:", toinstall)
+          message("Installing ", length(toinstall)," packages: ", paste0(toinstall, collapse = ","))
 
           install.packages(toinstall,
             dependencies = TRUE,
