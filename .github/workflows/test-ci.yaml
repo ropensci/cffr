@@ -98,13 +98,15 @@ jobs:
           options(repos = c(
             ropensci = "https://ropensci.r-universe.dev",
             ropenscireviewtools = "https://ropensci-review-tools.r-universe.dev",
+            RSPM = REPO_NAME = "https://packagemanager.rstudio.com/all/latest",
             CRAN = "https://cloud.r-project.org"
           ))
 
+          cat("Installing packages:", toinstall)
+
           install.packages(toinstall,
             dependencies = TRUE,
-            verbose = TRUE, quiet = TRUE,
-            type = "binary"
+            verbose = TRUE, quiet = TRUE
           )
 
           # Update binary
