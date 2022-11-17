@@ -39,11 +39,12 @@ cff_gha_update <- function(path = ".",
 
   if (!file.exists(newfile) || isTRUE(overwrite)) {
     message(crayon::blue("Installing update-citation-cff.yaml"))
-    file.copy(system.file("yaml/update-citation-cff.yaml",
-      package = "cffr"
-    ),
-    newfile,
-    overwrite = TRUE
+    file.copy(
+      system.file("yaml/update-citation-cff.yaml",
+        package = "cffr"
+      ),
+      newfile,
+      overwrite = TRUE
     )
   } else {
     message(crayon::blue(

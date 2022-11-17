@@ -80,7 +80,6 @@ cff_git_hook_install <- function() {
 #' @rdname cff_git_hook
 #' @export
 cff_git_hook_remove <- function() {
-
   # nocov start
   hookfile <- file.path(".git", "hooks", "pre-commit")
 

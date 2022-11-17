@@ -11,7 +11,6 @@ test_that("Test citations with installed packages", {
 })
 
 test_that("Test full with CITATION and (option = author)", {
-
   # Needs an installed package
   desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
   cit_path <- system.file("examples/CITATION_auto", package = "cffr")
@@ -30,7 +29,6 @@ test_that("Test full with CITATION and (option = author)", {
 
 
 test_that("Parsed several citations", {
-
   # Needs an installed package
   desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
   cit_path <- system.file("examples/CITATION_auto", package = "cffr")

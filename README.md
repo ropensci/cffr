@@ -71,9 +71,8 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2022-09-29 there are at least 213 repos on GitHub using **cffr**.
-[Check them out
-here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
+See [some projects already using
+**cffr**](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
 ### Installation
 
@@ -93,6 +92,7 @@ Alternatively, you can install **cffr** using the
 [r-universe](https://ropensci.r-universe.dev/ui#builds):
 
 ``` r
+
 # Enable this universe
 options(repos = c(
   ropensci = "https://ropensci.r-universe.dev",
@@ -110,6 +110,7 @@ By default most often from within your package folder you’ll simply run
 file and validates it on a single command:
 
 ``` r
+
 library(cffr)
 
 # For in-development packages
@@ -146,7 +147,7 @@ test <- cff_create("rmarkdown")
     type: software
     license: GPL-3.0-only
     title: 'rmarkdown: Dynamic Documents for R'
-    version: '2.16'
+    version: '2.18'
     abstract: Convert R Markdown documents into a variety of formats.
     authors:
     - family-names: Allaire
@@ -218,24 +219,17 @@ test <- cff_create("rmarkdown")
         email: rich@rstudio.com
         orcid: https://orcid.org/0000-0003-3925-190X
       year: '2022'
-      notes: R package version 2.16
+      notes: R package version 2.18
       url: https://github.com/rstudio/rmarkdown
     repository: https://CRAN.R-project.org/package=rmarkdown
     repository-code: https://github.com/rstudio/rmarkdown
     url: https://pkgs.rstudio.com/rmarkdown/
-    date-released: '2022-08-24'
+    date-released: '2022-11-09'
     contact:
     - family-names: Xie
       given-names: Yihui
       email: xie@yihui.name
       orcid: https://orcid.org/0000-0003-0645-5666
-    keywords:
-    - literate-programming
-    - markdown
-    - pandoc
-    - r
-    - r-package
-    - rmarkdown
     references:
     - type: book
       title: 'R Markdown: The Definitive Guide'
@@ -270,12 +264,12 @@ test <- cff_create("rmarkdown")
     - type: software
       title: 'R: A Language and Environment for Statistical Computing'
       notes: Depends
+      url: https://www.R-project.org/
       authors:
       - name: R Core Team
       location:
         name: Vienna, Austria
       year: '2022'
-      url: https://www.R-project.org/
       institution:
         name: R Foundation for Statistical Computing
       version: '>= 3.0'
@@ -283,6 +277,8 @@ test <- cff_create("rmarkdown")
       title: bslib
       abstract: 'bslib: Custom ''Bootstrap'' ''Sass'' Themes for ''shiny'' and ''rmarkdown'''
       notes: Imports
+      url: https://rstudio.github.io/bslib/
+      repository: https://CRAN.R-project.org/package=bslib
       authors:
       - family-names: Sievert
         given-names: Carson
@@ -292,13 +288,14 @@ test <- cff_create("rmarkdown")
         given-names: Joe
         email: joe@rstudio.com
       year: '2022'
-      url: https://CRAN.R-project.org/package=bslib
       version: '>= 0.2.5.1'
     - type: software
       title: evaluate
       abstract: 'evaluate: Parsing and Evaluation Tools that Provide More Details than
         the Default'
       notes: Imports
+      url: https://github.com/r-lib/evaluate
+      repository: https://CRAN.R-project.org/package=evaluate
       authors:
       - family-names: Wickham
         given-names: Hadley
@@ -307,12 +304,13 @@ test <- cff_create("rmarkdown")
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
       year: '2022'
-      url: https://CRAN.R-project.org/package=evaluate
       version: '>= 0.13'
     - type: software
       title: htmltools
       abstract: 'htmltools: Tools for HTML'
       notes: Imports
+      url: https://github.com/rstudio/htmltools
+      repository: https://CRAN.R-project.org/package=htmltools
       authors:
       - family-names: Cheng
         given-names: Joe
@@ -336,12 +334,12 @@ test <- cff_create("rmarkdown")
         given-names: Jeff
         email: jeff@rstudio.com
       year: '2022'
-      url: https://CRAN.R-project.org/package=htmltools
       version: '>= 0.5.1'
     - type: software
       title: jquerylib
       abstract: 'jquerylib: Obtain ''jQuery'' as an HTML Dependency Object'
       notes: Imports
+      repository: https://CRAN.R-project.org/package=jquerylib
       authors:
       - family-names: Sievert
         given-names: Carson
@@ -351,29 +349,30 @@ test <- cff_create("rmarkdown")
         given-names: Joe
         email: joe@rstudio.com
       year: '2022'
-      url: https://CRAN.R-project.org/package=jquerylib
     - type: software
       title: jsonlite
       abstract: 'jsonlite: A Simple and Robust JSON Parser and Generator for R'
       notes: Imports
+      url: https://arxiv.org/abs/1403.2805
+      repository: https://CRAN.R-project.org/package=jsonlite
       authors:
       - family-names: Ooms
         given-names: Jeroen
         email: jeroen@berkeley.edu
         orcid: https://orcid.org/0000-0002-4035-0289
       year: '2022'
-      url: https://CRAN.R-project.org/package=jsonlite
     - type: software
       title: knitr
       abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
       notes: Imports
+      url: https://yihui.org/knitr/
+      repository: https://CRAN.R-project.org/package=knitr
       authors:
       - family-names: Xie
         given-names: Yihui
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
       year: '2022'
-      url: https://CRAN.R-project.org/package=knitr
       version: '>= 1.22'
     - type: software
       title: methods
@@ -384,32 +383,33 @@ test <- cff_create("rmarkdown")
       location:
         name: Vienna, Austria
       year: '2022'
-      url: https://www.R-project.org/
       institution:
         name: R Foundation for Statistical Computing
     - type: software
       title: stringr
       abstract: 'stringr: Simple, Consistent Wrappers for Common String Operations'
       notes: Imports
+      url: https://stringr.tidyverse.org
+      repository: https://CRAN.R-project.org/package=stringr
       authors:
       - family-names: Wickham
         given-names: Hadley
         email: hadley@rstudio.com
       year: '2022'
-      url: https://CRAN.R-project.org/package=stringr
       version: '>= 1.2.0'
     - type: software
       title: tinytex
       abstract: 'tinytex: Helper Functions to Install and Maintain TeX Live, and Compile
         LaTeX Documents'
       notes: Imports
+      url: https://github.com/rstudio/tinytex
+      repository: https://CRAN.R-project.org/package=tinytex
       authors:
       - family-names: Xie
         given-names: Yihui
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
       year: '2022'
-      url: https://CRAN.R-project.org/package=tinytex
       version: '>= 0.31'
     - type: software
       title: tools
@@ -420,7 +420,6 @@ test <- cff_create("rmarkdown")
       location:
         name: Vienna, Austria
       year: '2022'
-      url: https://www.R-project.org/
       institution:
         name: R Foundation for Statistical Computing
     - type: software
@@ -432,25 +431,27 @@ test <- cff_create("rmarkdown")
       location:
         name: Vienna, Austria
       year: '2022'
-      url: https://www.R-project.org/
       institution:
         name: R Foundation for Statistical Computing
     - type: software
       title: xfun
       abstract: 'xfun: Supporting Functions for Packages Maintained by ''Yihui Xie'''
       notes: Imports
+      url: https://github.com/yihui/xfun
+      repository: https://CRAN.R-project.org/package=xfun
       authors:
       - family-names: Xie
         given-names: Yihui
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
       year: '2022'
-      url: https://CRAN.R-project.org/package=xfun
       version: '>= 0.30'
     - type: software
       title: yaml
       abstract: 'yaml: Methods to Convert R Data to YAML and Back'
       notes: Imports
+      url: https://github.com/vubiostat/r-yaml/
+      repository: https://CRAN.R-project.org/package=yaml
       authors:
       - family-names: Garbett
         given-names: Shawn P
@@ -478,12 +479,13 @@ test <- cff_create("rmarkdown")
       - family-names: Kamvar
         given-names: Zhian N.
       year: '2022'
-      url: https://CRAN.R-project.org/package=yaml
       version: '>= 2.1.19'
     - type: software
       title: digest
       abstract: 'digest: Create Compact Hash Digests of R Objects'
       notes: Suggests
+      url: http://dirk.eddelbuettel.com/code/digest.html
+      repository: https://CRAN.R-project.org/package=digest
       authors:
       - family-names: Lucas
         given-names: Dirk Eddelbuettel with contributions by Antoine
@@ -533,29 +535,12 @@ test <- cff_create("rmarkdown")
       - family-names: Chang.
         given-names: and Winston
       year: '2022'
-      url: https://CRAN.R-project.org/package=digest
-    - type: software
-      title: dygraphs
-      abstract: 'dygraphs: Interface to ''Dygraphs'' Interactive Time Series Charting
-        Library'
-      notes: Suggests
-      authors:
-      - family-names: Vanderkam
-        given-names: Dan
-      - family-names: Allaire
-        given-names: JJ
-      - family-names: Owen
-        given-names: Jonathan
-      - family-names: Gromer
-        given-names: Daniel
-      - family-names: Thieurmel
-        given-names: Benoit
-      year: '2022'
-      url: https://CRAN.R-project.org/package=dygraphs
     - type: software
       title: fs
       abstract: 'fs: Cross-Platform File System Operations Based on ''libuv'''
       notes: Suggests
+      url: https://fs.r-lib.org
+      repository: https://CRAN.R-project.org/package=fs
       authors:
       - family-names: Hester
         given-names: Jim
@@ -566,49 +551,24 @@ test <- cff_create("rmarkdown")
         given-names: Gábor
         email: csardi.gabor@gmail.com
       year: '2022'
-      url: https://CRAN.R-project.org/package=fs
-    - type: software
-      title: rsconnect
-      abstract: 'rsconnect: Deployment Interface for R Markdown Documents and Shiny Applications'
-      notes: Suggests
-      authors:
-      - family-names: Atkins
-        given-names: Aron
-        email: aron@rstudio.com
-      - family-names: McPherson
-        given-names: Jonathan
-        email: jonathan@rstudio.com
-      - family-names: Allaire
-        given-names: JJ
-      year: '2022'
-      url: https://CRAN.R-project.org/package=rsconnect
     - type: software
       title: downlit
       abstract: 'downlit: Syntax Highlighting and Automatic Linking'
       notes: Suggests
+      url: https://downlit.r-lib.org/
+      repository: https://CRAN.R-project.org/package=downlit
       authors:
       - family-names: Wickham
         given-names: Hadley
         email: hadley@rstudio.com
       year: '2022'
-      url: https://CRAN.R-project.org/package=downlit
       version: '>= 0.4.0'
-    - type: software
-      title: katex
-      abstract: 'katex: Rendering Math to HTML, ''MathML'', or R-Documentation Format'
-      notes: Suggests
-      authors:
-      - family-names: Ooms
-        given-names: Jeroen
-        email: jeroen@berkeley.edu
-        orcid: https://orcid.org/0000-0002-4035-0289
-      year: '2022'
-      url: https://CRAN.R-project.org/package=katex
-      version: '>= 1.4.0'
     - type: software
       title: sass
       abstract: 'sass: Syntactically Awesome Style Sheets (''Sass'')'
       notes: Suggests
+      url: https://rstudio.github.io/sass/
+      repository: https://CRAN.R-project.org/package=sass
       authors:
       - family-names: Cheng
         given-names: Joe
@@ -629,12 +589,13 @@ test <- cff_create("rmarkdown")
         email: carson@rstudio.com
         orcid: https://orcid.org/0000-0002-4958-2844
       year: '2022'
-      url: https://CRAN.R-project.org/package=sass
       version: '>= 0.4.0'
     - type: software
       title: shiny
       abstract: 'shiny: Web Application Framework for R'
       notes: Suggests
+      url: https://shiny.rstudio.com/
+      repository: https://CRAN.R-project.org/package=shiny
       authors:
       - family-names: Chang
         given-names: Winston
@@ -668,23 +629,25 @@ test <- cff_create("rmarkdown")
       - family-names: Borges
         given-names: Barbara
       year: '2022'
-      url: https://CRAN.R-project.org/package=shiny
       version: '>= 1.6.0'
     - type: software
       title: testthat
       abstract: 'testthat: Unit Testing for R'
       notes: Suggests
+      url: https://testthat.r-lib.org
+      repository: https://CRAN.R-project.org/package=testthat
       authors:
       - family-names: Wickham
         given-names: Hadley
         email: hadley@rstudio.com
       year: '2022'
-      url: https://CRAN.R-project.org/package=testthat
       version: '>= 3.0.3'
     - type: software
       title: tibble
       abstract: 'tibble: Simple Data Frames'
       notes: Suggests
+      url: https://tibble.tidyverse.org/
+      repository: https://CRAN.R-project.org/package=tibble
       authors:
       - family-names: Müller
         given-names: Kirill
@@ -693,24 +656,12 @@ test <- cff_create("rmarkdown")
         given-names: Hadley
         email: hadley@rstudio.com
       year: '2022'
-      url: https://CRAN.R-project.org/package=tibble
-    - type: software
-      title: tufte
-      abstract: 'tufte: Tufte''s Styles for R Markdown Documents'
-      notes: Suggests
-      authors:
-      - family-names: Xie
-        given-names: Yihui
-        email: xie@yihui.name
-        orcid: https://orcid.org/0000-0003-0645-5666
-      - family-names: Allaire
-        given-names: JJ
-      year: '2022'
-      url: https://CRAN.R-project.org/package=tufte
     - type: software
       title: vctrs
       abstract: 'vctrs: Vector Helpers'
       notes: Suggests
+      url: https://vctrs.r-lib.org/
+      repository: https://CRAN.R-project.org/package=vctrs
       authors:
       - family-names: Wickham
         given-names: Hadley
@@ -722,11 +673,12 @@ test <- cff_create("rmarkdown")
         given-names: Davis
         email: davis@rstudio.com
       year: '2022'
-      url: https://CRAN.R-project.org/package=vctrs
     - type: software
       title: withr
       abstract: 'withr: Run Code ''With'' Temporarily Modified Global State'
       notes: Suggests
+      url: https://withr.r-lib.org
+      repository: https://CRAN.R-project.org/package=withr
       authors:
       - family-names: Hester
         given-names: Jim
@@ -745,7 +697,6 @@ test <- cff_create("rmarkdown")
       - family-names: Chang
         given-names: Winston
       year: '2022'
-      url: https://CRAN.R-project.org/package=withr
       version: '>= 2.4.2'
 
 </details>
@@ -754,6 +705,7 @@ test <- cff_create("rmarkdown")
 We can validate the result using `cff_validate()`:
 
 ``` r
+
 cff_validate(test)
 #> 
 #> cff_validate results-----
@@ -773,9 +725,9 @@ GitHub Actions. Use `cff_gha_update()`function to install a GitHub
 Action that would update your `CITATION.cff` file on the following
 events:
 
--   When you publish a new release of the package on your GitHub repo.
--   Each time that you modify your DESCRIPTION or inst/CITATION files.
--   The action can be run also manually.
+- When you publish a new release of the package on your GitHub repo.
+- Each time that you modify your DESCRIPTION or inst/CITATION files.
+- The action can be run also manually.
 
 ``` r
 cff_gha_update()
@@ -807,23 +759,23 @@ make sure you have the **testthat** package installed.
 
 Check the following articles to learn more about **cffr**:
 
--   [cffr: Create a CITATION.cff File for your R
-    Package](https://ropensci.org/blog/2021/11/23/cffr/)
--   [How I Test cffr on (about) 2,000 Packages using GitHub Actions and
-    R-universe](https://ropensci.org/blog/2021/11/23/how-i-test-cffr/)
+- [cffr: Create a CITATION.cff File for your R
+  Package](https://ropensci.org/blog/2021/11/23/cffr/)
+- [How I Test cffr on (about) 2,000 Packages using GitHub Actions and
+  R-universe](https://ropensci.org/blog/2021/11/23/how-i-test-cffr/)
 
 ## Related packages
 
--   **citation** ([Dietrich and Leoncio 2022](#ref-citation22)) includes
-    a function `r2cff` that creates a `CITATION.cff` file (v1.1.0) using
-    the information of your `DESCRIPTION` file. It also provide minimal
-    validity checks.
--   **handlr** ([Chamberlain 2022](#ref-handlr)): Tool for converting
-    among citation formats, including `*.cff` files.
--   **codemeta** ([Boettiger and Salmon 2021a](#ref-codemeta)) /
-    **codemetar** ([Boettiger and Salmon 2021b](#ref-codemetar2021))
-    provides similar solutions for creating `codemeta.json` file,
-    another format for storing and sharing software metadata.
+- **citation** ([Dietrich and Leoncio 2022](#ref-citation22)) includes a
+  function `r2cff` that creates a `CITATION.cff` file (v1.1.0) using the
+  information of your `DESCRIPTION` file. It also provide minimal
+  validity checks.
+- **handlr** ([Chamberlain 2022](#ref-handlr)): Tool for converting
+  among citation formats, including `*.cff` files.
+- **codemeta** ([Boettiger and Salmon 2021a](#ref-codemeta)) /
+  **codemetar** ([Boettiger and Salmon 2021b](#ref-codemetar2021))
+  provides similar solutions for creating `codemeta.json` file, another
+  format for storing and sharing software metadata.
 
 ## Citation
 

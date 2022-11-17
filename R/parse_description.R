@@ -294,26 +294,11 @@ parse_ghtopics <- function(x) {
   # nocov start
 
   # Try with GHTOKEN
-  res <- tryCatch(download.file(api_url,
-    tmpfile,
-    quiet = TRUE,
-    headers = c(Authorization = ghtoken)
-  ),
-  warning = function(e) {
-    return(TRUE)
-  },
-  error = function(e) {
-    return(TRUE)
-  }
-  )
-
-  # If it fails try with normal call
-  if (isTRUE(res)) {
-
-    # Regular call
-    res <- tryCatch(download.file(api_url,
+  res <- tryCatch(
+    download.file(api_url,
       tmpfile,
-      quiet = TRUE
+      quiet = TRUE,
+      headers = c(Authorization = ghtoken)
     ),
     warning = function(e) {
       return(TRUE)
@@ -321,6 +306,22 @@ parse_ghtopics <- function(x) {
     error = function(e) {
       return(TRUE)
     }
+  )
+
+  # If it fails try with normal call
+  if (isTRUE(res)) {
+    # Regular call
+    res <- tryCatch(
+      download.file(api_url,
+        tmpfile,
+        quiet = TRUE
+      ),
+      warning = function(e) {
+        return(TRUE)
+      },
+      error = function(e) {
+        return(TRUE)
+      }
     )
   }
 

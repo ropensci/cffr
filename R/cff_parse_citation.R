@@ -358,7 +358,6 @@ parse_bibtex_fields <- function(parse_cit) {
 #' Modify mapping of some org. fields on BibTeX to CFF
 #' @noRd
 parse_bibtex_person_models <- function(parsed_fields) {
-
   # Manual
   if (parsed_fields$bibtex_entry == "manual") {
     parsed_fields$institution <- parsed_fields$organization
@@ -385,8 +384,6 @@ parse_bibtex_person_models <- function(parsed_fields) {
 #' Adapt cff keys to bibtex entries
 #' @noRd
 parse_bibtex_fields_models <- function(parse_cit) {
-
-
   # thesis type ----
   if (parse_cit$bibtex_entry %in% c("phdthesis", "mastersthesis")) {
     parse_cit$`thesis-type` <- switch(parse_cit$bibtex_entry,
@@ -398,7 +395,6 @@ parse_bibtex_fields_models <- function(parse_cit) {
   # address----
 
   if (!is.null(parse_cit$location)) {
-
     # Usually the address of the publisher as per BibTeX
     if (!is.null(parse_cit$publisher) &&
       !(parse_cit$bibtex_entry %in% c(

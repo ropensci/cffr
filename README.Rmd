@@ -93,17 +93,18 @@ ghtoken <- paste("token", token)
 tmpfile <- tempfile(fileext = ".json")
 # Get numbers of repos
 api_url <- "https://api.github.com/search/code?q=cffr+extension:cff+filename:CITATION"
-res <- tryCatch(download.file(api_url,
-  tmpfile,
-  quiet = TRUE,
-  headers = c(Authorization = ghtoken)
-),
-warning = function(e) {
-  return(TRUE)
-},
-error = function(e) {
-  return(TRUE)
-}
+res <- tryCatch(
+  download.file(api_url,
+    tmpfile,
+    quiet = TRUE,
+    headers = c(Authorization = ghtoken)
+  ),
+  warning = function(e) {
+    return(TRUE)
+  },
+  error = function(e) {
+    return(TRUE)
+  }
 )
 # If not successful
 if (isTRUE(res)) {

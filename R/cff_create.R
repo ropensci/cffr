@@ -121,7 +121,6 @@ cff_create <- function(x,
 
   # Paths
   if (is.cff(x)) {
-
     # It is already an object
     cffobj <- x
     cffobj["cff-version"] <- cff_version
@@ -208,7 +207,6 @@ cff_create <- function(x,
 #' Merge the information of a parsed description with a parsed citation
 #' @noRd
 merge_desc_cit <- function(cffobj, citobj) {
-
   # If no citobj then return null
 
   if (is.null(citobj)) {
@@ -248,7 +246,6 @@ merge_desc_cit <- function(cffobj, citobj) {
 #' Enhance authors info from preferred-citation using metadata from DESCRIPTION
 #' @noRd
 enhance_pref_authors <- function(cffobjend) {
-
   # Create index of authors extracted from DESCRIPTION (First cff level)
   auth_desc <- cffobjend$authors
   key_aut_desc <- lapply(auth_desc, function(x) {
@@ -354,6 +351,15 @@ parse_dependencies <- function(desc_path,
       NULL,
       paste(n$version_clean)
     )
+    # Get url and repo from package DESCRIPTION
+    # urls from citation() vary due to auto = TRUE
+    dfile <- system.file("DESCRIPTION", package = n$package)
+
+    if (file.exists(dfile)) {
+      pkg <- desc::desc(dfile)
+      mod$url <- parse_desc_urls(pkg)$url
+      mod$repository <- parse_desc_repository(pkg)
+    }
 
     mod <- drop_null(mod)
 
@@ -374,12 +380,14 @@ parse_dependencies <- function(desc_path,
       mod[c(
         "type",
         "title", "abstract",
-        "notes"
+        "notes",
+        "url", "repository"
       )],
       mod[!names(mod) %in% c(
         "type",
         "title", "abstract",
-        "notes"
+        "notes",
+        "url", "repository"
       )]
     )
 

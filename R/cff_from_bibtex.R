@@ -57,7 +57,6 @@
 #'   cff_from_bibtex(x2)
 #' }
 cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
-
   # nocov start
   if (!requireNamespace("bibtex", quietly = TRUE)) {
     stop("bibtex package required for using this function")
@@ -75,7 +74,6 @@ cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
     # Read bib file
     file <- x
   } else {
-
     # Write x to a tempfile
     file <- tempfile(fileext = ".bib")
     writeLines(x, file)

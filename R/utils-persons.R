@@ -1,5 +1,4 @@
 bibtex_pers_von_last_first_jr <- function(x) {
-
   # Protect commas on brackets to avoid error on splitting
   protected <- gsub(",(?![^\\}]*(\\{|$))", "@comma@",
     x,
@@ -166,7 +165,6 @@ bibtex_pers_von_last_first <- function(x) {
 
 
 bibtex_pers_first_von_last <- function(x) {
-
   # Based on Tame the BeaST
   # http://tug.ctan.org/info/bibtex/tamethebeast/ttb_en.pdf
   # Testing
@@ -263,7 +261,6 @@ bibtex_pers_first_von_last <- function(x) {
 }
 
 as_person_bibtex <- function(x) {
-
   # Identify the pattern
   # It may be one of:
   # A. Given von Family

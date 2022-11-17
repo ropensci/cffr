@@ -25,7 +25,6 @@ test_that("Check is.email", {
 
 
 test_that("Check is.url", {
-
   # Valid urls
   expect_true(
     all(

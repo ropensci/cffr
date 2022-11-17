@@ -250,10 +250,11 @@ there are some degree of flexibility on the requirement of the field, see
 
 ```{r entry_fields1, echo=FALSE}
 
-bibtex_field_entry <- read.csv(system.file("extdata/bibtex_field_entry.csv",
-  package = "cffr"
-),
-sep = ","
+bibtex_field_entry <- read.csv(
+  system.file("extdata/bibtex_field_entry.csv",
+    package = "cffr"
+  ),
+  sep = ","
 )
 
 t1 <- bibtex_field_entry[, c(1:7)]

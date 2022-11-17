@@ -49,46 +49,6 @@ parse_package_meta <- function(desc_path) {
   meta
 }
 
-# DEPRECATED
-# Used for creating an auto preferred-citation from an
-# cff object if not present
-# It mocks citation(auto = meta) of base R
-# parse_preferred_auto <- function(cffobjend) {
-#   valid <- cff_schema_definitions_refs()
-#
-#   pref <- cffobjend[names(cffobjend) %in%
-#     valid]
-#
-#   pref$type <- "manual"
-#
-#   # Handle year
-#
-#   date_rel <- pref[["date-released"]]
-#
-#   if (is.null(date_rel)) {
-#     year <- format(Sys.Date(), "%Y")
-#   } else {
-#     year <- format(as.Date(pref[["date-released"]]), "%Y")
-#   }
-#
-#   pref$year <- year
-#   pref$notes <- NULL
-#   if (!is.null(pref$version)) {
-#     pref$notes <- paste("R package version", pref$version)
-#   }
-#   # If it has a repository (CRAN) use that as url
-#   if (!is.null(pref$repository)) pref$url <- pref$repository
-#
-#   # Order and output
-#   ordernames <- c(
-#     "type", "title", "authors", "year",
-#     "notes", "url"
-#   )
-#   pref <- pref[ordernames]
-#   pref <- as.cff(pref)
-#
-#   pref
-# }
 ## Building blocks ----
 
 #' BB for doi
