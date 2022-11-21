@@ -22,6 +22,7 @@ jobs:
           cache-version: 2
           extra-packages: |
             local::.
+            any::rmarkdown
             any::rcmdcheck
             dieghernan/pkgdev
 
