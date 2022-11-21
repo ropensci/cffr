@@ -28,6 +28,7 @@ jobs:
 
       - name: Update docs
         run: |
+          install.packages("rmarkdown", dependencies = TRUE)
           pkgdev::update_docs()
         shell: Rscript {0}
 
