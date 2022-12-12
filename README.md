@@ -71,7 +71,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2022-11-21 there are at least 219 repos on GitHub using **cffr**.
+As per 2022-12-12 there are at least 223 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
@@ -317,7 +317,7 @@ test <- cff_create("rmarkdown")
       title: htmltools
       abstract: 'htmltools: Tools for HTML'
       notes: Imports
-      url: https://github.com/rstudio/htmltools
+      url: https://rstudio.github.io/htmltools/
       repository: https://CRAN.R-project.org/package=htmltools
       authors:
       - family-names: Cheng
