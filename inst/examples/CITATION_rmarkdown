@@ -1,7 +1,6 @@
 citHeader("To cite the 'rmarkdown' package in publications, please use:")
 
-year = sub('.*(2[[:digit:]]{3})-.*', '\\1', meta$Date, perl = TRUE)
-if (length(year) == 0) year = format(Sys.Date(), '%Y')
+year = '2022'
 vers = paste('R package version', meta$Version)
 auth = format(Filter(function(p) 'aut' %in% p$role, as.person(meta$Author)), c('given', 'family'))
 
