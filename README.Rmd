@@ -142,7 +142,6 @@ Alternatively, you can install **cffr** using the
 [r-universe](https://ropensci.r-universe.dev/ui#builds):
 
 ```{r, eval=FALSE}
-
 # Enable this universe
 options(repos = c(
   ropensci = "https://ropensci.r-universe.dev",
@@ -160,7 +159,6 @@ By default most often from within your package folder you'll simply run
 and validates it on a single command:
 
 ```{r, eval=FALSE}
-
 library(cffr)
 
 # For in-development packages
@@ -191,7 +189,6 @@ test <- cff_create("rmarkdown")
 </summary>
 
 ```{r, echo=FALSE, comment=""}
-
 test
 ```
 
@@ -202,7 +199,6 @@ test
 We can validate the result using `cff_validate()`:
 
 ```{r }
-
 cff_validate(test)
 ```
 

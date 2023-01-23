@@ -71,7 +71,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2023-01-05 there are at least 203 repos on GitHub using **cffr**.
+As per 2023-01-23 there are at least 130 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
@@ -93,7 +93,6 @@ Alternatively, you can install **cffr** using the
 [r-universe](https://ropensci.r-universe.dev/ui#builds):
 
 ``` r
-
 # Enable this universe
 options(repos = c(
   ropensci = "https://ropensci.r-universe.dev",
@@ -111,7 +110,6 @@ By default most often from within your package folder you’ll simply run
 file and validates it on a single command:
 
 ``` r
-
 library(cffr)
 
 # For in-development packages
@@ -148,7 +146,7 @@ test <- cff_create("rmarkdown")
     type: software
     license: GPL-3.0-only
     title: 'rmarkdown: Dynamic Documents for R'
-    version: '2.19'
+    version: '2.20'
     abstract: Convert R Markdown documents into a variety of formats.
     authors:
     - family-names: Allaire
@@ -219,13 +217,13 @@ test <- cff_create("rmarkdown")
         given-names: Richard
         email: rich@rstudio.com
         orcid: https://orcid.org/0000-0003-3925-190X
-      year: '2022'
-      notes: R package version 2.19
+      year: '2023'
+      notes: R package version 2.20
       url: https://github.com/rstudio/rmarkdown
     repository: https://CRAN.R-project.org/package=rmarkdown
     repository-code: https://github.com/rstudio/rmarkdown
     url: https://pkgs.rstudio.com/rmarkdown/
-    date-released: '2022-12-15'
+    date-released: '2023-01-19'
     contact:
     - family-names: Xie
       given-names: Yihui
@@ -453,7 +451,7 @@ test <- cff_create("rmarkdown")
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
       year: '2023'
-      version: '>= 0.30'
+      version: '>= 0.36'
     - type: software
       title: yaml
       abstract: 'yaml: Methods to Convert R Data to YAML and Back'
@@ -587,10 +585,10 @@ test <- cff_create("rmarkdown")
       authors:
       - family-names: Atkins
         given-names: Aron
-        email: aron@rstudio.com
+        email: aron@posit.co
       - family-names: McPherson
         given-names: Jonathan
-        email: jonathan@rstudio.com
+        email: jonathan@posit.co
       - family-names: Allaire
         given-names: JJ
       year: '2023'
@@ -713,20 +711,6 @@ test <- cff_create("rmarkdown")
         email: hadley@rstudio.com
       year: '2023'
     - type: software
-      title: tufte
-      abstract: 'tufte: Tufte''s Styles for R Markdown Documents'
-      notes: Suggests
-      url: https://github.com/rstudio/tufte
-      repository: https://CRAN.R-project.org/package=tufte
-      authors:
-      - family-names: Xie
-        given-names: Yihui
-        email: xie@yihui.name
-        orcid: https://orcid.org/0000-0003-0645-5666
-      - family-names: Allaire
-        given-names: JJ
-      year: '2023'
-    - type: software
       title: vctrs
       abstract: 'vctrs: Vector Helpers'
       notes: Suggests
@@ -775,7 +759,6 @@ test <- cff_create("rmarkdown")
 We can validate the result using `cff_validate()`:
 
 ``` r
-
 cff_validate(test)
 #> 
 #> cff_validate results-----

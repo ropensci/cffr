@@ -91,7 +91,6 @@ On **R** [@R_2021], we can replicate this structure using the `bibentry()` and
 `toBibtex()` functions:
 
 ```{r bibentry, comment="#>"}
-
 entry <- bibentry("book",
   key = "einstein1921",
   title = "Relativity: The Special and the General Theory",
@@ -111,7 +110,6 @@ The final results of the entry as a text string would be parsed as[^1]:
     format [@rmarkdowncookbook2020]
 
 ```{r echo=FALSE, results='asis'}
-
 entry
 ```
 
@@ -120,7 +118,6 @@ Additionally, **cffr** [@hernangomez2021] incorporates a function
 different formats:
 
 ```{r cffbibread,comment="#>"}
-
 string <- "@book{einstein1921,
     title        = {Relativity: The Special and the General Theory},
     author       = {Einstein, A.},
@@ -249,7 +246,6 @@ there are some degree of flexibility on the requirement of the field, see
 @patashnik1988 for more information.
 
 ```{r entry_fields1, echo=FALSE}
-
 bibtex_field_entry <- read.csv(
   system.file("extdata/bibtex_field_entry.csv",
     package = "cffr"
@@ -545,7 +541,6 @@ The crosswalk of **\@article** does not require any special treatment.
 [*CFF entry*]{.underline}
 
 ```{r echo=FALSE}
-
 bib <- "@article{article-full,
     title        = {The Gnats and Gnus Document Preparation System},
     author       = {Leslie A. Aamport},
@@ -650,7 +645,6 @@ Another specificity is that **series** field is mapped to
 [*CFF entry*]{.underline}
 
 ```{r echo=FALSE}
-
 bib <- "@book{book-full,
     title        = {Seminumerical Algorithms},
     author       = {Donald E. Knuth},
@@ -698,7 +692,6 @@ toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
 [*CFF entry*]{.underline}
 
 ```{r echo=FALSE,}
-
 bib <- "@inbook{inbook-full,
     title        = {Fundamental Algorithms},
     author       = {Donald E. Knuth},
@@ -782,7 +775,6 @@ In **\@booklet** **address** is mapped to [location]{.underline}.
 [*CFF entry*]{.underline}
 
 ```{r echo=FALSE, }
-
 bib <- "@booklet{booklet-full,
     title        = {The Programming of Computer Art},
     author       = {Jill C. Knvth},
@@ -879,7 +871,6 @@ as BibTeX does not prescribe the use of **institution** on these entries.
 [*CFF entry*]{.underline}
 
 ```{r echo=FALSE,}
-
 bib <- "@inproceedings{inproceedings-full,
     title        = {On Notions of Information Transfer in {VLSI} Circuits},
     author       = {Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis},
@@ -986,7 +977,6 @@ generic]{.underline} with a [collection-title]{.underline} key.
 [*CFF entry*]{.underline}
 
 ```{r echo=FALSE,}
-
 bib <- "@incollection{incollection-full,
     title        = {Semigroups of Recurrences},
     author       = {Daniel D. Lincoll},
@@ -1068,7 +1058,6 @@ required on CFF, so it is not parsed to avoid validation errors.
 [*CFF entry*]{.underline}
 
 ```{r echo=FALSE,}
-
 bib <- "@manual{manual-full,
   title        = {The Definitive Computer Manual},
     author       = {Larry Manmaker},
@@ -1157,7 +1146,6 @@ recognized as **\@phdthesis**.
 [*CFF entry*]{.underline}
 
 ```{r echo=FALSE}
-
 bib <- "@mastersthesis{mastersthesis-full,
     title        = {Mastering Thesis Writing},
     author       = {Edouard Masterly},
@@ -1198,7 +1186,6 @@ toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
 [*CFF entry*]{.underline}
 
 ```{r echo=FALSE,}
-
 bib <- "@phdthesis{phdthesis-full,
     title        = {Fighting Fire with Fire: Festooning {F}rench Phrases},
     author       = {F. Phidias Phony-Baloney},
@@ -1268,7 +1255,6 @@ should cover both **\@misc** and **\@incollection** without problems.
 [*CFF entry*]{.underline}
 
 ```{r echo=FALSE,}
-
 bib <- "@misc{misc-full,
     title        = {Handing out random pamphlets in airports},
     author       = {Joe-Bob Missilany},
@@ -1357,7 +1343,6 @@ converting to CFF and omit it on the conversion back to CFF.
 [*CFF entry*]{.underline}
 
 ```{r echo=FALSE,}
-
 bib <- "@proceedings{proceedings-full,
     title        = {Proc. Fifteenth Annual ACM Symposium on the Theory of Computing},
     year         = 1983,
@@ -1432,7 +1417,6 @@ toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
 [*CFF entry*]{.underline}
 
 ```{r echo=FALSE,}
-
 bib <- "@techreport{techreport-full,
     title        = {A Sorting Algorithm},
     author       = {Tom Terrific},
@@ -1492,7 +1476,6 @@ toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
 [*CFF entry*]{.underline}
 
 ```{r echo=FALSE,}
-
 bib <- "@unpublished{unpublished-minimal,
     title        = {Lower Bounds for Wishful Research Results},
     author       = {Ulrich Underwood and Ned Net and Paul Pot},

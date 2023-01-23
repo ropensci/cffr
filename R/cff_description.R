@@ -1,4 +1,3 @@
-
 #' @noRd
 cff_description <- function(desc_path = "DESCRIPTION",
                             cff_version = "1.2.0",

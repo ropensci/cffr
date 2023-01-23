@@ -64,7 +64,6 @@ With **cffr** creating a `CITATION.cff` file is quite straightforward. You just
 need to run `cff_write()`:
 
 ```{r setup, eval=FALSE}
-
 library(cffr)
 
 cff_write()
@@ -91,7 +90,6 @@ would add or modify contents of it.
 ### Adding new fields
 
 ```{r newfields}
-
 newobject <- cff_create(cff())
 
 # For modifying your auto-generated object, run this line instead:
@@ -105,7 +103,6 @@ The valid keys of the [Citation File Format schema version
 can be displayed with `cff_schema_keys()`:
 
 ```{r validkeys}
-
 cff_schema_keys()
 ```
 
@@ -114,7 +111,6 @@ also overwrite the `title` key. We just need to create a list and pass it to the
 `keys` argument of `cff_create()`:
 
 ```{r modify}
-
 newkeys <- list(
   "url" = "https://ropensci.org/",
   "version" = "0.0.1",
@@ -143,7 +139,6 @@ doing that, we need first to extract the current author of the package and
 append the parsed person:
 
 ```{r includeauthor}
-
 # Valid person keys
 
 cff_schema_definitions_person()
@@ -221,7 +216,6 @@ Now the process is similar to the example with `person`: we append both
 references (as lists) and add them to our object:
 
 ```{r references}
-
 refkeys <- list(references = c(list(base_r), list(bookparsed)))
 
 refkeys
@@ -238,7 +232,6 @@ cff_validate(finalobject)
 The results can be written with `cff_write()`:
 
 ```{r write}
-
 # For example
 tmp <- tempfile(fileext = ".cff")
 
@@ -250,7 +243,6 @@ see_res
 And finally we can read our created `CITATION.cff` file using `cff()`:
 
 ```{r read}
-
 reading <- cff(tmp)
 
 reading
@@ -260,7 +252,6 @@ Note that `cff_write()` also has the `keys` param, so the workflow can be
 simplified as:
 
 ```{r}
-
 allkeys <- list(
   "url" = "https://ropensci.org/",
   "version" = "0.0.1",
