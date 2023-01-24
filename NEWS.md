@@ -1,3 +1,7 @@
+# cffr (development version)
+
+-   Replace **crayon** dependency for **cli** (#46)
+
 # cffr 0.4.0
 
 -   Fix typo (#40) by @dpprdan

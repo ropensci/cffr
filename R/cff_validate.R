@@ -99,9 +99,9 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
   if (result == FALSE) {
     if (verbose) {
       message(
-        crayon::red(
+        cli::col_red(
           "Oops! This ", message_obj,
-          "has the following errors:\n\n"
+          " has the following errors:\n\n"
         )
       )
 
@@ -110,10 +110,10 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
     return(invisible(FALSE))
   } else {
     if (verbose) {
-      message(crayon::green(
-        "Congratulations! This",
+      message(cli::col_green(
+        "Congratulations! This ",
         message_obj,
-        "is valid"
+        " is valid"
       ))
     }
     return(invisible(TRUE))

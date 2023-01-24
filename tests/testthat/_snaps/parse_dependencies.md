@@ -2,9 +2,9 @@
 
     - title: 'R: A Language and Environment for Statistical Computing'
       url: https://www.R-project.org/
-    - title: crayon
-      url: https://github.com/r-lib/crayon#readme
-      repository: https://CRAN.R-project.org/package=crayon
+    - title: cli
+      url: https://cli.r-lib.org
+      repository: https://CRAN.R-project.org/package=cli
     - title: desc
       url: https://github.com/r-lib/desc#readme
       repository: https://CRAN.R-project.org/package=desc
