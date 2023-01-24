@@ -31,14 +31,14 @@ cff_gha_update <- function(path = ".",
   checkdir <- dir.exists(destdir)
 
   if (isFALSE(checkdir)) {
-    message(crayon::blue("Creating directory '", destdir, "'"))
+    message(cli::col_blue("Creating directory '", destdir, "'"))
     dir.create(destdir, recursive = TRUE, showWarnings = FALSE)
   }
 
   newfile <- file.path(destdir, "update-citation-cff.yaml")
 
   if (!file.exists(newfile) || isTRUE(overwrite)) {
-    message(crayon::blue("Installing update-citation-cff.yaml"))
+    message(cli::col_blue("Installing update-citation-cff.yaml"))
     file.copy(
       system.file("yaml/update-citation-cff.yaml",
         package = "cffr"
@@ -47,9 +47,9 @@ cff_gha_update <- function(path = ".",
       overwrite = TRUE
     )
   } else {
-    message(crayon::blue(
+    message(cli::col_blue(
       "File update-citation-cff.yaml already installed.",
-      "Use overwrite = TRUE for overwrite"
+      " Use overwrite = TRUE for overwrite"
     ))
   }
 
@@ -61,7 +61,7 @@ cff_gha_update <- function(path = ".",
       ignore <- c(ignore, "^\\.github$")
       ignore <- unique(ignore)
 
-      message(crayon::blue(
+      message(cli::col_blue(
         "Adding .github",
         "to .Rbuildignore"
       ))

@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.4.0
+# CITATION file created with {cffr} R package, v0.4.0.9000
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
@@ -8,7 +8,7 @@ message: 'To cite package "cffr" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'cffr: Generate Citation File Format (''cff'') Metadata for R Packages'
-version: 0.4.0
+version: 0.4.0.9000
 doi: 10.21105/joss.03900
 abstract: The Citation File Format version 1.2.0 <doi:10.5281/zenodo.5171937> is a
   human and machine readable file format which provides citation metadata for software.
@@ -70,17 +70,17 @@ references:
     name: R Foundation for Statistical Computing
   version: '>= 3.6.0'
 - type: software
-  title: crayon
-  abstract: 'crayon: Colored Terminal Output'
+  title: cli
+  abstract: 'cli: Helpers for Developing Command Line Interfaces'
   notes: Imports
-  url: https://github.com/r-lib/crayon#readme
-  repository: https://CRAN.R-project.org/package=crayon
+  url: https://cli.r-lib.org
+  repository: https://CRAN.R-project.org/package=cli
   authors:
   - family-names: Csárdi
     given-names: Gábor
     email: csardi.gabor@gmail.com
   year: '2023'
-  version: '>= 1.4.1'
+  version: '>= 2.0.0'
 - type: software
   title: desc
   abstract: 'desc: Manipulate DESCRIPTION Files'
