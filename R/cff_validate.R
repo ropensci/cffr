@@ -82,11 +82,8 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
   # This prevent errors with jsonvalidate
   citfile <- rapply(citfile, function(x) as.character(x), how = "replace")
 
-  # Convert to json on a temporary file
-  cit_temp <- tempfile(fileext = ".json")
-  jsonlite::write_json(citfile, cit_temp, pretty = TRUE)
-
-  clean_jsonlite(cit_temp)
+  # Convert to json
+  cit_temp <- jsonlite::toJSON(citfile, pretty = TRUE, auto_unbox = TRUE)
 
   # Use local copy of the validator schema
   schema_local <- system.file("schema/schema.json", package = "cffr")
@@ -118,44 +115,6 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
     }
     return(invisible(TRUE))
   }
-}
-
-# Remove extra brackets
-#' @noRd
-clean_jsonlite <- function(cit_temp) {
-  # Brackets management. jsonlite adds unwanted extra brackets----
-  citfile_clean <- readLines(cit_temp)
-
-  # Search brackets to keep
-  # Lists
-  keep_lines <- grep('", "', citfile_clean)
-  # Keep ending and starting
-  keep_lines <- c(keep_lines, grep("\\[$", citfile_clean))
-  keep_lines <- c(keep_lines, grep(" \\],", citfile_clean))
-  keep_lines <- c(keep_lines, grep(" \\]$", citfile_clean))
-  keep_lines <- sort(unique(keep_lines))
-
-  # Split citation
-  if (all(keep_lines > 0)) {
-    keep_string <- citfile_clean[keep_lines]
-    citfile_clean[keep_lines] <- ""
-  }
-
-  # Remove unneded brackets
-  citfile_clean <- gsub('["', '"', citfile_clean, fixed = TRUE)
-  citfile_clean <- gsub('"]', '"', citfile_clean, fixed = TRUE)
-
-  # Add "good" brackets back
-  if (all(keep_lines > 0)) {
-    citfile_clean[keep_lines] <- keep_string
-  }
-
-  # Rewrite json
-  writeLines(citfile_clean, cit_temp)
-
-  return(invisible())
-
-  # End Brackets management
 }
 
 # Validate schema

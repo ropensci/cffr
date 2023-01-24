@@ -1,6 +1,7 @@
 # cffr (development version)
 
--   Replace **crayon** dependency for **cli** (#46)
+-   Replace **crayon** dependency for **cli** (#46).
+-   Improvements on the performance of `cff_validate()`.
 
 # cffr 0.4.0
 
