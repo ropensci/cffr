@@ -21,13 +21,15 @@ test_that("Test ALL installed packages", {
 
   for (i in seq_len(nrow(installed))) {
     pkg <- installed[i, ]$Package
-    message(pkg)
+    # Display some advances
+    message(
+      "Testing ", i, "/", nrow(installed),
+      " (", round(i / nrow(installed) * 100, 2), "%)"
+    )
     cit_path <- file.path(find.package(installed[i, ]$Package), "CITATION")
 
 
     if (file.exists(cit_path)) {
-      message("with CITATION file")
-      withcit <- c(withcit, TRUE)
     } else {
       withcit <- c(withcit, FALSE)
     }
@@ -41,10 +43,6 @@ test_that("Test ALL installed packages", {
 
 
     res <- c(res, s)
-
-    if (!s) {
-      message("with CITATION file")
-    }
   }
 
 

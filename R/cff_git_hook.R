@@ -69,7 +69,7 @@ cff_git_hook_install <- function() {
   } else {
     message(cli::col_blue(
       "Please install usethis ",
-      "(install.packages(\"usethis\"))",
+      "(install.packages(\"usethis\")) ",
       "to use the pre-commit hook"
     ))
   }

@@ -139,7 +139,7 @@ devtools::install_github("ropensci/cffr")
 ```
 
 Alternatively, you can install **cffr** using the
-[r-universe](https://ropensci.r-universe.dev/ui#builds):
+[r-universe](https://ropensci.r-universe.dev/):
 
 ```{r, eval=FALSE}
 # Enable this universe

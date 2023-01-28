@@ -62,7 +62,7 @@ cff_gha_update <- function(path = ".",
       ignore <- unique(ignore)
 
       message(cli::col_blue(
-        "Adding .github",
+        "Adding .github ",
         "to .Rbuildignore"
       ))
 

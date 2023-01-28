@@ -71,7 +71,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2023-01-24 there are at least 222 repos on GitHub using **cffr**.
+As per 2023-01-28 there are at least 221 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
@@ -90,7 +90,7 @@ devtools::install_github("ropensci/cffr")
 ```
 
 Alternatively, you can install **cffr** using the
-[r-universe](https://ropensci.r-universe.dev/ui#builds):
+[r-universe](https://ropensci.r-universe.dev/):
 
 ``` r
 # Enable this universe

@@ -140,7 +140,7 @@ fuzzy_keys <- function(keys) {
     # Message
     message(cli::col_magenta(
       "Found mispelled keys. Trying to map:",
-      paste("\n", names_fuzzy, "->", keys_match, collapse = "")
+      paste("\n", names_fuzzy, " -> ", keys_match, collapse = "")
     ))
 
     # Modify names
