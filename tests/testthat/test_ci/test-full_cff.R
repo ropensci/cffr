@@ -6,6 +6,9 @@ test_that("Test ALL installed packages", {
 
   rownames(installed) <- seq_len(nrow(installed))
 
+  # # Small sample
+  # installed <- installed[sample(seq_len(nrow(installed)), 20), ]
+
   l <- nrow(installed)
 
   # Initial set of packages
@@ -24,12 +27,13 @@ test_that("Test ALL installed packages", {
     # Display some advances
     message(
       "Testing ", i, "/", nrow(installed),
-      " (", round(i / nrow(installed) * 100, 2), "%)"
+      " (", sprintf("%05.02f", i / nrow(installed) * 100), "%)"
     )
     cit_path <- file.path(find.package(installed[i, ]$Package), "CITATION")
 
 
     if (file.exists(cit_path)) {
+      withcit <- c(withcit, TRUE)
     } else {
       withcit <- c(withcit, FALSE)
     }
