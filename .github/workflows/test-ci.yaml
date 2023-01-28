@@ -104,9 +104,9 @@ jobs:
 
           message("Installing ", length(toinstall)," packages: ", paste0(toinstall, collapse = ","))
 
-          pak::pkg_install(toinstall,
+          install.packages(toinstall,
             dependencies = TRUE,
-            upgrade = TRUE
+            verbose = TRUE, quiet = TRUE
           )
 
           # Update binary
