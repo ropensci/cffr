@@ -15,7 +15,6 @@ vignettes/*.pdf
 *.utf8.md
 *.knit.md
 .Renviron
-revdep
 cffr.Rcheck/
 cffr*.tar.gz
 cffr*.tgz
