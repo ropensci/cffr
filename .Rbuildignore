@@ -27,3 +27,6 @@
 ^vignettes/pdf$
 ^pdf$
 ^CRAN-SUBMISSION$
+^pkgdown\.yaml$
+^pkgdown\.yml$
+^\.imgbotconfig$
