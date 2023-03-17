@@ -7,7 +7,7 @@
 
 [![CRAN-status](https://www.r-pkg.org/badges/version/cffr)](https://CRAN.R-project.org/package=cffr)
 [![CRAN-results](https://badges.cranchecks.info/worst/cffr.svg)](https://cran.r-project.org/web/checks/check_results_cffr.html)
-[![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/cffr?color=blue)](https://cran.r-project.org/package=cffr)
+[![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/cffr?color=blue)](https://cran.r-project.org/package=cffr)
 [![R-CMD-check](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml)
 [![codecov](https://codecov.io/gh/ropensci/cffr/branch/main/graph/badge.svg?token=YRO3XL8RWK)](https://app.codecov.io/gh/ropensci/cffr)
 [![r-universe](https://ropensci.r-universe.dev/badges/cffr)](https://ropensci.r-universe.dev/)
@@ -19,6 +19,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 ![GitHub code size in
 bytes](https://img.shields.io/github/languages/code-size/ropensci/cffr)
 [![peer-review](https://badges.ropensci.org/463_status.svg)](https://github.com/ropensci/software-review/issues/463)
+
 <!-- badges: end -->
 
 **cffr** provides utilities to generate, parse, modify and validate
@@ -71,9 +72,9 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2023-03-17 there are at least 235 repos on GitHub using **cffr**.
+As per 2023-03-17 there are at least 249 repos on GitHub using **cffr**.
 [Check them out
-here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
+here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
 ### Installation
 
@@ -90,7 +91,7 @@ devtools::install_github("ropensci/cffr")
 ```
 
 Alternatively, you can install **cffr** using the
-[r-universe](https://ropensci.r-universe.dev/):
+[r-un](https://ropensci.r-universe.dev/cffr)[iverse](https://ropensci.r-universe.dev/):
 
 ``` r
 # Enable this universe

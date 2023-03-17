@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 [![CRAN-status](https://www.r-pkg.org/badges/version/cffr)](https://CRAN.R-project.org/package=cffr)
 [![CRAN-results](https://badges.cranchecks.info/worst/cffr.svg)](https://cran.r-project.org/web/checks/check_results_cffr.html)
-[![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/cffr?color=blue)](https://cran.r-project.org/package=cffr)
+[![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/cffr?color=blue)](https://cran.r-project.org/package=cffr)
 [![R-CMD-check](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml)
 [![codecov](https://codecov.io/gh/ropensci/cffr/branch/main/graph/badge.svg?token=YRO3XL8RWK)](https://app.codecov.io/gh/ropensci/cffr)
 [![r-universe](https://ropensci.r-universe.dev/badges/cffr)](https://ropensci.r-universe.dev/)
@@ -33,6 +33,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 ![GitHub code size in
 bytes](https://img.shields.io/github/languages/code-size/ropensci/cffr)
 [![peer-review](https://badges.ropensci.org/463_status.svg)](https://github.com/ropensci/software-review/issues/463)
+
 <!-- badges: end -->
 
 **cffr** provides utilities to generate, parse, modify and validate
@@ -73,15 +74,14 @@ metadata across repositories and organizations. One of the many uses of a
 `codemeta.json` file (created following the standards defined on The CodeMeta
 Project) is to provide citation metadata such as title, authors, publication
 year, and venue [@fenner2021]. The packages **codemeta** [@codemeta] /
-**codemetar** [@codemetar2021] allows to generate `codemeta.json` files from R 
+**codemetar** [@codemetar2021] allows to generate `codemeta.json` files from R
 packages metadata.
 
 ## The cffr package
 
 **cffr** maximizes the data extraction by using both the `DESCRIPTION` file and
 the `CITATION` file (if present) of your package. Note that **cffr** works best
-if your package pass 
-`R CMD check/devtools::check()`.
+if your package pass `R CMD check/devtools::check()`.
 
 ```{r count_cffr, echo=FALSE, results='asis'}
 cat("\n")
@@ -110,7 +110,7 @@ res <- tryCatch(
 if (isTRUE(res)) {
   cat(paste0(
     "\n", "See [some projects already using **cffr**]",
-    "(https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code)",
+    "(https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code)",
     "."
   ))
 } else {
@@ -118,7 +118,7 @@ if (isTRUE(res)) {
   cat(paste0(
     "As per ", today, " there are at least ", nreps, " repos on GitHub using **cffr**. ",
     "[Check them out here]",
-    "(https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code)."
+    "(https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code)."
   ))
 }
 cat("\n")
@@ -139,7 +139,7 @@ devtools::install_github("ropensci/cffr")
 ```
 
 Alternatively, you can install **cffr** using the
-[r-universe](https://ropensci.r-universe.dev/):
+[r-un](https://ropensci.r-universe.dev/cffr)[iverse](https://ropensci.r-universe.dev/):
 
 ```{r, eval=FALSE}
 # Enable this universe
@@ -185,8 +185,8 @@ test <- cff_create("rmarkdown")
 ```
 
 <details>
-<summary><code>CITATION.cff</code> for <strong>rmarkdown</strong>
-</summary>
+
+<summary><code>CITATION.cff</code> for <strong>rmarkdown</strong></summary>
 
 ```{r, echo=FALSE, comment=""}
 test
@@ -253,11 +253,11 @@ Check the following articles to learn more about **cffr**:
 
 ## Related packages
 
--   **citation** [@citation22] includes a function `r2cff` that
-    creates a `CITATION.cff` file (v1.1.0) using the information of your
-    `DESCRIPTION` file. It also provide minimal validity checks.
--   **handlr** [@handlr]: Tool for converting among
-    citation formats, including `*.cff` files.
+-   **citation** [@citation22] includes a function `r2cff` that creates a
+    `CITATION.cff` file (v1.1.0) using the information of your `DESCRIPTION`
+    file. It also provide minimal validity checks.
+-   **handlr** [@handlr]: Tool for converting among citation formats, including
+    `*.cff` files.
 -   **codemeta** [@codemeta] / **codemetar** [@codemetar2021] provides similar
     solutions for creating `codemeta.json` file, another format for storing and
     sharing software metadata.
