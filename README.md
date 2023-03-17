@@ -71,7 +71,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2023-03-15 there are at least 248 repos on GitHub using **cffr**.
+As per 2023-03-17 there are at least 235 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?l=&o=desc&q=cffr+extension%3Acff+filename%3ACITATION&s=indexed&type=Code).
 
@@ -720,13 +720,13 @@ test <- cff_create("rmarkdown")
       authors:
       - family-names: Wickham
         given-names: Hadley
-        email: hadley@rstudio.com
+        email: hadley@posit.co
       - family-names: Henry
         given-names: Lionel
-        email: lionel@rstudio.com
+        email: lionel@posit.co
       - family-names: Vaughan
         given-names: Davis
-        email: davis@rstudio.com
+        email: davis@posit.co
       year: '2023'
     - type: software
       title: withr
