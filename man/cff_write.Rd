@@ -12,7 +12,8 @@ cff_write(
   gh_keywords = TRUE,
   dependencies = TRUE,
   validate = TRUE,
-  verbose = TRUE
+  verbose = TRUE,
+  authors_roles = c("aut", "cre")
 )
 }
 \arguments{
@@ -45,6 +46,9 @@ of your package to the \code{reference} key?}
 
 \item{verbose}{Logical \code{TRUE/FALSE}. On \code{TRUE} the function would display
 informative messages.}
+
+\item{authors_roles}{Roles to be considered as authors of the package when
+generating the \code{CITATION.cff} file. See \strong{Details} on \code{\link[=cff_create]{cff_create()}}.}
 }
 \value{
 A \code{CITATION.cff} file and an (invisible) \code{\link{cff}} object.

@@ -15,12 +15,12 @@ parse_desc_abstract <- function(pkg) {
 #' Feeback needed: is this approach correct?
 #' On CRAN, only first aut is used
 #' @noRd
-parse_desc_authors <- function(pkg) {
+parse_desc_authors <- function(pkg, authors_roles = c("aut", "cre")) {
   # This extracts all the persons
   persons <- as.person(pkg$get_authors())
 
-  authors <- persons[vapply(persons, function(x) {
-    "aut" %in% x$role || "cre" %in% x$role
+  authors <- persons[vapply(persons, function(x, r = authors_roles) {
+    any(x$role %in% r)
   }, logical(1))]
 
   parse_all_authors <- lapply(authors, cff_parse_person)

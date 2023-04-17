@@ -86,11 +86,7 @@ This key is extracted from the "Description" field of the DESCRIPTION file.
 
 <details>
 
-<summary>
-
-<strong>Example</strong>
-
-</summary>
+<summary><strong>Example</strong></summary>
 
 ```{r abstract}
 library(cffr)
@@ -115,19 +111,17 @@ cat(pkg$get("Description"))
 ### authors
 
 This key is parsed from the "Authors" or "Authors\@R" field of the DESCRIPTION
-file. Only persons with the role "aut" or "cre" are considered.
+file. By default persons with the role "aut" or "cre" are considered, however
+this can be modified via the `authors_roles` parameter.
 
 <details>
 
-<summary>
-
-<strong>Example</strong>
-
-</summary>
+<summary><strong>Example</strong></summary>
 
 ```{r authors}
-cff_obj <- cff_create("rmarkdown")
-pkg <- desc::desc(file.path(find.package("rmarkdown"), "DESCRIPTION"))
+# Default behaviour
+cff_obj <- cff_create("jsonvalidate")
+pkg <- desc::desc(file.path(find.package("jsonvalidate"), "DESCRIPTION"))
 
 cff_obj$authors
 
@@ -135,6 +129,16 @@ authors <- pkg$get_authors()
 
 authors[vapply(authors, function(x) {
   "aut" %in% x$role || "cre" %in% x$role
+}, logical(1))]
+
+# Creators and Copyright Owners only
+cff_obj_cre_cph <- cff_create("jsonvalidate", authors_roles = c("cre", "cph"))
+cff_obj_cre_cph$authors
+length(cff_obj_cre_cph$authors)
+
+# Check
+authors[vapply(authors, function(x) {
+  "cre" %in% x$role || "cph" %in% x$role
 }, logical(1))]
 ```
 
@@ -149,11 +153,7 @@ functions:
 
 <details>
 
-<summary>
-
-<strong>Example</strong>
-
-</summary>
+<summary><strong>Example</strong></summary>
 
 ```{r cffversion}
 cff_objv110 <- cff_create("jsonlite", cff_version = "v1.1.0")
@@ -191,11 +191,7 @@ file. Only persons with the role "cre" (i.e, the maintainer(s)) are considered.
 
 <details>
 
-<summary>
-
-<strong>Example</strong>
-
-</summary>
+<summary><strong>Example</strong></summary>
 
 ```{r contact}
 cff_obj <- cff_create("rmarkdown")
@@ -217,11 +213,7 @@ This key is parsed from the "Date" field or, if not present, from the
 
 <details>
 
-<summary>
-
-<strong>Example</strong>
-
-</summary>
+<summary><strong>Example</strong></summary>
 
 ```{r date-released}
 # From an installed package
@@ -271,11 +263,7 @@ This key is parsed from the "doi" field of the
 
 <details>
 
-<summary>
-
-<strong>Example</strong>
-
-</summary>
+<summary><strong>Example</strong></summary>
 
 ```{r doi}
 cff_doi <- cff_create("cffr")
@@ -302,11 +290,7 @@ This key includes all the possible identifiers of the package:
 
 <details>
 
-<summary>
-
-<strong>Example</strong>
-
-</summary>
+<summary><strong>Example</strong></summary>
 
 ```{r identifiers}
 file <- system.file("examples/DESCRIPTION_many_urls", package = "cffr")
@@ -331,16 +315,14 @@ cff_create(file)$identifiers
 This key is extracted from the DESCRIPTION file. The keywords should appear in
 the DESCRIPTION as:
 
-    ...
-    X-schema.org-keywords: keyword1, keyword2, keyword3
+```         
+...
+X-schema.org-keywords: keyword1, keyword2, keyword3
+```
 
 <details>
 
-<summary>
-
-<strong>Example</strong>
-
-</summary>
+<summary><strong>Example</strong></summary>
 
 ```{r keyword}
 # A DESCRIPTION file without keywords
@@ -377,11 +359,7 @@ option is controlled via the `gh_keywords` parameter:
 
 <details>
 
-<summary>
-
-<strong>Example</strong>
-
-</summary>
+<summary><strong>Example</strong></summary>
 
 ```{r ghkeyword}
 # Get cff object from jsonvalidate
@@ -409,11 +387,7 @@ This key is extracted from the "License" field of the DESCRIPTION file.
 
 <details>
 
-<summary>
-
-<strong>Example</strong>
-
-</summary>
+<summary><strong>Example</strong></summary>
 
 ```{r license}
 cff_obj <- cff_create("yaml")
@@ -458,11 +432,7 @@ msg <- paste0(
 
 <details>
 
-<summary>
-
-<strong>Example</strong>
-
-</summary>
+<summary><strong>Example</strong></summary>
 
 ```{r message}
 cat(cff_create("jsonlite")$message)
@@ -480,11 +450,7 @@ rest of them as [references](#references).
 
 <details>
 
-<summary>
-
-<strong>Example</strong>
-
-</summary>
+<summary><strong>Example</strong></summary>
 
 ```{r preferred-citation}
 cffobj <- cff_create("rmarkdown")
@@ -508,11 +474,7 @@ It also extracts the package dependencies and adds those to this fields using
 
 <details>
 
-<summary>
-
-<strong>Example</strong>
-
-</summary>
+<summary><strong>Example</strong></summary>
 
 ```{r references}
 cffobj <- cff_create("rmarkdown")
@@ -546,11 +508,7 @@ canonical url form of the package (i.e.
 
 <details>
 
-<summary>
-
-<strong>Example</strong>
-
-</summary>
+<summary><strong>Example</strong></summary>
 
 ```{r repository}
 # Installed package
@@ -650,11 +608,7 @@ repositories:
 
 <details>
 
-<summary>
-
-<strong>Example</strong>
-
-</summary>
+<summary><strong>Example</strong></summary>
 
 ```{r repository-code}
 # Installed package on GitHub
@@ -693,11 +647,7 @@ title <- paste0(
 
 <details>
 
-<summary>
-
-<strong>Example</strong>
-
-</summary>
+<summary><strong>Example</strong></summary>
 
 ```{r title}
 # Installed package
@@ -725,11 +675,7 @@ file. It corresponds to the first url that is different to
 
 <details>
 
-<summary>
-
-<strong>Example</strong>
-
-</summary>
+<summary><strong>Example</strong></summary>
 
 ```{r url}
 # Many urls

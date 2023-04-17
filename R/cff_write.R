@@ -30,6 +30,9 @@
 #' @param verbose Logical `TRUE/FALSE`. On `TRUE` the function would display
 #'   informative messages.
 #'
+#' @param authors_roles Roles to be considered as authors of the package when
+#'   generating the `CITATION.cff` file. See **Details** on [cff_create()].
+#'
 #' @export
 #'
 #' @inheritParams cff_create
@@ -66,7 +69,8 @@ cff_write <- function(x,
                       gh_keywords = TRUE,
                       dependencies = TRUE,
                       validate = TRUE,
-                      verbose = TRUE) {
+                      verbose = TRUE,
+                      authors_roles = c("aut", "cre")) {
   # On missing use package root
   if (missing(x)) x <- getwd()
 
@@ -74,7 +78,8 @@ cff_write <- function(x,
     keys = keys,
     cff_version = cff_version,
     gh_keywords = gh_keywords,
-    dependencies = dependencies
+    dependencies = dependencies,
+    authors_roles = authors_roles
   )
 
 

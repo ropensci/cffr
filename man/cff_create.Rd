@@ -9,7 +9,8 @@ cff_create(
   keys = list(),
   cff_version = "1.2.0",
   gh_keywords = TRUE,
-  dependencies = TRUE
+  dependencies = TRUE,
+  authors_roles = c("aut", "cre")
 )
 }
 \arguments{
@@ -34,6 +35,9 @@ GitHub, would you like to add the repo topics as keywords?}
 
 \item{dependencies}{Logical \code{TRUE/FALSE}. Would you like to add the
 of your package to the \code{reference} key?}
+
+\item{authors_roles}{Roles to be considered as authors of the package when
+generating the \code{CITATION.cff} file. See \strong{Details}.}
 }
 \value{
 A \code{\link{cff}} list object.
@@ -54,7 +58,13 @@ for additional details.
 
 If \code{x} is a path to a DESCRIPTION file or \code{inst/CITATION}, is not present on
 your package, \strong{cffr} would auto-generate a \code{preferred-citation} key using
-the information provided on that file. On
+the information provided on that file.
+
+By default, only persons whose role in the DESCRIPTION file of the package
+is author (\code{"aut"}) or maintainer (\code{"cre"}) are considered to be authors
+of the package. The default setting can be controlled via the \code{authors_roles}
+parameter. See \strong{Details} on \code{\link[utils:person]{utils::person()}} to get additional insights
+on person roles.
 }
 \examples{
 \donttest{
