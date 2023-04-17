@@ -9,7 +9,6 @@ Boettiger
 BugReports
 CFF
 CMD
-CODEMETA
 Cabunoc
 Chue
 CodeMeta
@@ -82,10 +81,8 @@ dois
 ection
 erence
 et
-github
 handlr
 howpublished
-https
 inbook
 incollection
 inproceedings
@@ -94,9 +91,7 @@ issn
 issuetitle
 itution
 ium
-joss
 json
-jsonlite
 jsonvalidate
 locat
 mastersthesis

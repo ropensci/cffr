@@ -1,5 +1,8 @@
 # cffr (development version)
 
+-   Additional authors of a **R** package can be now included based on the role
+    on the DESCRIPTION file, via the parameter `authors_roles` (#49).
+
 # cffr 0.4.1
 
 -   Replace **crayon** dependency for **cli** (#46).

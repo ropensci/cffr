@@ -1,7 +1,8 @@
 #' @noRd
 cff_description <- function(desc_path = "DESCRIPTION",
                             cff_version = "1.2.0",
-                            gh_keywords = TRUE) {
+                            gh_keywords = TRUE,
+                            authors_roles = c("aut", "cre")) {
   pkg <- desc::desc(desc_path)
   pkg$coerce_authors_at_r()
 
@@ -18,7 +19,7 @@ cff_description <- function(desc_path = "DESCRIPTION",
     type = "software",
     title = parse_desc_title(pkg),
     version = parse_desc_version(pkg),
-    authors = parse_desc_authors(pkg),
+    authors = parse_desc_authors(pkg, authors_roles = authors_roles),
     abstract = parse_desc_abstract(pkg),
     repository = parse_desc_repository(pkg),
     "repository-code" = parse_desc_urls(pkg)$repo,
