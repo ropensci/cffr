@@ -4,7 +4,15 @@ test_that("Parse CITATION_basic", {
   parsed <- parse_r_citation(desc_path, cit_path)
 
   expect_s3_class(parsed, "citation")
-  expect_snapshot_output(print(parsed, bibtex = TRUE))
+  expect_equal(length(parsed), 2)
+
+  # Identical to
+  meta <- as.list(read.dcf(desc_path)[1, ])
+  meta$Encoding <- "UTF-8"
+
+  id <- utils::readCitationFile(cit_path, meta = meta)
+
+  expect_identical(parsed, id)
 })
 
 test_that("Parse CITATION with no encoding", {
@@ -14,7 +22,15 @@ test_that("Parse CITATION with no encoding", {
   parsed <- parse_r_citation(desc_path, cit_path)
 
   expect_s3_class(parsed, "citation")
-  expect_snapshot_output(print(parsed, bibtex = TRUE))
+  expect_equal(length(parsed), 2)
+
+  # Identical to
+  meta <- as.list(read.dcf(desc_path)[1, ])
+  # meta$Encoding <- "UTF-8"
+
+  id <- utils::readCitationFile(cit_path, meta = meta)
+
+  expect_identical(parsed, id)
 })
 
 test_that("Parse CITATION_auto", {
@@ -24,8 +40,15 @@ test_that("Parse CITATION_auto", {
   parsed <- parse_r_citation(desc_path, cit_path)
 
   expect_s3_class(parsed, "citation")
-  expect_length(parsed, 3)
-  expect_snapshot_output(print(parsed, bibtex = TRUE))
+  expect_equal(length(parsed), 3)
+
+  # Identical to
+  meta <- as.list(read.dcf(desc_path)[1, ])
+  # meta$Encoding <- "UTF-8"
+
+  id <- utils::readCitationFile(cit_path, meta = meta)
+
+  expect_identical(parsed, id)
 })
 
 test_that("Parse CITATION_rmarkdown", {
@@ -35,7 +58,15 @@ test_that("Parse CITATION_rmarkdown", {
   parsed <- parse_r_citation(desc_path, cit_path)
 
   expect_s3_class(parsed, "citation")
-  expect_snapshot_output(print(parsed, bibtex = TRUE))
+  expect_equal(length(parsed), 3)
+
+  # Identical to
+  meta <- as.list(read.dcf(desc_path)[1, ])
+  meta$Encoding <- "UTF-8"
+
+  id <- utils::readCitationFile(cit_path, meta = meta)
+
+  expect_identical(parsed, id)
 })
 
 

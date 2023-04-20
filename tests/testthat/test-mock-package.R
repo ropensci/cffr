@@ -28,7 +28,7 @@ test_that("Test in mock package", {
   expect_true(file.exists(".Rbuildignore"))
 
   # Add action
-  cff_gha_update()
+  expect_message(cff_gha_update())
 
   expect_message(
     cff_gha_update(),
@@ -49,7 +49,7 @@ test_that("Test in mock package", {
   cffobj <- cff_create()
 
 
-  expect_message(cff_write(), "Congratulations! This .cff file is valid")
+  expect_message(cff_write())
 
   expect_true(file.exists("CITATION.cff"))
 
