@@ -61,7 +61,8 @@ test_that("Other convertes", {
   expect_true(is.cff(a))
   expect_s3_class(a, "cff")
 
-  expect_true(is.cff(cff(address = "New York", version = 5)))
+  expect_message(noadd <- cff(address = "New York", version = 5))
+  expect_true(is.cff(noadd))
   expect_false(is.cff(list(a = 1, b = 2)))
   expect_true(is.cff(as.cff(list(a = 1, b = 2))))
 })
@@ -86,14 +87,12 @@ test_that("Recursive parsing", {
 
 
 test_that("Fuzzy matching of keys on cff", {
-
-  expect_snapshot_output(
   expect_message(cff(
     tittle = "a",
     cff_version = "ar",
     version = "200",
     messange = "Fix my keys"
-  ), "Found misspelled keys"))
+  ), "messange: message")
 
   cffobj <- suppressMessages(
     cff(

@@ -26,8 +26,6 @@ test_that("Parse CITATION with no encoding", {
 
   # Identical to
   meta <- as.list(read.dcf(desc_path)[1, ])
-  # meta$Encoding <- "UTF-8"
-
   id <- utils::readCitationFile(cit_path, meta = meta)
 
   expect_identical(parsed, id)
@@ -44,8 +42,6 @@ test_that("Parse CITATION_auto", {
 
   # Identical to
   meta <- as.list(read.dcf(desc_path)[1, ])
-  # meta$Encoding <- "UTF-8"
-
   id <- utils::readCitationFile(cit_path, meta = meta)
 
   expect_identical(parsed, id)

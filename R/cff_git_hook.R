@@ -69,9 +69,8 @@ cff_git_hook_install <- function() {
   } else {
     cli::cli_alert_danger(
       paste0(
-        "Please install ", cli::style_bold("usethis"),
-        " package to use the pre-commit hook:",
-        cli::col_blue(" install.packages(\"usethis\") ")
+        "Please install {.pkg usethis} to use the pre-commit hook: ",
+        '{.run install.packages("usethis")}'
       )
     )
   }
@@ -86,8 +85,8 @@ cff_git_hook_remove <- function() {
   hookfile <- file.path(".git", "hooks", "pre-commit")
 
   if (file.exists(hookfile)) {
+    cli::cli_alert_info("Removing git pre-commit hook (was on {.path {hookfile}})")
     unlink(hookfile, force = TRUE)
-    cli::cli_alert_info("Removing git pre-commit hook")
   }
 
   return(invisible())

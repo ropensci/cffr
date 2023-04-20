@@ -138,8 +138,8 @@ fuzzy_keys <- function(keys) {
     ))
 
     # Message
-    cli::cli_alert_warning("Found misspelled keys. Trying to map: ")
-    cli::cat_bullet(cli::col_blue(paste(names_fuzzy, " -> ", keys_match)))
+    ll <- paste0("{.dt ", names_fuzzy, "}{.dl ", keys_match, "}\n", collapse = "")
+    cli::cli_alert_warning(paste0("Found misspelled keys. Trying to map:\n", ll))
 
     # Modify names
     names[!is_valid_key] <- keys_match

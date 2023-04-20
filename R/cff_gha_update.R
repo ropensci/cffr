@@ -31,17 +31,16 @@ cff_gha_update <- function(path = ".",
   checkdir <- dir.exists(destdir)
 
   if (isFALSE(checkdir)) {
-    cli::cli_alert_info(paste0("Creating directory ", cli::col_blue(destdir)))
+    cli::cli_alert_info("Creating directory {.path {destdir}}.")
     dir.create(destdir, recursive = TRUE, showWarnings = FALSE)
   }
 
   newfile <- file.path(destdir, "update-citation-cff.yaml")
 
   if (!file.exists(newfile) || isTRUE(overwrite)) {
-    cli::cli_alert_success(paste0(
-      "Installing ",
-      cli::col_blue("update-citation-cff.yaml")
-    ))
+    cli::cli_alert_success(
+      "Installing {.file {newfile}}"
+    )
     file.copy(system.file("yaml/update-citation-cff.yaml", package = "cffr"),
       newfile,
       overwrite = TRUE
@@ -49,9 +48,8 @@ cff_gha_update <- function(path = ".",
   } else {
     cli::cli_alert_warning(
       paste0(
-        "File ", cli::col_blue("update-citation-cff.yaml"),
-        " already installed. Use ", cli::col_blue("<overwrite = TRUE>"),
-        " for overwrite"
+        "File {.file {newfile}} already installed. ",
+        "Use {.arg overwrite = TRUE}  for overwrite"
       )
     )
   }
@@ -63,13 +61,7 @@ cff_gha_update <- function(path = ".",
     if (!("^\\.github$" %in% ignore)) {
       ignore <- c(ignore, "^\\.github$")
       ignore <- unique(ignore)
-      cli::cli_alert_info(
-        paste0(
-          "Adding ", cli::col_blue("'.github'"), " to ",
-          cli::col_blue(".Rbuildignore")
-        )
-      )
-
+      cli::cli_alert_info("Adding {.val .github} to {.file .Rbuildignore}")
       writeLines(ignore, ".Rbuildignore")
     }
   }

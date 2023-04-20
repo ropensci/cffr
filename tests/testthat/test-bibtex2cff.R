@@ -481,9 +481,7 @@ test_that("Skip misc without title", {
     year = 2018
   )
 
-  expect_message(cff_parse_citation(bib))
-
-  bibparsed <- cff_parse_citation(bib)
+  expect_message(bibparsed <- cff_parse_citation(bib), "Skipping")
 
   expect_null(bibparsed)
 
@@ -520,9 +518,7 @@ test_that("Skip misc without title, not skipping the good one", {
 
 
 
-  expect_message(cff_parse_citation(bib))
-
-  bibparsed <- cff_parse_citation(bib)
+  expect_message(bibparsed <- cff_parse_citation(bib), "SHERPA/RoMEO")
 
   expect_length(bibparsed, 2)
 

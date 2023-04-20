@@ -82,13 +82,14 @@ test_that("Add new keys", {
     "date-released" = "1900-01-01",
     "error" = "This is an error"
   )
-
-  s <- cff_write(
-    desc_file,
-    keys = newkeys,
-    outfile = tmp,
-    validate = FALSE,
-    verbose = FALSE
+  expect_message(
+    s <- cff_write(
+      desc_file,
+      keys = newkeys,
+      outfile = tmp,
+      validate = FALSE,
+      verbose = FALSE
+    ), "error: No match"
   )
   expect_snapshot_output(s)
 

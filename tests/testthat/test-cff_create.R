@@ -68,7 +68,10 @@ test_that("Fuzzy match on cff_create", {
     # If the field is already present, it would be overridden
     tittle = "Modifying a 'cff' object"
   )
-  modobject <- cff_create(newobject, keys = newkeys)
+  expect_message(
+    modobject <- cff_create(newobject, keys = newkeys),
+    "tittle: title"
+  )
   expect_snapshot_output(print_snapshot(
     "Fuzzy match on cff_create",
     modobject
