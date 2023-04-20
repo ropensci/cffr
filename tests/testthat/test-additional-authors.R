@@ -18,7 +18,7 @@ test_that("Add new roles", {
   )
 
   expect_gt(length(cf2$authors), length(cf$authors))
-  expect_true(cff_validate(cf2))
+  expect_true(cff_validate(cf2, verbose = FALSE))
 })
 
 
@@ -29,13 +29,13 @@ test_that("Default roles on write", {
 
   # Same as
   tmp <- tempfile(fileext = ".cff")
-  expect_message(
+  expect_message(expect_message(expect_message(
     cf2 <- cff_write(p,
       authors_roles = c("aut", "cre"), dependencies = FALSE,
       outfile = tmp
     ),
-    "Congratulations"
-  )
+    "generated"
+  )))
 
   expect_identical(cf, cf2)
 })
@@ -50,7 +50,7 @@ test_that("Add new roles", {
   )
 
   expect_gt(length(cf2$authors), length(cf$authors))
-  expect_true(cff_validate(cf2))
+  expect_true(cff_validate(cf2, verbose = FALSE))
 })
 
 test_that("Add new roles on write", {
