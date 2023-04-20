@@ -470,7 +470,7 @@
 
 ---
 
-    @Article{kastenholzh?nenbergerb:2006,
+    @Article{kastenholzhunenbergerb:2006,
       title = {Computation of methodology hyphen independent ionic solvation free energies from molecular simulations},
       author = {M. A. Kastenholz and Philippe H. Hünenbergerb},
       year = {2006},

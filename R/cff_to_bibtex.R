@@ -248,6 +248,9 @@ cff_to_bibtex <- function(x) {
   aut_sur <- tolower(paste0(unlist(aut_sur), collapse = ""))
   aut_sur <- gsub("\\s*", "", aut_sur)
 
+  # Remove diacritics
+  aut_sur <- iconv(aut_sur, to="ASCII//TRANSLIT")
+
   # Clean not common chars
   aut_sur <- gsub("[^_a-z]", "?", aut_sur)
 
