@@ -9,7 +9,7 @@ This test validates the `cff` parsing for \>1500 packages:
 -   All the packages available in the [rOpenSci
     r-universe](https://ropensci.r-universe.dev/) and their dependencies.
 -   All the packages of r-forge, r-lib and r-studio: lists extracted from
-    https://r-universe.dev/organizations/.
+    <https://r-universe.dev/organizations/>.
 
 This test is deployed in [GitHub
 Actions](https://github.com/ropensci/cffr/actions/workflows/test-ci.yaml) and

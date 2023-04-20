@@ -74,9 +74,8 @@ write_bib <- function(x,
     }
 
     if (verbose) {
-      message(
-        "Creating a backup of ",
-        file, " in ", f
+      cli::cli_alert_info(
+        "Creating a backup of {.file {file}} in {.file {f}}"
       )
     }
     file.copy(file, f)

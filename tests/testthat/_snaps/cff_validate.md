@@ -1,20 +1,20 @@
 # Validate full CITATION.cff
 
     Code
-      ok <- cff_validate(full)
+      ok <- cff_validate(fcff)
     Output
       == Validating cff ==============================================================
     Message <cliMessage>
-      v Congratulations! '/cloud/project/inst/examples/CITATION_complete.cff' is valid
+      v Congratulations! This <cff> is valid
 
 # Validate error CITATION.cff
 
     Code
-      tab <- cff_validate(err)
+      tab <- cff_validate(ferr)
     Output
       == Validating cff ==============================================================
     Message <cliMessage>
-      x Oops! '/cloud/project/inst/examples/CITATION_error.cff' has the following errors:
+      x Oops! This <cff> has the following errors:
       * cff: has additional properties
       * cff.authors.0: no schemas match
       * cff.doi: referenced schema does not match

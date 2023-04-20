@@ -74,9 +74,17 @@ stopifnotcff <- function(x) {
     return(invisible())
   }
 
+  # x should be character at least
+  if (!inherits(x, "character")) {
+    clses <- class(x)
+    cli::cli_abort(
+      "{.var x} is an object of class {.cls {clses}}, not {.cls cff}."
+    )
+  }
+
   if (tools::file_ext(x) != "cff") {
     cli::cli_abort(
-      "{.var x} is neither a {.cls cff} object or a {.file *.cff} file"
+      "{.var x} is not a {.file *.cff} file"
     )
   }
 }

@@ -1,3 +1,9 @@
+test_that("Errors", {
+  expect_silent(b <- cff_extract_to_bibtex("testthat"))
+  expect_s3_class(b, "bibentry")
+  expect_error(cff_extract_to_bibtex("testthat", what = "aa"))
+})
+
 test_that("From package", {
   skip_if_not_installed("rmarkdown")
 

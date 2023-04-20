@@ -17,7 +17,8 @@ test_that("Test ALL installed packages", {
     "testing a sample of",
     nrow(installed), "installed packages"
   )))
-  message("Sample of ", nrow(installed))
+  np <- nrow(installed)
+  cli::cli_alert_info("Sample of {prettyNum(np, big.mark = ',')} packages")
 
   res <- c()
   withcit <- c()
@@ -25,10 +26,8 @@ test_that("Test ALL installed packages", {
   for (i in seq_len(nrow(installed))) {
     pkg <- installed[i, ]$Package
     # Display some advances
-    message(
-      "Testing ", i, "/", nrow(installed),
-      " (", sprintf("%05.02f", i / nrow(installed) * 100), "%)"
-    )
+    prc <- sprintf("%05.02f", i / nrow(installed) * 100)
+    cli::cli_alert("Testing {i}/{np} ({prc}%): {.pkg {pkg}}")
     cit_path <- file.path(find.package(installed[i, ]$Package), "CITATION")
 
 
@@ -43,7 +42,7 @@ test_that("Test ALL installed packages", {
       cff_create(pkg, gh_keywords = FALSE, dependencies = FALSE)
     )
 
-    s <- suppressMessages(cff_validate(cffobj))
+    s <- suppressMessages(cff_validate(cffobj, verbose = FALSE))
 
 
     res <- c(res, s)

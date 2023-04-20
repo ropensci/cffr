@@ -117,7 +117,9 @@ cff_write <- function(x,
   )
 
   writeLines(addcomment, outfile)
-  if (verbose) message(cli::col_green(outfile, " generated"))
+  if (verbose) {
+    cli::cli_alert_success("{.file {outfile}} generated")
+  }
 
   # Add CITATION.cff to .Rbuildignore
   if (!is.cff(x) && x == getwd() && file.exists(".Rbuildignore")) {
@@ -129,10 +131,7 @@ cff_write <- function(x,
       ignore <- unique(ignore)
 
       if (verbose) {
-        message(cli::col_blue(
-          "Adding ",
-          outfile, " to .Rbuildignore"
-        ))
+        cli::cli_alert_info("Adding {.val {outfile}} to {.file .Rbuildignore}")
       }
       writeLines(ignore, ".Rbuildignore")
     }

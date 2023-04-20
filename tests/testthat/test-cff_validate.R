@@ -2,10 +2,16 @@ test_that("Validate full CITATION.cff", {
   full <- system.file("examples/CITATION_complete.cff",
     package = "cffr"
   )
-  expect_snapshot(ok <- cff_validate(full))
+
+  # From object
+  fcff <- cff_read(full)
+  expect_snapshot(ok <- cff_validate(fcff))
   expect_true(ok)
   expect_null(attr(ok, "errors"))
   expect_silent(cff_validate(full, verbose = FALSE))
+
+  # From file
+  expect_true(cff_validate(full))
 })
 
 test_that("Validate minimal CITATION.cff", {
@@ -19,14 +25,22 @@ test_that("Validate error CITATION.cff", {
   err <- system.file("examples/CITATION_error.cff",
     package = "cffr"
   )
-  expect_snapshot(tab <- cff_validate(err))
+  # From cff
+  ferr <- cff_read(err)
+  expect_snapshot(tab <- cff_validate(ferr))
   expect_false(tab)
+  # Extract attr table
   df <- attr(tab, "errors")
   expect_s3_class(df, "data.frame")
   expect_snapshot(df)
 
   expect_silent(cff_validate(err, verbose = FALSE))
-  # Extract attr table
+
+  # From path
+  expect_message(
+    cff_validate(err),
+    err
+  )
 })
 
 test_that("Validate cffr objects from installed packages", {

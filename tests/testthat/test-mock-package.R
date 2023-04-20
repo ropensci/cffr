@@ -46,7 +46,7 @@ test_that("Test in mock package", {
   cffobj <- cff_create()
 
 
-  expect_message(cff_write(validate = FALSE, verbose = TRUE))
+  expect_output(cff_write())
 
   expect_true(file.exists("CITATION.cff"))
 
