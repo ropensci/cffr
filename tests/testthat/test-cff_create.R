@@ -45,7 +45,7 @@ test_that("No auto generate preferred citations", {
     package = "cffr"
   )
 
-  expect_snapshot_output(cff_create(rgeos,
+  expect_snapshot(cff_create(rgeos,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   ))
@@ -53,7 +53,7 @@ test_that("No auto generate preferred citations", {
   basicdate <- system.file("examples/DESCRIPTION_basicdate",
     package = "cffr"
   )
-  expect_snapshot_output(cff_create(basicdate,
+  expect_snapshot(cff_create(basicdate,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   ))
@@ -72,7 +72,7 @@ test_that("Fuzzy match on cff_create", {
     modobject <- cff_create(newobject, keys = newkeys),
     "tittle: title"
   )
-  expect_snapshot_output(print_snapshot(
+  expect_snapshot(print_snapshot(
     "Fuzzy match on cff_create",
     modobject
   ))

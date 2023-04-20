@@ -15,7 +15,8 @@ informative messages.}
 }
 \value{
 A message indicating the result of the validation and an invisible
-value \code{TRUE/FALSE}.
+value \code{TRUE/FALSE}. On error, the results would have an attribute \verb{"errors}
+containing the error summary (see \strong{Examples} and \code{\link[=attr]{attr()}}).
 }
 \description{
 Validate a \code{CITATION.cff} file or a \code{\link{cff}} object created with
@@ -32,9 +33,23 @@ cffr <- cff_create("jsonlite")
 class(cffr)
 cff_validate(cffr)
 }
-\dontrun{
+\donttest{
 # .cff with errors
 cff_validate(system.file("examples/CITATION_error.cff", package = "cffr"))
+
+# Can manipulate the errors as data frame
+res <- cff_validate(
+  system.file("examples/CITATION_error.cff",
+    package = "cffr"
+  ),
+  verbose = FALSE
+)
+
+isTRUE(res)
+isFALSE(res)
+
+attr(res, "errors")
+
 # If a CITATION file (note that is not .cff) it throws an error
 cff_validate(system.file("CITATION", package = "cffr"))
 }

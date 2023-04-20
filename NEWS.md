@@ -3,6 +3,16 @@
 -   Additional authors of a **R** package can be now included based on the role
     on the DESCRIPTION file, via the parameter `authors_roles` (#49).
 
+-   New message interface based on [**cli**](https://cli.r-lib.org/)
+    capabilities.
+
+-   Now the (invisible) result of `cff_validate()` includes the summary of
+    errors (if any) as an `attributes()` named `"error"`, as
+    `jsonvalidate::json_validate()` does when `verbose = TRUE`:
+
+    > Be verbose? If `TRUE`, then an attribute `"errors"` will list validation
+    > failures as a data.frame
+
 # cffr 0.4.1
 
 -   Replace **crayon** dependency for **cli** (#46).

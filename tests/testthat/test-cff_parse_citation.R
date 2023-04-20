@@ -23,7 +23,7 @@ test_that("Test full with CITATION and (option = author)", {
   ))
 
   expect_s3_class(cffobj, "cff")
-  expect_snapshot_output(cffobj)
+  expect_snapshot(cffobj)
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
@@ -39,7 +39,7 @@ test_that("Parsed several citations", {
   citobj <- cff_parse_citation(parsed)
 
   expect_s3_class(citobj, "cff")
-  expect_snapshot_output(citobj)
+  expect_snapshot(citobj)
   expect_length(citobj, 3)
 })
 
@@ -63,7 +63,7 @@ test_that("Add wrong field to citation", {
     )
   )
 
-  expect_snapshot_output(cffobj)
+  expect_snapshot(cffobj)
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
@@ -90,7 +90,7 @@ test_that("Fix wrong orcid", {
     )
   )
 
-  expect_snapshot_output(cffobj)
+  expect_snapshot(cffobj)
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
@@ -121,7 +121,7 @@ test_that("Several identifiers and duplicates", {
     )
   )
 
-  expect_snapshot_output(cffobj)
+  expect_snapshot(cffobj)
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
@@ -146,7 +146,7 @@ test_that("Test keywords and urls", {
     )
   )
 
-  expect_snapshot_output(cffobj)
+  expect_snapshot(cffobj)
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
@@ -172,7 +172,7 @@ test_that("Parse persons on CITATION", {
   )
 
   bibparsed <- cff_parse_citation(bib)
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
@@ -197,7 +197,7 @@ test_that("Test inputs", {
 
 
   bibparsed <- cff_parse_citation(bib)
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))

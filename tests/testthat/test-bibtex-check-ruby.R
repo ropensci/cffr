@@ -15,7 +15,7 @@ test_that("preferred-citation-book", {
   )
 
   bib <- cff_to_bibtex(x)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("preferred-citation-conference-paper-2", {
@@ -24,7 +24,7 @@ test_that("preferred-citation-conference-paper-2", {
   )
 
   bib <- cff_to_bibtex(x)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("preferred-citation-conference-paper-missing", {
@@ -33,7 +33,7 @@ test_that("preferred-citation-conference-paper-missing", {
   )
 
   bib <- cff_to_bibtex(x)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("preferred-citation-conference-paper", {
@@ -42,7 +42,7 @@ test_that("preferred-citation-conference-paper", {
   )
 
   bib <- cff_to_bibtex(x)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("preferred-citation-manual", {
@@ -51,7 +51,7 @@ test_that("preferred-citation-manual", {
   )
 
   bib <- cff_to_bibtex(x)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("preferred-citation-no-month", {
@@ -60,7 +60,7 @@ test_that("preferred-citation-no-month", {
   )
 
   bib <- cff_to_bibtex(x)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("preferred-citation-no-vol", {
@@ -69,7 +69,7 @@ test_that("preferred-citation-no-vol", {
   )
 
   bib <- cff_to_bibtex(x)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 
@@ -79,7 +79,7 @@ test_that("preferred-citation-pamphlet", {
   )
 
   bib <- cff_to_bibtex(x)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("preferred-citation-report-no-institution", {
@@ -88,7 +88,7 @@ test_that("preferred-citation-report-no-institution", {
   )
 
   bib <- cff_to_bibtex(x)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("preferred-citation-report", {
@@ -97,7 +97,7 @@ test_that("preferred-citation-report", {
   )
 
   bib <- cff_to_bibtex(x)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 
@@ -107,7 +107,7 @@ test_that("preferred-citation-unpublished", {
   )
 
   bib <- cff_to_bibtex(x)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("reprozip", {
@@ -116,7 +116,7 @@ test_that("reprozip", {
   )
 
   bib <- cff_to_bibtex(x)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 
@@ -126,7 +126,7 @@ test_that("smith-et-al", {
   )
 
   bib <- cff_to_bibtex(x)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("tidyverse-joss-paper", {
@@ -135,5 +135,5 @@ test_that("tidyverse-joss-paper", {
   )
 
   bib <- cff_to_bibtex(x)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })

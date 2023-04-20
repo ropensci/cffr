@@ -12,10 +12,10 @@ test_that("Article to bibtex", {
     month = "January",
     keywords = c("Some", "simple", "keywords")
   )
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
   x <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(x)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 
@@ -40,10 +40,10 @@ test_that("Book to bibtex", {
     keywords = c("Two, keyword")
   )
 
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 
@@ -61,10 +61,10 @@ test_that("Booklet to bibtex", {
     keywords = "java"
   )
 
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("InBook to bibtex with pages", {
@@ -89,10 +89,10 @@ test_that("InBook to bibtex with pages", {
     type = "Architecting Dependable Systems",
   )
 
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("InCollection to bibtex", {
@@ -108,10 +108,10 @@ test_that("InCollection to bibtex", {
     topic = "interrogatives;nl-semantics;polarity;"
   )
 
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 
@@ -133,10 +133,10 @@ test_that("InProceedings to bibtex", {
     address = "Murray Hill, New Jersey",
   )
 
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 
@@ -151,10 +151,10 @@ test_that("Manual to bibtex", {
     howpublished = "CD-Rom",
   )
 
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 
@@ -170,10 +170,10 @@ test_that("MastersThesis to bibtex", {
     note = "Forthcoming",
   )
 
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 
@@ -187,10 +187,10 @@ test_that("PhdThesis to bibtex", {
     address = "Edinburgh",
   )
 
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 
@@ -206,10 +206,10 @@ test_that("Proceedings to bibtex", {
     missinginfo = "pages",
   )
 
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("TechReport to bibtex", {
@@ -222,10 +222,10 @@ test_that("TechReport to bibtex", {
     address = "Pittsburgh, PA 15260",
   )
 
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("Unpublished to bibtex", {
@@ -237,10 +237,10 @@ test_that("Unpublished to bibtex", {
     missinginfo = "Date is  guess.",
   )
 
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
   bib <- cff_to_bibtex(bibparsed)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 
@@ -262,10 +262,10 @@ test_that("particle names", {
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   bib <- cff_to_bibtex(bibparsed)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("From plain cff with a citation", {
@@ -282,12 +282,12 @@ test_that("From plain cff with a citation", {
   s$`preferred-citation`$editors <- list(cff_parse_person("A name"))
 
   bib <- cff_to_bibtex(s)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("From plain cff", {
   bib <- cff_to_bibtex(cff())
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("From file", {
@@ -296,7 +296,7 @@ test_that("From file", {
   )
 
   bib <- cff_to_bibtex(file)
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("NULL", {
@@ -312,7 +312,7 @@ test_that("Test anonymous", {
 
 
   back <- cff_to_bibtex(cff_parse_citation(bib))
-  expect_snapshot_output(toBibtex(back))
+  expect_snapshot(toBibtex(back))
 
 
   bib <- bibentry("manual",
@@ -321,7 +321,7 @@ test_that("Test anonymous", {
 
 
   back <- cff_to_bibtex(cff_parse_citation(bib))
-  expect_snapshot_output(toBibtex(back))
+  expect_snapshot(toBibtex(back))
 
   bib <- bibentry("misc",
     title = "A misc"
@@ -329,7 +329,7 @@ test_that("Test anonymous", {
 
 
   back <- cff_to_bibtex(cff_parse_citation(bib))
-  expect_snapshot_output(toBibtex(back))
+  expect_snapshot(toBibtex(back))
 
   bib <- bibentry("proceedings",
     title = "proceedings",
@@ -338,7 +338,7 @@ test_that("Test anonymous", {
 
 
   back <- cff_to_bibtex(cff_parse_citation(bib))
-  expect_snapshot_output(toBibtex(back))
+  expect_snapshot(toBibtex(back))
 })
 
 test_that("Fallback month", {
@@ -350,14 +350,14 @@ test_that("Fallback month", {
     date = "1678-04-23"
   )
 
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
   x <- cff_parse_citation(bib)
 
   # Delete here the month
   x$month <- NULL
 
   bibback <- cff_to_bibtex(x)
-  expect_snapshot_output(toBibtex(bibback))
+  expect_snapshot(toBibtex(bibback))
 })
 
 
@@ -386,10 +386,10 @@ test_that("Test BibLateX entry", {
     issn = "0097-8493",
     url = "http://www.ctan.org"
   )
-  expect_snapshot_output(toBibtex(bib))
+  expect_snapshot(toBibtex(bib))
   x <- cff_parse_citation(bib)
 
 
   parsed <- cff_to_bibtex(x)
-  expect_snapshot_output(toBibtex(parsed))
+  expect_snapshot(toBibtex(parsed))
 })

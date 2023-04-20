@@ -46,9 +46,11 @@ test_that("Test in mock package", {
   cffobj <- cff_create()
 
 
-  expect_message(cff_write())
+  expect_message(cff_write(validate = FALSE, verbose = TRUE))
 
   expect_true(file.exists("CITATION.cff"))
+
+  expect_true(cff_validate("CITATION.cff", verbose = FALSE))
 
   ignore <- readLines(".Rbuildignore")
 
@@ -58,5 +60,5 @@ test_that("Test in mock package", {
   # Revert to initial wd
   setwd(current_dir)
 
-  expect_snapshot_output(cffobj)
+  expect_snapshot(cffobj)
 })

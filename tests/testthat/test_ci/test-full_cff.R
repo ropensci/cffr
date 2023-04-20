@@ -1,5 +1,5 @@
 test_that("Test ALL installed packages", {
-  expect_snapshot_output(print_snapshot("Sessioninfo", sessionInfo()))
+  expect_snapshot(print_snapshot("Sessioninfo", sessionInfo()))
 
   installed <- as.data.frame(installed.packages()[, c("Package", "Version")])
   installed <- installed[order(installed$Package), ]
@@ -13,7 +13,7 @@ test_that("Test ALL installed packages", {
 
   # Initial set of packages
   write.csv(installed, "allpackages.csv", row.names = FALSE)
-  expect_snapshot_output(print_snapshot("Summary", paste(
+  expect_snapshot(print_snapshot("Summary", paste(
     "testing a sample of",
     nrow(installed), "installed packages"
   )))
@@ -50,7 +50,7 @@ test_that("Test ALL installed packages", {
   }
 
 
-  expect_snapshot_output({
+  expect_snapshot({
     installed$with_citation <- withcit
     installed$is_ok <- res
 
@@ -58,7 +58,7 @@ test_that("Test ALL installed packages", {
 
     okrate <- 1 - nrow(errors) / nrow(installed)
 
-    expect_snapshot_output(print_snapshot(
+    expect_snapshot(print_snapshot(
       "OK rate",
       sprintf("%1.2f%%", 100 * okrate)
     ))

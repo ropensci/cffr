@@ -23,6 +23,6 @@ test_that("Creating cff from packages encoded in latin1", {
   ))
 
   expect_s3_class(cffobj, "cff")
-  expect_snapshot_output(cffobj)
+  expect_snapshot(cffobj)
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })

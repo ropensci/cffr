@@ -75,8 +75,8 @@ stopifnotcff <- function(x) {
   }
 
   if (tools::file_ext(x) != "cff") {
-    stop(x, " is not a .cff file or a 'cff' object",
-      call. = FALSE
+    cli::cli_abort(
+      "{.var x} is neither a {.cls cff} object or a {.file *.cff} file"
     )
   }
 }
@@ -86,8 +86,7 @@ stopifnotcff <- function(x) {
 #' @noRd
 stopifnotexists <- function(x) {
   if (!file.exists(x)) {
-    stop("File ", x, " doesn't exists",
-      call. = FALSE
-    )
+    cli::cli_abort("{.file {x}} doesn't exist")
   }
+  return(invisible(NULL))
 }
