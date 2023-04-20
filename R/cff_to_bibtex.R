@@ -248,15 +248,12 @@ cff_to_bibtex <- function(x) {
   aut_sur <- tolower(paste0(unlist(aut_sur), collapse = ""))
   aut_sur <- gsub("\\s*", "", aut_sur)
 
-  # Remove diacritics
-  # not using iconv due to test failures on MacOS
-  # https://stackoverflow.com/a/75843920/7877917
-
-  aut_sur <- chartr(
-    "áéóūáéíóúÁÉÍÓÚýÝàèìòùÀÈÌÒÙâêîôûÂÊÎÔÛãõÃÕñÑäëïöüÄËÏÖÜÿçÇ",
-    "aeouaeiouAEIOUyYaeiouAEIOUaeiouAEIOUaoAOnNaeiouAEIOUycC",
-    aut_sur
+  # Remove diacritics with iconv
+  aut_sur <- iconv(aut_sur,
+    from = "UTF-8", to = "ASCII//TRANSLIT",
+    sub = "?"
   )
+
 
   # Clean not common chars
   aut_sur <- gsub("[^_a-z]", "?", aut_sur)
