@@ -59,15 +59,19 @@
 cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
   # nocov start
   if (!requireNamespace("bibtex", quietly = TRUE)) {
-    stop("bibtex package required for using this function")
+    msg <- paste0(
+      "{.pkg bibtex} package required for using this function: ",
+      '{.run install.packages("usethis")}'
+    )
+    cli::cli_abort(msg)
   }
   # nocov end
   if (!is.character(x)) {
-    stop(
-      "x should be of class <character>. ",
-      "You provided an object of class(es) ",
-      paste0("<", class(x), ">", collapse = ", ")
+    msg <- paste0(
+      "{.arg x} should be a {.cls character} object. ",
+      "You provided an object of class(es) {.cls {class(x)}}"
     )
+    cli::cli_abort(msg)
   }
 
   if (length(x) == 1 && file.exists(x)) {

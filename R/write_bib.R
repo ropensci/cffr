@@ -44,8 +44,8 @@ write_bib <- function(x,
                       append = FALSE,
                       verbose = TRUE,
                       ascii = FALSE) {
-  if (!"bibentry" %in% class(x)) {
-    stop("bibentry should be a class 'bibentry' object")
+  if (!inherits(x, "bibentry")) {
+    cli::cli_abort("{.arg x} should be a {.cls bibentry} object")
   }
 
   btex <- toBibtex(x)
@@ -89,16 +89,11 @@ write_bib <- function(x,
   })
   on.exit(if (isOpen(fh)) close(fh))
   if (verbose) {
-    message("Writing ", length(bibentry), " Bibtex entries ... ",
-      appendLF = FALSE
-    )
+    cli::cli_alert_info("Writing {length(x)} BibTeX entr{?y/ies} ...")
   }
   writeLines(btex, fh)
   if (verbose) {
-    message(
-      "OK\nResults written to file '", file,
-      "'"
-    )
+    cli::cli_alert_success("Results written to {.file {file}}")
   }
   invisible(btex)
 }

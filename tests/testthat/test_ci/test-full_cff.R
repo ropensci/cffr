@@ -1,5 +1,5 @@
 test_that("Test ALL installed packages", {
-  expect_snapshot(print_snapshot("Sessioninfo", sessionInfo()))
+  expect_snapshot_output(print_snapshot("Sessioninfo", sessionInfo()))
 
   installed <- as.data.frame(installed.packages()[, c("Package", "Version")])
   installed <- installed[order(installed$Package), ]
@@ -13,12 +13,11 @@ test_that("Test ALL installed packages", {
 
   # Initial set of packages
   write.csv(installed, "allpackages.csv", row.names = FALSE)
-  expect_snapshot(print_snapshot("Summary", paste(
+  expect_snapshot_output(print_snapshot("Summary", paste(
     "testing a sample of",
     nrow(installed), "installed packages"
   )))
-  np <- nrow(installed)
-  cli::cli_alert_info("Sample of {prettyNum(np, big.mark = ',')} packages")
+  message("Sample of ", nrow(installed))
 
   res <- c()
   withcit <- c()
@@ -26,8 +25,10 @@ test_that("Test ALL installed packages", {
   for (i in seq_len(nrow(installed))) {
     pkg <- installed[i, ]$Package
     # Display some advances
-    prc <- sprintf("%05.02f", i / nrow(installed) * 100)
-    cli::cli_alert("Testing {i}/{np} ({prc}%): {.pkg {pkg}}")
+    message(
+      "Testing ", i, "/", nrow(installed),
+      " (", sprintf("%05.02f", i / nrow(installed) * 100), "%)"
+    )
     cit_path <- file.path(find.package(installed[i, ]$Package), "CITATION")
 
 
@@ -42,14 +43,14 @@ test_that("Test ALL installed packages", {
       cff_create(pkg, gh_keywords = FALSE, dependencies = FALSE)
     )
 
-    s <- suppressMessages(cff_validate(cffobj, verbose = FALSE))
+    s <- suppressMessages(cff_validate(cffobj))
 
 
     res <- c(res, s)
   }
 
 
-  expect_snapshot({
+  expect_snapshot_output({
     installed$with_citation <- withcit
     installed$is_ok <- res
 
@@ -57,7 +58,7 @@ test_that("Test ALL installed packages", {
 
     okrate <- 1 - nrow(errors) / nrow(installed)
 
-    expect_snapshot(print_snapshot(
+    expect_snapshot_output(print_snapshot(
       "OK rate",
       sprintf("%1.2f%%", 100 * okrate)
     ))

@@ -43,17 +43,11 @@
 #' class(cffr)
 #' cff_validate(cffr)
 #' }
-#' \donttest{
-#' # .cff with errors
-#' cff_validate(system.file("examples/CITATION_error.cff", package = "cffr"))
 #'
+#' # .cff with errors
+#' err_f <- system.file("examples/CITATION_error.cff", package = "cffr")
 #' # Can manipulate the errors as data frame
-#' res <- cff_validate(
-#'   system.file("examples/CITATION_error.cff",
-#'     package = "cffr"
-#'   ),
-#'   verbose = FALSE
-#' )
+#' res <- try(cff_validate(err_f))
 #'
 #' isTRUE(res)
 #' isFALSE(res)
@@ -61,8 +55,7 @@
 #' attr(res, "errors")
 #'
 #' # If a CITATION file (note that is not .cff) it throws an error
-#' cff_validate(system.file("CITATION", package = "cffr"))
-#' }
+#' try(cff_validate(system.file("CITATION", package = "cffr")))
 cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
   # If is a cff create the object
   if (is.cff(x)) {

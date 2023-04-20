@@ -327,7 +327,7 @@ test <- cff_create("rmarkdown")
       authors:
       - family-names: Iannone
         given-names: Richard
-        email: rich@posit.co
+        email: rich@rstudio.com
         orcid: https://orcid.org/0000-0003-3925-190X
       year: '2023'
       version: '>= 0.5.0'
@@ -562,6 +562,25 @@ test <- cff_create("rmarkdown")
         given-names: and Winston
       year: '2023'
     - type: software
+      title: dygraphs
+      abstract: 'dygraphs: Interface to ''Dygraphs'' Interactive Time Series Charting
+        Library'
+      notes: Suggests
+      url: https://github.com/rstudio/dygraphs
+      repository: https://CRAN.R-project.org/package=dygraphs
+      authors:
+      - family-names: Vanderkam
+        given-names: Dan
+      - family-names: Allaire
+        given-names: JJ
+      - family-names: Owen
+        given-names: Jonathan
+      - family-names: Gromer
+        given-names: Daniel
+      - family-names: Thieurmel
+        given-names: Benoit
+      year: '2023'
+    - type: software
       title: fs
       abstract: 'fs: Cross-Platform File System Operations Based on ''libuv'''
       notes: Suggests
@@ -578,6 +597,22 @@ test <- cff_create("rmarkdown")
         email: csardi.gabor@gmail.com
       year: '2023'
     - type: software
+      title: rsconnect
+      abstract: 'rsconnect: Deployment Interface for R Markdown Documents and Shiny Applications'
+      notes: Suggests
+      url: https://github.com/rstudio/rsconnect
+      repository: https://CRAN.R-project.org/package=rsconnect
+      authors:
+      - family-names: Atkins
+        given-names: Aron
+        email: aron@posit.co
+      - family-names: McPherson
+        given-names: Jonathan
+        email: jonathan@posit.co
+      - family-names: Allaire
+        given-names: JJ
+      year: '2023'
+    - type: software
       title: downlit
       abstract: 'downlit: Syntax Highlighting and Automatic Linking'
       notes: Suggests
@@ -589,6 +624,19 @@ test <- cff_create("rmarkdown")
         email: hadley@rstudio.com
       year: '2023'
       version: '>= 0.4.0'
+    - type: software
+      title: katex
+      abstract: 'katex: Rendering Math to HTML, ''MathML'', or R-Documentation Format'
+      notes: Suggests
+      url: https://docs.ropensci.org/katex/
+      repository: https://CRAN.R-project.org/package=katex
+      authors:
+      - family-names: Ooms
+        given-names: Jeroen
+        email: jeroen@berkeley.edu
+        orcid: https://orcid.org/0000-0002-4035-0289
+      year: '2023'
+      version: '>= 1.4.0'
     - type: software
       title: sass
       abstract: 'sass: Syntactically Awesome Style Sheets (''Sass'')'
@@ -733,8 +781,7 @@ We can validate the result using `cff_validate()`:
 
 ``` r
 cff_validate(test)
-#> 
-#> ── cff_validate results ────────────────────────────────────────────────────────
+#> ══ Validating cff ══════════════════════════════════════════════════════════════
 #> ✔ Congratulations! This <cff> is valid
 ```
 

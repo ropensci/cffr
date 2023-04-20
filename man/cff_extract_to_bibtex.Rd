@@ -4,7 +4,7 @@
 \alias{cff_extract_to_bibtex}
 \title{Create BibTeX entries from a package}
 \usage{
-cff_extract_to_bibtex(x, what = "preferred")
+cff_extract_to_bibtex(x, what = c("preferred", "references", "all"))
 }
 \arguments{
 \item{x}{The source that would be used for generating

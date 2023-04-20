@@ -33,17 +33,11 @@ cffr <- cff_create("jsonlite")
 class(cffr)
 cff_validate(cffr)
 }
-\donttest{
-# .cff with errors
-cff_validate(system.file("examples/CITATION_error.cff", package = "cffr"))
 
+# .cff with errors
+err_f <- system.file("examples/CITATION_error.cff", package = "cffr")
 # Can manipulate the errors as data frame
-res <- cff_validate(
-  system.file("examples/CITATION_error.cff",
-    package = "cffr"
-  ),
-  verbose = FALSE
-)
+res <- try(cff_validate(err_f))
 
 isTRUE(res)
 isFALSE(res)
@@ -51,8 +45,7 @@ isFALSE(res)
 attr(res, "errors")
 
 # If a CITATION file (note that is not .cff) it throws an error
-cff_validate(system.file("CITATION", package = "cffr"))
-}
+try(cff_validate(system.file("CITATION", package = "cffr")))
 }
 \seealso{
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.

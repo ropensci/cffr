@@ -76,9 +76,8 @@ stopifnotcff <- function(x) {
 
   # x should be character at least
   if (!inherits(x, "character")) {
-    clses <- class(x)
     cli::cli_abort(
-      "{.var x} is an object of class {.cls {clses}}, not {.cls cff}."
+      "{.var x} is an object of class {.cls {class(x)}}, not {.cls cff}."
     )
   }
 
