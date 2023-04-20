@@ -1684,6 +1684,12 @@
 
 # Fuzzy matching of keys on cff
 
+    * tittle  ->  title
+    * cff_version  ->  cff-version
+    * messange  ->  message
+
+---
+
     
     
     ## Fuzzy keys 

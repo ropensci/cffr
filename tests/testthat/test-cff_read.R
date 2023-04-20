@@ -86,12 +86,14 @@ test_that("Recursive parsing", {
 
 
 test_that("Fuzzy matching of keys on cff", {
+
+  expect_snapshot_output(
   expect_message(cff(
     tittle = "a",
     cff_version = "ar",
     version = "200",
     messange = "Fix my keys"
-  ))
+  ), "Found misspelled keys"))
 
   cffobj <- suppressMessages(
     cff(
