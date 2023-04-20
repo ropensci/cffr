@@ -14,7 +14,7 @@ test_that("Article", {
   )
 
   bibparsed <- cff_parse_citation(bib)
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
@@ -46,7 +46,7 @@ test_that("Book", {
   )
 
   bibparsed <- cff_parse_citation(bib)
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
@@ -71,7 +71,7 @@ test_that("Booklet", {
   )
 
   bibparsed <- cff_parse_citation(bib)
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
@@ -112,7 +112,7 @@ test_that("Conference", {
 
   bibparsed <- cff_parse_citation(bib)
 
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
@@ -143,7 +143,7 @@ test_that("InBook", {
   )
 
   bibparsed <- cff_parse_citation(bib)
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
@@ -176,7 +176,7 @@ test_that("InCollection", {
   )
 
   bibparsed <- cff_parse_citation(bib)
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
@@ -207,7 +207,7 @@ test_that("InProceedings", {
   )
 
   bibparsed <- cff_parse_citation(bib)
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
@@ -231,7 +231,7 @@ test_that("Manual", {
   )
 
   bibparsed <- cff_parse_citation(bib)
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
@@ -257,7 +257,7 @@ test_that("MastersThesis", {
   )
 
   bibparsed <- cff_parse_citation(bib)
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
@@ -279,7 +279,7 @@ test_that("Misc", {
   )
 
   bibparsed <- cff_parse_citation(bib)
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
@@ -304,7 +304,7 @@ test_that("PhdThesis", {
   )
 
   bibparsed <- cff_parse_citation(bib)
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
@@ -331,7 +331,7 @@ test_that("Proceedings", {
   )
 
   bibparsed <- cff_parse_citation(bib)
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
@@ -355,7 +355,7 @@ test_that("TechReport", {
   )
 
   bibparsed <- cff_parse_citation(bib)
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
@@ -375,7 +375,7 @@ test_that("Unpublished", {
   )
 
   bibparsed <- cff_parse_citation(bib)
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
@@ -404,7 +404,7 @@ test_that("Test entry without author", {
     "anonymous"
   )
 
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
@@ -434,7 +434,7 @@ test_that("Test entry without author but has a key", {
   )
 
 
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
@@ -463,7 +463,7 @@ test_that("Test entry without author and key", {
   )
 
 
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))
@@ -481,9 +481,7 @@ test_that("Skip misc without title", {
     year = 2018
   )
 
-  expect_message(cff_parse_citation(bib))
-
-  bibparsed <- cff_parse_citation(bib)
+  expect_message(bibparsed <- cff_parse_citation(bib), "Skipping")
 
   expect_null(bibparsed)
 
@@ -491,7 +489,7 @@ test_that("Skip misc without title", {
     keys = list(references = list(bibparsed))
   )
 
-  expect_snapshot_output(cffobj)
+  expect_snapshot(cffobj)
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
@@ -520,9 +518,7 @@ test_that("Skip misc without title, not skipping the good one", {
 
 
 
-  expect_message(cff_parse_citation(bib))
-
-  bibparsed <- cff_parse_citation(bib)
+  expect_message(bibparsed <- cff_parse_citation(bib), "SHERPA/RoMEO")
 
   expect_length(bibparsed, 2)
 
@@ -534,7 +530,7 @@ test_that("Skip misc without title, not skipping the good one", {
     keys = list(references = bibparsed)
   )
 
-  expect_snapshot_output(cffobj)
+  expect_snapshot(cffobj)
 
   expect_equal(
     cffobj$references[[1]]$title,
@@ -572,7 +568,7 @@ test_that("Check extended BibLatex Fields", {
   )
 
   bibparsed <- cff_parse_citation(bib)
-  expect_snapshot_output(bibparsed)
+  expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))

@@ -13,7 +13,7 @@ test_that("Merge all DESCRIPTION files with CITATION_basic", {
     merged <- merge_desc_cit(desc_parse, parse_cit)
     merged <- as.cff(merged)
 
-    expect_snapshot_output(merged)
+    expect_snapshot(merged)
 
     expect_true(cff_validate(merged, verbose = FALSE))
   }

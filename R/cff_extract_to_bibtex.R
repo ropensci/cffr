@@ -37,14 +37,8 @@
 #' toBibtex(lite)
 #' }
 cff_extract_to_bibtex <- function(x,
-                                  what = "preferred") {
-  if (!(what %in% c("preferred", "references", "all"))) {
-    stop("'what' should be on of 'preferred, 'references' or 'all'",
-      call. = FALSE
-    )
-  }
-
-
+                                  what = c("preferred", "references", "all")) {
+  what <- match.arg(what)
   obj <- cff_create(x)
 
   if (what == "preferred") {

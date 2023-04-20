@@ -9,5 +9,5 @@ test_that("Check dependencies", {
   })
 
   class(selected) <- "cff"
-  expect_snapshot_output(print(selected))
+  expect_snapshot(print(selected))
 })

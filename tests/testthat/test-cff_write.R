@@ -82,15 +82,16 @@ test_that("Add new keys", {
     "date-released" = "1900-01-01",
     "error" = "This is an error"
   )
-
-  s <- cff_write(
-    desc_file,
-    keys = newkeys,
-    outfile = tmp,
-    validate = FALSE,
-    verbose = FALSE
+  expect_message(
+    s <- cff_write(
+      desc_file,
+      keys = newkeys,
+      outfile = tmp,
+      validate = FALSE,
+      verbose = FALSE
+    ), "error: No match"
   )
-  expect_snapshot_output(s)
+  expect_snapshot(s)
 
   expect_true(file.exists(tmp))
 
@@ -106,7 +107,7 @@ test_that("Append keys", {
   desc_file <-
     system.file("examples/DESCRIPTION_basic", package = "cffr")
   desc_file <- cff_create(desc_file)
-  expect_snapshot_output(desc_file)
+  expect_snapshot(desc_file)
 
   expect_s3_class(desc_file, "cff")
 
@@ -135,7 +136,7 @@ test_that("Append keys", {
     verbose = FALSE
   )
 
-  expect_snapshot_output(s)
+  expect_snapshot(s)
 
   expect_true(cff_validate(tmp, verbose = FALSE))
 

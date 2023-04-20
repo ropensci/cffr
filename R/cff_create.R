@@ -118,9 +118,8 @@ cff_create <- function(x,
   if (missing(x)) x <- getwd()
 
   if (!is.cff(x) && !is.character(x)) {
-    stop("x should be a cff or a character",
-      call. = FALSE
-    )
+    msg <- "{.arg x} should be a {.cls cff} or {.cls character} object."
+    cli::cli_abort(msg)
   }
 
   instpack <- as.character(installed.packages()[, "Package"])
@@ -161,14 +160,16 @@ cff_create <- function(x,
         citobj <- drop_null(citobj)
       }
     } else {
-      stop("object x: '", x, "' not valid. If it is a package ",
-        "you may need to install it.",
-        call. = FALSE
+      msg <- paste0(
+        "{.arg x} ({x}) not valid. If it is a package ",
+        "you may need to install it with ",
+        "{.fun install.packages}"
       )
+      cli::cli_abort(msg)
     }
 
     if (!file.exists(desc_path)) {
-      stop("No DESCRIPTION file found with ", x, call. = FALSE)
+      cli::cli_abort("No {.file DESCRIPTION} file found with {.arg x}")
     }
 
     cffobj <- cff_description(desc_path, cff_version,

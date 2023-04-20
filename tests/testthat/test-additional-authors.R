@@ -29,13 +29,12 @@ test_that("Default roles on write", {
 
   # Same as
   tmp <- tempfile(fileext = ".cff")
-  expect_message(expect_message(expect_message(
-    cf2 <- cff_write(p,
-      authors_roles = c("aut", "cre"), dependencies = FALSE,
-      outfile = tmp
-    ),
-    "generated"
-  )))
+  expect_silent(cf2 <- cff_write(p,
+    authors_roles = c("aut", "cre"), dependencies = FALSE,
+    outfile = tmp,
+    verbose = FALSE,
+    validate = FALSE
+  ))
 
   expect_identical(cf, cf2)
 })
@@ -64,8 +63,11 @@ test_that("Add new roles on write", {
   # Same as
   tmp <- tempfile(fileext = ".cff")
   expect_message(
-    cf2 <- cff_write(p, authors_roles = "ctb", outfile = tmp),
-    "Congratulations"
+    cf2 <- cff_write(p,
+      authors_roles = "ctb", outfile = tmp,
+      validate = FALSE
+    ),
+    "generated"
   )
 
   expect_identical(cf, cf2)

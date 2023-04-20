@@ -26,7 +26,8 @@
 #' ```
 #'
 #' @return A message indicating the result of the validation and an invisible
-#'   value `TRUE/FALSE`.
+#'   value `TRUE/FALSE`. On error, the results would have an attribute `"errors`
+#'   containing the error summary (see **Examples** and [attr()]).
 #'
 #' @param x This is expected to be either a [`cff`] object created
 #'   with [cff_create()] or the path to a `CITATION.cff` file to be validated.
@@ -42,18 +43,20 @@
 #' class(cffr)
 #' cff_validate(cffr)
 #' }
-#' \dontrun{
+#'
 #' # .cff with errors
-#' cff_validate(system.file("examples/CITATION_error.cff", package = "cffr"))
+#' err_f <- system.file("examples/CITATION_error.cff", package = "cffr")
+#' # Can manipulate the errors as data frame
+#' res <- try(cff_validate(err_f))
+#'
+#' isTRUE(res)
+#' isFALSE(res)
+#'
+#' attr(res, "errors")
+#'
 #' # If a CITATION file (note that is not .cff) it throws an error
-#' cff_validate(system.file("CITATION", package = "cffr"))
-#' }
+#' try(cff_validate(system.file("CITATION", package = "cffr")))
 cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
-  message_obj <- ifelse(is.cff(x),
-    "cff object",
-    ".cff file"
-  )
-
   # If is a cff create the object
   if (is.cff(x)) {
     tmpfile <- tempfile(fileext = ".cff")
@@ -65,10 +68,8 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
     is_tmpfile <- FALSE
   }
 
-
-  stopifnotexists(path)
-
   # Check
+  stopifnotexists(path)
   stopifnotcff(path)
 
 
@@ -92,26 +93,44 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
   # Validate
   result <- validate_schema(cit_temp, schema_local)
 
-  if (verbose) message("\ncff_validate results-----")
   if (result == FALSE) {
-    if (verbose) {
-      message(
-        cli::col_red(
-          "Oops! This ", message_obj,
-          " has the following errors:\n\n"
-        )
-      )
+    get_errors <- attr(result, "errors")
+    get_errors$field <- gsub("^data", "cff", get_errors$field)
 
-      print(attributes(result)$errors)
+    if (verbose) {
+      cli::cat_rule("Validating cff", col = "cyan", line = 2)
+      ll <- paste0("* {.dt {.strong ", get_errors$field, "}}{.dl ",
+        get_errors$message, "}\n",
+        collapse = ""
+      )
+      if (is_tmpfile) {
+        cli::cli_alert_danger(
+          paste0(
+            "Oops! This {.cls cff} has the following errors:\n",
+            ll
+          )
+        )
+      } else {
+        cli::cli_alert_danger(
+          paste0(
+            "Oops! {.file {x}} has the following errors:\n",
+            ll
+          )
+        )
+      }
     }
-    return(invisible(FALSE))
+    # Prepare output
+    r <- FALSE
+    attr(r, "errors") <- get_errors
+    return(invisible(r))
   } else {
     if (verbose) {
-      message(cli::col_green(
-        "Congratulations! This ",
-        message_obj,
-        " is valid"
-      ))
+      cli::cat_rule("Validating cff", col = "cyan", line = 2)
+      if (is_tmpfile) {
+        cli::cli_alert_success("Congratulations! This {.cls cff} is valid")
+      } else {
+        cli::cli_alert_success("Congratulations! {.file {x}} is valid")
+      }
     }
     return(invisible(TRUE))
   }

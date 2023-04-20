@@ -93,11 +93,9 @@ cff_parse_citation <- function(bib) {
 
   if (!("title" %in% names(parse_cit))) {
     entry <- capture.output(print(bib, bibtex = FALSE))
+    entry <- as.character(entry)
 
-    message(
-      "Skipping entry without title:\n\t",
-      entry
-    )
+    cli::cli_alert_warning("Entry {.val {entry}} without title. Skipping")
 
     return(NULL)
   }

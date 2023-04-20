@@ -4,9 +4,9 @@ test_that("Try not writing", {
     author = "Fran Pérez"
   )
 
-  expect_snapshot_output(write_bib(bib))
+  expect_snapshot(write_bib(bib))
 
-  expect_snapshot_output(write_bib(bib, ascii = TRUE))
+  expect_snapshot(write_bib(bib, ascii = TRUE))
 
   expect_error(write_bib(1))
 })
@@ -45,7 +45,7 @@ test_that("Write ASCII", {
   )
 
   file <- file.path(tempdir(), "ascii.bib")
-  expect_message(write_bib(bib, file, verbose = TRUE, ascii = TRUE))
+  expect_silent(write_bib(bib, file, verbose = FALSE, ascii = TRUE))
 
   # Fix extensions
   expect_snapshot_file(file)

@@ -9,7 +9,7 @@ test_that("Parse date", {
   expect_false(is.null(parsed$`date-released`))
 
   expect_s3_class(parsed, "cff")
-  expect_snapshot_output(parsed)
+  expect_snapshot(parsed)
   expect_true(cff_validate(parsed, verbose = FALSE))
 })
 
@@ -24,7 +24,7 @@ test_that("Parse date in another format", {
   expect_false(is.null(parsed$`date-released`))
 
   expect_s3_class(parsed, "cff")
-  expect_snapshot_output(parsed)
+  expect_snapshot(parsed)
   expect_true(cff_validate(parsed, verbose = FALSE))
 })
 
@@ -54,7 +54,7 @@ test_that("Parsing many urls", {
   expect_length(parsed$url, 1)
   expect_length(parsed$identifiers, 3)
   expect_s3_class(parsed, "cff")
-  expect_snapshot_output(parsed)
+  expect_snapshot(parsed)
   expect_true(cff_validate(parsed, verbose = FALSE))
 })
 
@@ -70,7 +70,7 @@ test_that("Parsing Gitlab", {
   expect_length(parsed$url, 1)
   expect_length(parsed$identifiers, 0)
   expect_s3_class(parsed, "cff")
-  expect_snapshot_output(parsed)
+  expect_snapshot(parsed)
   expect_true(cff_validate(parsed, verbose = FALSE))
 })
 
@@ -95,7 +95,7 @@ test_that("Parsing many persons", {
   names <- unlist(lapply(parsed$authors, names))
 
   expect_s3_class(parsed, "cff")
-  expect_snapshot_output(parsed)
+  expect_snapshot(parsed)
   expect_true(cff_validate(parsed, verbose = FALSE))
 })
 
@@ -113,7 +113,7 @@ test_that("Parsing wrong urls", {
   expect_length(parsed$identifiers, 2)
 
   expect_s3_class(parsed, "cff")
-  expect_snapshot_output(parsed)
+  expect_snapshot(parsed)
   expect_true(cff_validate(parsed, verbose = FALSE))
 })
 
@@ -133,7 +133,7 @@ test_that("Parsing two maintainers", {
   expect_length(parsed$contact, 2)
 
   expect_s3_class(parsed, "cff")
-  expect_snapshot_output(parsed)
+  expect_snapshot(parsed)
   expect_true(cff_validate(parsed, verbose = FALSE))
 })
 
@@ -150,7 +150,7 @@ test_that("Parsing r-universe", {
   expect_length(parsed$repository, 1)
 
   expect_s3_class(parsed, "cff")
-  expect_snapshot_output(parsed)
+  expect_snapshot(parsed)
   expect_true(cff_validate(parsed, verbose = FALSE))
 })
 
@@ -172,7 +172,7 @@ test_that("Parsing Bioconductor", {
   )
 
   expect_s3_class(parsed, "cff")
-  expect_snapshot_output(parsed)
+  expect_snapshot(parsed)
   expect_true(cff_validate(parsed, verbose = FALSE))
 })
 
@@ -195,7 +195,7 @@ test_that("Search package on CRAN", {
 
 
   expect_s3_class(parsed, "cff")
-  expect_snapshot_output(parsed)
+  expect_snapshot(parsed)
   expect_true(cff_validate(parsed, verbose = FALSE))
 })
 

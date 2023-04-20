@@ -26,7 +26,7 @@ test_that("Read from file", {
 
   d <- fromfile[[2]]
 
-  expect_snapshot_output(d)
+  expect_snapshot(d)
 })
 
 
@@ -57,5 +57,5 @@ test_that("From Bibtex entries", {
   expect_s3_class(list, "cff")
   expect_length(list, 2)
 
-  expect_snapshot_output(list)
+  expect_snapshot(list)
 })

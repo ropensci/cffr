@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2023-04-20 there are at least 148 repos on GitHub using **cffr**.
+As per 2023-04-20 there are at least 253 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -327,7 +327,7 @@ test <- cff_create("rmarkdown")
       authors:
       - family-names: Iannone
         given-names: Richard
-        email: rich@posit.co
+        email: rich@rstudio.com
         orcid: https://orcid.org/0000-0003-3925-190X
       year: '2023'
       version: '>= 0.5.0'
@@ -781,9 +781,8 @@ We can validate the result using `cff_validate()`:
 
 ``` r
 cff_validate(test)
-#> 
-#> cff_validate results-----
-#> Congratulations! This cff object is valid
+#> ══ Validating cff ══════════════════════════════════════════════════════════════
+#> ✔ Congratulations! This <cff> is valid
 ```
 
 Check the [docs](https://docs.ropensci.org/cffr/reference/index.html)

@@ -28,11 +28,11 @@ test_that("Walk trough full lifecycle", {
   read <- cff_read(complete)
   expect_s3_class(read, "cff")
   expect_true(cff_validate(read, verbose = FALSE))
-  expect_snapshot_output(print_snapshot("Read object", read))
+  expect_snapshot(print_snapshot("Read object", read))
 
   # Modify
   modify <- cff_create(read, keys = list(title = "A new title"))
-  expect_snapshot_output(print_snapshot("Modify object", modify))
+  expect_snapshot(print_snapshot("Modify object", modify))
   expect_true(all(unlist(read) == unlist(read)))
   expect_true(length(read) == length(modify))
   expect_true(length((setdiff(names(read), names(modify)))) == 0)
@@ -61,7 +61,8 @@ test_that("Other convertes", {
   expect_true(is.cff(a))
   expect_s3_class(a, "cff")
 
-  expect_true(is.cff(cff(address = "New York", version = 5)))
+  expect_message(noadd <- cff(address = "New York", version = 5))
+  expect_true(is.cff(noadd))
   expect_false(is.cff(list(a = 1, b = 2)))
   expect_true(is.cff(as.cff(list(a = 1, b = 2))))
 })
@@ -91,7 +92,7 @@ test_that("Fuzzy matching of keys on cff", {
     cff_version = "ar",
     version = "200",
     messange = "Fix my keys"
-  ))
+  ), "messange: message")
 
   cffobj <- suppressMessages(
     cff(
@@ -109,5 +110,5 @@ test_that("Fuzzy matching of keys on cff", {
   expect_true(is.cff(cffobj))
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
-  expect_snapshot_output(print_snapshot("Fuzzy keys", cffobj))
+  expect_snapshot(print_snapshot("Fuzzy keys", cffobj))
 })
