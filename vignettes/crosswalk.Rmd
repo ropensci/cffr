@@ -119,27 +119,22 @@ this can be modified via the `authors_roles` parameter.
 <summary><strong>Example</strong></summary>
 
 ```{r authors}
-# Default behaviour
-cff_obj <- cff_create("jsonvalidate")
-pkg <- desc::desc(file.path(find.package("jsonvalidate"), "DESCRIPTION"))
+# An example DESCRIPTION
+path <- system.file("examples/DESCRIPTION_many_persons", package = "cffr")
+pkg <- desc::desc(path)
 
+# See persons listed
+pkg$get_authors()
+
+
+# Default behaviour, use authors and creators (maintainers)
+cff_obj <- cff_create(path)
 cff_obj$authors
 
-authors <- pkg$get_authors()
 
-authors[vapply(authors, function(x) {
-  "aut" %in% x$role || "cre" %in% x$role
-}, logical(1))]
-
-# Creators and Copyright Owners only
-cff_obj_cre_cph <- cff_create("jsonvalidate", authors_roles = c("cre", "cph"))
-cff_obj_cre_cph$authors
-length(cff_obj_cre_cph$authors)
-
-# Check
-authors[vapply(authors, function(x) {
-  "cre" %in% x$role || "cph" %in% x$role
-}, logical(1))]
+# Use now Copyright holders and maintainers
+cff_obj_alt <- cff_create(path, authors_roles = c("cre", "cph"))
+cff_obj_alt$authors
 ```
 
 </details>

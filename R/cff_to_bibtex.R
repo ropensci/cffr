@@ -241,15 +241,22 @@ cff_to_bibtex <- function(x) {
   tobibentry$journal <- x$journal
 
   # key First two given of author and year----
-
-
-
   aut_sur <- lapply(tobibentry$author$family[1:2], clean_str)
   aut_sur <- tolower(paste0(unlist(aut_sur), collapse = ""))
   aut_sur <- gsub("\\s*", "", aut_sur)
 
-  # Clean not common chars
-  aut_sur <- gsub("[^_a-z]", "?", aut_sur)
+  # Try hard to remove accents
+  # First with iconv
+  aut_sur <- iconv(aut_sur,
+    from = "UTF-8", to = "ASCII//TRANSLIT",
+    sub = "?"
+  )
+
+  # Next to latex
+  aut_sur <- encoded_utf_to_latex(aut_sur)
+
+  # Finally keep only a-z letters for key
+  aut_sur <- gsub("[^_a-z]", "", aut_sur)
 
   y <- x$year
 

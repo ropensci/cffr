@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2023-04-17 there are at least 251 repos on GitHub using **cffr**.
+As per 2023-04-20 there are at least 148 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -327,7 +327,7 @@ test <- cff_create("rmarkdown")
       authors:
       - family-names: Iannone
         given-names: Richard
-        email: rich@rstudio.com
+        email: rich@posit.co
         orcid: https://orcid.org/0000-0003-3925-190X
       year: '2023'
       version: '>= 0.5.0'
@@ -956,4 +956,4 @@ Smith, Arfon. 2021. “Enhanced Support for Citations on GitHub.”
 
 </div>
 
-[![rofooter](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
+[![footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

@@ -204,7 +204,7 @@
 
 ---
 
-    @Manual{allweinbarker?plummer:1999,
+    @Manual{allweinbarkerplummer:1999,
       title = {LPL Software Manual},
       author = {Gerhard Allwein and Dave Barker-Plummer and Jon Barwise and John Etchemendy},
       year = {1999},
@@ -338,7 +338,7 @@
 
 ---
 
-    @Book{vanleunendavisjr?:1979,
+    @Book{vanleunendavisjr:1979,
       title = {A Handbook for Scholars},
       author = {Mary-Claire {van Leunen} and Sammy {Davis Jr.}},
       year = {1979},
@@ -470,7 +470,7 @@
 
 ---
 
-    @Article{kastenholzh?nenbergerb:2006,
+    @Article{kastenholzhunenbergerb:2006,
       title = {Computation of methodology hyphen independent ionic solvation free energies from molecular simulations},
       author = {M. A. Kastenholz and Philippe H. Hünenbergerb},
       year = {2006},

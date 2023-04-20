@@ -53,7 +53,7 @@
 
 # preferred-citation-manual
 
-    @Manual{hernang?mez:2021,
+    @Manual{hernangomez:2021,
       title = {cffr: Generate Citation File Format ('cff') Metadata for R Packages},
       author = {Diego Hernangómez},
       year = {2021},
