@@ -13,6 +13,11 @@
     > Be verbose? If `TRUE`, then an attribute `"errors"` will list validation
     > failures as a data.frame
 
+## User-visible changes
+
+-   Function `cff_to_bibtex()` and `cff_extract_to_bibtex()` have been merged,
+    the latter (`cff_extract_to_bibtex()`) is now soft-deprecated.
+
 # cffr 0.4.1
 
 -   Replace **crayon** dependency for **cli** (#46).

@@ -1,16 +1,13 @@
-#' Create a BibTeX entry from a CITATION.cff file or a `cff` object
+#' Create BibTeX entries from several sources
 #'
-#' Creates a `bibentry` object ([bibentry()]) from a `cff` object
+#' @description
 #'
-#' @param x The source that would be used for generating
-#'   the [`cff`] object. It could be:
-#'   * An existing [`cff`] object,
-#'   * A CITATION.cff file.
+#' This function creates BibTeX entries (in the form of [bibentry()] objects
+#' from different metadata sources (`cff` objects, `DESCRIPTION` files, etc.).
+#' The function tries to parse the information of the source `x` into a `cff`
+#' object and performs a mapping of the metadata to BibTeX, according to
+#' `vignette("bibtex_cff", "cffr")`.
 #'
-#' @return A `bibentry` object that can be parsed to BibTeX format with
-#'   [toBibtex()]
-#'
-#' @seealso [cff_parse_citation()], [bibentry()], [toBibtex()]
 #'
 #' @references
 #' - Patashnik, Oren. "BIBTEXTING" February 1988.
@@ -20,24 +17,119 @@
 #'   *Ruby CFF Library (Version 0.9.0)* (Computer software).
 #'   \doi{10.5281/zenodo.1184077}.
 #'
+#' - Hernangómez D (2022). "BibTeX and CFF, a potential crosswalk."
+#'   *The cffr package, Vignettes*
+#'   <https://docs.ropensci.org/cffr/articles/bibtex_cff.html>.
+#'
+#' @param x The source that would be used for generating
+#'   the [bibentry()] object via `cff`. It could be:
+#'   * A missing value. That would retrieve the DESCRIPTION
+#'     file on your in-development package.
+#'   * An existing [`cff`] object,
+#'   * Path to a CITATION.cff file (`"*/CITATION.cff*"`),
+#'   * The name of an installed package (`"jsonlite"`), or
+#'   * Path to a DESCRIPTION file (`"*/DESCRIPTION*"`).
+#' @param what Fields to extract. The value could be:
+#'   - `preferred`: This would create a single entry with the main citation
+#'      info of the package.
+#'   - `references`: Extract all the entries on `references`.
+#'   - `all`: A combination of the previous two options. This would extract
+#'      both the preferred citation info and the references.
+#'
 #' @family bibtex
+#'
+#' @return A `bibentry` object or a list of `bibentry` objects. This could
+#' be parsed to BibTeX using [toBibtex()]
+#'
 #' @export
+#' @name cff_to_bibtex
+#' @rdname cff_to_bibtex
+#'
 #' @examples
 #' \donttest{
-#'
 #' # From a cff object
-#' package <- cff_create("rmarkdown")
+#' cff_object <- cff()
 #'
-#' obj <- cff_to_bibtex(package)
+#' cff_object
 #'
-#' obj
+#' # bibentry object
+#' bib <- cff_to_bibtex(cff_object)
 #'
-#' toBibtex(obj)
+#' class(bib)
 #'
-#' # Same info as
-#' toBibtex(citation("rmarkdown")[1])
+#' bib
+#'
+#' # Print as bibtex
+#'
+#' toBibtex(bib)
+#'
+#' # From a CITATION.cff file with options
+#'
+#' path <- system.file("examples/CITATION_complete.cff", package = "cffr")
+#' cff_file <- cff_to_bibtex(path, what = "all")
+#'
+#' toBibtex(cff_file)
+#'
+#' # For an installed package
+#'
+#' installed_package <- cff_to_bibtex("jsonvalidate")
+#'
+#' toBibtex(installed_package)
+#'
+#'
+#' # Use a DESCRIPTION file
+#'
+#' path2 <- system.file("examples/DESCRIPTION_gitlab", package = "cffr")
+#' desc_file <- cff_to_bibtex(path2)
+#'
+#' toBibtex(desc_file)
 #' }
-cff_to_bibtex <- function(x) {
+cff_to_bibtex <- function(x,
+                          what = c("preferred", "references", "all")) {
+  what <- match.arg(what)
+  if (is.null(x)) {
+    return(NULL)
+  }
+
+  if (is.cff.file(x)) {
+    x <- cff_read(x)
+  }
+
+  if (is.cff(x)) {
+    obj <- x
+  } else {
+    obj <- cff_create(x)
+  }
+  if (what == "preferred") {
+    return(cff_bibtex_parser(obj))
+  }
+
+  if (what == "references") {
+    if (is.null(obj$references)) {
+      return(NULL)
+    }
+
+    ref <- lapply(obj$references, cff_bibtex_parser)
+    return(do.call(c, ref))
+  }
+
+  pref <- cff_bibtex_parser(obj)
+
+  if (!is.null(obj$references)) {
+    ref <- lapply(obj$references, cff_bibtex_parser)
+    ref <- do.call(c, ref)
+    return(c(pref, ref))
+  }
+
+  return(pref)
+}
+
+#' @export
+#' @rdname cff_to_bibtex
+#' @usage NULL
+cff_extract_to_bibtex <- cff_to_bibtex
+
+cff_bibtex_parser <- function(x) {
   if (is.null(x)) {
     return(NULL)
   }

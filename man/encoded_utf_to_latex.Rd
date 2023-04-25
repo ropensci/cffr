@@ -46,7 +46,6 @@ ascii_table
 \code{\link[tools:encoded]{tools::encoded_text_to_latex()}}
 
 Other bibtex: 
-\code{\link{cff_extract_to_bibtex}()},
 \code{\link{cff_from_bibtex}()},
 \code{\link{cff_to_bibtex}()},
 \code{\link{write_bib}()}

@@ -393,3 +393,19 @@ test_that("Test BibLateX entry", {
   parsed <- cff_to_bibtex(x)
   expect_snapshot(toBibtex(parsed))
 })
+
+
+test_that("Test Fallback year", {
+  x <- cff()
+
+  expect_snapshot(toBibtex(cff_to_bibtex(x)))
+
+
+  x$`date-released` <- "2020-01-01"
+
+  expect_true(cff_validate(x, verbose = FALSE))
+
+  parsed <- cff_to_bibtex(x)
+
+  expect_snapshot(toBibtex(parsed))
+})

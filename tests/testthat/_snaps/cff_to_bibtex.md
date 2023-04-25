@@ -602,3 +602,24 @@
         translator = {Wicksteed, P. H. and {The translator factory}},
       }
 
+# Test Fallback year
+
+    Code
+      toBibtex(cff_to_bibtex(x))
+    Output
+      @Misc{doe,
+        title = {My Research Software},
+        author = {John Doe},
+      }
+
+---
+
+    Code
+      toBibtex(parsed)
+    Output
+      @Misc{doe,
+        title = {My Research Software},
+        author = {John Doe},
+        year = {2020},
+      }
+

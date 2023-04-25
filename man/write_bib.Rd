@@ -9,7 +9,7 @@ write_bib(x, file = NULL, append = FALSE, verbose = TRUE, ascii = FALSE)
 \arguments{
 \item{x}{A \code{bibentry} object created with:
 \itemize{
-\item \code{\link[=cff_extract_to_bibtex]{cff_extract_to_bibtex()}}, \code{\link[=cff_to_bibtex]{cff_to_bibtex()}}
+\item \code{\link[=cff_to_bibtex]{cff_to_bibtex()}}
 \item \code{\link[=citation]{citation()}} or \code{\link[=bibentry]{bibentry()}}
 }}
 
@@ -54,7 +54,6 @@ following packages:
 }
 
 Other bibtex: 
-\code{\link{cff_extract_to_bibtex}()},
 \code{\link{cff_from_bibtex}()},
 \code{\link{cff_to_bibtex}()},
 \code{\link{encoded_utf_to_latex}()}

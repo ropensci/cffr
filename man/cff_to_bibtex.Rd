@@ -2,39 +2,81 @@
 % Please edit documentation in R/cff_to_bibtex.R
 \name{cff_to_bibtex}
 \alias{cff_to_bibtex}
-\title{Create a BibTeX entry from a CITATION.cff file or a \code{cff} object}
+\alias{cff_extract_to_bibtex}
+\title{Create BibTeX entries from several sources}
 \usage{
-cff_to_bibtex(x)
+cff_to_bibtex(x, what = c("preferred", "references", "all"))
 }
 \arguments{
 \item{x}{The source that would be used for generating
-the \code{\link{cff}} object. It could be:
+the \code{\link[=bibentry]{bibentry()}} object via \code{cff}. It could be:
 \itemize{
+\item A missing value. That would retrieve the DESCRIPTION
+file on your in-development package.
 \item An existing \code{\link{cff}} object,
-\item A CITATION.cff file.
+\item Path to a CITATION.cff file (\code{"*/CITATION.cff*"}),
+\item The name of an installed package (\code{"jsonlite"}), or
+\item Path to a DESCRIPTION file (\code{"*/DESCRIPTION*"}).
+}}
+
+\item{what}{Fields to extract. The value could be:
+\itemize{
+\item \code{preferred}: This would create a single entry with the main citation
+info of the package.
+\item \code{references}: Extract all the entries on \code{references}.
+\item \code{all}: A combination of the previous two options. This would extract
+both the preferred citation info and the references.
 }}
 }
 \value{
-A \code{bibentry} object that can be parsed to BibTeX format with
-\code{\link[=toBibtex]{toBibtex()}}
+A \code{bibentry} object or a list of \code{bibentry} objects. This could
+be parsed to BibTeX using \code{\link[=toBibtex]{toBibtex()}}
 }
 \description{
-Creates a \code{bibentry} object (\code{\link[=bibentry]{bibentry()}}) from a \code{cff} object
+This function creates BibTeX entries (in the form of \code{\link[=bibentry]{bibentry()}} objects
+from different metadata sources (\code{cff} objects, \code{DESCRIPTION} files, etc.).
+The function tries to parse the information of the source \code{x} into a \code{cff}
+object and performs a mapping of the metadata to BibTeX, according to
+\code{vignette("bibtex_cff", "cffr")}.
 }
 \examples{
 \donttest{
-
 # From a cff object
-package <- cff_create("rmarkdown")
+cff_object <- cff()
 
-obj <- cff_to_bibtex(package)
+cff_object
 
-obj
+# bibentry object
+bib <- cff_to_bibtex(cff_object)
 
-toBibtex(obj)
+class(bib)
 
-# Same info as
-toBibtex(citation("rmarkdown")[1])
+bib
+
+# Print as bibtex
+
+toBibtex(bib)
+
+# From a CITATION.cff file with options
+
+path <- system.file("examples/CITATION_complete.cff", package = "cffr")
+cff_file <- cff_to_bibtex(path, what = "all")
+
+toBibtex(cff_file)
+
+# For an installed package
+
+installed_package <- cff_to_bibtex("jsonvalidate")
+
+toBibtex(installed_package)
+
+
+# Use a DESCRIPTION file
+
+path2 <- system.file("examples/DESCRIPTION_gitlab", package = "cffr")
+desc_file <- cff_to_bibtex(path2)
+
+toBibtex(desc_file)
 }
 }
 \references{
@@ -44,13 +86,13 @@ toBibtex(citation("rmarkdown")[1])
 \item Haines, R., & The Ruby Citation File Format Developers. (2021).
 \emph{Ruby CFF Library (Version 0.9.0)} (Computer software).
 \doi{10.5281/zenodo.1184077}.
+\item Hernangómez D (2022). "BibTeX and CFF, a potential crosswalk."
+\emph{The cffr package, Vignettes}
+\url{https://docs.ropensci.org/cffr/articles/bibtex_cff.html}.
 }
 }
 \seealso{
-\code{\link[=cff_parse_citation]{cff_parse_citation()}}, \code{\link[=bibentry]{bibentry()}}, \code{\link[=toBibtex]{toBibtex()}}
-
 Other bibtex: 
-\code{\link{cff_extract_to_bibtex}()},
 \code{\link{cff_from_bibtex}()},
 \code{\link{encoded_utf_to_latex}()},
 \code{\link{write_bib}()}
