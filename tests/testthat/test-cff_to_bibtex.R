@@ -286,7 +286,7 @@ test_that("From plain cff with a citation", {
 })
 
 test_that("From plain cff", {
-  bib <- cff_to_bibtex(cff())
+  expect_message(bib <- cff_to_bibtex(cff()))
   expect_snapshot(toBibtex(bib))
 })
 
@@ -311,7 +311,7 @@ test_that("Test anonymous", {
   )
 
 
-  back <- cff_to_bibtex(cff_parse_citation(bib))
+  expect_message(back <- cff_to_bibtex(cff_parse_citation(bib)))
   expect_snapshot(toBibtex(back))
 
 
@@ -320,7 +320,7 @@ test_that("Test anonymous", {
   )
 
 
-  back <- cff_to_bibtex(cff_parse_citation(bib))
+  expect_message(back <- cff_to_bibtex(cff_parse_citation(bib)))
   expect_snapshot(toBibtex(back))
 
   bib <- bibentry("misc",
@@ -328,7 +328,7 @@ test_that("Test anonymous", {
   )
 
 
-  back <- cff_to_bibtex(cff_parse_citation(bib))
+  expect_message(back <- cff_to_bibtex(cff_parse_citation(bib)))
   expect_snapshot(toBibtex(back))
 
   bib <- bibentry("proceedings",
@@ -337,7 +337,7 @@ test_that("Test anonymous", {
   )
 
 
-  back <- cff_to_bibtex(cff_parse_citation(bib))
+  expect_silent(back <- cff_to_bibtex(cff_parse_citation(bib)))
   expect_snapshot(toBibtex(back))
 })
 
@@ -398,7 +398,9 @@ test_that("Test BibLateX entry", {
 test_that("Test Fallback year", {
   x <- cff()
 
-  expect_snapshot(toBibtex(cff_to_bibtex(x)))
+  expect_message(msg <- cff_to_bibtex(x))
+
+  expect_snapshot(toBibtex(msg))
 
 
   x$`date-released` <- "2020-01-01"

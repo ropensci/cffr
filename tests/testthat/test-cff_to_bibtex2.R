@@ -30,7 +30,8 @@ test_that("NULL references", {
   expect_null(cff_to_bibtex(basic, "references"))
 
   # Test all
-  expect_length(cff_to_bibtex(basic, "all"), 1)
+  expect_message(l <- cff_to_bibtex(basic, "all"))
+  expect_length(l, 1)
 })
 
 

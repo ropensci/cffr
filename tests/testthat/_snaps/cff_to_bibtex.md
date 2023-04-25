@@ -605,7 +605,7 @@
 # Test Fallback year
 
     Code
-      toBibtex(cff_to_bibtex(x))
+      toBibtex(msg)
     Output
       @Misc{doe,
         title = {My Research Software},

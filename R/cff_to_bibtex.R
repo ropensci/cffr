@@ -433,6 +433,12 @@ cff_bibtex_parser <- function(x) {
     tobibentry$year <- substr(x$`date-released`, 1, 4)
   }
 
+  # Inform
+  if (is.null(tobibentry$year)) {
+    msg <- paste0("Entry {.val {tobibentry$key}} does not have {.field year} ")
+    cli::cli_alert_info(msg)
+  }
+
   # Keywords
   if (!is.null(x$keywords)) {
     tobibentry$keywords <- paste(x$keywords, collapse = ", ")
