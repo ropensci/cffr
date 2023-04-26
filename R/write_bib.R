@@ -16,7 +16,8 @@
 #' @family bibtex
 #'
 #' @return Writes an `.bib` file specified on `file` parameter and the
-#' equivalent `Bibtex` object created with [utils::toBibtex()].
+#' equivalent `Bibtex` object created with [utils::toBibtex()]. It also
+#' (invisibly) returns the `bibentry` object that has been written to the file.
 #'
 #' @details
 #'
@@ -65,6 +66,14 @@ write_bib <- function(x,
   }
 
   if (tools::file_ext(file) != "bib") file <- paste0(file, ".bib")
+
+  # Check that the directory exists, if not create
+  dir <- dirname(path.expand(file))
+  if (!dir.exists(dir)) {
+    if (verbose) cli::cli_alert_info("Creating directory {.path {dir}}")
+    dir.create(dir, recursive = TRUE)
+  }
+
 
   # If exists creates a backup
   if (file.exists(file)) {

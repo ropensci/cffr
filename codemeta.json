@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.3.0 (2023-04-21)",
+  "runtimePlatform": "R version 4.2.3 (2023-03-15)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -200,7 +200,7 @@
   },
   "isPartOf": "https://ropensci.org",
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata", "r", "r-package", "citation-file-format", "rstats", "ropensci", "cran"],
-  "fileSize": "868.719KB",
+  "fileSize": "883.076KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -228,6 +228,62 @@
           "name": "Journal of Open Source Software"
         }
       }
+    },
+    {
+      "@type": "CreativeWork",
+      "datePublished": "2021",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Stephan",
+          "familyName": "Druskat"
+        },
+        {
+          "@type": "Person",
+          "givenName": ["Jurriaan", "H."],
+          "familyName": "Spaaks"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Neil",
+          "familyName": "Chue Hong"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Robert",
+          "familyName": "Haines"
+        },
+        {
+          "@type": "Person",
+          "givenName": "James",
+          "familyName": "Baker"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Spencer",
+          "familyName": "Bliven"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Egon",
+          "familyName": "Willighagen"
+        },
+        {
+          "@type": "Person",
+          "givenName": "David",
+          "familyName": "Pérez-Suárez"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Alexander",
+          "familyName": "Konovalov"
+        }
+      ],
+      "name": "Citation {File} {Format}",
+      "identifier": "10.5281/zenodo.5171937",
+      "url": "https://github.com/citation-file-format/citation-file-format",
+      "@id": "https://doi.org/10.5281/zenodo.5171937",
+      "sameAs": "https://doi.org/10.5281/zenodo.5171937"
     }
   ],
   "releaseNotes": "https://github.com/ropensci/cffr/blob/master/NEWS.md",

@@ -61,3 +61,27 @@
       - type: url
         value: https://gitlab.com/r-packages/behaviorchange
 
+---
+
+    Code
+      toBibtex(cit)
+    Output
+      @Article{,
+        title = {{RNeXML}: {A} Package for Reading and Writing Richly Annotated Phylogenetic, Character, and Trait Data in {R}},
+        journal = {Methods in Ecology and Evolution},
+        author = {Carl Boettiger and Scott Chamberlain and Rutger Vos and Hilmar Lapp},
+        year = {2016},
+        volume = {7},
+        pages = {352--357},
+        doi = {10.1111/2041-210X.12469},
+      }
+      
+      @Book{,
+        author = {Hadley Wickham},
+        title = {ggplot2: Elegant Graphics for Data Analysis},
+        publisher = {Springer-Verlag New York},
+        year = {2016},
+        isbn = {978-3-319-24277-4},
+        url = {https://ggplot2.tidyverse.org},
+      }
+
