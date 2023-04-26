@@ -24,7 +24,8 @@ written.}
 }
 \value{
 Writes an \code{.bib} file specified on \code{file} parameter and the
-equivalent \code{Bibtex} object created with \code{\link[utils:toLatex]{utils::toBibtex()}}.
+equivalent \code{Bibtex} object created with \code{\link[utils:toLatex]{utils::toBibtex()}}. It also
+(invisibly) returns the \code{bibentry} object that has been written to the file.
 }
 \description{
 Creates a .bib file from a \code{bibentry} object(s)
@@ -56,6 +57,7 @@ following packages:
 Other bibtex: 
 \code{\link{cff_from_bibtex}()},
 \code{\link{cff_to_bibtex}()},
-\code{\link{encoded_utf_to_latex}()}
+\code{\link{encoded_utf_to_latex}()},
+\code{\link{write_citation}()}
 }
 \concept{bibtex}

@@ -95,6 +95,7 @@ toBibtex(desc_file)
 Other bibtex: 
 \code{\link{cff_from_bibtex}()},
 \code{\link{encoded_utf_to_latex}()},
-\code{\link{write_bib}()}
+\code{\link{write_bib}()},
+\code{\link{write_citation}()}
 }
 \concept{bibtex}

@@ -5,6 +5,11 @@
 -   Function `cff_to_bibtex()` and `cff_extract_to_bibtex()` have been merged,
     the latter (`cff_extract_to_bibtex()`) is now soft-deprecated.
 
+## New features
+
+-   New function `write_citation()` that can generate a inst/CITATION file from
+    a `cff` object (#51).
+
 ## Enhancements
 
 -   Additional authors of a **R** package can be now included based on the role

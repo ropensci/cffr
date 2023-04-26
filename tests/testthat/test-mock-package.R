@@ -9,16 +9,23 @@ test_that("Test in mock package", {
   expect_true(dir.exists(new_dir))
 
   setwd(new_dir)
-  dir.create(file.path(new_dir, "inst"), recursive = TRUE)
 
   # Move files
   file.copy(system.file("examples/DESCRIPTION_many_urls", package = "cffr"),
     to = "DESCRIPTION"
   )
 
-  file.copy(system.file("examples/CITATION_basic", package = "cffr"),
-    to = file.path("inst", "CITATION")
+  # Create citation
+  cit <- utils::readCitationFile(
+    system.file("examples/CITATION_basic",
+      package = "cffr"
+    ),
+    meta = list(Encoding = "UTF-8")
   )
+
+
+  expect_silent(write_citation(cit, verbose = FALSE))
+  expect_true(file.exists("./inst/CITATION"))
 
   # Create Rbuildignore
   file.create(".Rbuildignore", showWarnings = FALSE)
@@ -57,8 +64,15 @@ test_that("Test in mock package", {
   expect_true(("^CITATION\\.cff$" %in% ignore))
   expect_true(("^\\.github$" %in% ignore))
 
+
+  # Check citation from package
+  cit <- utils::readCitationFile("./inst/CITATION",
+    meta = list(Encoding = "UTF-8")
+  )
+
   # Revert to initial wd
   setwd(current_dir)
 
   expect_snapshot(cffobj)
+  expect_snapshot(toBibtex(cit))
 })
