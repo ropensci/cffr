@@ -4,10 +4,8 @@ bibentry(bibtype = "Misc",
          author = person(given = "Fran",
                          family = "Herrero"))
 
-
 bibentry(bibtype = "Misc",
          key = "key2",
          title = "Another title",
          author = person(given = "Ian",
                          family = "Henderson"))
-

@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2023-04-26 there are at least 153 repos on GitHub using **cffr**.
+As per 2023-04-26 there are at least 143 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -804,24 +804,23 @@ Check the following articles to learn more about **cffr**:
 
 ## Citation
 
-Hernangómez D (2021). “cffr: Generate Citation File Format Metadata for
-R Packages.” *Journal of Open Source Software*, *6*(67), 3900.
-<doi:10.21105/joss.03900> <https://doi.org/10.21105/joss.03900>,
-<https://doi.org/10.21105/joss.03900>.
+Hernangómez, D., (2021). cffr: Generate Citation File Format Metadata
+for R Packages. Journal of Open Source Software, 6(67), 3900,
+<https://doi.org/10.21105/joss.03900>
 
 A BibTeX entry for LaTeX users is
 
     @Article{hernangomez2021,
-      title = {{cffr}: Generate Citation File Format Metadata for {R} Packages},
-      author = {Diego Hernangómez},
+      doi = {10.21105/joss.03900},
+      url = {https://doi.org/10.21105/joss.03900},
       year = {2021},
-      journal = {Journal of Open Source Software},
       publisher = {The Open Journal},
       volume = {6},
       number = {67},
       pages = {3900},
-      doi = {10.21105/joss.03900},
-      url = {https://doi.org/10.21105/joss.03900},
+      author = {Diego Hernangómez},
+      title = {{cffr}: Generate Citation File Format Metadata for {R} Packages},
+      journal = {Journal of Open Source Software},
     }
 
 You can also use the [citation provided by

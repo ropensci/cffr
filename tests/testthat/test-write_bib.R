@@ -107,6 +107,7 @@ test_that("Test dir creation", {
   expect_true(dir.exists(dir))
   expect_true(file.exists(file))
 
+  unlink(dir, recursive = TRUE, force = TRUE)
 
   # With messages
   file <- file.path(tempdir(), "nowiamverbose", "append.bib")
@@ -116,4 +117,6 @@ test_that("Test dir creation", {
 
   expect_true(dir.exists(dir))
   expect_true(file.exists(file))
+
+  unlink(dir, recursive = TRUE, force = TRUE)
 })

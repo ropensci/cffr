@@ -3,4 +3,3 @@ bibentry(bibtype = "Misc",
          title = "My title",
          author = person(given = "Fran",
                          family = "Pérez"))
-
