@@ -170,16 +170,15 @@
       message: 'To cite package "GenomicRanges" in publications use:'
       type: software
       title: 'GenomicRanges: Representation and manipulation of genomic intervals'
-      version: 1.44.0
+      version: 1.51.4
       authors:
-      - name: Bioconductor Package Maintainer
-        email: maintainer@bioconductor.org
       - family-names: Aboyoun
-        given-names: P.
+        given-names: Patrick
       - family-names: Pagès
-        given-names: H.
+        given-names: Hervé
+        email: hpages.on.github@gmail.com
       - family-names: Lawrence
-        given-names: M.
+        given-names: Michael
       abstract: The ability to efficiently represent and manipulate genomic annotations
         and alignments is playing a central role when it comes to analyzing high-throughput
         sequencing data (a.k.a. NGS data). The GenomicRanges package defines general purpose
@@ -191,10 +190,11 @@
       repository: https://bioconductor.org/
       repository-code: https://github.com/Bioconductor/GenomicRanges
       url: https://bioconductor.org/packages/GenomicRanges
-      date-released: '2021-05-19'
+      date-released: '2022-12-15'
       contact:
-      - name: Bioconductor Package Maintainer
-        email: maintainer@bioconductor.org
+      - family-names: Pagès
+        given-names: Hervé
+        email: hpages.on.github@gmail.com
       license: Artistic-2.0
       doi: 10.1111/2041-210X.12469
       preferred-citation:
@@ -571,7 +571,7 @@
       message: 'To cite package "codemetar" in publications use:'
       type: software
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
-      version: 0.3.2
+      version: 0.3.5
       authors:
       - family-names: Boettiger
         given-names: Carl
@@ -587,6 +587,7 @@
       repository: https://ropensci.r-universe.dev
       repository-code: https://github.com/ropensci/codemetar
       url: https://docs.ropensci.org/codemetar/
+      date-released: '2023-04-05'
       contact:
       - family-names: Boettiger
         given-names: Carl

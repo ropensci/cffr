@@ -14,13 +14,16 @@ biocViews: Genetics, Infrastructure, DataRepresentation, Sequencing,
         Annotation, GenomeAnnotation, Coverage
 URL: https://bioconductor.org/packages/GenomicRanges
 BugReports: https://github.com/Bioconductor/GenomicRanges/issues
-Version: 1.44.0
+Version: 1.51.4
 License: Artistic-2.0
 Encoding: UTF-8
-Author: P. Aboyoun, H. Pagès, and M. Lawrence
-Maintainer: Bioconductor Package Maintainer <maintainer@bioconductor.org>
+Authors@R: c(
+	person("Patrick", "Aboyoun", role="aut"),
+	person("Hervé", "Pagès", role=c("aut", "cre"),
+		email="hpages.on.github@gmail.com"),
+	person("Michael", "Lawrence", role="aut"))
 Depends: R (>= 4.0.0), methods, stats4, BiocGenerics (>= 0.37.0),
-        S4Vectors (>= 0.27.12), IRanges (>= 2.23.9), GenomeInfoDb (>=
+        S4Vectors (>= 0.27.12), IRanges (>= 2.31.2), GenomeInfoDb (>=
         1.15.2)
 Imports: utils, stats, XVector (>= 0.29.2)
 LinkingTo: S4Vectors, IRanges
@@ -47,15 +50,18 @@ Collate: normarg-utils.R utils.R phicoef.R transcript-utils.R
         makeGRangesFromDataFrame.R makeGRangesListFromDataFrame.R
         RangedData-methods.R findOverlaps-methods.R
         intra-range-methods.R inter-range-methods.R coverage-methods.R
-        setops-methods.R nearest-methods.R absoluteRanges.R
-        tileGenome.R tile-methods.R genomicvars.R zzz.R
-RoxygenNote: 7.1.1
+        setops-methods.R subtract-methods.R nearest-methods.R
+        absoluteRanges.R tileGenome.R tile-methods.R genomicvars.R
+        zzz.R
 git_url: https://git.bioconductor.org/packages/GenomicRanges
-git_branch: RELEASE_3_13
-git_last_commit: d27fdc8
-git_last_commit_date: 2021-05-19
-Date/Publication: 2021-05-19
+git_branch: master
+git_last_commit: f1a44dc
+git_last_commit_date: 2022-12-15
+Date/Publication: 2022-12-15
 NeedsCompilation: yes
-Packaged: 2021-05-20 00:20:46 UTC; biocbuild
-Built: R 4.1.0; i386-w64-mingw32; 2021-05-20 08:18:31 UTC; windows
-Archs: i386, x64
+Packaged: 2022-12-15 21:38:20 UTC; biocbuild
+Author: Patrick Aboyoun [aut],
+  Hervé Pagès [aut, cre],
+  Michael Lawrence [aut]
+Maintainer: Hervé Pagès <hpages.on.github@gmail.com>
+Built: R 4.3.0; x86_64-pc-linux-gnu; 2023-04-26 07:23:31 UTC; unix

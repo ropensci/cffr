@@ -1,5 +1,12 @@
 # cffr (development version)
 
+## Lifecycle
+
+-   Function `cff_to_bibtex()` and `cff_extract_to_bibtex()` have been merged,
+    the latter (`cff_extract_to_bibtex()`) is now soft-deprecated.
+
+## Enhancements
+
 -   Additional authors of a **R** package can be now included based on the role
     on the DESCRIPTION file, via the parameter `authors_roles` (#49).
 
@@ -13,10 +20,7 @@
     > Be verbose? If `TRUE`, then an attribute `"errors"` will list validation
     > failures as a data.frame
 
-## User-visible changes
-
--   Function `cff_to_bibtex()` and `cff_extract_to_bibtex()` have been merged,
-    the latter (`cff_extract_to_bibtex()`) is now soft-deprecated.
+-   Improvements in the extraction of `` `date-release` ``.
 
 # cffr 0.4.1
 

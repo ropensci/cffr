@@ -44,23 +44,37 @@ parse_desc_contacts <- function(pkg) {
   parse_all_contacts
 }
 
-#' Mapped to Date or Date/Publication for installed packages
+#' Mapped to Date, Date/Publication or Packaged
 #' @noRd
 parse_desc_date_released <- function(pkg) {
-  date <- tryCatch(as.character(as.Date(pkg$get("Date"))),
+  # See https://cran.r-project.org/doc/manuals/R-exts.html#The-DESCRIPTION-file
+  date1 <- pkg$get("Date")
+  # CRAN/BioConductor
+  date2 <- pkg$get("Date/Publication")
+  # R-universe
+  date3 <- pkg$get("Packaged")
+  # Work with vector
+  alldates <- unname(c(date1, date2, date3))
+  x <- alldates[3]
+  clean_dates <- lapply(alldates, function(x) {
+    if (is.na(x) || is.null(x)) {
+      return(NULL)
+    }
+    if (!is.character(x)) {
+      return(NULL)
+    }
+    return(substr(x, 1, 10))
+  })
+
+  clean_dates <- unlist(clean_dates)[1]
+
+  # Validate with format YYYY-MM-DD
+  date <- tryCatch(as.character(as.Date(clean_dates, format = "%Y-%m-%d")),
     error = function(cond) {
       return(NULL)
     }
   )
 
-
-  date <- clean_str(date)
-
-  # If no date here, try with Date/Publication
-  # This field is populated in the installed packages from CRAN
-  if (is.null(date)) {
-    date <- as.character(as.Date(pkg$get("Date/Publication")))
-  }
 
   date <- clean_str(date)
   date

@@ -203,8 +203,15 @@ pkg$get_author()
 
 ### date-released
 
-This key is parsed from the "Date" field or, if not present, from the
-"Date/Publication" field that is present on packages built on CRAN.
+This key is extracted following this logic:
+
+-   "Date" field or,
+
+-   If not present, from "Date/Publication". This is present on packages built
+    on CRAN and Bioconductor. Or,
+
+-   If not present, from "Packaged", that is present on packages built by the
+    [r-universe](https://r-universe.dev/search/).
 
 <details>
 

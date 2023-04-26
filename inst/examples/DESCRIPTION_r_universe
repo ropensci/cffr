@@ -1,7 +1,7 @@
 Type: Package
 Package: codemetar
 Title: Generate 'CodeMeta' Metadata for R Packages
-Version: 0.3.2
+Version: 0.3.5
 Authors@R:
     c(person(given = "Carl",
              family = "Boettiger",
@@ -72,12 +72,12 @@ BugReports: https://github.com/ropensci/codemetar/issues
 Depends: R (>= 3.2.0)
 Imports: commonmark, crul, desc, gert, gh, jsonlite (>= 1.6), magrittr,
         memoise, methods, pingr, purrr, remotes, sessioninfo, stats,
-        urltools, xml2, cli
+        urltools, xml2, cli, codemeta
 Suggests: withr, covr, details, dplyr (>= 0.7.0), jsonld, jsonvalidate,
         knitr, printr, rmarkdown, testthat (>= 3.0.0), usethis
 VignetteBuilder: knitr
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.1.9000
 X-schema.org-isPartOf: https://ropensci.org
 X-schema.org-keywords: metadata, codemeta, ropensci, citation, credit,
         linked-data
@@ -86,9 +86,9 @@ Config/testthat/edition: 3
 Repository: https://ropensci.r-universe.dev
 RemoteUrl: https://github.com/ropensci/codemetar
 RemoteRef: master
-RemoteSha: adc7868453c31c3868e21295f8c88f5e4e3ad169
+RemoteSha: 4cd7ccc51455f4fad762da8d3cca3f46c368e299
 NeedsCompilation: no
-Packaged: 2021-09-20 10:09:48 UTC; root
+Packaged: 2023-04-05 06:11:53 UTC; root
 Author: Carl Boettiger [aut, cre, cph]
     (<https://orcid.org/0000-0002-1642-628X>),
   Anna Krystalli [rev, ctb] (<https://orcid.org/0000-0002-2378-4915>),
@@ -105,4 +105,3 @@ Author: Carl Boettiger [aut, cre, cph]
   Sebastian Kreutzer [ctb] (<https://orcid.org/0000-0002-0734-2199>),
   Thierry Onkelinx [ctb] (<https://orcid.org/0000-0001-8804-4216>)
 Maintainer: Carl Boettiger <cboettig@gmail.com>
-Built: R 4.1.1; ; 2021-09-20 10:11:46 UTC; windows

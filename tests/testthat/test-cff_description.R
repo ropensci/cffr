@@ -166,10 +166,6 @@ test_that("Parsing Bioconductor", {
   )
 
   expect_length(parsed$repository, 1)
-  expect_equal(
-    parsed$contact[[1]]$name,
-    "Bioconductor Package Maintainer"
-  )
 
   expect_s3_class(parsed, "cff")
   expect_snapshot(parsed)
