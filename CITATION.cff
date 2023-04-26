@@ -26,14 +26,14 @@ preferred-citation:
     given-names: Diego
     email: diego.hernangomezherrero@gmail.com
     orcid: https://orcid.org/0000-0001-8457-4658
-  doi: 10.21105/joss.03900
-  url: https://doi.org/10.21105/joss.03900
   year: '2021'
+  journal: Journal of Open Source Software
   publisher:
     name: The Open Journal
   volume: '6'
   issue: '67'
-  journal: Journal of Open Source Software
+  doi: 10.21105/joss.03900
+  url: https://doi.org/10.21105/joss.03900
   start: '3900'
 repository: https://CRAN.R-project.org/package=cffr
 repository-code: https://github.com/ropensci/cffr

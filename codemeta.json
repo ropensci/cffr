@@ -200,7 +200,7 @@
   },
   "isPartOf": "https://ropensci.org",
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata", "r", "r-package", "citation-file-format", "rstats", "ropensci", "cran"],
-  "fileSize": "884.957KB",
+  "fileSize": "883.439KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -212,7 +212,7 @@
           "familyName": "Hernangómez"
         }
       ],
-      "name": "cffr: Generate Citation File Format Metadata for R Packages",
+      "name": "{cffr}: Generate Citation File Format Metadata for {R} Packages",
       "identifier": "10.21105/joss.03900",
       "url": "https://doi.org/10.21105/joss.03900",
       "pagination": "3900",
