@@ -103,5 +103,8 @@ test_that("Results can be parsed", {
   expect_s3_class(sil, "bibentry")
 
   pp <- utils::readCitationFile(tmp, meta = list(Encoding = "UTF-8"))
-  expect_snapshot_output(pp)
+
+  expect_s3_class(pp, "bibentry")
+
+  expect_snapshot_output(toBibtex(pp))
 })
