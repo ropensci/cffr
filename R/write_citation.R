@@ -104,7 +104,8 @@ write_citation <- function(x,
   if (verbose) {
     cli::cli_alert_info("Writing {length(bentr)} entr{?y/ies} ...")
   }
-  writeLines(bentr, fh)
+  # Odd bug in RStudio... add empty lines
+  writeLines(c("", bentr, ""), fh)
   if (verbose) {
     cli::cli_alert_success("Results written to {.file {file}}")
   }
