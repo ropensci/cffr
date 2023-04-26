@@ -80,6 +80,23 @@ test_that("R Core Team", {
   expect_equal(p$name, "R Core Team")
 })
 
+test_that("Bioconductor", {
+  # Several tastes of Bioconductor
+  bio <- person("Bioconductor Package Maintainer",
+    role = "cre",
+    email = "maintainer@bioconductor.org"
+  )
+  p <- cff_parse_person(bio)
+
+  expect_equal(p$name, "Bioconductor Package Maintainer")
+
+  p <- cff_parse_person("Bioconductor Package Maintainer")
+
+  expect_equal(p$name, "Bioconductor Package Maintainer")
+
+  p <- cff_parse_person(person("The Bioconductor", "Package Maintainer"))
+  expect_equal(p$name, "The Bioconductor Package Maintainer")
+})
 
 test_that("Several emails, select first", {
   pp <- person(

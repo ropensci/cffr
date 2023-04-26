@@ -47,7 +47,7 @@ is.substring <- function(x, sub) {
 #' @param x object to be evaluated
 #' @noRd
 is.cff <- function(x) {
-  if (unique("cff" %in% class(x))) {
+  if (inherits(x, "cff")) {
     return(TRUE)
   } else {
     return(FALSE)

@@ -189,7 +189,7 @@ c.cff <-
 #'
 #' @noRd
 rapply_cff <- function(x) {
-  if ("cff" %in% class(x)) {
+  if (inherits(x, "cff")) {
     return(x)
   }
 

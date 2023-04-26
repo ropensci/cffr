@@ -16,7 +16,7 @@ bibentry(
 
 bibentry(
   bibtype = "Misc",
-  mheader = "Consider also citing",
+  header = "Consider also citing:",
   key = "druskat_citation_2021",
   title = "Citation {File} {Format}",
   author = c(

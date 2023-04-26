@@ -1,4 +1,4 @@
-# cffr (development version)
+# cffr 0.5.0
 
 ## Lifecycle
 

@@ -18,7 +18,9 @@ test_that("Check is.email", {
       is.email("felix@nicebread"),
       is.email("felix@nicebread@de"),
       is.email("felixnicebread.de"),
-      is.email("@felixnicebread")
+      is.email("@felixnicebread"),
+      is.email(NULL),
+      is.email(NA)
     )
   )
 })
@@ -63,4 +65,8 @@ test_that("Check stop if not cff", {
   err <- "Some string"
 
   expect_error(stopifnotcff(err))
+
+  # Other objects
+  x <- list(a = 1)
+  expect_error(stopifnotcff(x), "list")
 })
