@@ -1,13 +1,9 @@
 url: 'https://docs.ropensci.org/cffr'
 template:
-  params:
-    ganalytics: G-0DP42JKT92
   opengraph:
     twitter:
       creator: '@dhernangomez'
       card: summary_large_image
-development:
-  mode: auto
 repo:
   branch: main
 reference:
@@ -77,3 +73,8 @@ navbar:
 authors:
   Diego Hernangómez:
     href: 'https://dieghernan.github.io/'
+  João Martins:
+    href: 'https://github.com/zambujo/'
+  Scott Chamberlain:
+    href: 'https://scottchamberlain.info/'
+  
