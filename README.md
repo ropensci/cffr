@@ -37,16 +37,16 @@ repositories to let others know how to correctly cite their software.
 This format is becoming popular within the software citation ecosystem.
 Recently
 [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
-[Zenodo](https://twitter.com/ZENODO_ORG/status/1420357001490706442) and
-[Zotero](https://twitter.com/zotero/status/1420515377390530560) have
-included full support of this citation format ([Druskat
+[Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-)
+and
+[Zotero](https://citation-file-format.github.io/#/supported-by-zotero-)
+have included full support of this citation format ([Druskat
 2021](#ref-druskat_stephan_making_2021)). GitHub support is of special
 interest:
 
 <img src="vignettes/tweet-1.png" alt="GitHub-link" width="400" style="display: block; margin: auto;" />
 
-*— Nat Friedman (@natfriedman) [July 27,
-2021](https://twitter.com/natfriedman/status/1420122675813441540?ref_src=twsrc%5Etfw)*
+*— Nat Friedman (@natfriedman) July 27, 2021*
 
 See [Enhanced support for citations on
 GitHub](https://github.blog/2021-08-19-enhanced-support-citations-github/)
@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2023-05-04 there are at least 147 repos on GitHub using **cffr**.
+As per 2023-05-05 there are at least 147 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 

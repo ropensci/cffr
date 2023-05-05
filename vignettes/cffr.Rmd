@@ -41,9 +41,9 @@ correctly cite their software.
 
 This format is becoming popular within the software citation ecosystem. Recently
 [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
-[Zenodo](https://twitter.com/ZENODO_ORG/status/1420357001490706442) and
-[Zotero](https://twitter.com/zotero/status/1420515377390530560) have included
-full support of this citation format [@druskat_stephan_making_2021].
+[Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-) and
+[Zotero](https://citation-file-format.github.io/#/supported-by-zotero-) have
+included full support of this citation format [@druskat_stephan_making_2021].
 
 GitHub support is of special interest:
 
@@ -51,8 +51,7 @@ GitHub support is of special interest:
 knitr::include_graphics("tweet-1.png")
 ```
 
-*--- Nat Friedman (\@natfriedman) [July 27,
-2021](https://twitter.com/natfriedman/status/1420122675813441540?ref_src=twsrc%5Etfw)*
+*--- Nat Friedman (\@natfriedman) July 27, 2021*
 
 See [Customize your repository/About CITATION
 files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
