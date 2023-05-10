@@ -61,7 +61,7 @@ cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
   if (!requireNamespace("bibtex", quietly = TRUE)) {
     msg <- paste0(
       "{.pkg bibtex} package required for using this function: ",
-      '{.run install.packages("usethis")}'
+      '{.run install.packages("bibtex")}'
     )
     cli::cli_abort(msg)
   }
