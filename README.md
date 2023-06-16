@@ -10,7 +10,7 @@
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/cffr?color=blue)](https://cran.r-project.org/package=cffr)
 [![R-CMD-check](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml)
 [![codecov](https://codecov.io/gh/ropensci/cffr/branch/main/graph/badge.svg?token=YRO3XL8RWK)](https://app.codecov.io/gh/ropensci/cffr)
-[![r-universe](https://ropensci.r-universe.dev/badges/cffr)](https://ropensci.r-universe.dev/)
+[![r-universe](https://ropensci.r-universe.dev/badges/cffr)](https://ropensci.r-universe.dev/cffr)
 [![CITATION-cff](https://github.com/ropensci/cffr/actions/workflows/cff-validator.yml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/cff-validator.yml)
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.03900/status.svg)](https://doi.org/10.21105/joss.03900)
 [![Project Status: Active - The project has reached a stable, usable
@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2023-05-24 there are at least 160 repos on GitHub using **cffr**.
+As per 2023-06-16 there are at least 203 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -94,14 +94,10 @@ Alternatively, you can install **cffr** using the
 [r-universe](https://ropensci.r-universe.dev/cffr):
 
 ``` r
-# Enable this universe
-options(repos = c(
-  ropensci = "https://ropensci.r-universe.dev",
-  CRAN = "https://cloud.r-project.org"
-))
-
-# Install some packages
-install.packages("cffr")
+# Install cffr in R:
+install.packages("cffr",
+  repos = c("https://ropensci.r-universe.dev", "https://cloud.r-project.org")
+)
 ```
 
 ### Example
@@ -147,7 +143,7 @@ test <- cff_create("rmarkdown")
     type: software
     license: GPL-3.0-only
     title: 'rmarkdown: Dynamic Documents for R'
-    version: '2.21'
+    version: '2.22'
     abstract: Convert R Markdown documents into a variety of formats.
     authors:
     - family-names: Allaire
@@ -225,12 +221,12 @@ test <- cff_create("rmarkdown")
         email: rich@posit.co
         orcid: https://orcid.org/0000-0003-3925-190X
       year: '2023'
-      notes: R package version 2.21
+      notes: R package version 2.22
       url: https://github.com/rstudio/rmarkdown
     repository: https://CRAN.R-project.org/package=rmarkdown
     repository-code: https://github.com/rstudio/rmarkdown
     url: https://pkgs.rstudio.com/rmarkdown/
-    date-released: '2023-03-26'
+    date-released: '2023-06-01'
     contact:
     - family-names: Xie
       given-names: Yihui
@@ -300,6 +296,10 @@ test <- cff_create("rmarkdown")
       - family-names: Cheng
         given-names: Joe
         email: joe@rstudio.com
+      - family-names: Aden-Buie
+        given-names: Garrick
+        email: garrick@posit.co
+        orcid: https://orcid.org/0000-0002-7111-0077
       year: '2023'
       version: '>= 0.2.5.1'
     - type: software
@@ -562,25 +562,6 @@ test <- cff_create("rmarkdown")
         given-names: and Winston
       year: '2023'
     - type: software
-      title: dygraphs
-      abstract: 'dygraphs: Interface to ''Dygraphs'' Interactive Time Series Charting
-        Library'
-      notes: Suggests
-      url: https://github.com/rstudio/dygraphs
-      repository: https://CRAN.R-project.org/package=dygraphs
-      authors:
-      - family-names: Vanderkam
-        given-names: Dan
-      - family-names: Allaire
-        given-names: JJ
-      - family-names: Owen
-        given-names: Jonathan
-      - family-names: Gromer
-        given-names: Daniel
-      - family-names: Thieurmel
-        given-names: Benoit
-      year: '2023'
-    - type: software
       title: fs
       abstract: 'fs: Cross-Platform File System Operations Based on ''libuv'''
       notes: Suggests
@@ -597,22 +578,6 @@ test <- cff_create("rmarkdown")
         email: csardi.gabor@gmail.com
       year: '2023'
     - type: software
-      title: rsconnect
-      abstract: 'rsconnect: Deployment Interface for R Markdown Documents and Shiny Applications'
-      notes: Suggests
-      url: https://github.com/rstudio/rsconnect
-      repository: https://CRAN.R-project.org/package=rsconnect
-      authors:
-      - family-names: Atkins
-        given-names: Aron
-        email: aron@posit.co
-      - family-names: McPherson
-        given-names: Jonathan
-        email: jonathan@posit.co
-      - family-names: Allaire
-        given-names: JJ
-      year: '2023'
-    - type: software
       title: downlit
       abstract: 'downlit: Syntax Highlighting and Automatic Linking'
       notes: Suggests
@@ -624,19 +589,6 @@ test <- cff_create("rmarkdown")
         email: hadley@rstudio.com
       year: '2023'
       version: '>= 0.4.0'
-    - type: software
-      title: katex
-      abstract: 'katex: Rendering Math to HTML, ''MathML'', or R-Documentation Format'
-      notes: Suggests
-      url: https://docs.ropensci.org/katex/
-      repository: https://CRAN.R-project.org/package=katex
-      authors:
-      - family-names: Ooms
-        given-names: Jeroen
-        email: jeroen@berkeley.edu
-        orcid: https://orcid.org/0000-0002-4035-0289
-      year: '2023'
-      version: '>= 1.4.0'
     - type: software
       title: sass
       abstract: 'sass: Syntactically Awesome Style Sheets (''Sass'')'
@@ -856,20 +808,22 @@ Hernangómez, D., (2021). cffr: Generate Citation File Format Metadata
 for R Packages. Journal of Open Source Software, 6(67), 3900,
 <https://doi.org/10.21105/joss.03900>
 
-A BibTeX entry for LaTeX users is
+A BibTeX entry for LaTeX users is:
 
-    @Article{hernangomez2021,
-      doi = {10.21105/joss.03900},
-      url = {https://doi.org/10.21105/joss.03900},
-      year = {2021},
-      publisher = {The Open Journal},
-      volume = {6},
-      number = {67},
-      pages = {3900},
-      author = {Diego Hernangómez},
-      title = {{cffr}: Generate Citation File Format Metadata for {R} Packages},
-      journal = {Journal of Open Source Software},
-    }
+``` bibtex
+@article{hernangomez2021,
+    title        = {{cffr}: Generate Citation File Format Metadata for {R} Packages},
+    author       = {Diego Hernangómez},
+    year         = 2021,
+    journal      = {Journal of Open Source Software},
+    publisher    = {The Open Journal},
+    volume       = 6,
+    number       = 67,
+    pages        = 3900,
+    doi          = {10.21105/joss.03900},
+    url          = {https://doi.org/10.21105/joss.03900}
+}
+```
 
 You can also use the [citation provided by
 GitHub](https://github.com/ropensci/cffr), that is generated from the

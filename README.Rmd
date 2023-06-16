@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/cffr?color=blue)](https://cran.r-project.org/package=cffr)
 [![R-CMD-check](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml)
 [![codecov](https://codecov.io/gh/ropensci/cffr/branch/main/graph/badge.svg?token=YRO3XL8RWK)](https://app.codecov.io/gh/ropensci/cffr)
-[![r-universe](https://ropensci.r-universe.dev/badges/cffr)](https://ropensci.r-universe.dev/)
+[![r-universe](https://ropensci.r-universe.dev/badges/cffr)](https://ropensci.r-universe.dev/cffr)
 [![CITATION-cff](https://github.com/ropensci/cffr/actions/workflows/cff-validator.yml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/cff-validator.yml)
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.03900/status.svg)](https://doi.org/10.21105/joss.03900)
 [![Project Status: Active - The project has reached a stable, usable state and
@@ -141,14 +141,10 @@ Alternatively, you can install **cffr** using the
 [r-universe](https://ropensci.r-universe.dev/cffr):
 
 ```{r, eval=FALSE}
-# Enable this universe
-options(repos = c(
-  ropensci = "https://ropensci.r-universe.dev",
-  CRAN = "https://cloud.r-project.org"
-))
-
-# Install some packages
-install.packages("cffr")
+# Install cffr in R:
+install.packages("cffr",
+  repos = c("https://ropensci.r-universe.dev", "https://cloud.r-project.org")
+)
 ```
 
 ### Example
@@ -263,14 +259,25 @@ Check the following articles to learn more about **cffr**:
 
 ## Citation
 
-```{r echo=FALSE, results='asis'}
-print(citation("cffr")[1], bibtex = FALSE)
-```
+Hernangómez, D., (2021). cffr: Generate Citation File Format Metadata for R
+Packages. Journal of Open Source Software, 6(67), 3900,
+<https://doi.org/10.21105/joss.03900>
 
-A BibTeX entry for LaTeX users is
+A BibTeX entry for LaTeX users is:
 
-```{r echo=FALSE, comment=''}
-toBibtex(citation("cffr")[1])
+``` bibtex
+@article{hernangomez2021,
+    title        = {{cffr}: Generate Citation File Format Metadata for {R} Packages},
+    author       = {Diego Hernangómez},
+    year         = 2021,
+    journal      = {Journal of Open Source Software},
+    publisher    = {The Open Journal},
+    volume       = 6,
+    number       = 67,
+    pages        = 3900,
+    doi          = {10.21105/joss.03900},
+    url          = {https://doi.org/10.21105/joss.03900}
+}
 ```
 
 You can also use the [citation provided by
