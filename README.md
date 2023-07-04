@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2023-06-27 there are at least 203 repos on GitHub using **cffr**.
+As per 2023-07-04 there are at least 206 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -143,7 +143,7 @@ test <- cff_create("rmarkdown")
     type: software
     license: GPL-3.0-only
     title: 'rmarkdown: Dynamic Documents for R'
-    version: '2.22'
+    version: '2.23'
     abstract: Convert R Markdown documents into a variety of formats.
     authors:
     - family-names: Allaire
@@ -221,12 +221,12 @@ test <- cff_create("rmarkdown")
         email: rich@posit.co
         orcid: https://orcid.org/0000-0003-3925-190X
       year: '2023'
-      notes: R package version 2.22
+      notes: R package version 2.23
       url: https://github.com/rstudio/rmarkdown
     repository: https://CRAN.R-project.org/package=rmarkdown
     repository-code: https://github.com/rstudio/rmarkdown
     url: https://pkgs.rstudio.com/rmarkdown/
-    date-released: '2023-06-01'
+    date-released: '2023-07-01'
     contact:
     - family-names: Xie
       given-names: Yihui
@@ -379,7 +379,7 @@ test <- cff_create("rmarkdown")
       title: jsonlite
       abstract: 'jsonlite: A Simple and Robust JSON Parser and Generator for R'
       notes: Imports
-      url: https://arxiv.org/abs/1403.2805
+      url: https://jeroen.r-universe.dev/jsonlite
       repository: https://CRAN.R-project.org/package=jsonlite
       authors:
       - family-names: Ooms
@@ -623,7 +623,7 @@ test <- cff_create("rmarkdown")
       authors:
       - family-names: Wickham
         given-names: Hadley
-        email: hadley@rstudio.com
+        email: hadley@posit.co
       year: '2023'
       version: '>= 0.4.0'
     - type: software
@@ -888,9 +888,9 @@ for more info.
 
 <div id="ref-codemeta" class="csl-entry">
 
-Boettiger, Carl, and Maëlle Salmon. 2021a. *<span
-class="nocase">codemeta</span>: A Smaller <span
-class="nocase">codemetar</span> Package*.
+Boettiger, Carl, and Maëlle Salmon. 2021a.
+*<span class="nocase">codemeta</span>: A Smaller
+<span class="nocase">codemetar</span> Package*.
 <https://CRAN.R-project.org/package=codemeta>.
 
 </div>
@@ -911,8 +911,8 @@ Among Citation Formats*.
 
 <div id="ref-citation22" class="csl-entry">
 
-Dietrich, Jan Philipp, and Waldir Leoncio. 2022. *<span
-class="nocase">citation</span>: Software Citation Tools*.
+Dietrich, Jan Philipp, and Waldir Leoncio. 2022.
+*<span class="nocase">citation</span>: Software Citation Tools*.
 
 </div>
 
