@@ -2,7 +2,7 @@
 % Please edit documentation in R/write_bib.R
 \name{write_bib}
 \alias{write_bib}
-\title{Create a .bib file}
+\title{Create a \code{.bib} file}
 \usage{
 write_bib(x, file = NULL, append = FALSE, verbose = TRUE, ascii = FALSE)
 }
@@ -28,7 +28,7 @@ equivalent \code{Bibtex} object created with \code{\link[utils:toLatex]{utils::t
 (invisibly) returns the \code{bibentry} object that has been written to the file.
 }
 \description{
-Creates a .bib file from a \code{bibentry} object(s)
+Creates \verb{a .bib} file from a \code{bibentry} object(s)
 }
 \details{
 For security reasons, if the file already exists the function would create
@@ -49,15 +49,15 @@ write_bib(bib, ascii = TRUE)
 \code{vignette("bibtex_cff", "cffr")}, \code{\link[knitr:write_bib]{knitr::write_bib()}} and the
 following packages:
 \itemize{
-\item \href{https://github.com/ropensci/bibtex}{bibtex} package.
-\item \href{https://github.com/ropensci/RefManageR}{RefManageR} package.
-\item \href{https://github.com/GeoBosh/rbibutils/}{rbibutils}
+\item \CRANpkg{bibtex}.
+\item \CRANpkg{RefManageR}
+\item \CRANpkg{rbibutils}
 }
 
-Other bibtex: 
+Other BibTeX helpers: 
 \code{\link{cff_from_bibtex}()},
 \code{\link{cff_to_bibtex}()},
 \code{\link{encoded_utf_to_latex}()},
 \code{\link{write_citation}()}
 }
-\concept{bibtex}
+\concept{BibTeX helpers}

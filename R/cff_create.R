@@ -7,7 +7,7 @@
 #'
 #' @return A [`cff`] list object.
 #'
-#' @family core functions
+#' @family Core functions
 #'
 #' @export
 #'
@@ -60,8 +60,8 @@
 #' for additional details.
 #'
 #' If `x` is a path to a DESCRIPTION file or `inst/CITATION`, is not present on
-#' your package, **cffr** would auto-generate a `preferred-citation` key using
-#' the information provided on that file.
+#' your package, \CRANpkg{cffr} would auto-generate a `preferred-citation` key
+#' using the information provided on that file.
 #'
 #' By default, only persons whose role in the DESCRIPTION file of the package
 #' is author (`"aut"`) or maintainer (`"cre"`) are considered to be authors

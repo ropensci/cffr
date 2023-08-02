@@ -45,11 +45,11 @@ ascii_table
 \seealso{
 \code{\link[tools:encoded]{tools::encoded_text_to_latex()}}
 
-Other bibtex: 
+Other BibTeX helpers: 
 \code{\link{cff_from_bibtex}()},
 \code{\link{cff_to_bibtex}()},
 \code{\link{write_bib}()},
 \code{\link{write_citation}()}
 }
-\concept{bibtex}
+\concept{BibTeX helpers}
 \keyword{internal}

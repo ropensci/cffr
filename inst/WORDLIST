@@ -62,7 +62,6 @@ Zenodo
 Zotero
 al
 annote
-bibtex
 biocViews
 booktitle
 cff
@@ -84,7 +83,6 @@ isbn
 issn
 issuetitle
 json
-jsonvalidate
 mastersthesis
 multivolume
 pagetotal

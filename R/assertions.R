@@ -57,7 +57,7 @@ is.cff <- function(x) {
 #' Check if a object is cff file
 #' @param x object to be evaluated
 #' @noRd
-is.cff.file <- function(x) {
+is.cff_file <- function(x) {
   if (!inherits(x, "character")) {
     return(FALSE)
   }

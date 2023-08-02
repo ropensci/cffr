@@ -1,7 +1,8 @@
 test_that("Merge all DESCRIPTION files with CITATION_basic", {
-  allfiles <- list.files(system.file("examples",
-    package = "cffr"
-  ), pattern = "^DESC", full.names = TRUE)
+  allfiles <- list.files(
+    system.file("examples", package = "cffr"),
+    pattern = "^DESC", full.names = TRUE
+  )
 
   citpath <- system.file("examples/CITATION_basic",
     package = "cffr"

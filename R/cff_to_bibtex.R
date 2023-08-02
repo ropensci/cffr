@@ -36,7 +36,7 @@
 #'   - `all`: A combination of the previous two options. This would extract
 #'      both the preferred citation info and the references.
 #'
-#' @family bibtex
+#' @family BibTeX helpers
 #'
 #' @return A `bibentry` object or a list of `bibentry` objects. This could
 #' be parsed to BibTeX using [toBibtex()]
@@ -91,7 +91,7 @@ cff_to_bibtex <- function(x,
     return(NULL)
   }
 
-  if (is.cff.file(x)) {
+  if (is.cff_file(x)) {
     x <- cff_read(x)
   }
 
@@ -195,8 +195,10 @@ cff_bibtex_parser <- function(x) {
   # Check if it may be an incollection
   # Hint: is misc with collection-title and publisher
 
-  if (tobibentry$bibtype == "misc" && !is.null(x$`collection-title`) &&
-    !is.null(x$publisher)) {
+  if (all(
+    tobibentry$bibtype == "misc", !is.null(x$`collection-title`),
+    !is.null(x$publisher)
+  )) {
     tobibentry$bibtype <- "incollection"
   }
 
@@ -225,8 +227,7 @@ cff_bibtex_parser <- function(x) {
   ))
 
   # As a fallback, use also location
-  if (is.null(tobibentry$address) &&
-    !is.null(x$location)) {
+  if (is.null(tobibentry$address) && !is.null(x$location)) {
     tobibentry$address <- x$location$name
   }
 

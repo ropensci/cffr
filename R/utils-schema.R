@@ -33,7 +33,7 @@
 #'
 #' ```
 #'
-#' @family schema
+#' @family Schemas
 #'
 #' @export
 #'

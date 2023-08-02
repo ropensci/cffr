@@ -49,13 +49,12 @@ parse_desc_contacts <- function(pkg) {
 parse_desc_date_released <- function(pkg) {
   # See https://cran.r-project.org/doc/manuals/R-exts.html#The-DESCRIPTION-file
   date1 <- pkg$get("Date")
-  # CRAN/BioConductor
+  # This is for CRAN/BioConductor packages
   date2 <- pkg$get("Date/Publication")
   # R-universe
   date3 <- pkg$get("Packaged")
   # Work with vector
   alldates <- unname(c(date1, date2, date3))
-  x <- alldates[3]
   clean_dates <- lapply(alldates, function(x) {
     if (is.na(x) || is.null(x)) {
       return(NULL)

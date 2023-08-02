@@ -27,9 +27,10 @@ test_that("Test error formats on inputs", {
 })
 
 test_that("Validate all DESCRIPTION files", {
-  allfiles <- list.files(system.file("examples",
-    package = "cffr"
-  ), pattern = "^DESC", full.names = TRUE)
+  allfiles <- list.files(
+    system.file("examples", package = "cffr"),
+    pattern = "^DESC", full.names = TRUE
+  )
 
   for (i in seq_len(length(allfiles))) {
     cffobj <- cff_create(allfiles[i], gh_keywords = FALSE)

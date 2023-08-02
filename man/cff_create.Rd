@@ -57,8 +57,8 @@ Please refer to
 for additional details.
 
 If \code{x} is a path to a DESCRIPTION file or \code{inst/CITATION}, is not present on
-your package, \strong{cffr} would auto-generate a \code{preferred-citation} key using
-the information provided on that file.
+your package, \CRANpkg{cffr} would auto-generate a \code{preferred-citation} key
+using the information provided on that file.
 
 By default, only persons whose role in the DESCRIPTION file of the package
 is author (\code{"aut"}) or maintainer (\code{"cre"}) are considered to be authors
@@ -110,9 +110,9 @@ cff_create(demo_file, keys = list("contact" = new_contact))
 
 \code{vignette("cffr", "cffr")}
 
-Other core functions: 
+Other Core functions: 
 \code{\link{cff_read}()},
 \code{\link{cff_validate}()},
 \code{\link{cff_write}()}
 }
-\concept{core functions}
+\concept{Core functions}

@@ -6,9 +6,6 @@ test_that("Test ALL installed packages", {
 
   rownames(installed) <- seq_len(nrow(installed))
 
-  # # Small sample
-  # installed <- installed[sample(seq_len(nrow(installed)), 20), ]
-
   l <- nrow(installed)
 
   # Initial set of packages

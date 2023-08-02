@@ -92,10 +92,10 @@ toBibtex(desc_file)
 }
 }
 \seealso{
-Other bibtex: 
+Other BibTeX helpers: 
 \code{\link{cff_from_bibtex}()},
 \code{\link{encoded_utf_to_latex}()},
 \code{\link{write_bib}()},
 \code{\link{write_citation}()}
 }
-\concept{bibtex}
+\concept{BibTeX helpers}

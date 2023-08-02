@@ -9,7 +9,7 @@
 #'
 #' @export
 #'
-#' @family parsers
+#' @family Parsers
 #'
 #' @param person A `person` object created with [person()] or a
 #'   character string. See **Details**.
@@ -83,8 +83,10 @@ cff_parse_person <- function(person) {
   # Special case for R Core Team
 
 
-  if (is.substring(clean_str(person$given), "R Core") &&
-    is.substring(person$family, "Team")) {
+  if (all(
+    is.substring(clean_str(person$given), "R Core"),
+    is.substring(person$family, "Team")
+  )) {
     person <- person(
       given = paste(
         clean_str(person$given),
@@ -157,8 +159,7 @@ cff_parse_person <- function(person) {
   } else {
     cff_schema_definitions_person()
   }
-  parsed_person <- parsed_person[names(parsed_person) %in%
-    definition]
+  parsed_person <- parsed_person[names(parsed_person) %in% definition]
 
   parsed_person <- as.cff(parsed_person)
   parsed_person

@@ -26,8 +26,8 @@ Extract the information of a BibTeX file or BibTeX entry and creates the
 corresponding \code{\link{cff}} object with \code{\link[=cff_parse_citation]{cff_parse_citation()}}.
 }
 \details{
-This function requires the package \strong{bibtex} (>= 0.5.0), that is listed
-as \code{Suggested} by  \strong{cffr}.
+This function requires the package \CRANpkg{bibtex} (>= 0.5.0), that is
+listed as \code{Suggested} by \CRANpkg{cffr}.
 }
 \examples{
 if (requireNamespace("bibtex", quietly = TRUE)) {
@@ -62,10 +62,10 @@ if (requireNamespace("bibtex", quietly = TRUE)) {
 \code{vignette("bibtex_cff", package = "cffr")} to learn about the mapping of
 information between BibTeX and CITATION.cff.
 
-Other bibtex: 
+Other BibTeX helpers: 
 \code{\link{cff_to_bibtex}()},
 \code{\link{encoded_utf_to_latex}()},
 \code{\link{write_bib}()},
 \code{\link{write_citation}()}
 }
-\concept{bibtex}
+\concept{BibTeX helpers}

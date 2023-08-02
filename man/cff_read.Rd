@@ -107,9 +107,9 @@ class(cffobj)
 cffobj
 }
 \seealso{
-Other core functions: 
+Other Core functions: 
 \code{\link{cff_create}()},
 \code{\link{cff_validate}()},
 \code{\link{cff_write}()}
 }
-\concept{core functions}
+\concept{Core functions}

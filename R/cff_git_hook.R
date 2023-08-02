@@ -8,7 +8,7 @@
 #'
 #' @name cff_git_hook
 #'
-#' @family git
+#' @family Git helpers
 #'
 #' @export
 #'
@@ -85,7 +85,9 @@ cff_git_hook_remove <- function() {
   hookfile <- file.path(".git", "hooks", "pre-commit")
 
   if (file.exists(hookfile)) {
-    cli::cli_alert_info("Removing git pre-commit hook (was on {.path {hookfile}})")
+    cli::cli_alert_info(
+      "Removing git pre-commit hook (was on {.path {hookfile}})"
+    )
     unlink(hookfile, force = TRUE)
   }
 

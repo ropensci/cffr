@@ -6,7 +6,7 @@
 #'
 #' @export
 #'
-#' @family parsers
+#' @family Parsers
 #'
 #' @param bib A `bibentry` object, either created with [bibentry()]
 #'   (preferred) or [citEntry()].
@@ -188,8 +188,7 @@ cff_parse_citation <- function(bib) {
 
   # Remove non-valid names
   validnames <- cff_schema_definitions_refs()
-  parse_cit <- parse_cit[names(parse_cit) %in%
-    c(validnames)]
+  parse_cit <- parse_cit[names(parse_cit) %in% validnames]
 
   parse_cit <- drop_null(parse_cit)
   parse_cit_result <- as.cff(parse_cit)

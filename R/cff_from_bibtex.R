@@ -12,7 +12,7 @@
 #' @param encoding Encoding to be assumed for `x`. See [readLines()].
 #' @param ... Other arguments passed to [bibtex::read.bib()].
 #'
-#' @family bibtex
+#' @family BibTeX helpers
 #'
 #' @return A [`cff`] object ready to be used on [cff_create()].
 #'
@@ -20,8 +20,8 @@
 #'
 #' @details
 #'
-#' This function requires the package **bibtex** (>= 0.5.0), that is listed
-#' as `Suggested` by  **cffr**.
+#' This function requires the package \CRANpkg{bibtex} (>= 0.5.0), that is
+#' listed as `Suggested` by \CRANpkg{cffr}.
 #'
 #' @seealso
 #'

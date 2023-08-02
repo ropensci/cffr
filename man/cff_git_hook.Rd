@@ -65,7 +65,7 @@ cff_git_hook_install()
 \seealso{
 \code{\link[usethis:use_git_hook]{usethis::use_git_hook()}}, \code{\link[usethis:use_git]{usethis::use_git()}}
 
-Other git: 
+Other Git helpers: 
 \code{\link{cff_gha_update}()}
 }
-\concept{git}
+\concept{Git helpers}

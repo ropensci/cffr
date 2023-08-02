@@ -9,7 +9,7 @@
 #' A `cff` object. Under the hood, a `cff` object is a regular [`list`] object
 #' with a special [print()] method.
 #'
-#' @family core functions
+#' @family Core functions
 #'
 #' @param path The path to a `CITATION.cff` file.
 #' @param ... Named arguments to be used for creating a [`cff`] object. See

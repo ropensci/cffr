@@ -1,6 +1,6 @@
-#' Create a .bib file
+#' Create a `.bib` file
 #'
-#' Creates a .bib file from a `bibentry` object(s)
+#' Creates `a .bib` file from a `bibentry` object(s)
 #'
 #' @param x A `bibentry` object created with:
 #'    - [cff_to_bibtex()]
@@ -13,7 +13,7 @@
 #' @param ascii Whether to write the entries using ASCII characters only or not.
 #'
 #' @export
-#' @family bibtex
+#' @family BibTeX helpers
 #'
 #' @return Writes an `.bib` file specified on `file` parameter and the
 #' equivalent `Bibtex` object created with [utils::toBibtex()]. It also
@@ -26,9 +26,9 @@
 #'
 #' @seealso `vignette("bibtex_cff", "cffr")`, [knitr::write_bib()] and the
 #' following packages:
-#' - [bibtex](https://github.com/ropensci/bibtex) package.
-#' - [RefManageR](https://github.com/ropensci/RefManageR) package.
-#' - [rbibutils](https://github.com/GeoBosh/rbibutils/)
+#' - \CRANpkg{bibtex}.
+#' - \CRANpkg{RefManageR}
+#' - \CRANpkg{rbibutils}
 #'
 #' @examples
 #'
@@ -53,11 +53,9 @@ write_bib <- function(x,
 
   if (ascii) {
     # Base encoding as per file()
-    encoding <- getOption("encoding")
     btex <- encoded_utf_to_latex(btex)
     class(btex) <- "Bibtex"
   } else {
-    encoding <- "UTF-8"
     btex <- enc2utf8(btex)
   }
 

@@ -13,7 +13,7 @@
 #' ```
 #' @export
 #'
-#' @family core functions
+#' @family Core functions
 #'
 #' @seealso
 #' ```{r, echo=FALSE, results='asis'}
