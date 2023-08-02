@@ -1,0 +1,31 @@
+{
+  "@context": "https://schema.org",
+  "type": "SoftwareSourceCode",
+  "author": {
+    "id": "https://orcid.org/0000-0001-8457-4658"
+  },
+  "codeRepository": "https://github.com/ropensci/cffr",
+  "copyrightHolder": {
+    "id": "https://orcid.org/0000-0001-8457-4658",
+    "type": "Person",
+    "email": "diego.hernangomezherrero@gmail.com",
+    "familyName": "Hernangómez",
+    "givenName": "Diego"
+  },
+  "description": "The Citation File Format version 1.2.0 <doi:10.5281/zenodo.5171937> is a human and machine readable file format which provides citation metadata for software. This package provides core utilities to generate and validate this metadata.",
+  "license": "https://spdx.org/licenses/GPL-3.0",
+  "name": "cffr: Generate Citation File Format ('cff') Metadata for R Packages",
+  "programmingLanguage": {
+    "type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://r-project.org"
+  },
+  "provider": {
+    "id": "https://cran.r-project.org",
+    "type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "runtimePlatform": "R version 4.3.1 (2023-06-16)",
+  "version": "0.5.0"
+}

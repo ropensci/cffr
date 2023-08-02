@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2023-07-04 there are at least 206 repos on GitHub using **cffr**.
+As per 2023-08-02 there are at least 204 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -387,6 +387,9 @@ test <- cff_create("rmarkdown")
         email: jeroen@berkeley.edu
         orcid: https://orcid.org/0000-0002-4035-0289
       year: '2023'
+      identifiers:
+      - type: url
+        value: https://arxiv.org/abs/1403.2805
     - type: software
       title: knitr
       abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
@@ -510,7 +513,7 @@ test <- cff_create("rmarkdown")
       title: digest
       abstract: 'digest: Create Compact Hash Digests of R Objects'
       notes: Suggests
-      url: http://dirk.eddelbuettel.com/code/digest.html
+      url: https://dirk.eddelbuettel.com/code/digest.html
       repository: https://CRAN.R-project.org/package=digest
       authors:
       - family-names: Lucas
@@ -600,7 +603,8 @@ test <- cff_create("rmarkdown")
       year: '2023'
     - type: software
       title: rsconnect
-      abstract: 'rsconnect: Deployment Interface for R Markdown Documents and Shiny Applications'
+      abstract: 'rsconnect: Deploy Docs, Apps, and APIs to ''Posit Connect'', ''shinyapps.io'',
+        and ''RPubs'''
       notes: Suggests
       url: https://github.com/rstudio/rsconnect
       repository: https://CRAN.R-project.org/package=rsconnect
@@ -608,9 +612,12 @@ test <- cff_create("rmarkdown")
       - family-names: Atkins
         given-names: Aron
         email: aron@posit.co
+      - family-names: Allen
+        given-names: Toph
+      - family-names: Wickham
+        given-names: Hadley
       - family-names: McPherson
         given-names: Jonathan
-        email: jonathan@posit.co
       - family-names: Allaire
         given-names: JJ
       year: '2023'
@@ -670,7 +677,7 @@ test <- cff_create("rmarkdown")
       title: shiny
       abstract: 'shiny: Web Application Framework for R'
       notes: Suggests
-      url: https://shiny.rstudio.com/
+      url: https://shiny.posit.co/
       repository: https://CRAN.R-project.org/package=shiny
       authors:
       - family-names: Chang
@@ -749,6 +756,18 @@ test <- cff_create("rmarkdown")
       - family-names: Vaughan
         given-names: Davis
         email: davis@posit.co
+      year: '2023'
+    - type: software
+      title: cleanrmd
+      abstract: 'cleanrmd: Clean Class-Less ''R Markdown'' HTML Documents'
+      notes: Suggests
+      url: https://pkg.garrickadenbuie.com/cleanrmd/
+      repository: https://CRAN.R-project.org/package=cleanrmd
+      authors:
+      - family-names: Aden-Buie
+        given-names: Garrick
+        email: garrick@adenbuie.com
+        orcid: https://orcid.org/0000-0002-7111-0077
       year: '2023'
     - type: software
       title: withr
@@ -888,9 +907,9 @@ for more info.
 
 <div id="ref-codemeta" class="csl-entry">
 
-Boettiger, Carl, and Maëlle Salmon. 2021a.
-*<span class="nocase">codemeta</span>: A Smaller
-<span class="nocase">codemetar</span> Package*.
+Boettiger, Carl, and Maëlle Salmon. 2021a. *<span
+class="nocase">codemeta</span>: A Smaller <span
+class="nocase">codemetar</span> Package*.
 <https://CRAN.R-project.org/package=codemeta>.
 
 </div>
@@ -911,8 +930,8 @@ Among Citation Formats*.
 
 <div id="ref-citation22" class="csl-entry">
 
-Dietrich, Jan Philipp, and Waldir Leoncio. 2022.
-*<span class="nocase">citation</span>: Software Citation Tools*.
+Dietrich, Jan Philipp, and Waldir Leoncio. 2022. *<span
+class="nocase">citation</span>: Software Citation Tools*.
 
 </div>
 
