@@ -4,7 +4,7 @@
       ok <- cff_validate(fcff)
     Output
       == Validating cff ==============================================================
-    Message <cliMessage>
+    Message
       v Congratulations! This <cff> is valid
 
 # Validate error CITATION.cff
@@ -13,7 +13,7 @@
       tab <- cff_validate(ferr)
     Output
       == Validating cff ==============================================================
-    Message <cliMessage>
+    Message
       x Oops! This <cff> has the following errors:
       * cff: has additional properties
       * cff.authors.0: no schemas match

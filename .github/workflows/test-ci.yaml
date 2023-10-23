@@ -132,3 +132,4 @@ jobs:
         run: |
           # OK :)
           cat ./tests/testthat/test_ci/_snaps/full_cff.md >$GITHUB_STEP_SUMMARY
+
