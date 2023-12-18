@@ -9,7 +9,7 @@
         url: https://cli.r-lib.org
         repository: https://CRAN.R-project.org/package=cli
       - title: desc
-        url: https://github.com/r-lib/desc#readme
+        url: https://desc.r-lib.org/
         repository: https://CRAN.R-project.org/package=desc
       - title: jsonlite
         url: https://jeroen.r-universe.dev/jsonlite

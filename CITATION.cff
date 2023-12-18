@@ -114,7 +114,7 @@ references:
   title: desc
   abstract: 'desc: Manipulate DESCRIPTION Files'
   notes: Imports
-  url: https://github.com/r-lib/desc#readme
+  url: https://desc.r-lib.org/
   repository: https://CRAN.R-project.org/package=desc
   authors:
   - family-names: Csárdi
@@ -139,9 +139,6 @@ references:
     email: jeroen@berkeley.edu
     orcid: https://orcid.org/0000-0002-4035-0289
   year: '2023'
-  identifiers:
-  - type: url
-    value: https://arxiv.org/abs/1403.2805
   version: '>= 1.7.2'
 - type: software
   title: jsonvalidate
