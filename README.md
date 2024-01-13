@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2023-12-18 there are at least 324 repos on GitHub using **cffr**.
+As per 2024-01-13 there are at least 242 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -278,7 +278,7 @@ test <- cff_create("rmarkdown")
       - name: R Core Team
       location:
         name: Vienna, Austria
-      year: '2023'
+      year: '2024'
       institution:
         name: R Foundation for Statistical Computing
       version: '>= 3.0'
@@ -300,7 +300,7 @@ test <- cff_create("rmarkdown")
         given-names: Garrick
         email: garrick@posit.co
         orcid: https://orcid.org/0000-0002-7111-0077
-      year: '2023'
+      year: '2024'
       version: '>= 0.2.5.1'
     - type: software
       title: evaluate
@@ -316,7 +316,7 @@ test <- cff_create("rmarkdown")
         given-names: Yihui
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
-      year: '2023'
+      year: '2024'
       version: '>= 0.13'
     - type: software
       title: fontawesome
@@ -329,7 +329,7 @@ test <- cff_create("rmarkdown")
         given-names: Richard
         email: rich@posit.co
         orcid: https://orcid.org/0000-0003-3925-190X
-      year: '2023'
+      year: '2024'
       version: '>= 0.5.0'
     - type: software
       title: htmltools
@@ -358,7 +358,7 @@ test <- cff_create("rmarkdown")
         email: yihui@posit.co
       - family-names: Allen
         given-names: Jeff
-      year: '2023'
+      year: '2024'
       version: '>= 0.5.1'
     - type: software
       title: jquerylib
@@ -373,7 +373,7 @@ test <- cff_create("rmarkdown")
       - family-names: Cheng
         given-names: Joe
         email: joe@rstudio.com
-      year: '2023'
+      year: '2024'
     - type: software
       title: jsonlite
       abstract: 'jsonlite: A Simple and Robust JSON Parser and Generator for R'
@@ -385,7 +385,7 @@ test <- cff_create("rmarkdown")
         given-names: Jeroen
         email: jeroen@berkeley.edu
         orcid: https://orcid.org/0000-0002-4035-0289
-      year: '2023'
+      year: '2024'
       identifiers:
       - type: url
         value: https://arxiv.org/abs/1403.2805
@@ -400,7 +400,7 @@ test <- cff_create("rmarkdown")
         given-names: Yihui
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
-      year: '2023'
+      year: '2024'
       version: '>= 1.22'
     - type: software
       title: methods
@@ -410,7 +410,7 @@ test <- cff_create("rmarkdown")
       - name: R Core Team
       location:
         name: Vienna, Austria
-      year: '2023'
+      year: '2024'
       institution:
         name: R Foundation for Statistical Computing
     - type: software
@@ -423,7 +423,7 @@ test <- cff_create("rmarkdown")
       - family-names: Wickham
         given-names: Hadley
         email: hadley@posit.co
-      year: '2023'
+      year: '2024'
       version: '>= 1.2.0'
     - type: software
       title: tinytex
@@ -437,7 +437,7 @@ test <- cff_create("rmarkdown")
         given-names: Yihui
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
-      year: '2023'
+      year: '2024'
       version: '>= 0.31'
     - type: software
       title: tools
@@ -447,7 +447,7 @@ test <- cff_create("rmarkdown")
       - name: R Core Team
       location:
         name: Vienna, Austria
-      year: '2023'
+      year: '2024'
       institution:
         name: R Foundation for Statistical Computing
     - type: software
@@ -458,7 +458,7 @@ test <- cff_create("rmarkdown")
       - name: R Core Team
       location:
         name: Vienna, Austria
-      year: '2023'
+      year: '2024'
       institution:
         name: R Foundation for Statistical Computing
     - type: software
@@ -472,7 +472,7 @@ test <- cff_create("rmarkdown")
         given-names: Yihui
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
-      year: '2023'
+      year: '2024'
       version: '>= 0.36'
     - type: software
       title: yaml
@@ -506,7 +506,7 @@ test <- cff_create("rmarkdown")
         given-names: Michael
       - family-names: Kamvar
         given-names: Zhian N.
-      year: '2023'
+      year: '2024'
       version: '>= 2.1.19'
     - type: software
       title: digest
@@ -562,9 +562,11 @@ test <- cff_create("rmarkdown")
         given-names: Dirk
       - family-names: Chang
         given-names: Winston
-      - family-names: Attali.
+      - family-names: Attali
         given-names: Dean
-      year: '2023'
+      - family-names: Chirico.
+        given-names: Michael
+      year: '2024'
     - type: software
       title: dygraphs
       abstract: 'dygraphs: Interface to ''Dygraphs'' Interactive Time Series Charting
@@ -583,7 +585,7 @@ test <- cff_create("rmarkdown")
         given-names: Daniel
       - family-names: Thieurmel
         given-names: Benoit
-      year: '2023'
+      year: '2024'
     - type: software
       title: fs
       abstract: 'fs: Cross-Platform File System Operations Based on ''libuv'''
@@ -599,7 +601,7 @@ test <- cff_create("rmarkdown")
       - family-names: Csárdi
         given-names: Gábor
         email: csardi.gabor@gmail.com
-      year: '2023'
+      year: '2024'
     - type: software
       title: rsconnect
       abstract: 'rsconnect: Deploy Docs, Apps, and APIs to ''Posit Connect'', ''shinyapps.io'',
@@ -619,7 +621,7 @@ test <- cff_create("rmarkdown")
         given-names: Jonathan
       - family-names: Allaire
         given-names: JJ
-      year: '2023'
+      year: '2024'
     - type: software
       title: downlit
       abstract: 'downlit: Syntax Highlighting and Automatic Linking'
@@ -630,7 +632,7 @@ test <- cff_create("rmarkdown")
       - family-names: Wickham
         given-names: Hadley
         email: hadley@posit.co
-      year: '2023'
+      year: '2024'
       version: '>= 0.4.0'
     - type: software
       title: katex
@@ -643,7 +645,7 @@ test <- cff_create("rmarkdown")
         given-names: Jeroen
         email: jeroen@berkeley.edu
         orcid: https://orcid.org/0000-0002-4035-0289
-      year: '2023'
+      year: '2024'
       version: '>= 1.4.0'
     - type: software
       title: sass
@@ -670,7 +672,7 @@ test <- cff_create("rmarkdown")
         given-names: Carson
         email: carson@rstudio.com
         orcid: https://orcid.org/0000-0002-4958-2844
-      year: '2023'
+      year: '2024'
       version: '>= 0.4.0'
     - type: software
       title: shiny
@@ -709,7 +711,7 @@ test <- cff_create("rmarkdown")
         given-names: Alan
       - family-names: Borges
         given-names: Barbara
-      year: '2023'
+      year: '2024'
       version: '>= 1.6.0'
     - type: software
       title: testthat
@@ -721,7 +723,7 @@ test <- cff_create("rmarkdown")
       - family-names: Wickham
         given-names: Hadley
         email: hadley@posit.co
-      year: '2023'
+      year: '2024'
       version: '>= 3.0.3'
     - type: software
       title: tibble
@@ -737,7 +739,7 @@ test <- cff_create("rmarkdown")
       - family-names: Wickham
         given-names: Hadley
         email: hadley@rstudio.com
-      year: '2023'
+      year: '2024'
     - type: software
       title: vctrs
       abstract: 'vctrs: Vector Helpers'
@@ -754,7 +756,7 @@ test <- cff_create("rmarkdown")
       - family-names: Vaughan
         given-names: Davis
         email: davis@posit.co
-      year: '2023'
+      year: '2024'
     - type: software
       title: cleanrmd
       abstract: 'cleanrmd: Clean Class-Less ''R Markdown'' HTML Documents'
@@ -766,7 +768,7 @@ test <- cff_create("rmarkdown")
         given-names: Garrick
         email: garrick@adenbuie.com
         orcid: https://orcid.org/0000-0002-7111-0077
-      year: '2023'
+      year: '2024'
     - type: software
       title: withr
       abstract: 'withr: Run Code ''With'' Temporarily Modified Global State'
@@ -790,7 +792,7 @@ test <- cff_create("rmarkdown")
         email: hadley@rstudio.com
       - family-names: Chang
         given-names: Winston
-      year: '2023'
+      year: '2024'
       version: '>= 2.4.2'
 
 </details>
