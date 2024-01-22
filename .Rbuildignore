@@ -31,3 +31,4 @@
 ^pkgdown\.yml$
 ^\.imgbotconfig$
 ^\.lintr$
+^Rplots\.pdf$
