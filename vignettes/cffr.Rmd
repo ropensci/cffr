@@ -254,7 +254,7 @@ simplified as:
 allkeys <- list(
   "url" = "https://ropensci.org/",
   "version" = "0.0.1",
-  "repository" = "https://github.com/user/repo",
+  "repository" = "https://github.com/ropensci/cffr",
   # If the field is already present, it would be overridden
   title = "Modifying a 'cff' object",
   authors = newauthors,

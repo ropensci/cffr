@@ -1,3 +1,7 @@
+# cffr (development version)
+
+-   Review and update `vignette("bibtex_cff", package = "cffr")`.
+
 # cffr 0.5.0
 
 ## Lifecycle
