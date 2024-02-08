@@ -206,10 +206,11 @@ cff_bibtex_parser <- function(x) {
   # address----
   # BibTeX 'address' is taken from the publisher (book, others) or the
   # conference (inproceedings).
-
   if (tobibentry$bibtype %in% c("proceedings", "inproceedings")) {
     addr_search <- x$conference
-  } else if (tobibentry$bibtype == "techreport") {
+  } else if (tobibentry$bibtype %in% c(
+    "mastersthesis", "phdthesis", "techreport"
+  )) {
     addr_search <- x$institution
   } else {
     addr_search <- x$publisher

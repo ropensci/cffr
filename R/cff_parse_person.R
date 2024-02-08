@@ -60,6 +60,10 @@
 cff_parse_person <- function(person) {
   person <- as.person(person)
 
+  if (length(person) == 0) {
+    return(NULL)
+  }
+
   if (length(person) > 1) {
     person <- lapply(person, cff_parse_person)
     class(person) <- "cff"
@@ -81,8 +85,6 @@ cff_parse_person <- function(person) {
   }
 
   # Special case for R Core Team
-
-
   if (all(
     is.substring(clean_str(person$given), "R Core"),
     is.substring(person$family, "Team")

@@ -2,6 +2,11 @@
 
 -   Review and update `vignette("bibtex_cff", package = "cffr")`.
 
+## Changes on bibtex crosswalk
+
+-   **\@inbook** and **\@book** gains a new value on [CFF]{.underline} when
+    **series** is provided: [collection-type: book-series.]{.underline}
+
 # cffr 0.5.0
 
 ## Lifecycle

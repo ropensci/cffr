@@ -1,0 +1,252 @@
+"table","f1","f2","f3","f4","f5","f6","f7","f8","f9","f10","f11","f12","f13"
+"entry_fields","**title**","**x**","**x**","**x**","**x**","**x**","**x**","**x**","**x**","**o**","**x**","**x**","**x**"
+"entry_fields","**year**","**x**","**x**","**o**","**x**","**x**","**x**","**o**","**x**","**o**","**x**","**x**","**o**"
+"entry_fields","**author**","**x**","**(x)**","**o**","**(x)**","**x**","**x**","**o**","**x**","**o**",NA,"**x**","**x**"
+"entry_fields","**note**","**o**","**o**","**o**","**o**","**o**","**o**","**o**","**o**","**o**","**o**","**o**","**x**"
+"entry_fields","**month**","**o**","**o**","**o**","**o**","**o**","**o**","**o**","**o**","**o**","**o**","**o**","**o**"
+"entry_fields","**address**",NA,"**o**","**o**","**o**","**o**","**o**","**o**","**o**",NA,"**o**","**o**",NA
+"entry_fields","**publisher**",NA,"**x**",NA,"**x**","**x**","**o**",NA,NA,NA,"**o**",NA,NA
+"entry_fields","**editor**",NA,"**(x)**",NA,"**(x)**","**o**","**o**",NA,NA,NA,"**o**",NA,NA
+"entry_fields","**number**","**o**","**(o)**",NA,"**(o)**","**(o)**","**(o)**",NA,NA,NA,"**(o)**","**o**",NA
+"entry_fields","**volume**","**o**","**(o)**",NA,"**(o)**","**(o)**","**(o)**",NA,NA,NA,"**(o)**",NA,NA
+"entry_fields","**pages**","**o**",NA,NA,"**(x)**","**o**","**o**",NA,NA,NA,NA,NA,NA
+"entry_fields","**series**",NA,"**o**",NA,"**o**","**o**","**o**",NA,NA,NA,"**o**",NA,NA
+"entry_fields","**booktitle**",NA,NA,NA,NA,"**x**","**x**",NA,NA,NA,NA,NA,NA
+"entry_fields","**edition**",NA,"**o**",NA,"**o**","**o**",NA,"**o**",NA,NA,NA,NA,NA
+"entry_fields","**type**",NA,NA,NA,"**o**","**o**",NA,NA,"**o**",NA,NA,"**o**",NA
+"entry_fields","**chapter**",NA,NA,NA,"**(x)**","**o**",NA,NA,NA,NA,NA,NA,NA
+"entry_fields","**organization**",NA,NA,NA,NA,NA,"**o**","**o**",NA,NA,"**o**",NA,NA
+"entry_fields","**howpublished**",NA,NA,"**o**",NA,NA,NA,NA,NA,"**o**",NA,NA,NA
+"entry_fields","**institution**",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"**x**",NA
+"entry_fields","**journal**","**x**",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_fields","**school**",NA,NA,NA,NA,NA,NA,NA,"**x**",NA,NA,NA,NA
+"entry_fields","**annote**",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_fields","**crossref**",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_fields","**key**",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_bib2cff","**\@article**","[article]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_bib2cff","**\@book**","[book]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_bib2cff","**\@booklet**","[pamphlet]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_bib2cff","**\@conference**","[conference-paper]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_bib2cff","**\@inbook**","[book]{.underline}","See [Entry Models](link_to_entry_models)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_bib2cff","**\@incollection**","[generic]{.underline}","See [Entry Models](link_to_entry_models)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_bib2cff","**\@inproceedings**","[conference-paper]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_bib2cff","**\@manual**","[manual]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_bib2cff","**\@mastersthesis**","[thesis]{.underline}","See [Entry Models](link_to_entry_models)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_bib2cff","**\@misc**","[generic]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_bib2cff","**\@phdthesis**","[thesis]{.underline}","See [Entry Models](link_to_entry_models)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_bib2cff","**\@proceedings**","[proceedings]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_bib2cff","**\@techreport**","[report]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_bib2cff","**\@unpublished**","[unpublished]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_cff2bib","[book]{.underline}","**\@book**, **\@inbook**","See [Entry Models](link_to_entry_models)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_cff2bib","[conference, conference-paper]{.underline}","**\@inproceedings**",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_cff2bib","[article, magazine-article, newspaper-article]{.underline}","**\@article**",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_cff2bib","[manual]{.underline}","**\@manual**",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_cff2bib","[pamphlet]{.underline}","**\@booklet**",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_cff2bib","[proceedings]{.underline}","**\@proceedings**",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_cff2bib","[report]{.underline}","**\@techreport**",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_cff2bib","[thesis]{.underline}","**\@mastersthesis**,  **\@phdthesis**","See [Entry Models](link_to_entry_models)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_cff2bib","[unpublished]{.underline}","**\@unpublished**",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_cff2bib","[generic]{.underline}","**\@misc**, **\@incollection**","Under specific conditions, see [Entry Models](link_to_entry_models)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"entry_cff2bib","\<[any other value]{.underline}\>","**\@misc**",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**address**","See [Entry Models](link_to_entry_models)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","***annote***",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**author**","[authors]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**booktitle**","[collection-title]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**chapter**","[section]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","***crossref***",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**edition**","[edition]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**editor**","[editors]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**howpublished**","[medium]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**institution**","See [Entry Models](link_to_entry_models)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**journal**","[journal]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","***key***",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**month**","[month]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**note**","[notes]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**number**","[issue]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**organization**","See [Entry Models](link_to_entry_models)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**pages**","[start]{.underline} & [end]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**publisher**","[publisher]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**school**","See [Entry Models](link_to_entry_models)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**series**","See [Entry Models](link_to_entry_models)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**title**","[title]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","***type***",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**volume**","[volume]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**year**","[year]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_biblatex2cff","**abstract**","[abstract]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_biblatex2cff","**date**","[date-published]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_biblatex2cff","**doi**","[doi]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_biblatex2cff","**file**","[filename]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_biblatex2cff","**isbn**","[isbn]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_biblatex2cff","**issn**","[issn]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_biblatex2cff","**issuetitle**","[issue-title]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_biblatex2cff","**pagetotal**","[pages]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_biblatex2cff","**translator**","[translators]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_biblatex2cff","**url**","[url]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_biblatex2cff","**urldate**","[date-accessed]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_biblatex2cff","**version**","[version]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_article","**\@article**","[type: article, magazine-article,  newspaper-article]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_article","**author\***","[authors]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_article","**title\***","[title]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_article","**journal\***","[journal]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_article","**year\***","[year]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_article","**volume**","[volume]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_article","**number**","[issue]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_article","**pages**","[start]{.underline} and [end]{.underline}","Separated by `--`, i.e, **pages = {3\--5}** would be  parsed as [start: 3]{.underline}, [end: 5]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_article","**month**","[month]{.underline}","As a fallback, **month** could be extracted also from  **date** (BibLaTeX field) or  [date-published]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_article","**note**","[notes]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_book","**\@book, \@inbook**","[type: book]{.underline}","If [section]{.underline} or [start-end]{.underline} informed, it would be treated as **\@inbook**",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_book","**author\***","[authors]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_book","**editor\***","[editors]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_book","**title\***","[title]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_book","**publisher\***","[publisher]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_book","**year\***","[year]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_book","**chapter\***","[section]{.underline}","Only required on **\@inbook**",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_book","**pages\***","[start]{.underline} and [end]{.underline}","Only required on **\@inbook**",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_book","**volume**","[volume]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_book","**number**","[issue]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_book","**series**","[collection-title]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_book","-","[collection-type]{.underline}","Set as [book]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_book","**address**","[address]{.underline} property of [publisher]{.underline}","As a fallback, the field [location]{.underline} can be used",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_book","**edition**","[edition]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_book","**month**","[month]{.underline}","See **Note** on [**\@article**](link_to_article)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_book","**note**","[notes]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_booklet","**\@booklet**","[type: pamphlet]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_booklet","**title\***","[title]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_booklet","**author\***","[authors]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_booklet","**howpublished**","[medium]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_booklet","**address**","[location]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_booklet","**month**","[month]{.underline}","See **Note** on [**\@article**](link_to_article)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_booklet","**year**","[year]{.underline}","As a fallback, [year]{.underline} could be extracted also from **date** (BibLaTeX field)/ [date-published]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_booklet","**note**","[notes]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_inproceedings","**\@conference / \@inproceedings**","[type: conference-paper, conference]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_inproceedings","**author\***","[authors]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_inproceedings","**title\***","[title]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_inproceedings","**booktitle\***","[collection-title]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_inproceedings","**year\***","[year]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_inproceedings","**editor**","[editors]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_inproceedings","**volume**","[volume]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_inproceedings","**number**","[issue]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_inproceedings","**series**","[conference]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_inproceedings","**pages**","[start]{.underline} and [end]{.underline}","See **Note** on [**\@article**](link_to_article)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_inproceedings","**address**","[location]{.underline}","As a fallback, [address]{.underline} property of [conference]{.underline} can be used",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_inproceedings","**month**","[month]{.underline}","See **Note** on [**\@article**](link_to_article)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_inproceedings","**organization**","[institution]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_inproceedings","**publisher**","[publisher]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_inproceedings","**note**","[notes]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_incollection","**\@incollection**","[type: generic]{.underline}","Including a [collection-title]{.underline} value",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_incollection","**author\***","[authors]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_incollection","**title\***","[title]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_incollection","**booktitle\***","[collection-title]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_incollection","**publisher\***","[publisher]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_incollection","**year\***","[year]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_incollection","**editor**","[editors]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_incollection","**volume**","[volume]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_incollection","**number**","[issue]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_incollection","**series**","[series]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_incollection","**type**",NA,"Ignored",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_incollection","**chapter**","[section]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_incollection","**pages**","[start]{.underline} and [end]{.underline}","See **Note** on [**\@article**](link_to_article)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_incollection","**address**","[address]{.underline} property of [publisher]{.underline}","See **Note** on [**\@book / \@inbook**](link_to_book)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_incollection","**edition**","[edition]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_incollection","**month**","[month]{.underline}","See **Note** on [**\@article**](link_to_article)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_incollection","**note**","[notes]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_manual","**\@manual**","[type: manual]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_manual","**title\***","[title]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_manual","**author**","[authors]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_manual","**organization**","[institution]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_manual","**address**","[location]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_manual","**edition**","[edition]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_manual","**month**","[month]{.underline}","See **Note** on [**\@article**](link_to_article)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_manual","**year**","[year]{.underline}","See **Note** on [**\@booklet**](link_to_booklet)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_manual","**note**","[notes]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_thesis","**\@mastersthesis, \@phdthesis**","[type: thesis]{.underline}","Use also [thesis-type]{.underline} for identifying the thesis type.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_thesis","**author\***","[authors]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_thesis","**title\***","[title]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_thesis","**school\***","[institution]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_thesis","**year\***","[year]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_thesis","**type**","","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_thesis","**address**","[address]{.underline} property of [institution]{.underline}","See **Note** on [**\@book / \@inbook**](link_to_book)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_thesis","**month**","[month]{.underline}","See **Note** on [**\@article**](link_to_article)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_thesis","**note**","[notes]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_misc","**\@misc**","[type: generic]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_misc","**author**","[authors]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_misc","**title**","[title]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_misc","**howpublished**","[medium]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_misc","**month**","[month]{.underline}","See **Note** on [**\@article**](link_to_article)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_misc","**year**","[year]{.underline}","See **Note** on [**\@booklet**](link_to_booklet)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_misc","**note**","[notes]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_proceedings","**\@proceedings**","[type: proceedings]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_proceedings","**title\***","[title]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_proceedings","**year\***","[year]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_proceedings","**editor**","[editors]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_proceedings","**volume**","[volume]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_proceedings","**number**","[issue]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_proceedings","**series**","[conference]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_proceedings","**address**","[location]{.underline}","As a fallback, [address]{.underline} property of [conference]{.underline} can be used",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_proceedings","**month**","[month]{.underline}","See **Note** on [**\@article**](link_to_article)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_proceedings","**organization**","[institution]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_proceedings","**publisher**","[publisher]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_proceedings","**note**","[notes]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_techreport","**\@techreport**","[type: report]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_techreport","**author\***","[authors]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_techreport","**title\***","[title]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_techreport","**institution\***","[institution]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_techreport","**year\***","[year]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_techreport","**type**",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_techreport","**number**","[issue]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_techreport","**address**","[address]{.underline} property of [institution]{.underline}","See **Note** on [**\@book / \@inbook**](link_to_book)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_techreport","**month**","[month]{.underline}","See **Note** on [**\@article**](link_to_article)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_techreport","**note**","[notes]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_unpublished","**\@unpublished**","[type: unpublished]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_unpublished","**author\***","[authors]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_unpublished","**title\***","[title]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_unpublished","**note\***","[notes]{.underline}","",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_unpublished","**month**","[month]{.underline}","See **Note** on [**\@article**](link_to_article)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_unpublished","**year**","[year]{.underline}","See **Note** on [**\@booklet**](link_to_booklet)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[art]{.underline}","A work of art, e.g., a painting",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[article]{.underline}",NA,"[[article]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[audiovisual]{.underline}",NA,"[[audiovisual]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[bill]{.underline}","A legal bill","[[bill]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[blog]{.underline}","A blog post","[[blog]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[book]{.underline}","A book or e-book","[[book]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[catalogue]{.underline}",NA,"[[catalogue]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[conference]{.underline}",NA,"[[conference]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[conference-paper]{.underline}",NA,"[[conference-paper]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[data]{.underline}","A data set","[[data]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[database]{.underline}","An aggregated or online database","[[database]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[dictionary]{.underline}",NA,"[[dictionary]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[edited-work]{.underline}","An edited work, e.g., a book","[[edited-work]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[encyclopedia]{.underline}",NA,"[[encyclopedia]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[film-broadcast]{.underline}","A film or broadcast","[[film-broadcast]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[generic]{.underline}","The fallback type","[[generic]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[government-document]{.underline}",NA,"[[government-document]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[grant]{.underline}","A research or other grant","[[grant]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[hearing]{.underline}",NA,"[[hearing]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[historical-work]{.underline}","A historical work, e.g., a medieval manuscript","[[historical-work]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[legal-case]{.underline}",NA,"[[legal-case]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[legal-rule]{.underline}",NA,"[[legal-rule]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[magazine-article]{.underline}",NA,"[[magazine-article]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[manual]{.underline}","A manual","[[manual]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[map]{.underline}","A geographical map","[[map]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[multimedia]{.underline}","A multimedia file","[[multimedia]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[music]{.underline}","A music file or sheet music","[[music]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[newspaper-article]{.underline}",NA,"[[newspaper-article]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[pamphlet]{.underline}",NA,"[[pamphlet]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[patent]{.underline}",NA,"[[patent]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[personal-communication]{.underline}",NA,"[[personal-communication]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[proceedings]{.underline}","Conference proceedings","[[proceedings]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[report]{.underline}",NA,"[[report]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[serial]{.underline}",NA,"[[serial]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[slides]{.underline}","Slides, i.e., a published slide deck","[[slides]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[software]{.underline}","Software","[[software]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[software-code]{.underline}","Software source code","[[software-code]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[software-container]{.underline}","A software container (e.g., a docker container)","[[software-container]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[software-executable]{.underline}","An executable software, i.e., a binary/artifact","[[software-executable]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[software-virtual-machine]{.underline}","A virtual machine/vm image","[[software-virtual-machine]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[sound-recording]{.underline}",NA,"[[sound-recording]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[standard]{.underline}",NA,"[[standard]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[statute]{.underline}",NA,"[[statute]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[thesis]{.underline}","An academic thesis","[[thesis]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[unpublished]{.underline}",NA,"[[unpublished]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[video]{.underline}","A video recording","[[video]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"cff_types","[website]{.underline}",NA,"[[website]{.underline}]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA

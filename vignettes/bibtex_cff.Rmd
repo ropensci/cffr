@@ -20,7 +20,7 @@ link-citations: yes
 documentclass: article
 editor_options:
   markdown:
-    wrap: 150
+    wrap: 80
 output: 
   rmarkdown::html_vignette:
     toc: true
@@ -36,8 +36,17 @@ knitr::opts_chunk$set(
   comment = ""
 )
 
-options(width = 60)
+# Load the table of tables
+
+p2file <- system.file("extdata/crosswalk_tables.csv", package = "cffr")
+
+table_master <- read.csv(p2file)
 ```
+
+## Changes
+
+This article was reviewed and updated in 2024, along with the release of
+**cffr** v0.6.0.
 
 ## Citation
 
@@ -74,10 +83,13 @@ A **BibTeX** entry for LaTeX users:
 
 ## BibTeX and R
 
-[**BibTeX**](https://en.wikipedia.org/wiki/BibTeX) is a well-known format for storing references created by [Oren
-Patashnik](https://en.wikipedia.org/wiki/Oren_Patashnik "Oren Patashnik") and [Leslie
-Lamport](https://en.wikipedia.org/wiki/Leslie_Lamport "Leslie Lamport") back in 1985. **BibTeX** can be reused by other software, such as
-[LaTeX](https://en.wikipedia.org/wiki/LaTeX), to add references to scholarly works. An example structure of a **BibTeX** entry would be:
+[**BibTeX**](https://en.wikipedia.org/wiki/BibTeX) is a well-known format for
+storing references created by [Oren
+Patashnik](https://en.wikipedia.org/wiki/Oren_Patashnik "Oren Patashnik") and
+[Leslie Lamport](https://en.wikipedia.org/wiki/Leslie_Lamport "Leslie Lamport")
+back in 1985. **BibTeX** can be reused by other software, such as
+[LaTeX](https://en.wikipedia.org/wiki/LaTeX), to add references to scholarly
+works. An example structure of a **BibTeX** entry would be:
 
 ``` bibtex
 @book{einstein1921,
@@ -90,8 +102,10 @@ Lamport](https://en.wikipedia.org/wiki/Leslie_Lamport "Leslie Lamport") back in 
 }
 ```
 
-In this case, the entry (identified as `einstein1921`) refers to a book. This entry can then be used in a document to include references to it. In
-**R** [@R_2021], we can replicate this structure using the `bibentry()` and `toBibtex()` functions:
+In this case, the entry (identified as `einstein1921`) refers to a book. This
+entry can then be used in a document to include references to it. In **R**
+[@R_2021], we can replicate this structure using the `bibentry()` and
+`toBibtex()` functions:
 
 ```{r bibentry, comment="#>"}
 entry <- bibentry("book",
@@ -109,14 +123,16 @@ toBibtex(entry)
 
 The final results of the entry as a text string would be parsed as[^1]:
 
-[^1]: By default R Pandoc would generate the cite on the Chicago author-date format [@rmarkdowncookbook2020]
+[^1]: By default **R** Pandoc would generate the cite on the Chicago author-date
+    format [@rmarkdowncookbook2020]
 
 ```{r echo=FALSE, results='asis'}
 entry
 ```
 
-Additionally, the **cffr** package [@hernangomez2021] incorporates a function `cff_from_bibtex()` that can be used to read and transform **BibTeX**
-strings into different formats:
+Additionally, the **cffr** package [@hernangomez2021] incorporates a function
+`cff_from_bibtex()` that can be used to read and transform **BibTeX** strings
+into different formats:
 
 ```{r cffbibread,comment="#>"}
 string <- "@book{einstein1921,
@@ -143,20 +159,23 @@ toBibtex(citation_format)
 
 ## BibTeX Definitions
 
-@patashnik1988 provides a comprehensive explanation of the **BibTeX** formats. Let's distinguish between **Entries** and **Fields**.
+@patashnik1988 provides a comprehensive explanation of the **BibTeX** formats.
+Let's distinguish between **Entries** and **Fields**.
 
 ### Entries {#entries}
 
-Each entry type defines a different type of work. The 14 entry types defined in **BibTeX**[^2] are:
-
-[^2]: Other implementations similar to **BibTeX**, as [BibLaTeX](https://www.ctan.org/pkg/biblatex), expand the definitions of entries including other
-    types as **online**, **software** or **dataset**. On **BibTeX** these entries should be reclassified to **misc**.
+Each entry type defines a different type of work. The 14 entry types defined in
+**BibTeX** are:
 
 1.  **\@article**: An article from a journal or magazine.
 2.  **\@book**: A book with an explicit publisher.
-3.  **\@booklet**: A work that is printed and bound, but without a named publisher or sponsoring institution.
-4.  **\@conference**: Equivalent to **\@inproceedings**, included for [Scribe](https://en.wikipedia.org/wiki/Scribe_(markup_language)) compatibility.
-5.  **\@inbook**: A part of a book, which may be a chapter (or section) and/or a range of pages.
+3.  **\@booklet**: A work that is printed and bound, but without a named
+    publisher or sponsoring institution.
+4.  **\@conference**: Equivalent to **\@inproceedings**, included for
+    [Scribe](https://en.wikipedia.org/wiki/Scribe_(markup_language))
+    compatibility.
+5.  **\@inbook**: A part of a book, which may be a chapter (or section) and/or a
+    range of pages.
 6.  **\@incollection**: A part of a book having its own title.
 7.  **\@inproceedings**: An article in conference proceedings.
 8.  **\@manual**: Technical documentation.
@@ -164,191 +183,149 @@ Each entry type defines a different type of work. The 14 entry types defined in 
 10. **\@misc**: Use this type when nothing else fits.
 11. **\@phdthesis**: A PhD thesis.
 12. **\@proceedings**: The proceedings of a conference.
-13. **\@techreport**: A report published by a school or other institution, usually numbered within a series.
-14. **\@unpublished**: A document having an author and title, but not formally published.
+13. **\@techreport**: A report published by a school or other institution,
+    usually numbered within a series.
+14. **\@unpublished**: A document having an author and title, but not formally
+    published.
 
-Regarding the entries, the `bibentry()` R function does not implement **\@conference**. However, we can replace that key with **\@inproceedings**,
-given that the definition is identical.
+Other implementations similar to **BibTeX**, such as **BibLaTeX**
+[@biblatexpack], expand the definitions of entries to include other types such
+as online resources, software, or datasets. In **BibTeX**, these entries should
+be reclassified as **\@misc**.
+
+In **R**, the `bibentry()` base function does not implement **\@conference**.
+However, we can use **\@inproceedings**, instead given that the definition is
+identical.
 
 ### Fields {#fields}
 
-Similar to the **Entries**, @patashnik1988 also provides definitions for each of the possible standard **BibTeX fields**[^3]. While an entry must
-include certain required fields, it can also include additional fields that might be ignored in the raw implementation of **BibTeX**. Let's explore
-some of these fields:
+Similar to the **Entries**, @patashnik1988 also provides definitions for each of
+the possible standard **BibTeX fields**. While an entry must include certain
+required fields, it can also include additional fields that might be ignored in
+the raw implementation of **BibTeX**. Let's explore some of these fields:
 
-[^3]: As in the case of the entries, other implementations based on **BibTeX** may recognize additional fields.
-
-1.  **address**: Typically represents the address of the **publisher** or another **institution**.
-2.  **annote**: An annotation. Although not used by standard bibliography styles, it may be relevant for producing annotated bibliographies.
-3.  **author**: Contains the name(s) of the author(s), following the format described in the LaTeX book [@lamport86latex].
-4.  **booktitle**: Refers to the title of a book, part of which is being cited. For **\@book** entries, use the **title** field instead.
+1.  **address**: Typically represents the address of the **publisher** or
+    another **institution**.
+2.  **annote**: An annotation. Although not used by standard bibliography
+    styles, it may be relevant for producing annotated bibliographies.
+3.  **author**: Contains the name(s) of the author(s), following the format
+    described in the LaTeX book [@lamport86latex].
+4.  **booktitle**: Refers to the title of a book, part of which is being cited.
+    For **\@book** entries, use the **title** field instead.
 5.  **chapter**: Indicates a chapter (or section) number.
-6.  **crossref**: Refers to the database key of the entry being cross-referenced.
-7.  **edition**: Specifies the edition of a **\@book**, e.g., `"Second"`. The ordinal should have the first letter capitalized; standard styles
-    convert to lowercase when necessary.
-8.  **editor**: Contains the name(s) of editor(s), following the conventions in the LaTeX book [@lamport86latex]. If there is also an **author**
-    field, the **editor** field specifies the editor of the book or collection where the reference appears.
-9.  **howpublished**: Describes how something unusual has been published. The first word should be capitalized.
-10. **institution**: Represents the sponsoring institution of a technical report.
+6.  **crossref**: Refers to the database key of the entry being
+    cross-referenced.
+7.  **edition**: Specifies the edition of a **\@book**, e.g., `"Second"`. The
+    ordinal should have the first letter capitalized; standard styles convert to
+    lowercase when necessary.
+8.  **editor**: Contains the name(s) of editor(s), following the conventions in
+    the LaTeX book [@lamport86latex]. If there is also an **author** field, the
+    **editor** field specifies the editor of the book or collection where the
+    reference appears.
+9.  **howpublished**: Describes how something unusual has been published. The
+    first word should be capitalized.
+10. **institution**: Represents the sponsoring institution of a technical
+    report.
 11. **journal**: Refers to the name of a journal.
-12. **key**: Used for alphabetizing, cross-referencing, and creating a label when **author** information is missing.
-13. **month**: Indicates the month in which the work was published or, for an unpublished work, when it was written. Use the standard three-letter
-    abbreviation (e.g., `jan`, `feb`, `mar`) as described in Appendix B.1.3 of the LaTeX book [@lamport86latex].
-14. **note**: Provides any additional information that can assist the reader. The first word should be capitalized.
-15. **number**: Represents the number of a journal, magazine, technical report, or a work in a series. An issue of a journal or magazine is usually
-    identified by its **volume** and number. Organizations issuing technical reports often assign them numbers, and sometimes books are given numbers
+12. **key**: Used for alphabetizing, cross-referencing, and creating a label
+    when **author** information is missing.
+13. **month**: Indicates the month in which the work was published or, for an
+    unpublished work, when it was written. Use the standard three-letter
+    abbreviation (e.g., `jan`, `feb`, `mar`) as described in Appendix B.1.3 of
+    the LaTeX book [@lamport86latex].
+14. **note**: Provides any additional information that can assist the reader.
+    The first word should be capitalized.
+15. **number**: Represents the number of a journal, magazine, technical report,
+    or a work in a series. An issue of a journal or magazine is usually
+    identified by its **volume** and number. Organizations issuing technical
+    reports often assign them numbers, and sometimes books are given numbers
     within a named series.
-16. **organization**: Refers to the organization that sponsors a **\@conference** or publishes a manual.
-17. **pages**: Specifies one or more page numbers or a range of numbers (e.g., `42--111` or `7,41,73--97` or `43+`).
+16. **organization**: Refers to the organization that sponsors a
+    **\@conference** or publishes a manual.
+17. **pages**: Specifies one or more page numbers or a range of numbers (e.g.,
+    `42--111` or `7,41,73--97` or `43+`).
 18. **publisher**: Indicates the publisher's name.
 19. **school**: Provides the name of the school where a thesis was written.
-20. **series**: Specifies the name of a series or set of books. When citing an entire book, the **title** field gives its title, and an optional
-    **series** field provides the name of a series or multi-volume set in which the book is published.
+20. **series**: Specifies the name of a series or set of books. When citing an
+    entire book, the **title** field gives its title, and an optional **series**
+    field provides the name of a series or multi-volume set in which the book is
+    published.
 21. **title**: Represents the work's title.
 22. **type**: Describes the type of a technical report (e.g., "Research Note").
 23. **volume**: Refers to the volume of a journal or multi-volume book.
-24. **year**: Indicates the year of publication or, for an unpublished work, the year it was written. Generally, it should consist of four numerals
-    (e.g., `1984`).
+24. **year**: Indicates the year of publication or, for an unpublished work, the
+    year it was written. Generally, it should consist of four numerals (e.g.,
+    `1984`).
 
-In **BibTeX**, there exists a strict relationship between **Entries** and **Fields**. Depending on the type of entry, certain fields are required,
-while others are optional or even ignored.
+As in the case of the **Entries**, other implementations such as **BibLaTeX**
+recognize additional fields.
 
-The following table summarizes the relationship between **Entries** and **Fields** in **BibTeX**. Required fields are flagged as **x**, and optional
-fields are flagged as **o**. Fields enclosed in parentheses (**(x), (o)**) indicate varying degrees of flexibility regarding the field requirements.
-For more detailed information, refer to @patashnik1988.
+In **BibTeX**, there exists a strict relationship between **Entries** and
+**Fields**. Depending on the type of entry, certain fields are required, while
+others are optional or even ignored.
+
+The following table summarizes the relationship between **Entries** and
+**Fields** in **BibTeX**. Required fields are flagged as **x**, and optional
+fields are flagged as **o**. Fields enclosed in parentheses (**(x), (o)**)
+indicate varying degrees of flexibility regarding the field requirements. For
+more detailed information, refer to @patashnik1988.
 
 ```{r entry_fields1, echo=FALSE}
-df_ini <- data.frame(
-  stringsAsFactors = FALSE,
-  field = c(
-    "title", "year",
-    "author", "note", "month", "address",
-    "publisher", "editor", "number", "volume", "pages",
-    "series", "booktitle", "edition", "type", "chapter",
-    "organization", "howpublished", "institution",
-    "journal", "school", "annote", "crossref", "key"
-  ),
-  article = c(
-    "**x**",
-    "**x**", "**x**", "**o**", "**o**", NA, NA, NA, "**o**",
-    "**o**", "**o**", NA, NA, NA, NA, NA, NA, NA,
-    NA, "**x**", NA, NA, NA, NA
-  ),
-  book = c(
-    "**x**",
-    "**x**", "**(x)**", "**o**", "**o**", "**o**", "**x**",
-    "**(x)**", "**(o)**", "**(o)**", NA, "**o**", NA,
-    "**o**", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA
-  ),
-  booklet = c(
-    "**x**",
-    "**o**", "**o**", "**o**", "**o**", "**o**", NA, NA, NA,
-    NA, NA, NA, NA, NA, NA, NA, NA, "**o**", NA, NA,
-    NA, NA, NA, NA
-  ),
-  inbook = c(
-    "**x**",
-    "**x**", "**(x)**", "**o**", "**o**", "**o**", "**x**",
-    "**(x)**", "**(o)**", "**(o)**", "**(x)**",
-    "**o**", NA, "**o**", "**o**", "**(x)**", NA, NA, NA,
-    NA, NA, NA, NA, NA
-  ),
-  incollection = c(
-    "**x**",
-    "**x**", "**x**", "**o**", "**o**", "**o**", "**x**",
-    "**o**", "**(o)**", "**(o)**", "**o**", "**o**",
-    "**x**", "**o**", "**o**", "**o**", NA, NA, NA, NA,
-    NA, NA, NA, NA
-  ),
-  conference.inproceedings = c(
-    "**x**",
-    "**x**", "**x**", "**o**", "**o**", "**o**", "**o**",
-    "**o**", "**(o)**", "**(o)**", "**o**", "**o**",
-    "**x**", NA, NA, NA, "**o**", NA, NA, NA, NA, NA,
-    NA, NA
-  ),
-  manual = c(
-    "**x**",
-    "**o**", "**o**", "**o**", "**o**", "**o**", NA, NA, NA,
-    NA, NA, NA, NA, "**o**", NA, NA, "**o**", NA,
-    NA, NA, NA, NA, NA, NA
-  ),
-  mastersthesis.phdthesis = c(
-    "**x**",
-    "**x**", "**x**", "**o**", "**o**", "**o**", NA, NA, NA,
-    NA, NA, NA, NA, NA, "**o**", NA, NA, NA, NA, NA,
-    "**x**", NA, NA, NA
-  ),
-  misc = c(
-    "**o**",
-    "**o**", "**o**", "**o**", "**o**", NA, NA, NA, NA, NA,
-    NA, NA, NA, NA, NA, NA, NA, "**o**", NA, NA, NA,
-    NA, NA, NA
-  ),
-  proceedings = c(
-    "**x**",
-    "**x**", NA, "**o**", "**o**", "**o**", "**o**",
-    "**o**", "**(o)**", "**(o)**", NA, "**o**", NA, NA, NA,
-    NA, "**o**", NA, NA, NA, NA, NA, NA, NA
-  ),
-  techreport = c(
-    "**x**",
-    "**x**", "**x**", "**o**", "**o**", "**o**", NA, NA,
-    "**o**", NA, NA, NA, NA, NA, "**o**", NA, NA, NA,
-    "**x**", NA, NA, NA, NA, NA
-  ),
-  unpublished = c(
-    "**x**",
-    "**o**", "**x**", "**x**", "**o**", NA, NA, NA, NA, NA,
-    NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,
-    NA, NA
-  )
+df_table <- table_master[table_master$table == "entry_fields", -1]
+
+nms <- c(
+  "**field**", "**\\@article**", "**\\@book**", "**\\@booklet**",
+  "**\\@inbook**", "**\\@incollection**", "**\\@conference, \\@inproceedings**",
+  "**\\@manual**", "**\\@mastersthesis, phdthesis**", "**\\@misc**",
+  "**\\@proceedings**", "**\\@techreport**", "**\\@unpublished**"
 )
 
-df_ini[is.na(df_ini)] <- ""
-df_ini$field <- paste0("**", df_ini$field, "**")
 
-getnames <- names(df_ini)
-getnames <- gsub(".", ", \\@", getnames, fixed = TRUE)
-getnames <- paste0("**\\@", getnames, "**")
-
-
-t1 <- df_ini[, c(1:7)]
-nm1 <- getnames[1:7]
+df_table[is.na(df_table)] <- ""
+row.names(df_table) <- NULL
+t1 <- df_table[, c(1:7)]
+nm1 <- nms[1:7]
 
 knitr::kable(t1,
-  col.names = nm1,
-  align = c("l", rep("c", 6)),
+  col.names = nm1, row.names = NA, align = c("l", rep("c", 6)),
   caption = "**BibTeX**, required fields by entry"
 )
 ```
 
 ```{r entry_fields2, echo=FALSE}
-t2 <- df_ini[, c(1, 8:13)]
-nm2 <- getnames[c(1, 8:13)]
+t2 <- df_table[, c(1, 8:13)]
+nm2 <- nms[c(1, 8:13)]
 knitr::kable(t2,
-  col.names = nm2,
-  align = c("l", rep("c", 6)),
+  col.names = nm2, row.names = NA, align = c("l", rep("c", 6)),
   caption = "(cont) **BibTeX**, required fields by entry"
 )
 ```
 
-It can be seen that only a subset of fields is necessary for any entry. For instance, **title**, **year**, and **author** are either required or
-optional in almost every entry, whereas **crossref**, **annote**, or **key** are never mandatory.
+It can be seen that only a subset of fields is necessary for any entry. For
+instance, **title**, **year**, and **author** are either required or optional in
+almost every entry, whereas **crossref**, **annote**, or **key** are never
+mandatory.
 
 ## Citation File Format
 
-[Citation File Format (CFF](https://citation-file-format.github.io/)) [@druskat_citation_2021] consists of plain text files containing both human- and
-machine-readable citation information for software and datasets. Within [CFF]{.underline}, there are two important keys: `preferred-citation` and
-`references`, which play a crucial role in citing and referring to related works:
+[Citation File Format (CFF](https://citation-file-format.github.io/))
+[@druskat_citation_2021] consists of plain text files containing both human- and
+machine-readable citation information for software and datasets. Within
+[CFF]{.underline}, there are two important keys: `preferred-citation` and
+`references`, which play a crucial role in citing and referring to related
+works:
 
--   **`preferred-citation`**: Refers to another work that should be cited instead of the software or dataset itself.
--   **`references`**: Includes reference(s) to other creative works related to the software or dataset. Similar to a list of references in a scholarly
-    paper, these references may encompass papers describing the abstract concepts of the software or algorithms implemented in the software version.
+-   `preferred-citation`: Refers to another work that should be cited instead of
+    the software or dataset itself.
+-   `references`: Includes reference(s) to other creative works related to the
+    software or dataset. Similar to a list of references in a scholarly paper,
+    these references may encompass papers describing the abstract concepts of
+    the software or algorithms implemented in the software version.
 
-These two keys are expected to be `definition.reference objects`, as defined in the [Guide to Citation File Format schema version
-1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#preferred-citation), and they may contain the following
-keys:
+These two keys are expected to be `definition.reference objects`, as defined in
+the [Guide to Citation File Format schema version
+1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#preferred-citation),
+and they may contain the following keys:
 
 ```{r refkeys, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 library(cffr)
@@ -362,253 +339,158 @@ l <- c(init, rep("", 4))
 refkeys <- matrix(l, ncol = 5, byrow = TRUE)
 
 knitr::kable(refkeys,
+  row.names = NA,
   caption = "Valid keys on [CFF]{underline} `definition-reference` objects"
 )
 ```
 
-These keys are equivalent to the **BibTeX** [fields](#fields), with the exception of the key **type**. In [CFF]{.underline}, this key defines the type
-of work[^4], making it analogous to the **BibTeX** [entries](#entries).
+These keys are equivalent to the **BibTeX** [fields](#fields), with the
+exception of the key [type]{.underline}. In [CFF]{.underline}, this key defines
+the type of work[^2], making it analogous to the **BibTeX** [entries](#0).
 
-[^4]: See a complete list of possible values of [CFF]{.underline} type on the [Guide to Citation File Format schema version
+[^2]: See a complete list of possible values of [CFF]{.underline} type on the
+    [Guide to Citation File Format schema version
     1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype).
 
 ## Proposed Crosswalk
 
-The **cffr** package [@hernangomez2021] provides utilities for converting **BibTeX** entries (via the **R** base function `bibentry()`) to
-[CFF]{.underline} files and vice versa. This section describes how the conversion between both formats has been implemented. The crosswalk is
-partially based on @Haines_Ruby_CFF_Library_2021[^5].
+The **cffr** package [@hernangomez2021] provides utilities for converting
+**BibTeX** entries (via the **R** base function `bibentry()`) to
+[CFF]{.underline} files and vice versa. This section describes how the
+conversion between both formats has been implemented. The crosswalk is partially
+based on @Haines_Ruby_CFF_Library_2021[^3].
 
-[^5]: Note that this software performs only the conversion from [CFF]{.underline} to **BibTeX**, however **cffr** can perform the conversion in both
-    directions.
+[^3]: Note that this software performs only the conversion from
+    [CFF]{.underline} to **BibTeX**, however **cffr** can perform the conversion
+    in both directions.
 
-In the following two sections, I present an overview of the proposed mapping between the **Entries** and **Fields** of **BibTeX** and the
-[CFF]{.underline} keys. After this initial mapping, I propose further transformations to enhance compatibility between both systems using different
-[Entry Models](#entrymodels).
+In the following two sections, I present an overview of the proposed mapping
+between the **Entries** and **Fields** of **BibTeX** and the [CFF]{.underline}
+keys. After this initial mapping, I propose further transformations to enhance
+compatibility between both systems using different [Entry Models](#entrymodels).
 
-For better clarity, when a field is in **bold** (e.g., **\@book, edition**), it corresponds to **BibTeX**, and when the field is
-[underlined]{.underline} (e.g., [book, edition]{.underline}), it corresponds to [CFF]{.underline}.
+For better clarity, when a field is in **bold** (e.g., **\@book, edition**), it
+corresponds to **BibTeX**, and when the field is [underlined]{.underline} (e.g.,
+[book, edition]{.underline}), it corresponds to [CFF]{.underline}.
 
 ### Entry/Type Crosswalk
 
-For converting general **BibTeX** entries to [CFF]{.underline} types, the following crosswalk is proposed:
+For converting general **BibTeX** entries to [CFF]{.underline}
+[types]{.underline}, the following crosswalk is proposed:
 
-```{r etypebibcff, echo=FALSE, results='asis'}
-df <- data.frame(
-  stringsAsFactors = FALSE,
-  a = c(
-    "**\\@article**", "**\\@book**",
-    "**\\@booklet**", "**\\@conference**", "**\\@inbook**",
-    "**\\@incollection**", "**\\@inproceedings**",
-    "**\\@manual**", "**\\@mastersthesis**", "**\\@misc**",
-    "**\\@phdthesis**", "**\\@proceedings**", "**\\@techreport**",
-    "**\\@unpublished**"
-  ),
-  b = c(
-    "[article]{.underline}",
-    "[book]{.underline}", "[pamphlet]{.underline}",
-    "[conference-paper]{.underline}", "[book]{.underline}",
-    "[generic]{.underline}", "[conference-paper]{.underline}",
-    "[manual]{.underline}", "[thesis]{.underline}", "[generic]{.underline}",
-    "[thesis]{.underline}", "[proceedings]{.underline}",
-    "[report]{.underline}", "[unpublished]{.underline}"
-  ),
-  c = c(
-    NA, NA, NA, NA,
-    "See [Entry Models](#entrymodels)", "See [Entry Models](#entrymodels)", NA, NA,
-    " See [Entry Models](#entrymodels)", NA, " See [Entry Models](#entrymodels)", NA, NA, NA
-  )
-)
+```{r entry_bib2cff, echo=FALSE, results='asis'}
+df_table <- table_master[table_master$table == "entry_bib2cff", c(2:4)]
+df_table[is.na(df_table)] <- ""
+# fix links
+df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
+row.names(df_table) <- NULL
 
-df[is.na(df)] <- ""
-
-knitr::kable(df,
-  col.names = c(
-    "**BibTeX** Entry", "[**CFF key: type**]{.underline}",
-    "Notes"
-  ),
+knitr::kable(df_table,
+  col.names = c("**BibTeX** Entry", "[**CFF key: type**]{.underline}", "Notes"),
+  row.names = NA,
   caption = "Entry/Type crosswalk: From **BibTeX** to [CFF]{.underline}"
 )
 ```
 
-Additionally, considering that [CFF]{.underline} allows for a [wide range of
-values](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype) for the [type]{.underline}
-field, the following conversion would be applied from [CFF]{.underline} to **BibTeX**:
+It is important to note that this Entry/Type crosswalk is intended exclusively
+for **BibTeX**. This is relevant since another tools based on
+[Biber](https://en.wikipedia.org/wiki/Biber_(LaTeX)) such as **BibLaTeX**
+handles some entries differently, most notably the **\@inbook** entry. We
+provide additional information and support on a dedicated
+[Annex](#annex_inbook).
 
-```{r, echo=FALSE,results='asis'}
-df <- data.frame(
-  stringsAsFactors = FALSE,
-  a = c(
-    "[book]{.underline}",
-    "[conference, conference-paper]{.underline}",
-    "[article, magazine-article, newspaper-article]{.underline}",
-    "[manual]{.underline}", "[pamphlet]{.underline}",
-    "[proceedings]{.underline}", "[report]{.underline}", "[thesis]{.underline}",
-    "[unpublished]{.underline}", "[generic]{.underline}",
-    "\\<[any other value]{.underline}\\>"
-  ),
-  b = c(
-    "**\\@book**, **\\@inbook**",
-    "**\\@inproceedings**", "**\\@article**",
-    "**\\@manual**", "**\\@booklet**", "**\\@proceedings**",
-    "**\\@techreport**", "**\\@mastersthesis**,  **\\@phdthesis**",
-    "**\\@unpublished**", "**\\@misc**, **\\@incollection**",
-    "**\\@misc**"
-  ),
-  c = c(
-    "See [Entry Models](#entrymodels)", NA,
-    NA, NA, NA, NA, NA, "See [Entry Models](#entrymodels)", NA,
-    "Under specific conditions, see [Entry Models](#entrymodels)", NA
-  )
-)
+Additionally, considering that [CFF]{.underline} allows for a wide range of
+values[^4] for the [type]{.underline} field, the following conversion would be
+applied from [CFF]{.underline} to **BibTeX**:
 
-df[is.na(df)] <- ""
+[^4]: See the [Appendix](#appendix_cff_type) for all possible values.
+    Information extracted from @druskat2019.
 
-knitr::kable(df,
-  col.names = c(
-    "[**CFF key: type**]{.underline}", "**BibTeX** Entry",
-    "Notes"
-  ),
+```{r entry_cff2bib, echo=FALSE,results='asis'}
+df_table <- table_master[table_master$table == "entry_cff2bib", c(2:4)]
+df_table[is.na(df_table)] <- ""
+# fix links
+df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
+row.names(df_table) <- NULL
+
+knitr::kable(df_table,
+  col.names = c("[**CFF key: type**]{.underline}", "**BibTeX** Entry", "Notes"),
   caption = "Entry/Type crosswalk: From [CFF]{.underline} to **BibTeX**"
 )
 ```
 
 ### Fields/Key Crosswalk
 
-There exists a significant similarity between the definitions and names of certain **BibTeX fields** and [CFF keys]{.underline}. In the following
-cases, the equivalence is nearly straightforward:
+There exists a significant similarity between the definitions and names of
+certain **BibTeX fields** and [CFF]{.underline} ke In the following cases, the
+equivalence is nearly straightforward:
 
-| **BibTeX Field** | [CFF key]{.underline}                   |
-|------------------|-----------------------------------------|
-| **address**      | See [Entry Models](#entrymodels)        |
-| ***annote***     | \-                                      |
-| **author**       | [authors]{.underline}                   |
-| **booktitle**    | [collection-title]{.underline}          |
-| **chapter**      | [section]{.underline}                   |
-| ***crossref***   | \-                                      |
-| **edition**      | [edition]{.underline}                   |
-| **editor**       | [editors]{.underline}                   |
-| **howpublished** | [medium]{.underline}                    |
-| **institution**  | See [Entry Models](#entrymodels)        |
-| **journal**      | [journal]{.underline}                   |
-| ***key***        | \-                                      |
-| **month**        | [month]{.underline}                     |
-| **note**         | [notes]{.underline}                     |
-| **number**       | [issue]{.underline}                     |
-| **organization** | See [Entry Models](#entrymodels)        |
-| **pages**        | [start]{.underline} & [end]{.underline} |
-| **publisher**    | [publisher]{.underline}                 |
-| **school**       | See [Entry Models](#entrymodels)        |
-| **series**       | See [Entry Models](#entrymodels)        |
-| **title**        | [title]{.underline}                     |
-| ***type***       | \-                                      |
-| **volume**       | [volume]{.underline}                    |
-| **year**         | [year]{.underline}                      |
+```{r fields_bib2cff, echo=FALSE,results='asis'}
+df_table <- table_master[table_master$table == "fields_bib2cff", c(2:3)]
+df_table[is.na(df_table)] <- ""
+# fix links
+df_table$f2 <- gsub("link_to_entry_models", "#entrymodels", df_table$f2)
+row.names(df_table) <- NULL
 
-: **BibTeX** - [CFF]{.underline} Field/Key crosswalk
+knitr::kable(df_table,
+  col.names = c("**BibTeX Field**", "[CFF key]{.underline}"),
+  caption = "**BibTeX** - [CFF]{.underline} Field/Key crosswalk"
+)
+```
 
-Additionally, there are other [CFF]{.underline} keys that correspond to BibLaTeX fields. We propose to include these fields in the crosswalk[^6], even
-though they are not part of the core **BibTeX** fields definition.
+Additionally, there are other [CFF]{.underline} keys that correspond to
+**BibLaTeX** fields. We propose to include these fields in the crosswalk[^5],
+even though they are not part of the core **BibTeX** fields definition.
 
-[^6]: See @biblatexcheatsheet for a preview of the accepted BibLaTeX fields.
+[^5]: See @biblatexcheatsheet for a preview of the accepted **BibLaTeX** fields.
 
-| BibLaTeX Field | [CFF key]{.underline}        |
-|----------------|------------------------------|
-| **abstract**   | [abstract]{.underline}       |
-| **date**       | [date-published]{.underline} |
-| **doi**        | [doi]{.underline}            |
-| **file**       | [filename]{.underline}       |
-| **isbn**       | [isbn]{.underline}           |
-| **issn**       | [issn]{.underline}           |
-| **issuetitle** | [issue-title]{.underline}    |
-| **pagetotal**  | [pages]{.underline}          |
-| **translator** | [translators]{.underline}    |
-| **url**        | [url]{.underline}            |
-| **urldate**    | [date-accessed]{.underline}  |
-| **version**    | [version]{.underline}        |
+```{r fields_biblatex2cff, echo=FALSE,results='asis'}
+df_table <- table_master[table_master$table == "fields_biblatex2cff", c(2:3)]
+df_table[is.na(df_table)] <- ""
+# fix links
+df_table$f2 <- gsub("link_to_entry_models", "#entrymodels", df_table$f2)
+row.names(df_table) <- NULL
 
-: BibLaTeX - [CFF]{.underline} Field/Key crosswalk
+knitr::kable(df_table,
+  col.names = c("**BibLaTeX Field**", "[CFF key]{.underline}"),
+  caption = "**BibLaTeX** - [CFF]{.underline} Field/Key crosswalk"
+)
+```
 
 ## Entry Models {#entrymodels}
 
-This section presents the specific mapping proposed for each of the \*\*BibTeX entries, providing further information on how each field is treated.
-Examples are adapted from the [xampl.bib](https://tug.org/texmf-docs/bibtex/xampl.bib) file provided with the bibtex package [@patashnik].
+This section presents the specific mapping proposed for each of the **BibTeX**
+entries, providing further information on how each field is treated. Examples
+are adapted from the [xampl.bib](https://tug.org/texmf-docs/bibtex/xampl.bib)
+file provided with the **bibtex** package [@patashnik].
 
-Note that the **BibTeX** fields marked with "\*" on each table indicate those that are strictly required for each entry type.
+Note that the **BibTeX** fields marked with **"\*"** on each table indicate
+those that are strictly required for each entry type.
 
-### article
+### \@article {#article}
 
 The crosswalk of **\@article** does not require any special treatment.
 
-```{r echo=FALSE, results='asis'}
-df <- data.frame(
-  stringsAsFactors = FALSE,
-  a = c(
-    "**\\@article**",
-    "**author\\***", "**title\\***", "**journal\\***", "**year\\***",
-    "**volume**", "**number**", "**pages**", "**month**",
-    "**note**"
-  ),
-  b = c(
-    "[type: article, magazine-article,  newspaper-article]{.underline}",
-    "[authors]{.underline}", "[title]{.underline}", "[journal]{.underline}",
-    "[year]{.underline}", "[volume]{.underline}",
-    "[issue]{.underline}", "[start]{.underline} and [end]{.underline}",
-    "[month]{.underline}", "[notes]{.underline}"
-  ),
-  c = c(
-    NA, NA, NA, NA, NA, NA, NA,
-    "Separated by `--`, i.e, **pages = {3\\--5}** would be  parsed as [start: 3]{.underline}, [end: 5]{.underline}",
-    "As a fallback, **month** could be extracted also from  **date** (BibLaTeX field) or  [date-published]{.underline}", NA
-  )
-)
+```{r model_article, echo=FALSE, results='asis'}
+df_table <- table_master[table_master$table == "model_article", c(2:4)]
+df_table[is.na(df_table)] <- ""
 
-df[is.na(df)] <- ""
+# fix links
+df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
+df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
+df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
+df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
 
-
-knitr::kable(df,
+row.names(df_table) <- NULL
+knitr::kable(df_table,
   col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
   caption = "**\\@article** Model"
 )
 ```
 
-
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| BibTeX                             | [CFF]{.underline}                                | Note                                                     |
-+====================================+==================================================+==========================================================+
-| **\@article**                      | [type: article, magazine-article,                |                                                          |
-|                                    | newspaper-article]{.underline}                   |                                                          |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| **author\***                       | [authors]{.underline}                            |                                                          |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| **title\***                        | [title]{.underline}                              |                                                          |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| **journal\***                      | [journal]{.underline}                            |                                                          |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| **year\***                         | [year]{.underline}                               |                                                          |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| **volume**                         | [volume]{.underline}                             |                                                          |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| **number**                         | [issue]{.underline}                              |                                                          |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| **pages**                          | [start]{.underline} and [end]{.underline}        | Separated by `--`, i.e, **pages = {3\--5}** would be     |
-|                                    |                                                  | parsed as:                                               |
-|                                    |                                                  |                                                          |
-|                                    |                                                  | -   [start: 3]{.underline}                               |
-|                                    |                                                  |                                                          |
-|                                    |                                                  | -   [end: 5]{.underline}                                 |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| **month**                          | [month]{.underline}                              | As a fallback, **month** could be extracted also from    |
-|                                    |                                                  | **date** (BibLaTeX field) or                             |
-|                                    |                                                  | [date-published]{.underline}                             |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| **note**                           | [notes]{.underline}                              |                                                          |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-
-: **\@article** Model
-
 **Examples**
 
-[*BibTeX entry*]{.underline}
+**BibTeX entry**
 
 ``` bibtex
 @article{article-full,
@@ -624,7 +506,7 @@ knitr::kable(df,
 }
 ```
 
-[*CFF entry*]{.underline}
+[CFF entry]{.underline}
 
 ```{r echo=FALSE}
 bib <- "@article{article-full,
@@ -641,65 +523,54 @@ bib <- "@article{article-full,
 cff_from_bibtex(bib)
 ```
 
-[*From CFF to BibTeX*]{.underline}
+From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE}
 toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
 ```
 
-### book/inbook
+### \@book / \@inbook {#book-inbook}
 
-In terms of field required on BibTeX, the only difference between **\@book** and **\@inbook** is that the latter requires also a **chapter** or
-**pages**, while for **\@book** these fields are not even optional. So we propose here to identify an **\@inbook** on CFF as a [book]{.underline} with
-[section]{.underline} and [start]{.underline}-[end]{.underline} fields (CFF).
+In terms of the fields required in **BibTeX**, the primary difference between
+**\@book** and **\@inbook** lies in the latter's additional demand for a chapter
+or page specification. While **\@book** does not even allow these fields as
+optional, **\@inbook** requires them. Therefore, we propose that an **\@inbook**
+entry in [CFF]{.underline} be treated as a **\@book** with the following
+supplementary fields:
 
-Another specificity is that **series** field is mapped to [collection-title]{.underline} and **address** is mapped as the [address]{.underline} of the
-[publisher]{.underline} (CFF).
+1.  [section]{.underline}: To denote the specific section within the book.
+2.  [start-end]{.underline}: To indicate the range of pages covered by the
+    section.
 
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| BibTeX                            | [CFF]{.underline}                 | Note                                                                     |
-+===================================+===================================+==========================================================================+
-| **\@book**                        | [type: book]{.underline}          |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **\@inbook**                      | [type: book]{.underline}          | For identifying an **\@inbook** in CFF, assess if [section]{.underline}  |
-|                                   |                                   | or [start/end]{.underline} information is available                      |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **author\***                      | [authors]{.underline}             |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **editor\***                      | [editors]{.underline}             |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **title\***                       | [title]{.underline}               |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **publisher\***                   | [publisher]{.underline}           |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **year\***                        | [year]{.underline}                |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **chapter\***                     | [section]{.underline}             | Only required on **\@inbook**                                            |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **pages\***                       | [start]{.underline} and           | Only required on **\@inbook**                                            |
-|                                   | [end]{.underline}                 |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **volume**                        | [volume]{.underline}              |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **number**                        | [issue]{.underline}               |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **series**                        | [coll ection-title]{.underline}   |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **address**                       | [address]{.underline} property of | As a fallback, the field [location]{.underline} can be used              |
-|                                   | [publisher]{.underline}           |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **edition**                       | [edition]{.underline}             |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **month**                         | [month]{.underline}               | See **Note** on [article]                                                |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **note**                          | [notes]{.underline}               |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
+Additionally, note that in [CFF]{.underline}, the **series** field corresponds
+to [collection-title]{.underline}, and the **address** field represents the
+[publisher]{.underline}'s [address]{.underline}. By last, the key
+[collection-type]{.underline} would be populated with [book-series]{.underline}.
 
-: **\@book/\@inbook** Model
+```{r model_book, echo=FALSE, results='asis'}
+df_table <- table_master[table_master$table == "model_book", c(2:4)]
+df_table[is.na(df_table)] <- ""
 
-**Examples: book**
+# fix links
+df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
+df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
+df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
+df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
 
-[*BibTeX entry*]{.underline}
+row.names(df_table) <- NULL
+knitr::kable(df_table,
+  col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
+  caption = "**\\@book / \\@inbook** Model"
+)
+```
+
+As mentioned previously, there are notable differences in how **BibTeX** and
+**BibLaTeX** handle the **\@inbook** entry. This is further discussed in the
+[Annex](#annex_inbook).
+
+**Examples: \@book**
+
+**BibTeX entry**
 
 ``` bibtex
 @book{book-full,
@@ -716,7 +587,7 @@ Another specificity is that **series** field is mapped to [collection-title]{.un
 }
 ```
 
-[*CFF entry*]{.underline}
+[CFF entry]{.underline}
 
 ```{r echo=FALSE}
 bib <- "@book{book-full,
@@ -735,15 +606,15 @@ bib <- "@book{book-full,
 cff_from_bibtex(bib)
 ```
 
-[*From CFF to BibTeX*]{.underline}
+From [CFF]{.underline} to **BibTeX**
 
 ```{r,  echo=FALSE}
 toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
 ```
 
-**Examples: inbook**
+**Examples: \@inbook**
 
-[*BibTeX entry*]{.underline}
+*BibTeX entry*
 
 ``` bibtex
 @inbook{inbook-full,
@@ -763,7 +634,7 @@ toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
 }
 ```
 
-[*CFF entry*]{.underline}
+[CFF entry]{.underline}
 
 ```{r echo=FALSE,}
 bib <- "@inbook{inbook-full,
@@ -785,42 +656,36 @@ bib <- "@inbook{inbook-full,
 cff_from_bibtex(bib)
 ```
 
-[*From CFF to BibTeX*]{.underline}
+Fro [CFF]{.underline} to BibTeX
 
 ```{r echo=FALSE,}
 toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
 ```
 
-### booklet
+### \@booklet {#booklet}
 
 In **\@booklet** **address** is mapped to [location]{.underline}.
 
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| BibTeX                            | [CFF]{.underline}                 | Note                                                                     |
-+===================================+===================================+==========================================================================+
-| **\@booklet**                     | [type: pa mphlet]{.underline}     |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **title\***                       | [title]{.underline}               |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **author\***                      | [a uthors]{.underline}            |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **howpublished**                  | [medium]{.underline}              |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **address**                       | [lo cation]{.underline}           |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **month**                         | [month]{.underline}               | See **Note** on [article]                                                |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **year**                          | [year]{.underline}                | As a fallback, **year** could be extracted also from **date** (BibLaTeX  |
-|                                   |                                   | field)/ [date-published]{.underline}                                     |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **note**                          | [notes]{.underline}               |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
+```{r model_booklet, echo=FALSE, results='asis'}
+df_table <- table_master[table_master$table == "model_booklet", c(2:4)]
+df_table[is.na(df_table)] <- ""
 
-: **\@booklet** Model
+# fix links
+df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
+df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
+df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
+df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
+
+row.names(df_table) <- NULL
+knitr::kable(df_table,
+  col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
+  caption = "**\\@booklet** Model"
+)
+```
 
 **Examples**
 
-[*BibTeX entry*]{.underline}
+**BibTeX entry**
 
 ``` bibtex
 @booklet{booklet-full,
@@ -834,7 +699,7 @@ In **\@booklet** **address** is mapped to [location]{.underline}.
 }
 ```
 
-[*CFF entry*]{.underline}
+[CFF entry]{.underline}
 
 ```{r echo=FALSE, }
 bib <- "@booklet{booklet-full,
@@ -850,55 +715,35 @@ bib <- "@booklet{booklet-full,
 cff_from_bibtex(bib)
 ```
 
-[*From CFF to BibTeX*]{.underline}
+From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE, }
 toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
 ```
 
-### conference/inproceedings
+### \@conference / \@inproceedings
 
-Note that in this case, **organization** is mapped to [institution]{.underline}, as BibTeX does not prescribe the use of **institution** on these
-entries.
+Note that in this case, **organization** is mapped to [institution]{.underline},
+as **BibTeX** does not prescribe the use of **institution** on these entries.
 
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| BibTeX                            | CFF                               | Note                                                                     |
-+===================================+===================================+==========================================================================+
-| **\@conference /                  | [type: con                        | CFF entries with [type; conference]{.underline} are mapped back to       |
-| \@inproceedings**                 | ference-paper]{.underline}        | **\@inproceedings**.                                                     |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **author\***                      | [authors]{.underline}             |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **title\***                       | [title]{.underline}               |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **booktitle\***                   | [col lection-title]{.underline}   |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **year\***                        | [year]{.underline}                |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **editor**                        | [editors]{.underline}             |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **volume**                        | [volume]{.underline}              |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **number**                        | [issue]{.underline}               |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **series**                        | [conference]{.underline}          |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **pages**                         | [start]{.underline} and           | See **Note** on [article]                                                |
-|                                   | [end]{.underline}                 |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **address**                       | [location]{.underline}            | As a fallback, [address]{.underline} property of                         |
-|                                   |                                   | [conference]{.underline} can be used                                     |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **month**                         | [month]{.underline}               | See **Note** on [article]                                                |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **organization**                  | [institution]{.underline}         |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **publisher**                     | [publisher]{.underline}           |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **note**                          | [notes]{.underline}               |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
+Additionally, **series** would be ignored as there is not clear mapping on [CFF]{.underline} for this field.
 
-: **\@conference/\@inproceedings** Model
+```{r model_inproceedings, echo=FALSE, results='asis'}
+df_table <- table_master[table_master$table == "model_inproceedings", c(2:4)]
+df_table[is.na(df_table)] <- ""
+
+# fix links
+df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
+df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
+df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
+df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
+
+row.names(df_table) <- NULL
+knitr::kable(df_table,
+  col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
+  caption = "**\\@conference / \\@inproceedings** Model"
+)
+```
 
 **Examples**
 
@@ -950,47 +795,30 @@ toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
 
 ### incollection
 
-As **booktitle** is a required field, we propose to map that field to [collection-title]{.underline} and the [type]{.underline} to
-[generic]{.underline}. Therefore, an **\@incollection** is a [type: generic]{.underline} with a [collection-title]{.underline} key.
+As **booktitle** is a required field, we propose to map that field to
+[collection-title]{.underline} and the [type]{.underline} to
+[generic]{.underline}. Therefore, an **\@incollection** is a [type:
+generic]{.underline} with a [collection-title]{.underline} key.
 
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **BibTeX**                         | [CFF]{.underline}                                          | Note                                            |
-+====================================+============================================================+=================================================+
-| **\@incollection**                 | [type: generic]{.underline}                                | Including a [collection-title]{.underline}      |
-|                                    |                                                            | value                                           |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **author\***                       | [authors]{.underline}                                      |                                                 |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **title\***                        | [title]{.underline}                                        |                                                 |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **booktitle\***                    | [collection-title]{.underline}                             |                                                 |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **publisher\***                    | [publisher]{.underline}                                    |                                                 |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **year\***                         | [year]{.underline}                                         |                                                 |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **editor**                         | [editors]{.underline}                                      |                                                 |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **volume**                         | [volume]{.underline}                                       |                                                 |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **number**                         | [issue]{.underline}                                        |                                                 |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **series**                         | [series]{.underline}                                       |                                                 |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **type**                           | \-                                                         | Ignored                                         |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **chapter**                        | [section]{.underline}                                      |                                                 |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **pages**                          | [start]{.underline} and [end]{.underline}                  | See **Note** on [article]                       |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **address**                        | [address]{.underline} property of [publisher]{.underline}  | See **Note** on [book/inbook]                   |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **edition**                        | [edition]{.underline}                                      |                                                 |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **month**                          | [month]{.underline}                                        | See **Note** on [article]                       |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **note**                           | [notes]{.underline}                                        |                                                 |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
+| **BibTeX**         | [CFF]{.underline}                                         | Note                                              |
+|--------------------|--------------------------------|----------------------------|
+| **\@incollection** | [type: generic]{.underline}                               | Including a [collection-title]{.underline} value  |
+| **author\***       | [authors]{.underline}                                     |                                                   |
+| **title\***        | [title]{.underline}                                       |                                                   |
+| **booktitle\***    | [collection-title]{.underline}                            |                                                   |
+| **publisher\***    | [publisher]{.underline}                                   |                                                   |
+| **year\***         | [year]{.underline}                                        |                                                   |
+| **editor**         | [editors]{.underline}                                     |                                                   |
+| **volume**         | [volume]{.underline}                                      |                                                   |
+| **number**         | [issue]{.underline}                                       |                                                   |
+| **series**         | [series]{.underline}                                      |                                                   |
+| **type**           |                                                           | Ignored                                           |
+| **chapter**        | [section]{.underline}                                     |                                                   |
+| **pages**          | [start]{.underline} and [end]{.underline}                 | See **Note** on [article]                         |
+| **address**        | [address]{.underline} property of [publisher]{.underline} | See **Note** on [\@book / \@inbook](#book-inbook) |
+| **edition**        | [edition]{.underline}                                     |                                                   |
+| **month**          | [month]{.underline}                                       | See **Note** on [article]                         |
+| **note**           | [notes]{.underline}                                       |                                                   |
 
 : **\@incollection** Model
 
@@ -1050,29 +878,20 @@ toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
 
 ### manual
 
-As in the case of [conference/inproceedings], **organization** is mapped to [institution]{.underline}.
+As in the case of [conference/inproceedings], **organization** is mapped to
+[institution]{.underline}.
 
-+------------------------------------+-------------------------------------------------------+------------------------------------------------------+
-| **BibTeX**                         | [CFF]{.underline}                                     | Note                                                 |
-+====================================+=======================================================+======================================================+
-| **\@manual**                       | [type: manual]{.underline}                            |                                                      |
-+------------------------------------+-------------------------------------------------------+------------------------------------------------------+
-| **title\***                        | [title]{.underline}                                   |                                                      |
-+------------------------------------+-------------------------------------------------------+------------------------------------------------------+
-| **author**                         | [authors]{.underline}                                 |                                                      |
-+------------------------------------+-------------------------------------------------------+------------------------------------------------------+
-| **organization**                   | [institution]{.underline}                             |                                                      |
-+------------------------------------+-------------------------------------------------------+------------------------------------------------------+
-| **address**                        | [location]{.underline}                                |                                                      |
-+------------------------------------+-------------------------------------------------------+------------------------------------------------------+
-| **edition**                        | [edition]{.underline}                                 |                                                      |
-+------------------------------------+-------------------------------------------------------+------------------------------------------------------+
-| **month**                          | [month]{.underline}                                   | See **Note** on [article]                            |
-+------------------------------------+-------------------------------------------------------+------------------------------------------------------+
-| **year**                           | [year]{.underline}                                    | See **Note** on [booklet]                            |
-+------------------------------------+-------------------------------------------------------+------------------------------------------------------+
-| **note**                           | [notes]{.underline}                                   |                                                      |
-+------------------------------------+-------------------------------------------------------+------------------------------------------------------+
+| **BibTeX**       | [CFF]{.underline}          | Note                      |
+|------------------|----------------------------|---------------------------|
+| **\@manual**     | [type: manual]{.underline} |                           |
+| **title\***      | [title]{.underline}        |                           |
+| **author**       | [authors]{.underline}      |                           |
+| **organization** | [institution]{.underline}  |                           |
+| **address**      | [location]{.underline}     |                           |
+| **edition**      | [edition]{.underline}      |                           |
+| **month**        | [month]{.underline}        | See **Note** on [article] |
+| **year**         | [year]{.underline}         | See **Note** on [booklet] |
+| **note**         | [notes]{.underline}        |                           |
 
 : **\@manual** Model
 
@@ -1080,7 +899,8 @@ As in the case of [conference/inproceedings], **organization** is mapped to [ins
 
 [*BibTeX entry*]{.underline}
 
-Note that **month** can't be parsed to a single integer in the range `1--12` as required on CFF, so it is not parsed to avoid validation errors.
+Note that **month** can't be parsed to a single integer in the range `1--12` as
+required on CFF, so it is not parsed to avoid validation errors.
 
 ``` bibtex
 @manual{manual-full,
@@ -1120,37 +940,25 @@ toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
 
 ### mastersthesis/phdthesis
 
-In terms of field required on BibTeX, it is identical for both **\@mastersthesis** and **\@phdthesis.**
+In terms of field required on BibTeX, it is identical for both
+**\@mastersthesis** and **\@phdthesis.**
 
-We propose here to identify each type of thesis using the field [thesis-type]{.underline} (CFF). So if [thesis-type]{.underline} contains a [regex
-pattern](https://regex101.com/r/mBWfbs/1) `(?i)(phd)` it would be recognized as **\@phdthesis**.
+We propose here to identify each type of thesis using the field
+[thesis-type]{.underline} (CFF). So if [thesis-type]{.underline} contains a
+[regex pattern](https://regex101.com/r/mBWfbs/1) `(?i)(phd)` it would be
+recognized as **\@phdthesis**.
 
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| BibTeX                             | [CFF]{.underline}                                | Note                                                     |
-+====================================+==================================================+==========================================================+
-| **\@mastersthesis**                | [type: thesis]{.underline}                       | Use also [thesis-type]{.underline} for identifying the   |
-|                                    |                                                  | thesis type.                                             |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| **\@phdthesis**                    | [type: thesis]{.underline}                       | Use also [thesis-type]{.underline} for identifying the   |
-|                                    |                                                  | thesis type.                                             |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| **author\***                       | [authors]{.underline}                            |                                                          |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| **title\***                        | [title]{.underline}                              |                                                          |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| **school\***                       | [institution]{.underline}                        |                                                          |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| **year\***                         | [year]{.underline}                               |                                                          |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| **type**                           |                                                  |                                                          |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| **address**                        | [address]{.underline} property of                | See **Note** on [book/inbook]                            |
-|                                    | [institution]{.underline}                        |                                                          |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| **month**                          | [month]{.underline}                              | See **Note** on [article]                                |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
-| **note**                           | [notes]{.underline}                              |                                                          |
-+------------------------------------+--------------------------------------------------+----------------------------------------------------------+
+| BibTeX                           | [CFF]{.underline}                                           | Note                                                                |
+|--------------------|-----------------------------|-------------------------------|
+| **\@mastersthesis, \@phdthesis** | [type: thesis]{.underline}                                  | Use also [thesis-type]{.underline} for identifying the thesis type. |
+| **author\***                     | [authors]{.underline}                                       |                                                                     |
+| **title\***                      | [title]{.underline}                                         |                                                                     |
+| **school\***                     | [institution]{.underline}                                   |                                                                     |
+| **year\***                       | [year]{.underline}                                          |                                                                     |
+| **type**                         |                                                             |                                                                     |
+| **address**                      | [address]{.underline} property of [institution]{.underline} | See **Note** on [\@book / \@inbook](#book-inbook)                   |
+| **month**                        | [month]{.underline}                                         | See **Note** on [article]                                           |
+| **note**                         | [notes]{.underline}                                         |                                                                     |
 
 : **\@mastersthesis/phdthesis** Model
 
@@ -1236,28 +1044,22 @@ toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
 
 ### misc
 
-The crosswalk of **\@misc** does not require any special treatment. This entry does not require any field.
+The crosswalk of **\@misc** does not require any special treatment. This entry
+does not require any field.
 
-Note also that it is mapped to [type: generic]{.underline} as [incollection], but in this case **booktitle** is not even an option, so the proposed
-definition should cover both **\@misc** and **\@incollection** without problems.
+Note also that it is mapped to [type: generic]{.underline} as [incollection],
+but in this case **booktitle** is not even an option, so the proposed definition
+should cover both **\@misc** and **\@incollection** without problems.
 
-+------------------------------------+--------------------------------------------------------+----------------------------------------------------+
-| **BibTeX**                         | [CFF]{.underline}                                      | Note                                               |
-+====================================+========================================================+====================================================+
-| **\@misc**                         | [type: generic]{.underline}                            |                                                    |
-+------------------------------------+--------------------------------------------------------+----------------------------------------------------+
-| **author**                         | [authors]{.underline}                                  |                                                    |
-+------------------------------------+--------------------------------------------------------+----------------------------------------------------+
-| **title**                          | [title]{.underline}                                    |                                                    |
-+------------------------------------+--------------------------------------------------------+----------------------------------------------------+
-| **howpublished**                   | [medium]{.underline}                                   |                                                    |
-+------------------------------------+--------------------------------------------------------+----------------------------------------------------+
-| **month**                          | [month]{.underline}                                    | See **Note** on [article]                          |
-+------------------------------------+--------------------------------------------------------+----------------------------------------------------+
-| **year**                           | [year]{.underline}                                     | See **Note** on [booklet]                          |
-+------------------------------------+--------------------------------------------------------+----------------------------------------------------+
-| **note**                           | [notes]{.underline}                                    |                                                    |
-+------------------------------------+--------------------------------------------------------+----------------------------------------------------+
+| **BibTeX**       | [CFF]{.underline}           | Note                      |
+|------------------|-----------------------------|---------------------------|
+| **\@misc**       | [type: generic]{.underline} |                           |
+| **author**       | [authors]{.underline}       |                           |
+| **title**        | [title]{.underline}         |                           |
+| **howpublished** | [medium]{.underline}        |                           |
+| **month**        | [month]{.underline}         | See **Note** on [article] |
+| **year**         | [year]{.underline}          | See **Note** on [booklet] |
+| **note**         | [notes]{.underline}         |                           |
 
 : **\@misc** Model
 
@@ -1299,41 +1101,29 @@ toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
 
 ### proceedings
 
-The proposed model is similar to [conference/inproceedings]. Note that **\@proceedings** does not prescribe a **author** field. On this cases, as
-[authors]{.underline} is required on CFF, we would use *anonymous*[^7] when converting to CFF and omit it on the conversion back to CFF.
+The proposed model is similar to [conference/inproceedings]. Note that
+**\@proceedings** does not prescribe a **author** field. On this cases, as
+[authors]{.underline} is required on CFF, we would use *anonymous*[^6] when
+converting to CFF and omit it on the conversion back to CFF.
 
-[^7]: As proposed on [*How to deal with unknown individual
+[^6]: As proposed on [*How to deal with unknown individual
     authors?*](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors),
     **(Guide to Citation File Format schema version 1.2.0)**
 
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| BibTeX                            | [CFF]{.underline}                 | Note                                                                     |
-+===================================+===================================+==========================================================================+
-| **\@proceedings**                 | [type: pro ceedings]{.underline}  |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **title\***                       | [title]{.underline}               |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **year\***                        | [year]{.underline}                |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **editor**                        | [editors]{.underline}             |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **volume**                        | [volume]{.underline}              |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **number**                        | [issue]{.underline}               |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **series**                        | [co nference]{.underline}         |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **address**                       | [location]{.underline}            | As a fallback, [address]{.underline} property of                         |
-|                                   |                                   | [conference]{.underline} can be used                                     |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **month**                         | [month]{.underline}               | See **Note** on [article]                                                |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **organization**                  | [ins titution]{.underline}        |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **publisher**                     | [p ublisher]{.underline}          |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
-| **note**                          | [notes]{.underline}               |                                                                          |
-+-----------------------------------+-----------------------------------+--------------------------------------------------------------------------+
+| BibTeX            | [CFF]{.underline}               | Note                                                                                  |
+|--------------------|--------------------|----------------------------------------|
+| **\@proceedings** | [type: proceedings]{.underline} |                                                                                       |
+| **title\***       | [title]{.underline}             |                                                                                       |
+| **year\***        | [year]{.underline}              |                                                                                       |
+| **editor**        | [editors]{.underline}           |                                                                                       |
+| **volume**        | [volume]{.underline}            |                                                                                       |
+| **number**        | [issue]{.underline}             |                                                                                       |
+| **series**        | [conference]{.underline}        |                                                                                       |
+| **address**       | [location]{.underline}          | As a fallback, [address]{.underline} property of [conference]{.underline} can be used |
+| **month**         | [month]{.underline}             | See **Note** on [article]                                                             |
+| **organization**  | [institution]{.underline}       |                                                                                       |
+| **publisher**     | [publisher]{.underline}         |                                                                                       |
+| **note**          | [notes]{.underline}             |                                                                                       |
 
 : **\@conference/\@inproceedings** Model
 
@@ -1383,29 +1173,18 @@ toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
 
 ### techreport
 
-+-----------------------------------+--------------------------------------------------------------------------+-----------------------------------+
-| **BibTeX**                        | [CFF]{.underline}                                                        | Note                              |
-+===================================+==========================================================================+===================================+
-| **\@techreport**                  | [type: report]{.underline}                                               |                                   |
-+-----------------------------------+--------------------------------------------------------------------------+-----------------------------------+
-| **author\***                      | [authors]{.underline}                                                    |                                   |
-+-----------------------------------+--------------------------------------------------------------------------+-----------------------------------+
-| **title\***                       | [title]{.underline}                                                      |                                   |
-+-----------------------------------+--------------------------------------------------------------------------+-----------------------------------+
-| **institution\***                 | [institution]{.underline}                                                |                                   |
-+-----------------------------------+--------------------------------------------------------------------------+-----------------------------------+
-| **year\***                        | [year]{.underline}                                                       |                                   |
-+-----------------------------------+--------------------------------------------------------------------------+-----------------------------------+
-| **type**                          | \-                                                                       | Ignored                           |
-+-----------------------------------+--------------------------------------------------------------------------+-----------------------------------+
-| **number**                        | [issue]{.underline}                                                      |                                   |
-+-----------------------------------+--------------------------------------------------------------------------+-----------------------------------+
-| **address**                       | [address]{.underline} property of [institution]{.underline}              | See **Note** on [book/inbook]     |
-+-----------------------------------+--------------------------------------------------------------------------+-----------------------------------+
-| **month**                         | [month]{.underline}                                                      | See **Note** on [article]         |
-+-----------------------------------+--------------------------------------------------------------------------+-----------------------------------+
-| **note**                          | [notes]{.underline}                                                      |                                   |
-+-----------------------------------+--------------------------------------------------------------------------+-----------------------------------+
+| **BibTeX**        | [CFF]{.underline}                                           | Note                                              |
+|--------------------|---------------------------------|---------------------------|
+| **\@techreport**  | [type: report]{.underline}                                  |                                                   |
+| **author\***      | [authors]{.underline}                                       |                                                   |
+| **title\***       | [title]{.underline}                                         |                                                   |
+| **institution\*** | [institution]{.underline}                                   |                                                   |
+| **year\***        | [year]{.underline}                                          |                                                   |
+| **type**          | \-                                                          | Ignored                                           |
+| **number**        | [issue]{.underline}                                         |                                                   |
+| **address**       | [address]{.underline} property of [institution]{.underline} | See **Note** on [\@book / \@inbook](#book-inbook) |
+| **month**         | [month]{.underline}                                         | See **Note** on [article]                         |
+| **note**          | [notes]{.underline}                                         |                                                   |
 
 : **\@techreport** Model
 
@@ -1453,21 +1232,14 @@ toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
 
 ### unpublished
 
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **BibTeX**                         | [CFF]{.underline}                                          | Note                                            |
-+====================================+============================================================+=================================================+
-| **\@unpublished**                  | [type: unpublished]{.underline}                            |                                                 |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **author\***                       | [authors]{.underline}                                      |                                                 |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **title\***                        | [title]{.underline}                                        |                                                 |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **note\***                         | [notes]{.underline}                                        |                                                 |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **month**                          | [month]{.underline}                                        | See **Note** on [article]                       |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
-| **year**                           | [year]{.underline}                                         | See **Note** on [booklet]                       |
-+------------------------------------+------------------------------------------------------------+-------------------------------------------------+
+| **BibTeX**        | [CFF]{.underline}               | Note                      |
+|-------------------|---------------------------------|---------------------------|
+| **\@unpublished** | [type: unpublished]{.underline} |                           |
+| **author\***      | [authors]{.underline}           |                           |
+| **title\***       | [title]{.underline}             |                           |
+| **note\***        | [notes]{.underline}             |                           |
+| **month**         | [month]{.underline}             | See **Note** on [article] |
+| **year**          | [year]{.underline}              | See **Note** on [booklet] |
 
 : **\@unpublished** Model
 
@@ -1499,6 +1271,25 @@ cff_from_bibtex(bib)
 
 ```{r echo=FALSE,}
 toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
+```
+
+## Annex: **\@inbook** in Bibtex and BibLaTeX {#annex_inbook}
+
+TODO....
+
+## Appendix: [CFF key:type]{.underline} values {#appendix_cff_type}
+
+From @druskat2019 Table 4: Complete list of [CFF]{.underline} reference types.
+
+```{r cff_types, echo=FALSE, results='asis'}
+df_table <- table_master[table_master$table == "cff_types", c(2:3)]
+df_table[is.na(df_table)] <- ""
+row.names(df_table) <- NULL
+knitr::kable(df_table,
+  col.names = c("Reference type string", "Description"),
+  row.names = NA,
+  caption = "Complete list of [CFF]{.underline} reference types."
+)
 ```
 
 ## References

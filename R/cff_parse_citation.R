@@ -104,9 +104,15 @@ cff_parse_citation <- function(bib) {
   # Parse BibTeX fields ----
   parsed_fields <- parse_bibtex_fields(parse_cit)
 
+  ## Handle collection types ----
+  parsed_fields <- parse_bibtex_coltype(parsed_fields)
 
-  # Create BibTeX person models ----
-  parsed_fields <- parse_bibtex_person_models(parsed_fields)
+  ## Add conference
+  parsed_fields <- add_conference(parsed_fields)
+
+
+  # Create BibTeX to CFF institution logic ----
+  parsed_fields <- parse_bibtex_to_inst(parsed_fields)
   # Parse persons ----
   # Special case: authors
   # Some keys does not strictly require authors, so we create one for cff
@@ -231,15 +237,25 @@ parse_bibtex_entry <- function(bib) {
   )
 
 
+  # Check if it an inbook with booktitle (BibLaTeX style)
+  if (all(parse_cit$bibtex_entry == "inbook", "booktitle" %in% names(parse_cit))) {
+    # Make it incollection
+    parse_cit$bibtex_entry <- "incollection"
+    parse_cit$type <- "generic"
+  }
+
+
   return(parse_cit)
 }
 
 #' Adapt names from R citation()/BibTeX to cff format
 #' @noRd
 parse_bibtex_fields <- function(parse_cit) {
+  # Needed for additional parsing
+  bibtex_entry <- parse_cit$bibtex_entry
+
   # to lowercase
   names(parse_cit) <- tolower(names(parse_cit))
-
   nm <- names(parse_cit)
   # Standard BibTeX fields:
   # address annote author booktitle chapter crossref edition editor
@@ -250,10 +266,15 @@ parse_bibtex_fields <- function(parse_cit) {
   # edition journal month publisher title volume year
 
   # Mapped:
-  # author booktitle chapter editor howpublished note number
+  # author booktitle series chapter editor howpublished note number
 
   nm[nm == "author"] <- "authors"
+  # Make collection title
+  # booktitle takes precedence over series
   nm[nm == "booktitle"] <- "collection-title"
+  if (!"collection-title" %in% nm) {
+    nm[nm == "series"] <- "collection-title"
+  }
   nm[nm == "chapter"] <- "section"
   nm[nm == "editor"] <- "editors"
   nm[nm == "howpublished"] <- "medium"
@@ -274,8 +295,6 @@ parse_bibtex_fields <- function(parse_cit) {
   # abstract, doi, isbn, issn, url, version
 
 
-  cff_schema_definitions_refs()
-
   # Keywords may be duplicated, unify
   if ("keywords" %in% nm) {
     kwords <- unlist(parse_cit["keywords" == nm])
@@ -284,12 +303,11 @@ parse_bibtex_fields <- function(parse_cit) {
     parse_cit$keywords <- unique(kwords)
   }
 
-
   # Not mapped:
   # annote crossref key organization series type
   #
-  # Fields address, organization, series and type already treated on
-  # parse_bibtex_for_cff()/main function
+  # Fields address, organization, series and type are treated on
+  # main function
   # key is a special field, treated apart
   # Fields ignored: annote, crossref
 
@@ -354,76 +372,118 @@ parse_bibtex_fields <- function(parse_cit) {
 
 #' Modify mapping of some org. fields on BibTeX to CFF
 #' @noRd
-parse_bibtex_person_models <- function(parsed_fields) {
-  # Manual
-  if (parsed_fields$bibtex_entry == "manual") {
-    parsed_fields$institution <- parsed_fields$organization
-  } else if (parsed_fields$bibtex_entry %in% c(
-    "conference", "inproceedings",
-    "proceedings"
-  )) {
-    # Conference, InProceedings, Proceedings
-    if (!is.null(parsed_fields$series)) {
-      parsed_fields$conference <- person(family = parsed_fields$series)
-    }
-    if (!is.null(parsed_fields$organization)) {
-      parsed_fields$institution <- person(family = parsed_fields$organization)
-    }
-  } else if (parsed_fields$bibtex_entry %in% c("mastersthesis", "phdthesis")) {
-    # Mastersthesis, PhdThesis
-    parsed_fields$institution <- person(family = parsed_fields$school)
+parse_bibtex_to_inst <- function(parsed_fields) {
+  # Initial values
+  bibtex_entry <- parsed_fields$bibtex_entry
+  to_replace <- switch(bibtex_entry,
+    "mastersthesis" = "school",
+    "phdthesis" = "school",
+    "conference" = "organization",
+    "inproceedings" = "organization",
+    "manual" = "organization",
+    "proceedings" = "organization",
+    "institution"
+  )
+
+  if (to_replace == "institution") {
+    return(parsed_fields)
   }
 
-  return(parsed_fields)
+  # Rest of cases remove bibtex institution and rename
+  nms <- names(parsed_fields)
+
+  parsed_fields <- parsed_fields["institution" != nms]
+
+  # Rename
+  nms2 <- names(parsed_fields)
+  nms2[nms2 == to_replace] <- "institution"
+  names(parsed_fields) <- nms2
+
+  parsed_fields
 }
 
+add_conference <- function(parsed_fields) {
+  bibtex_entry <- parsed_fields$bibtex_entry
+
+  if (bibtex_entry %in% c("conference", "inproceedings")) {
+    parsed_fields$conference <- parsed_fields$`collection-title`
+  }
+  return(parsed_fields)
+}
 
 #' Adapt cff keys to bibtex entries
 #' @noRd
 parse_bibtex_fields_models <- function(parse_cit) {
+  bibtex_entry <- parse_cit$bibtex_entry
+
   # thesis type ----
-  if (parse_cit$bibtex_entry %in% c("phdthesis", "mastersthesis")) {
+  if (bibtex_entry %in% c("phdthesis", "mastersthesis")) {
     parse_cit$`thesis-type` <- switch(parse_cit$bibtex_entry,
       phdthesis = "PhD Thesis",
       "Master's Thesis"
     )
   }
 
+
+
   # address----
-
-  if (!is.null(parse_cit$location)) {
-    # Usually the address of the publisher as per BibTeX
-    if (!is.null(parse_cit$publisher) &&
-      !(parse_cit$bibtex_entry %in% c(
-        "conference", "inproceedings",
-        "proceedings"
-      ))) {
-      parse_cit$publisher$address <- parse_cit$location$name
-      parse_cit$location <- NULL
-    }
-
-    parse_cit$conference
-
-    # If this is a conference then add to conference
-    if (!is.null(parse_cit$conference)) {
-      parse_cit$conference$address <- parse_cit$location$name
-    }
-
-    # If is a report or a thesis, add to institution
-    if (parse_cit$bibtex_entry %in% c(
-      "techreport",
-      "phdthesis", "mastersthesis"
-    ) &&
-      !is.null(parse_cit$institution)) {
-      parse_cit$institution$address <- parse_cit$location$name
-      parse_cit$location <- NULL
-    }
+  # If available
+  if (is.null(parse_cit$location)) {
+    return(parse_cit)
   }
-  # Book, InBook: collection-title. Use series field
 
-  if (parse_cit$bibtex_entry %in% c("book", "inbook")) {
-    parse_cit$`collection-title` <- clean_str(parse_cit$series)
+  # Then
+  # Usually the address of the publisher as per BibTeX
+  if (all(
+    !is.null(parse_cit$publisher),
+    !bibtex_entry %in% c(
+      "conference", "inproceedings",
+      "proceedings"
+    )
+  )) {
+    parse_cit$publisher$address <- parse_cit$location$name
+    parse_cit$location <- NULL
+  }
+
+  # If this is a conference then add to conference
+  if (!is.null(parse_cit$conference)) {
+    parse_cit$conference$address <- parse_cit$location$name
+  }
+
+  # If is a report or a thesis, add to institution
+  if (bibtex_entry %in% c(
+    "techreport",
+    "phdthesis", "mastersthesis"
+  ) &&
+    !is.null(parse_cit$institution)) {
+    parse_cit$institution$address <- parse_cit$location$name
+    parse_cit$location <- NULL
   }
 
   return(parse_cit)
+}
+
+parse_bibtex_coltype <- function(parsed_fields) {
+  # Add collection-type if applicable and rearrange fields
+  nms <- names(parsed_fields)
+
+  if (!"collection-title" %in% nms) {
+    return(parsed_fields)
+  }
+
+  # Made collection-type if we create collection-title
+  bibtex_type <- parsed_fields$bibtex_entry
+
+  # Remove `in` at init: inbook, incollection affected
+  coltype <- clean_str(gsub("^in", "", bibtex_type))
+  parsed_fields$`collection-type` <- coltype
+
+  # Rearrange to make both collection keys together
+  nm_first <- nms[seq(1, match("collection-title", nms))]
+
+  nms_end <- unique(c(nm_first, "collection-type", nms))
+
+  parsed_fields <- parsed_fields[nms_end]
+
+  return(parsed_fields)
 }
