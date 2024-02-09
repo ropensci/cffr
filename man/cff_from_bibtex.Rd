@@ -63,7 +63,7 @@ if (requireNamespace("bibtex", quietly = TRUE)) {
 information between BibTeX and CITATION.cff.
 
 Other BibTeX helpers: 
-\code{\link{cff_to_bibtex}()},
+\code{\link{cff_to_bibentry}()},
 \code{\link{encoded_utf_to_latex}()},
 \code{\link{write_bib}()},
 \code{\link{write_citation}()}

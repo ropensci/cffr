@@ -58,7 +58,7 @@
 #' try(cff_validate(system.file("CITATION", package = "cffr")))
 cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
   # If is a cff create the object
-  if (is.cff(x)) {
+  if (is_cff(x)) {
     tmpfile <- tempfile(fileext = ".cff")
     suppressMessages(yaml::write_yaml(x, tmpfile))
     path <- tmpfile

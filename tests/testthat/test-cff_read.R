@@ -58,13 +58,13 @@ test_that("Other convertes", {
   a <- cff(a)
   expect_s3_class(a, "cff")
   a <- as.cff(a)
-  expect_true(is.cff(a))
+  expect_true(is_cff(a))
   expect_s3_class(a, "cff")
 
   expect_message(noadd <- cff(address = "New York", version = 5))
-  expect_true(is.cff(noadd))
-  expect_false(is.cff(list(a = 1, b = 2)))
-  expect_true(is.cff(as.cff(list(a = 1, b = 2))))
+  expect_true(is_cff(noadd))
+  expect_false(is_cff(list(a = 1, b = 2)))
+  expect_true(is_cff(as.cff(list(a = 1, b = 2))))
 })
 
 
@@ -107,7 +107,7 @@ test_that("Fuzzy matching of keys on cff", {
     )
   )
 
-  expect_true(is.cff(cffobj))
+  expect_true(is_cff(cffobj))
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   expect_snapshot(print_snapshot("Fuzzy keys", cffobj))

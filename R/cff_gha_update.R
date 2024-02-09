@@ -16,7 +16,8 @@
 #' @details
 #'
 #' Triggers on your action can be modified, see
-#' [Events that trigger workflows](https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows).
+#' [Events that trigger
+#' workflows](https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows).
 #'
 #' @examples
 #' \dontrun{

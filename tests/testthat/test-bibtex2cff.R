@@ -23,7 +23,7 @@ test_that("Article", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- cff_to_bibtex(bibparsed)
+  tobib <- cff_to_bibentry(bibparsed)
 
   fld1 <- sort(names(unclass(bib)[[1]]))
   fld2 <- sort(names(unclass(tobib)[[1]]))
@@ -62,7 +62,7 @@ test_that("Book", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- cff_to_bibtex(bibparsed)
+  tobib <- cff_to_bibentry(bibparsed)
 
   fld1 <- sort(names(unclass(bib)[[1]]))
   fld2 <- sort(names(unclass(tobib)[[1]]))
@@ -94,7 +94,7 @@ test_that("Booklet", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- cff_to_bibtex(bibparsed)
+  tobib <- cff_to_bibentry(bibparsed)
 
   fld1 <- sort(names(unclass(bib)[[1]]))
   fld2 <- sort(names(unclass(tobib)[[1]]))
@@ -142,12 +142,12 @@ test_that("Conference", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- cff_to_bibtex(bibparsed)
+  tobib <- cff_to_bibentry(bibparsed)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
 
-  expect_identical(fld1, fld2)
+  expect_identical(setdiff(fld1, fld2), "series")
 })
 
 test_that("InBook", {
@@ -180,7 +180,7 @@ test_that("InBook", {
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
   # Back to bibtex and check names
-  tobib <- cff_to_bibtex(bibparsed)
+  tobib <- cff_to_bibentry(bibparsed)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
@@ -221,7 +221,7 @@ test_that("InCollection", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- cff_to_bibtex(bibparsed)
+  tobib <- cff_to_bibentry(bibparsed)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
@@ -259,12 +259,12 @@ test_that("InProceedings", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- cff_to_bibtex(bibparsed)
+  tobib <- cff_to_bibentry(bibparsed)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
 
-  expect_identical(fld1, fld2)
+  expect_identical(setdiff(fld1, fld2), "series")
 })
 
 test_that("Manual", {
@@ -290,7 +290,7 @@ test_that("Manual", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- cff_to_bibtex(bibparsed)
+  tobib <- cff_to_bibentry(bibparsed)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
@@ -322,7 +322,7 @@ test_that("MastersThesis", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- cff_to_bibtex(bibparsed)
+  tobib <- cff_to_bibentry(bibparsed)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
@@ -351,7 +351,7 @@ test_that("Misc", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- cff_to_bibtex(bibparsed)
+  tobib <- cff_to_bibentry(bibparsed)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
@@ -384,7 +384,7 @@ test_that("PhdThesis", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- cff_to_bibtex(bibparsed)
+  tobib <- cff_to_bibentry(bibparsed)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
@@ -419,12 +419,12 @@ test_that("Proceedings", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- cff_to_bibtex(bibparsed)
+  tobib <- cff_to_bibentry(bibparsed)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
 
-  expect_identical(setdiff(fld1, fld2), "series")
+  expect_identical(fld1, fld2)
 })
 
 test_that("TechReport", {
@@ -451,7 +451,7 @@ test_that("TechReport", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- cff_to_bibtex(bibparsed)
+  tobib <- cff_to_bibentry(bibparsed)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
@@ -479,7 +479,7 @@ test_that("Unpublished", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- cff_to_bibtex(bibparsed)
+  tobib <- cff_to_bibentry(bibparsed)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
@@ -511,12 +511,12 @@ test_that("InBook with booktitle", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Should be an incollection now
-  res <- cff_to_bibtex(bibparsed)
+  res <- cff_to_bibentry(bibparsed)
   init_type <- attr(unclass(res)[[1]], "bibtype")
   expect_identical(tolower(init_type), "incollection")
 
   # Back to bibtex and check names
-  tobib <- cff_to_bibtex(bibparsed)
+  tobib <- cff_to_bibentry(bibparsed)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))

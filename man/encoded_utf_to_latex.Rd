@@ -47,7 +47,7 @@ ascii_table
 
 Other BibTeX helpers: 
 \code{\link{cff_from_bibtex}()},
-\code{\link{cff_to_bibtex}()},
+\code{\link{cff_to_bibentry}()},
 \code{\link{write_bib}()},
 \code{\link{write_citation}()}
 }

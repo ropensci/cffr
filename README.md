@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# cffr <a href='https://docs.ropensci.org/cffr/'><img src="man/figures/logo.png" align="right" height="139"/></a>
+# cffr <a href="https://docs.ropensci.org/cffr/"><img src="man/figures/logo.png" align="right" height="139" alt="cffr website" /></a>
 
 <!-- badges: start -->
 
@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2024-02-07 there are at least 237 repos on GitHub using **cffr**.
+As per 2024-02-09 there are at least 237 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -276,11 +276,10 @@ test <- cff_create("rmarkdown")
       url: https://www.R-project.org/
       authors:
       - name: R Core Team
-      location:
-        name: Vienna, Austria
-      year: '2024'
       institution:
         name: R Foundation for Statistical Computing
+        address: Vienna, Austria
+      year: '2024'
       version: '>= 3.0'
     - type: software
       title: bslib
@@ -405,11 +404,10 @@ test <- cff_create("rmarkdown")
       notes: Imports
       authors:
       - name: R Core Team
-      location:
-        name: Vienna, Austria
-      year: '2024'
       institution:
         name: R Foundation for Statistical Computing
+        address: Vienna, Austria
+      year: '2024'
     - type: software
       title: stringr
       abstract: 'stringr: Simple, Consistent Wrappers for Common String Operations'
@@ -442,22 +440,20 @@ test <- cff_create("rmarkdown")
       notes: Imports
       authors:
       - name: R Core Team
-      location:
-        name: Vienna, Austria
-      year: '2024'
       institution:
         name: R Foundation for Statistical Computing
+        address: Vienna, Austria
+      year: '2024'
     - type: software
       title: utils
       abstract: 'R: A Language and Environment for Statistical Computing'
       notes: Imports
       authors:
       - name: R Core Team
-      location:
-        name: Vienna, Austria
-      year: '2024'
       institution:
         name: R Foundation for Statistical Computing
+        address: Vienna, Austria
+      year: '2024'
     - type: software
       title: xfun
       abstract: 'xfun: Supporting Functions for Packages Maintained by ''Yihui Xie'''
@@ -565,6 +561,25 @@ test <- cff_create("rmarkdown")
         given-names: Michael
       year: '2024'
     - type: software
+      title: dygraphs
+      abstract: 'dygraphs: Interface to ''Dygraphs'' Interactive Time Series Charting
+        Library'
+      notes: Suggests
+      url: https://github.com/rstudio/dygraphs
+      repository: https://CRAN.R-project.org/package=dygraphs
+      authors:
+      - family-names: Vanderkam
+        given-names: Dan
+      - family-names: Allaire
+        given-names: JJ
+      - family-names: Owen
+        given-names: Jonathan
+      - family-names: Gromer
+        given-names: Daniel
+      - family-names: Thieurmel
+        given-names: Benoit
+      year: '2024'
+    - type: software
       title: fs
       abstract: 'fs: Cross-Platform File System Operations Based on ''libuv'''
       notes: Suggests
@@ -581,6 +596,26 @@ test <- cff_create("rmarkdown")
         email: csardi.gabor@gmail.com
       year: '2024'
     - type: software
+      title: rsconnect
+      abstract: 'rsconnect: Deploy Docs, Apps, and APIs to ''Posit Connect'', ''shinyapps.io'',
+        and ''RPubs'''
+      notes: Suggests
+      url: https://rstudio.github.io/rsconnect/
+      repository: https://CRAN.R-project.org/package=rsconnect
+      authors:
+      - family-names: Atkins
+        given-names: Aron
+        email: aron@posit.co
+      - family-names: Allen
+        given-names: Toph
+      - family-names: Wickham
+        given-names: Hadley
+      - family-names: McPherson
+        given-names: Jonathan
+      - family-names: Allaire
+        given-names: JJ
+      year: '2024'
+    - type: software
       title: downlit
       abstract: 'downlit: Syntax Highlighting and Automatic Linking'
       notes: Suggests
@@ -592,6 +627,19 @@ test <- cff_create("rmarkdown")
         email: hadley@posit.co
       year: '2024'
       version: '>= 0.4.0'
+    - type: software
+      title: katex
+      abstract: 'katex: Rendering Math to HTML, ''MathML'', or R-Documentation Format'
+      notes: Suggests
+      url: https://docs.ropensci.org/katex/
+      repository: https://CRAN.R-project.org/package=katex
+      authors:
+      - family-names: Ooms
+        given-names: Jeroen
+        email: jeroen@berkeley.edu
+        orcid: https://orcid.org/0000-0002-4035-0289
+      year: '2024'
+      version: '>= 1.4.0'
     - type: software
       title: sass
       abstract: 'sass: Syntactically Awesome Style Sheets (''Sass'')'
@@ -739,7 +787,7 @@ cff_validate(test)
 #> ✔ Congratulations! This <cff> is valid
 ```
 
-Check the [docs](https://docs.ropensci.org/cffr/reference/index.html)
+Check the [docs](https://docs.ropensci.org/cffr//reference/index.html)
 and `vignette("cffr", package = "cffr")` to learn how to work with `cff`
 objects.
 

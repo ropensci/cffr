@@ -3,7 +3,8 @@
 #' @description
 #'
 #' Install a
-#' [pre-commit hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workflow_hooks)
+#' [pre-commit
+#' hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workflow_hooks)
 #' that remembers you to update your `CITATION.cff` file.
 #'
 #' @name cff_git_hook

@@ -3,7 +3,7 @@
 #' Creates `a .bib` file from a `bibentry` object(s)
 #'
 #' @param x A `bibentry` object created with:
-#'    - [cff_to_bibtex()]
+#'    - [cff_to_bibentry()]
 #'    - [citation()] or [bibentry()]
 #'
 #' @param file Name of the file. If `NULL` it would display the lines to be

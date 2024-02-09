@@ -1,11 +1,16 @@
 # cffr (development version)
 
--   Review and update `vignette("bibtex_cff", package = "cffr")`.
+## Major changes in the API
+
+-   The conversion from `cff` to `bibentry` is performed now by a new function
+    `cff_to_bibentry()`. Previous names of ths function were `cff_to_bibtex()`
+    and `cff_extract_to_bibtex()` that are now superseded.
 
 ## Changes on bibtex crosswalk
 
 -   **\@inbook** and **\@book** gains a new value on [CFF]{.underline} when
     **series** is provided: [collection-type: book-series.]{.underline}
+-   Review and update `vignette("bibtex_cff", package = "cffr")`.
 
 # cffr 0.5.0
 

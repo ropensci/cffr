@@ -42,8 +42,8 @@
 #' be parsed to BibTeX using [toBibtex()]
 #'
 #' @export
-#' @name cff_to_bibtex
-#' @rdname cff_to_bibtex
+#' @name cff_to_bibentry
+#' @rdname cff_to_bibentry
 #'
 #' @examples
 #' \donttest{
@@ -53,7 +53,7 @@
 #' cff_object
 #'
 #' # bibentry object
-#' bib <- cff_to_bibtex(cff_object)
+#' bib <- cff_to_bibentry(cff_object)
 #'
 #' class(bib)
 #'
@@ -66,13 +66,13 @@
 #' # From a CITATION.cff file with options
 #'
 #' path <- system.file("examples/CITATION_complete.cff", package = "cffr")
-#' cff_file <- cff_to_bibtex(path, what = "all")
+#' cff_file <- cff_to_bibentry(path, what = "all")
 #'
 #' toBibtex(cff_file)
 #'
 #' # For an installed package
 #'
-#' installed_package <- cff_to_bibtex("jsonvalidate")
+#' installed_package <- cff_to_bibentry("jsonvalidate")
 #'
 #' toBibtex(installed_package)
 #'
@@ -80,22 +80,22 @@
 #' # Use a DESCRIPTION file
 #'
 #' path2 <- system.file("examples/DESCRIPTION_gitlab", package = "cffr")
-#' desc_file <- cff_to_bibtex(path2)
+#' desc_file <- cff_to_bibentry(path2)
 #'
 #' toBibtex(desc_file)
 #' }
-cff_to_bibtex <- function(x,
-                          what = c("preferred", "references", "all")) {
+cff_to_bibentry <- function(x,
+                            what = c("preferred", "references", "all")) {
   what <- match.arg(what)
   if (is.null(x)) {
     return(NULL)
   }
 
-  if (is.cff_file(x)) {
+  if (is_cff_file(x)) {
     x <- cff_read(x)
   }
 
-  if (is.cff(x)) {
+  if (is_cff(x)) {
     obj <- x
   } else {
     obj <- cff_create(x)
@@ -124,11 +124,6 @@ cff_to_bibtex <- function(x,
   return(pref)
 }
 
-#' @export
-#' @rdname cff_to_bibtex
-#' @usage NULL
-cff_extract_to_bibtex <- cff_to_bibtex
-
 cff_bibtex_parser <- function(x) {
   if (is.null(x)) {
     return(NULL)
@@ -137,7 +132,7 @@ cff_bibtex_parser <- function(x) {
   stopifnotcff(x)
 
   # Read cff of CITATION.cff file
-  if (!is.cff(x)) {
+  if (!is_cff(x)) {
     x <- cff(x)
   }
 
@@ -206,11 +201,10 @@ cff_bibtex_parser <- function(x) {
   # address----
   # BibTeX 'address' is taken from the publisher (book, others) or the
   # conference (inproceedings).
-  if (tobibentry$bibtype %in% c("proceedings", "inproceedings")) {
+  # Set logic: conference > institution > publisher
+  if (!is.null(x$conference)) {
     addr_search <- x$conference
-  } else if (tobibentry$bibtype %in% c(
-    "mastersthesis", "phdthesis", "techreport"
-  )) {
+  } else if (!is.null(x$institution)) {
     addr_search <- x$institution
   } else {
     addr_search <- x$publisher
@@ -404,16 +398,8 @@ cff_bibtex_parser <- function(x) {
 
 
   # series----
-  if (tobibentry$bibtype %in% c(
-    "book", "inbook"
-  )) {
+  if (is.null(tobibentry$booktitle)) {
     tobibentry$series <- x$`collection-title`
-  }
-
-  if (tobibentry$bibtype %in% c(
-    "proceedings", "inproceedings"
-  )) {
-    tobibentry$series <- x$conference$name
   }
 
   # title ----

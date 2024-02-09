@@ -92,8 +92,6 @@
         given-names: Mihalis
       volume: '41'
       issue: '17'
-      location:
-        name: Boston
       institution:
         name: ACM
       publisher:
@@ -189,8 +187,6 @@
         given-names: Mihalis
       volume: '41'
       issue: '17'
-      location:
-        name: Boston
       institution:
         name: ACM
       publisher:
@@ -213,8 +209,7 @@
       - name: R Core Team
       institution:
         name: R Foundation for Statistical Computing
-      location:
-        name: Vienna, Austria
+        address: Vienna, Austria
       edition: Fourth
       month: '8'
       year: '2021'
@@ -289,11 +284,10 @@
       issue: '17'
       collection-title: All ACM Conferences
       collection-type: proceedings
-      location:
-        name: Boston, US
       month: '8'
       institution:
         name: The OX Association for Computing Machinery
+        address: Boston, US
       publisher:
         name: Academic Press
       notes: Example modified for testing purposes

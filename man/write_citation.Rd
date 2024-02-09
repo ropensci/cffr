@@ -15,9 +15,9 @@ write_citation(
 \arguments{
 \item{x}{It could be
 \itemize{
-\item A \code{bibentry} object created with \code{\link[=cff_to_bibtex]{cff_to_bibtex()}}, \code{\link[=citation]{citation()}} or
+\item A \code{bibentry} object created with \code{\link[=cff_to_bibentry]{cff_to_bibentry()}}, \code{\link[=citation]{citation()}} or
 \code{\link[=bibentry]{bibentry()}}
-\item Any of the valid inputs of \code{\link[=cff_to_bibtex]{cff_to_bibtex()}}:
+\item Any of the valid inputs of \code{\link[=cff_to_bibentry]{cff_to_bibentry()}}:
 \itemize{
 \item A missing value. That would retrieve the DESCRIPTION file on your
 in-development package.
@@ -35,7 +35,7 @@ in-development package.
 \item{verbose}{Display informative messages}
 
 \item{...}{
-  Arguments passed on to \code{\link[=cff_to_bibtex]{cff_to_bibtex}}
+  Arguments passed on to \code{\link[=cff_to_bibentry]{cff_to_bibentry}}
   \describe{
     \item{\code{what}}{Fields to extract. The value could be:
 \itemize{
@@ -91,7 +91,7 @@ R version 4.3.0 (2023-04-21) edition.
 
 Other BibTeX helpers: 
 \code{\link{cff_from_bibtex}()},
-\code{\link{cff_to_bibtex}()},
+\code{\link{cff_to_bibentry}()},
 \code{\link{encoded_utf_to_latex}()},
 \code{\link{write_bib}()}
 }

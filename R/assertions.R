@@ -1,7 +1,7 @@
 #' Check if a string is an email
 #' @param email The string to be evaluated
 #' @noRd
-is.email <- function(email) {
+is_email <- function(email) {
   if (is.null(email)) {
     return(FALSE)
   }
@@ -17,7 +17,7 @@ is.email <- function(email) {
 #' Check if a string is an url
 #' @param url The url to be evaluated
 #' @noRd
-is.url <- function(url) {
+is_url <- function(url) {
   if (is.null(url)) {
     return(FALSE)
   }
@@ -31,7 +31,7 @@ is.url <- function(url) {
 #' @param x string
 #' @param sub subtring to be evaluated
 #' @noRd
-is.substring <- function(x, sub) {
+is_substring <- function(x, sub) {
   if (is.null(x)) {
     return(FALSE)
   }
@@ -46,7 +46,7 @@ is.substring <- function(x, sub) {
 #' Check if a object is cff
 #' @param x object to be evaluated
 #' @noRd
-is.cff <- function(x) {
+is_cff <- function(x) {
   if (inherits(x, "cff")) {
     return(TRUE)
   } else {
@@ -57,7 +57,7 @@ is.cff <- function(x) {
 #' Check if a object is cff file
 #' @param x object to be evaluated
 #' @noRd
-is.cff_file <- function(x) {
+is_cff_file <- function(x) {
   if (!inherits(x, "character")) {
     return(FALSE)
   }
@@ -73,7 +73,7 @@ is.cff_file <- function(x) {
 #' Check if a object is cff
 #' @param x object to be evaluated
 #' @noRd
-is.github <- function(x) {
+is_github <- function(x) {
   res <- isTRUE(grep(
     "^http[a-z]://github.com/",
     x["repository-code"]
@@ -86,7 +86,7 @@ is.github <- function(x) {
 #' @param x file to be evaluated
 #' @noRd
 stopifnotcff <- function(x) {
-  if (is.cff(x)) {
+  if (is_cff(x)) {
     return(invisible())
   }
 

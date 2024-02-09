@@ -132,7 +132,7 @@ building_url <- function(parse_cit) {
     allurls <- parse_cit$url
   }
 
-  allurls <- allurls[is.url(allurls)]
+  allurls <- allurls[is_url(allurls)]
   # The first url goes to url key
 
   url <- unlist(allurls[1])

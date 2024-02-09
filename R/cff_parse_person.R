@@ -72,7 +72,7 @@ cff_parse_person <- function(person) {
 
   # Special case for Bioconductor
 
-  if (is.substring(person$given, "Bioconductor")) {
+  if (is_substring(person$given, "Bioconductor")) {
     person <- person(
       given = paste(
         clean_str(person$given),
@@ -86,8 +86,8 @@ cff_parse_person <- function(person) {
 
   # Special case for R Core Team
   if (all(
-    is.substring(clean_str(person$given), "R Core"),
-    is.substring(person$family, "Team")
+    is_substring(clean_str(person$given), "R Core"),
+    is_substring(person$family, "Team")
   )) {
     person <- person(
       given = paste(
@@ -114,7 +114,7 @@ cff_parse_person <- function(person) {
   }
 
   # Check if several mails (MomTrunc 6.0)
-  valid_emails <- unlist(lapply(person$email, is.email))
+  valid_emails <- unlist(lapply(person$email, is_email))
   email <- person$email[valid_emails][1]
   parsed_person$email <- clean_str(email)
 
@@ -147,7 +147,7 @@ cff_parse_person <- function(person) {
   web <- parsed_comments$website
 
   if (!is.null(web)) {
-    parsed_comments$website <- clean_str(web[is.url(web)])
+    parsed_comments$website <- clean_str(web[is_url(web)])
   }
 
   # Add comments

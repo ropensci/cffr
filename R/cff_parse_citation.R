@@ -86,11 +86,9 @@ cff_parse_citation <- function(bib) {
   }
 
   # Parse BibTeX entry ----
-
   parse_cit <- parse_bibtex_entry(bib)
 
   ## If no title (case of some Misc) then return null
-
   if (!("title" %in% names(parse_cit))) {
     entry <- capture.output(print(bib, bibtex = FALSE))
     entry <- as.character(entry)
@@ -100,34 +98,33 @@ cff_parse_citation <- function(bib) {
     return(NULL)
   }
 
-
   # Parse BibTeX fields ----
   parsed_fields <- parse_bibtex_fields(parse_cit)
 
   ## Handle collection types ----
-  parsed_fields <- parse_bibtex_coltype(parsed_fields)
+  parsed_fields <- add_bibtex_coltype(parsed_fields)
 
   ## Add conference
   parsed_fields <- add_conference(parsed_fields)
 
-
   # Create BibTeX to CFF institution logic ----
   parsed_fields <- parse_bibtex_to_inst(parsed_fields)
+
   # Parse persons ----
   # Special case: authors
   # Some keys does not strictly require authors, so we create one for cff
-  # https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors
+  # https://github.com/citation-file-format/citation-file-format/blob/main/
+  # (cont) schema-guide.md#how-to-deal-with-unknown-individual-authors
+
   if (is.null(parsed_fields$authors)) {
     parsed_fields$authors <- person(family = "anonymous")
   }
-
 
   ## authors ----
   parse_all_authors <- drop_null(
     lapply(parsed_fields$authors, cff_parse_person)
   )
   parsed_fields$authors <- unique(parse_all_authors)
-
 
   ## other persons----
   parse_other_persons <- building_other_persons(parsed_fields)
@@ -142,19 +139,8 @@ cff_parse_citation <- function(bib) {
 
   # Building blocks----
 
-  # Fallback for year and month: use date-published
-
-  if (is.null(parse_cit$month) && !is.null(parse_cit$`date-published`)) {
-    parse_cit$month <- format(as.Date(parse_cit$`date-published`), "%m")
-  }
-
-
-  if (is.null(parse_cit$year) && !is.null(parse_cit$`date-published`)) {
-    parse_cit$year <- format(as.Date(parse_cit$`date-published`), "%Y")
-  }
-
-  ## month ----
-  parse_cit$month <- building_month(parse_cit)
+  # Fallback for year and month: use date-published ----
+  parse_cit <- fallback_dates(parse_cit)
 
   ## doi----
   bb_doi <- building_doi(parse_cit)
@@ -177,8 +163,14 @@ cff_parse_citation <- function(bib) {
     )
   }
 
+  ## Add thesis type ----
+  parse_cit <- add_thesis(parse_cit)
 
-  # Last step: Field models----
+  ## Handle location ----
+  parse_cit <- add_address(parse_cit)
+
+
+  # Last step----
 
   # Initial order but starting with type, title, authors
   final_order <- unique(c(
@@ -188,9 +180,6 @@ cff_parse_citation <- function(bib) {
   ))
 
   parse_cit <- parse_cit[final_order]
-
-  parse_cit <- parse_bibtex_fields_models(parse_cit)
-
 
   # Remove non-valid names
   validnames <- cff_schema_definitions_refs()
@@ -238,7 +227,7 @@ parse_bibtex_entry <- function(bib) {
 
 
   # Check if it an inbook with booktitle (BibLaTeX style)
-  if (all(parse_cit$bibtex_entry == "inbook", "booktitle" %in% names(parse_cit))) {
+  if (all(init_type == "inbook", "booktitle" %in% names(parse_cit))) {
     # Make it incollection
     parse_cit$bibtex_entry <- "incollection"
     parse_cit$type <- "generic"
@@ -251,9 +240,6 @@ parse_bibtex_entry <- function(bib) {
 #' Adapt names from R citation()/BibTeX to cff format
 #' @noRd
 parse_bibtex_fields <- function(parse_cit) {
-  # Needed for additional parsing
-  bibtex_entry <- parse_cit$bibtex_entry
-
   # to lowercase
   names(parse_cit) <- tolower(names(parse_cit))
   nm <- names(parse_cit)
@@ -411,59 +397,64 @@ add_conference <- function(parsed_fields) {
   return(parsed_fields)
 }
 
+
+
+
 #' Adapt cff keys to bibtex entries
 #' @noRd
-parse_bibtex_fields_models <- function(parse_cit) {
+add_thesis <- function(parse_cit) {
   bibtex_entry <- parse_cit$bibtex_entry
-
-  # thesis type ----
-  if (bibtex_entry %in% c("phdthesis", "mastersthesis")) {
-    parse_cit$`thesis-type` <- switch(parse_cit$bibtex_entry,
-      phdthesis = "PhD Thesis",
-      "Master's Thesis"
-    )
-  }
-
-
-
-  # address----
-  # If available
-  if (is.null(parse_cit$location)) {
+  if (!bibtex_entry %in% c("phdthesis", "mastersthesis")) {
     return(parse_cit)
   }
 
-  # Then
-  # Usually the address of the publisher as per BibTeX
-  if (all(
-    !is.null(parse_cit$publisher),
-    !bibtex_entry %in% c(
-      "conference", "inproceedings",
-      "proceedings"
-    )
-  )) {
-    parse_cit$publisher$address <- parse_cit$location$name
+  parse_cit$`thesis-type` <- switch(bibtex_entry,
+    phdthesis = "PhD Thesis",
+    "Master's Thesis"
+  )
+
+  parse_cit
+}
+
+add_address <- function(parse_cit) {
+  loc <- parse_cit$location$name
+  # If available
+  if (is.null(loc)) {
+    return(parse_cit)
+  }
+
+  # At this point is in location, see to move
+
+  # Logic order.
+  # 1. To conference
+  # 2. To institution
+  # 3. To publisher
+  # Otherwise leave on location
+
+  nms <- names(parse_cit)
+  has_conf <- "conference" %in% nms
+  has_inst <- "institution" %in% nms
+  has_publish <- "publisher" %in% nms
+
+  if (!any(has_conf, has_inst, has_publish)) {
+    return(parse_cit)
+  }
+
+  if (has_conf) {
+    parse_cit$conference$address <- loc
     parse_cit$location <- NULL
-  }
-
-  # If this is a conference then add to conference
-  if (!is.null(parse_cit$conference)) {
-    parse_cit$conference$address <- parse_cit$location$name
-  }
-
-  # If is a report or a thesis, add to institution
-  if (bibtex_entry %in% c(
-    "techreport",
-    "phdthesis", "mastersthesis"
-  ) &&
-    !is.null(parse_cit$institution)) {
-    parse_cit$institution$address <- parse_cit$location$name
+  } else if (has_inst) {
+    parse_cit$institution$address <- loc
+    parse_cit$location <- NULL
+  } else {
+    parse_cit$publisher$address <- loc
     parse_cit$location <- NULL
   }
 
   return(parse_cit)
 }
 
-parse_bibtex_coltype <- function(parsed_fields) {
+add_bibtex_coltype <- function(parsed_fields) {
   # Add collection-type if applicable and rearrange fields
   nms <- names(parsed_fields)
 
@@ -486,4 +477,20 @@ parse_bibtex_coltype <- function(parsed_fields) {
   parsed_fields <- parsed_fields[nms_end]
 
   return(parsed_fields)
+}
+
+fallback_dates <- function(parse_cit) {
+  # Fallback for year and month: use date-published
+  if (is.null(parse_cit$month) && !is.null(parse_cit$`date-published`)) {
+    parse_cit$month <- format(as.Date(parse_cit$`date-published`), "%m")
+  }
+
+  if (is.null(parse_cit$year) && !is.null(parse_cit$`date-published`)) {
+    parse_cit$year <- format(as.Date(parse_cit$`date-published`), "%Y")
+  }
+
+  ## month ----
+  parse_cit$month <- building_month(parse_cit)
+
+  return(parse_cit)
 }

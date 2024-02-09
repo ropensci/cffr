@@ -94,7 +94,7 @@ detect_repos <- function(repos = getOption("repos")) {
   repos <- repos[!grepl("//rspm", repos)]
 
   # If not set use 0-Cloud
-  if (!is.url(repos["CRAN"])) {
+  if (!is_url(repos["CRAN"])) {
     repos["CRAN"] <- "https://cloud.r-project.org/"
   }
 

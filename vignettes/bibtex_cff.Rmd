@@ -150,7 +150,7 @@ cff_format <- cff_from_bibtex(string)
 cff_format
 
 # To citation R format and bibtex
-citation_format <- cff_to_bibtex(cff_format)
+citation_format <- cff_to_bibentry(cff_format)
 class(citation_format)
 citation_format
 
@@ -422,7 +422,7 @@ knitr::kable(df_table,
 ### Fields/Key Crosswalk
 
 There exists a significant similarity between the definitions and names of
-certain **BibTeX fields** and [CFF]{.underline} ke In the following cases, the
+certain **BibTeX fields** and [CFF]{.underline}. In the following cases, the
 equivalence is nearly straightforward:
 
 ```{r fields_bib2cff, echo=FALSE,results='asis'}
@@ -526,7 +526,7 @@ cff_from_bibtex(bib)
 From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE}
-toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
+toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
 ### \@book / \@inbook {#book-inbook}
@@ -609,7 +609,7 @@ cff_from_bibtex(bib)
 From [CFF]{.underline} to **BibTeX**
 
 ```{r,  echo=FALSE}
-toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
+toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
 **Examples: \@inbook**
@@ -659,7 +659,7 @@ cff_from_bibtex(bib)
 Fro [CFF]{.underline} to BibTeX
 
 ```{r echo=FALSE,}
-toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
+toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
 ### \@booklet {#booklet}
@@ -718,7 +718,7 @@ cff_from_bibtex(bib)
 From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE, }
-toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
+toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
 ### \@conference / \@inproceedings
@@ -790,7 +790,7 @@ cff_from_bibtex(bib)
 [*From CFF to BibTeX*]{.underline}
 
 ```{r echo=FALSE,}
-toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
+toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
 ### incollection
@@ -873,7 +873,7 @@ cff_from_bibtex(bib)
 [*From CFF to BibTeX*]{.underline}
 
 ```{r echo=FALSE,}
-toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
+toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
 ### manual
@@ -935,7 +935,7 @@ cff_from_bibtex(bib)
 [*From CFF to BibTeX*]{.underline}
 
 ```{r echo=FALSE,}
-toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
+toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
 ### mastersthesis/phdthesis
@@ -999,7 +999,7 @@ cff_from_bibtex(bib)
 [*From CFF to BibTeX*]{.underline}
 
 ```{r,  echo=FALSE}
-toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
+toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
 **Examples: phdthesis**
@@ -1039,7 +1039,7 @@ cff_from_bibtex(bib)
 [*From CFF to BibTeX*]{.underline}
 
 ```{r echo=FALSE,}
-toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
+toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
 ### misc
@@ -1096,7 +1096,7 @@ cff_from_bibtex(bib)
 [*From CFF to BibTeX*]{.underline}
 
 ```{r echo=FALSE,}
-toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
+toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
 ### proceedings
@@ -1168,7 +1168,7 @@ cff_from_bibtex(bib)
 [*From CFF to BibTeX*]{.underline}
 
 ```{r echo=FALSE,}
-toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
+toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
 ### techreport
@@ -1227,7 +1227,7 @@ cff_from_bibtex(bib)
 [*From CFF to BibTeX*]{.underline}
 
 ```{r echo=FALSE,}
-toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
+toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
 ### unpublished
@@ -1270,7 +1270,7 @@ cff_from_bibtex(bib)
 [*From CFF to BibTeX*]{.underline}
 
 ```{r echo=FALSE,}
-toBibtex(cff_to_bibtex(cff_from_bibtex(bib)))
+toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
 ## Annex: **\@inbook** in Bibtex and BibLaTeX {#annex_inbook}

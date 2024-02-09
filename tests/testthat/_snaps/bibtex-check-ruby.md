@@ -26,7 +26,6 @@
         booktitle = {Proceedings of Supercomputing 2015},
         publisher = {ACM/IEEE},
         address = {Austin, Texas, USA},
-        series = {Supercomputing 2015 (SC'15)},
         doi = {10.1244/2886907.2879400},
       }
 
@@ -57,7 +56,6 @@
         booktitle = {Proceedings of the 2016 ACM SIGMOD International Conference on Management of Data (SIGMOD)},
         publisher = {ACM},
         address = {San Francisco, US},
-        series = {SIGMOD '16},
         pages = {2085--2088},
         doi = {10.1145/2882903.2899401},
         date = {2016-06-26},
@@ -173,7 +171,6 @@
         year = {2016},
         month = {jun},
         address = {San Francisco, US},
-        series = {SIGMOD '16},
         doi = {10.1145/2882903.2899401},
         abstract = {We present ReproZip, the recommended packaging tool for the SIGMOD Reproducibility Review. ReproZip was designed to simplify the process of making an existing computational experiment reproducible across platforms, even when the experiment was put together without reproducibility in mind. The tool creates a self-contained package for an experiment by automatically tracking and identifying all its required dependencies. The researcher can share the package with others, who can then use ReproZip to unpack the experiment, reproduce the findings on their favorite operating system, as well as modify the original experiment for reuse in new research, all with little effort. The demo will consist of examples of non-trivial experiments, showing how these can be packed in a Linux machine and reproduced on different machines and operating systems. Demo visitors will also be able to pack and reproduce their own experiments.},
         date = {2016-06-26},

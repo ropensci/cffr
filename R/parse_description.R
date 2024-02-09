@@ -146,7 +146,7 @@ parse_desc_repository <- function(pkg) {
   repo <- clean_str(pkg$get("Repository"))
 
   # Repo is url
-  if (is.url(repo)) {
+  if (is_url(repo)) {
     return(repo)
   }
 
@@ -160,7 +160,7 @@ parse_desc_repository <- function(pkg) {
 
   # Repo is CRAN
   # Canonic url to CRAN
-  if (is.substring(repo, "^CRAN$")) {
+  if (is_substring(repo, "^CRAN$")) {
     return(
       paste0("https://CRAN.R-project.org/package=", name)
     )
@@ -206,7 +206,7 @@ parse_desc_urls <- function(pkg) {
 
   # Join issues and urls
   allurls <- unique(c(issues, url))
-  allurls <- allurls[is.url(allurls)]
+  allurls <- allurls[is_url(allurls)]
 
 
 
@@ -279,7 +279,7 @@ parse_desc_version <- function(pkg) {
 #' @noRd
 parse_ghtopics <- function(x) {
   # Only for GitHub repos
-  if (!is.github(x)) {
+  if (!is_github(x)) {
     return(NULL)
   }
 
