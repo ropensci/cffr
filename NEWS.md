@@ -3,7 +3,7 @@
 ## Major changes in the API
 
 -   The conversion from `cff` to `bibentry` is performed now by a new function
-    `cff_to_bibentry()`. Previous names of ths function were `cff_to_bibtex()`
+    `cff_to_bibentry()`. Previous names of this function were `cff_to_bibtex()`
     and `cff_extract_to_bibtex()` that are now superseded.
 
 ## Changes on bibtex crosswalk

@@ -136,7 +136,6 @@ cff_bibtex_parser <- function(x) {
     x <- cff(x)
   }
 
-
   # Try to generate preferred if not present
   if (!("preferred-citation" %in% names(x))) {
     origtype <- clean_str(x$type)
@@ -192,7 +191,7 @@ cff_bibtex_parser <- function(x) {
 
   if (all(
     tobibentry$bibtype == "misc", !is.null(x$`collection-title`),
-    !is.null(x$publisher)
+    !is.null(x$publisher), !is.null(x$year)
   )) {
     tobibentry$bibtype <- "incollection"
   }
@@ -375,6 +374,11 @@ cff_bibtex_parser <- function(x) {
   # note ----
   tobibentry$note <- x$notes
 
+  # unpublished needs a note
+  if (all(is.null(x$notes), tobibentry$bibtype == "unpublished")) {
+    tobibentry$note <- "Extracted with cffr R package"
+  }
+
   # number----
 
 
@@ -507,8 +511,17 @@ cff_bibtex_parser <- function(x) {
   sorted <- unique[unique %in% names(tobibentry)]
   tobibentry <- tobibentry[sorted]
 
-
   bib <- do.call(bibentry, tobibentry)
+
+  # Shouldn't happen but just in case
+  # nocov start
+  if (inherits(bib, "try-error")) {
+    message <- attributes(bib)$condition$message
+    cli::cli_alert_danger(paste("Can't convert to {.fn bibentry}: ", message))
+    cli::cli_alert_info("Returning {.val NULL}")
+    return(NULL)
+  }
+  # nocov end
 
   return(bib)
 }

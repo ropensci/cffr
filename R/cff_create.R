@@ -163,7 +163,7 @@ cff_create <- function(x,
       msg <- paste0(
         "{.arg x} ({x}) not valid. If it is a package ",
         "you may need to install it with ",
-        "{.fun install.packages}"
+        "{.fn install.packages}"
       )
       cli::cli_abort(msg)
     }

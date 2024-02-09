@@ -43,10 +43,10 @@ p2file <- system.file("extdata/crosswalk_tables.csv", package = "cffr")
 table_master <- read.csv(p2file)
 ```
 
-## Changes
+## Disclaimer
 
-This article was reviewed and updated in 2024, along with the release of
-**cffr** v0.6.0.
+*This article was reviewed and updated in 2024, along with the release of
+**cffr** v0.6.0.*
 
 ## Citation
 
@@ -268,9 +268,8 @@ others are optional or even ignored.
 
 The following table summarizes the relationship between **Entries** and
 **Fields** in **BibTeX**. Required fields are flagged as **x**, and optional
-fields are flagged as **o**. Fields enclosed in parentheses (**(x), (o)**)
-indicate varying degrees of flexibility regarding the field requirements. For
-more detailed information, refer to @patashnik1988.
+fields are flagged as **o**. For more detailed information, refer to
+@patashnik1988.
 
 ```{r entry_fields1, echo=FALSE}
 df_table <- table_master[table_master$table == "entry_fields", -1]
@@ -393,18 +392,17 @@ knitr::kable(df_table,
 )
 ```
 
-The previous crosswalk has the following specifities:
+The previous crosswalk has the following specifications:
 
--   **\@book**, **\@inbook** and **\@incollection** are closely related in
-    **BibTeX**[^4]. Both **\@inbook** and **\@incollection** are used for
-    referencing parts of a **\@book**, but while **\@inbook** is used for citing
-    sections, **chapter**s, **pages** or other parts, **\@incollection** is used
-    for citing parts with a specific **title**. Since [CFF]{.underline} allows
-    keys [type:book]{.underline} and [collection-type: book]{.underline}, we may
-    use a combination of those fields for tagging each entry type in
-    [CFF]{.underline}.
+-   **\@book**, **\@inbook**, and **\@incollection** are closely related in
+    **BibTeX**[^4]. While **\@inbook** and **\@incollection** both reference
+    parts of a **\@book**, the former is used for citing sections, chapters,
+    pages, or other specific parts, whereas the latter is used for citing parts
+    with a specific title. Since [CFF]{.underline} allows keys `type:book` and
+    `collection-type: book`, we may utilize a combination of these fields to tag
+    each entry type in [CFF]{.underline} accordingly.
 -   **\@mastersthesis** and **\@phdthesis** would be tagged using a combination
-    of [type:thesis]{.underline}t and [thesis-type]{.underline}.
+    of `type:thesis` and `thesis-type`.
 
 [^4]: Note that **BibLaTeX** [@biblatexpack] handles **\@inbook** differently,
     see [Appendix A](#appendix_inbook).
@@ -431,22 +429,68 @@ knitr::kable(df_table,
 
 ### Fields/Key Crosswalk
 
-There exists a significant similarity between the definitions and names of
-certain **BibTeX fields** and [CFF]{.underline}. In the following cases, the
-equivalence is nearly straightforward:
+There is a significant similarity between the definitions and names of certain
+**BibTeX** fields and [CFF]{.underline} keys. While the equivalence is
+straightforward in some cases, there are instances where certain keys need to be
+processed depending on the **entry** type.
 
 ```{r fields_bib2cff, echo=FALSE,results='asis'}
-df_table <- table_master[table_master$table == "fields_bib2cff", c(2:3)]
+df_table <- table_master[table_master$table == "fields_bib2cff", c(2:4)]
 df_table[is.na(df_table)] <- ""
 # fix links
-df_table$f2 <- gsub("link_to_entry_models", "#entrymodels", df_table$f2)
+df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
 row.names(df_table) <- NULL
 
 knitr::kable(df_table,
-  col.names = c("**BibTeX Field**", "[CFF key]{.underline}"),
+  col.names = c("**BibTeX Field**", "[CFF key]{.underline}", "Notes"),
   caption = "**BibTeX** - [CFF]{.underline} Field/Key crosswalk"
 )
 ```
+
+We provide more detail on some of the mappings presented in the table above:
+
+-   Some fields are not mapped because there is no clear equivalence with
+    [CFF]{.underline} keys (such as **annote**, **crossref**, and **key**).
+    Regarding the **type** field, the [CFF]{.underline} key [type]{.underline}
+    corresponds to the identifier of the work (similar to an entry in
+    **BibTeX**), therefore, **BibTeX type** won't be mapped. These fields are
+    always optional in **BibTeX**.
+
+-   For the **address** field, its intended use in **BibTeX** varies depending
+    on the entry type (e.g., for **\@inproceedings**, it denotes the **address**
+    of the **conference**, while for **\@mastersthesis/\@phdthesis**, is the
+    **address** of the **school**, etc.). Mapping between **BibTeX** and
+    [CFF]{.underline} becomes more complex when related to institutions,
+    resulting in varying final mappings in [CFF]{.underline}. When converting
+    from [CFF]{.underline} to **BibTeX**, we propose to follow the same
+    entry-based logic, using the key [location]{.underline} as a fallback value
+    when converting to **address**.
+
+-   In relation with this complexity mentioned above, **institution,
+    organization** and **school** would be mapped to [institution]{.underline}.
+
+-   **series** would be mapped to [collection-title]{.underline} only on those
+    entries that does not requires **booktitle**. In practice, this means that
+    collection-title would correspond to **booktitle** for **incollection** and
+    **inproceedings**, and in the rest of cases it would correspond to series. A
+    consequence of this is that series information would be lost for
+    incollection and inproceedings, but on those cases is an optional field.
+
+-   Regarding **series**, it would be mapped to [collection-title]{.underline}
+    only for those entries that do not require **booktitle**. In practice, this
+    means that [collection-title]{.underline} would correspond to **booktitle**
+    for **\@incollection** and **\@inproceedings**, while in other cases it
+    would correspond to **series**. As a consequence, **series** information
+    would be lost for **\@incollection** and **\@inproceedings**, but in those
+    cases, it is an optional field.
+
+-   When converting from [CFF]{.underline} to **BibTeX**, we propose to use
+    [date-published]{.underline} as a fallback for extracting **month** and
+    **year** fields.
+
+-   When **pages** is provided as a range separated by `--`, i.e, **pages =
+    {3--5}** would be parsed as [start: 3]{.underline}, [end: 5]{.underline} in
+    [CFF]{.underline}.
 
 Additionally, there are other [CFF]{.underline} keys that correspond to
 **BibLaTeX** fields. We propose to include these fields in the crosswalk[^6],
@@ -473,9 +517,6 @@ This section presents the specific mapping proposed for each of the **BibTeX**
 entries, providing further information on how each field is treated. Examples
 are adapted from the [xampl.bib](https://tug.org/texmf-docs/bibtex/xampl.bib)
 file provided with the **bibtex** package [@patashnik].
-
-Note that the **BibTeX** fields marked with **"\*"** on each table indicate
-those that are strictly required for each entry type.
 
 ### \@article {#article}
 
@@ -541,15 +582,14 @@ toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 
 ### \@book / \@inbook {#book-inbook}
 
-In terms of the fields required in **BibTeX**, the primary difference between
-**\@book** and **\@inbook** lies in the latter's additional demand for a chapter
-or page specification. While **\@book** does not even allow these fields as
-optional, **\@inbook** requires them. Therefore, we propose that an **\@inbook**
-entry in [CFF]{.underline} be treated as a **\@book** with the following
-supplementary fields:
+In terms of the fields required in BibTeX, the primary difference between
+**\@book** and **\@inbook** is that **\@inbook** requires a **chapter** or
+**page** field, while **\@book** does not even allow these fields as optional.
+Therefore, we propose that an **\@inbook** entry in [CFF]{.underline} be treated
+as a **\@book** with the following supplementary fields:
 
-1.  [section]{.underline}: To denote the specific section within the book.
-2.  [start-end]{.underline}: To indicate the range of pages covered by the
+1.  [section]{.underline}: To denote the specific **chapter** within the book.
+2.  [start-end]{.underline}: To indicate the range of **pages** covered by the
     section.
 
 Additionally, note that in [CFF]{.underline}, the **series** field corresponds
@@ -574,9 +614,9 @@ knitr::kable(df_table,
 )
 ```
 
-As mentioned previously, there are notable differences in how **BibTeX** and
-**BibLaTeX** handle the **\@inbook** entry. This is further discussed in the
-[Appendix A](#appendix_inbook).
+There are notable differences in how **BibTeX** and **BibLaTeX** handle the
+**\@inbook** entry (further discussed in the [Appendix A](#appendix_inbook)). We
+propose to treat a **BibLaTeX \@inbook** as a **BibTeX \@incollection.**
 
 **Examples: \@book**
 
@@ -804,7 +844,7 @@ cff_from_bibtex(bib)
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
-### incollection
+### \@incollection
 
 As **booktitle** is a required field, we propose to map that field to
 [collection-title]{.underline} and the [type]{.underline} to
@@ -812,7 +852,7 @@ As **booktitle** is a required field, we propose to map that field to
 generic]{.underline} with a [collection-title]{.underline} key.
 
 | **BibTeX**         | [CFF]{.underline}                                         | Note                                              |
-|--------------------|-----------------------------------------------------------|---------------------------------------------------|
+|--------------------|--------------------------------|----------------------------|
 | **\@incollection** | [type: generic]{.underline}                               | Including a [collection-title]{.underline} value  |
 | **author\***       | [authors]{.underline}                                     |                                                   |
 | **title\***        | [title]{.underline}                                       |                                                   |
@@ -887,7 +927,7 @@ cff_from_bibtex(bib)
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
-### manual
+### \@manual
 
 As in the case of [conference/inproceedings], **organization** is mapped to
 [institution]{.underline}.
@@ -949,7 +989,7 @@ cff_from_bibtex(bib)
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
-### mastersthesis/phdthesis
+### \@mastersthesis /  \@phdthesis
 
 In terms of field required on BibTeX, it is identical for both
 **\@mastersthesis** and **\@phdthesis.**
@@ -960,7 +1000,7 @@ We propose here to identify each type of thesis using the field
 recognized as **\@phdthesis**.
 
 | BibTeX                           | [CFF]{.underline}                                           | Note                                                                |
-|----------------------------------|-------------------------------------------------------------|---------------------------------------------------------------------|
+|--------------------|-----------------------------|-------------------------------|
 | **\@mastersthesis, \@phdthesis** | [type: thesis]{.underline}                                  | Use also [thesis-type]{.underline} for identifying the thesis type. |
 | **author\***                     | [authors]{.underline}                                       |                                                                     |
 | **title\***                      | [title]{.underline}                                         |                                                                     |
@@ -1053,12 +1093,12 @@ cff_from_bibtex(bib)
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
-### misc
+### \@misc
 
 The crosswalk of **\@misc** does not require any special treatment. This entry
 does not require any field.
 
-Note also that it is mapped to [type: generic]{.underline} as [incollection],
+Note also that it is mapped to [type: generic]{.underline} as [\@incollection],
 but in this case **booktitle** is not even an option, so the proposed definition
 should cover both **\@misc** and **\@incollection** without problems.
 
@@ -1110,7 +1150,7 @@ cff_from_bibtex(bib)
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
-### proceedings
+### \@proceedings
 
 The proposed model is similar to [conference/inproceedings]. Note that
 **\@proceedings** does not prescribe a **author** field. On this cases, as
@@ -1122,7 +1162,7 @@ converting to CFF and omit it on the conversion back to CFF.
     **(Guide to Citation File Format schema version 1.2.0)**
 
 | BibTeX            | [CFF]{.underline}               | Note                                                                                  |
-|-------------------|---------------------------------|---------------------------------------------------------------------------------------|
+|---------------------|---------------------|--------------------------------------|
 | **\@proceedings** | [type: proceedings]{.underline} |                                                                                       |
 | **title\***       | [title]{.underline}             |                                                                                       |
 | **year\***        | [year]{.underline}              |                                                                                       |
@@ -1182,10 +1222,10 @@ cff_from_bibtex(bib)
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
-### techreport
+### \@techreport
 
 | **BibTeX**        | [CFF]{.underline}                                           | Note                                              |
-|-------------------|-------------------------------------------------------------|---------------------------------------------------|
+|--------------------|---------------------------------|---------------------------|
 | **\@techreport**  | [type: report]{.underline}                                  |                                                   |
 | **author\***      | [authors]{.underline}                                       |                                                   |
 | **title\***       | [title]{.underline}                                         |                                                   |
@@ -1241,7 +1281,7 @@ cff_from_bibtex(bib)
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
-### unpublished
+### \@unpublished
 
 | **BibTeX**        | [CFF]{.underline}               | Note                      |
 |-------------------|---------------------------------|---------------------------|
@@ -1284,7 +1324,7 @@ cff_from_bibtex(bib)
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
-## Appendix A: **\@inbook** in Bibtex and BibLaTeX {#appendix_inbook}
+## Appendix A: **\@inbook** in BibTeX and BibLaTeX {#appendix_inbook}
 
 TODO....
 
