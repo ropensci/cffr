@@ -205,7 +205,9 @@ required fields, it can also include additional fields that might be ignored in
 the raw implementation of **BibTeX**. Let's explore some of these fields:
 
 1.  **address**: Typically represents the address of the **publisher** or
-    another **institution**.
+    another **institution**. In the case of **\@conference**,
+    **\@inproceedings** and **\@proceedings** this field indicates where the
+    conference was held.
 2.  **annote**: An annotation. Although not used by standard bibliography
     styles, it may be relevant for producing annotated bibliographies.
 3.  **author**: Contains the name(s) of the author(s), following the format
@@ -231,8 +233,8 @@ the raw implementation of **BibTeX**. Let's explore some of these fields:
     when **author** information is missing.
 13. **month**: Indicates the month in which the work was published or, for an
     unpublished work, when it was written. Use the standard three-letter
-    abbreviation (e.g., `jan`, `feb`, `mar`) as described in Appendix B.1.3 of
-    the LaTeX book [@lamport86latex].
+    abbreviation (e.g., `jan`, `feb`, `mar`) as described in **Appendix B.1.3**
+    of the LaTeX book [@lamport86latex].
 14. **note**: Provides any additional information that can assist the reader.
     The first word should be capitalized.
 15. **number**: Represents the number of a journal, magazine, technical report,
@@ -348,9 +350,8 @@ These keys are equivalent to the **BibTeX** [fields](#fields), with the
 exception of the key [type]{.underline}. In [CFF]{.underline}, this key defines
 the type of work[^2], making it analogous to the **BibTeX** [entries](#0).
 
-[^2]: See a complete list of possible values of [CFF]{.underline} type on the
-    [Guide to Citation File Format schema version
-    1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreferencetype).
+[^2]: See a complete list of possible values of [CFF]{.underline}
+    [type]{.underline} in [Appendix B](#appendix_cff_type).
 
 ## Proposed Crosswalk
 
@@ -392,19 +393,28 @@ knitr::kable(df_table,
 )
 ```
 
-It is important to note that this Entry/Type crosswalk is intended exclusively
-for **BibTeX**. This is relevant since another tools based on
-[Biber](https://en.wikipedia.org/wiki/Biber_(LaTeX)) such as **BibLaTeX**
-handles some entries differently, most notably the **\@inbook** entry. We
-provide additional information and support on a dedicated
-[Annex](#annex_inbook).
+The previous crosswalk has the following specifities:
+
+-   **\@book**, **\@inbook** and **\@incollection** are closely related in
+    **BibTeX**[^4]. Both **\@inbook** and **\@incollection** are used for
+    referencing parts of a **\@book**, but while **\@inbook** is used for citing
+    sections, **chapter**s, **pages** or other parts, **\@incollection** is used
+    for citing parts with a specific **title**. Since [CFF]{.underline} allows
+    keys [type:book]{.underline} and [collection-type: book]{.underline}, we may
+    use a combination of those fields for tagging each entry type in
+    [CFF]{.underline}.
+-   **\@mastersthesis** and **\@phdthesis** would be tagged using a combination
+    of [type:thesis]{.underline}t and [thesis-type]{.underline}.
+
+[^4]: Note that **BibLaTeX** [@biblatexpack] handles **\@inbook** differently,
+    see [Appendix A](#appendix_inbook).
 
 Additionally, considering that [CFF]{.underline} allows for a wide range of
-values[^4] for the [type]{.underline} field, the following conversion would be
+values[^5] for the [type]{.underline} field, the following conversion would be
 applied from [CFF]{.underline} to **BibTeX**:
 
-[^4]: See the [Appendix](#appendix_cff_type) for all possible values.
-    Information extracted from @druskat2019.
+[^5]: See [Appendix B](#appendix_cff_type) for all possible values. Information
+    extracted from @druskat2019.
 
 ```{r entry_cff2bib, echo=FALSE,results='asis'}
 df_table <- table_master[table_master$table == "entry_cff2bib", c(2:4)]
@@ -439,10 +449,10 @@ knitr::kable(df_table,
 ```
 
 Additionally, there are other [CFF]{.underline} keys that correspond to
-**BibLaTeX** fields. We propose to include these fields in the crosswalk[^5],
+**BibLaTeX** fields. We propose to include these fields in the crosswalk[^6],
 even though they are not part of the core **BibTeX** fields definition.
 
-[^5]: See @biblatexcheatsheet for a preview of the accepted **BibLaTeX** fields.
+[^6]: See @biblatexcheatsheet for a preview of the accepted **BibLaTeX** fields.
 
 ```{r fields_biblatex2cff, echo=FALSE,results='asis'}
 df_table <- table_master[table_master$table == "fields_biblatex2cff", c(2:3)]
@@ -566,7 +576,7 @@ knitr::kable(df_table,
 
 As mentioned previously, there are notable differences in how **BibTeX** and
 **BibLaTeX** handle the **\@inbook** entry. This is further discussed in the
-[Annex](#annex_inbook).
+[Appendix A](#appendix_inbook).
 
 **Examples: \@book**
 
@@ -726,7 +736,8 @@ toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 Note that in this case, **organization** is mapped to [institution]{.underline},
 as **BibTeX** does not prescribe the use of **institution** on these entries.
 
-Additionally, **series** would be ignored as there is not clear mapping on [CFF]{.underline} for this field.
+Additionally, **series** would be ignored as there is not clear mapping on
+[CFF]{.underline} for this field.
 
 ```{r model_inproceedings, echo=FALSE, results='asis'}
 df_table <- table_master[table_master$table == "model_inproceedings", c(2:4)]
@@ -801,7 +812,7 @@ As **booktitle** is a required field, we propose to map that field to
 generic]{.underline} with a [collection-title]{.underline} key.
 
 | **BibTeX**         | [CFF]{.underline}                                         | Note                                              |
-|--------------------|--------------------------------|----------------------------|
+|--------------------|-----------------------------------------------------------|---------------------------------------------------|
 | **\@incollection** | [type: generic]{.underline}                               | Including a [collection-title]{.underline} value  |
 | **author\***       | [authors]{.underline}                                     |                                                   |
 | **title\***        | [title]{.underline}                                       |                                                   |
@@ -949,7 +960,7 @@ We propose here to identify each type of thesis using the field
 recognized as **\@phdthesis**.
 
 | BibTeX                           | [CFF]{.underline}                                           | Note                                                                |
-|--------------------|-----------------------------|-------------------------------|
+|----------------------------------|-------------------------------------------------------------|---------------------------------------------------------------------|
 | **\@mastersthesis, \@phdthesis** | [type: thesis]{.underline}                                  | Use also [thesis-type]{.underline} for identifying the thesis type. |
 | **author\***                     | [authors]{.underline}                                       |                                                                     |
 | **title\***                      | [title]{.underline}                                         |                                                                     |
@@ -1103,15 +1114,15 @@ toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 
 The proposed model is similar to [conference/inproceedings]. Note that
 **\@proceedings** does not prescribe a **author** field. On this cases, as
-[authors]{.underline} is required on CFF, we would use *anonymous*[^6] when
+[authors]{.underline} is required on CFF, we would use *anonymous*[^7] when
 converting to CFF and omit it on the conversion back to CFF.
 
-[^6]: As proposed on [*How to deal with unknown individual
+[^7]: As proposed on [*How to deal with unknown individual
     authors?*](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors),
     **(Guide to Citation File Format schema version 1.2.0)**
 
 | BibTeX            | [CFF]{.underline}               | Note                                                                                  |
-|--------------------|--------------------|----------------------------------------|
+|-------------------|---------------------------------|---------------------------------------------------------------------------------------|
 | **\@proceedings** | [type: proceedings]{.underline} |                                                                                       |
 | **title\***       | [title]{.underline}             |                                                                                       |
 | **year\***        | [year]{.underline}              |                                                                                       |
@@ -1174,7 +1185,7 @@ toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ### techreport
 
 | **BibTeX**        | [CFF]{.underline}                                           | Note                                              |
-|--------------------|---------------------------------|---------------------------|
+|-------------------|-------------------------------------------------------------|---------------------------------------------------|
 | **\@techreport**  | [type: report]{.underline}                                  |                                                   |
 | **author\***      | [authors]{.underline}                                       |                                                   |
 | **title\***       | [title]{.underline}                                         |                                                   |
@@ -1273,11 +1284,11 @@ cff_from_bibtex(bib)
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
-## Annex: **\@inbook** in Bibtex and BibLaTeX {#annex_inbook}
+## Appendix A: **\@inbook** in Bibtex and BibLaTeX {#appendix_inbook}
 
 TODO....
 
-## Appendix: [CFF key:type]{.underline} values {#appendix_cff_type}
+## Appendix B: [CFF key:type]{.underline} values {#appendix_cff_type}
 
 From @druskat2019 Table 4: Complete list of [CFF]{.underline} reference types.
 
