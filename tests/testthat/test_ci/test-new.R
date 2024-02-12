@@ -56,6 +56,7 @@ installed$note <- note
 
 
 outmd <- file.path(dir_path, "results.md")
-capture.output(knitr::kable(installed), file = outmd)
+errors <- installed[installed$is_ok == FALSE, ]
+capture.output(knitr::kable(errors), file = outmd)
 
 

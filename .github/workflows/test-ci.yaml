@@ -104,7 +104,7 @@ jobs:
 
           message("Installing ", length(toinstall)," packages: ", paste0(toinstall, collapse = ","))
 
-          #install.packages(toinstall, dependencies = TRUE, verbose = TRUE, quiet = TRUE)
+          install.packages(toinstall, dependencies = TRUE, verbose = TRUE, quiet = TRUE)
 
           # Update binary
           # update.packages(type = "binary")
