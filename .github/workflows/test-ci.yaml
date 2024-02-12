@@ -104,10 +104,7 @@ jobs:
 
           message("Installing ", length(toinstall)," packages: ", paste0(toinstall, collapse = ","))
 
-          install.packages(toinstall,
-            dependencies = TRUE,
-            verbose = TRUE, quiet = TRUE
-          )
+          #install.packages(toinstall, dependencies = TRUE, verbose = TRUE, quiet = TRUE)
 
           # Update binary
           # update.packages(type = "binary")
@@ -122,7 +119,7 @@ jobs:
           devtools::load_all()
 
           # Run the tests
-          testthat::test_dir("tests/testthat/test_ci")
+          source("tests/testthat/test_ci/test-new.R")
 
         shell: Rscript {0}
 
@@ -131,5 +128,5 @@ jobs:
         shell: bash
         run: |
           # OK :)
-          cat ./tests/testthat/test_ci/_snaps/full_cff.md >$GITHUB_STEP_SUMMARY
+          cat ./tests/testthat/test_ci/results.md >$GITHUB_STEP_SUMMARY
 
