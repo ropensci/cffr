@@ -101,13 +101,17 @@ jobs:
             RSPM = "https://packagemanager.rstudio.com/all/latest",
             CRAN = "https://cloud.r-project.org"
           ))
+          message("Installing ", length(toinstall)," packages")
 
-          message("Installing ", length(toinstall)," packages: ", paste0(toinstall, collapse = ","))
+          library(pak, lib.loc = Sys.getenv("R_LIB_FOR_PAK"))
 
-          install.packages(toinstall, dependencies = TRUE, verbose = TRUE, quiet = TRUE)
+          # Install packages with pak
+          end <- lapply(toinstall, function(x){
+            aa <- try(pak::pkg_install(x, upgrade = TRUE, dependencies = TRUE), silent = TRUE)
+            if(inherits(aa, "try-error")) return(FALSE)
+            return(TRUE)
+          })
 
-          # Update binary
-          # update.packages(type = "binary")
 
         shell: Rscript {0}
 

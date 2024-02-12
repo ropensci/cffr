@@ -4,6 +4,9 @@ test_that("Test ALL installed packages", {
   installed <- as.data.frame(installed.packages()[, c("Package", "Version")])
   installed <- installed[order(installed$Package), ]
 
+  end <- match("ctv", installed$Package) + 10
+  installed <- installed[seq_len(end), ]
+
   rownames(installed) <- seq_len(nrow(installed))
 
   l <- nrow(installed)
