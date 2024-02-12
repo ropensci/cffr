@@ -191,7 +191,7 @@
 "model_techreport","**type**","Ignored",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "model_techreport","**number**","[issue]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "model_techreport","**address**","[address]{.underline} property of [institution]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"model_techreport","**month**","[month]{.underline}","See **Note** on [**\@article**](link_to_article)",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_techreport","**month**","[month]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "model_techreport","**note**","[notes]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "model_unpublished","**\@unpublished**","[type: unpublished]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "model_unpublished","**author** (required)","[authors]{.underline}",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA

@@ -2,12 +2,9 @@
 % Please edit documentation in R/renamed-funs.R
 \name{cff_extract_to_bibtex}
 \alias{cff_extract_to_bibtex}
-\alias{cff_to_bibtex}
 \title{Previous API: Create BibTeX entries from several sources}
 \usage{
 cff_extract_to_bibtex(x, what = c("preferred", "references", "all"))
-
-cff_to_bibtex(x, what = c("preferred", "references", "all"))
 }
 \arguments{
 \item{x}{The source that would be used for generating

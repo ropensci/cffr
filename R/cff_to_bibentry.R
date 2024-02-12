@@ -2,11 +2,14 @@
 #'
 #' @description
 #'
-#' This function creates BibTeX entries (in the form of [bibentry()] objects
+#' This function creates [bibentry()] objects
 #' from different metadata sources (`cff` objects, `DESCRIPTION` files, etc.).
-#' The function tries to parse the information of the source `x` into a `cff`
+#' The function tries to map the information of the source `x` into a `cff`
 #' object and performs a mapping of the metadata to BibTeX, according to
 #' `vignette("bibtex_cff", "cffr")`.
+#'
+#' Note that a **R** [bibentry()] object is the representation of a BibTeX
+#' entry, see **Examples**.
 #'
 #'
 #' @references
@@ -18,7 +21,7 @@
 #'   \doi{10.5281/zenodo.1184077}.
 #'
 #' - Hernangómez D (2022). "BibTeX and CFF, a potential crosswalk."
-#'   *The cffr package, Vignettes*
+#'   *The cffr package, Vignettes*. \doi{10.21105/joss.03900},
 #'   <https://docs.ropensci.org/cffr/articles/bibtex_cff.html>.
 #'
 #' @param x The source that would be used for generating
@@ -123,6 +126,11 @@ cff_to_bibentry <- function(x,
 
   return(pref)
 }
+
+#' @export
+#' @rdname cff_to_bibentry
+#' @usage NULL
+cff_to_bibtex <- cff_to_bibentry
 
 cff_bibtex_parser <- function(x) {
   if (is.null(x)) {

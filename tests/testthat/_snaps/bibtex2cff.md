@@ -287,10 +287,12 @@
       month: '8'
       institution:
         name: The OX Association for Computing Machinery
-        address: Boston, US
       publisher:
         name: Academic Press
       notes: Example modified for testing purposes
+      conference:
+        name: All ACM Conferences
+        address: Boston, US
 
 # TechReport
 
@@ -371,6 +373,8 @@
       month: '4'
       year: '2006'
       isbn: 1-59593-322-02
+      conference:
+        name: Proceedings of the 6th European Conference on Computer Systems
 
 # Test entry without author but has a key
 

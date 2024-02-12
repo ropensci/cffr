@@ -391,7 +391,7 @@ parse_bibtex_to_inst <- function(parsed_fields) {
 add_conference <- function(parsed_fields) {
   bibtex_entry <- parsed_fields$bibtex_entry
 
-  if (bibtex_entry %in% c("conference", "inproceedings")) {
+  if (bibtex_entry %in% c("conference", "inproceedings", "proceedings")) {
     parsed_fields$conference <- parsed_fields$`collection-title`
   }
   return(parsed_fields)

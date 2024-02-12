@@ -2,6 +2,7 @@
 % Please edit documentation in R/cff_to_bibentry.R
 \name{cff_to_bibentry}
 \alias{cff_to_bibentry}
+\alias{cff_to_bibtex}
 \title{Create BibTeX entries from several sources}
 \usage{
 cff_to_bibentry(x, what = c("preferred", "references", "all"))
@@ -32,11 +33,14 @@ A \code{bibentry} object or a list of \code{bibentry} objects. This could
 be parsed to BibTeX using \code{\link[=toBibtex]{toBibtex()}}
 }
 \description{
-This function creates BibTeX entries (in the form of \code{\link[=bibentry]{bibentry()}} objects
+This function creates \code{\link[=bibentry]{bibentry()}} objects
 from different metadata sources (\code{cff} objects, \code{DESCRIPTION} files, etc.).
-The function tries to parse the information of the source \code{x} into a \code{cff}
+The function tries to map the information of the source \code{x} into a \code{cff}
 object and performs a mapping of the metadata to BibTeX, according to
 \code{vignette("bibtex_cff", "cffr")}.
+
+Note that a \strong{R} \code{\link[=bibentry]{bibentry()}} object is the representation of a BibTeX
+entry, see \strong{Examples}.
 }
 \examples{
 \donttest{
@@ -86,7 +90,7 @@ toBibtex(desc_file)
 \emph{Ruby CFF Library (Version 0.9.0)} (Computer software).
 \doi{10.5281/zenodo.1184077}.
 \item Hernangómez D (2022). "BibTeX and CFF, a potential crosswalk."
-\emph{The cffr package, Vignettes}
+\emph{The cffr package, Vignettes}. \doi{10.21105/joss.03900},
 \url{https://docs.ropensci.org/cffr/articles/bibtex_cff.html}.
 }
 }

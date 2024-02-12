@@ -24,10 +24,3 @@ cff_extract_to_bibtex <- function(x,
                                   what = c("preferred", "references", "all")) {
   cff_to_bibentry(x, what)
 }
-
-#' @export
-#' @rdname previous_cff_to_bib
-#' @keywords internal
-cff_to_bibtex <- function(x, what = c("preferred", "references", "all")) {
-  cff_to_bibentry(x, what)
-}

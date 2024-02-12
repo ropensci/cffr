@@ -664,7 +664,7 @@ toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 
 **Examples: \@inbook**
 
-*BibTeX entry*
+**BibTeX entry**
 
 ``` bibtex
 @inbook{inbook-full,
@@ -706,7 +706,7 @@ bib <- "@inbook{inbook-full,
 cff_from_bibtex(bib)
 ```
 
-Fro [CFF]{.underline} to BibTeX
+From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
@@ -771,11 +771,9 @@ From [CFF]{.underline} to **BibTeX**
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
-### \@conference / \@inproceedings
+### \@conference / \@inproceedings {#conf_inproc}
 
-Note that in this case, **organization** is mapped to [institution]{.underline},
-as **BibTeX** does not prescribe the use of **institution** on these entries.
-
+Note that in this case, **organization** is mapped to [institution]{.underline}.
 Additionally, **series** would be ignored as there is not clear mapping on
 [CFF]{.underline} for this field.
 
@@ -798,7 +796,7 @@ knitr::kable(df_table,
 
 **Examples**
 
-[*BibTeX entry*]{.underline}
+**BibTeX entry**
 
 ``` bibtex
 @inproceedings{inproceedings-full,
@@ -817,7 +815,7 @@ knitr::kable(df_table,
 }
 ```
 
-[*CFF entry*]{.underline}
+[CFF entry]{.underline}
 
 ```{r echo=FALSE,}
 bib <- "@inproceedings{inproceedings-full,
@@ -838,44 +836,42 @@ bib <- "@inproceedings{inproceedings-full,
 cff_from_bibtex(bib)
 ```
 
-[*From CFF to BibTeX*]{.underline}
+From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
-### \@incollection
+### \@incollection {#incol}
 
 As **booktitle** is a required field, we propose to map that field to
 [collection-title]{.underline} and the [type]{.underline} to
 [generic]{.underline}. Therefore, an **\@incollection** is a [type:
 generic]{.underline} with a [collection-title]{.underline} key.
 
-| **BibTeX**         | [CFF]{.underline}                                         | Note                                              |
-|--------------------|--------------------------------|----------------------------|
-| **\@incollection** | [type: generic]{.underline}                               | Including a [collection-title]{.underline} value  |
-| **author\***       | [authors]{.underline}                                     |                                                   |
-| **title\***        | [title]{.underline}                                       |                                                   |
-| **booktitle\***    | [collection-title]{.underline}                            |                                                   |
-| **publisher\***    | [publisher]{.underline}                                   |                                                   |
-| **year\***         | [year]{.underline}                                        |                                                   |
-| **editor**         | [editors]{.underline}                                     |                                                   |
-| **volume**         | [volume]{.underline}                                      |                                                   |
-| **number**         | [issue]{.underline}                                       |                                                   |
-| **series**         | [series]{.underline}                                      |                                                   |
-| **type**           |                                                           | Ignored                                           |
-| **chapter**        | [section]{.underline}                                     |                                                   |
-| **pages**          | [start]{.underline} and [end]{.underline}                 | See **Note** on [article]                         |
-| **address**        | [address]{.underline} property of [publisher]{.underline} | See **Note** on [\@book / \@inbook](#book-inbook) |
-| **edition**        | [edition]{.underline}                                     |                                                   |
-| **month**          | [month]{.underline}                                       | See **Note** on [article]                         |
-| **note**           | [notes]{.underline}                                       |                                                   |
+Additionally, **series** and **type** would be ignored as there is not clear
+mapping on [CFF]{.underline} for this field.
 
-: **\@incollection** Model
+```{r model_incollection, echo=FALSE, results='asis'}
+df_table <- table_master[table_master$table == "model_incollection", c(2:4)]
+df_table[is.na(df_table)] <- ""
+
+# fix links
+df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
+df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
+df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
+df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
+
+row.names(df_table) <- NULL
+knitr::kable(df_table,
+  col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
+  caption = "**\\@incollection** Model"
+)
+```
 
 **Examples**
 
-[*BibTeX entry*]{.underline}
+**BibTeX entry**
 
 ``` bibtex
 @incollection{incollection-full,
@@ -897,7 +893,7 @@ generic]{.underline} with a [collection-title]{.underline} key.
 }
 ```
 
-[*CFF entry*]{.underline}
+[CFF entry]{.underline}
 
 ```{r echo=FALSE,}
 bib <- "@incollection{incollection-full,
@@ -921,7 +917,7 @@ bib <- "@incollection{incollection-full,
 cff_from_bibtex(bib)
 ```
 
-[*From CFF to BibTeX*]{.underline}
+From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
@@ -929,26 +925,29 @@ toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 
 ### \@manual
 
-As in the case of [conference/inproceedings], **organization** is mapped to
-[institution]{.underline}.
+As in the case of [**\@conference** / **\@inproceedings**](#conf_inproc),
+**organization** is mapped to [institution]{.underline}.
 
-| **BibTeX**       | [CFF]{.underline}          | Note                      |
-|------------------|----------------------------|---------------------------|
-| **\@manual**     | [type: manual]{.underline} |                           |
-| **title\***      | [title]{.underline}        |                           |
-| **author**       | [authors]{.underline}      |                           |
-| **organization** | [institution]{.underline}  |                           |
-| **address**      | [location]{.underline}     |                           |
-| **edition**      | [edition]{.underline}      |                           |
-| **month**        | [month]{.underline}        | See **Note** on [article] |
-| **year**         | [year]{.underline}         | See **Note** on [booklet] |
-| **note**         | [notes]{.underline}        |                           |
+```{r model_manual, echo=FALSE, results='asis'}
+df_table <- table_master[table_master$table == "model_manual", c(2:4)]
+df_table[is.na(df_table)] <- ""
 
-: **\@manual** Model
+# fix links
+df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
+df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
+df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
+df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
+
+row.names(df_table) <- NULL
+knitr::kable(df_table,
+  col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
+  caption = "**\\@manual** Model"
+)
+```
 
 **Examples**
 
-[*BibTeX entry*]{.underline}
+**BibTeX entry**
 
 Note that **month** can't be parsed to a single integer in the range `1--12` as
 required on CFF, so it is not parsed to avoid validation errors.
@@ -966,7 +965,7 @@ required on CFF, so it is not parsed to avoid validation errors.
 }
 ```
 
-[*CFF entry*]{.underline}
+[CFF entry]{.underline}
 
 ```{r echo=FALSE,}
 bib <- "@manual{manual-full,
@@ -983,39 +982,44 @@ bib <- "@manual{manual-full,
 cff_from_bibtex(bib)
 ```
 
-[*From CFF to BibTeX*]{.underline}
+From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
-### \@mastersthesis /  \@phdthesis
+### \@mastersthesis / \@phdthesis
 
 In terms of field required on BibTeX, it is identical for both
 **\@mastersthesis** and **\@phdthesis.**
 
-We propose here to identify each type of thesis using the field
-[thesis-type]{.underline} (CFF). So if [thesis-type]{.underline} contains a
-[regex pattern](https://regex101.com/r/mBWfbs/1) `(?i)(phd)` it would be
-recognized as **\@phdthesis**.
+We propose here to identify each type of thesis using the key
+[thesis-type]{.underline} So if [thesis-type]{.underline} contains a [regex
+pattern](https://regex101.com/r/mBWfbs/1) `(?i)(phd)` it would be recognized as
+**\@phdthesis**.
 
-| BibTeX                           | [CFF]{.underline}                                           | Note                                                                |
-|--------------------|-----------------------------|-------------------------------|
-| **\@mastersthesis, \@phdthesis** | [type: thesis]{.underline}                                  | Use also [thesis-type]{.underline} for identifying the thesis type. |
-| **author\***                     | [authors]{.underline}                                       |                                                                     |
-| **title\***                      | [title]{.underline}                                         |                                                                     |
-| **school\***                     | [institution]{.underline}                                   |                                                                     |
-| **year\***                       | [year]{.underline}                                          |                                                                     |
-| **type**                         |                                                             |                                                                     |
-| **address**                      | [address]{.underline} property of [institution]{.underline} | See **Note** on [\@book / \@inbook](#book-inbook)                   |
-| **month**                        | [month]{.underline}                                         | See **Note** on [article]                                           |
-| **note**                         | [notes]{.underline}                                         |                                                                     |
+Additionally, **school** would be mapped to [institution]{.underline}.
 
-: **\@mastersthesis/phdthesis** Model
+```{r model_thesis, echo=FALSE, results='asis'}
+df_table <- table_master[table_master$table == "model_thesis", c(2:4)]
+df_table[is.na(df_table)] <- ""
 
-**Examples: mastersthesis**
+# fix links
+df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
+df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
+df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
+df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
 
-[*BibTeX entry*]{.underline}
+row.names(df_table) <- NULL
+knitr::kable(df_table,
+  col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
+  caption = "**\\@mastersthesis / \\@phdthesis** Model"
+)
+```
+
+**Examples: \@mastersthesis**
+
+**BibTeX entry**
 
 ``` bibtex
 @mastersthesis{mastersthesis-full,
@@ -1030,7 +1034,7 @@ recognized as **\@phdthesis**.
 }
 ```
 
-[*CFF entry*]{.underline}
+[CFF entry]{.underline}
 
 ```{r echo=FALSE}
 bib <- "@mastersthesis{mastersthesis-full,
@@ -1047,15 +1051,15 @@ bib <- "@mastersthesis{mastersthesis-full,
 cff_from_bibtex(bib)
 ```
 
-[*From CFF to BibTeX*]{.underline}
+From [CFF]{.underline} to **BibTeX**
 
 ```{r,  echo=FALSE}
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 ```
 
-**Examples: phdthesis**
+**Examples: \@phdthesis**
 
-[*BibTeX entry*]{.underline}
+**BibTeX entry**
 
 ``` bibtex
 @phdthesis{phdthesis-full,
@@ -1070,7 +1074,7 @@ toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 }
 ```
 
-[*CFF entry*]{.underline}
+[CFF entry]{.underline}
 
 ```{r echo=FALSE,}
 bib <- "@phdthesis{phdthesis-full,
@@ -1087,7 +1091,7 @@ bib <- "@phdthesis{phdthesis-full,
 cff_from_bibtex(bib)
 ```
 
-[*From CFF to BibTeX*]{.underline}
+From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
@@ -1095,28 +1099,34 @@ toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 
 ### \@misc
 
-The crosswalk of **\@misc** does not require any special treatment. This entry
-does not require any field.
+The crosswalk of **\@misc** does not require any special treatment. This
+**entry** does not require any **field**.
 
-Note also that it is mapped to [type: generic]{.underline} as [\@incollection],
-but in this case **booktitle** is not even an option, so the proposed definition
-should cover both **\@misc** and **\@incollection** without problems.
+Note also that it is mapped to [type: generic]{.underline} as
+[**\@incollection**](#incol), but in this case **booktitle** is not even an
+option, so the proposed definition should cover both **\@misc** and
+**\@incollection** without problems.
 
-| **BibTeX**       | [CFF]{.underline}           | Note                      |
-|------------------|-----------------------------|---------------------------|
-| **\@misc**       | [type: generic]{.underline} |                           |
-| **author**       | [authors]{.underline}       |                           |
-| **title**        | [title]{.underline}         |                           |
-| **howpublished** | [medium]{.underline}        |                           |
-| **month**        | [month]{.underline}         | See **Note** on [article] |
-| **year**         | [year]{.underline}          | See **Note** on [booklet] |
-| **note**         | [notes]{.underline}         |                           |
+```{r model_misc, echo=FALSE, results='asis'}
+df_table <- table_master[table_master$table == "model_misc", c(2:4)]
+df_table[is.na(df_table)] <- ""
 
-: **\@misc** Model
+# fix links
+df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
+df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
+df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
+df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
+
+row.names(df_table) <- NULL
+knitr::kable(df_table,
+  col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
+  caption = "**\\@misc** Model"
+)
+```
 
 **Examples**
 
-[*BibTeX entry*]{.underline}
+**BibTeX entry**
 
 ``` bibtex
 @misc{misc-full,
@@ -1129,7 +1139,7 @@ should cover both **\@misc** and **\@incollection** without problems.
 }
 ```
 
-[*CFF entry*]{.underline}
+[CFF entry]{.underline}
 
 ```{r echo=FALSE,}
 bib <- "@misc{misc-full,
@@ -1144,7 +1154,7 @@ bib <- "@misc{misc-full,
 cff_from_bibtex(bib)
 ```
 
-[*From CFF to BibTeX*]{.underline}
+From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
@@ -1152,35 +1162,37 @@ toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 
 ### \@proceedings
 
-The proposed model is similar to [conference/inproceedings]. Note that
-**\@proceedings** does not prescribe a **author** field. On this cases, as
-[authors]{.underline} is required on CFF, we would use *anonymous*[^7] when
-converting to CFF and omit it on the conversion back to CFF.
+The proposed model is consistent with [**\@conference** /
+**\@inproceedings**](#conf_inproc). Note that **\@proceedings** does not
+prescribe a **author** field. On this cases, as [authors]{.underline} is
+required on [CFF]{.underline}, we would use *anonymous*[^7] when converting to
+[CFF]{.underline} and omit it on the conversion from [CFF]{.underline} to
+**BibTeX**.
 
 [^7]: As proposed on [*How to deal with unknown individual
     authors?*](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors),
     **(Guide to Citation File Format schema version 1.2.0)**
 
-| BibTeX            | [CFF]{.underline}               | Note                                                                                  |
-|---------------------|---------------------|--------------------------------------|
-| **\@proceedings** | [type: proceedings]{.underline} |                                                                                       |
-| **title\***       | [title]{.underline}             |                                                                                       |
-| **year\***        | [year]{.underline}              |                                                                                       |
-| **editor**        | [editors]{.underline}           |                                                                                       |
-| **volume**        | [volume]{.underline}            |                                                                                       |
-| **number**        | [issue]{.underline}             |                                                                                       |
-| **series**        | [conference]{.underline}        |                                                                                       |
-| **address**       | [location]{.underline}          | As a fallback, [address]{.underline} property of [conference]{.underline} can be used |
-| **month**         | [month]{.underline}             | See **Note** on [article]                                                             |
-| **organization**  | [institution]{.underline}       |                                                                                       |
-| **publisher**     | [publisher]{.underline}         |                                                                                       |
-| **note**          | [notes]{.underline}             |                                                                                       |
+```{r model_proceedings, echo=FALSE, results='asis'}
+df_table <- table_master[table_master$table == "model_proceedings", c(2:4)]
+df_table[is.na(df_table)] <- ""
 
-: **\@conference/\@inproceedings** Model
+# fix links
+df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
+df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
+df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
+df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
+
+row.names(df_table) <- NULL
+knitr::kable(df_table,
+  col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
+  caption = "**\\@proceedings** Model"
+)
+```
 
 **Examples**
 
-[*BibTeX entry*]{.underline}
+**BibTeX entry**
 
 ``` bibtex
 @proceedings{proceedings-full,
@@ -1216,7 +1228,7 @@ bib <- "@proceedings{proceedings-full,
 cff_from_bibtex(bib)
 ```
 
-[*From CFF to BibTeX*]{.underline}
+From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
@@ -1224,24 +1236,28 @@ toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 
 ### \@techreport
 
-| **BibTeX**        | [CFF]{.underline}                                           | Note                                              |
-|--------------------|---------------------------------|---------------------------|
-| **\@techreport**  | [type: report]{.underline}                                  |                                                   |
-| **author\***      | [authors]{.underline}                                       |                                                   |
-| **title\***       | [title]{.underline}                                         |                                                   |
-| **institution\*** | [institution]{.underline}                                   |                                                   |
-| **year\***        | [year]{.underline}                                          |                                                   |
-| **type**          | \-                                                          | Ignored                                           |
-| **number**        | [issue]{.underline}                                         |                                                   |
-| **address**       | [address]{.underline} property of [institution]{.underline} | See **Note** on [\@book / \@inbook](#book-inbook) |
-| **month**         | [month]{.underline}                                         | See **Note** on [article]                         |
-| **note**          | [notes]{.underline}                                         |                                                   |
+The crosswalk of **\@techreport** does not require any special treatment.
 
-: **\@techreport** Model
+```{r model_techreport, echo=FALSE, results='asis'}
+df_table <- table_master[table_master$table == "model_techreport", c(2:4)]
+df_table[is.na(df_table)] <- ""
+
+# fix links
+df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
+df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
+df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
+df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
+
+row.names(df_table) <- NULL
+knitr::kable(df_table,
+  col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
+  caption = "**\\@techreport** Model"
+)
+```
 
 **Examples**
 
-[*BibTeX entry*]{.underline}
+**BibTeX entry**
 
 ``` bibtex
 @techreport{techreport-full,
@@ -1257,7 +1273,7 @@ toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 }
 ```
 
-[*CFF entry*]{.underline}
+[CFF entry]{.underline}
 
 ```{r echo=FALSE,}
 bib <- "@techreport{techreport-full,
@@ -1275,7 +1291,7 @@ bib <- "@techreport{techreport-full,
 cff_from_bibtex(bib)
 ```
 
-[*From CFF to BibTeX*]{.underline}
+From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
@@ -1283,20 +1299,28 @@ toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 
 ### \@unpublished
 
-| **BibTeX**        | [CFF]{.underline}               | Note                      |
-|-------------------|---------------------------------|---------------------------|
-| **\@unpublished** | [type: unpublished]{.underline} |                           |
-| **author\***      | [authors]{.underline}           |                           |
-| **title\***       | [title]{.underline}             |                           |
-| **note\***        | [notes]{.underline}             |                           |
-| **month**         | [month]{.underline}             | See **Note** on [article] |
-| **year**          | [year]{.underline}              | See **Note** on [booklet] |
+The crosswalk of **\@unpublished** does not require any special treatment.
 
-: **\@unpublished** Model
+```{r model_unpublished, echo=FALSE, results='asis'}
+df_table <- table_master[table_master$table == "model_unpublished", c(2:4)]
+df_table[is.na(df_table)] <- ""
+
+# fix links
+df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
+df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
+df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
+df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
+
+row.names(df_table) <- NULL
+knitr::kable(df_table,
+  col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
+  caption = "**\\@unpublished** Model"
+)
+```
 
 **Examples**
 
-[*BibTeX entry*]{.underline}
+**BibTeX entry**
 
 ``` bibtex
 @unpublished{unpublished-minimal,
@@ -1306,7 +1330,7 @@ toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 }
 ```
 
-[*CFF entry*]{.underline}
+[CFF entry]{.underline}
 
 ```{r echo=FALSE,}
 bib <- "@unpublished{unpublished-minimal,
@@ -1318,7 +1342,7 @@ bib <- "@unpublished{unpublished-minimal,
 cff_from_bibtex(bib)
 ```
 
-[*From CFF to BibTeX*]{.underline}
+From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
 toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
@@ -1326,7 +1350,76 @@ toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
 
 ## Appendix A: **\@inbook** in BibTeX and BibLaTeX {#appendix_inbook}
 
-TODO....
+The definition of **\@inbook** and **\@incollection** in **BibTeX**
+[@patashnik1988] is as follows:
+
+> -   **\@inbook**: A part of a book, which may be a chapter (or section) and/or
+>     a range of pages. Required fields: author or editor, title, chapter and/or
+>     pages, publisher, year (...)
+>
+> -   **\@incollection**: A part of a book having its own title. Required
+>     fields: author, title, booktitle, publisher, year (...)
+
+Whereas **BibLaTeX** [@biblatexpack] specifies:
+
+> -   **\@inbook:** A part of a book which forms a self-contained unit with its
+>     own title. Note that the [profile]{.underline} of this entry type is
+>     [different from standard BibTeX]{.underline}, see § 2.3.1. Required
+>     fields: author, title, booktitle, year/date (...).
+
+When considering required fields, an important difference is **booktitle**
+requirement in **BibLaTeX**. Notably, **BibTeX \@incollection** requires also
+this field. Moreover, both **BibTeX \@incollection** and **BibLaTeX \@inbook**
+emphasize its reference to *"a part of a book (...) with its own title"*.
+
+In this document, the proposed crosswalk ensures full compatibility with
+**BibTeX**. Hence, we propose to consider a **BibLaTeX \@inbook** entry as
+equivalent to a **BibTeX \@incollection**, given the congruence in their
+definitions and field requirements.
+
+**Examples**
+
+**BibTeX entry**
+
+``` bibtex
+@inbook{inbook-biblatex,
+    author       = {Yihui Xie and Christophe Dervieux and Emily Riederer},
+    title        = {Bibliographies and citations},
+    booktitle    = {{R} Markdown Cookbook},
+    date         = {2023-12-30},
+    publisher    = {Chapman and Hall/CRC},
+    address      = {Boca Raton, Florida},
+    series       = {The {R} Series},
+    isbn         = 9780367563837,
+    url          = {https://bookdown.org/yihui/rmarkdown-cookbook},
+    chapter      = {4.5}
+}
+```
+
+[CFF entry]{.underline}
+
+```{r echo=FALSE,}
+bib <- "@inbook{inbook-biblatex,
+	author       = {Yihui Xie and Christophe Dervieux and Emily Riederer},
+	title        = {Bibliographies and citations},
+	booktitle    = {{R} Markdown Cookbook},
+	date         = {2023-12-30},
+	publisher    = {Chapman and Hall/CRC},
+	address      = {Boca Raton, Florida},
+	series       = {The {R} Series},
+	isbn         = 9780367563837,
+	url          = {https://bookdown.org/yihui/rmarkdown-cookbook},
+	chapter      = {4.5}
+}"
+
+cff_from_bibtex(bib)
+```
+
+From [CFF]{.underline} to **BibTeX**
+
+```{r echo=FALSE,}
+toBibtex(cff_to_bibentry(cff_from_bibtex(bib)))
+```
 
 ## Appendix B: [CFF key:type]{.underline} values {#appendix_cff_type}
 
