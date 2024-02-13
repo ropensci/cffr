@@ -103,15 +103,15 @@ jobs:
           ))
           message("Installing ", length(toinstall)," packages")
 
-          library(pak, lib.loc = Sys.getenv("R_LIB_FOR_PAK"))
+          install.packages(toinstall, dependencies = TRUE, verbose = TRUE, quiet = TRUE)
 
+          #library(pak, lib.loc = Sys.getenv("R_LIB_FOR_PAK"))
           # Install packages with pak
-          end <- lapply(toinstall, function(x){
-            aa <- try(pak::pkg_install(x, upgrade = TRUE, dependencies = TRUE), silent = TRUE)
-            if(inherits(aa, "try-error")) return(FALSE)
-            return(TRUE)
-          })
-
+          # end <- lapply(toinstall, function(x){
+          #   aa <- try(pak::pkg_install(x, upgrade = TRUE, dependencies = TRUE), silent = TRUE)
+          #   if(inherits(aa, "try-error")) return(FALSE)
+          #   return(TRUE)
+          # })
 
         shell: Rscript {0}
 

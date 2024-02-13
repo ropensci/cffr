@@ -8,10 +8,8 @@ rownames(installed) <- seq_len(nrow(installed))
 l <- nrow(installed)
 
 dir_path <- "./tests/testthat/test_ci/"
-dbcsv <- file.path(dir_path, "allpackages.csv")
 
-# Initial set of packages
-write.csv(installed, file = dbcsv, row.names = FALSE)
+message("Testing a sample of ", nrow(installed)," packages")
 
 res <- c()
 withcit <- c()
