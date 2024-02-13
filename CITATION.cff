@@ -35,7 +35,7 @@ preferred-citation:
   issue: '67'
   journal: Journal of Open Source Software
   start: '3900'
-repository: https://CRAN.R-project.org/package=cffr
+repository: https://ropensci.r-universe.dev/
 repository-code: https://github.com/ropensci/cffr
 url: https://docs.ropensci.org/cffr/
 contact:

@@ -9,7 +9,7 @@ l <- nrow(installed)
 
 dir_path <- "./tests/testthat/test_ci/"
 
-message("Testing a sample of ", nrow(installed)," packages")
+message("Testing a sample of ", nrow(installed), " packages")
 
 res <- c()
 withcit <- c()
@@ -147,4 +147,3 @@ if (nrow(errors) == 0) {
     }
   }
 }
-

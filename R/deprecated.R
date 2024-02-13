@@ -22,5 +22,11 @@
 #' }
 cff_extract_to_bibtex <- function(x,
                                   what = c("preferred", "references", "all")) {
+  if (requireNamespace("lifecycle", quietly = TRUE)) {
+    lifecycle::deprecate_soft(
+      "0.5.0", "cff_extract_to_bibtex()",
+      "cff_to_bibentry()"
+    )
+  }
   cff_to_bibentry(x, what)
 }

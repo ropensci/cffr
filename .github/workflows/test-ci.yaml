@@ -92,35 +92,28 @@ jobs:
 
           # Check packages not installed yet
           instpack <- as.character(installed.packages()[, "Package"])
-          toinstall <- setdiff(all, instpack)
+          toinstall_init <- setdiff(all, instpack)
 
           # Install
           options(repos = c(
             ropensci = "https://ropensci.r-universe.dev",
             ropenscireviewtools = "https://ropensci-review-tools.r-universe.dev",
-            RSPM = "https://packagemanager.rstudio.com/all/latest",
+            RSPM = "https://packagemanager.posit.co/cran/latest",
             CRAN = "https://cloud.r-project.org"
           ))
+
+          # Check packages available, needed for use pak
+          pakav <- as.data.frame(available.packages(repos = getOption("repos")))
+          toinstall <- toinstall_init[toinstall_init %in% pakav$Package]
           message("Installing ", length(toinstall)," packages")
 
-          install.packages(toinstall, dependencies = TRUE, verbose = TRUE, quiet = TRUE)
-
-          #library(pak, lib.loc = Sys.getenv("R_LIB_FOR_PAK"))
-          # Install packages with pak
-          # end <- lapply(toinstall, function(x){
-          #   aa <- try(pak::pkg_install(x, upgrade = TRUE, dependencies = TRUE), silent = TRUE)
-          #   if(inherits(aa, "try-error")) return(FALSE)
-          #   return(TRUE)
-          # })
-
+          library(pak, lib.loc = Sys.getenv("R_LIB_FOR_PAK"))
+          pak::pkg_install(toinstall, dependencies = TRUE)
         shell: Rscript {0}
 
 
       - name: Test GHA
         run: |
-
-          # Load package
-          devtools::load_all()
 
           # Run the tests
           source("tests/testthat/test_ci/test-new.R")

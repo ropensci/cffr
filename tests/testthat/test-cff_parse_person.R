@@ -1,3 +1,8 @@
+test_that("NULL gives NULL", {
+  expect_null(cff_parse_person(NULL))
+  expect_null(cff_parse_person(NA))
+})
+
 test_that("Parse one person", {
   p <- person("one", "person")
   expect_snapshot(cff_parse_person(p))
