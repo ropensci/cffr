@@ -286,7 +286,7 @@
       repository: https://ropensci.r-universe.dev
       repository-code: https://github.com/ropensci/codemetar
       url: https://docs.ropensci.org/codemetar/
-      date-released: '2023-04-05'
+      date-released: '2024-02-09'
       contact:
       - family-names: Boettiger
         given-names: Carl
@@ -335,6 +335,39 @@
       - family-names: Pagès
         given-names: Hervé
         email: hpages.on.github@gmail.com
+
+# Parsing Posit Package Manager
+
+    Code
+      parsed
+    Output
+      cff-version: 1.2.0
+      message: 'To cite package "resmush" in publications use:'
+      type: software
+      license: MIT
+      title: 'resmush: Optimize and Compress Image Files with ''reSmush.it'''
+      version: 0.1.0
+      abstract: Compress local and online images using the 'reSmush.it' API service <https://resmush.it/>.
+      authors:
+      - family-names: Hernangómez
+        given-names: Diego
+        email: diego.hernangomezherrero@gmail.com
+        orcid: https://orcid.org/0000-0001-8457-4658
+      repository: https://CRAN.R-project.org/package=resmush
+      repository-code: https://github.com/dieghernan/resmush
+      url: https://dieghernan.github.io/resmush/
+      date-released: '2024-02-02'
+      contact:
+      - family-names: Hernangómez
+        given-names: Diego
+        email: diego.hernangomezherrero@gmail.com
+        orcid: https://orcid.org/0000-0001-8457-4658
+      keywords:
+      - r
+      - compress-images
+      - optimize-images
+      - resmushit
+      - api
 
 # Search package on CRAN
 

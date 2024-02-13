@@ -1,0 +1,31 @@
+Package: resmush
+Title: Optimize and Compress Image Files with 'reSmush.it'
+Version: 0.1.0
+Authors@R: 
+    person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
+           comment = c(ORCID = "0000-0001-8457-4658"))
+Description: Compress local and online images using the 'reSmush.it' API
+    service <https://resmush.it/>.
+License: MIT + file LICENSE
+URL: https://dieghernan.github.io/resmush/,
+        https://github.com/dieghernan/resmush
+BugReports: https://github.com/dieghernan/resmush/issues
+Depends: R (>= 3.6.0)
+Imports: cli, curl, httr2 (>= 1.0.0), tools, utils
+Suggests: grid, knitr, png, rmarkdown, testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/Needs/website: dieghernan/gitdevr, xfun, dplyr, tibble, devtools
+Config/testthat/edition: 3
+Config/testthat/parallel: true
+Encoding: UTF-8
+RoxygenNote: 7.3.1
+X-schema.org-keywords: r, compress-images, optimize-images, resmushit,
+        api
+NeedsCompilation: no
+Packaged: 2024-02-01 12:16:47 UTC; diego
+Author: Diego Hernangómez [aut, cre, cph]
+    (<https://orcid.org/0000-0001-8457-4658>)
+Maintainer: Diego Hernangómez <diego.hernangomezherrero@gmail.com>
+Repository: RSPM
+Date/Publication: 2024-02-02 19:50:02 UTC
+Built: R 4.3.0; ; 2024-02-05 12:08:28 UTC; windows

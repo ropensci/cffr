@@ -568,6 +568,70 @@
       merged
     Output
       cff-version: 1.2.0
+      message: 'To cite package "resmush" in publications use:'
+      type: software
+      title: 'resmush: Optimize and Compress Image Files with ''reSmush.it'''
+      version: 0.1.0
+      authors:
+      - family-names: Hernangómez
+        given-names: Diego
+        email: diego.hernangomezherrero@gmail.com
+        orcid: https://orcid.org/0000-0001-8457-4658
+      abstract: Compress local and online images using the 'reSmush.it' API service <https://resmush.it/>.
+      repository: https://CRAN.R-project.org/package=resmush
+      repository-code: https://github.com/dieghernan/resmush
+      url: https://dieghernan.github.io/resmush/
+      date-released: '2024-02-02'
+      contact:
+      - family-names: Hernangómez
+        given-names: Diego
+        email: diego.hernangomezherrero@gmail.com
+        orcid: https://orcid.org/0000-0001-8457-4658
+      keywords:
+      - r
+      - compress-images
+      - optimize-images
+      - resmushit
+      - api
+      license: MIT
+      doi: 10.1111/2041-210X.12469
+      preferred-citation:
+        type: article
+        title: 'RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic,
+          Character, and Trait Data in R'
+        authors:
+        - family-names: Boettiger
+          given-names: Carl
+        - family-names: Chamberlain
+          given-names: Scott
+        - family-names: Vos
+          given-names: Rutger
+        - family-names: Lapp
+          given-names: Hilmar
+        journal: Methods in Ecology and Evolution
+        year: '2016'
+        volume: '7'
+        doi: 10.1111/2041-210X.12469
+        start: '352'
+        end: '357'
+      references:
+      - type: book
+        title: 'ggplot2: Elegant Graphics for Data Analysis'
+        authors:
+        - family-names: Wickham
+          given-names: Hadley
+        publisher:
+          name: Springer-Verlag New York
+        year: '2016'
+        isbn: 978-3-319-24277-4
+        url: https://ggplot2.tidyverse.org
+
+---
+
+    Code
+      merged
+    Output
+      cff-version: 1.2.0
       message: 'To cite package "codemetar" in publications use:'
       type: software
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
@@ -587,7 +651,7 @@
       repository: https://ropensci.r-universe.dev
       repository-code: https://github.com/ropensci/codemetar
       url: https://docs.ropensci.org/codemetar/
-      date-released: '2023-04-05'
+      date-released: '2024-02-09'
       contact:
       - family-names: Boettiger
         given-names: Carl

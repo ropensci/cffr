@@ -172,6 +172,26 @@ test_that("Parsing Bioconductor", {
   expect_true(cff_validate(parsed, verbose = FALSE))
 })
 
+test_that("Parsing Posit Package Manager", {
+  desc_path <- system.file("examples/DESCRIPTION_posit_package_manager",
+    package = "cffr"
+  )
+
+  parsed <- cff_create(desc_path,
+    gh_keywords = FALSE,
+    keys = list(references = NULL)
+  )
+
+  expect_length(parsed$repository, 1)
+  expect_identical(
+    parsed$repository,
+    "https://CRAN.R-project.org/package=resmush"
+  )
+  expect_s3_class(parsed, "cff")
+  expect_snapshot(parsed)
+  expect_true(cff_validate(parsed, verbose = FALSE))
+})
+
 test_that("Search package on CRAN", {
   basic_path <- system.file("examples/DESCRIPTION_basic",
     package = "cffr"
