@@ -102,13 +102,16 @@ jobs:
             CRAN = "https://cloud.r-project.org"
           ))
 
-          # Check packages available, needed for use pak
+          # Check packages available
           pakav <- as.data.frame(available.packages(repos = getOption("repos")))
           toinstall <- toinstall_init[toinstall_init %in% pakav$Package]
           message("Installing ", length(toinstall)," packages")
 
-          library(pak, lib.loc = Sys.getenv("R_LIB_FOR_PAK"))
-          pak::pkg_install(toinstall, dependencies = TRUE)
+          install.packages(toinstall,
+            dependencies = TRUE, verbose = TRUE,
+            quiet = TRUE, type = "binary"
+          )
+
         shell: Rscript {0}
 
 
