@@ -21,6 +21,13 @@ test_that("Article", {
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
+
+  # Back to bibtex and check names
+  tobib <- cff_to_bibentry(bibparsed)
+
+  fld1 <- sort(names(unclass(bib)[[1]]))
+  fld2 <- sort(names(unclass(tobib)[[1]]))
+  expect_identical(fld1, fld2)
 })
 
 
@@ -53,6 +60,13 @@ test_that("Book", {
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
+
+  # Back to bibtex and check names
+  tobib <- cff_to_bibentry(bibparsed)
+
+  fld1 <- sort(names(unclass(bib)[[1]]))
+  fld2 <- sort(names(unclass(tobib)[[1]]))
+  expect_identical(fld1, fld2)
 })
 
 
@@ -78,6 +92,15 @@ test_that("Booklet", {
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
+
+  # Back to bibtex and check names
+  tobib <- cff_to_bibentry(bibparsed)
+
+  fld1 <- sort(names(unclass(bib)[[1]]))
+  fld2 <- sort(names(unclass(tobib)[[1]]))
+
+  # Keyword is not parsed
+  expect_identical(setdiff(fld1, fld2), "keywords")
 })
 
 test_that("Conference", {
@@ -108,8 +131,6 @@ test_that("Conference", {
   bib <- list(bib_un)
   class(bib) <- "bibentry"
 
-
-
   bibparsed <- cff_parse_citation(bib)
 
   expect_snapshot(bibparsed)
@@ -119,6 +140,14 @@ test_that("Conference", {
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
+
+  # Back to bibtex and check names
+  tobib <- cff_to_bibentry(bibparsed)
+
+  fld1 <- unique(sort(names(unclass(bib)[[1]])))
+  fld2 <- unique(sort(names(unclass(tobib)[[1]])))
+
+  expect_identical(setdiff(fld1, fld2), "series")
 })
 
 test_that("InBook", {
@@ -150,6 +179,13 @@ test_that("InBook", {
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
+  # Back to bibtex and check names
+  tobib <- cff_to_bibentry(bibparsed)
+
+  fld1 <- unique(sort(names(unclass(bib)[[1]])))
+  fld2 <- unique(sort(names(unclass(tobib)[[1]])))
+
+  expect_identical(setdiff(fld1, fld2), "type")
 })
 
 test_that("InCollection", {
@@ -183,8 +219,15 @@ test_that("InCollection", {
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
-})
 
+  # Back to bibtex and check names
+  tobib <- cff_to_bibentry(bibparsed)
+
+  fld1 <- unique(sort(names(unclass(bib)[[1]])))
+  fld2 <- unique(sort(names(unclass(tobib)[[1]])))
+
+  expect_identical(setdiff(fld1, fld2), c("series", "type"))
+})
 
 test_that("InProceedings", {
   bib <- bibentry("InProceedings",
@@ -214,8 +257,15 @@ test_that("InProceedings", {
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
-})
 
+  # Back to bibtex and check names
+  tobib <- cff_to_bibentry(bibparsed)
+
+  fld1 <- unique(sort(names(unclass(bib)[[1]])))
+  fld2 <- unique(sort(names(unclass(tobib)[[1]])))
+
+  expect_identical(setdiff(fld1, fld2), "series")
+})
 
 test_that("Manual", {
   bib <- bibentry("Manual",
@@ -238,8 +288,15 @@ test_that("Manual", {
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
-})
 
+  # Back to bibtex and check names
+  tobib <- cff_to_bibentry(bibparsed)
+
+  fld1 <- unique(sort(names(unclass(bib)[[1]])))
+  fld2 <- unique(sort(names(unclass(tobib)[[1]])))
+
+  expect_identical(fld1, fld2)
+})
 
 test_that("MastersThesis", {
   bib <- bibentry("MastersThesis",
@@ -255,7 +312,6 @@ test_that("MastersThesis", {
     month = "August",
     note = "Example modified for testing purposes"
   )
-
   bibparsed <- cff_parse_citation(bib)
   expect_snapshot(bibparsed)
 
@@ -264,8 +320,15 @@ test_that("MastersThesis", {
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
-})
 
+  # Back to bibtex and check names
+  tobib <- cff_to_bibentry(bibparsed)
+
+  fld1 <- unique(sort(names(unclass(bib)[[1]])))
+  fld2 <- unique(sort(names(unclass(tobib)[[1]])))
+
+  expect_identical(setdiff(fld1, fld2), "type")
+})
 
 test_that("Misc", {
   bib <- bibentry("Misc",
@@ -286,6 +349,14 @@ test_that("Misc", {
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
+
+  # Back to bibtex and check names
+  tobib <- cff_to_bibentry(bibparsed)
+
+  fld1 <- unique(sort(names(unclass(bib)[[1]])))
+  fld2 <- unique(sort(names(unclass(tobib)[[1]])))
+
+  expect_identical(fld1, fld2)
 })
 
 
@@ -311,6 +382,14 @@ test_that("PhdThesis", {
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
+
+  # Back to bibtex and check names
+  tobib <- cff_to_bibentry(bibparsed)
+
+  fld1 <- unique(sort(names(unclass(bib)[[1]])))
+  fld2 <- unique(sort(names(unclass(tobib)[[1]])))
+
+  expect_identical(setdiff(fld1, fld2), "type")
 })
 
 
@@ -338,6 +417,14 @@ test_that("Proceedings", {
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
+
+  # Back to bibtex and check names
+  tobib <- cff_to_bibentry(bibparsed)
+
+  fld1 <- unique(sort(names(unclass(bib)[[1]])))
+  fld2 <- unique(sort(names(unclass(tobib)[[1]])))
+
+  expect_identical(fld1, fld2)
 })
 
 test_that("TechReport", {
@@ -362,6 +449,14 @@ test_that("TechReport", {
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
+
+  # Back to bibtex and check names
+  tobib <- cff_to_bibentry(bibparsed)
+
+  fld1 <- unique(sort(names(unclass(bib)[[1]])))
+  fld2 <- unique(sort(names(unclass(tobib)[[1]])))
+
+  expect_identical(setdiff(fld1, fld2), "type")
 })
 
 test_that("Unpublished", {
@@ -382,8 +477,52 @@ test_that("Unpublished", {
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
+
+  # Back to bibtex and check names
+  tobib <- cff_to_bibentry(bibparsed)
+
+  fld1 <- unique(sort(names(unclass(bib)[[1]])))
+  fld2 <- unique(sort(names(unclass(tobib)[[1]])))
+
+  expect_identical(fld1, fld2)
 })
 
+test_that("InBook with booktitle", {
+  bib <- bibentry("InBook",
+    title = "Bibliographies and citations",
+    year = "2020",
+    author = "Yihui Xie and Christophe Dervieux and Emily Riederer",
+    booktitle = "{R} Markdown Cookbook",
+    publisher = "Chapman and Hall/CRC",
+    address = "Boca Raton, Florida",
+    series = "The {R} Series",
+    isbn = "9780367563837",
+    url = "https://bookdown.org/yihui/rmarkdown-cookbook",
+    chapter = "4.5"
+  )
+
+  bibparsed <- cff_parse_citation(bib)
+  expect_snapshot(bibparsed)
+
+  cffobj <- cff_create(cff(),
+    keys = list(references = list(bibparsed))
+  )
+
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+
+  # Should be an incollection now
+  res <- cff_to_bibentry(bibparsed)
+  init_type <- attr(unclass(res)[[1]], "bibtype")
+  expect_identical(tolower(init_type), "incollection")
+
+  # Back to bibtex and check names
+  tobib <- cff_to_bibentry(bibparsed)
+
+  fld1 <- unique(sort(names(unclass(bib)[[1]])))
+  fld2 <- unique(sort(names(unclass(tobib)[[1]])))
+
+  expect_identical(setdiff(fld1, fld2), "series")
+})
 
 test_that("Test entry without author", {
   bib <- bibentry("Proceedings",

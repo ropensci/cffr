@@ -2,11 +2,14 @@
 #'
 #' @description
 #'
-#' This function creates BibTeX entries (in the form of [bibentry()] objects
+#' This function creates [bibentry()] objects
 #' from different metadata sources (`cff` objects, `DESCRIPTION` files, etc.).
-#' The function tries to parse the information of the source `x` into a `cff`
+#' The function tries to map the information of the source `x` into a `cff`
 #' object and performs a mapping of the metadata to BibTeX, according to
 #' `vignette("bibtex_cff", "cffr")`.
+#'
+#' Note that a **R** [bibentry()] object is the representation of a BibTeX
+#' entry, see **Examples**.
 #'
 #'
 #' @references
@@ -18,7 +21,7 @@
 #'   \doi{10.5281/zenodo.1184077}.
 #'
 #' - Hernangómez D (2022). "BibTeX and CFF, a potential crosswalk."
-#'   *The cffr package, Vignettes*
+#'   *The cffr package, Vignettes*. \doi{10.21105/joss.03900},
 #'   <https://docs.ropensci.org/cffr/articles/bibtex_cff.html>.
 #'
 #' @param x The source that would be used for generating
@@ -42,8 +45,8 @@
 #' be parsed to BibTeX using [toBibtex()]
 #'
 #' @export
-#' @name cff_to_bibtex
-#' @rdname cff_to_bibtex
+#' @name cff_to_bibentry
+#' @rdname cff_to_bibentry
 #'
 #' @examples
 #' \donttest{
@@ -53,7 +56,7 @@
 #' cff_object
 #'
 #' # bibentry object
-#' bib <- cff_to_bibtex(cff_object)
+#' bib <- cff_to_bibentry(cff_object)
 #'
 #' class(bib)
 #'
@@ -66,13 +69,13 @@
 #' # From a CITATION.cff file with options
 #'
 #' path <- system.file("examples/CITATION_complete.cff", package = "cffr")
-#' cff_file <- cff_to_bibtex(path, what = "all")
+#' cff_file <- cff_to_bibentry(path, what = "all")
 #'
 #' toBibtex(cff_file)
 #'
 #' # For an installed package
 #'
-#' installed_package <- cff_to_bibtex("jsonvalidate")
+#' installed_package <- cff_to_bibentry("jsonvalidate")
 #'
 #' toBibtex(installed_package)
 #'
@@ -80,22 +83,22 @@
 #' # Use a DESCRIPTION file
 #'
 #' path2 <- system.file("examples/DESCRIPTION_gitlab", package = "cffr")
-#' desc_file <- cff_to_bibtex(path2)
+#' desc_file <- cff_to_bibentry(path2)
 #'
 #' toBibtex(desc_file)
 #' }
-cff_to_bibtex <- function(x,
-                          what = c("preferred", "references", "all")) {
+cff_to_bibentry <- function(x,
+                            what = c("preferred", "references", "all")) {
   what <- match.arg(what)
   if (is.null(x)) {
     return(NULL)
   }
 
-  if (is.cff_file(x)) {
+  if (is_cff_file(x)) {
     x <- cff_read(x)
   }
 
-  if (is.cff(x)) {
+  if (is_cff(x)) {
     obj <- x
   } else {
     obj <- cff_create(x)
@@ -125,9 +128,9 @@ cff_to_bibtex <- function(x,
 }
 
 #' @export
-#' @rdname cff_to_bibtex
+#' @rdname cff_to_bibentry
 #' @usage NULL
-cff_extract_to_bibtex <- cff_to_bibtex
+cff_to_bibtex <- cff_to_bibentry
 
 cff_bibtex_parser <- function(x) {
   if (is.null(x)) {
@@ -137,10 +140,9 @@ cff_bibtex_parser <- function(x) {
   stopifnotcff(x)
 
   # Read cff of CITATION.cff file
-  if (!is.cff(x)) {
+  if (!is_cff(x)) {
     x <- cff(x)
   }
-
 
   # Try to generate preferred if not present
   if (!("preferred-citation" %in% names(x))) {
@@ -197,7 +199,7 @@ cff_bibtex_parser <- function(x) {
 
   if (all(
     tobibentry$bibtype == "misc", !is.null(x$`collection-title`),
-    !is.null(x$publisher)
+    !is.null(x$publisher), !is.null(x$year)
   )) {
     tobibentry$bibtype <- "incollection"
   }
@@ -206,10 +208,10 @@ cff_bibtex_parser <- function(x) {
   # address----
   # BibTeX 'address' is taken from the publisher (book, others) or the
   # conference (inproceedings).
-
-  if (tobibentry$bibtype %in% c("proceedings", "inproceedings")) {
+  # Set logic: conference > institution > publisher
+  if (!is.null(x$conference)) {
     addr_search <- x$conference
-  } else if (tobibentry$bibtype == "techreport") {
+  } else if (!is.null(x$institution)) {
     addr_search <- x$institution
   } else {
     addr_search <- x$publisher
@@ -380,6 +382,11 @@ cff_bibtex_parser <- function(x) {
   # note ----
   tobibentry$note <- x$notes
 
+  # unpublished needs a note
+  if (all(is.null(x$notes), tobibentry$bibtype == "unpublished")) {
+    tobibentry$note <- "Extracted with cffr R package"
+  }
+
   # number----
 
 
@@ -403,16 +410,8 @@ cff_bibtex_parser <- function(x) {
 
 
   # series----
-  if (tobibentry$bibtype %in% c(
-    "book", "inbook"
-  )) {
+  if (is.null(tobibentry$booktitle)) {
     tobibentry$series <- x$`collection-title`
-  }
-
-  if (tobibentry$bibtype %in% c(
-    "proceedings", "inproceedings"
-  )) {
-    tobibentry$series <- x$conference$name
   }
 
   # title ----
@@ -520,8 +519,17 @@ cff_bibtex_parser <- function(x) {
   sorted <- unique[unique %in% names(tobibentry)]
   tobibentry <- tobibentry[sorted]
 
-
   bib <- do.call(bibentry, tobibentry)
+
+  # Shouldn't happen but just in case
+  # nocov start
+  if (inherits(bib, "try-error")) {
+    message <- attributes(bib)$condition$message
+    cli::cli_alert_danger(paste("Can't convert to {.fn bibentry}: ", message))
+    cli::cli_alert_info("Returning {.val NULL}")
+    return(NULL)
+  }
+  # nocov end
 
   return(bib)
 }

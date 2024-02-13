@@ -1,4 +1,5 @@
-# See https://github.com/citation-file-format/ruby-cff/tree/main/test/files/formatted
+# See ´
+# https://github.com/citation-file-format/ruby-cff/tree/main/test/files/formatted
 
 
 test_that("preferred-citation-book-missing", {
@@ -6,7 +7,7 @@ test_that("preferred-citation-book-missing", {
     package = "cffr"
   )
 
-  expect_warning(expect_error(cff_to_bibtex(x)))
+  expect_warning(expect_error(cff_to_bibentry(x)))
 })
 
 test_that("preferred-citation-book", {
@@ -14,7 +15,7 @@ test_that("preferred-citation-book", {
     package = "cffr"
   )
 
-  bib <- cff_to_bibtex(x)
+  bib <- cff_to_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -23,7 +24,7 @@ test_that("preferred-citation-conference-paper-2", {
     package = "cffr"
   )
 
-  bib <- cff_to_bibtex(x)
+  bib <- cff_to_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -32,7 +33,7 @@ test_that("preferred-citation-conference-paper-missing", {
     package = "cffr"
   )
 
-  bib <- cff_to_bibtex(x)
+  bib <- cff_to_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -41,7 +42,7 @@ test_that("preferred-citation-conference-paper", {
     package = "cffr"
   )
 
-  bib <- cff_to_bibtex(x)
+  bib <- cff_to_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -50,7 +51,7 @@ test_that("preferred-citation-manual", {
     package = "cffr"
   )
 
-  bib <- cff_to_bibtex(x)
+  bib <- cff_to_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -59,7 +60,7 @@ test_that("preferred-citation-no-month", {
     package = "cffr"
   )
 
-  bib <- cff_to_bibtex(x)
+  bib <- cff_to_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -68,7 +69,7 @@ test_that("preferred-citation-no-vol", {
     package = "cffr"
   )
 
-  bib <- cff_to_bibtex(x)
+  bib <- cff_to_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -78,7 +79,7 @@ test_that("preferred-citation-pamphlet", {
     package = "cffr"
   )
 
-  bib <- cff_to_bibtex(x)
+  bib <- cff_to_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -87,7 +88,7 @@ test_that("preferred-citation-report-no-institution", {
     package = "cffr"
   )
 
-  bib <- cff_to_bibtex(x)
+  bib <- cff_to_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -96,7 +97,7 @@ test_that("preferred-citation-report", {
     package = "cffr"
   )
 
-  bib <- cff_to_bibtex(x)
+  bib <- cff_to_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -106,7 +107,7 @@ test_that("preferred-citation-unpublished", {
     package = "cffr"
   )
 
-  bib <- cff_to_bibtex(x)
+  bib <- cff_to_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -115,7 +116,7 @@ test_that("reprozip", {
     package = "cffr"
   )
 
-  bib <- cff_to_bibtex(x)
+  bib <- cff_to_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -125,7 +126,7 @@ test_that("smith-et-al", {
     package = "cffr"
   )
 
-  bib <- cff_to_bibtex(x)
+  bib <- cff_to_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -134,6 +135,6 @@ test_that("tidyverse-joss-paper", {
     package = "cffr"
   )
 
-  bib <- cff_to_bibtex(x)
+  bib <- cff_to_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })

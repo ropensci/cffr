@@ -92,25 +92,25 @@ jobs:
 
           # Check packages not installed yet
           instpack <- as.character(installed.packages()[, "Package"])
-          toinstall <- setdiff(all, instpack)
+          toinstall_init <- setdiff(all, instpack)
 
           # Install
           options(repos = c(
             ropensci = "https://ropensci.r-universe.dev",
             ropenscireviewtools = "https://ropensci-review-tools.r-universe.dev",
-            RSPM = "https://packagemanager.rstudio.com/all/latest",
+            RSPM = "https://packagemanager.posit.co/cran/latest",
             CRAN = "https://cloud.r-project.org"
           ))
 
-          message("Installing ", length(toinstall)," packages: ", paste0(toinstall, collapse = ","))
+          # Check packages available
+          pakav <- as.data.frame(available.packages(repos = getOption("repos")))
+          toinstall <- toinstall_init[toinstall_init %in% pakav$Package]
+          message("Installing ", length(toinstall)," packages")
 
           install.packages(toinstall,
-            dependencies = TRUE,
-            verbose = TRUE, quiet = TRUE
+            dependencies = TRUE, verbose = TRUE,
+            quiet = TRUE, type = "binary"
           )
-
-          # Update binary
-          # update.packages(type = "binary")
 
         shell: Rscript {0}
 
@@ -118,11 +118,8 @@ jobs:
       - name: Test GHA
         run: |
 
-          # Load package
-          devtools::load_all()
-
           # Run the tests
-          testthat::test_dir("tests/testthat/test_ci")
+          source("tests/testthat/test_ci/test-new.R")
 
         shell: Rscript {0}
 
@@ -131,5 +128,5 @@ jobs:
         shell: bash
         run: |
           # OK :)
-          cat ./tests/testthat/test_ci/_snaps/full_cff.md >$GITHUB_STEP_SUMMARY
+          cat ./tests/testthat/test_ci/results.md >$GITHUB_STEP_SUMMARY
 

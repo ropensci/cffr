@@ -222,7 +222,6 @@
         publisher = {International Joint Conference on Artificial Intelligence},
         address = {Murray Hill, New Jersey},
         editor = {Jan Alexandersson},
-        series = {A Series},
         pages = {81--86},
         organization = {IJCAI},
       }
@@ -280,6 +279,7 @@
         title = {Computer-Aided Analysis of English Punctuation on a Parsed Corpus: The Special Case of Comma},
         author = {Murat Bayraktar},
         year = {1996},
+        address = {Ankara, Turkey},
         note = {Forthcoming},
         school = {Department of Computer Engineering and Information Science, Bilkent University, Turkey},
       }
@@ -307,6 +307,7 @@
         title = {Presupposition and Assertion in Dynamic Semantics},
         author = {David I. Beaver},
         year = {1995},
+        address = {Edinburgh},
         school = {Centre for Cognitive Science, University of Edinburgh},
       }
 

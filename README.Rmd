@@ -15,8 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# cffr <a href='https://docs.ropensci.org/cffr/'><img src="man/figures/logo.png" align="right" height="139"/></a>
-
+# cffr <a href="https://docs.ropensci.org/cffr/"><img src="man/figures/logo.png" align="right" height="139" alt="cffr website" /></a>
 <!-- badges: start -->
 
 [![CRAN-status](https://www.r-pkg.org/badges/version/cffr)](https://CRAN.R-project.org/package=cffr)
@@ -197,7 +196,7 @@ We can validate the result using `cff_validate()`:
 cff_validate(test)
 ```
 
-Check the [docs](https://docs.ropensci.org/cffr/reference/index.html) and
+Check the [docs](https://docs.ropensci.org/cffr//reference/index.html) and
 `vignette("cffr", package = "cffr")` to learn how to work with `cff` objects.
 
 ### Keep your `CITATION.cff` file up-to-date

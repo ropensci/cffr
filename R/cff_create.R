@@ -117,7 +117,7 @@ cff_create <- function(x,
   # On missing use package root
   if (missing(x)) x <- getwd()
 
-  if (!is.cff(x) && !is.character(x)) {
+  if (!is_cff(x) && !is.character(x)) {
     msg <- "{.arg x} should be a {.cls cff} or {.cls character} object."
     cli::cli_abort(msg)
   }
@@ -129,7 +129,7 @@ cff_create <- function(x,
   desc_path <- NULL
 
   # Paths
-  if (is.cff(x)) {
+  if (is_cff(x)) {
     # It is already an object
     cffobj <- x
     cffobj["cff-version"] <- cff_version
@@ -163,7 +163,7 @@ cff_create <- function(x,
       msg <- paste0(
         "{.arg x} ({x}) not valid. If it is a package ",
         "you may need to install it with ",
-        "{.fun install.packages}"
+        "{.fn install.packages}"
       )
       cli::cli_abort(msg)
     }

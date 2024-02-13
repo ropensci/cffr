@@ -86,11 +86,9 @@ cff_parse_citation <- function(bib) {
   }
 
   # Parse BibTeX entry ----
-
   parse_cit <- parse_bibtex_entry(bib)
 
   ## If no title (case of some Misc) then return null
-
   if (!("title" %in% names(parse_cit))) {
     entry <- capture.output(print(bib, bibtex = FALSE))
     entry <- as.character(entry)
@@ -100,28 +98,33 @@ cff_parse_citation <- function(bib) {
     return(NULL)
   }
 
-
   # Parse BibTeX fields ----
   parsed_fields <- parse_bibtex_fields(parse_cit)
 
+  ## Handle collection types ----
+  parsed_fields <- add_bibtex_coltype(parsed_fields)
 
-  # Create BibTeX person models ----
-  parsed_fields <- parse_bibtex_person_models(parsed_fields)
+  ## Add conference
+  parsed_fields <- add_conference(parsed_fields)
+
+  # Create BibTeX to CFF institution logic ----
+  parsed_fields <- parse_bibtex_to_inst(parsed_fields)
+
   # Parse persons ----
   # Special case: authors
   # Some keys does not strictly require authors, so we create one for cff
-  # https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors
+  # https://github.com/citation-file-format/citation-file-format/blob/main/
+  # (cont) schema-guide.md#how-to-deal-with-unknown-individual-authors
+
   if (is.null(parsed_fields$authors)) {
     parsed_fields$authors <- person(family = "anonymous")
   }
-
 
   ## authors ----
   parse_all_authors <- drop_null(
     lapply(parsed_fields$authors, cff_parse_person)
   )
   parsed_fields$authors <- unique(parse_all_authors)
-
 
   ## other persons----
   parse_other_persons <- building_other_persons(parsed_fields)
@@ -136,19 +139,8 @@ cff_parse_citation <- function(bib) {
 
   # Building blocks----
 
-  # Fallback for year and month: use date-published
-
-  if (is.null(parse_cit$month) && !is.null(parse_cit$`date-published`)) {
-    parse_cit$month <- format(as.Date(parse_cit$`date-published`), "%m")
-  }
-
-
-  if (is.null(parse_cit$year) && !is.null(parse_cit$`date-published`)) {
-    parse_cit$year <- format(as.Date(parse_cit$`date-published`), "%Y")
-  }
-
-  ## month ----
-  parse_cit$month <- building_month(parse_cit)
+  # Fallback for year and month: use date-published ----
+  parse_cit <- fallback_dates(parse_cit)
 
   ## doi----
   bb_doi <- building_doi(parse_cit)
@@ -171,8 +163,14 @@ cff_parse_citation <- function(bib) {
     )
   }
 
+  ## Add thesis type ----
+  parse_cit <- add_thesis(parse_cit)
 
-  # Last step: Field models----
+  ## Handle location ----
+  parse_cit <- add_address(parse_cit)
+
+
+  # Last step----
 
   # Initial order but starting with type, title, authors
   final_order <- unique(c(
@@ -182,9 +180,6 @@ cff_parse_citation <- function(bib) {
   ))
 
   parse_cit <- parse_cit[final_order]
-
-  parse_cit <- parse_bibtex_fields_models(parse_cit)
-
 
   # Remove non-valid names
   validnames <- cff_schema_definitions_refs()
@@ -231,6 +226,14 @@ parse_bibtex_entry <- function(bib) {
   )
 
 
+  # Check if it an inbook with booktitle (BibLaTeX style)
+  if (all(init_type == "inbook", "booktitle" %in% names(parse_cit))) {
+    # Make it incollection
+    parse_cit$bibtex_entry <- "incollection"
+    parse_cit$type <- "generic"
+  }
+
+
   return(parse_cit)
 }
 
@@ -239,7 +242,6 @@ parse_bibtex_entry <- function(bib) {
 parse_bibtex_fields <- function(parse_cit) {
   # to lowercase
   names(parse_cit) <- tolower(names(parse_cit))
-
   nm <- names(parse_cit)
   # Standard BibTeX fields:
   # address annote author booktitle chapter crossref edition editor
@@ -250,10 +252,15 @@ parse_bibtex_fields <- function(parse_cit) {
   # edition journal month publisher title volume year
 
   # Mapped:
-  # author booktitle chapter editor howpublished note number
+  # author booktitle series chapter editor howpublished note number
 
   nm[nm == "author"] <- "authors"
+  # Make collection title
+  # booktitle takes precedence over series
   nm[nm == "booktitle"] <- "collection-title"
+  if (!"collection-title" %in% nm) {
+    nm[nm == "series"] <- "collection-title"
+  }
   nm[nm == "chapter"] <- "section"
   nm[nm == "editor"] <- "editors"
   nm[nm == "howpublished"] <- "medium"
@@ -274,8 +281,6 @@ parse_bibtex_fields <- function(parse_cit) {
   # abstract, doi, isbn, issn, url, version
 
 
-  cff_schema_definitions_refs()
-
   # Keywords may be duplicated, unify
   if ("keywords" %in% nm) {
     kwords <- unlist(parse_cit["keywords" == nm])
@@ -284,12 +289,11 @@ parse_bibtex_fields <- function(parse_cit) {
     parse_cit$keywords <- unique(kwords)
   }
 
-
   # Not mapped:
   # annote crossref key organization series type
   #
-  # Fields address, organization, series and type already treated on
-  # parse_bibtex_for_cff()/main function
+  # Fields address, organization, series and type are treated on
+  # main function
   # key is a special field, treated apart
   # Fields ignored: annote, crossref
 
@@ -354,76 +358,139 @@ parse_bibtex_fields <- function(parse_cit) {
 
 #' Modify mapping of some org. fields on BibTeX to CFF
 #' @noRd
-parse_bibtex_person_models <- function(parsed_fields) {
-  # Manual
-  if (parsed_fields$bibtex_entry == "manual") {
-    parsed_fields$institution <- parsed_fields$organization
-  } else if (parsed_fields$bibtex_entry %in% c(
-    "conference", "inproceedings",
-    "proceedings"
-  )) {
-    # Conference, InProceedings, Proceedings
-    if (!is.null(parsed_fields$series)) {
-      parsed_fields$conference <- person(family = parsed_fields$series)
-    }
-    if (!is.null(parsed_fields$organization)) {
-      parsed_fields$institution <- person(family = parsed_fields$organization)
-    }
-  } else if (parsed_fields$bibtex_entry %in% c("mastersthesis", "phdthesis")) {
-    # Mastersthesis, PhdThesis
-    parsed_fields$institution <- person(family = parsed_fields$school)
+parse_bibtex_to_inst <- function(parsed_fields) {
+  # Initial values
+  bibtex_entry <- parsed_fields$bibtex_entry
+  to_replace <- switch(bibtex_entry,
+    "mastersthesis" = "school",
+    "phdthesis" = "school",
+    "conference" = "organization",
+    "inproceedings" = "organization",
+    "manual" = "organization",
+    "proceedings" = "organization",
+    "institution"
+  )
+
+  if (to_replace == "institution") {
+    return(parsed_fields)
   }
 
+  # Rest of cases remove bibtex institution and rename
+  nms <- names(parsed_fields)
+
+  parsed_fields <- parsed_fields["institution" != nms]
+
+  # Rename
+  nms2 <- names(parsed_fields)
+  nms2[nms2 == to_replace] <- "institution"
+  names(parsed_fields) <- nms2
+
+  parsed_fields
+}
+
+add_conference <- function(parsed_fields) {
+  bibtex_entry <- parsed_fields$bibtex_entry
+
+  if (bibtex_entry %in% c("conference", "inproceedings", "proceedings")) {
+    parsed_fields$conference <- parsed_fields$`collection-title`
+  }
   return(parsed_fields)
 }
 
 
+
+
 #' Adapt cff keys to bibtex entries
 #' @noRd
-parse_bibtex_fields_models <- function(parse_cit) {
-  # thesis type ----
-  if (parse_cit$bibtex_entry %in% c("phdthesis", "mastersthesis")) {
-    parse_cit$`thesis-type` <- switch(parse_cit$bibtex_entry,
-      phdthesis = "PhD Thesis",
-      "Master's Thesis"
-    )
+add_thesis <- function(parse_cit) {
+  bibtex_entry <- parse_cit$bibtex_entry
+  if (!bibtex_entry %in% c("phdthesis", "mastersthesis")) {
+    return(parse_cit)
   }
 
-  # address----
+  parse_cit$`thesis-type` <- switch(bibtex_entry,
+    phdthesis = "PhD Thesis",
+    "Master's Thesis"
+  )
 
-  if (!is.null(parse_cit$location)) {
-    # Usually the address of the publisher as per BibTeX
-    if (!is.null(parse_cit$publisher) &&
-      !(parse_cit$bibtex_entry %in% c(
-        "conference", "inproceedings",
-        "proceedings"
-      ))) {
-      parse_cit$publisher$address <- parse_cit$location$name
-      parse_cit$location <- NULL
-    }
+  parse_cit
+}
 
-    parse_cit$conference
-
-    # If this is a conference then add to conference
-    if (!is.null(parse_cit$conference)) {
-      parse_cit$conference$address <- parse_cit$location$name
-    }
-
-    # If is a report or a thesis, add to institution
-    if (parse_cit$bibtex_entry %in% c(
-      "techreport",
-      "phdthesis", "mastersthesis"
-    ) &&
-      !is.null(parse_cit$institution)) {
-      parse_cit$institution$address <- parse_cit$location$name
-      parse_cit$location <- NULL
-    }
+add_address <- function(parse_cit) {
+  loc <- parse_cit$location$name
+  # If available
+  if (is.null(loc)) {
+    return(parse_cit)
   }
-  # Book, InBook: collection-title. Use series field
 
-  if (parse_cit$bibtex_entry %in% c("book", "inbook")) {
-    parse_cit$`collection-title` <- clean_str(parse_cit$series)
+  # At this point is in location, see to move
+
+  # Logic order.
+  # 1. To conference
+  # 2. To institution
+  # 3. To publisher
+  # Otherwise leave on location
+
+  nms <- names(parse_cit)
+  has_conf <- "conference" %in% nms
+  has_inst <- "institution" %in% nms
+  has_publish <- "publisher" %in% nms
+
+  if (!any(has_conf, has_inst, has_publish)) {
+    return(parse_cit)
   }
+
+  if (has_conf) {
+    parse_cit$conference$address <- loc
+    parse_cit$location <- NULL
+  } else if (has_inst) {
+    parse_cit$institution$address <- loc
+    parse_cit$location <- NULL
+  } else {
+    parse_cit$publisher$address <- loc
+    parse_cit$location <- NULL
+  }
+
+  return(parse_cit)
+}
+
+add_bibtex_coltype <- function(parsed_fields) {
+  # Add collection-type if applicable and rearrange fields
+  nms <- names(parsed_fields)
+
+  if (!"collection-title" %in% nms) {
+    return(parsed_fields)
+  }
+
+  # Made collection-type if we create collection-title
+  bibtex_type <- parsed_fields$bibtex_entry
+
+  # Remove `in` at init: inbook, incollection affected
+  coltype <- clean_str(gsub("^in", "", bibtex_type))
+  parsed_fields$`collection-type` <- coltype
+
+  # Rearrange to make both collection keys together
+  nm_first <- nms[seq(1, match("collection-title", nms))]
+
+  nms_end <- unique(c(nm_first, "collection-type", nms))
+
+  parsed_fields <- parsed_fields[nms_end]
+
+  return(parsed_fields)
+}
+
+fallback_dates <- function(parse_cit) {
+  # Fallback for year and month: use date-published
+  if (is.null(parse_cit$month) && !is.null(parse_cit$`date-published`)) {
+    parse_cit$month <- format(as.Date(parse_cit$`date-published`), "%m")
+  }
+
+  if (is.null(parse_cit$year) && !is.null(parse_cit$`date-published`)) {
+    parse_cit$year <- format(as.Date(parse_cit$`date-published`), "%Y")
+  }
+
+  ## month ----
+  parse_cit$month <- building_month(parse_cit)
 
   return(parse_cit)
 }

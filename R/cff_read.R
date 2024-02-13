@@ -79,7 +79,7 @@ cff_read <- function(path) {
 #' @rdname cff_read
 #' @export
 cff <- function(path, ...) {
-  if (!missing(path) && is.cff(path)) {
+  if (!missing(path) && is_cff(path)) {
     return(path)
   }
 
@@ -131,7 +131,7 @@ cff <- function(path, ...) {
 #' # Nice display thanks to yaml package
 #' cffobj
 as.cff <- function(x) {
-  if (is.cff(x)) {
+  if (is_cff(x)) {
     return(x)
   }
 

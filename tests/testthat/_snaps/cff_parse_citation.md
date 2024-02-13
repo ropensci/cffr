@@ -242,6 +242,7 @@
         given-names: A
       conference:
         name: A conference
+        address: A location
       database-provider:
         name: Database provider
       editors:
@@ -254,7 +255,6 @@
       - name: Another
       publisher:
         name: A publisher
-        address: A location
       recipients:
       - family-names: recipient
         given-names: A

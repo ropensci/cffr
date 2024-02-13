@@ -1,49 +1,49 @@
-test_that("Check is.email", {
+test_that("Check is_email", {
   # Examples from https://www.nicebread.de/validating-email-adresses-in-r/
 
   # Valid addresses
   expect_true(
     all(
-      is.email("felix@nicebread.de"),
-      is.email("felix.123.honeyBunny@nicebread.lmu.de"),
-      is.email("felix@nicebread.de  "),
-      is.email("    felix@nicebread.de"),
-      is.email("felix+batman@nicebread.de"),
-      is.email("felix@nicebread.office")
+      is_email("felix@nicebread.de"),
+      is_email("felix.123.honeyBunny@nicebread.lmu.de"),
+      is_email("felix@nicebread.de  "),
+      is_email("    felix@nicebread.de"),
+      is_email("felix+batman@nicebread.de"),
+      is_email("felix@nicebread.office")
     )
   )
   # invalid addresses
   expect_false(
     any(
-      is.email("felix@nicebread"),
-      is.email("felix@nicebread@de"),
-      is.email("felixnicebread.de"),
-      is.email("@felixnicebread"),
-      is.email(NULL),
-      is.email(NA)
+      is_email("felix@nicebread"),
+      is_email("felix@nicebread@de"),
+      is_email("felixnicebread.de"),
+      is_email("@felixnicebread"),
+      is_email(NULL),
+      is_email(NA)
     )
   )
 })
 
 
-test_that("Check is.url", {
+test_that("Check is_url", {
   # Valid urls
   expect_true(
     all(
-      is.url("https://github.com/dieghernan"),
-      is.url("http://github.com/dieghernan"),
-      is.url("ftp://github.com/dieghernan"),
-      is.url("sftp://github.com/dieghernan")
+      is_url("https://github.com/dieghernan"),
+      is_url("http://github.com/dieghernan"),
+      is_url("ftp://github.com/dieghernan"),
+      is_url("sftp://github.com/dieghernan")
     )
   )
   # invalid addresses
   expect_false(
     any(
-      is.url("https:/github.com/dieghernan"),
-      is.url("http:/github.com/dieghernan"),
-      is.url("ftp:/github.com/dieghernan"),
-      is.url("sftp:/github.com/dieghernan"),
-      is.url("www.github.com/dieghernan")
+      is_url("https:/github.com/dieghernan"),
+      is_url("http:/github.com/dieghernan"),
+      is_url("ftp:/github.com/dieghernan"),
+      is_url("sftp:/github.com/dieghernan"),
+      is_url("www.github.com/dieghernan")
     )
   )
 })

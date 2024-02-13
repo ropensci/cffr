@@ -84,7 +84,7 @@ cff_write <- function(x,
 
 
   # Fix string if it is not cff
-  if (!is.substring(outfile, ".cff$")) outfile <- paste0(outfile, ".cff")
+  if (!is_substring(outfile, ".cff$")) outfile <- paste0(outfile, ".cff")
 
   # Check if dir exist and if not create
   outdir <- dirname(outfile)
@@ -122,7 +122,7 @@ cff_write <- function(x,
   }
 
   # Add CITATION.cff to .Rbuildignore
-  if (!is.cff(x) && x == getwd() && file.exists(".Rbuildignore")) {
+  if (!is_cff(x) && x == getwd() && file.exists(".Rbuildignore")) {
     ignore <- readLines(".Rbuildignore")
 
     # If not already

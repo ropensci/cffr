@@ -42,13 +42,14 @@
       year: '2004'
       volume: '3'
       issue: '7'
+      collection-title: The LateX Books
+      collection-type: book
       edition: Fourth
       month: '8'
       notes: Example modified for testing purposes
       keywords:
       - Two
       - keyword
-      collection-title: The LateX Books
 
 # Booklet
 
@@ -82,6 +83,7 @@
       - family-names: Yannakakis
         given-names: Mihalis
       collection-title: Proc. Fifteenth Annual ACM STOC
+      collection-type: conference
       year: '1983'
       editors:
       - family-names: Oz
@@ -90,18 +92,16 @@
         given-names: Mihalis
       volume: '41'
       issue: '17'
-      location:
-        name: Boston
+      institution:
+        name: ACM
       publisher:
         name: Academic Press
       notes: Example modified for testing purposes
       start: '133'
       end: '139'
       conference:
-        name: All ACM Conferences
+        name: Proc. Fifteenth Annual ACM STOC
         address: Boston
-      institution:
-        name: ACM
 
 # InBook
 
@@ -125,12 +125,13 @@
       year: '1994'
       volume: '27'
       issue: '2'
+      collection-title: Implementations of Logic Programming Systems
+      collection-type: book
       edition: Second
       month: '1'
       notes: Example modified for testing purposes
       start: '137'
       end: '149'
-      collection-title: Implementations of Logic Programming Systems
 
 # InCollection
 
@@ -143,6 +144,7 @@
       - family-names: Mihalcea
         given-names: Rada
       collection-title: 'Word Sense Disambiguation: Algorithms and Applications'
+      collection-type: collection
       publisher:
         name: Springer
         address: 107--132
@@ -176,6 +178,7 @@
       - family-names: Yannakakis
         given-names: Mihalis
       collection-title: Proc. Fifteenth Annual ACM STOC
+      collection-type: proceedings
       year: '1983'
       editors:
       - family-names: Oz
@@ -184,18 +187,16 @@
         given-names: Mihalis
       volume: '41'
       issue: '17'
-      location:
-        name: Boston
+      institution:
+        name: ACM
       publisher:
         name: Academic Press
       notes: Example modified for testing purposes
       start: '133'
       end: '139'
       conference:
-        name: All ACM Conferences
+        name: Proc. Fifteenth Annual ACM STOC
         address: Boston
-      institution:
-        name: ACM
 
 # Manual
 
@@ -206,14 +207,13 @@
       title: A Language and Environment for Statistical Computing
       authors:
       - name: R Core Team
-      location:
-        name: Vienna, Austria
+      institution:
+        name: R Foundation for Statistical Computing
+        address: Vienna, Austria
       edition: Fourth
       month: '8'
       year: '2021'
       notes: Example modified for testing purposes
-      institution:
-        name: R Foundation for Statistical Computing
 
 # MastersThesis
 
@@ -225,12 +225,12 @@
       authors:
       - family-names: Alsolami
         given-names: Eesa
-      year: '2012'
-      month: '8'
-      notes: Example modified for testing purposes
       institution:
         name: Queensland University of Technology
         address: Queensland, NZ
+      year: '2012'
+      month: '8'
+      notes: Example modified for testing purposes
       thesis-type: Master's Thesis
 
 # Misc
@@ -257,12 +257,12 @@
       authors:
       - family-names: Alsolami
         given-names: Eesa
-      year: '2012'
-      month: '8'
-      notes: Example modified for testing purposes
       institution:
         name: Queensland University of Technology
         address: Queensland, NZ
+      year: '2012'
+      month: '8'
+      notes: Example modified for testing purposes
       thesis-type: PhD Thesis
 
 # Proceedings
@@ -282,17 +282,17 @@
         given-names: Mihalis
       volume: '1'
       issue: '17'
-      location:
-        name: Boston, US
+      collection-title: All ACM Conferences
+      collection-type: proceedings
       month: '8'
+      institution:
+        name: The OX Association for Computing Machinery
       publisher:
         name: Academic Press
       notes: Example modified for testing purposes
       conference:
         name: All ACM Conferences
         address: Boston, US
-      institution:
-        name: The OX Association for Computing Machinery
 
 # TechReport
 
@@ -328,6 +328,30 @@
       year: '1977'
       month: '8'
 
+# InBook with booktitle
+
+    Code
+      bibparsed
+    Output
+      type: generic
+      title: Bibliographies and citations
+      authors:
+      - family-names: Xie
+        given-names: Yihui
+      - family-names: Dervieux
+        given-names: Christophe
+      - family-names: Riederer
+        given-names: Emily
+      year: '2020'
+      collection-title: R Markdown Cookbook
+      collection-type: collection
+      publisher:
+        name: Chapman and Hall/CRC
+        address: Boca Raton, Florida
+      isbn: '9780367563837'
+      url: https://bookdown.org/yihui/rmarkdown-cookbook
+      section: '4.5'
+
 # Test entry without author
 
     Code
@@ -343,11 +367,14 @@
       - family-names: Zwaenepoel
         given-names: Willy
       collection-title: Proceedings of the 6th European Conference on Computer Systems
+      collection-type: proceedings
       publisher:
         name: ACM
       month: '4'
       year: '2006'
       isbn: 1-59593-322-02
+      conference:
+        name: Proceedings of the 6th European Conference on Computer Systems
 
 # Test entry without author but has a key
 
@@ -359,6 +386,7 @@
       authors:
       - name: anonymous
       collection-title: Proceedings of the 6th European Conference on Computer Systems
+      collection-type: misc
       publisher:
         name: ACM
       month: '4'
@@ -375,6 +403,7 @@
       authors:
       - name: anonymous
       collection-title: Proceedings of the 6th European Conference on Computer Systems
+      collection-type: misc
       publisher:
         name: ACM
       month: '4'

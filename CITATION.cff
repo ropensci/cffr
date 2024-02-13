@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.5.0
+# CITATION file created with {cffr} R package, v0.5.0.9000
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
@@ -8,7 +8,7 @@ message: 'To cite package "cffr" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'cffr: Generate Citation File Format (''cff'') Metadata for R Packages'
-version: 0.5.0
+version: 0.5.0.9000
 doi: 10.21105/joss.03900
 abstract: The Citation File Format version 1.2.0 <doi:10.5281/zenodo.5171937> is a
   human and machine readable file format which provides citation metadata for software.
@@ -92,11 +92,10 @@ references:
   url: https://www.R-project.org/
   authors:
   - name: R Core Team
-  location:
-    name: Vienna, Austria
-  year: '2024'
   institution:
     name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2024'
   version: '>= 3.6.0'
 - type: software
   title: cli
@@ -139,9 +138,6 @@ references:
     email: jeroen@berkeley.edu
     orcid: https://orcid.org/0000-0002-4035-0289
   year: '2024'
-  identifiers:
-  - type: url
-    value: https://arxiv.org/abs/1403.2805
   version: '>= 1.7.2'
 - type: software
   title: jsonvalidate

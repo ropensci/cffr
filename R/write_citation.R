@@ -6,9 +6,9 @@
 #' CITATION.cff file or `cff` object.
 #'
 #' @param x It could be
-#'    - A `bibentry` object created with [cff_to_bibtex()], [citation()] or
+#'    - A `bibentry` object created with [cff_to_bibentry()], [citation()] or
 #'      [bibentry()]
-#'    - Any of the valid inputs of [cff_to_bibtex()]:
+#'    - Any of the valid inputs of [cff_to_bibentry()]:
 #'      * A missing value. That would retrieve the DESCRIPTION file on your
 #'       in-development package.
 #'      * An existing [`cff`] object,
@@ -17,7 +17,7 @@
 #'      * Path to a DESCRIPTION file (`"*/DESCRIPTION*"`).
 #' @param file Name of the file to write.
 #' @inheritParams write_bib
-#' @inheritDotParams cff_to_bibtex
+#' @inheritDotParams cff_to_bibentry
 #'
 #' @export
 #' @family BibTeX helpers
@@ -66,7 +66,7 @@ write_citation <- function(x,
                            verbose = TRUE,
                            ...) {
   if (!inherits(x, "bibentry")) {
-    x <- cff_to_bibtex(x, ...)
+    x <- cff_to_bibentry(x, ...)
   }
 
   bentr <- format(x, style = "R")
