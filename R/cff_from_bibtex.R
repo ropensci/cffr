@@ -1,12 +1,12 @@
-#' Create a cff object from BibTeX entries
+#' Create a [`cff`][cff-class] object from BibTeX entries
 #'
 #' @description
 #'
 #' Extract the information of a BibTeX file or BibTeX entry and creates the
-#' corresponding [`cff`] object with [cff_parse_citation()].
+#' corresponding [`cff`][cff-class] object with [cff_parse_citation()].
 #'
-#' @param x The source that would be used for generating the `cff` object. A
-#' `character` object indicating either:
+#' @param x The source that would be used for generating the
+#'   [`cff`][cff-class] object. Must be `character` object indicating either:
 #'   - The path to a BibTeX file.
 #'   - A vector of characters with the full BibTeX string. See **Examples**
 #' @param encoding Encoding to be assumed for `x`. See [readLines()].
@@ -14,7 +14,9 @@
 #'
 #' @family BibTeX helpers
 #'
-#' @return A [`cff`] object ready to be used on [cff_create()].
+#' @return
+#' A [`cff`][cff-class] object ready to be used with other functions (i.e.
+#' [cff_create()].
 #'
 #' @export
 #'
@@ -26,7 +28,7 @@
 #' @seealso
 #'
 #' `vignette("bibtex_cff", package = "cffr")` to learn about the mapping of
-#' information between BibTeX and CITATION.cff.
+#' information between BibTeX and `CITATION.cff`.
 #'
 #' @examples
 #' if (requireNamespace("bibtex", quietly = TRUE)) {

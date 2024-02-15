@@ -39,7 +39,7 @@ file on your in-development package.
 GitHub, would you like to add the repo topics as keywords?}
 
 \item{dependencies}{Logical \code{TRUE/FALSE}. Would you like to add the
-of your package to the \code{reference} key?}
+of your package to the \code{references} CFF key?}
 
 \item{validate}{Logical \code{TRUE/FALSE}. Should the new file be validated using
 \code{\link[=cff_validate]{cff_validate()}}?}

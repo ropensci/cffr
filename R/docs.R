@@ -9,4 +9,3 @@
 #' ```{r child = "man/chunks/cffclass.Rmd"}
 #' ```
 NULL
-

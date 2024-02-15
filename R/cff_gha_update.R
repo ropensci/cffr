@@ -1,15 +1,16 @@
-#' Install a cffr GitHub Action
+#' Install a \CRANpkg{cffr} GitHub Action
 #'
 #' @description
 #'
 #' This function would install a GitHub Action on your repo. The action
 #' will update your `CITATION.cff` when any of these events occur:
 #' - You publish a new release of the package.
-#' - Your DESCRIPTION or inst/CITATION are modified.
+#' - Your `DESCRIPTION` or `inst/CITATION` are modified.
 #' - The action can be run also manually.
 #'
 #' @param path Project directory
-#' @param overwrite If already present, do you want to overwrite your action?
+#' @param overwrite Logical. If already present, do you want to overwrite your
+#'   action?
 #'
 #' @return Invisible, this function is called by its side effects.
 #'
@@ -39,9 +40,8 @@ cff_gha_update <- function(path = ".",
   newfile <- file.path(destdir, "update-citation-cff.yaml")
 
   if (!file.exists(newfile) || isTRUE(overwrite)) {
-    cli::cli_alert_success(
-      "Installing {.file {newfile}}"
-    )
+    cli::cli_alert_success("Installing {.file {newfile}}")
+
     file.copy(system.file("yaml/update-citation-cff.yaml", package = "cffr"),
       newfile,
       overwrite = TRUE

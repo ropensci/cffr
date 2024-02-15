@@ -14,8 +14,7 @@ cff_git_hook_remove()
 Invisible. This function is called for its side effects.
 }
 \description{
-Install a
-\href{https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workflow_hooks}{pre-commit hook}
+Install a \href{https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workflow_hooks}{pre-commit hook}
 that remembers you to update your \code{CITATION.cff} file.
 }
 \details{
@@ -26,9 +25,9 @@ A pre-commit hook is a script that identifies  simple issues before
 submission to code review. This pre-commit hook would warn you if any of the
 following conditions are met:
 \itemize{
-\item You included in a commit your DESCRIPTION or inst/CITATION file, you
+\item You included in a commit your \code{DESCRIPTION} or \code{inst/CITATION} file, you
 are not including your \code{CITATION.cff} and the \code{CITATION.cff} file is
-"older" than any of your DESCRIPTION or inst/CITATION file, or
+"older" than any of your \code{DESCRIPTION} or \code{inst/CITATION} file, or
 \item You have updated your \code{CITATION.cff} but you are not including it on
 your commit.
 }
@@ -38,14 +37,15 @@ The pre-commit hook may prevent you to commit if you are not updating your
 \code{CITATION.cff}. However, the mechanism of detection is not perfect and would
 be triggered also even if you have tried to update your \code{CITATION.cff} file.
 
-This is typically the case when you have updated your DESCRIPTION or
-inst/CITATION files but those changes doesn't make a change on your
+This is typically the case when you have updated your \code{DESCRIPTION} or
+\code{inst/CITATION} files but those changes doesn't make a change on your
 \code{CITATION.cff} file (i.e. you are including new dependencies).
 
 In those cases, you can override the check running \verb{git commit --no-verify}
-on the Terminal tab. If you are using
-RStudio you can run also this command from a R script by selecting that
-line and sending it to the Terminal using:
+on the terminal.
+
+If you are using \strong{RStudio} you can run also this command from a \strong{R}
+script by selecting that line and sending it to the terminal using:
 \itemize{
 \item \code{Ctrl+Alt+Enter} (Windows & Linux), or
 \item \code{Cmd+Option+Return} (Mac).

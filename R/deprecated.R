@@ -33,8 +33,8 @@ cff_extract_to_bibtex <- function(x,
 #' @rdname renamed_cff_to_bib
 #' @export
 #' @keywords internal
-cff_to_bibtex  <- function(x,
-                           what = c("preferred", "references", "all")) {
+cff_to_bibtex <- function(x,
+                          what = c("preferred", "references", "all")) {
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_soft(
       "0.5.0", "cff_extract_to_bibtex()",

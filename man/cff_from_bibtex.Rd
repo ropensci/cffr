@@ -2,13 +2,13 @@
 % Please edit documentation in R/cff_from_bibtex.R
 \name{cff_from_bibtex}
 \alias{cff_from_bibtex}
-\title{Create a cff object from BibTeX entries}
+\title{Create a \code{\link[=cff-class]{cff}} object from BibTeX entries}
 \usage{
 cff_from_bibtex(x, encoding = "UTF-8", ...)
 }
 \arguments{
-\item{x}{The source that would be used for generating the \code{cff} object. A
-\code{character} object indicating either:
+\item{x}{The source that would be used for generating the
+\code{\link[=cff-class]{cff}} object. Must be \code{character} object indicating either:
 \itemize{
 \item The path to a BibTeX file.
 \item A vector of characters with the full BibTeX string. See \strong{Examples}
@@ -19,11 +19,12 @@ cff_from_bibtex(x, encoding = "UTF-8", ...)
 \item{...}{Other arguments passed to \code{\link[bibtex:read.bib]{bibtex::read.bib()}}.}
 }
 \value{
-A \code{\link{cff}} object ready to be used on \code{\link[=cff_create]{cff_create()}}.
+A \code{\link[=cff-class]{cff}} object ready to be used with other functions (i.e.
+\code{\link[=cff_create]{cff_create()}}.
 }
 \description{
 Extract the information of a BibTeX file or BibTeX entry and creates the
-corresponding \code{\link{cff}} object with \code{\link[=cff_parse_citation]{cff_parse_citation()}}.
+corresponding \code{\link[=cff-class]{cff}} object with \code{\link[=cff_parse_citation]{cff_parse_citation()}}.
 }
 \details{
 This function requires the package \CRANpkg{bibtex} (>= 0.5.0), that is
@@ -60,7 +61,7 @@ if (requireNamespace("bibtex", quietly = TRUE)) {
 }
 \seealso{
 \code{vignette("bibtex_cff", package = "cffr")} to learn about the mapping of
-information between BibTeX and CITATION.cff.
+information between BibTeX and \code{CITATION.cff}.
 
 Other BibTeX helpers: 
 \code{\link{cff_to_bibentry}()},
