@@ -6,10 +6,11 @@ is_email <- function(email) {
     return(FALSE)
   }
 
-  # See https://www.nicebread.de/validating-email-adresses-in-r/
-  x <- grepl("\\<[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\>",
-    as.character(email),
-    ignore.case = TRUE
+  email <- trimws(as.character(email))
+
+  # See CFF  validation schema
+  x <- grepl("^[\\S]+@[\\S]+\\.[\\S]{2,}$",email ,
+             ignore.case = TRUE, perl = TRUE
   )
   x
 }
@@ -22,7 +23,7 @@ is_url <- function(url) {
     return(FALSE)
   }
 
-  x <- grepl("^http://|^https://|^ftp://|sftp://", url)
+  x <- grepl("^(https|http|ftp|sftp)://.+", url)
   x
 }
 

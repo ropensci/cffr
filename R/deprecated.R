@@ -1,10 +1,9 @@
 #' Previous API: Create BibTeX entries from several sources
 #'
 #' @description
-#' `r lifecycle::badge('superseded')`
-#' Please use [cff_to_bibentry()] instead.
+#' `r lifecycle::badge('superseded')` Please use [cff_to_bibentry()] instead.
 #'
-#' @rdname previous_cff_to_bib
+#' @rdname renamed_cff_to_bib
 #' @inheritParams cff_to_bibentry
 #' @export
 #' @keywords internal
@@ -25,7 +24,21 @@ cff_extract_to_bibtex <- function(x,
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_soft(
       "0.5.0", "cff_extract_to_bibtex()",
-      "cff_to_bibentry()"
+      details = "Function renamed, use `cff_to_bibentry()` instead."
+    )
+  }
+  cff_to_bibentry(x, what)
+}
+
+#' @rdname renamed_cff_to_bib
+#' @export
+#' @keywords internal
+cff_to_bibtex  <- function(x,
+                           what = c("preferred", "references", "all")) {
+  if (requireNamespace("lifecycle", quietly = TRUE)) {
+    lifecycle::deprecate_soft(
+      "0.5.0", "cff_extract_to_bibtex()",
+      details = "Function renamed, use `cff_to_bibentry()` instead."
     )
   }
   cff_to_bibentry(x, what)

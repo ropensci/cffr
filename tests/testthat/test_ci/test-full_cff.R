@@ -2,6 +2,7 @@
 # DEPRECATED: SEE ./tests/testthat/test_ci/test-new.R file instead
 # ----------------------------------------------------------------
 
+# skip lint
 
 # test_that("Test ALL installed packages", {
 #   expect_snapshot_output(print_snapshot("Sessioninfo", sessionInfo()))

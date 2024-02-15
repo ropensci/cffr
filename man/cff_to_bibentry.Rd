@@ -2,7 +2,6 @@
 % Please edit documentation in R/cff_to_bibentry.R
 \name{cff_to_bibentry}
 \alias{cff_to_bibentry}
-\alias{cff_to_bibtex}
 \title{Create BibTeX entries from several sources}
 \usage{
 cff_to_bibentry(x, what = c("preferred", "references", "all"))

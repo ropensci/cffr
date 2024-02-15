@@ -127,10 +127,6 @@ cff_to_bibentry <- function(x,
   return(pref)
 }
 
-#' @export
-#' @rdname cff_to_bibentry
-#' @usage NULL
-cff_to_bibtex <- cff_to_bibentry
 
 cff_bibtex_parser <- function(x) {
   if (is.null(x)) {

@@ -2,9 +2,12 @@
 % Please edit documentation in R/deprecated.R
 \name{cff_extract_to_bibtex}
 \alias{cff_extract_to_bibtex}
+\alias{cff_to_bibtex}
 \title{Previous API: Create BibTeX entries from several sources}
 \usage{
 cff_extract_to_bibtex(x, what = c("preferred", "references", "all"))
+
+cff_to_bibtex(x, what = c("preferred", "references", "all"))
 }
 \arguments{
 \item{x}{The source that would be used for generating
@@ -31,8 +34,7 @@ both the preferred citation info and the references.
 See \code{\link[=cff_to_bibentry]{cff_to_bibentry()}}
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}
-Please use \code{\link[=cff_to_bibentry]{cff_to_bibentry()}} instead.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}} Please use \code{\link[=cff_to_bibentry]{cff_to_bibentry()}} instead.
 }
 \examples{
 \donttest{

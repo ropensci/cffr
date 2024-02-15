@@ -2,11 +2,11 @@
 #'
 #' @name cff-class
 #'
-#' @description
-#' TODO
-#'
 #' @keywords internal
 #'
+#' @description
 #'
-#'
+#' ```{r child = "man/chunks/cffclass.Rmd"}
+#' ```
 NULL
+

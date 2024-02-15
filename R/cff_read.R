@@ -159,28 +159,6 @@ as.cff <- function(x) {
   x
 }
 
-
-# Print method
-
-#' @export
-print.cff <- function(x, ...) {
-  cat(yaml::as.yaml(x))
-}
-
-# c method
-# Based on c.person (utils package)
-# https://github.com/wch/r-source/blob/trunk/src/library/utils/R/citation.R
-
-#' @export
-c.cff <-
-  function(..., recursive = FALSE) {
-    args <- list(...)
-    args <- lapply(args, unclass)
-    rval <- do.call("c", args)
-    class(rval) <- "cff"
-    rval
-  }
-
 # Helper----
 
 #' Recursively clean lists and assign cff classes

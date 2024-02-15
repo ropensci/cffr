@@ -1,0 +1,70 @@
+## The `cff` class
+
+**cffr** implements a S3 object with [class()] `cff`, that it is used to
+represent the information of a `*.cff` file in **R**.
+
+Under the hood, a `cff` object is simply a named [list()] to which we added
+additional methods, most notably [print()].
+
+```{r}
+a_named_list <- list(
+  first = "I", second = "am", third = "a", fourth = "list",
+  fifth = "with", sixth = "names", "none" = NULL
+)
+
+
+dput(a_named_list)
+
+# Default print
+a_named_list
+
+# But
+a_cff_object <- as.cff(a_named_list)
+
+class(a_cff_object)
+
+a_cff_object
+
+dput(a_cff_object)
+```
+
+[as.cff()] not only converts a [list()] to `cff` but also removes items (known
+as `keys` in CFF terminology) that are `NULL` or `NA`.
+
+## Valid `cff` objects
+
+Although `a_cff_object` is a `cff` object, it is not valid, since it does not
+comply with the validation rules of the CFF specification.
+
+```{r}
+cff_validate(a_cff_object)
+```
+
+[cff_validate()] gives minimal messages of what's wrong with our `cff` and
+(invisibly) returns the result of the validation (`TRUE/FALSE`).
+
+## Other methods
+
+### [as.data.frame()]
+
+```{r}
+minimal_cff <- cff()
+
+minimal_cff
+
+as_df <- as.data.frame(minimal_cff)
+
+class(as_df)
+
+t(as_df)
+```
+
+## [c()]
+
+
+```{r}
+new_keys <- c("date-released" = "2020-01-31", abstract = "Minimal example")
+
+c(minimal_cff, new_keys)
+```
+
