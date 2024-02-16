@@ -15,8 +15,9 @@
 #' @family BibTeX helpers
 #'
 #' @return
-#' A [`cff`][cff-class] object ready to be used with other functions (i.e.
-#' [cff_create()].
+#'
+#' ```{r child = "man/chunks/value.Rmd"}
+#' ```
 #'
 #' @export
 #'

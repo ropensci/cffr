@@ -132,3 +132,57 @@ test_that("Convert list of authors", {
   expect_identical(allf, df_as_v)
   expect_snapshot(names(the_df))
 })
+
+
+test_that("as.person method", {
+  path <- system.file("examples/CITATION_complete.cff", package = "cffr")
+
+  the_cff <- cff_read(path)
+
+  getref <- the_cff$references[[1]]
+
+  # Single entity
+  pub <- as.person(getref$publisher)
+  expect_s3_class(pub, "person")
+
+  expect_snapshot(dput(pub))
+  expect_snapshot(
+    format(pub, include = c("given", "family", "email", "role", "comment"))
+  )
+
+  # Single person
+  aut <- as.person(getref$authors[[1]])
+  expect_s3_class(aut, "person")
+  expect_snapshot(dput(aut))
+  expect_snapshot(
+    format(aut, include = c("given", "family", "email", "role", "comment"))
+  )
+
+  # List of authors
+  aut2 <- as.person(getref$authors)
+
+  expect_s3_class(aut2, "person")
+  expect_s3_class(aut2[1], "person")
+  expect_s3_class(aut2[2], "person")
+  expect_snapshot(dput(aut2))
+  expect_snapshot(
+    format(aut2, include = c("given", "family", "email", "role", "comment"))
+  )
+})
+
+test_that("as person with another cff", {
+  path <- system.file("examples/CITATION_complete.cff", package = "cffr")
+  the_cff <- cff_read(path)
+  expect_s3_class(the_cff, "cff")
+  expect_identical(as.person(the_cff), person())
+
+  # identifiers
+  key <- the_cff$identifiers
+  expect_s3_class(key, "cff")
+  expect_identical(as.person(key), person())
+
+  # preferred
+  key <- the_cff$`preferred-citation`
+  expect_s3_class(key, "cff")
+  expect_identical(as.person(key), person())
+})

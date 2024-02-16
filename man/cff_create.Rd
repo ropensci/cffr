@@ -40,7 +40,7 @@ of your package to the \code{references} CFF key?}
 generating the \code{CITATION.cff} file. See \strong{Details}.}
 }
 \value{
-A \code{\link[=cff-class]{cff}} list object.
+A \code{\link[=cff-class]{cff}} object.
 }
 \description{
 Create a \code{\link[=cff-class]{cff}} object from a given source for further

@@ -6,7 +6,13 @@
     `cff_to_bibentry()`. Previous names of this function were `cff_to_bibtex()`
     and `cff_extract_to_bibtex()` that are now superseded.
 -   New methods:
-    -   `as.data.frame.cff()`
+    -   `as.data.frame.cff().`
+    -   `as.person.cff()`, that provides results **only** for CFF keys defined
+        as
+        [person](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsperson)
+        or
+        [entity](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsentity)
+        (e.g. authors, contacts, editors, publisher).
 
 ## Changes on bibtex crosswalk
 

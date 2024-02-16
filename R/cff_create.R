@@ -8,7 +8,7 @@
 #'
 #' Most of the heavy lifting of \CRANpkg{cffr} is done via this function.
 #'
-#' @return A [`cff`][cff-class] list object.
+#' @return A [`cff`][cff-class] object.
 #'
 #' @family Core functions
 #'

@@ -37,7 +37,7 @@ cff_to_bibtex <- function(x,
                           what = c("preferred", "references", "all")) {
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_soft(
-      "0.5.0", "cff_extract_to_bibtex()",
+      "0.6.0", "cff_extract_to_bibtex()",
       details = "Function renamed, use `cff_to_bibentry()` instead."
     )
   }
