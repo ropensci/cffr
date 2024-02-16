@@ -72,11 +72,10 @@ c(minimal_cff, new_keys)
 Special case for those CFF keys that are person-like.
 
 ```{r}
+path <- system.file("examples/CITATION_complete.cff", package = "cffr")
+the_cff <- cff_read(path)
 
-  path <- system.file("examples/CITATION_complete.cff", package = "cffr")
-  the_cff <- cff_read(path)
+the_cff$authors
 
-  the_cff$authors
-  
-  as.person(the_cff$authors)
+as.person(the_cff$authors)
 ```

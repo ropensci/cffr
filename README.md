@@ -385,6 +385,9 @@ test <- cff_create("rmarkdown")
         email: jeroen@berkeley.edu
         orcid: https://orcid.org/0000-0002-4035-0289
       year: '2024'
+      identifiers:
+      - type: url
+        value: https://arxiv.org/abs/1403.2805
     - type: software
       title: knitr
       abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
@@ -751,6 +754,18 @@ test <- cff_create("rmarkdown")
         email: davis@posit.co
       year: '2024'
     - type: software
+      title: cleanrmd
+      abstract: 'cleanrmd: Clean Class-Less ''R Markdown'' HTML Documents'
+      notes: Suggests
+      url: https://pkg.garrickadenbuie.com/cleanrmd/
+      repository: https://CRAN.R-project.org/package=cleanrmd
+      authors:
+      - family-names: Aden-Buie
+        given-names: Garrick
+        email: garrick@adenbuie.com
+        orcid: https://orcid.org/0000-0002-7111-0077
+      year: '2024'
+    - type: software
       title: withr
       abstract: 'withr: Run Code ''With'' Temporarily Modified Global State'
       notes: Suggests
@@ -888,9 +903,9 @@ for more info.
 
 <div id="ref-codemeta" class="csl-entry">
 
-Boettiger, Carl, and Maëlle Salmon. 2021a.
-*<span class="nocase">codemeta</span>: A Smaller
-<span class="nocase">codemetar</span> Package*.
+Boettiger, Carl, and Maëlle Salmon. 2021a. *<span
+class="nocase">codemeta</span>: A Smaller <span
+class="nocase">codemetar</span> Package*.
 <https://CRAN.R-project.org/package=codemeta>.
 
 </div>
@@ -911,8 +926,8 @@ Among Citation Formats*.
 
 <div id="ref-citation22" class="csl-entry">
 
-Dietrich, Jan Philipp, and Waldir Leoncio. 2022.
-*<span class="nocase">citation</span>: Software Citation Tools*.
+Dietrich, Jan Philipp, and Waldir Leoncio. 2022. *<span
+class="nocase">citation</span>: Software Citation Tools*.
 
 </div>
 

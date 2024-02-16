@@ -136,11 +136,10 @@ c(minimal_cff, new_keys)
 
 Special case for those CFF keys that are person-like.
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{
-  path <- system.file("examples/CITATION_complete.cff", package = "cffr")
-  the_cff <- cff_read(path)
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{path <- system.file("examples/CITATION_complete.cff", package = "cffr")
+the_cff <- cff_read(path)
 
-  the_cff$authors
+the_cff$authors
 #> - family-names: Real Person
 #>   given-names: One Truly
 #>   name-particle: van der
@@ -171,8 +170,8 @@ Special case for those CFF keys that are person-like.
 #>   date-start: '2017-01-01'
 #>   date-end: '2017-01-31'
 #>   location: The team garage
-  
-  as.person(the_cff$authors)
+
+as.person(the_cff$authors)
 #> [1] "One Truly van der Real Person IV <project@entity.com> (Citey, Excellent University, Niceplace, Arcadia, 22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io)"                                    
 #> [2] "Entity Project Team Conference entity <project@entity.com> (Entity Project Team Conference entity, 22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io, 2017-01-01, 2017-01-31, The team garage)"
 }\if{html}{\out{</div>}}
