@@ -186,3 +186,13 @@ test_that("as person with another cff", {
   expect_s3_class(key, "cff")
   expect_identical(as.person(key), person())
 })
+
+test_that("head and tail", {
+  a_cff <- cff()
+  expect_snapshot(a_cff)
+  expect_snapshot(head(a_cff, 2))
+  expect_s3_class(head(a_cff, 2), "cff")
+
+  expect_snapshot(tail(a_cff, 2))
+  expect_s3_class(tail(a_cff, 2), "cff")
+})

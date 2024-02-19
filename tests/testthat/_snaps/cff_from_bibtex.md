@@ -1,25 +1,3 @@
-# Read from file
-
-    Code
-      d
-    Output
-      type: article
-      title: 'cffr: Generate Citation File Format Metadata for R Packages'
-      authors:
-      - family-names: Hernangómez
-        given-names: Diego
-      year: '2021'
-      journal: Journal of Open Source Software
-      publisher:
-        name: The Open Journal
-      volume: '6'
-      issue: '67'
-      doi: 10.21105/joss.03900
-      url: https://doi.org/10.21105/joss.03900
-      copyright: All rights reserved
-      notes: 'Publisher: The Open Journal'
-      start: '3900'
-
 # From Bibtex entries
 
     Code

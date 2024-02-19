@@ -905,3 +905,33 @@
       [1] "One Truly van der Real Person IV <project@entity.com> (Citey, Excellent University, Niceplace, Arcadia, 22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io)"                                    
       [2] "Entity Project Team Conference entity <project@entity.com> (Entity Project Team Conference entity, 22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io, 2017-01-01, 2017-01-31, The team garage)"
 
+# head and tail
+
+    Code
+      a_cff
+    Output
+      authors:
+      - family-names: Doe
+        given-names: John
+      cff-version: 1.2.0
+      message: If you use this software, please cite it using these metadata.
+      title: My Research Software
+
+---
+
+    Code
+      head(a_cff, 2)
+    Output
+      authors:
+      - family-names: Doe
+        given-names: John
+      cff-version: 1.2.0
+
+---
+
+    Code
+      tail(a_cff, 2)
+    Output
+      message: If you use this software, please cite it using these metadata.
+      title: My Research Software
+

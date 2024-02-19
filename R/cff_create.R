@@ -171,7 +171,7 @@ cff_create <- function(x, keys = list(), cff_version = "1.2.0",
       cli::cli_abort("No {.file DESCRIPTION} file found with {.arg x}")
     }
 
-    cffobj <- cff_description(desc_path, cff_version,
+    cffobj <- cff_read_description(desc_path, cff_version,
       gh_keywords = gh_keywords,
       authors_roles = authors_roles
     )

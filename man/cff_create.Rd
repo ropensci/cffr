@@ -113,7 +113,7 @@ cff_create(demo_file, keys = list("contact" = new_contact))
 \code{vignette("cffr", "cffr")}
 
 Other Core functions: 
-\code{\link{cff_read}()},
+\code{\link{cff}()},
 \code{\link{cff_validate}()},
 \code{\link{cff_write}()}
 }

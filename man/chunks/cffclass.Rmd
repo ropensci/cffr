@@ -6,6 +6,11 @@ represent the information of a `*.cff` file in **R**.
 Under the hood, a `cff` object is simply a named [list()] to which we added
 additional methods, most notably [print()].
 
+```{r include=FALSE}
+library(cffr)
+```
+
+
 ```{r}
 a_named_list <- list(
   first = "I", second = "am", third = "a", fourth = "list",

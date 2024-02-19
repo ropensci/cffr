@@ -1,11 +1,24 @@
 # cffr (development version)
 
-## Major changes in the API
+## Major changes
+
+-   Now `class()` of `cff` objects are `c("cff", "list")` instead of single
+    value (`"cff"`).
+
+    ### API
 
 -   The conversion from `cff` to `bibentry` is performed now by a new function
     `cff_to_bibentry()`. Previous names of this function were `cff_to_bibtex()`
     and `cff_extract_to_bibtex()` that are now superseded.
--   New methods:
+
+-   Now reading from external files is performed exclusively by `cff_read()` and
+    additionally by the more-specific new functions `cff_read_cff_citation()`,
+    `cff_read_description()`, `cff_read_citation()` and `cff_read_bib()`.
+
+    ### Methods
+
+-   New methods added:
+
     -   `as.data.frame.cff().`
     -   `as.person.cff()`, that provides results **only** for CFF keys defined
         as
@@ -13,6 +26,7 @@
         or
         [entity](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsentity)
         (e.g. authors, contacts, editors, publisher).
+    -   `head.cff()`, `tail.cff()`.
 
 ## Changes on bibtex crosswalk
 

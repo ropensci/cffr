@@ -6,30 +6,6 @@ test_that("test errors", {
   expect_error(cff_from_bibtex(x))
 })
 
-test_that("Read from file", {
-  skip_if_not_installed("bibtex", "0.5.0")
-
-  x <- system.file("REFERENCES.bib", package = "cffr")
-
-  list <- cff_from_bibtex(x)
-
-  expect_s3_class(list, "cff")
-  expect_gt(length(list), 1)
-
-
-  # With encodings
-
-  x2 <- system.file("examples/example.bib", package = "cffr")
-  fromfile <- cff_from_bibtex(x2)
-  expect_s3_class(fromfile, "cff")
-  expect_length(fromfile, 2)
-
-  d <- fromfile[[2]]
-
-  expect_snapshot(d)
-})
-
-
 test_that("From Bibtex entries", {
   skip_if_not_installed("bibtex", "0.5.0")
 

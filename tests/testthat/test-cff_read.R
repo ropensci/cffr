@@ -1,114 +1,78 @@
-test_that("Test errors on cff", {
-  expect_error(cff("abcde"))
-  nocff <- system.file("CITATION",
-    package = "cffR"
-  )
-  expect_error(cff_create(nocff))
+test_that("Test errors on cff_read", {
+  expect_snapshot(cff_read(c("abcde", "b")), error = TRUE)
+  expect_snapshot(cff_read("abcde"), error = TRUE)
+
+  f <- system.file("schema/schema.json", package = "cffr")
+  expect_snapshot(cff_read(f), error = TRUE)
 })
 
-test_that("Compare blank cff with skeleton", {
-  skeleton <- system.file("examples/CITATION_skeleton.cff",
-    package = "cffr"
-  )
+test_that("cff_read citation.cff", {
+  f <- system.file("examples/CITATION_complete.cff", package = "cffr")
+  f1 <- cff_read(f)
+  expect_true(cff_validate(f1, verbose = FALSE))
+  expect_s3_class(f1, c("cff", "list"), exact = TRUE)
 
-  fromfile <- cff(skeleton)
-  fromfunction <- cff()
-  expect_true(all(unlist(fromfile) == unlist(fromfunction)))
-
-  # Validate
-  expect_true(cff_validate(fromfunction, verbose = FALSE))
-})
-
-test_that("Walk trough full lifecycle", {
-  complete <- system.file("examples/CITATION_complete.cff",
-    package = "cffr"
-  )
-
-  # Read
-  read <- cff_read(complete)
-  expect_s3_class(read, "cff")
-  expect_true(cff_validate(read, verbose = FALSE))
-  expect_snapshot(print_snapshot("Read object", read))
-
-  # Modify
-  modify <- cff_create(read, keys = list(title = "A new title"))
-  expect_snapshot(print_snapshot("Modify object", modify))
-  expect_true(all(unlist(read) == unlist(read)))
-  expect_true(length(read) == length(modify))
-  expect_true(length((setdiff(names(read), names(modify)))) == 0)
-  expect_false(read$title == modify$title)
-
-
-
-  # Write
-  tmp <- tempfile(fileext = ".cff")
-  cff_write(modify, outfile = tmp, validate = FALSE, verbose = FALSE)
-  stopifnotexists(tmp)
-  stopifnotcff(tmp)
-
-  # Validate
-  expect_true(cff_validate(tmp, verbose = FALSE))
-
-  file.remove(tmp)
-})
-
-test_that("Other convertes", {
-  a <- cff()
-  expect_s3_class(a, "cff")
-  a <- cff(a)
-  expect_s3_class(a, "cff")
-  a <- as.cff(a)
-  expect_true(is_cff(a))
-  expect_s3_class(a, "cff")
-
-  expect_message(noadd <- cff(address = "New York", version = 5))
-  expect_true(is_cff(noadd))
-  expect_false(is_cff(list(a = 1, b = 2)))
-  expect_true(is_cff(as.cff(list(a = 1, b = 2))))
+  # With the alias
+  f2 <- cff_read_cff_citation(f)
+  expect_identical(f1, f2)
 })
 
 
-test_that("Recursive parsing", {
-  complete <- system.file("examples/CITATION_complete.cff",
-    package = "cffr"
+test_that("cff_read DESCRIPTION", {
+  f <- system.file("examples/DESCRIPTION_no_URL", package = "cffr")
+
+  f1 <- cff_read(f, gh_keywords = FALSE)
+  expect_true(cff_validate(f1, verbose = FALSE))
+  expect_s3_class(f1, c("cff", "list"), exact = TRUE)
+
+  # With the alias
+  f2 <- cff_read_description(f, gh_keywords = FALSE)
+  expect_identical(f1, f2)
+
+
+  # Use other params
+  f1_1 <- cff_read(f,
+    gh_keywords = FALSE, cff_version = 3000,
+    authors_roles = c("aut", "cre", "ctb")
   )
 
-  # Read
-  read <- cff(complete)
+  expect_equal(f1_1$`cff-version`, "3000")
 
-  # Test all levels
-  expect_s3_class(read, "cff")
-  expect_s3_class(read$authors, "cff")
-  expect_s3_class(read$authors[[1]], "cff")
-  expect_s3_class(read$references, "cff")
-  expect_s3_class(read$references[[1]]$authors, "cff")
-  expect_s3_class(read$references[[1]]$authors[[1]], "cff")
+  expect_gt(length(f1_1$authors), length(f1$authors))
+
+  f2_1 <- cff_read_description(f,
+    gh_keywords = FALSE, cff_version = 3000,
+    authors_roles = c("aut", "cre", "ctb")
+  )
+
+  expect_identical(f1_1, f2_1)
 })
 
 
-test_that("Fuzzy matching of keys on cff", {
-  expect_message(cff(
-    tittle = "a",
-    cff_version = "ar",
-    version = "200",
-    messange = "Fix my keys"
-  ), "messange: message")
+test_that("cff read bib", {
+  skip_if_not_installed("bibtex", "0.5.0")
 
-  cffobj <- suppressMessages(
-    cff(
-      tittle = "a",
-      cff_version = "1.2.0",
-      version = "200",
-      anthor = list(list(
-        "family-names" = "a",
-        "given-names" = "b"
-      )),
-      messange = "Fix my keys"
-    )
-  )
+  f <- system.file("REFERENCES.bib", package = "cffr")
 
-  expect_true(is_cff(cffobj))
-  expect_true(cff_validate(cffobj, verbose = FALSE))
+  f1 <- cff_read(f)
+  expect_s3_class(f1, c("cff", "list"), exact = TRUE)
+  expect_gt(length(f1), 1)
 
-  expect_snapshot(print_snapshot("Fuzzy keys", cffobj))
+  # Specific
+  f2 <- cff_read_bib(f)
+  expect_identical(f1, f2)
+
+
+  # With encodings
+
+  f <- system.file("examples/example.bib", package = "cffr")
+  f1_2 <- cff_read(f)
+  expect_s3_class(f1_2, c("cff", "list"), exact = TRUE)
+  expect_length(f1_2, 2)
+
+  d <- f1_2[[2]]
+
+  expect_snapshot(d)
+  f2_2 <- cff_read_bib(f)
+  expect_identical(f1_2, f2_2)
 })

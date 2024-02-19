@@ -63,6 +63,23 @@ as.person.cff <- function(x) {
   }
   do.call(c, pers)
 }
+
+#' Head
+#'
+#' @noRd
+#' @export
+head.cff <- function(x, n = 6L, ...) {
+  as.cff(NextMethod())
+}
+
+#' Tail
+#'
+#' @noRd
+#' @export
+tail.cff <- function(x, n = 6L, ...) {
+  as.cff(NextMethod())
+}
+
 make_r_person <- function(x) {
   if (is.null(names(x))) {
     return(person())

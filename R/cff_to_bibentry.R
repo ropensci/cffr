@@ -95,7 +95,7 @@ cff_to_bibentry <- function(x,
   }
 
   if (is_cff_file(x)) {
-    x <- cff_read(x)
+    x <- cff_read_cff_citation(x)
   }
 
   if (is_cff(x)) {

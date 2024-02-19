@@ -1,181 +1,158 @@
-#' Read and manipulate `cff` objects
+#' Read an external file as a [`cff`][cff-class] object
 #'
-#' A class and utility methods for reading, creating and holding CFF
-#' information.
+#' @description
+#' Read files and convert them to [`cff`][cff-class] objects. Files supported
+#' are:
+#' - `CITATION.cff` files
+#' - `DESCRIPTION` files
+#' - **R** citation files (usually located in `inst/CITATION`)
+#' - BibTeX files (with extension `*.bib`).
 #'
-#' @name cff_read
-#' @aliases cff
-#' @return
-#' A `cff` object. Under the hood, a `cff` object is a regular [`list`] object
-#' with a special [print()] method.
+#' [cff_read()] would try to guess the type of file provided in `path`. However
+#' we provide a series of alias for each specific type of file:
+#' - [cff_read_cff_citation()], that uses [yaml::read_yaml()].
+#' - [cff_read_description()], using [desc::desc()].
+#' - [cff_read_citation()] uses [utils::readCitationFile()].
+#' - [cff_read_bib()]  requires \CRANpkg{bibtex} (>= 0.5.0) and uses
+#'   [bibtex::read.bib()].
 #'
-#' @family Core functions
-#'
-#' @param path The path to a `CITATION.cff` file.
-#' @param ... Named arguments to be used for creating a [`cff`] object. See
-#' **Details**.
-#'
-#' @details
-#'
-#' This object can be manipulated using [cff_create()].
-#'
-#' **Note that** this function reads `CITATION.cff` files. If you want to
-#' create `cff` objects from DESCRIPTION files use [cff_create()].
-#'
-#' If no additional `...` parameters are supplied (the default behavior),
-#' a minimal valid `cff` object is created. Valid parameters are those
-#' specified on [cff_schema_keys()]:
-#'
-#'
-#'
-#' ```{r, echo=FALSE}
-#'
-#'
-#' valid_keys <- cff_schema_keys()
-#'
-#' knitr::kable(valid_keys, col.names = "**valid cff keys**")
-#'
-#'
-#' ```
 #' @export
-#' @examples
-#'
-#' # Blank cff
-#' cff()
-#'
-#' # From file
-#' cff_read(system.file("examples/CITATION_basic.cff",
-#'   package = "cffr"
-#' ))
-#'
-#' # Use custom params
-#' test <- cff(
-#'   title = "Manipulating files",
-#'   keywords = c("A", "new", "list", "of", "keywords"),
-#'   authors = list(cff_parse_person("New author"))
-#' )
-#' test
-#' \donttest{
-#' # Would fail
-#' cff_validate(test)
-#'
-#'
-#' # Modify with cff_create
-#' new <- cff_create(test, keys = list(
-#'   "cff-version" = "1.2.0",
-#'   message = "A blank file"
-#' ))
-#' new
-#'
-#' # Would pass
-#' cff_validate(new)
-#' }
-cff_read <- function(path) {
-  cffobj <- cff(path = path)
-
-  return(cffobj)
-}
-
 #' @rdname cff_read
-#' @export
-cff <- function(path, ...) {
-  if (!missing(path) && is_cff(path)) {
-    return(path)
-  }
-
-  # Capture args
-  cffobj <- list(...)
-
-  if (!missing(path)) {
-    stopifnotexists(path)
-    stopifnotcff(path)
-    cffobj <- yaml::read_yaml(path)
-  } else if (length(cffobj) != 0) {
-    cffobj <- fuzzy_keys(cffobj)
-
-    cffobj <- cffobj
-  } else {
-    # If nothing is provided use a minimal cff
-    path <- system.file("examples/CITATION_skeleton.cff",
-      package = "cffr"
+#'
+#' @param path Path to a file
+#' @param cff_version The Citation File Format schema version that the
+#'   `CITATION.cff` file adheres to for providing the citation metadata.
+#' @param gh_keywords Logical `TRUE/FALSE`. If the package is hosted on
+#'   GitHub, would you like to add the repo topics as keywords?
+#' @param authors_roles Roles to be considered as authors of the package when
+#'   generating the [`cff`][cff-class] object.
+#' @param encoding Encoding to be assumed for `path`. See [readLines()].
+#' @param ... Arguments to be passed to other functions.
+#'
+#' @return A [`cff`][cff-class] object.
+#'
+#'
+cff_read <- function(path, ...) {
+  if (length(path) > 1) {
+    cli::cli_abort(
+      "Use a single value, {.arg path} has length {.val {length(path)}}"
     )
-    cffobj <- yaml::read_yaml(path)
-  }
-  cffobj <- drop_null(cffobj)
-
-  cffobj <- as.cff(cffobj)
-
-  return(cffobj)
-}
-
-
-
-
-#' @rdname cff_read
-#'
-#' @param x a character string for the [`as.cff`] default method
-#'
-#' @export
-#'
-#' @examples
-#'
-#'
-#' # Convert a list to "cff" object
-#' cffobj <- as.cff(list(
-#'   "cff-version" = "1.2.0",
-#'   title = "Manipulating files"
-#' ))
-#'
-#' class(cffobj)
-#'
-#' # Nice display thanks to yaml package
-#' cffobj
-as.cff <- function(x) {
-  if (is_cff(x)) {
-    return(x)
   }
 
-  # Clean all strings recursively
+  if (!file.exists(path)) {
+    cli::cli_abort(
+      paste(
+        "{.file {path}} does not exist. ",
+        "Check the {.file {dirname(path)}} directory"
+      )
+    )
+  }
+  filetype <- guess_type_file(path)
 
-  x <- rapply(x, function(x) {
-    if (is.list(x) || length(x) > 1) {
-      return(x)
-    }
-    return(clean_str(x))
-  },
-  how = "list"
+  endobj <- switch(filetype,
+    "cff_citation" = cff_read_cff_citation(path, ...),
+    "description" = cff_read_description(path, ...),
+    "bib" = cff_read_bib(path, ...),
+    NULL
   )
 
-  # Remove NULLs
-  x <- drop_null(x)
-
-  # Remove duplicated names
-  x <- x[!duplicated(names(x))]
-
-  # Now apply cff class to nested lists
-  x <- lapply(x, rapply_cff)
-
-  class(x) <- "cff"
-  x
+  endobj
 }
 
-# Helper----
+#' @export
+#' @rdname cff_read
+cff_read_cff_citation <- function(path, ...) {
+  cffobj <- yaml::read_yaml(path)
+  new_cff(cffobj)
+}
 
-#' Recursively clean lists and assign cff classes
-#' to all nested lists
-#'
-#'
-#' @noRd
-rapply_cff <- function(x) {
-  if (inherits(x, "cff")) {
-    return(x)
+#' @export
+#' @rdname cff_read
+cff_read_description <- function(path, cff_version = "1.2.0",
+                                 gh_keywords = TRUE,
+                                 authors_roles = c("aut", "cre"), ...) {
+  pkg <- desc::desc(path)
+  pkg$coerce_authors_at_r()
+
+  msg <- paste0(
+    'To cite package "', pkg$get("Package"),
+    '" in publications use:'
+  )
+
+
+  list_fields <- list(
+    "cff-version" = cff_version,
+    message = msg,
+    type = "software",
+    title = parse_desc_title(pkg),
+    version = parse_desc_version(pkg),
+    authors = parse_desc_authors(pkg, authors_roles = authors_roles),
+    abstract = parse_desc_abstract(pkg),
+    repository = parse_desc_repository(pkg),
+    "repository-code" = parse_desc_urls(pkg)$repo,
+    url = parse_desc_urls(pkg)$url,
+    identifiers = parse_desc_urls(pkg)$identifiers,
+    "date-released" = parse_desc_date_released(pkg),
+    contact = parse_desc_contacts(pkg),
+    keywords = parse_desc_keywords(pkg),
+    license = unlist(parse_desc_license(pkg))
+  )
+
+  if (gh_keywords) {
+    ghtopics <- parse_ghtopics(list_fields)
+    list_fields$keywords <- unique(c(list_fields$keywords, ghtopics))
   }
 
-  if (is.list(x) && length(x) > 0) {
-    x <- drop_null(x)
-    x <- lapply(x, rapply_cff)
-    return(structure(x, class = "cff"))
-  } else {
-    return(x)
+  new_cff(list_fields)
+}
+
+#' @export
+#' @rdname cff_read
+cff_read_cff_citation <- function(path, ...) {
+  cffobj <- yaml::read_yaml(path)
+  new_cff(cffobj)
+}
+
+#' @export
+#' @rdname cff_read
+cff_read_bib <- function(path, encoding = "UTF-8", ...) {
+  # nocov start
+  if (!requireNamespace("bibtex", quietly = TRUE)) {
+    msg <- paste0(
+      "{.pkg bibtex} package required for using this function: ",
+      '{.run install.packages("bibtex")}'
+    )
+    cli::cli_abort(msg)
   }
+  # nocov end
+
+  # Read from tempfile
+  read_bib <- bibtex::read.bib(file = path, encoding = encoding, ...)
+
+
+  tocff <- cff_parse_citation(read_bib)
+  new_cff(tocff)
+}
+
+
+guess_type_file <- function(path) {
+  if (grepl("\\.cff$", path, ignore.case = TRUE)) {
+    return("cff_citation")
+  }
+  if (grepl("\\.bib$", path, ignore.case = TRUE)) {
+    return("bib")
+  }
+  if (grepl("citat", path, ignore.case = TRUE)) {
+    return("citation")
+  }
+  if (grepl("desc", path, ignore.case = TRUE)) {
+    return("description")
+  }
+
+  cli::cli_abort(
+    paste0(
+      "Don't recognize the file type of {.file {path}}.",
+      " Use a specific function (e.g. {.fn cffr:cff_read_description}"
+    )
+  )
 }

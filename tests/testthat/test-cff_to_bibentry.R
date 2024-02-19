@@ -233,7 +233,10 @@ test_that("Unpublished to bibtex", {
     author = "John M. Aronis and Foster J. Provost",
     title = "Efficiently Constructing Relational Features from Background",
     year = 1959,
-    note = "Unpublished MS, Computer Science Department, University of Pittsburgh.",
+    note = paste0(
+      "Unpublished MS, Computer Science Department, ",
+      "University of Pittsburgh."
+    ),
     missinginfo = "Date is  guess.",
   )
 
@@ -254,7 +257,9 @@ test_that("particle names", {
 
 
   bibparsed <- cff_parse_citation(bib)
-  bibparsed$authors <- cff_parse_person_bibtex("van Leunen, Mary-Claire and Davis, Jr., Sammy")
+  bibparsed$authors <- cff_parse_person_bibtex(
+    "van Leunen, Mary-Claire and Davis, Jr., Sammy"
+  )
 
   cffobj <- cff_create(cff(),
     keys = list(references = list(bibparsed))

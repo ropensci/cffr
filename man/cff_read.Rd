@@ -2,114 +2,63 @@
 % Please edit documentation in R/cff_read.R
 \name{cff_read}
 \alias{cff_read}
-\alias{cff}
-\alias{as.cff}
-\title{Read and manipulate \code{cff} objects}
+\alias{cff_read_cff_citation}
+\alias{cff_read_description}
+\alias{cff_read_bib}
+\title{Read an external file as a \code{\link[=cff-class]{cff}} object}
 \usage{
-cff_read(path)
+cff_read(path, ...)
 
-cff(path, ...)
+cff_read_cff_citation(path, ...)
 
-as.cff(x)
+cff_read_description(
+  path,
+  cff_version = "1.2.0",
+  gh_keywords = TRUE,
+  authors_roles = c("aut", "cre"),
+  ...
+)
+
+cff_read_cff_citation(path, ...)
+
+cff_read_bib(path, encoding = "UTF-8", ...)
 }
 \arguments{
-\item{path}{The path to a \code{CITATION.cff} file.}
+\item{path}{Path to a file}
 
-\item{...}{Named arguments to be used for creating a \code{\link{cff}} object. See
-\strong{Details}.}
+\item{...}{Arguments to be passed to other functions.}
 
-\item{x}{a character string for the \code{\link{as.cff}} default method}
+\item{cff_version}{The Citation File Format schema version that the
+\code{CITATION.cff} file adheres to for providing the citation metadata.}
+
+\item{gh_keywords}{Logical \code{TRUE/FALSE}. If the package is hosted on
+GitHub, would you like to add the repo topics as keywords?}
+
+\item{authors_roles}{Roles to be considered as authors of the package when
+generating the \code{\link[=cff-class]{cff}} object.}
+
+\item{encoding}{Encoding to be assumed for \code{path}. See \code{\link[=readLines]{readLines()}}.}
 }
 \value{
-A \code{cff} object. Under the hood, a \code{cff} object is a regular \code{\link{list}} object
-with a special \code{\link[=print]{print()}} method.
+A \code{\link[=cff-class]{cff}} object.
 }
 \description{
-A class and utility methods for reading, creating and holding CFF
-information.
-}
-\details{
-This object can be manipulated using \code{\link[=cff_create]{cff_create()}}.
-
-\strong{Note that} this function reads \code{CITATION.cff} files. If you want to
-create \code{cff} objects from DESCRIPTION files use \code{\link[=cff_create]{cff_create()}}.
-
-If no additional \code{...} parameters are supplied (the default behavior),
-a minimal valid \code{cff} object is created. Valid parameters are those
-specified on \code{\link[=cff_schema_keys]{cff_schema_keys()}}:\tabular{l}{
-   \strong{valid cff keys} \cr
-   cff-version \cr
-   message \cr
-   type \cr
-   license \cr
-   title \cr
-   version \cr
-   doi \cr
-   abstract \cr
-   authors \cr
-   preferred-citation \cr
-   repository \cr
-   repository-artifact \cr
-   repository-code \cr
-   url \cr
-   date-released \cr
-   contact \cr
-   keywords \cr
-   references \cr
-   commit \cr
-   identifiers \cr
-   license-url \cr
-}
-}
-\examples{
-
-# Blank cff
-cff()
-
-# From file
-cff_read(system.file("examples/CITATION_basic.cff",
-  package = "cffr"
-))
-
-# Use custom params
-test <- cff(
-  title = "Manipulating files",
-  keywords = c("A", "new", "list", "of", "keywords"),
-  authors = list(cff_parse_person("New author"))
-)
-test
-\donttest{
-# Would fail
-cff_validate(test)
-
-
-# Modify with cff_create
-new <- cff_create(test, keys = list(
-  "cff-version" = "1.2.0",
-  message = "A blank file"
-))
-new
-
-# Would pass
-cff_validate(new)
+Read files and convert them to \code{\link[=cff-class]{cff}} objects. Files supported
+are:
+\itemize{
+\item \code{CITATION.cff} files
+\item \code{DESCRIPTION} files
+\item \strong{R} citation files (usually located in \code{inst/CITATION})
+\item BibTeX files (with extension \verb{*.bib}).
 }
 
-
-# Convert a list to "cff" object
-cffobj <- as.cff(list(
-  "cff-version" = "1.2.0",
-  title = "Manipulating files"
-))
-
-class(cffobj)
-
-# Nice display thanks to yaml package
-cffobj
+\code{\link[=cff_read]{cff_read()}} would try to guess the type of file provided in \code{path}. However
+we provide a series of alias for each specific type of file:
+\itemize{
+\item \code{\link[=cff_read_cff_citation]{cff_read_cff_citation()}}, that uses \code{\link[yaml:read_yaml]{yaml::read_yaml()}}.
+\item \code{\link[=cff_read_description]{cff_read_description()}}, using \code{\link[desc:desc]{desc::desc()}}.
+\item \code{\link[=cff_read_citation]{cff_read_citation()}} uses \code{\link[utils:citation]{utils::readCitationFile()}}.
+\item \code{\link[=cff_read_bib]{cff_read_bib()}}  requires \CRANpkg{bibtex} (>= 0.5.0) and uses
+\code{\link[bibtex:read.bib]{bibtex::read.bib()}}.
 }
-\seealso{
-Other Core functions: 
-\code{\link{cff_create}()},
-\code{\link{cff_validate}()},
-\code{\link{cff_write}()}
 }
-\concept{Core functions}

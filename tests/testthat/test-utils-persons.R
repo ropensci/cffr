@@ -1,4 +1,6 @@
-# Based on https://maverick.inria.fr/~Xavier.Decoret/resources/xdkbibtex/bibtex_summary.html
+# Based on
+# https://maverick.inria.fr/~Xavier.Decoret/resources/xdkbibtex/ >>
+# bibtex_summary.html
 
 test_that("Test first von last", {
   x <- "AA BB"

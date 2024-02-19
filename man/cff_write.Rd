@@ -80,8 +80,8 @@ file.remove(tmpfile)
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
 
 Other Core functions: 
+\code{\link{cff}()},
 \code{\link{cff_create}()},
-\code{\link{cff_read}()},
 \code{\link{cff_validate}()}
 }
 \concept{Core functions}
