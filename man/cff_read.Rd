@@ -4,6 +4,7 @@
 \alias{cff_read}
 \alias{cff_read_cff_citation}
 \alias{cff_read_description}
+\alias{cff_read_citation}
 \alias{cff_read_bib}
 \title{Read an external file as a \code{\link[=cff-class]{cff}} object}
 \usage{
@@ -19,7 +20,7 @@ cff_read_description(
   ...
 )
 
-cff_read_cff_citation(path, ...)
+cff_read_citation(path, meta = NULL, ...)
 
 cff_read_bib(path, encoding = "UTF-8", ...)
 }
@@ -37,10 +38,18 @@ GitHub, would you like to add the repo topics as keywords?}
 \item{authors_roles}{Roles to be considered as authors of the package when
 generating the \code{\link[=cff-class]{cff}} object.}
 
+\item{meta}{A list of package metadata as obtained by
+\code{\link[utils:packageDescription]{utils::packageDescription()}} or \code{NULL} (the default). See \strong{Details}.}
+
 \item{encoding}{Encoding to be assumed for \code{path}. See \code{\link[=readLines]{readLines()}}.}
 }
 \value{
-A \code{\link[=cff-class]{cff}} object.
+A \code{\link[=cff-class]{cff}} object. In the case of \code{\link[=cff_read_cff_citation]{cff_read_cff_citation()}} and
+\code{\link[=cff_read_description]{cff_read_description()}} a full and (potentially) valid \code{cff} object.
+
+In the case of \code{\link[=cff_read_bib]{cff_read_bib()}} and \code{\link[=cff_read_citation]{cff_read_citation()}}, the result is
+the \code{cff} version of a \code{\link[=bibentry]{bibentry()}} object (i.e. a bibliographic reference),
+that can be used to complement another \code{cff} object.
 }
 \description{
 Read files and convert them to \code{\link[=cff-class]{cff}} objects. Files supported
@@ -61,4 +70,18 @@ we provide a series of alias for each specific type of file:
 \item \code{\link[=cff_read_bib]{cff_read_bib()}}  requires \CRANpkg{bibtex} (>= 0.5.0) and uses
 \code{\link[bibtex:read.bib]{bibtex::read.bib()}}.
 }
+}
+\details{
+Section 1.9 CITATION files of \emph{Writing R Extensions} (R Core Team 2023)
+specifies how to create dynamic \code{CITATION} files using \code{meta} object, hence
+the \code{meta} argument in \code{\link[=cff_read_citation]{cff_read_citation()}} may be needed for reading
+some files correctly.
+}
+\examples{
+TODO
+
+}
+\references{
+R Core Team (2023). \emph{Writing R Extensions}.
+\url{https://cran.r-project.org/doc/manuals/r-release/R-exts.html}
 }

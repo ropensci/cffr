@@ -14,15 +14,31 @@
       Error in `cff_read()`:
       ! 'abcde' does not exist.  Check the '.' directory
 
----
+# cff_read citation.cff
 
     Code
-      cff_read(f)
+      cff_read_cff_citation("a")
     Condition
-      Error in `guess_type_file()`:
-      ! Don't recognize the file type of '/cloud/project/inst/schema/schema.json'. Use a specific function (e.g. `cffr:cff_read_description()`
+      Error in `cff_read_cff_citation()`:
+      ! 'a' does not exist.  Check the '.' directory
 
-# cff read bib
+# cff_read DESCRIPTION
+
+    Code
+      cff_read_description("a")
+    Condition
+      Error in `cff_read_description()`:
+      ! 'a' does not exist.  Check the '.' directory
+
+# cff_read bib
+
+    Code
+      cff_read_bib("a")
+    Condition
+      Error in `cff_read_bib()`:
+      ! 'a' does not exist.  Check the '.' directory
+
+---
 
     Code
       d
@@ -43,4 +59,19 @@
       copyright: All rights reserved
       notes: 'Publisher: The Open Journal'
       start: '3900'
+
+# cff_read citation messages
+
+    Code
+      cff_read_citation("a")
+    Condition
+      Error in `cff_read_citation()`:
+      ! 'a' does not exist.  Check the '.' directory
+
+---
+
+    Code
+      s <- cff_read(f, meta = "aa")
+    Message
+      ! `meta` should be "NULL" or a <packageDescription> object not a string. Using `meta = NULL`
 
