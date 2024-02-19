@@ -53,7 +53,7 @@
 #' some files correctly.
 #'
 #' @examples
-#' TODO
+#' # TODO
 #'
 cff_read <- function(path, ...) {
   if (length(path) > 1) {

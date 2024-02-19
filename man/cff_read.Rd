@@ -78,7 +78,7 @@ the \code{meta} argument in \code{\link[=cff_read_citation]{cff_read_citation()}
 some files correctly.
 }
 \examples{
-TODO
+# TODO
 
 }
 \references{
