@@ -8,18 +8,14 @@ test_that("Creating cff from packages encoded in latin1", {
   expect_true(desc::desc(desc_path)$get("Encoding") == "latin1")
 
   # Parse citation
-  bib <- parse_r_citation(desc_path, cit_path)
-  expect_false("UTF-8" %in% Encoding(unlist(bib)))
+  bib <- cff_safe_read_citation(desc_path, cit_path)
 
-  # Parse to cff citation
-  bibparsed <- lapply(bib, cff_parse_citation)
-
-  expect_true("UTF-8" %in% Encoding(unlist(bibparsed)))
-  expect_false("latin1" %in% Encoding(unlist(bibparsed)))
+  expect_true("UTF-8" %in% Encoding(unlist(bib)))
+  expect_false("latin1" %in% Encoding(unlist(bib)))
 
   # Create cff
   cffobj <- cff_create(desc_path, keys = list(
-    references = bibparsed
+    references = bib
   ))
 
   expect_s3_class(cffobj, "cff")

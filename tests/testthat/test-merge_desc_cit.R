@@ -9,9 +9,8 @@ test_that("Merge all DESCRIPTION files with CITATION_basic", {
   )
   for (i in seq_len(length(allfiles))) {
     desc_parse <- cff_read_description(allfiles[i], gh_keywords = FALSE)
-    generate_cit <- parse_r_citation(allfiles[i], citpath)
-    parse_cit <- lapply(generate_cit, cff_parse_citation)
-    merged <- merge_desc_cit(desc_parse, parse_cit)
+    generate_cit <- cff_safe_read_citation(allfiles[i], citpath)
+    merged <- merge_desc_cit(desc_parse, generate_cit)
     merged <- as.cff(merged)
 
     expect_snapshot(merged)

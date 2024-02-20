@@ -14,12 +14,12 @@ test_that("Test full with CITATION and (option = author)", {
   # Needs an installed package
   desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
   cit_path <- system.file("examples/CITATION_auto", package = "cffr")
-  parsed <- parse_r_citation(desc_path, cit_path)
-  expect_s3_class(parsed, "bibentry")
+  parsed <- cff_safe_read_citation(desc_path, cit_path)
+  expect_s3_class(parsed, "cff")
 
   # Create cff
   cffobj <- cff_create(desc_path, keys = list(
-    references = lapply(parsed, cff_parse_citation)
+    references = parsed
   ))
 
   expect_s3_class(cffobj, "cff")
@@ -32,13 +32,9 @@ test_that("Parsed several citations", {
   # Needs an installed package
   desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
   cit_path <- system.file("examples/CITATION_auto", package = "cffr")
-  parsed <- parse_r_citation(desc_path, cit_path)
-  expect_s3_class(parsed, "bibentry")
+  citobj <- cff_safe_read_citation(desc_path, cit_path)
+  expect_s3_class(citobj, c("cff", "list"), exact = TRUE)
 
-  # Create citation obj
-  citobj <- cff_parse_citation(parsed)
-
-  expect_s3_class(citobj, "cff")
   expect_snapshot(citobj)
   expect_length(citobj, 3)
 })

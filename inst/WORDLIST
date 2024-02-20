@@ -20,6 +20,7 @@ FOSS
 Fenner
 GitLab
 Haines
+Hernangomez
 InBook
 InCollection
 InProceedings
@@ -81,10 +82,8 @@ incollection
 inproceedings
 json
 jsonvalidate
-mastersthesis
 param
 parsers
-phdthesis
 plaintext
 pre
 rOpenSci

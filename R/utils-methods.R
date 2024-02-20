@@ -1,3 +1,51 @@
+# Utils for authors----
+make_r_person <- function(x) {
+  if (is.null(names(x))) {
+    return(person())
+  }
+  checknames <- grepl("^name$|given-names|family-names", names(x))
+  if (!isTRUE(any(checknames))) {
+    return(person())
+  }
+  # Prepare list
+  # Family is special key
+  fam1 <- clean_str(x$name)
+  fam2 <- clean_str(
+    paste(
+      clean_str(x$`name-particle`), clean_str(x$`family-names`),
+      clean_str(x$`name-suffix`)
+    )
+  )
+
+  given <- clean_str(x$`given-names`)
+  family <- clean_str(c(fam1, fam2))
+
+  # Make comments
+  x_comments <- x[!names(x) %in% c(
+    "family-names", "given-names",
+    "name-particle", "name-suffix", "email"
+  )]
+
+  x_comments <- lapply(x_comments, clean_str)
+  x_comments <- unlist(x_comments, use.names = TRUE)
+
+  # Prepare ORCID
+  x_comments <- gsub("^https://orcid.org/", "", x_comments)
+  nm <- gsub("orcid", "ORCID", names(x_comments), fixed = TRUE)
+  names(x_comments) <- nm
+
+  pers_list <- list(
+    given = given,
+    family = family,
+    email = clean_str(x$email),
+    comment = x_comments
+  )
+
+
+  do.call(person, pers_list)
+}
+
+
 # Utils for df ----
 unnamed_to_df <- function(key, nm) {
   key_l <- as.integer(lengths(key))

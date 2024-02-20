@@ -37,8 +37,8 @@ test_that("cff_read DESCRIPTION", {
 
   # Use other params
   f1_1 <- cff_read(f,
-                   gh_keywords = FALSE, cff_version = 3000,
-                   authors_roles = c("aut", "cre", "ctb")
+    gh_keywords = FALSE, cff_version = 3000,
+    authors_roles = c("aut", "cre", "ctb")
   )
 
   expect_equal(f1_1$`cff-version`, "3000")
@@ -46,8 +46,8 @@ test_that("cff_read DESCRIPTION", {
   expect_gt(length(f1_1$authors), length(f1$authors))
 
   f2_1 <- cff_read_description(f,
-                               gh_keywords = FALSE, cff_version = 3000,
-                               authors_roles = c("aut", "cre", "ctb")
+    gh_keywords = FALSE, cff_version = 3000,
+    authors_roles = c("aut", "cre", "ctb")
   )
 
   expect_identical(f1_1, f2_1)
@@ -105,78 +105,90 @@ test_that("cff_read citation messages", {
 
 test_that("cff_read CITATION_basic", {
   a_desc <- system.file("examples/DESCRIPTION_basic", package = "cffr")
-  my_meta <- test_meta(a_desc)
+  my_meta <- desc_to_meta(a_desc)
 
   path <- system.file("examples/CITATION_basic", package = "cffr")
   parsed <- cff_read(path, my_meta)
   expect_s3_class(parsed, c("cff", "list"), exact = TRUE)
   expect_equal(length(parsed), 2)
-
-  # Identical to
-  meta <- as.list(read.dcf(a_desc)[1, ])
-  meta$Encoding <- "UTF-8"
-
-  id <- utils::readCitationFile(path, meta = meta)
-
-  id <- cff_parse_citation(id)
-  id <- new_cff(id)
-
-  expect_identical(parsed, id)
 })
 
 test_that("cff_read CITATION with no encoding", {
   desc_path <- system.file("examples/DESCRIPTION_no_encoding", package = "cffr")
   cit_path <- system.file("examples/CITATION_basic", package = "cffr")
 
-  my_meta <- test_meta(desc_path)
+  my_meta <- desc_to_meta(desc_path)
   parsed <- cff_read_citation(cit_path, my_meta)
-
-  # Identical to
-  meta <- as.list(read.dcf(desc_path)[1, ])
-  id <- utils::readCitationFile(cit_path, meta = meta)
-
-  id <- cff_parse_citation(id)
-  id <- new_cff(id)
-
-  expect_identical(parsed, id)
+  expect_s3_class(parsed, c("cff", "list"), exact = TRUE)
 })
 
 test_that("cff_read CITATION_auto", {
   # Needs an installed package
   desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
   cit_path <- system.file("examples/CITATION_auto", package = "cffr")
-  my_meta <- test_meta(desc_path)
+  my_meta <- desc_to_meta(desc_path)
 
   parsed <- cff_read(cit_path, my_meta)
 
   expect_equal(length(parsed), 3)
-
-  # Identical to
-  meta <- as.list(read.dcf(desc_path)[1, ])
-  id <- utils::readCitationFile(cit_path, meta = meta)
-  id <- cff_parse_citation(id)
-  id <- new_cff(id)
-
-
-  expect_identical(parsed, id)
 })
 
 test_that("cff_read CITATION_rmarkdown", {
   desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
   cit_path <- system.file("examples/CITATION_rmarkdown", package = "cffr")
 
-  my_meta <- test_meta(desc_path)
+  my_meta <- desc_to_meta(desc_path)
   parsed <- cff_read(cit_path, my_meta)
 
   expect_equal(length(parsed), 3)
+})
 
-  # Identical to
-  meta <- as.list(read.dcf(desc_path)[1, ])
-  meta$Encoding <- "UTF-8"
+test_that("cff_read_safe CITATION_basic", {
+  desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
+  cit_path <- system.file("examples/CITATION_basic", package = "cffr")
+  parsed <- cff_safe_read_citation(desc_path, cit_path)
 
-  id <- utils::readCitationFile(cit_path, meta = meta)
-  id <- cff_parse_citation(id)
-  id <- new_cff(id)
+  expect_s3_class(parsed, c("cff", "list"), exact = TRUE)
+  expect_equal(length(parsed), 2)
+})
 
-  expect_identical(parsed, id)
+test_that("cff_read_safe CITATION with no encoding", {
+  desc_path <- system.file("examples/DESCRIPTION_no_encoding", package = "cffr")
+  cit_path <- system.file("examples/CITATION_basic", package = "cffr")
+
+  parsed <- cff_safe_read_citation(desc_path, cit_path)
+
+  expect_s3_class(parsed, c("cff", "list"), exact = TRUE)
+  expect_equal(length(parsed), 2)
+})
+
+test_that("cff_read_safe CITATION_auto", {
+  # Needs an installed package
+  desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
+  cit_path <- system.file("examples/CITATION_auto", package = "cffr")
+  parsed <- cff_safe_read_citation(desc_path, cit_path)
+
+  expect_s3_class(parsed, c("cff", "list"), exact = TRUE)
+  expect_equal(length(parsed), 3)
+})
+
+test_that("cff_read_safe CITATION_rmarkdown", {
+  desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
+  cit_path <- system.file("examples/CITATION_rmarkdown", package = "cffr")
+
+  parsed <- cff_safe_read_citation(desc_path, cit_path)
+
+  expect_s3_class(parsed, c("cff", "list"), exact = TRUE)
+  expect_equal(length(parsed), 3)
+})
+
+
+test_that("cff_read_safe CITATION NULL", {
+  desc_path <- system.file("x", package = "cffr")
+  cit_path <- system.file("y", package = "cffr")
+
+  expect_null(cff_safe_read_citation(
+    desc_path,
+    cit_path
+  ))
 })

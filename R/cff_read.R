@@ -29,23 +29,33 @@
 #' @param encoding Encoding to be assumed for `path`. See [readLines()].
 #' @param meta A list of package metadata as obtained by
 #'   [utils::packageDescription()] or `NULL` (the default). See **Details**.
-#' @param ... Arguments to be passed to other functions.
+#' @param ... Arguments to be passed to other functions (i.e. to
+#'   [yaml::read_yaml()], [bibtex::read.bib()], etc.).
 #'
 #' @return
 #' A [`cff`][cff-class] object. In the case of [cff_read_cff_citation()] and
 #' [cff_read_description()] a full and (potentially) valid `cff` object.
 #'
+#'
 #' In the case of [cff_read_bib()] and [cff_read_citation()], the result is
 #' the `cff` version of a [bibentry()] object (i.e. a bibliographic reference),
-#' that can be used to complement another `cff` object.
+#' that can be used to complement another `cff` object. See
+#' `vignette("bibtex_cff", "cffr")` to get further insights on how this
+#' conversion is performed.
 #'
 #'
 #' @references
 #'
-#' R Core Team (2023). _Writing R Extensions_.
-#' <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>
+#' - R Core Team (2023). _Writing R Extensions_.
+#'   <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>
+#'
+#' - Hernangomez D (2022). "BibTeX and CFF, a potential crosswalk."
+#'   *The cffr package, Vignettes*. \doi{10.21105/joss.03900},
+#'   <https://docs.ropensci.org/cffr/articles/bibtex_cff.html>.
 #'
 #' @details
+#'
+#' # The `meta` object
 #'
 #' Section 1.9 CITATION files of *Writing R Extensions* (R Core Team 2023)
 #' specifies how to create dynamic `CITATION` files using `meta` object, hence
@@ -53,7 +63,32 @@
 #' some files correctly.
 #'
 #' @examples
-#' # TODO
+#'
+#' # Create cff object from cff file
+#'
+#' from_cff_file <- cff_read(system.file("examples/CITATION_basic.cff",
+#'   package = "cffr"
+#' ))
+#'
+#' head(from_cff_file, 7)
+#'
+#' # Create cff object from DESCRIPTION
+#' from_desc <- cff_read(system.file("examples/DESCRIPTION_basic", package = "cffr"))
+#'
+#' from_desc
+#'
+#' # Create cff object from BibTex
+#'
+#' from_bib <- cff_read(system.file("examples/example.bib", package = "cffr"))
+#'
+#' # First item only
+#' from_bib[[1]]
+#'
+#' # Create cff object from CITATION
+#' from_citation <- cff_read(system.file("CITATION", package = "cffr"))
+#'
+#' # First item only
+#' from_citation[[1]]
 #'
 cff_read <- function(path, ...) {
   if (length(path) > 1) {
@@ -95,7 +130,7 @@ cff_read_cff_citation <- function(path, ...) {
     )
   }
 
-  cffobj <- yaml::read_yaml(path)
+  cffobj <- yaml::read_yaml(path, ...)
   new_cff(cffobj)
 }
 
@@ -199,8 +234,15 @@ cff_read_citation <- function(path, meta = NULL, ...) {
     }
     # nocov end
   }
-  tocff <- cff_parse_citation(the_cit)
-  new_cff(tocff)
+  tocff <- lapply(the_cit, cff_parse_citation)
+  make_names <- vapply(tocff, function(x) {
+    myname <- gsub("[^a-z]", "", tolower(x$title))
+    substr(myname, 1, 10)
+  }, character(1))
+
+  names(tocff) <- make_names
+  tocff <- new_cff(tocff)
+  unname(tocff)
 }
 
 #' @export
@@ -229,10 +271,42 @@ cff_read_bib <- function(path, encoding = "UTF-8", ...) {
   read_bib <- bibtex::read.bib(file = path, encoding = encoding, ...)
 
 
-  tocff <- cff_parse_citation(read_bib)
-  new_cff(tocff)
+  tocff <- lapply(read_bib, cff_parse_citation)
+  tocff <- new_cff(tocff)
+  unname(tocff)
 }
 
+# Internal safe ----
+#' Internal version of cff_read_citation, safe
+#' @noRd
+cff_safe_read_citation <- function(desc_path, cit_path) {
+  if (!file.exists(cit_path) || !file.exists(desc_path)) {
+    return(NULL)
+  }
+  # Create meta
+  meta <- desc_to_meta(desc_path)
+  meta <- clean_package_meta(meta)
+
+
+  the_cit <- try(utils::readCitationFile(cit_path, meta = meta), silent = TRUE)
+  # Try
+  if (inherits(the_cit, "try-error")) {
+    return(NULL)
+  }
+
+  # Need to be named here
+  tocff <- lapply(the_cit, cff_parse_citation)
+  make_names <- vapply(tocff, function(x) {
+    myname <- gsub("[^a-z]", "", tolower(x$title))
+    substr(myname, 1, 10)
+  }, character(1))
+
+  names(tocff) <- make_names
+  tocff <- new_cff(tocff)
+  unname(tocff)
+}
+
+# Helpers ----
 
 guess_type_file <- function(path) {
   if (grepl("\\.cff$", path, ignore.case = TRUE)) {
@@ -260,7 +334,10 @@ guess_type_file <- function(path) {
 #' @noRd
 clean_package_meta <- function(meta) {
   if (!inherits(meta, "packageDescription")) {
-    return(NULL)
+    # Add encoding
+    meta <- list()
+    meta$Encoding <- "UTF-8"
+    return(meta)
   }
 
   # Convert to a desc object
@@ -287,17 +364,21 @@ clean_package_meta <- function(meta) {
   meta
 }
 
-# For testing, packageDescription object from desc
-test_meta <- function(x) {
+
+
+# Convert a DESCRIPTION object to meta object using desc package
+desc_to_meta <- function(x) {
   src <- x
   my_meta <- desc::desc(src)
+  my_meta$coerce_authors_at_r()
+
 
   # As list
   my_meta_l <- my_meta$get(desc::cran_valid_fields)
   my_meta_l <- as.list(my_meta_l)
   v_nas <- vapply(my_meta_l, is.na, logical(1))
-
   my_meta_l <- my_meta_l[!v_nas]
+
   meta_proto <- packageDescription("cffr")
 
   class(my_meta_l) <- class(meta_proto)

@@ -153,10 +153,10 @@ cff_create <- function(x, keys = list(), cff_version = "1.2.0",
         cit_path <- gsub("DESCRIPTION$", "CITATION", x)
       }
       if (file.exists(cit_path)) {
-        citobj <- parse_r_citation(desc_path, cit_path)
-        citobj <- lapply(citobj, cff_parse_citation)
+        citobj <- cff_safe_read_citation(desc_path, cit_path)
         if (length(citobj) == 0) citobj <- NULL
         citobj <- drop_null(citobj)
+        citobj <- unname(citobj)
       }
     } else {
       msg <- paste0(

@@ -27,7 +27,8 @@ cff_read_bib(path, encoding = "UTF-8", ...)
 \arguments{
 \item{path}{Path to a file}
 
-\item{...}{Arguments to be passed to other functions.}
+\item{...}{Arguments to be passed to other functions (i.e. to
+\code{\link[yaml:read_yaml]{yaml::read_yaml()}}, \code{\link[bibtex:read.bib]{bibtex::read.bib()}}, etc.).}
 
 \item{cff_version}{The Citation File Format schema version that the
 \code{CITATION.cff} file adheres to for providing the citation metadata.}
@@ -49,7 +50,9 @@ A \code{\link[=cff-class]{cff}} object. In the case of \code{\link[=cff_read_cff
 
 In the case of \code{\link[=cff_read_bib]{cff_read_bib()}} and \code{\link[=cff_read_citation]{cff_read_citation()}}, the result is
 the \code{cff} version of a \code{\link[=bibentry]{bibentry()}} object (i.e. a bibliographic reference),
-that can be used to complement another \code{cff} object.
+that can be used to complement another \code{cff} object. See
+\code{vignette("bibtex_cff", "cffr")} to get further insights on how this
+conversion is performed.
 }
 \description{
 Read files and convert them to \code{\link[=cff-class]{cff}} objects. Files supported
@@ -71,17 +74,48 @@ we provide a series of alias for each specific type of file:
 \code{\link[bibtex:read.bib]{bibtex::read.bib()}}.
 }
 }
-\details{
+\section{The \code{meta} object}{
 Section 1.9 CITATION files of \emph{Writing R Extensions} (R Core Team 2023)
 specifies how to create dynamic \code{CITATION} files using \code{meta} object, hence
 the \code{meta} argument in \code{\link[=cff_read_citation]{cff_read_citation()}} may be needed for reading
 some files correctly.
 }
+
 \examples{
-# TODO
+
+# Create cff object from cff file
+
+from_cff_file <- cff_read(system.file("examples/CITATION_basic.cff",
+  package = "cffr"
+))
+
+head(from_cff_file, 7)
+
+# Create cff object from DESCRIPTION
+from_desc <- cff_read(system.file("examples/DESCRIPTION_basic", package = "cffr"))
+
+from_desc
+
+# Create cff object from BibTex
+
+from_bib <- cff_read(system.file("examples/example.bib", package = "cffr"))
+
+# First item only
+from_bib[[1]]
+
+# Create cff object from CITATION
+from_citation <- cff_read(system.file("CITATION", package = "cffr"))
+
+# First item only
+from_citation[[1]]
 
 }
 \references{
-R Core Team (2023). \emph{Writing R Extensions}.
+\itemize{
+\item R Core Team (2023). \emph{Writing R Extensions}.
 \url{https://cran.r-project.org/doc/manuals/r-release/R-exts.html}
+\item Hernangomez D (2022). "BibTeX and CFF, a potential crosswalk."
+\emph{The cffr package, Vignettes}. \doi{10.21105/joss.03900},
+\url{https://docs.ropensci.org/cffr/articles/bibtex_cff.html}.
+}
 }

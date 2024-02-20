@@ -88,7 +88,7 @@ toBibtex(desc_file)
 \item Haines, R., & The Ruby Citation File Format Developers. (2021).
 \emph{Ruby CFF Library (Version 0.9.0)} (Computer software).
 \doi{10.5281/zenodo.1184077}.
-\item Hernangómez D (2022). "BibTeX and CFF, a potential crosswalk."
+\item Hernangomez D (2022). "BibTeX and CFF, a potential crosswalk."
 \emph{The cffr package, Vignettes}. \doi{10.21105/joss.03900},
 \url{https://docs.ropensci.org/cffr/articles/bibtex_cff.html}.
 }

@@ -20,7 +20,7 @@
 #'   *Ruby CFF Library (Version 0.9.0)* (Computer software).
 #'   \doi{10.5281/zenodo.1184077}.
 #'
-#' - Hernangómez D (2022). "BibTeX and CFF, a potential crosswalk."
+#' - Hernangomez D (2022). "BibTeX and CFF, a potential crosswalk."
 #'   *The cffr package, Vignettes*. \doi{10.21105/joss.03900},
 #'   <https://docs.ropensci.org/cffr/articles/bibtex_cff.html>.
 #'

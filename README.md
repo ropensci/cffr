@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2024-02-19 there are at least 261 repos on GitHub using **cffr**.
+As per 2024-02-20 there are at least 267 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -561,25 +561,6 @@ test <- cff_create("rmarkdown")
         given-names: Michael
       year: '2024'
     - type: software
-      title: dygraphs
-      abstract: 'dygraphs: Interface to ''Dygraphs'' Interactive Time Series Charting
-        Library'
-      notes: Suggests
-      url: https://github.com/rstudio/dygraphs
-      repository: https://CRAN.R-project.org/package=dygraphs
-      authors:
-      - family-names: Vanderkam
-        given-names: Dan
-      - family-names: Allaire
-        given-names: JJ
-      - family-names: Owen
-        given-names: Jonathan
-      - family-names: Gromer
-        given-names: Daniel
-      - family-names: Thieurmel
-        given-names: Benoit
-      year: '2024'
-    - type: software
       title: fs
       abstract: 'fs: Cross-Platform File System Operations Based on ''libuv'''
       notes: Suggests
@@ -596,26 +577,6 @@ test <- cff_create("rmarkdown")
         email: csardi.gabor@gmail.com
       year: '2024'
     - type: software
-      title: rsconnect
-      abstract: 'rsconnect: Deploy Docs, Apps, and APIs to ''Posit Connect'', ''shinyapps.io'',
-        and ''RPubs'''
-      notes: Suggests
-      url: https://rstudio.github.io/rsconnect/
-      repository: https://CRAN.R-project.org/package=rsconnect
-      authors:
-      - family-names: Atkins
-        given-names: Aron
-        email: aron@posit.co
-      - family-names: Allen
-        given-names: Toph
-      - family-names: Wickham
-        given-names: Hadley
-      - family-names: McPherson
-        given-names: Jonathan
-      - family-names: Allaire
-        given-names: JJ
-      year: '2024'
-    - type: software
       title: downlit
       abstract: 'downlit: Syntax Highlighting and Automatic Linking'
       notes: Suggests
@@ -627,19 +588,6 @@ test <- cff_create("rmarkdown")
         email: hadley@posit.co
       year: '2024'
       version: '>= 0.4.0'
-    - type: software
-      title: katex
-      abstract: 'katex: Rendering Math to HTML, ''MathML'', or R-Documentation Format'
-      notes: Suggests
-      url: https://docs.ropensci.org/katex/
-      repository: https://CRAN.R-project.org/package=katex
-      authors:
-      - family-names: Ooms
-        given-names: Jeroen
-        email: jeroen@berkeley.edu
-        orcid: https://orcid.org/0000-0002-4035-0289
-      year: '2024'
-      version: '>= 1.4.0'
     - type: software
       title: sass
       abstract: 'sass: Syntactically Awesome Style Sheets (''Sass'')'
