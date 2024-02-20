@@ -100,6 +100,8 @@ cff_parse_citation <- function(bib) {
 
   # Parse BibTeX fields ----
   parsed_fields <- parse_bibtex_fields(parse_cit)
+  # VGAM: title is a vector
+  parsed_fields$title <- clean_str(parsed_fields$title)
 
   ## Handle collection types ----
   parsed_fields <- add_bibtex_coltype(parsed_fields)

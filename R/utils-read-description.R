@@ -8,6 +8,9 @@ parse_desc_abstract <- function(pkg) {
   abstract <- clean_str(abstract)
   abstract <- unname(abstract)
 
+  # Convert doi to url
+  abstract <- gsub("<doi:", "<https://doi.org/", abstract, fixed = TRUE)
+
   abstract
 }
 
