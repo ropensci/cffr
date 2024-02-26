@@ -8,7 +8,7 @@
 #'
 #' @name cff_git_hook
 #'
-#' @family Git helpers
+#' @family git
 #'
 #' @export
 #'

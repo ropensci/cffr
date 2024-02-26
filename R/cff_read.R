@@ -3,9 +3,9 @@
 #' @description
 #' Read files and convert them to [`cff`][cff-class] objects. Files supported
 #' are:
-#' - `CITATION.cff` files
-#' - `DESCRIPTION` files
-#' - **R** citation files (usually located in `inst/CITATION`)
+#' - `CITATION.cff` files.
+#' - `DESCRIPTION` files.
+#' - **R** citation files (usually located in `inst/CITATION`).
 #' - BibTeX files (with extension `*.bib`).
 #'
 #' [cff_read()] would try to guess the type of file provided in `path`. However
@@ -18,8 +18,16 @@
 #'
 #' @export
 #' @rdname cff_read
+#' @family reading
+#' @seealso
 #'
-#' @param path Path to a file
+#' The underlying functions used for reading external files:
+#' - [yaml::read_yaml()] for `CITATION.cff` files.
+#' - [desc::desc()] for `DESCRIPTION` files.
+#' - [utils::readCitationFile()] for **R** citation files.
+#' - [bibtex::read.bib()] for BibTeX files (extension `*.bib`).
+#'
+#' @param path Path to a file.
 #' @param cff_version The Citation File Format schema version that the
 #'   `CITATION.cff` file adheres to for providing the citation metadata.
 #' @param gh_keywords Logical `TRUE/FALSE`. If the package is hosted on
@@ -79,11 +87,12 @@
 #'
 #' # Create cff object from BibTex
 #'
-#' from_bib <- cff_read(system.file("examples/example.bib", package = "cffr"))
+#' if (requireNamespace("bibtex", quietly = TRUE)) {
+#'   from_bib <- cff_read(system.file("examples/example.bib", package = "cffr"))
 #'
-#' # First item only
-#' from_bib[[1]]
-#'
+#'   # First item only
+#'   from_bib[[1]]
+#' }
 #' # Create cff object from CITATION
 #' from_citation <- cff_read(system.file("CITATION", package = "cffr"))
 #'
@@ -246,6 +255,7 @@ cff_read_citation <- function(path, meta = NULL, ...) {
 }
 
 #' @export
+#' @family bibtex
 #' @rdname cff_read
 cff_read_bib <- function(path, encoding = "UTF-8", ...) {
   if (!file.exists(path)) {

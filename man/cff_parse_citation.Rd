@@ -81,7 +81,7 @@ cff_parse_citation(citation("rmarkdown"))
 \seealso{
 \code{\link[=cff_create]{cff_create()}}, \code{vignette("bibtex_cff", "cffr")}, \code{\link[=bibentry]{bibentry()}}
 
-Other Parsers: 
+Other parsers: 
 \code{\link{cff_parse_person}()}
 }
-\concept{Parsers}
+\concept{parsers}

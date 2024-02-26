@@ -112,9 +112,9 @@ cff_create(demo_file, keys = list("contact" = new_contact))
 
 \code{vignette("cffr", "cffr")}
 
-Other Core functions: 
+Other core functions of \CRANpkg{cffr}:
 \code{\link{cff}()},
 \code{\link{cff_validate}()},
 \code{\link{cff_write}()}
 }
-\concept{Core functions}
+\concept{core}

@@ -31,7 +31,7 @@ both the preferred citation info and the references.
 }}
 }
 \value{
-See \code{\link[=cff_to_bibentry]{cff_to_bibentry()}}
+See \code{\link[=cff_to_bibentry]{cff_to_bibentry()}}.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}} Please use \code{\link[=cff_to_bibentry]{cff_to_bibentry()}} instead.
@@ -47,4 +47,9 @@ cff_object
 bib <- cff_to_bibentry(cff_object)
 }
 }
+\seealso{
+Other deprecated functions:
+\code{\link{cff_from_bibtex}()}
+}
+\concept{deprecated}
 \keyword{internal}

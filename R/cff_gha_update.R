@@ -26,7 +26,7 @@
 #' }
 #' @export
 #'
-#' @family Git helpers
+#' @family git
 cff_gha_update <- function(path = ".",
                            overwrite = FALSE) {
   destdir <- file.path(path, ".github", "workflows")

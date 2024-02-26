@@ -7,7 +7,7 @@
 #'
 #' @param x A string, possibly encoded in UTF-8 encoding system.
 #'
-#' @family BibTeX helpers
+#' @family bibtex
 #'
 #' @seealso [tools::encoded_text_to_latex()]
 #'

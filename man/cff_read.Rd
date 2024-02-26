@@ -25,7 +25,7 @@ cff_read_citation(path, meta = NULL, ...)
 cff_read_bib(path, encoding = "UTF-8", ...)
 }
 \arguments{
-\item{path}{Path to a file}
+\item{path}{Path to a file.}
 
 \item{...}{Arguments to be passed to other functions (i.e. to
 \code{\link[yaml:read_yaml]{yaml::read_yaml()}}, \code{\link[bibtex:read.bib]{bibtex::read.bib()}}, etc.).}
@@ -58,9 +58,9 @@ conversion is performed.
 Read files and convert them to \code{\link[=cff-class]{cff}} objects. Files supported
 are:
 \itemize{
-\item \code{CITATION.cff} files
-\item \code{DESCRIPTION} files
-\item \strong{R} citation files (usually located in \code{inst/CITATION})
+\item \code{CITATION.cff} files.
+\item \code{DESCRIPTION} files.
+\item \strong{R} citation files (usually located in \code{inst/CITATION}).
 \item BibTeX files (with extension \verb{*.bib}).
 }
 
@@ -98,11 +98,12 @@ from_desc
 
 # Create cff object from BibTex
 
-from_bib <- cff_read(system.file("examples/example.bib", package = "cffr"))
+if (requireNamespace("bibtex", quietly = TRUE)) {
+  from_bib <- cff_read(system.file("examples/example.bib", package = "cffr"))
 
-# First item only
-from_bib[[1]]
-
+  # First item only
+  from_bib[[1]]
+}
 # Create cff object from CITATION
 from_citation <- cff_read(system.file("CITATION", package = "cffr"))
 
@@ -119,3 +120,25 @@ from_citation[[1]]
 \url{https://docs.ropensci.org/cffr/articles/bibtex_cff.html}.
 }
 }
+\seealso{
+The underlying functions used for reading external files:
+\itemize{
+\item \code{\link[yaml:read_yaml]{yaml::read_yaml()}} for \code{CITATION.cff} files.
+\item \code{\link[desc:desc]{desc::desc()}} for \code{DESCRIPTION} files.
+\item \code{\link[utils:citation]{utils::readCitationFile()}} for \strong{R} citation files.
+\item \code{\link[bibtex:read.bib]{bibtex::read.bib()}} for BibTeX files (extension \verb{*.bib}).
+}
+
+Reading other files as \code{cff}:
+\code{\link{cff_read_biblines}()}
+
+Other functions for working with BibTeX format:
+\code{\link{cff_read_biblines}()},
+\code{\link{cff_to_bibentry}()},
+\code{\link{encoded_utf_to_latex}()},
+\code{\link{toBibtex.cff}()},
+\code{\link{write_bib}()},
+\code{\link{write_citation}()}
+}
+\concept{bibtex}
+\concept{reading}

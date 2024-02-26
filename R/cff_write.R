@@ -9,7 +9,7 @@
 #' function is basically a wrapper around [cff_create()] to both create the
 #' [`cff`] object and writes it out to a YAML-formatted file in one command.
 #'
-#' @family Core functions
+#' @family core
 #'
 #' @param x The source that would be used for generating
 #'   the `CITATION.cff` file. It could be:

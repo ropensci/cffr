@@ -935,3 +935,106 @@
       message: If you use this software, please cite it using these metadata.
       title: My Research Software
 
+# toBibtex
+
+    Code
+      toBibtex(full_cff)
+    Output
+      @Misc{druskatspaaks:2021,
+        title = {Citation File Format},
+        author = {Stephan Druskat and Jurriaan H. Spaaks and Neil {Chue Hong} and Robert Haines and James Baker and Spencer Bliven and Egon Willighagen and David Pérez-Suárez and Alexander Konovalov},
+        year = {2021},
+        month = {aug},
+        doi = {10.5281/zenodo.5171937},
+        url = {https://github.com/citation-file-format/citation-file-format},
+        abstract = {The Citation File Format lets you provide citation metadata for software or datasets in plaintext files that are easy to read by both humans and machines.},
+        urldate = {2021-11-07},
+      }
+
+---
+
+    Code
+      toBibtex(full_cff, what = "references")
+    Output
+      @Article{hernangomez:2021,
+        title = {cffr: Generate Citation File Format Metadata for R Packages},
+        author = {Diego Hernangómez},
+        year = {2021},
+        journal = {Journal of Open Source Software},
+        publisher = {The Open Journal},
+        volume = {6},
+        number = {67},
+        pages = {3900},
+        doi = {10.21105/joss.03900},
+        url = {https://doi.org/10.21105/joss.03900},
+        note = {Publisher: The Open Journal},
+      }
+      
+      @Article{boettigerchamberlain:2016,
+        title = {RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic, Character, and Trait Data in R},
+        author = {Carl Boettiger and Scott Chamberlain and Rutger Vos and Hilmar Lapp},
+        year = {2016},
+        journal = {Methods in Ecology and Evolution},
+        volume = {7},
+        pages = {352--357},
+        doi = {10.1111/2041-210X.12469},
+      }
+      
+      @Book{wickham:2016,
+        title = {ggplot2: Elegant Graphics for Data Analysis},
+        author = {Hadley Wickham},
+        year = {2016},
+        publisher = {Springer-Verlag New York},
+        isbn = {978-3-319-24277-4},
+        url = {https://ggplot2.tidyverse.org},
+      }
+
+---
+
+    Code
+      toBibtex(full_cff, what = "all")
+    Output
+      @Misc{druskatspaaks:2021,
+        title = {Citation File Format},
+        author = {Stephan Druskat and Jurriaan H. Spaaks and Neil {Chue Hong} and Robert Haines and James Baker and Spencer Bliven and Egon Willighagen and David Pérez-Suárez and Alexander Konovalov},
+        year = {2021},
+        month = {aug},
+        doi = {10.5281/zenodo.5171937},
+        url = {https://github.com/citation-file-format/citation-file-format},
+        abstract = {The Citation File Format lets you provide citation metadata for software or datasets in plaintext files that are easy to read by both humans and machines.},
+        urldate = {2021-11-07},
+      }
+      
+      @Article{hernangomez:2021,
+        title = {cffr: Generate Citation File Format Metadata for R Packages},
+        author = {Diego Hernangómez},
+        year = {2021},
+        journal = {Journal of Open Source Software},
+        publisher = {The Open Journal},
+        volume = {6},
+        number = {67},
+        pages = {3900},
+        doi = {10.21105/joss.03900},
+        url = {https://doi.org/10.21105/joss.03900},
+        note = {Publisher: The Open Journal},
+      }
+      
+      @Article{boettigerchamberlain:2016,
+        title = {RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic, Character, and Trait Data in R},
+        author = {Carl Boettiger and Scott Chamberlain and Rutger Vos and Hilmar Lapp},
+        year = {2016},
+        journal = {Methods in Ecology and Evolution},
+        volume = {7},
+        pages = {352--357},
+        doi = {10.1111/2041-210X.12469},
+      }
+      
+      @Book{wickham:2016,
+        title = {ggplot2: Elegant Graphics for Data Analysis},
+        author = {Hadley Wickham},
+        year = {2016},
+        publisher = {Springer-Verlag New York},
+        isbn = {978-3-319-24277-4},
+        url = {https://ggplot2.tidyverse.org},
+      }
+

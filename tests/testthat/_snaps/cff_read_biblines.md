@@ -1,4 +1,22 @@
-# From Bibtex entries
+# Errors and messages
+
+    Code
+      cff_read_biblines(a_cff)
+    Condition
+      Error in `cff_read_biblines()`:
+      ! `x` should be a <character>, not a <cff>.
+
+---
+
+    Code
+      cff_read_biblines("a bad line")
+    Message
+      ! `x` doesn't look as a BibTeX entry. Check the results.
+    Condition
+      Error:
+      ! Invalid bib file
+
+# Read lines
 
     Code
       list
@@ -22,4 +40,12 @@
         month: '10'
         notes: This is a full MISC entry
         medium: Handed out at O'Hare
+
+---
+
+    Code
+      fromfile <- cff_read_biblines(tmpbib)
+    Message
+      ! `x` seems to be a ".bib" file, not a BibTeX entry.
+      i Reading `x` with `cffr:cff_read_bib()`
 

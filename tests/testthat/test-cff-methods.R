@@ -196,3 +196,58 @@ test_that("head and tail", {
   expect_snapshot(tail(a_cff, 2))
   expect_s3_class(tail(a_cff, 2), "cff")
 })
+
+test_that("toBibtex", {
+  # Create several alternatives
+  descobj <- cff_read_description(system.file("examples/DESCRIPTION_basic",
+    package = "cffr"
+  ))
+
+  citobj <- cff_read_citation(system.file("examples/CITATION_basic",
+    package = "cffr"
+  ))
+  newbib <- cff_read_bib(system.file("examples/example.bib",
+    package = "cffr"
+  ))
+
+  full_cff <- merge_desc_cit(descobj, c(newbib, citobj))
+  full_cff <- new_cff(full_cff)
+  expect_true(cff_validate(full_cff, verbose = FALSE))
+
+  # A. validate extractions
+  expect_snapshot(toBibtex(full_cff))
+  expect_snapshot(toBibtex(full_cff, what = "references"))
+  expect_snapshot(toBibtex(full_cff, what = "all"))
+
+  # single entries
+  single <- toBibtex(full_cff$`preferred-citation`)
+  expect_s3_class(single, "Bibtex")
+  expect_equal(sum(names(single) == "title"), 1)
+
+  # Several entries
+  several <- toBibtex(full_cff$references)
+  expect_s3_class(several, "Bibtex")
+  expect_equal(sum(names(several) == "title"), 3)
+
+
+  # One entry
+  oneent <- toBibtex(full_cff$references[[1]])
+  expect_s3_class(single, "Bibtex")
+  expect_equal(sum(names(oneent) == "title"), 1)
+
+  fromfile <- toBibtex(newbib)
+  expect_s3_class(fromfile, "Bibtex")
+  expect_equal(sum(names(fromfile) == "title"), 2)
+
+  # From lines
+  string <- "@book{einstein1921,
+    title        = {Relativity: The Special and the General Theory},
+    author       = {Einstein, A.},
+    year         = 1920,
+    publisher    = {Henry Holt and Company},
+    address      = {London, United Kingdom},
+    isbn         = 9781587340925}"
+
+  froml <- toBibtex(cff_read_biblines(string))
+  expect_equal(sum(names(froml) == "title"), 1)
+})

@@ -1,12 +1,11 @@
-test_that("test errors", {
-  x <- c(1, 2, 3)
-  expect_error(cff_from_bibtex(x))
-
-  x <- cff()
-  expect_error(cff_from_bibtex(x))
+test_that("Errors and messages", {
+  skip_if_not_installed("bibtex", "0.5.0")
+  a_cff <- cff()
+  expect_snapshot(cff_read_biblines(a_cff), error = TRUE)
+  expect_snapshot(cff_read_biblines("a bad line"), error = TRUE)
 })
 
-test_that("From Bibtex entries", {
+test_that("Read lines", {
   skip_if_not_installed("bibtex", "0.5.0")
 
   x <- c(
@@ -28,10 +27,17 @@ test_that("From Bibtex entries", {
 }"
   )
 
-  list <- cff_from_bibtex(x)
+  list <- cff_read_biblines(x)
 
   expect_s3_class(list, "cff")
   expect_length(list, 2)
 
   expect_snapshot(list)
+
+  # Create a Bibtex file with that lines
+  tmpbib <- tempfile(fileext = ".bib")
+  writeLines(x, tmpbib)
+
+  expect_snapshot(fromfile <- cff_read_biblines(tmpbib))
+  expect_identical(fromfile, list)
 })

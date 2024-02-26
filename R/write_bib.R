@@ -13,7 +13,7 @@
 #' @param ascii Whether to write the entries using ASCII characters only or not.
 #'
 #' @export
-#' @family BibTeX helpers
+#' @family bibtex
 #'
 #' @return Writes an `.bib` file specified on `file` parameter and the
 #' equivalent `Bibtex` object created with [utils::toBibtex()]. It also

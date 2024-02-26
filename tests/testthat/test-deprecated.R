@@ -15,3 +15,23 @@ test_that("cff_to_bibtex", {
 
   expect_identical(current, old1)
 })
+
+test_that("cff_from_bibtex", {
+  # From file
+  x2 <- system.file("examples/example.bib", package = "cffr")
+  expect_snapshot(ffile <- cff_from_bibtex(x2))
+  expect_identical(ffile, cff_read_bib(x2))
+
+  # From lines
+  x <- "@book{einstein1921,
+          title        = {Relativity: The Special and the General Theory},
+          author       = {Einstein, Albert},
+          year         = 1920,
+          publisher    = {Henry Holt and Company},
+          address      = {London, United Kingdom},
+          isbn         = 9781587340925
+      }"
+
+  expect_snapshot(flines <- cff_from_bibtex(x))
+  expect_identical(flines, cff_read_biblines(x))
+})

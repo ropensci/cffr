@@ -10,9 +10,9 @@ license: GPL-3.0-or-later
 title: 'cffr: Generate Citation File Format (''cff'') Metadata for R Packages'
 version: 0.5.0.9000
 doi: 10.21105/joss.03900
-abstract: The Citation File Format version 1.2.0 <doi:10.5281/zenodo.5171937> is a
-  human and machine readable file format which provides citation metadata for software.
-  This package provides core utilities to generate and validate this metadata.
+abstract: The Citation File Format version 1.2.0 <https://doi.org/10.5281/zenodo.5171937>
+  is a human and machine readable file format which provides citation metadata for
+  software. This package provides core utilities to generate and validate this metadata.
 authors:
 - family-names: Hernangómez
   given-names: Diego

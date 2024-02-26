@@ -34,7 +34,7 @@ cff_gha_update()
 }
 }
 \seealso{
-Other Git helpers: 
+Other Git/GitHub helpers:
 \code{\link{cff_git_hook}}
 }
-\concept{Git helpers}
+\concept{git}

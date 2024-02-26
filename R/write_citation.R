@@ -20,7 +20,7 @@
 #' @inheritDotParams cff_to_bibentry
 #'
 #' @export
-#' @family BibTeX helpers
+#' @family bibtex
 #'
 #' @return Writes an `inst/CITATION` file and (invisibly) returns the
 #' `bibentry` object that has been written to the file.

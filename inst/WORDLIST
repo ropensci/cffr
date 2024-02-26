@@ -40,7 +40,6 @@ Niemeyer
 ORCID
 Oren
 Pandoc
-Parsers
 Patashnik
 PhDThesis
 Philipp
@@ -52,7 +51,6 @@ Rbuildignore
 Reproducibility
 Riederer
 SPDX
-Schemas
 Spaaks
 Suárez
 TechReport
@@ -90,6 +88,7 @@ rOpenSci
 repo
 repos
 rmarkdown
+schemas
 testthat
 xampl
 zenodo

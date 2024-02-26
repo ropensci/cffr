@@ -89,10 +89,12 @@ R version 4.3.0 (2023-04-21) edition.
 \seealso{
 \code{\link[=bibentry]{bibentry()}} and \code{style} argument.
 
-Other BibTeX helpers: 
-\code{\link{cff_from_bibtex}()},
+Other functions for working with BibTeX format:
+\code{\link{cff_read}()},
+\code{\link{cff_read_biblines}()},
 \code{\link{cff_to_bibentry}()},
 \code{\link{encoded_utf_to_latex}()},
+\code{\link{toBibtex.cff}()},
 \code{\link{write_bib}()}
 }
-\concept{BibTeX helpers}
+\concept{bibtex}

@@ -39,7 +39,7 @@
 #'   - `all`: A combination of the previous two options. This would extract
 #'      both the preferred citation info and the references.
 #'
-#' @family BibTeX helpers
+#' @family bibtex
 #'
 #' @return A `bibentry` object or a list of `bibentry` objects. This could
 #' be parsed to BibTeX using [toBibtex()]

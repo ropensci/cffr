@@ -9,7 +9,7 @@
 #'
 #' @export
 #'
-#' @family Parsers
+#' @family parsers
 #'
 #' @param person A `person` object created with [person()] or a
 #'   character string. See **Details**.

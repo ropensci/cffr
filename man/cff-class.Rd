@@ -2,6 +2,7 @@
 % Please edit documentation in R/docs.R
 \name{cff-class}
 \alias{cff-class}
+\alias{cff_class}
 \title{The \code{cff} class}
 \description{
 \subsection{The \code{cff} class}{

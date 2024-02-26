@@ -76,7 +76,7 @@ cff_parse_person_bibtex("Herbert von Karajan")
 \seealso{
 \code{\link[=cff_create]{cff_create()}}, \code{vignette("cffr", "cffr")}, \code{\link[utils:person]{utils::person()}}
 
-Other Parsers: 
+Other parsers: 
 \code{\link{cff_parse_citation}()}
 }
-\concept{Parsers}
+\concept{parsers}

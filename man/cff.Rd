@@ -104,9 +104,9 @@ class(cffobj)
 cffobj
 }
 \seealso{
-Other Core functions: 
+Other core functions of \CRANpkg{cffr}:
 \code{\link{cff_create}()},
 \code{\link{cff_validate}()},
 \code{\link{cff_write}()}
 }
-\concept{Core functions}
+\concept{core}

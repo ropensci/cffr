@@ -10,7 +10,7 @@
 #'
 #' @return A [`cff`][cff-class] object.
 #'
-#' @family Core functions
+#' @family core
 #'
 #' @export
 #'

@@ -79,3 +79,47 @@ head.cff <- function(x, n = 6L, ...) {
 tail.cff <- function(x, n = 6L, ...) {
   as.cff(NextMethod())
 }
+
+
+#' Converting [`cff`][cff-class] objects to BibTeX
+#'
+#' @description
+#'
+#' This method convert [`cff`][cff-class] objects to `Bibtex` objects as
+#' provided by [utils::toBibtex()]. These objects are character vectors with
+#' BibTeX markup.
+#'
+#' @keywords internal
+#' @family s3method
+#' @family bibtex
+#' @export
+#' @rdname toBibtex.cff
+#' @seealso [utils::toBibtex()]
+#'
+#' @param object `cff` object.
+#' @param ... Arguments passed to [utils::toBibtex()].
+#' @inheritParams cff_to_bibentry
+#'
+#' @examples
+#' a_cff <- cff_create("cffr")
+#' a_cff$`preferred-citation`
+#'
+#' toBibtex(a_cff, "preferred")
+toBibtex.cff <- function(object, ...,
+                         what = c("preferred", "references", "all")) {
+  # If a single reference...
+  if ("cff-version" %in% names(object)) {
+    # If full cff
+    biblist_cff <- cff_to_bibentry(x = object, what = what)
+  } else {
+    # Need to enlist if single
+    if ("type" %in% names(object)) {
+      object <- list(object)
+      class(object) <- c("cff", "list")
+    }
+
+    bib_list <- lapply(object, cff_bibtex_parser)
+    biblist_cff <- do.call(c, bib_list)
+  }
+  toBibtex(biblist_cff, ...)
+}

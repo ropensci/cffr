@@ -13,7 +13,9 @@
 
 -   Now reading from external files is performed exclusively by `cff_read()` and
     additionally by the more-specific new functions `cff_read_cff_citation()`,
-    `cff_read_description()`, `cff_read_citation()` and `cff_read_bib()`.
+    `cff_read_description()`, `cff_read_citation()` and `cff_read_bib()`. It is
+    also possible to read BibTeX lines with `cff_read_biblines()`. Previous
+    function `cff_from_bibtex()` is now superseded.
 
     ### Methods
 
@@ -27,8 +29,9 @@
         [entity](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsentity)
         (e.g. authors, contacts, editors, publisher).
     -   `head.cff()`, `tail.cff()`.
+    -   `toBibtex.cff()`
 
-## Changes on bibtex crosswalk
+## Changes on BibTeX crosswalk
 
 -   **\@inbook** and **\@book** gains a new value on [CFF]{.underline} when
     **series** is provided: [collection-type: book-series.]{.underline}
