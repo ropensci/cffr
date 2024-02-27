@@ -14,7 +14,8 @@ cff_git_hook_remove()
 Invisible. This function is called for its side effects.
 }
 \description{
-Install a \href{https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workflow_hooks}{pre-commit hook}
+Install a
+\href{https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workflow_hooks}{pre-commit hook}
 that remembers you to update your \code{CITATION.cff} file.
 }
 \details{
@@ -27,7 +28,7 @@ following conditions are met:
 \itemize{
 \item You included in a commit your \code{DESCRIPTION} or \code{inst/CITATION} file, you
 are not including your \code{CITATION.cff} and the \code{CITATION.cff} file is
-"older" than any of your \code{DESCRIPTION} or \code{inst/CITATION} file, or
+"older" than any of your \code{DESCRIPTION} or \code{inst/CITATION} file.
 \item You have updated your \code{CITATION.cff} but you are not including it on
 your commit.
 }

@@ -7,7 +7,7 @@
 cff_gha_update(path = ".", overwrite = FALSE)
 }
 \arguments{
-\item{path}{Project directory}
+\item{path}{Project directory.}
 
 \item{overwrite}{Logical. If already present, do you want to overwrite your
 action?}
@@ -16,7 +16,8 @@ action?}
 Invisible, this function is called by its side effects.
 }
 \description{
-This function would install a GitHub Action on your repo. The action
+This function would install a
+\href{https://github.com/features/actions}{GitHub Action} on your repo. The action
 will update your \code{CITATION.cff} when any of these events occur:
 \itemize{
 \item You publish a new release of the package.
@@ -25,8 +26,7 @@ will update your \code{CITATION.cff} when any of these events occur:
 }
 }
 \details{
-Triggers on your action can be modified, see
-\href{https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows}{Events that trigger workflows}.
+Triggers on your action can be modified, see \href{https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows}{Events that trigger workflows}.
 }
 \examples{
 \dontrun{

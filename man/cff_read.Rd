@@ -92,14 +92,18 @@ from_cff_file <- cff_read(system.file("examples/CITATION_basic.cff",
 head(from_cff_file, 7)
 
 # Create cff object from DESCRIPTION
-from_desc <- cff_read(system.file("examples/DESCRIPTION_basic", package = "cffr"))
+from_desc <- cff_read(system.file("examples/DESCRIPTION_basic",
+  package = "cffr"
+))
 
 from_desc
 
 # Create cff object from BibTex
 
 if (requireNamespace("bibtex", quietly = TRUE)) {
-  from_bib <- cff_read(system.file("examples/example.bib", package = "cffr"))
+  from_bib <- cff_read(system.file("examples/example.bib",
+    package = "cffr"
+  ))
 
   # First item only
   from_bib[[1]]

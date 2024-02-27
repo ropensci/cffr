@@ -124,6 +124,48 @@ cff_create <- function(x, keys = list(), cff_version = "1.2.0",
     cli::cli_abort(msg)
   }
 
+  # Detect sources and build cff
+  result_parsed <- detect_sources(
+    x, cff_version, gh_keywords,
+    dependencies, authors_roles
+  )
+
+  desc_path <- result_parsed[["desc_path"]]
+  instpack <- result_parsed[["instpack"]]
+  cffobjend <- result_parsed[["cffobjend"]]
+
+
+
+  # Add software dependencies
+  if (dependencies) {
+    deps <- parse_dependencies(desc_path, instpack)
+
+    cffobjend$references <- unique(c(cffobjend$references, deps))
+  }
+
+  # Additional keys
+  if (!is.null(keys)) {
+    keys <- fuzzy_keys(keys)
+    cffobjendmod <- cffobjend[setdiff(names(cffobjend), names(keys))]
+    cffobjend <- modifyList(cffobjendmod, keys, keep.null = FALSE)
+    cffobjend <- as.cff(cffobjend)
+  }
+
+
+  # Order
+  cffobjend <- cffobjend[cff_schema_keys()]
+
+  # Enhance authors info
+  if (!is.null(cffobjend$`preferred-citation`)) {
+    cffobjend$`preferred-citation`$authors <- enhance_pref_authors(cffobjend)
+  }
+  cffobjend <- as.cff(cffobjend)
+  cffobjend
+}
+
+detect_sources <- function(x, cff_version = "1.2.0",
+                           gh_keywords = TRUE, dependencies = TRUE,
+                           authors_roles = c("aut", "cre")) {
   instpack <- as.character(installed.packages()[, "Package"])
 
   # Set initially citobj to NULL
@@ -183,29 +225,11 @@ cff_create <- function(x, keys = list(), cff_version = "1.2.0",
 
   cffobjend <- merge_desc_cit(cffobj, citobj)
 
-  # Add software dependencies
-  if (dependencies) {
-    deps <- parse_dependencies(desc_path, instpack)
+  # Return collected info
 
-    cffobjend$references <- unique(c(cffobjend$references, deps))
-  }
-
-  # Additional keys
-  if (!is.null(keys)) {
-    keys <- fuzzy_keys(keys)
-    cffobjendmod <- cffobjend[setdiff(names(cffobjend), names(keys))]
-    cffobjend <- modifyList(cffobjendmod, keys, keep.null = FALSE)
-    cffobjend <- as.cff(cffobjend)
-  }
-
-
-  # Order
-  cffobjend <- cffobjend[cff_schema_keys()]
-
-  # Enhance authors info
-  if (!is.null(cffobjend$`preferred-citation`)) {
-    cffobjend$`preferred-citation`$authors <- enhance_pref_authors(cffobjend)
-  }
-  cffobjend <- as.cff(cffobjend)
-  cffobjend
+  list(
+    desc_path = desc_path,
+    instpack = instpack,
+    cffobjend = cffobjend
+  )
 }

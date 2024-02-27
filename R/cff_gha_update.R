@@ -2,13 +2,14 @@
 #'
 #' @description
 #'
-#' This function would install a GitHub Action on your repo. The action
+#' This function would install a
+#' [GitHub Action](https://github.com/features/actions) on your repo. The action
 #' will update your `CITATION.cff` when any of these events occur:
 #' - You publish a new release of the package.
 #' - Your `DESCRIPTION` or `inst/CITATION` are modified.
 #' - The action can be run also manually.
 #'
-#' @param path Project directory
+#' @param path Project directory.
 #' @param overwrite Logical. If already present, do you want to overwrite your
 #'   action?
 #'
@@ -17,8 +18,13 @@
 #' @details
 #'
 #' Triggers on your action can be modified, see
-#' [Events that trigger
-#' workflows](https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows).
+#' ```{r, echo=FALSE, results='asis'}
+#'
+#' cat(paste0(" [Events that trigger workflows]",
+#'            "(https://docs.github.com/en/actions/learn-github-actions/",
+#'            "events-that-trigger-workflows)."))
+#'
+#' ```
 #'
 #' @examples
 #' \dontrun{

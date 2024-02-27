@@ -2,8 +2,15 @@
 #'
 #' @description
 #'
-#' Install a [pre-commit
-#' hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workflow_hooks)
+#' Install a
+#'
+#' ```{r, echo=FALSE, results='asis'}
+#'
+#' cat(paste0(" [pre-commit hook]",
+#'            "(https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks",
+#'            "#_committing_workflow_hooks) "))
+#'
+#' ```
 #' that remembers you to update your `CITATION.cff` file.
 #'
 #' @name cff_git_hook
@@ -26,7 +33,7 @@
 #' following conditions are met:
 #' - You included in a commit your `DESCRIPTION` or `inst/CITATION` file, you
 #'   are not including your `CITATION.cff` and the `CITATION.cff` file is
-#'   "older" than any of your `DESCRIPTION` or `inst/CITATION` file, or
+#'   "older" than any of your `DESCRIPTION` or `inst/CITATION` file.
 #' - You have updated your `CITATION.cff` but you are not including it on
 #'   your commit.
 #'
