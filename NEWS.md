@@ -2,10 +2,16 @@
 
 ## Major changes
 
--   Now `class()` of `cff` objects are `c("cff", "list")` instead of single
-    value (`"cff"`).
+Now `class()` of `cff` objects are `c("cff", "list")` instead of single value
+(`"cff"`).
 
-    ### API
+### API
+
+The API has been reviewed to provide more clarity on names and better
+maintenance. Now each function does less things but better. The change **affects
+to non-core functions** that an user would rarely call, while `cff_create()`,
+`cff_write()` and `cff_validate()` (core functions) hasn't been visibly
+modified:
 
 -   The conversion from `cff` to `bibentry` is performed now by a new function
     `cff_to_bibentry()`. Previous names of this function were `cff_to_bibtex()`
@@ -17,7 +23,10 @@
     also possible to read BibTeX lines with `cff_read_biblines()`. Previous
     function `cff_from_bibtex()` is now superseded.
 
-    ### Methods
+-   `write_bib()` and `write_citation()` superseded by `cff_write_bib()` and
+    `cff_write_citation()`.
+
+### Methods
 
 -   New methods added:
 
@@ -27,9 +36,9 @@
         [person](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsperson)
         or
         [entity](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsentity)
-        (e.g. authors, contacts, editors, publisher).
+        (e.g. `authors`, `contacts`, `editors`, `publisher`).
     -   `head.cff()`, `tail.cff()`.
-    -   `toBibtex.cff()`
+    -   `toBibtex.cff()`.
 
 ## Changes on BibTeX crosswalk
 

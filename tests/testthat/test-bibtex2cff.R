@@ -108,7 +108,10 @@ test_that("Conference", {
     key = "inproceedings-full",
     author = "Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis",
     title = "On Notions of Information Transfer in {VLSI} Circuits",
-    title = "{Statistical Machine Translation: Rapid Development with Limited Resources",
+    title = paste(
+      "{Statistical Machine Translation: Rapid Development",
+      "with Limited Resources"
+    ),
     booktitle = "Proc. Fifteenth Annual ACM STOC",
     year = "1983",
     # Optional
@@ -234,7 +237,10 @@ test_that("InProceedings", {
     key = "inproceedings-full",
     author = "Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis",
     title = "On Notions of Information Transfer in {VLSI} Circuits",
-    title = "{Statistical Machine Translation: Rapid Development with Limited Resources",
+    title = paste(
+      "{Statistical Machine Translation: Rapid",
+      "Development with Limited Resources"
+    ),
     booktitle = "Proc. Fifteenth Annual ACM STOC",
     year = "1983",
     # Optional
@@ -436,7 +442,10 @@ test_that("TechReport", {
     # Optional
     type = "techreport",
     number = "3-03",
-    address = "Computing Laboratory, University of Kent, Canterbury, Kent, CT2 7NF",
+    address = paste(
+      "Computing Laboratory, University of Kent,",
+      "Canterbury, Kent, CT2 7NF"
+    ),
     month = "mar",
     note = "Example modified for testing purposes"
   )
@@ -528,7 +537,8 @@ test_that("Test entry without author", {
   bib <- bibentry("Proceedings",
     editor = "Yolande Berbers and Willy Zwaenepoel",
     title = "Proceedings of the 6th European Conference on Computer Systems",
-    booktitle = "Proceedings of the 6th European Conference on Computer Systems",
+    booktitle = paste("Proceedings of the 6th European", "
+                      Conference on Computer Systems"),
     publisher = "ACM",
     venue = "Leuven, Belgium",
     month = "apr",
@@ -557,7 +567,10 @@ test_that("Test entry without author but has a key", {
   bib <- bibentry("Misc",
     key = "I am the key",
     title = "Proceedings of the 6th European Conference on Computer Systems",
-    booktitle = "Proceedings of the 6th European Conference on Computer Systems",
+    booktitle = paste(
+      "Proceedings of the 6th European Conference",
+      "on Computer Systems"
+    ),
     publisher = "ACM",
     venue = "Leuven, Belgium",
     month = "apr",
@@ -586,7 +599,8 @@ test_that("Test entry without author but has a key", {
 test_that("Test entry without author and key", {
   bib <- bibentry("Misc",
     title = "Proceedings of the 6th European Conference on Computer Systems",
-    booktitle = "Proceedings of the 6th European Conference on Computer Systems",
+    booktitle = paste("Proceedings of the 6th European", "
+                      Conference on Computer Systems"),
     publisher = "ACM",
     venue = "Leuven, Belgium",
     month = "apr",

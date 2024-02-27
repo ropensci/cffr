@@ -1,5 +1,9 @@
 #' Create BibTeX entries from several sources
 #'
+#' @rdname cff_to_bibentry
+#' @name cff_to_bibentry
+#' @order 1
+
 #' @description
 #'
 #' This function creates [bibentry()] objects
@@ -45,8 +49,6 @@
 #' be parsed to BibTeX using [toBibtex()]
 #'
 #' @export
-#' @name cff_to_bibentry
-#' @rdname cff_to_bibentry
 #'
 #' @examples
 #' \donttest{
@@ -65,6 +67,10 @@
 #' # Print as bibtex
 #'
 #' toBibtex(bib)
+#'
+#' # Thanks to the S3 Method we can also do
+#'
+#' toBibtex(cff_object)
 #'
 #' # From a CITATION.cff file with options
 #'
@@ -152,7 +158,8 @@ cff_bibtex_parser <- function(x) {
   }
 
   # Partially based on ruby parser
-  # https://github.com/citation-file-format/ruby-cff/blob/main/lib/cff/formatter/bibtex_formatter.rb
+  # https://github.com/citation-file-format/ruby-cff/blob/main/lib/cff/
+  # formatter/bibtex_formatter.rb
 
   # Create a initial empty list
 
@@ -429,11 +436,6 @@ cff_bibtex_parser <- function(x) {
     tobibentry$year <- substr(x$`date-released`, 1, 4)
   }
 
-  # Inform
-  if (is.null(tobibentry$year)) {
-    msg <- paste0("Entry {.val {tobibentry$key}} does not have {.field year} ")
-    cli::cli_alert_info(msg)
-  }
 
   # Keywords
   if (!is.null(x$keywords)) {
@@ -515,17 +517,16 @@ cff_bibtex_parser <- function(x) {
   sorted <- unique[unique %in% names(tobibentry)]
   tobibentry <- tobibentry[sorted]
 
-  bib <- do.call(bibentry, tobibentry)
+  bib <- try(do.call(bibentry, tobibentry), silent = TRUE)
 
-  # Shouldn't happen but just in case
-  # nocov start
+  # If key missing
   if (inherits(bib, "try-error")) {
     message <- attributes(bib)$condition$message
-    cli::cli_alert_danger(paste("Can't convert to {.fn bibentry}: ", message))
-    cli::cli_alert_info("Returning {.val NULL}")
+    cli::cli_alert_danger(paste("Can't convert to {.fn bibentry}: "))
+    cli::cli_alert_info(message)
+    cli::cli_alert_warning("Returning {.val NULL}")
     return(NULL)
   }
-  # nocov end
 
   return(bib)
 }

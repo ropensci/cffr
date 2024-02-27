@@ -57,7 +57,8 @@ if (requireNamespace("bibtex", quietly = TRUE)) {
 }
 \seealso{
 Other deprecated functions:
-\code{\link{cff_extract_to_bibtex}()}
+\code{\link{cff_extract_to_bibtex}()},
+\code{\link{write_bib}()}
 }
 \concept{deprecated}
 \keyword{internal}

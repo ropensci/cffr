@@ -35,3 +35,27 @@ test_that("cff_from_bibtex", {
   expect_snapshot(flines <- cff_from_bibtex(x))
   expect_identical(flines, cff_read_biblines(x))
 })
+
+test_that("write_bib", {
+  bib <- bibentry("Misc",
+    title = "My title",
+    author = "Fran Pérez"
+  )
+
+  tmp <- tempfile(fileext = ".bib")
+  expect_snapshot(write_bib(bib, tmp, verbose = FALSE))
+
+  expect_snapshot(cat(readLines(tmp), sep = "\n"))
+})
+
+test_that("write_citation", {
+  bib <- bibentry("Misc",
+    title = "My title",
+    author = "Fran Pérez"
+  )
+
+  tmp <- tempfile("CIT_ATION")
+  expect_snapshot(write_citation(bib, tmp, verbose = FALSE))
+
+  expect_snapshot(cat(readLines(tmp), sep = "\n"))
+})

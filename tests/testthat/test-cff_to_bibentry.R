@@ -291,7 +291,7 @@ test_that("From plain cff with a citation", {
 })
 
 test_that("From plain cff", {
-  expect_message(bib <- cff_to_bibentry(cff()))
+  expect_silent(bib <- cff_to_bibentry(cff()))
   expect_snapshot(toBibtex(bib))
 })
 
@@ -316,7 +316,7 @@ test_that("Test anonymous", {
   )
 
 
-  expect_message(back <- cff_to_bibentry(cff_parse_citation(bib)))
+  expect_silent(back <- cff_to_bibentry(cff_parse_citation(bib)))
   expect_snapshot(toBibtex(back))
 
 
@@ -325,7 +325,7 @@ test_that("Test anonymous", {
   )
 
 
-  expect_message(back <- cff_to_bibentry(cff_parse_citation(bib)))
+  expect_silent(back <- cff_to_bibentry(cff_parse_citation(bib)))
   expect_snapshot(toBibtex(back))
 
   bib <- bibentry("misc",
@@ -333,7 +333,7 @@ test_that("Test anonymous", {
   )
 
 
-  expect_message(back <- cff_to_bibentry(cff_parse_citation(bib)))
+  expect_silent(back <- cff_to_bibentry(cff_parse_citation(bib)))
   expect_snapshot(toBibtex(back))
 
   bib <- bibentry("proceedings",
@@ -403,7 +403,7 @@ test_that("Test BibLateX entry", {
 test_that("Test Fallback year", {
   x <- cff()
 
-  expect_message(msg <- cff_to_bibentry(x))
+  expect_silent(msg <- cff_to_bibentry(x))
 
   expect_snapshot(toBibtex(msg))
 
@@ -449,7 +449,7 @@ test_that("NULL references", {
   expect_null(cff_to_bibentry(basic, "references"))
 
   # Test all
-  expect_message(l <- cff_to_bibentry(basic, "all"))
+  expect_silent(l <- cff_to_bibentry(basic, "all"))
   expect_length(l, 1)
 })
 
@@ -462,4 +462,25 @@ test_that("From CITATION.cff", {
   expect_s3_class(base, "bibentry")
 
   expect_length(base, 1)
+})
+
+test_that("Corrupt entry", {
+  bib <- bibentry("Article",
+    key = "knuth:1984",
+    author = person("R Core Team"),
+    title = "Literate Programming",
+    journal = "The Computer Journal",
+    year = "1984",
+    # Optional
+    volume = "27",
+    number = 2,
+    pages = "97--111",
+    month = "January",
+    keywords = "Some, simple, keywords"
+  )
+  x <- cff_parse_citation(bib)
+  x$year <- NULL
+  x$journal <- NULL
+  expect_snapshot(n <- cff_to_bibentry(x))
+  expect_null(n)
 })

@@ -49,7 +49,8 @@ bib <- cff_to_bibentry(cff_object)
 }
 \seealso{
 Other deprecated functions:
-\code{\link{cff_from_bibtex}()}
+\code{\link{cff_from_bibtex}()},
+\code{\link{write_bib}()}
 }
 \concept{deprecated}
 \keyword{internal}

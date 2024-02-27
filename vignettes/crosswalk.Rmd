@@ -2,7 +2,7 @@
 title: "From R to CFF"
 subtitle: "Crosswalk"
 description: >
-  A comprehenshive description of the internal mappings performed by `cffr`.
+  A comprehensive description of the internal mappings performed by **cffr**.
 author: Diego Hernangómez
 bibliography: REFERENCES.bib
 link-citations: yes
@@ -82,7 +82,7 @@ knitr::kable(df, escape = FALSE)
 
 ### abstract
 
-This key is extracted from the "Description" field of the DESCRIPTION file.
+This key is extracted from the `"Description"` field of the `DESCRIPTION` file.
 
 <details>
 
@@ -110,9 +110,9 @@ cat(pkg$get("Description"))
 
 ### authors
 
-This key is parsed from the "Authors" or "Authors\@R" field of the DESCRIPTION
-file. By default persons with the role "aut" or "cre" are considered, however
-this can be modified via the `authors_roles` parameter.
+This key is parsed from the `"Authors"` or `"Authors@R"` field of the
+`DESCRIPTION` file. By default persons with the role `"aut"` or `"cre"` are
+considered, however this can be modified via the `authors_roles` parameter.
 
 <details>
 
@@ -169,7 +169,7 @@ v1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/s
 > -   **description**: The commit hash or revision number of the software
 >     version.
 >
-> -   **usage**:<br><br>
+> -   **usage**:
 >
 >     ``` yaml
 >     commit: 1ff847d81f29c45a3a1a5ce73d38e45c2f319bba
@@ -181,8 +181,9 @@ v1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/s
 
 ### contact
 
-This key is parsed from the "Authors" or "Authors\@R" field of the DESCRIPTION
-file. Only persons with the role "cre" (i.e, the maintainer(s)) are considered.
+This key is parsed from the `"Authors"` or `"Authors@R"` field of the
+`DESCRIPTION` file. Only persons with the role `"cre"` (i.e, the maintainer(s))
+are considered.
 
 <details>
 
@@ -203,14 +204,12 @@ pkg$get_author()
 
 ### date-released
 
-This key is extracted following this logic:
+This key is extracted from the `DESCRIPTION` file following this logic:
 
--   "Date" field or,
-
--   If not present, from "Date/Publication". This is present on packages built
-    on CRAN and Bioconductor. Or,
-
--   If not present, from "Packaged", that is present on packages built by the
+-   `"Date"` field or,
+-   If not present, from `"Date/Publication"`. This is present on packages built
+    on **CRAN** and **Bioconductor**. or,
+-   If not present, from `"Packaged"`, that is present on packages built by the
     [r-universe](https://r-universe.dev/search/).
 
 <details>
@@ -260,7 +259,7 @@ cat(cff_create(tmp)$`date-released`)
 
 ### doi {#doi}
 
-This key is parsed from the "doi" field of the
+This key is parsed from the `"doi"` field of the
 [preferred-citation](#preferred-citation) object.
 
 <details>
@@ -283,12 +282,12 @@ cat(cff_doi$`preferred-citation`$doi)
 
 This key includes all the possible identifiers of the package:
 
--   From the DESCRIPTION field, it includes all the urls not included in
+-   From the `DESCRIPTION` field, it includes all the urls not included in
     [url](#url) or [repository-code](#repository-code).
 
--   From the CITATION file, it includes all the dois not included in [doi](#doi)
-    and the identifiers (if any) not included in the "identifiers" key of
-    [preferred-citation](#preferred-citation).
+-   From the `CITATION` file, it includes all the dois not included in
+    [doi](#doi) and the identifiers (if any) not included in the `"identifiers"`
+    key of [preferred-citation](#preferred-citation).
 
 <details>
 
@@ -314,8 +313,8 @@ cff_create(file)$identifiers
 
 ### keywords
 
-This key is extracted from the DESCRIPTION file. The keywords should appear in
-the DESCRIPTION as:
+This key is extracted from the `DESCRIPTION` file. The keywords should appear in
+the `DESCRIPTION` as:
 
 ```         
 ...
@@ -385,7 +384,7 @@ jsonval$`repository-code`
 
 ### license
 
-This key is extracted from the "License" field of the DESCRIPTION file.
+This key is extracted from the `"License"` field of the `DESCRIPTION` file.
 
 <details>
 
@@ -415,14 +414,18 @@ v1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/s
 >     dataset is licensed (only for non-standard licenses not included in the
 >     [SPDX License
 >     List](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionslicense-enum)).
-> -   **usage**:<br><br>
->     `yaml     license-url: "https://obscure-licenses.com?id=1234"`
+>
+> -   **usage**:
+>
+>     ``` yaml
+>     license-url: "https://obscure-licenses.com?id=1234"
+>     ```
 
 [Back to summary](#summary).
 
 ### message
 
-This key is extracted from the DESCRIPTION field, specifically as:
+This key is extracted from the `DESCRIPTION` field, specifically as:
 
 ```{r eval=FALSE}
 msg <- paste0(
@@ -446,9 +449,9 @@ cat(cff_create("jsonlite")$message)
 
 ### preferred-citation {#preferred-citation}
 
-This key is extracted from the CITATION file. If several references are
-provided, it would select the first citation as the "preferred-citation" and the
-rest of them as [references](#references).
+This key is extracted from the `CITATION` file. If several references are
+provided, it would select the first citation as the `"preferred-citation"` and
+the rest of them as [references](#references).
 
 <details>
 
@@ -468,11 +471,11 @@ citation("rmarkdown")[1]
 
 ### references {#references}
 
-This key is extracted from the CITATION file if several references are provided.
-The first citation is considered as the
-[preferred-citation](#preferred-citation) and the rest of them as "references".
-It also extracts the package dependencies and adds those to this fields using
-`citation(auto = TRUE)` on each dependency.
+This key is extracted from the `CITATION` file if several references are
+provided. The first citation is considered as the
+[preferred-citation](#preferred-citation) and the rest of them as
+`"references"`. It also extracts the package dependencies and adds those to this
+fields using `citation(auto = TRUE)` on each dependency.
 
 <details>
 
@@ -492,20 +495,20 @@ citation("rmarkdown")[-1]
 
 ### repository
 
-This key is extracted from the "Repository" field of the DESCRIPTION file.
+This key is extracted from the `"Repository"` field of the `DESCRIPTION` file.
 Usually, this field is auto-populated when a package is hosted on a repo (like
-CRAN or the [r-universe](https://r-universe.dev/)). For packages without this
-field on the DESCRIPTION (that is the typical case for an in-development
+**CRAN** or the [r-universe](https://r-universe.dev/)). For packages without
+this field on the `DESCRIPTION` (that is the typical case for an in-development
 package), **cffr** would try to search the package on any of the default
 repositories specified on `options("repos")`.
 
 In the case of [Bioconductor](https://bioconductor.org/) packages, those are
 identified if a
 ["biocViews"](https://contributions.bioconductor.org/description.html#biocviews)
-is present on the DESCRIPTION file.
+is present on the `DESCRIPTION` file.
 
-If **cffr** detects that the package is available on CRAN, it would return the
-canonical url form of the package (i.e.
+If **cffr** detects that the package is available on **CRAN**, it would return
+the canonical url form of the package (i.e.
 <https://CRAN.R-project.org/package=jsonlite>).
 
 <details>
@@ -547,33 +550,6 @@ file.copy(norepo, tmp)
 desc::desc_set("Package", "ggplot2", file = tmp)
 
 cat(cff_create(tmp)[["repository"]])
-
-# Show what happens if another repo is set
-
-# Save original config
-orig_options <- options()
-getOption("repos")
-
-
-# Set new repos
-options(repos = c(
-  tidyverse = "https://tidyverse.r-universe.dev",
-  CRAN = "https://cloud.r-project.org"
-))
-
-# Load again the library
-# Repos are evaluated on load
-unloadNamespace("cffr")
-library(cffr)
-
-
-cat(cff_create(tmp)[["repository"]])
-
-# Now it is the tidyverse repo, due to our new config!
-
-# Reset original config
-options(orig_options)
-getOption("repos")
 ```
 
 </details>
@@ -589,7 +565,7 @@ v1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/s
 > -   **description**: The URL of the work in a build artifact/binary repository
 >     (when the work is software).
 >
-> -   **usage**:<br><br>
+> -   **usage**:
 >
 >     ``` yaml
 >     repository-artifact: "https://search.maven.org/artifact/org.corpus-tools/cff-maven-plugin/0.4.0/maven-plugin"
@@ -599,9 +575,9 @@ v1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/s
 
 ### repository-code {#repository-code}
 
-This key is extracted from the "BugReports" or "URL" fields on the DESCRIPTION
-file. **cffr** tries to identify the url of the source on the following
-repositories:
+This key is extracted from the `"BugReports"` or `"URL"` fields on the
+`DESCRIPTION` file. **cffr** tries to identify the url of the source on the
+following repositories:
 
 -   [GitHub](https://github.com/).
 -   [GitLab](https://about.gitlab.com/).
@@ -637,7 +613,7 @@ desc::desc(gitlab)
 
 ### title
 
-This key is extracted from the "Description" field of the DESCRIPTION file.
+This key is extracted from the `"Description"` field of the `DESCRIPTION` file.
 
 ```{r eval=FALSE}
 title <- paste0(
@@ -663,16 +639,16 @@ cat(cff_create("testthat")$title)
 
 ### type
 
-Fixed value equal to "software". The other possible value is "dataset". See the
-description on the [Guide to CFF schema
+Fixed value equal to `"software"`. The other possible value is `"dataset"`. See
+the description on the [Guide to CFF schema
 v1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#type).
 
 [Back to summary](#summary).
 
 ### url {#url}
 
-This key is extracted from the "BugReports" or "URL" fields on the DESCRIPTION
-file. It corresponds to the first url that is different to
+This key is extracted from the `"BugReports"` or `"URL"` fields on the
+`DESCRIPTION` file. It corresponds to the first url that is different to
 [repository-code](#repository-code).
 
 <details>
@@ -696,7 +672,7 @@ desc::desc(manyurls)
 
 ### version
 
-This key is extracted from the "Version" field on the DESCRIPTION file.
+This key is extracted from the `"Version"` field on the `DESCRIPTION` file.
 
 ```{r version}
 # Should be (>= 3.0.0)

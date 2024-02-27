@@ -120,6 +120,10 @@ test_that("Errors citation", {
 })
 
 test_that("Write CITATION", {
+  f <- system.file("examples", package = "cffr")
+  thepath <- list.files(f, pattern = "DESCRIPTION_basicdate", full.names = TRUE)
+  f1 <- cff_read(thepath)
+
   bib <- bibentry("Misc",
     title = "My title",
     author = "Fran Pérez"
@@ -131,11 +135,8 @@ test_that("Write CITATION", {
   # Check backup
   expect_false(file.exists(paste0(file, ".bk1")))
 
-  # Check now backup exists
-  cf <- system.file("examples/citation_complete.cff", package = "cffr")
-
-  a_cff <- cff_read(cf)
-  expect_silent(cff_write_citation(a_cff, file,
+  # Check now backup exists and use cff
+  expect_silent(cff_write_citation(f1, file,
     verbose = FALSE,
     what = "all", append = TRUE
   ))

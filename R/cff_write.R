@@ -7,22 +7,23 @@
 #'
 #' This function writes out a `CITATION.cff` file for a given package. This
 #' function is basically a wrapper around [cff_create()] to both create the
-#' [`cff`] object and writes it out to a YAML-formatted file in one command.
+#' [`cff`][cff-class] object and writes it out to a YAML-formatted file in
+#' one command.
 #'
 #' @family core
 #' @family write
 #'
 #' @param x The source that would be used for generating
 #'   the `CITATION.cff` file. It could be:
-#'   * A missing value. That would retrieve the DESCRIPTION
-#'     file on your in-development package.
-#'   * A [`cff`] object,
+#'   * A missing value. That would retrieve the `DESCRIPTION` file on your
+#'     in-development package.
+#'   * A `cff` object,
 #'   * The name of an installed package (`"jsonlite"`), or
-#'   * Path to a DESCRIPTION file (`"*/DESCRIPTION*"`).
+#'   * Path to a DESCRIPTION file (`"./DESCRIPTION"`).
 #'
 #' @param outfile The name and path of the `CITATION.cff` to be created.
 #'
-#' @param keys List of additional keys to add to the [`cff`] object. See
+#' @param keys List of additional keys to add to the `cff` object. See
 #'  [cff_create()] for details and examples.
 #'
 #' @param validate Logical `TRUE/FALSE`. Should the new file be validated using
@@ -38,7 +39,7 @@
 #'
 #' @inheritParams cff_create
 #'
-#' @return A `CITATION.cff` file and an (invisible) [`cff`] object.
+#' @return A `CITATION.cff` file and an (invisible) `cff` object.
 #'
 #' @seealso
 #' ```{r, echo=FALSE, results='asis'}
@@ -63,15 +64,10 @@
 #'
 #' When creating and writing a `CITATION.cff` for the first time, the function
 #' adds "CITATION.cff" to ".Rbuildignore".
-cff_write <- function(x,
-                      outfile = "CITATION.cff",
-                      keys = list(),
-                      cff_version = "1.2.0",
-                      gh_keywords = TRUE,
-                      dependencies = TRUE,
-                      validate = TRUE,
-                      verbose = TRUE,
-                      authors_roles = c("aut", "cre")) {
+cff_write <- function(x, outfile = "CITATION.cff", keys = list(),
+                      cff_version = "1.2.0", gh_keywords = TRUE,
+                      dependencies = TRUE, validate = TRUE,
+                      verbose = TRUE, authors_roles = c("aut", "cre")) {
   # On missing use package root
   if (missing(x)) x <- getwd()
 

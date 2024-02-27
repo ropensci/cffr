@@ -38,7 +38,7 @@ cff_to_bibtex <- function(x,
                           what = c("preferred", "references", "all")) {
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_soft(
-      "0.6.0", "cff_extract_to_bibtex()",
+      "1.0.0", "cff_extract_to_bibtex()",
       details = "Function renamed, use `cff_to_bibentry()` instead."
     )
   }
@@ -104,8 +104,7 @@ cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
   if (length(x) == 1 && file.exists(x)) {
     if (requireNamespace("lifecycle", quietly = TRUE)) {
       lifecycle::deprecate_soft(
-        "0.5.0", "cff_from_bibtex()",
-        details = "Function renamed, use `cff_read_bib()` instead."
+        "1.0.0", "cff_from_bibtex()", "cff_read_bib()"
       )
     }
 
@@ -115,9 +114,73 @@ cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
 
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_soft(
-      "0.5.0", "cff_from_bibtex()",
-      details = "Function renamed, use `cff_read_biblines()` instead."
+      "1.0.0", "cff_from_bibtex()", "cff_read_biblines()"
     )
   }
   cff_read_biblines(x, encoding = encoding, ...)
+}
+
+
+#' Previous API: Write files
+#'
+#' @description
+#'
+#' `r lifecycle::badge('superseded')` Please use [cff_write_bib()] or
+#' [cff_write_citation()] instead.
+#'
+#' @rdname deprecated_write
+#' @export
+#' @keywords internal
+#' @family deprecated
+#' @inheritParams cff_write_bib
+#'
+#' @return Write a file.
+#'
+#' @seealso
+#' - [cff_write_bib()] for writing `*.bib` files.
+#' - [cff_write_citation()] for writing **R** `CITATION` files.
+#'
+#' @examples
+#'
+#' bib <- bibentry("Misc",
+#'   title = "My title",
+#'   author = "Fran Pérez"
+#' )
+#'
+#' my_temp_bib <- tempfile(fileext = ".bib")
+#'
+#' cff_write_bib(bib, file = my_temp_bib)
+#'
+#' cat(readLines(my_temp_bib), sep = "\n")
+#'
+#' cff_write_bib(bib, file = my_temp_bib, ascii = TRUE, append = TRUE)
+#'
+#' cat(readLines(my_temp_bib), sep = "\n")
+write_bib <- function(x,
+                      file = tempfile(),
+                      append = FALSE,
+                      verbose = TRUE,
+                      ascii = FALSE) {
+  if (requireNamespace("lifecycle", quietly = TRUE)) {
+    lifecycle::deprecate_soft(
+      "1.0.0", "write_bib()", "cff_write_bib()"
+    )
+  }
+
+  cff_write_bib(x, file, append, verbose, ascii)
+}
+
+#' @rdname deprecated_write
+#' @export
+write_citation <- function(x,
+                           file = "./inst/CITATION",
+                           append = FALSE,
+                           verbose = TRUE,
+                           ...) {
+  if (requireNamespace("lifecycle", quietly = TRUE)) {
+    lifecycle::deprecate_soft(
+      "1.0.0", "write_citation()", "cff_write_citation()"
+    )
+  }
+  cff_write_citation(x, file, append, verbose, ...)
 }

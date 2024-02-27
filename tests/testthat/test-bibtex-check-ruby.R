@@ -1,5 +1,5 @@
 # See ´
-# https://github.com/citation-file-format/ruby-cff/tree/main/test/files/formatted
+# https://github.com/citation-file-format/ruby-cff/tree/main/test/files
 
 
 test_that("preferred-citation-book-missing", {
@@ -7,7 +7,7 @@ test_that("preferred-citation-book-missing", {
     package = "cffr"
   )
 
-  expect_warning(expect_error(cff_to_bibentry(x)))
+  expect_snapshot(cff_to_bibentry(x))
 })
 
 test_that("preferred-citation-book", {

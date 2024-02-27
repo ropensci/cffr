@@ -20,16 +20,16 @@ cff_write(
 \item{x}{The source that would be used for generating
 the \code{CITATION.cff} file. It could be:
 \itemize{
-\item A missing value. That would retrieve the DESCRIPTION
-file on your in-development package.
-\item A \code{\link{cff}} object,
+\item A missing value. That would retrieve the \code{DESCRIPTION} file on your
+in-development package.
+\item A \code{cff} object,
 \item The name of an installed package (\code{"jsonlite"}), or
-\item Path to a DESCRIPTION file (\code{"*/DESCRIPTION*"}).
+\item Path to a DESCRIPTION file (\code{"./DESCRIPTION"}).
 }}
 
 \item{outfile}{The name and path of the \code{CITATION.cff} to be created.}
 
-\item{keys}{List of additional keys to add to the \code{\link{cff}} object. See
+\item{keys}{List of additional keys to add to the \code{cff} object. See
 \code{\link[=cff_create]{cff_create()}} for details and examples.}
 
 \item{cff_version}{The Citation File Format schema version that the
@@ -51,7 +51,7 @@ informative messages.}
 generating the \code{CITATION.cff} file. See \strong{Details} on \code{\link[=cff_create]{cff_create()}}.}
 }
 \value{
-A \code{CITATION.cff} file and an (invisible) \code{\link{cff}} object.
+A \code{CITATION.cff} file and an (invisible) \code{cff} object.
 }
 \description{
 \strong{This is the core function of the package and likely to be the only one
@@ -59,7 +59,8 @@ you would need when developing a package}.
 
 This function writes out a \code{CITATION.cff} file for a given package. This
 function is basically a wrapper around \code{\link[=cff_create]{cff_create()}} to both create the
-\code{\link{cff}} object and writes it out to a YAML-formatted file in one command.
+\code{\link[=cff-class]{cff}} object and writes it out to a YAML-formatted file in
+one command.
 }
 \details{
 When creating and writing a \code{CITATION.cff} for the first time, the function
