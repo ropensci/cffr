@@ -12,9 +12,7 @@
         number = {2},
         pages = {97--111},
         month = {January},
-        keywords = {Some},
-        keywords = {simple},
-        keywords = {keywords},
+        keywords = {Some, simple, keywords},
       }
 
 ---

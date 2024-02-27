@@ -10,7 +10,7 @@ test_that("Article to bibtex", {
     number = 2,
     pages = "97--111",
     month = "January",
-    keywords = c("Some", "simple", "keywords")
+    keywords = "Some, simple, keywords"
   )
   expect_snapshot(toBibtex(bib))
   x <- cff_parse_citation(bib)
