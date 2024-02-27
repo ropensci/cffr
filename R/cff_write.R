@@ -10,6 +10,7 @@
 #' [`cff`] object and writes it out to a YAML-formatted file in one command.
 #'
 #' @family core
+#' @family write
 #'
 #' @param x The source that would be used for generating
 #'   the `CITATION.cff` file. It could be:

@@ -19,7 +19,8 @@ cff_from_bibtex(x, encoding = "UTF-8", ...)
 \item{...}{Other arguments passed to \code{\link[bibtex:read.bib]{bibtex::read.bib()}}.}
 }
 \value{
-See \code{\link[=cff_read_bib]{cff_read_bib()}}.
+See \code{\link[=cff_read_bib]{cff_read_bib()}} from reading \verb{*.bib} files and \code{\link[=cff_read_biblines]{cff_read_biblines()}}
+for reading a \code{character} object representing a BibTeX entry.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}} Please use either \code{\link[=cff_read_bib]{cff_read_bib()}} or

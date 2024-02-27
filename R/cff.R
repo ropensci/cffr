@@ -195,8 +195,8 @@ new_cff <- function(x) {
   # Remove NULLs
   x <- drop_null(x)
 
-  # Remove duplicated names
-  x <- x[!duplicated(names(x))]
+  # Remove duplicated names if named
+  if (!is.null(names(x))) x <- x[!duplicated(names(x))]
 
   # Now apply cff class to nested lists
   x <- lapply(x, rapply_cff)

@@ -67,7 +67,8 @@ cff_to_bibtex <- function(x,
 #'
 #' @return
 #'
-#' See [cff_read_bib()].
+#' See [cff_read_bib()] from reading `*.bib` files and [cff_read_biblines()]
+#' for reading a `character` object representing a BibTeX entry.
 #'
 #'
 #'

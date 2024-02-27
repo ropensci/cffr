@@ -49,6 +49,7 @@ Other functions for working with BibTeX format:
 \code{\link{cff_read}()},
 \code{\link{cff_read_biblines}()},
 \code{\link{cff_to_bibentry}()},
+\code{\link{cff_write_bib}()},
 \code{\link{toBibtex.cff}()},
 \code{\link{write_bib}()},
 \code{\link{write_citation}()}

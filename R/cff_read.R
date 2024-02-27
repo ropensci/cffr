@@ -120,6 +120,15 @@ cff_read <- function(path, ...) {
   }
   filetype <- guess_type_file(path)
 
+  if (is.null(filetype)) {
+    cli::cli_abort(
+      paste0(
+        "Don't recognize the file type of {.file {path}}.",
+        " Use a specific function (e.g. {.fn cffr:cff_read_description}"
+      )
+    )
+  }
+
   endobj <- switch(filetype,
     "cff_citation" = cff_read_cff_citation(path, ...),
     "description" = cff_read_description(path, ...),
@@ -248,12 +257,6 @@ cff_read_citation <- function(path, meta = NULL, ...) {
     # nocov end
   }
   tocff <- lapply(the_cit, cff_parse_citation)
-  make_names <- vapply(tocff, function(x) {
-    myname <- gsub("[^a-z]", "", tolower(x$title))
-    substr(myname, 1, 10)
-  }, character(1))
-
-  names(tocff) <- make_names
   tocff <- new_cff(tocff)
   unname(tocff)
 }
@@ -336,12 +339,7 @@ guess_type_file <- function(path) {
     return("description")
   }
 
-  cli::cli_abort(
-    paste0(
-      "Don't recognize the file type of {.file {path}}.",
-      " Use a specific function (e.g. {.fn cffr:cff_read_description}"
-    )
-  )
+  return(NULL)
 }
 
 #' Parse and clean data from DESCRIPTION to create metadata
