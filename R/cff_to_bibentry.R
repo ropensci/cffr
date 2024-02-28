@@ -158,8 +158,8 @@ cff_bibtex_parser <- function(x) {
   }
 
   # Partially based on ruby parser
-  # https://github.com/citation-file-format/ruby-cff/blob/main/lib/cff/
-  # formatter/bibtex_formatter.rb
+  # https://github.com/citation-file-format/ruby-cff/blob/main/lib/cff/ >>
+  # (cont) formatter/bibtex_formatter.rb
 
   # Create a initial empty list
 

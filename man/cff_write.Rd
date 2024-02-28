@@ -85,7 +85,7 @@ Other core functions of \CRANpkg{cffr}:
 \code{\link{cff_create}()},
 \code{\link{cff_validate}()}
 
-Other write: 
+Other functions for creating external files:
 \code{\link{cff_write_bib}()}
 }
 \concept{core}

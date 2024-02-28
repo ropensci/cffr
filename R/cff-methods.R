@@ -96,6 +96,10 @@ tail.cff <- function(x, n = 6L, ...) {
 #'
 #' @param object `cff` object.
 #' @param ... Arguments passed to [utils::toBibtex()].
+#'
+#' @return
+#'
+#' `toBibtex.cff()` returns a `Bibtex` object.
 toBibtex.cff <- function(object, ...,
                          what = c("preferred", "references", "all")) {
   # If a single reference...

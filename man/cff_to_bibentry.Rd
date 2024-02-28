@@ -37,6 +37,8 @@ both the preferred citation info and the references.
 \value{
 A \code{bibentry} object or a list of \code{bibentry} objects. This could
 be parsed to BibTeX using \code{\link[=toBibtex]{toBibtex()}}
+
+\code{toBibtex.cff()} returns a \code{Bibtex} object.
 }
 \description{
 This function creates \code{\link[=bibentry]{bibentry()}} objects

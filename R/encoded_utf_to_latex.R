@@ -21,7 +21,7 @@
 #' @keywords internal
 #' @export
 #'
-#' @examplesIf getRversion() >= "4.0.0"
+#' @examples
 #' # Full range of supported characters on R
 #' library(tools)
 #'

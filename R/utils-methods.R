@@ -31,6 +31,7 @@ make_r_person <- function(x) {
 
   # Prepare ORCID
   x_comments <- gsub("^https://orcid.org/", "", x_comments)
+  x_comments <- gsub("^http://orcid.org/", "", x_comments)
   nm <- gsub("orcid", "ORCID", names(x_comments), fixed = TRUE)
   names(x_comments) <- nm
 

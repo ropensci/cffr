@@ -118,7 +118,7 @@ Other functions for working with BibTeX format:
 \code{\link{cff_to_bibentry}()},
 \code{\link{encoded_utf_to_latex}()}
 
-Other write: 
+Other functions for creating external files:
 \code{\link{cff_write}()}
 }
 \concept{bibtex}

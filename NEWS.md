@@ -40,7 +40,11 @@ modified:
     -   `head.cff()`, `tail.cff()`.
     -   `toBibtex.cff()`.
 
-## Changes on BibTeX crosswalk
+## Other changes
+
+-   Minimum **R** version required now is **4.0.0**.
+
+### BibTeX crosswalk
 
 -   **\@inbook** and **\@book** gains a new value on [CFF]{.underline} when
     **series** is provided: [collection-type: book-series.]{.underline}

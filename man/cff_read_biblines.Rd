@@ -66,7 +66,7 @@ Other functions for working with BibTeX format:
 \code{\link{cff_write_bib}()},
 \code{\link{encoded_utf_to_latex}()}
 
-Reading other files as \code{cff}:
+Other functions for reading external files:
 \code{\link{cff_read}()}
 }
 \concept{bibtex}

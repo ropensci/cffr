@@ -133,7 +133,7 @@ The underlying functions used for reading external files:
 \item \code{\link[bibtex:read.bib]{bibtex::read.bib()}} for BibTeX files (extension \verb{*.bib}).
 }
 
-Reading other files as \code{cff}:
+Other functions for reading external files:
 \code{\link{cff_read_biblines}()}
 
 Other functions for working with BibTeX format:
