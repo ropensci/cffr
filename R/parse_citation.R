@@ -139,6 +139,9 @@ building_other_persons <- function(parsed_fields) {
   toentity_pers <- others[names(others) %in% toent_pers]
   toentity_pers <- lapply(toentity_pers, function(x) {
     bibtex <- paste(x, collapse = " and ")
+    # Unname
+    names(bibtex) <- NULL
+
 
     end <- cff_parse_person_bibtex(bibtex)
 

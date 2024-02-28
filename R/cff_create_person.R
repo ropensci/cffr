@@ -230,7 +230,7 @@ hint_person <- function(person) {
   ) {
     # guess orcid
     norc <- min(unlist(regexpr("orcid.org/", comment_as_text)))
-    if (orc_text < 0) {
+    if (norc < 0) {
       parsed_comments <- list()
     } else {
       orcid <- substr(comment_as_text, norc, nchar(comment_as_text))
@@ -287,6 +287,7 @@ hint_person <- function(person) {
 
 hint_bibtex <- function(person) {
   person <- trimws(person)
+  person <- unname(person)
 
   # Remove role on [] as it comes from print.person by default
   person <- gsub("\\[[^()]*\\]", "", person)
