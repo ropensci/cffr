@@ -151,20 +151,17 @@ test_that("Parse persons on CITATION", {
     title = "A Language and Environment for Statistical Computing",
     year = "2021",
     author = person("R Core Team"),
-    contact = c(person("A", "name"), person("A contact")),
+    contact = "A name and A contact",
     conference = person("A", "conference"),
     "database-provider" = person("Database", "provider"),
-    editors = c(person("A", "editor"), person("{Ben and Jerry}")),
+    editors = "A editor and {Ben and Jerry}",
     "editors-series" = "An {editor series} and Another",
     "institution" = person("A", "institution"),
     "address" = person("A", "location"),
     "publisher" = person("A", "publisher"),
     "recipients" = "A recipient",
     "senders" = "{A Sender} and Another Sender",
-    "translators" = c(
-      person("Translator", "one"),
-      person("Translator", "two")
-    )
+    "translators" = "Translator one and Translator two"
   )
 
   bibparsed <- cff_parse_citation(bib)
