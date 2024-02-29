@@ -625,7 +625,7 @@
 # Corrupt entry
 
     Code
-      n <- cff_to_bibentry(x)
+      n <- as_bibentry(x)
     Message
       x Can't convert to `bibentry()`: 
       i A bibentry of bibtype 'Article' has to specify the fields: journal, year

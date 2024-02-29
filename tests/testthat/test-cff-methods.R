@@ -55,7 +55,7 @@ test_that("as data frame partial", {
 
 test_that("Convert a citation only", {
   path <- system.file("examples/DESCRIPTION_many_persons", package = "cffr")
-  a_cit <- cff_to_bibentry(cff_create(path))
+  a_cit <- as_bibentry(cff_create(path))
 
   the_cff <- cff_parse_citation(a_cit)
 
@@ -248,6 +248,6 @@ test_that("toBibtex", {
     address      = {London, United Kingdom},
     isbn         = 9781587340925}"
 
-  froml <- toBibtex(cff_read_biblines(string))
+  froml <- toBibtex(cff_create_bib_text(string))
   expect_equal(sum(names(froml) == "title"), 1)
 })

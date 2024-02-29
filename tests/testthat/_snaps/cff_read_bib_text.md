@@ -1,15 +1,15 @@
 # Errors and messages
 
     Code
-      cff_read_biblines(a_cff)
+      cff_create_bib_text(a_cff)
     Condition
-      Error in `cff_read_biblines()`:
+      Error in `cff_create_bib_text()`:
       ! `x` should be a <character>, not a <cff>.
 
 ---
 
     Code
-      cff_read_biblines("a bad line")
+      cff_create_bib_text("a bad line")
     Message
       ! `x` doesn't look as a BibTeX entry. Check the results.
     Condition
@@ -44,7 +44,7 @@
 ---
 
     Code
-      fromfile <- cff_read_biblines(tmpbib)
+      fromfile <- cff_create_bib_text(tmpbib)
     Message
       ! `x` seems to be a ".bib" file, not a BibTeX entry.
       i Reading `x` with `cffr:cff_read_bib()`

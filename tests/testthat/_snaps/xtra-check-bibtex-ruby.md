@@ -1,7 +1,7 @@
 # preferred-citation-book-missing
 
     Code
-      cff_to_bibentry(x)
+      as_bibentry(x)
     Message
       x Can't convert to `bibentry()`: 
       i A bibentry of bibtype 'Book' has to specify the field: publisher

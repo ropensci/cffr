@@ -129,7 +129,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 3.6.0"
+      "version": ">= 4.0.0"
     },
     "2": {
       "@type": "SoftwareApplication",
@@ -200,7 +200,7 @@
   },
   "isPartOf": "https://ropensci.org",
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata", "r", "r-package", "citation-file-format", "rstats", "ropensci", "cran"],
-  "fileSize": "929.961KB",
+  "fileSize": "947.076KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

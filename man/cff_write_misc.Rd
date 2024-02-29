@@ -35,7 +35,7 @@ lines to be written.}
 \item{ascii}{Whether to write the entries using ASCII characters only or not.}
 
 \item{...}{
-  Arguments passed on to \code{\link[=cff_to_bibentry]{cff_to_bibentry}}
+  Arguments passed on to \code{\link[=as_bibentry]{as_bibentry}}
   \describe{
     \item{\code{what}}{Fields to extract. The value could be:
 \itemize{
@@ -60,7 +60,7 @@ Section 1.9 CITATION files of \emph{Writing R Extensions} (R Core Team 2023).
 }
 \details{
 When \code{x} is a \code{cff} object it would be converted to \code{bibentry} using
-\code{\link[=cff_to_bibentry]{cff_to_bibentry()}}.
+\code{\link[=as_bibentry]{as_bibentry()}}.
 
 For security reasons, if the file already exists the function would create
 a backup copy on the same directory.
@@ -113,9 +113,9 @@ following packages:
 }
 
 Other functions for working with BibTeX format:
+\code{\link{as_bibentry}()},
+\code{\link{cff_create_bib_text}()},
 \code{\link{cff_read}()},
-\code{\link{cff_read_biblines}()},
-\code{\link{cff_to_bibentry}()},
 \code{\link{encoded_utf_to_latex}()}
 
 Other functions for creating external files:

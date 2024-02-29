@@ -1,15 +1,15 @@
 #' Previous API: Create BibTeX entries from several sources
 #'
 #' @description
-#' `r lifecycle::badge('superseded')` Please use [cff_to_bibentry()] instead.
+#' `r lifecycle::badge('superseded')` Please use [as_bibentry()] instead.
 #'
 #' @rdname deprecated_cff_to_bib
-#' @inheritParams cff_to_bibentry
+#' @inheritParams as_bibentry
 #' @export
 #' @keywords internal
 #' @family deprecated
 #'
-#' @return See [cff_to_bibentry()].
+#' @return See [as_bibentry()].
 #' @examples
 #' \donttest{
 #' # From a cff object
@@ -18,17 +18,17 @@
 #' cff_object
 #'
 #' # bibentry object
-#' bib <- cff_to_bibentry(cff_object)
+#' bib <- as_bibentry(cff_object)
 #' }
 cff_extract_to_bibtex <- function(x,
                                   what = c("preferred", "references", "all")) {
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_soft(
       "0.5.0", "cff_extract_to_bibtex()",
-      details = "Function renamed, use `cff_to_bibentry()` instead."
+      details = "Function renamed, use `as_bibentry()` instead."
     )
   }
-  cff_to_bibentry(x, what)
+  as_bibentry(x, what)
 }
 
 #' @rdname deprecated_cff_to_bib
@@ -39,10 +39,10 @@ cff_to_bibtex <- function(x,
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_soft(
       "1.0.0", "cff_extract_to_bibtex()",
-      details = "Function renamed, use `cff_to_bibentry()` instead."
+      details = "Function renamed, use `as_bibentry()` instead."
     )
   }
-  cff_to_bibentry(x, what)
+  as_bibentry(x, what)
 }
 
 #' Previous API: Create a [`cff`][cff-class] object from BibTeX entries
@@ -50,7 +50,7 @@ cff_to_bibtex <- function(x,
 #' @description
 #'
 #' `r lifecycle::badge('superseded')` Please use either [cff_read_bib()] or
-#' [cff_read_biblines()] instead.
+#' [cff_create_bib_text()] instead.
 #'
 #' @rdname deprecated_cff_from_bib
 #' @export
@@ -67,7 +67,7 @@ cff_to_bibtex <- function(x,
 #'
 #' @return
 #'
-#' See [cff_read_bib()] from reading `*.bib` files and [cff_read_biblines()]
+#' See [cff_read_bib()] from reading `*.bib` files and [cff_create_bib_text()]
 #' for reading a `character` object representing a BibTeX entry.
 #'
 #'
@@ -93,7 +93,7 @@ cff_to_bibtex <- function(x,
 #' }"
 #'   )
 #'
-#'   cff_read_biblines(x)
+#'   cff_create_bib_text(x)
 #'
 #'   # From a file
 #'
@@ -114,10 +114,10 @@ cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
 
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_soft(
-      "1.0.0", "cff_from_bibtex()", "cff_read_biblines()"
+      "1.0.0", "cff_from_bibtex()", "cff_create_bib_text()"
     )
   }
-  cff_read_biblines(x, encoding = encoding, ...)
+  cff_create_bib_text(x, encoding = encoding, ...)
 }
 
 

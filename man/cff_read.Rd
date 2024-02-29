@@ -134,11 +134,11 @@ The underlying functions used for reading external files:
 }
 
 Other functions for reading external files:
-\code{\link{cff_read_biblines}()}
+\code{\link{cff_create_bib_text}()}
 
 Other functions for working with BibTeX format:
-\code{\link{cff_read_biblines}()},
-\code{\link{cff_to_bibentry}()},
+\code{\link{as_bibentry}()},
+\code{\link{cff_create_bib_text}()},
 \code{\link{cff_write_bib}()},
 \code{\link{encoded_utf_to_latex}()}
 }

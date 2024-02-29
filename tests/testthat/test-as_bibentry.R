@@ -14,7 +14,7 @@ test_that("Article to bibtex", {
   )
   expect_snapshot(toBibtex(bib))
   x <- cff_parse_citation(bib)
-  bib <- cff_to_bibentry(x)
+  bib <- as_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -42,7 +42,7 @@ test_that("Book to bibtex", {
 
   expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
-  bib <- cff_to_bibentry(bibparsed)
+  bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -63,7 +63,7 @@ test_that("Booklet to bibtex", {
 
   expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
-  bib <- cff_to_bibentry(bibparsed)
+  bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -91,7 +91,7 @@ test_that("InBook to bibtex with pages", {
 
   expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
-  bib <- cff_to_bibentry(bibparsed)
+  bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -110,7 +110,7 @@ test_that("InCollection to bibtex", {
 
   expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
-  bib <- cff_to_bibentry(bibparsed)
+  bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -135,7 +135,7 @@ test_that("InProceedings to bibtex", {
 
   expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
-  bib <- cff_to_bibentry(bibparsed)
+  bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -153,7 +153,7 @@ test_that("Manual to bibtex", {
 
   expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
-  bib <- cff_to_bibentry(bibparsed)
+  bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -172,7 +172,7 @@ test_that("MastersThesis to bibtex", {
 
   expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
-  bib <- cff_to_bibentry(bibparsed)
+  bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -189,7 +189,7 @@ test_that("PhdThesis to bibtex", {
 
   expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
-  bib <- cff_to_bibentry(bibparsed)
+  bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -208,7 +208,7 @@ test_that("Proceedings to bibtex", {
 
   expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
-  bib <- cff_to_bibentry(bibparsed)
+  bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -224,7 +224,7 @@ test_that("TechReport to bibtex", {
 
   expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
-  bib <- cff_to_bibentry(bibparsed)
+  bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -242,7 +242,7 @@ test_that("Unpublished to bibtex", {
 
   expect_snapshot(toBibtex(bib))
   bibparsed <- cff_parse_citation(bib)
-  bib <- cff_to_bibentry(bibparsed)
+  bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -269,7 +269,7 @@ test_that("particle names", {
 
   expect_snapshot(bibparsed)
 
-  bib <- cff_to_bibentry(bibparsed)
+  bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
 
@@ -286,12 +286,12 @@ test_that("From plain cff with a citation", {
   s$`preferred-citation` <- cff_parse_citation(acit)
   s$`preferred-citation`$editors <- list(cff_parse_person("A name"))
 
-  bib <- cff_to_bibentry(s)
+  bib <- as_bibentry(s)
   expect_snapshot(toBibtex(bib))
 })
 
 test_that("From plain cff", {
-  expect_silent(bib <- cff_to_bibentry(cff()))
+  expect_silent(bib <- as_bibentry(cff()))
   expect_snapshot(toBibtex(bib))
 })
 
@@ -300,13 +300,13 @@ test_that("From file", {
     package = "cffr"
   )
 
-  bib <- cff_to_bibentry(file)
+  bib <- as_bibentry(file)
   expect_snapshot(toBibtex(bib))
 })
 
 test_that("NULL", {
   s <- NULL
-  expect_null(cff_to_bibentry(s))
+  expect_null(as_bibentry(s))
 })
 
 
@@ -316,7 +316,7 @@ test_that("Test anonymous", {
   )
 
 
-  expect_silent(back <- cff_to_bibentry(cff_parse_citation(bib)))
+  expect_silent(back <- as_bibentry(cff_parse_citation(bib)))
   expect_snapshot(toBibtex(back))
 
 
@@ -325,7 +325,7 @@ test_that("Test anonymous", {
   )
 
 
-  expect_silent(back <- cff_to_bibentry(cff_parse_citation(bib)))
+  expect_silent(back <- as_bibentry(cff_parse_citation(bib)))
   expect_snapshot(toBibtex(back))
 
   bib <- bibentry("misc",
@@ -333,7 +333,7 @@ test_that("Test anonymous", {
   )
 
 
-  expect_silent(back <- cff_to_bibentry(cff_parse_citation(bib)))
+  expect_silent(back <- as_bibentry(cff_parse_citation(bib)))
   expect_snapshot(toBibtex(back))
 
   bib <- bibentry("proceedings",
@@ -342,7 +342,7 @@ test_that("Test anonymous", {
   )
 
 
-  expect_silent(back <- cff_to_bibentry(cff_parse_citation(bib)))
+  expect_silent(back <- as_bibentry(cff_parse_citation(bib)))
   expect_snapshot(toBibtex(back))
 })
 
@@ -361,7 +361,7 @@ test_that("Fallback month", {
   # Delete here the month
   x$month <- NULL
 
-  bibback <- cff_to_bibentry(x)
+  bibback <- as_bibentry(x)
   expect_snapshot(toBibtex(bibback))
 })
 
@@ -395,7 +395,7 @@ test_that("Test BibLateX entry", {
   x <- cff_parse_citation(bib)
 
 
-  parsed <- cff_to_bibentry(x)
+  parsed <- as_bibentry(x)
   expect_snapshot(toBibtex(parsed))
 })
 
@@ -403,7 +403,7 @@ test_that("Test BibLateX entry", {
 test_that("Test Fallback year", {
   x <- cff()
 
-  expect_silent(msg <- cff_to_bibentry(x))
+  expect_silent(msg <- as_bibentry(x))
 
   expect_snapshot(toBibtex(msg))
 
@@ -412,32 +412,32 @@ test_that("Test Fallback year", {
 
   expect_true(cff_validate(x, verbose = FALSE))
 
-  parsed <- cff_to_bibentry(x)
+  parsed <- as_bibentry(x)
 
   expect_snapshot(toBibtex(parsed))
 })
 
 test_that("Errors", {
-  expect_silent(b <- cff_to_bibentry("testthat"))
+  expect_silent(b <- as_bibentry("testthat"))
   expect_s3_class(b, "bibentry")
-  expect_error(cff_to_bibentry("testthat", what = "aa"))
+  expect_error(as_bibentry("testthat", what = "aa"))
 })
 
 test_that("From package", {
   skip_if_not_installed("rmarkdown")
 
-  base <- cff_to_bibentry("rmarkdown")
+  base <- as_bibentry("rmarkdown")
 
   expect_s3_class(base, "bibentry")
 
   expect_length(base, 1)
 
-  refs <- cff_to_bibentry("rmarkdown", "references")
+  refs <- as_bibentry("rmarkdown", "references")
   expect_s3_class(refs, "bibentry")
 
   expect_gte(length(refs), 1)
 
-  all <- cff_to_bibentry("rmarkdown", "all")
+  all <- as_bibentry("rmarkdown", "all")
   expect_s3_class(all, "bibentry")
 
   expect_length(all, length(base) + length(refs))
@@ -446,10 +446,10 @@ test_that("From package", {
 test_that("NULL references", {
   basic <- cff()
 
-  expect_null(cff_to_bibentry(basic, "references"))
+  expect_null(as_bibentry(basic, "references"))
 
   # Test all
-  expect_silent(l <- cff_to_bibentry(basic, "all"))
+  expect_silent(l <- as_bibentry(basic, "all"))
   expect_length(l, 1)
 })
 
@@ -457,7 +457,7 @@ test_that("NULL references", {
 test_that("From CITATION.cff", {
   p <- system.file("examples/smith-et-al.cff", package = "cffr")
 
-  base <- cff_to_bibentry(p)
+  base <- as_bibentry(p)
 
   expect_s3_class(base, "bibentry")
 
@@ -481,6 +481,10 @@ test_that("Corrupt entry", {
   x <- cff_parse_citation(bib)
   x$year <- NULL
   x$journal <- NULL
-  expect_snapshot(n <- cff_to_bibentry(x))
+  expect_snapshot(n <- as_bibentry(x))
   expect_null(n)
+})
+
+test_that("Parser return nulls", {
+  expect_null(cff_bibtex_parser(NULL))
 })

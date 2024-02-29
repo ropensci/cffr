@@ -31,10 +31,10 @@ both the preferred citation info and the references.
 }}
 }
 \value{
-See \code{\link[=cff_to_bibentry]{cff_to_bibentry()}}.
+See \code{\link[=as_bibentry]{as_bibentry()}}.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}} Please use \code{\link[=cff_to_bibentry]{cff_to_bibentry()}} instead.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}} Please use \code{\link[=as_bibentry]{as_bibentry()}} instead.
 }
 \examples{
 \donttest{
@@ -44,7 +44,7 @@ cff_object <- cff()
 cff_object
 
 # bibentry object
-bib <- cff_to_bibentry(cff_object)
+bib <- as_bibentry(cff_object)
 }
 }
 \seealso{

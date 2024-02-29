@@ -19,12 +19,12 @@ cff_from_bibtex(x, encoding = "UTF-8", ...)
 \item{...}{Other arguments passed to \code{\link[bibtex:read.bib]{bibtex::read.bib()}}.}
 }
 \value{
-See \code{\link[=cff_read_bib]{cff_read_bib()}} from reading \verb{*.bib} files and \code{\link[=cff_read_biblines]{cff_read_biblines()}}
+See \code{\link[=cff_read_bib]{cff_read_bib()}} from reading \verb{*.bib} files and \code{\link[=cff_create_bib_text]{cff_create_bib_text()}}
 for reading a \code{character} object representing a BibTeX entry.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}} Please use either \code{\link[=cff_read_bib]{cff_read_bib()}} or
-\code{\link[=cff_read_biblines]{cff_read_biblines()}} instead.
+\code{\link[=cff_create_bib_text]{cff_create_bib_text()}} instead.
 }
 \examples{
 if (requireNamespace("bibtex", quietly = TRUE)) {
@@ -47,7 +47,7 @@ if (requireNamespace("bibtex", quietly = TRUE)) {
 }"
   )
 
-  cff_read_biblines(x)
+  cff_create_bib_text(x)
 
   # From a file
 

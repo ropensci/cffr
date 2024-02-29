@@ -1,20 +1,22 @@
-#' Create BibTeX entries from several sources
+#' Create `bibentry` objects from several sources
 #'
-#' @rdname cff_to_bibentry
-#' @name cff_to_bibentry
+#' @rdname as_bibentry
+#' @name as_bibentry
 #' @order 1
 
 #' @description
 #'
-#' This function creates [bibentry()] objects
-#' from different metadata sources (`cff` objects, `DESCRIPTION` files, etc.).
+#' This function creates `bibentry` objects (see [utils::bibentry()]) from
+#' different metadata sources (`cff` objects, `DESCRIPTION` files, etc.). Note
+#' that a **R** `bibentry` object is the representation of a BibTeX entry,
+#' see **Examples**
+#'
 #' The function tries to map the information of the source `x` into a `cff`
 #' object and performs a mapping of the metadata to BibTeX, according to
 #' `vignette("bibtex_cff", "cffr")`.
 #'
-#' Note that a **R** [bibentry()] object is the representation of a BibTeX
-#' entry, see **Examples**.
-#'
+#' @seealso
+#' [utils::bibentry()]
 #'
 #' @references
 #' - Patashnik, Oren. "BIBTEXTING" February 1988.
@@ -44,9 +46,11 @@
 #'      both the preferred citation info and the references.
 #'
 #' @family bibtex
+#' @family coercing
 #'
-#' @return A `bibentry` object or a list of `bibentry` objects. This could
-#' be parsed to BibTeX using [toBibtex()]
+#' @return
+#' `as_bibentry()` returns s `bibentry` object (or a list of `bibentry`
+#' objects).
 #'
 #' @export
 #'
@@ -58,7 +62,7 @@
 #' cff_object
 #'
 #' # bibentry object
-#' bib <- cff_to_bibentry(cff_object)
+#' bib <- as_bibentry(cff_object)
 #'
 #' class(bib)
 #'
@@ -75,13 +79,13 @@
 #' # From a CITATION.cff file with options
 #'
 #' path <- system.file("examples/CITATION_complete.cff", package = "cffr")
-#' cff_file <- cff_to_bibentry(path, what = "all")
+#' cff_file <- as_bibentry(path, what = "all")
 #'
 #' toBibtex(cff_file)
 #'
 #' # For an installed package
 #'
-#' installed_package <- cff_to_bibentry("jsonvalidate")
+#' installed_package <- as_bibentry("jsonvalidate")
 #'
 #' toBibtex(installed_package)
 #'
@@ -89,12 +93,12 @@
 #' # Use a DESCRIPTION file
 #'
 #' path2 <- system.file("examples/DESCRIPTION_gitlab", package = "cffr")
-#' desc_file <- cff_to_bibentry(path2)
+#' desc_file <- as_bibentry(path2)
 #'
 #' toBibtex(desc_file)
 #' }
-cff_to_bibentry <- function(x,
-                            what = c("preferred", "references", "all")) {
+as_bibentry <- function(x,
+                        what = c("preferred", "references", "all")) {
   what <- match.arg(what)
   if (is.null(x)) {
     return(NULL)
@@ -109,28 +113,52 @@ cff_to_bibentry <- function(x,
   } else {
     obj <- cff_create(x)
   }
-  if (what == "preferred") {
-    return(cff_bibtex_parser(obj))
-  }
 
-  if (what == "references") {
-    if (is.null(obj$references)) {
-      return(NULL)
+
+  # Three cases:
+  # A) Full cff reference object or
+  # B) Individual reference list
+  # C) List of references
+
+
+  # Detect case A
+  is_full_cff <- "cff-version" %in% names(obj)
+  # Detect case B
+  is_single_ref <- "type" %in% names(obj)
+
+  if (is_full_cff) {
+    # Try to generate preferred if not present
+    if (!("preferred-citation" %in% names(obj))) {
+      prefcit <- obj
+      prefcit$type <- "generic"
+      prefcit <- prefcit[names(prefcit) %in% cff_schema_definitions_refs()]
+      prefcit <- new_cff(prefcit)
+      # And add to the object
+      obj$`preferred-citation` <- prefcit
     }
 
-    ref <- lapply(obj$references, cff_bibtex_parser)
-    return(do.call(c, ref))
+    # Select type to extract
+    obj_extract <- switch(what,
+      "preferred" = list(obj$`preferred-citation`),
+      "references" = obj$references,
+      c(list(obj$`preferred-citation`), obj$references)
+    )
+  } else if (is_single_ref) {
+    obj_extract <- list(obj)
+  } else {
+    obj_extract <- obj
   }
 
-  pref <- cff_bibtex_parser(obj)
-
-  if (!is.null(obj$references)) {
-    ref <- lapply(obj$references, cff_bibtex_parser)
-    ref <- do.call(c, ref)
-    return(c(pref, ref))
+  # Cleanup
+  obj_extract <- obj_extract[lengths(obj_extract) > 0]
+  if (length(obj_extract) == 0) {
+    return(NULL)
   }
 
-  return(pref)
+  ref <- lapply(obj_extract, cff_bibtex_parser)
+  ref <- do.call(c, ref)
+
+  return(ref)
 }
 
 
@@ -140,22 +168,6 @@ cff_bibtex_parser <- function(x) {
   }
 
   stopifnotcff(x)
-
-  # Read cff of CITATION.cff file
-  if (!is_cff(x)) {
-    x <- cff(x)
-  }
-
-  # Try to generate preferred if not present
-  if (!("preferred-citation" %in% names(x))) {
-    origtype <- clean_str(x$type)
-
-    if (is.null(origtype)) {
-      x$type <- "misc"
-    }
-  } else {
-    x <- x$`preferred-citation`
-  }
 
   # Partially based on ruby parser
   # https://github.com/citation-file-format/ruby-cff/blob/main/lib/cff/ >>
@@ -527,6 +539,9 @@ cff_bibtex_parser <- function(x) {
     cli::cli_alert_warning("Returning {.val NULL}")
     return(NULL)
   }
+
+  # Unlist easy to undo the do.call effect
+  bib <- bib[[1]]
 
   return(bib)
 }

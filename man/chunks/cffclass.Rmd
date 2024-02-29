@@ -10,7 +10,6 @@ additional methods, most notably [print()].
 library(cffr)
 ```
 
-
 ```{r}
 a_named_list <- list(
   first = "I", second = "am", third = "a", fourth = "list",

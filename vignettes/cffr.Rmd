@@ -1,5 +1,5 @@
 ---
-title: "Manipulating Citations with cffr"
+title: "Manipulating Citations with **cffr**"
 description: >
   Learn how to modify `cff` objects.
 output: 
@@ -8,7 +8,7 @@ output:
 bibliography: REFERENCES.bib
 link-citations: yes
 vignette: >
-  %\VignetteIndexEntry{Manipulating Citations with cffr}
+  %\VignetteIndexEntry{Manipulating Citations with **cffr**}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

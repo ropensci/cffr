@@ -14,13 +14,13 @@ to non-core functions** that an user would rarely call, while `cff_create()`,
 modified:
 
 -   The conversion from `cff` to `bibentry` is performed now by a new function
-    `cff_to_bibentry()`. Previous names of this function were `cff_to_bibtex()`
+    `as_bibentry()`. Previous names of this function were `cff_to_bibtex()`
     and `cff_extract_to_bibtex()` that are now superseded.
 
 -   Now reading from external files is performed exclusively by `cff_read()` and
     additionally by the more-specific new functions `cff_read_cff_citation()`,
     `cff_read_description()`, `cff_read_citation()` and `cff_read_bib()`. It is
-    also possible to read BibTeX lines with `cff_read_biblines()`. Previous
+    also possible to read BibTeX lines with `cff_create_bib_text()`. Previous
     function `cff_from_bibtex()` is now superseded.
 
 -   `write_bib()` and `write_citation()` superseded by `cff_write_bib()` and

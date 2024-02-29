@@ -44,9 +44,9 @@ ascii_table
 \code{\link[tools:encoded]{tools::encoded_text_to_latex()}}
 
 Other functions for working with BibTeX format:
+\code{\link{as_bibentry}()},
+\code{\link{cff_create_bib_text}()},
 \code{\link{cff_read}()},
-\code{\link{cff_read_biblines}()},
-\code{\link{cff_to_bibentry}()},
 \code{\link{cff_write_bib}()}
 }
 \concept{bibtex}

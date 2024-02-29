@@ -44,10 +44,26 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
   return(the_df)
 }
 
-#' Persons
+#' @rdname cff_create_person
+#' @name as.person.cff
+#' @order 2
 #'
-#' @noRd
+#' @description
+#' Additionally, it is also provided a method for [as.person()], that can
+#' convert [`cff`][cff-class] objects to `person` objects as
+#' provided by [utils::person()].
+#'
+#' This method only works with CFF persons, not with full `cff` objects.
+#'
+#' @family s3method
 #' @export
+#' @seealso [utils::person()]
+#'
+#' @param x `cff` object representing a person or entity.
+#'
+#' @return
+#'
+#' `as.person.cff()` returns a `person` object.
 as.person.cff <- function(x) {
   # If single enclose on a list
   is_single <- any(grepl("^name$|^given-names|^family-names", names(x)))
@@ -81,7 +97,8 @@ tail.cff <- function(x, n = 6L, ...) {
 }
 
 
-#' @rdname cff_to_bibentry
+#' @rdname as_bibentry
+#' @name toBibtex.cff
 #' @order 2
 #'
 #' @description
@@ -99,13 +116,14 @@ tail.cff <- function(x, n = 6L, ...) {
 #'
 #' @return
 #'
-#' `toBibtex.cff()` returns a `Bibtex` object.
+#' `toBibtex.cff()` returns a `Bibtex` object that can be printed as BibTeX
+#' markup.
 toBibtex.cff <- function(object, ...,
                          what = c("preferred", "references", "all")) {
   # If a single reference...
   if ("cff-version" %in% names(object)) {
     # If full cff
-    biblist_cff <- cff_to_bibentry(x = object, what = what)
+    biblist_cff <- as_bibentry(x = object, what = what)
   } else {
     # Need to enlist if single
     if ("type" %in% names(object)) {

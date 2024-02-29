@@ -11,7 +11,7 @@
 #'
 #' @export
 #'
-#' @param x A vector of characters with the full BibTeX string.
+#' @param x A vector of `character` objects with the full BibTeX string.
 #' @param encoding Encoding to be assumed for `x`, see [readLines()].
 #' @param ... Arguments passed on to [cff_read_bib()].
 #' @inheritDotParams cff_read_bib -path
@@ -50,9 +50,9 @@
 #'   )
 #'
 #'
-#'   cff_read_biblines(x)
+#'   cff_create_bib_text(x)
 #' }
-cff_read_biblines <- function(x, encoding = "UTF-8", ...) {
+cff_create_bib_text <- function(x, encoding = "UTF-8", ...) {
   # Validations
   if (!inherits(x, "character")) {
     cli::cli_abort(

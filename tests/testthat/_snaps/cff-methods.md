@@ -843,19 +843,19 @@
       dput(pub)
     Output
       structure(list(list(given = NULL, family = "Entity Project Team Conference entity", 
-          role = NULL, email = "project@entity.com", comment = c(name = "Entity Project Team Conference entity", 
-          address = "22 Acacia Avenue", city = "Citationburgh", region = "Renfrewshire", 
-          `post-code` = "C13 7X7", country = "GB", ORCID = "0000-0001-2345-6789", 
-          tel = "+44(0)141-323 4567", fax = "+44(0)141-323 45678", 
-          website = "https://www.entity-project-team.io", `date-start` = "2017-01-01", 
-          `date-end` = "2017-01-31", location = "The team garage"))), class = "person")
+          role = NULL, email = "project@entity.com", comment = c(address = "22 Acacia Avenue", 
+          city = "Citationburgh", region = "Renfrewshire", `post-code` = "C13 7X7", 
+          country = "GB", ORCID = "0000-0001-2345-6789", tel = "+44(0)141-323 4567", 
+          fax = "+44(0)141-323 45678", website = "https://www.entity-project-team.io", 
+          `date-start` = "2017-01-01", `date-end` = "2017-01-31", location = "The team garage"
+          ))), class = "person")
 
 ---
 
     Code
       format(pub, include = c("given", "family", "email", "role", "comment"))
     Output
-      [1] "Entity Project Team Conference entity <project@entity.com> (Entity Project Team Conference entity, 22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io, 2017-01-01, 2017-01-31, The team garage)"
+      [1] "Entity Project Team Conference entity <project@entity.com> (22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io, 2017-01-01, 2017-01-31, The team garage)"
 
 ---
 
@@ -890,20 +890,20 @@
           tel = "+44(0)141-323 4567", fax = "+44(0)141-323 45678", 
           website = "https://www.entity-project-team.io")), list(given = NULL, 
           family = "Entity Project Team Conference entity", role = NULL, 
-          email = "project@entity.com", comment = c(name = "Entity Project Team Conference entity", 
-          address = "22 Acacia Avenue", city = "Citationburgh", region = "Renfrewshire", 
-          `post-code` = "C13 7X7", country = "GB", ORCID = "0000-0001-2345-6789", 
-          tel = "+44(0)141-323 4567", fax = "+44(0)141-323 45678", 
-          website = "https://www.entity-project-team.io", `date-start` = "2017-01-01", 
-          `date-end` = "2017-01-31", location = "The team garage"))), class = "person")
+          email = "project@entity.com", comment = c(address = "22 Acacia Avenue", 
+          city = "Citationburgh", region = "Renfrewshire", `post-code` = "C13 7X7", 
+          country = "GB", ORCID = "0000-0001-2345-6789", tel = "+44(0)141-323 4567", 
+          fax = "+44(0)141-323 45678", website = "https://www.entity-project-team.io", 
+          `date-start` = "2017-01-01", `date-end` = "2017-01-31", location = "The team garage"
+          ))), class = "person")
 
 ---
 
     Code
       format(aut2, include = c("given", "family", "email", "role", "comment"))
     Output
-      [1] "One Truly van der Real Person IV <project@entity.com> (Citey, Excellent University, Niceplace, Arcadia, 22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io)"                                    
-      [2] "Entity Project Team Conference entity <project@entity.com> (Entity Project Team Conference entity, 22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io, 2017-01-01, 2017-01-31, The team garage)"
+      [1] "One Truly van der Real Person IV <project@entity.com> (Citey, Excellent University, Niceplace, Arcadia, 22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io)"
+      [2] "Entity Project Team Conference entity <project@entity.com> (22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io, 2017-01-01, 2017-01-31, The team garage)"   
 
 # head and tail
 

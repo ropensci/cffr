@@ -13,7 +13,7 @@
 #' @param append Whether to append the entries to an existing file or not.
 #' @param verbose Display informative messages
 #' @param ascii Whether to write the entries using ASCII characters only or not.
-#' @inheritDotParams cff_to_bibentry
+#' @inheritDotParams as_bibentry
 #'
 #' @references
 #'
@@ -31,7 +31,7 @@
 #' @details
 #'
 #' When `x` is a `cff` object it would be converted to `bibentry` using
-#' [cff_to_bibentry()].
+#' [as_bibentry()].
 #'
 #' For security reasons, if the file already exists the function would create
 #' a backup copy on the same directory.
@@ -62,7 +62,7 @@
 cff_write_bib <- function(x, file = tempfile(fileext = ".bib"), append = FALSE,
                           verbose = TRUE, ascii = FALSE, ...) {
   if (inherits(x, "cff")) {
-    x <- cff_to_bibentry(x, ...)
+    x <- as_bibentry(x, ...)
   }
 
   if (!inherits(x, "bibentry")) {
@@ -111,7 +111,7 @@ cff_write_bib <- function(x, file = tempfile(fileext = ".bib"), append = FALSE,
 cff_write_citation <- function(x, file = tempfile("CITATION_"),
                                append = FALSE, verbose = TRUE, ...) {
   if (inherits(x, "cff")) {
-    x <- cff_to_bibentry(x, ...)
+    x <- as_bibentry(x, ...)
   }
 
   if (!inherits(x, "bibentry")) {

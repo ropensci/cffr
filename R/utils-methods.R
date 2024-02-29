@@ -19,11 +19,12 @@ make_r_person <- function(x) {
 
   given <- clean_str(x$`given-names`)
   family <- clean_str(c(fam1, fam2))
+  role <- clean_str(x$role)
 
   # Make comments
   x_comments <- x[!names(x) %in% c(
-    "family-names", "given-names",
-    "name-particle", "name-suffix", "email"
+    "family-names", "given-names", "name",
+    "name-particle", "name-suffix", "email", "role"
   )]
 
   x_comments <- lapply(x_comments, clean_str)
@@ -38,6 +39,7 @@ make_r_person <- function(x) {
   pers_list <- list(
     given = given,
     family = family,
+    role = role,
     email = clean_str(x$email),
     comment = x_comments
   )

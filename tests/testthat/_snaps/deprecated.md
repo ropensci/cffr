@@ -5,7 +5,7 @@
     Condition
       Warning:
       `cff_extract_to_bibtex()` was deprecated in cffr 0.5.0.
-      i Function renamed, use `cff_to_bibentry()` instead.
+      i Function renamed, use `as_bibentry()` instead.
 
 # cff_to_bibtex
 
@@ -14,7 +14,7 @@
     Condition
       Warning:
       `cff_extract_to_bibtex()` was deprecated in cffr 1.0.0.
-      i Function renamed, use `cff_to_bibentry()` instead.
+      i Function renamed, use `as_bibentry()` instead.
 
 # cff_from_bibtex
 
@@ -32,7 +32,7 @@
     Condition
       Warning:
       `cff_from_bibtex()` was deprecated in cffr 1.0.0.
-      i Please use `cff_read_biblines()` instead.
+      i Please use `cff_create_bib_text()` instead.
 
 # write_bib
 
