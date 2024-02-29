@@ -800,14 +800,17 @@
     Output
        [1] "type"                    "title"                  
        [3] "authors.00.family_names" "authors.00.given_names" 
-       [5] "authors.01.family_names" "authors.01.given_names" 
-       [7] "authors.02.family_names" "authors.02.given_names" 
-       [9] "authors.03.name"         "url"                    
-      [11] "keywords.00"             "keywords.01"            
-      [13] "keywords.02"             "keywords.03"            
-      [15] "keywords.04"             "keywords.05"            
-      [17] "keywords.06"             "keywords.07"            
-      [19] "abstract"                "version"                
+       [5] "authors.00.email"        "authors.00.orcid"       
+       [7] "authors.01.family_names" "authors.01.given_names" 
+       [9] "authors.01.affiliation"  "authors.01.country"     
+      [11] "authors.02.family_names" "authors.02.given_names" 
+      [13] "authors.02.email"        "authors.03.name"        
+      [15] "authors.03.date_end"     "url"                    
+      [17] "keywords.00"             "keywords.01"            
+      [19] "keywords.02"             "keywords.03"            
+      [21] "keywords.04"             "keywords.05"            
+      [23] "keywords.06"             "keywords.07"            
+      [25] "abstract"                "version"                
 
 # Convert authors only
 
@@ -842,10 +845,11 @@
     Code
       dput(pub)
     Output
-      structure(list(list(given = NULL, family = "Entity Project Team Conference entity", 
-          role = NULL, email = "project@entity.com", comment = c(address = "22 Acacia Avenue", 
-          city = "Citationburgh", region = "Renfrewshire", `post-code` = "C13 7X7", 
-          country = "GB", ORCID = "0000-0001-2345-6789", tel = "+44(0)141-323 4567", 
+      structure(list(list(given = "Entity Project Team Conference entity", 
+          family = NULL, role = NULL, email = "project@entity.com", 
+          comment = c(address = "22 Acacia Avenue", city = "Citationburgh", 
+          region = "Renfrewshire", `post-code` = "C13 7X7", country = "GB", 
+          ORCID = "0000-0001-2345-6789", tel = "+44(0)141-323 4567", 
           fax = "+44(0)141-323 45678", website = "https://www.entity-project-team.io", 
           `date-start` = "2017-01-01", `date-end` = "2017-01-31", location = "The team garage"
           ))), class = "person")
@@ -888,11 +892,11 @@
           address = "22 Acacia Avenue", city = "Citationburgh", region = "Renfrewshire", 
           `post-code` = "C13 7X7", country = "GB", ORCID = "0000-0001-2345-6789", 
           tel = "+44(0)141-323 4567", fax = "+44(0)141-323 45678", 
-          website = "https://www.entity-project-team.io")), list(given = NULL, 
-          family = "Entity Project Team Conference entity", role = NULL, 
-          email = "project@entity.com", comment = c(address = "22 Acacia Avenue", 
-          city = "Citationburgh", region = "Renfrewshire", `post-code` = "C13 7X7", 
-          country = "GB", ORCID = "0000-0001-2345-6789", tel = "+44(0)141-323 4567", 
+          website = "https://www.entity-project-team.io")), list(given = "Entity Project Team Conference entity", 
+          family = NULL, role = NULL, email = "project@entity.com", 
+          comment = c(address = "22 Acacia Avenue", city = "Citationburgh", 
+          region = "Renfrewshire", `post-code` = "C13 7X7", country = "GB", 
+          ORCID = "0000-0001-2345-6789", tel = "+44(0)141-323 4567", 
           fax = "+44(0)141-323 45678", website = "https://www.entity-project-team.io", 
           `date-start` = "2017-01-01", `date-end` = "2017-01-31", location = "The team garage"
           ))), class = "person")

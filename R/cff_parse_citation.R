@@ -123,9 +123,7 @@ cff_parse_citation <- function(bib) {
   }
 
   ## authors ----
-  parse_all_authors <- drop_null(
-    lapply(parsed_fields$authors, cff_parse_person)
-  )
+  parse_all_authors <- cff_create_cff_person(parsed_fields$authors)
   parsed_fields$authors <- unique(parse_all_authors)
 
   ## other persons----
@@ -315,7 +313,7 @@ parse_bibtex_fields <- function(parse_cit) {
 
   loc <- parse_cit$location
 
-  if (!is.null(loc)) parse_cit$location <- person(family = loc)
+  if (!is.null(loc)) parse_cit$location <- loc
 
 
 

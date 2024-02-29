@@ -143,7 +143,7 @@ building_other_persons <- function(parsed_fields) {
     names(bibtex) <- NULL
 
 
-    end <- cff_parse_person_bibtex(bibtex)
+    end <- cff_create_cff_person(bibtex)
 
     # If has names then it should be moved to a lower level on a list
     if (!is.null(names(end))) end <- list(end)
@@ -153,16 +153,7 @@ building_other_persons <- function(parsed_fields) {
 
 
   toperson <- others[names(others) %in% toauto_end]
-  toperson <- lapply(toperson, cff_parse_person_bibtex)
-  # This should be vectors, so include on lists
-  toperson <- lapply(toperson, function(x) {
-    if (!is.null(names(x))) {
-      x <- list(x)
-    } else {
-      x
-    }
-  })
-
+  toperson <- lapply(toperson, cff_create_cff_person)
 
 
   # Bind and reorder

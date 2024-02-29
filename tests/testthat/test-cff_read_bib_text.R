@@ -1,8 +1,8 @@
 test_that("Errors and messages", {
   skip_if_not_installed("bibtex", "0.5.0")
   a_cff <- cff()
-  expect_snapshot(cff_create_bib_text(a_cff), error = TRUE)
-  expect_snapshot(cff_create_bib_text("a bad line"), error = TRUE)
+  expect_snapshot(cff_read_bib_text(a_cff), error = TRUE)
+  expect_snapshot(cff_read_bib_text("a bad line"), error = TRUE)
 })
 
 test_that("Read lines", {
@@ -27,7 +27,7 @@ test_that("Read lines", {
 }"
   )
 
-  list <- cff_create_bib_text(x)
+  list <- cff_read_bib_text(x)
 
   expect_s3_class(list, "cff")
   expect_length(list, 2)
@@ -38,6 +38,6 @@ test_that("Read lines", {
   tmpbib <- tempfile(fileext = ".bib")
   writeLines(x, tmpbib)
 
-  expect_snapshot(fromfile <- cff_create_bib_text(tmpbib))
+  expect_snapshot(fromfile <- cff_read_bib_text(tmpbib))
   expect_identical(fromfile, list)
 })

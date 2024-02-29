@@ -82,7 +82,7 @@ test_that("Convert a citation only", {
 
 
 test_that("Convert authors only", {
-  a_pers_list <- cff_parse_person_bibtex(
+  a_pers_list <- cff_create_cff_person(
     "A person and {A Entity inc.} and {One person} more"
   )
 
@@ -248,6 +248,6 @@ test_that("toBibtex", {
     address      = {London, United Kingdom},
     isbn         = 9781587340925}"
 
-  froml <- toBibtex(cff_create_bib_text(string))
+  froml <- toBibtex(cff_read_bib_text(string))
   expect_equal(sum(names(froml) == "title"), 1)
 })

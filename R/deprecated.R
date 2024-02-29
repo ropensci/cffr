@@ -1,7 +1,7 @@
 #' Previous API: Create BibTeX entries from several sources
 #'
 #' @description
-#' `r lifecycle::badge('superseded')` Please use [as_bibentry()] instead.
+#' `r lifecycle::badge('deprecated')` Please use [as_bibentry()] instead.
 #'
 #' @rdname deprecated_cff_to_bib
 #' @inheritParams as_bibentry
@@ -49,8 +49,8 @@ cff_to_bibtex <- function(x,
 #'
 #' @description
 #'
-#' `r lifecycle::badge('superseded')` Please use either [cff_read_bib()] or
-#' [cff_create_bib_text()] instead.
+#' `r lifecycle::badge('deprecated')` Please use either [cff_read_bib()] or
+#' [cff_read_bib_text()] instead.
 #'
 #' @rdname deprecated_cff_from_bib
 #' @export
@@ -67,7 +67,7 @@ cff_to_bibtex <- function(x,
 #'
 #' @return
 #'
-#' See [cff_read_bib()] from reading `*.bib` files and [cff_create_bib_text()]
+#' See [cff_read_bib()] from reading `*.bib` files and [cff_read_bib_text()]
 #' for reading a `character` object representing a BibTeX entry.
 #'
 #'
@@ -93,7 +93,7 @@ cff_to_bibtex <- function(x,
 #' }"
 #'   )
 #'
-#'   cff_create_bib_text(x)
+#'   cff_read_bib_text(x)
 #'
 #'   # From a file
 #'
@@ -114,10 +114,10 @@ cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
 
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_soft(
-      "1.0.0", "cff_from_bibtex()", "cff_create_bib_text()"
+      "1.0.0", "cff_from_bibtex()", "cff_read_bib_text()"
     )
   }
-  cff_create_bib_text(x, encoding = encoding, ...)
+  cff_read_bib_text(x, encoding = encoding, ...)
 }
 
 
@@ -125,7 +125,7 @@ cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
 #'
 #' @description
 #'
-#' `r lifecycle::badge('superseded')` Please use [cff_write_bib()] or
+#' `r lifecycle::badge('deprecated')` Please use [cff_write_bib()] or
 #' [cff_write_citation()] instead.
 #'
 #' @rdname deprecated_write
@@ -183,4 +183,81 @@ write_citation <- function(x,
     )
   }
   cff_write_citation(x, file, append, verbose, ...)
+}
+
+
+#' Previous API: Parse a person to [`cff`][cff-class]
+#'
+#' @description
+#'
+#' `r lifecycle::badge('deprecated')` Please use [cff_create_cff_person()]
+#'
+#' @rdname deprecated_cff_person
+#' @export
+#' @keywords internal
+#' @family deprecated
+#'
+#' @inheritParams cff_create_cff_person
+#' @return A person in format `cff`.
+#'
+#' @seealso [cff_create_cff_person()]
+#'
+#' @examples
+#' # Create a person object
+#' a_person <- person(
+#'   given = "First", family = "Author",
+#'   role = c("aut", "cre"),
+#'   email = "first.last@example.com", comment = c(
+#'     ORCID = "0000-0001-8457-4658",
+#'     affiliation = "An affiliation"
+#'   )
+#' )
+#'
+#' a_person
+#'
+#' cff_person <- cff_create_cff_person(a_person)
+#'
+#' cff_person
+#'
+#' # Back to person object with S3 Method
+#' as.person(cff_person)
+#'
+#' # Parse a string
+#' a_str <- paste0(
+#'   "Julio Iglesias <fake@email.com> ",
+#'   "(<https://orcid.org/0000-0001-8457-4658>)"
+#' )
+#' cff_create_cff_person(a_str)
+#'
+#' # Several persons
+#' persons <- c(person("Clark", "Kent"), person("Lois", "Lane"))
+#'
+#' cff_create_cff_person(persons)
+#'
+#' # Or you can use BibTeX style if you prefer
+#'
+#' x <- "Frank Sinatra and Dean Martin and Davis, Jr., Sammy and Joey Bishop"
+#'
+#' cff_create_cff_person(x)
+#'
+#' cff_create_cff_person("Herbert von Karajan")
+cff_parse_person <- function(person) {
+  if (requireNamespace("lifecycle", quietly = TRUE)) {
+    lifecycle::deprecate_soft(
+      "1.0.0", "cff_parse_person()", "cff_create_cff_person()"
+    )
+  }
+  cff_create_cff_person(person)
+}
+
+#' @rdname deprecated_cff_person
+#' @export
+#'
+cff_parse_person_bibtex <- function(person) {
+  if (requireNamespace("lifecycle", quietly = TRUE)) {
+    lifecycle::deprecate_soft(
+      "1.0.0", "cff_parse_person_bibtex()", "cff_create_cff_person()"
+    )
+  }
+  cff_create_cff_person(person)
 }

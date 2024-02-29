@@ -34,7 +34,7 @@ both the preferred citation info and the references.
 See \code{\link[=as_bibentry]{as_bibentry()}}.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}} Please use \code{\link[=as_bibentry]{as_bibentry()}} instead.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use \code{\link[=as_bibentry]{as_bibentry()}} instead.
 }
 \examples{
 \donttest{
@@ -50,6 +50,7 @@ bib <- as_bibentry(cff_object)
 \seealso{
 Other deprecated functions:
 \code{\link{cff_from_bibtex}()},
+\code{\link{cff_parse_person}()},
 \code{\link{write_bib}()}
 }
 \concept{deprecated}

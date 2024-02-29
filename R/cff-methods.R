@@ -44,7 +44,7 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
   return(the_df)
 }
 
-#' @rdname cff_create_person
+#' @rdname cff_create_cff_person
 #' @name as.person.cff
 #' @order 2
 #'

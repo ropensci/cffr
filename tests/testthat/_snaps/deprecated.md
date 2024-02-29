@@ -32,7 +32,7 @@
     Condition
       Warning:
       `cff_from_bibtex()` was deprecated in cffr 1.0.0.
-      i Please use `cff_create_bib_text()` instead.
+      i Please use `cff_read_bib_text()` instead.
 
 # write_bib
 
@@ -72,4 +72,22 @@
                title = "My title",
                author = person(given = "Fran",
                                family = "Pérez"))
+
+# cff_parse_person
+
+    Code
+      pend <- cff_parse_person(p)
+    Condition
+      Warning:
+      `cff_parse_person()` was deprecated in cffr 1.0.0.
+      i Please use `cff_create_cff_person()` instead.
+
+# cff_parse_person_bibtex
+
+    Code
+      pend <- cff_parse_person_bibtex(p)
+    Condition
+      Warning:
+      `cff_parse_person_bibtex()` was deprecated in cffr 1.0.0.
+      i Please use `cff_create_cff_person()` instead.
 

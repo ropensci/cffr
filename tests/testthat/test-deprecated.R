@@ -33,7 +33,7 @@ test_that("cff_from_bibtex", {
       }"
 
   expect_snapshot(flines <- cff_from_bibtex(x))
-  expect_identical(flines, cff_create_bib_text(x))
+  expect_identical(flines, cff_read_bib_text(x))
 })
 
 test_that("write_bib", {
@@ -58,4 +58,19 @@ test_that("write_citation", {
   expect_snapshot(write_citation(bib, tmp, verbose = FALSE))
 
   expect_snapshot(cat(readLines(tmp), sep = "\n"))
+})
+
+
+test_that("cff_parse_person", {
+  p <- person("A", "person")
+  expect_snapshot(pend <- cff_parse_person(p))
+
+  expect_identical(pend, cff_create_cff_person(p))
+})
+
+test_that("cff_parse_person_bibtex", {
+  p <- "{Elephant and Castle}"
+  expect_snapshot(pend <- cff_parse_person_bibtex(p))
+
+  expect_identical(pend, cff_create_cff_person(p))
 })

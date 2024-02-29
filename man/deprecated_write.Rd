@@ -31,7 +31,7 @@ lines to be written.}
 Write a file.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}} Please use \code{\link[=cff_write_bib]{cff_write_bib()}} or
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use \code{\link[=cff_write_bib]{cff_write_bib()}} or
 \code{\link[=cff_write_citation]{cff_write_citation()}} instead.
 }
 \examples{
@@ -59,7 +59,8 @@ cat(readLines(my_temp_bib), sep = "\n")
 
 Other deprecated functions:
 \code{\link{cff_extract_to_bibtex}()},
-\code{\link{cff_from_bibtex}()}
+\code{\link{cff_from_bibtex}()},
+\code{\link{cff_parse_person}()}
 }
 \concept{deprecated}
 \keyword{internal}

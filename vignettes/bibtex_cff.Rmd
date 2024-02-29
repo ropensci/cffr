@@ -135,9 +135,10 @@ capabilities that can be used to read and transform **BibTeX** format into
 different formats:
 
 -   `cff_read_bib()` reads \*.bib files.
--   `cff_create_bib_text()` can read **BibTeX** entries that are already stored
-    in a variable.
--   A S3 method `toBibtex.cff()` that converts from
+-   `cff_read_bib_text()` can read **BibTeX** entries that are already stored in
+    a variable.
+-   A S3 method `toBibtex.cff()` that converts from `cff` objects to Bibtex
+    objects (see `utils::tpBibtex()`).
 
 ```{r cffbibread, comment="#>"}
 string <- "@book{einstein1921,
@@ -150,7 +151,7 @@ string <- "@book{einstein1921,
 
 # To cff
 library(cffr)
-cff_format <- cff_create_bib_text(string)
+cff_format <- cff_read_bib_text(string)
 
 cff_format
 
@@ -572,13 +573,13 @@ bib <- "@article{article-full,
     pages        = {73+},
     note         = {This is a full ARTICLE entry}}"
 
-cff_create_bib_text(bib)
+cff_read_bib_text(bib)
 ```
 
 From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE}
-toBibtex(cff_create_bib_text(bib))
+toBibtex(cff_read_bib_text(bib))
 ```
 
 ### \@book / \@inbook {#book-inbook}
@@ -654,13 +655,13 @@ bib <- "@book{book-full,
     edition      = {Second}
 }"
 
-cff_create_bib_text(bib)
+cff_read_bib_text(bib)
 ```
 
 From [CFF]{.underline} to **BibTeX**
 
 ```{r,  echo=FALSE}
-toBibtex(cff_create_bib_text(bib))
+toBibtex(cff_read_bib_text(bib))
 ```
 
 **Examples: \@inbook**
@@ -704,13 +705,13 @@ bib <- "@inbook{inbook-full,
     chapter      = {1.2}
 }"
 
-cff_create_bib_text(bib)
+cff_read_bib_text(bib)
 ```
 
 From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
-toBibtex(cff_create_bib_text(bib))
+toBibtex(cff_read_bib_text(bib))
 ```
 
 ### \@booklet {#booklet}
@@ -763,13 +764,13 @@ bib <- "@booklet{booklet-full,
     howpublished = {Vernier Art Center}
 }"
 
-cff_create_bib_text(bib)
+cff_read_bib_text(bib)
 ```
 
 From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE, }
-toBibtex(cff_create_bib_text(bib))
+toBibtex(cff_read_bib_text(bib))
 ```
 
 ### \@conference / \@inproceedings {#conf_inproc}
@@ -834,13 +835,13 @@ bib <- "@inproceedings{inproceedings-full,
     organization = {The OX Association for Computing Machinery}
 }"
 
-cff_create_bib_text(bib)
+cff_read_bib_text(bib)
 ```
 
 From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
-toBibtex(cff_create_bib_text(bib))
+toBibtex(cff_read_bib_text(bib))
 ```
 
 ### \@incollection {#incol}
@@ -915,13 +916,13 @@ bib <- "@incollection{incollection-full,
     edition      = {Third}
 }"
 
-cff_create_bib_text(bib)
+cff_read_bib_text(bib)
 ```
 
 From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
-toBibtex(cff_create_bib_text(bib))
+toBibtex(cff_read_bib_text(bib))
 ```
 
 ### \@manual
@@ -980,13 +981,13 @@ bib <- "@manual{manual-full,
     edition      = {Silver}
 }"
 
-cff_create_bib_text(bib)
+cff_read_bib_text(bib)
 ```
 
 From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
-toBibtex(cff_create_bib_text(bib))
+toBibtex(cff_read_bib_text(bib))
 ```
 
 ### \@mastersthesis / \@phdthesis
@@ -1049,13 +1050,13 @@ bib <- "@mastersthesis{mastersthesis-full,
     type         = {Master's project}
 }"
 
-cff_create_bib_text(bib)
+cff_read_bib_text(bib)
 ```
 
 From [CFF]{.underline} to **BibTeX**
 
 ```{r,  echo=FALSE}
-toBibtex(cff_create_bib_text(bib))
+toBibtex(cff_read_bib_text(bib))
 ```
 
 **Examples: \@phdthesis**
@@ -1089,13 +1090,13 @@ bib <- "@phdthesis{phdthesis-full,
     type         = {{PhD} Dissertation}
 }"
 
-cff_create_bib_text(bib)
+cff_read_bib_text(bib)
 ```
 
 From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
-toBibtex(cff_create_bib_text(bib))
+toBibtex(cff_read_bib_text(bib))
 ```
 
 ### \@misc
@@ -1152,13 +1153,13 @@ bib <- "@misc{misc-full,
     howpublished = {Handed out at O'Hare}
 }"
 
-cff_create_bib_text(bib)
+cff_read_bib_text(bib)
 ```
 
 From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
-toBibtex(cff_create_bib_text(bib))
+toBibtex(cff_read_bib_text(bib))
 ```
 
 ### \@proceedings
@@ -1226,13 +1227,13 @@ bib <- "@proceedings{proceedings-full,
     organization = {The OX Association for Computing Machinery}
 }"
 
-cff_create_bib_text(bib)
+cff_read_bib_text(bib)
 ```
 
 From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
-toBibtex(cff_create_bib_text(bib))
+toBibtex(cff_read_bib_text(bib))
 ```
 
 ### \@techreport
@@ -1289,13 +1290,13 @@ bib <- "@techreport{techreport-full,
     type         = {Wishful Research Result}
 }"
 
-cff_create_bib_text(bib)
+cff_read_bib_text(bib)
 ```
 
 From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
-toBibtex(cff_create_bib_text(bib))
+toBibtex(cff_read_bib_text(bib))
 ```
 
 ### \@unpublished
@@ -1340,13 +1341,13 @@ bib <- "@unpublished{unpublished-minimal,
     note         = {Talk at Fanstord University (this is a minimal UNPUBLISHED entry)}
 }"
 
-cff_create_bib_text(bib)
+cff_read_bib_text(bib)
 ```
 
 From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
-toBibtex(cff_create_bib_text(bib))
+toBibtex(cff_read_bib_text(bib))
 ```
 
 ## Appendix A: **\@inbook** in BibTeX and BibLaTeX {#appendix_inbook}
@@ -1413,13 +1414,13 @@ bib <- "@inbook{inbook-biblatex,
 	chapter      = {4.5}
 }"
 
-cff_create_bib_text(bib)
+cff_read_bib_text(bib)
 ```
 
 From [CFF]{.underline} to **BibTeX**
 
 ```{r echo=FALSE,}
-toBibtex(cff_create_bib_text(bib))
+toBibtex(cff_read_bib_text(bib))
 ```
 
 ## Appendix B: [CFF key:type]{.underline} values {#appendix_cff_type}

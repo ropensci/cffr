@@ -13,7 +13,7 @@
 #'
 #' ```
 #'
-#' [cff_create_person()] can convert the following objects:
+#' [cff_create_cff_person()] can convert the following objects:
 #' - Objects with class `person` as provided by [utils::person()].
 #' - A `character` string with the definition of an author or several authors,
 #'   using the standard BibTeX notation. See Markey (2007) for a full
@@ -23,8 +23,8 @@
 #' Examples in `vignette("cffr", "cffr")` and [utils::person()].
 #'
 #' @export
-#' @rdname cff_create_person
-#' @name cff_create_person
+#' @rdname cff_create_cff_person
+#' @name cff_create_cff_person
 #' @order 1
 #'
 #' @family coercing
@@ -35,8 +35,8 @@
 #'   See **Examples**.
 #'
 #' @return
-#' `cff_create_person()` returns A list of persons or entities with class `cff`
-#' converted to the
+#' `cff_create_cff_person()` returns A list of persons or entities with class
+#'  `cff` converted to the
 #' ```{r, echo=FALSE, results='asis'}
 #'
 #' cat(paste0(" [Citation File Format schema]",
@@ -48,7 +48,7 @@
 #'
 #' @details
 #'
-#' `cff_create_person()` uses a custom algorithm that tries to break a name
+#' `cff_create_cff_person()` uses a custom algorithm that tries to break a name
 #' as explained in Section 11 of "Tame the BeaST" (Markey, 2007):
 #'  - `First von Last`
 #'  - `von Last, First`
@@ -60,10 +60,10 @@
 #'  In the case of entities, the whole `character` would be mapped to `name`.
 #'  It is a good practice to "protect" entity's names with `{}`:
 #'
-#' ```{r child = "man/chunks/cff_create_person.Rmd"}
+#' ```{r child = "man/chunks/person.Rmd"}
 #' ```
-#' `cff_create_person()` would try to add as many information as possible. On
-#' `character` string coming from [`format(person())`][utils::person()] the
+#' `cff_create_cff_person()` would try to add as many information as possible.
+#' On `character` string coming from [`format(person())`][utils::person()] the
 #' email and the ORCID would be gathered as well.
 #'
 #' @references
@@ -90,7 +90,7 @@
 #'
 #' a_person
 #'
-#' cff_person <- cff_create_person(a_person)
+#' cff_person <- cff_create_cff_person(a_person)
 #'
 #' cff_person
 #'
@@ -102,27 +102,31 @@
 #'   "Julio Iglesias <fake@email.com> ",
 #'   "(<https://orcid.org/0000-0001-8457-4658>)"
 #' )
-#' cff_create_person(a_str)
+#' cff_create_cff_person(a_str)
 #'
 #' # Several persons
 #' persons <- c(person("Clark", "Kent"), person("Lois", "Lane"))
 #'
-#' cff_create_person(persons)
+#' cff_create_cff_person(persons)
 #'
 #' # Or you can use BibTeX style if you prefer
 #'
 #' x <- "Frank Sinatra and Dean Martin and Davis, Jr., Sammy and Joey Bishop"
 #'
-#' cff_create_person(x)
+#' cff_create_cff_person(x)
 #'
-#' cff_create_person("Herbert von Karajan")
-cff_create_person <- function(person) {
+#' cff_create_cff_person("Herbert von Karajan")
+cff_create_cff_person <- function(person) {
+  if (any(is.null(person), is.na(person), length(person) == 0)) {
+    return(NULL)
+  }
+
   hint <- guess_hint(person)
 
   verbopt <- getOption("cffr_message_verbosity", "none")
   if (verbopt == "debug") {
     cli::cli_alert_info(
-      "In {.fn cff_create_person} using internal for {.val {hint}}."
+      "In {.fn cff_create_cff_person} using internal for {.val {hint}}."
     )
   }
 
@@ -141,25 +145,8 @@ cff_create_person <- function(person) {
   the_obj
 }
 
-guess_hint <- function(person) {
-  # On length 0 use "person"
-  if (length(person) == 0) {
-    return("person")
-  }
-  if (inherits(person, "person")) {
-    return("person")
-  }
-
-  # Rest of cases "txt"
-  return("txt")
-}
-
 create_person_from_r <- function(person) {
   person <- as.person(person)
-
-  if (length(person) == 0) {
-    return(NULL)
-  }
 
   # Special case for Bioconductor
 
@@ -250,6 +237,14 @@ create_person_from_txt <- function(as_bib_text) {
     parsed_comments <- list()
   }
 
+  # Special case for Bioconductor
+  if (is_substring(tolower(person_only), "bioconductor")) {
+    person_only <- paste0("{", person_only, "}")
+  }
+  # Special case for R Core Team
+  if (is_substring(tolower(person_only), "r core")) {
+    person_only <- paste0("{", person_only, "}")
+  }
 
 
   # Now extract structure for person_only string
@@ -314,6 +309,16 @@ create_person_from_txt <- function(as_bib_text) {
   parsed_person <- validate_cff_person_fields(parsed_person)
   parsed_person
 }
+
+guess_hint <- function(person) {
+  if (inherits(person, "person")) {
+    return("person")
+  }
+
+  # Rest of cases "txt"
+  return("txt")
+}
+
 
 split_txt_persons <- function(person) {
   person <- trimws(person)
@@ -425,30 +430,16 @@ extract_person_comments <- function(person) {
 
   # Add also email
   # Check if several mails (MomTrunc 6.0)
-  valid_emails <- unlist(lapply(person$email, is_email))
-  email <- person$email[valid_emails][1]
+  look_emails <- c(unlist(person$email), parsed_comments$email)
+  valid_emails <- unlist(lapply(look_emails, is_email))
+  email <- look_emails[valid_emails][1]
 
   # Final list
-  fin_list <- c(list(email = NULL), parsed_comments)
+  fin_list <- c(
+    list(email = NULL),
+    parsed_comments["email" != names(parsed_comments)]
+  )
   fin_list$email <- clean_str(email)
 
   fin_list
-}
-
-
-validate_cff_person_fields <- function(parsed_person) {
-  # Entity of person
-
-  # Guess entity or person
-  is_entity <- as.character("name" %in% names(parsed_person))
-
-  # Keep only valid tags - Would depend on entity or person
-  definition <- switch(is_entity,
-    "TRUE" = cff_schema_definitions_entity(),
-    cff_schema_definitions_person()
-  )
-
-  parsed_person <- parsed_person[names(parsed_person) %in% definition]
-
-  parsed_person
 }

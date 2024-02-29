@@ -158,14 +158,13 @@ chiquito <- person("Gregorio",
 chiquito
 
 # Parse it
-chiquito_parsed <- cff_parse_person(chiquito)
+chiquito_parsed <- cff_create_cff_person(chiquito)
 chiquito_parsed
 
 
 # Append to previous authors
 
-# Needs to be append as a list
-newauthors <- c(modobject$authors, list(chiquito_parsed))
+newauthors <- c(modobject$authors, chiquito_parsed)
 newauthors
 
 newauthorobject <- cff_create(modobject, keys = list(authors = newauthors))

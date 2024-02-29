@@ -45,8 +45,8 @@ ascii_table
 
 Other functions for working with BibTeX format:
 \code{\link{as_bibentry}()},
-\code{\link{cff_create_bib_text}()},
 \code{\link{cff_read}()},
+\code{\link{cff_read_bib_text}()},
 \code{\link{cff_write_bib}()}
 }
 \concept{bibtex}

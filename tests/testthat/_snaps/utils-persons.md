@@ -3,358 +3,358 @@
     Code
       unlist(res)
     Output
-       given family 
-        "AA"   "BB" 
+      family-names  given-names 
+              "BB"         "AA" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-      family 
-        "AA" 
+      name 
+      "AA" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-       given family 
-        "AA"   "bb" 
+      family-names  given-names 
+              "bb"         "AA" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-      family 
-        "aa" 
+      name 
+      "aa" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-       given    von family 
-        "AA"   "bb"   "CC" 
+       family-names   given-names name-particle 
+               "CC"          "AA"          "bb" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-           given        von     family 
-            "AA" "bb CC dd"       "EE" 
+       family-names   given-names name-particle 
+               "EE"          "AA"    "bb CC dd" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-        given     von  family 
-      "AA bB"    "cc"    "dd" 
+       family-names   given-names name-particle 
+               "dd"       "AA bB"          "cc" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-           given        von     family 
-      "AA \\BBb"       "cc"       "dd" 
+       family-names   given-names name-particle 
+               "dd"    "AA \\BBb"          "cc" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-        given     von  family 
-      "AA bb"    "cc"    "DD" 
+       family-names   given-names name-particle 
+               "DD"       "AA bb"          "cc" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-        given     von  family 
-         "AA"    "bb" "cc DD" 
+       family-names   given-names name-particle 
+            "cc DD"          "AA"          "bb" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-        given  family 
-      "AA bb"    "CC" 
+      family-names  given-names 
+              "CC"      "AA bb" 
 
 # Testing with random names First von Last
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-              given           von        family 
-             "Jean"          "de" "La Fontaine" 
+       family-names   given-names name-particle 
+      "La Fontaine"        "Jean"          "de" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-                 given           family 
-               "Diego" "Hernandez Sanz" 
+          family-names      given-names 
+      "Hernandez Sanz"          "Diego" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-              given        family 
-      "Juan Manuel"  "Miramontes" 
+       family-names   given-names 
+       "Miramontes" "Juan Manuel" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-                    given              family 
-            "Juan Manuel" "Miramontes Garcia" 
+             family-names         given-names 
+      "Miramontes Garcia"       "Juan Manuel" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-              given           von        family 
-      "Juan Manuel"         "van"       "Halen" 
+       family-names   given-names name-particle 
+            "Halen" "Juan Manuel"         "van" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-                     given               family 
-                   "Bosco" "de la Cruz y Ochoa" 
+              family-names          given-names 
+      "de la Cruz y Ochoa"              "Bosco" 
 
 # Test von Last, First
 
     Code
       unlist(res)
     Output
-       given    von family 
-        "AA"   "bb"   "CC" 
+       family-names   given-names name-particle 
+               "CC"          "AA"          "bb" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-       given    von family 
-        "aa"   "bb"   "CC" 
+       family-names   given-names name-particle 
+               "CC"          "aa"          "bb" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-           given        von     family 
-            "AA" "bb CC dd"       "EE" 
+       family-names   given-names name-particle 
+               "EE"          "AA"    "bb CC dd" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-       given family 
-        "AA"   "bb" 
+      family-names  given-names 
+              "bb"         "AA" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-      family 
-        "BB" 
+      name 
+      "BB" 
 
 # Test von Last, First with brackets, etc
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-        given     von  family 
-        "Ana"    "de" "Armas" 
+       family-names   given-names name-particle 
+            "Armas"         "Ana"          "de" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-           given     family 
-           "Ana" "de Armas" 
+      family-names  given-names 
+        "de Armas"        "Ana" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-                   given             family 
-                   "Ana" "de Armas, Aguero" 
+            family-names        given-names 
+      "de Armas, Aguero"              "Ana" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-                   given             family 
-             "Ana Maria" "de Armas, Aguero" 
+            family-names        given-names 
+      "de Armas, Aguero"        "Ana Maria" 
 
 # Test von Last, Jr,  First
 
     Code
       unlist(res)
     Output
-       given    von family     jr 
-        "AA"   "bb"   "CC"   "XX" 
+       family-names   given-names name-particle   name-suffix 
+               "CC"          "AA"          "bb"          "XX" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-       given family 
-        "AA"   "BB" 
+      family-names  given-names 
+              "BB"         "AA" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-      family     jr 
-        "BB"   "AA" 
+         name 
+      "BB AA" 
 
 # Test von Last, Jr,  First with masking
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-        given  family      jr 
-      "Sammy" "Davis"    "Jr" 
+      family-names  given-names  name-suffix 
+           "Davis"      "Sammy"         "Jr" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-              given        family            jr 
-            "Sammy"  "Davis, and" "Jr, another" 
+       family-names   given-names   name-suffix 
+       "Davis, and"       "Sammy" "Jr, another" 
 
 # Rest of cases
 
     Code
       unlist(res)
     Output
-                                family 
+                                  name 
       "David, and, Jr, another, Sammy" 
 
 # tames da beast
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-               von       family 
-      "jean de la"   "fontaine" 
+                       name 
+      "jean de la fontaine" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-           given        von     family 
-          "Jean"    "de la" "fontaine" 
+       family-names   given-names name-particle 
+         "fontaine"        "Jean"       "de la" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-           given        von     family 
-       "Jean de"       "la" "fontaine" 
+       family-names   given-names name-particle 
+         "fontaine"     "Jean de"          "la" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-                   von           family 
-                "jean" "de la fontaine" 
+                       name 
+      "jean de la fontaine" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-             given       family 
-      "Jean de la"   "fontaine" 
+      family-names  given-names 
+        "fontaine" "Jean de la" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-             given       family 
-      "Jean De La"   "Fontaine" 
+      family-names  given-names 
+        "Fontaine" "Jean De La" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-               von       family 
-      "jean De la"   "Fontaine" 
+                       name 
+      "jean De la Fontaine" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-              given           von        family 
-             "Jean"          "de" "La Fontaine" 
+       family-names   given-names name-particle 
+      "La Fontaine"        "Jean"          "de" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-               von       family 
-      "jean de la"   "fontaine" 
+                       name 
+      "jean de la fontaine" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-           given        von     family 
-          "Jean"    "de la" "fontaine" 
+       family-names   given-names name-particle 
+         "fontaine"        "Jean"       "de la" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-                 given           family 
-                "Jean" "De La Fontaine" 
+          family-names      given-names 
+      "De La Fontaine"           "Jean" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-           given        von     family 
-          "Jean"    "De la" "Fontaine" 
+       family-names   given-names name-particle 
+         "Fontaine"        "Jean"       "De la" 
 
 ---
 
     Code
-      unlist(as_person_bibtex(x))
+      unlist(create_person_from_txt(x))
     Output
-              given           von        family 
-             "Jean"          "de" "La Fontaine" 
+       family-names   given-names name-particle 
+      "La Fontaine"        "Jean"          "de" 
 

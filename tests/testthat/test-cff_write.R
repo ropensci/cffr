@@ -75,10 +75,9 @@ test_that("Add new keys", {
     message = "This overwrites fields",
     abstract = "New abstract",
     keywords = c("A", "new", "list", "of", "keywords"),
-    authors = list(cff_parse_person(person(
-      "Don", "Nadie",
-      comment = c(website = "error")
-    ))),
+    authors = cff_create_cff_person(
+      person("Don", "Nadie", comment = c(website = "error"))
+    ),
     "date-released" = "1900-01-01",
     "error" = "This is an error"
   )
@@ -117,15 +116,14 @@ test_that("Append keys", {
   # It should be a list
   new_aut <- append(
     old_aut,
-    list(cff_parse_person(person(
-      "New",
-      "author",
-      comment = c(
-        "error" = 123,
-        website = "https://stackoverflow.com/",
-        country = "IT"
+    cff_create_cff_person(
+      person("New", "author",
+        comment = c(
+          "error" = 123, website = "https://stackoverflow.com/",
+          country = "IT"
+        )
       )
-    )))
+    )
   )
 
   tmp <- tempfile(fileext = ".cff")

@@ -118,16 +118,16 @@ toBibtex(desc_file)
 \code{\link[utils:toLatex]{utils::toBibtex()}}
 
 Other functions for working with BibTeX format:
-\code{\link{cff_create_bib_text}()},
 \code{\link{cff_read}()},
+\code{\link{cff_read_bib_text}()},
 \code{\link{cff_write_bib}()},
 \code{\link{encoded_utf_to_latex}()}
 
 Other functions for converting between \strong{R} classes:
-\code{\link{cff_create_person}()}
+\code{\link{cff_create_cff_person}()}
 
 Other S3 Methods for \code{cff}:
-\code{\link{cff_create_person}()}
+\code{\link{cff_create_cff_person}()}
 }
 \concept{bibtex}
 \concept{coercing}

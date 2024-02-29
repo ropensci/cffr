@@ -1,4 +1,4 @@
-#' Create a [`cff`][cff-class] object from BibTeX lines
+#' Read BibTeX markup as a [`cff`][cff-class] object
 #'
 #' @description
 #' Convert a [`character`][character()] representing a BibTeX entry to a
@@ -50,9 +50,9 @@
 #'   )
 #'
 #'
-#'   cff_create_bib_text(x)
+#'   cff_read_bib_text(x)
 #' }
-cff_create_bib_text <- function(x, encoding = "UTF-8", ...) {
+cff_read_bib_text <- function(x, encoding = "UTF-8", ...) {
   # Validations
   if (!inherits(x, "character")) {
     cli::cli_abort(

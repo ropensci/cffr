@@ -52,7 +52,7 @@
 #' test <- cff(
 #'   title = "Manipulating files",
 #'   keywords = c("A", "new", "list", "of", "keywords"),
-#'   authors = list(cff_parse_person("New author"))
+#'   authors = cff_create_cff_person("New author")
 #' )
 #' test
 #' \donttest{

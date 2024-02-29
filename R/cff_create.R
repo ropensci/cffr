@@ -90,7 +90,7 @@
 #'   message = "This overwrites fields",
 #'   abstract = "New abstract",
 #'   keywords = c("A", "new", "list", "of", "keywords"),
-#'   authors = list(cff_parse_person("New author"))
+#'   authors = cff_create_cff_person("New author")
 #' )
 #'
 #' cff_create(demo_file, keys = newkeys)
@@ -102,12 +102,10 @@
 #'
 #' new_contact <- append(
 #'   old$contact,
-#'   list(
-#'     cff_parse_person(person(
-#'       given = "I am",
-#'       family = "New Contact"
-#'     ))
-#'   )
+#'   cff_create_cff_person(person(
+#'     given = "I am",
+#'     family = "New Contact"
+#'   ))
 #' )
 #'
 #'

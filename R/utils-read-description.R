@@ -26,7 +26,7 @@ parse_desc_authors <- function(pkg, authors_roles = c("aut", "cre")) {
     any(x$role %in% r)
   }, logical(1))]
 
-  parse_all_authors <- lapply(authors, cff_parse_person)
+  parse_all_authors <- cff_create_cff_person(authors)
   parse_all_authors <- unique(parse_all_authors)
 
   parse_all_authors
@@ -42,7 +42,7 @@ parse_desc_contacts <- function(pkg) {
     "cre" %in% x$role
   }, logical(1))]
 
-  parse_all_contacts <- lapply(contact, cff_parse_person)
+  parse_all_contacts <- cff_create_cff_person(contact)
   parse_all_contacts <- unique(parse_all_contacts)
   parse_all_contacts
 }

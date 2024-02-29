@@ -8,17 +8,24 @@ make_r_person <- function(x) {
     return(person())
   }
   # Prepare list
-  # Family is special key
-  fam1 <- clean_str(x$name)
-  fam2 <- clean_str(
-    paste(
-      clean_str(x$`name-particle`), clean_str(x$`family-names`),
-      clean_str(x$`name-suffix`)
-    )
-  )
+  x <- unclass(x)
 
-  given <- clean_str(x$`given-names`)
-  family <- clean_str(c(fam1, fam2))
+  # Family is special key
+  # R Core uses for entity 'given', so do I
+  # see in citation()
+  is_entity <- any(grepl("^name$", names(x)))
+  if (is_entity) {
+    given <- clean_str(x[["name"]])
+    # Extra protect
+    family <- NULL
+  } else {
+    given <- clean_str(x[["given-names"]])
+    family <- clean_str(paste(
+      clean_str(x[["name-particle"]]), clean_str(x[["family-names"]]),
+      clean_str(x[["name-suffix"]])
+    ))
+  }
+
   role <- clean_str(x$role)
 
   # Make comments

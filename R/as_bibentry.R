@@ -252,23 +252,8 @@ cff_bibtex_parser <- function(x) {
 
   # author----
   aut <- x$authors
-
-  author <- lapply(aut, function(y) {
-    if ("name" %in% names(y)) {
-      # Person protected on family
-      person(family = clean_str(y$name))
-    } else {
-      person(
-        given = clean_str(y$`given-names`),
-        family = clean_str(paste(
-          clean_str(y$`name-particle`),
-          clean_str(y$`family-names`),
-          clean_str(y$`name-suffix`)
-        ))
-      )
-    }
-  })
-  tobibentry$author <- do.call(c, author)
+  author <- as.person(aut)
+  tobibentry$author <- author
 
 
   # booktitle ----
@@ -292,27 +277,8 @@ cff_bibtex_parser <- function(x) {
 
   # editor----
   # Same case than authors
-  editors <- x["editors"][[1]]
-
-  if (!is.null(editors)) {
-    # Same
-    editor <- lapply(editors, function(y) {
-      if (!is.null(y$name)) {
-        # Person protected on family
-        person(family = clean_str(y$name))
-      } else {
-        person(
-          given = clean_str(y$`given-names`),
-          family = clean_str(paste(
-            clean_str(y$`name-particle`),
-            clean_str(y$`family-names`),
-            clean_str(y$`name-suffix`)
-          ))
-        )
-      }
-    })
-    tobibentry$editor <- do.call(c, editor)
-  }
+  editors <- as.person(x$editors)
+  tobibentry$editor <- editors
 
   # howpublished----
 
@@ -336,6 +302,7 @@ cff_bibtex_parser <- function(x) {
     "inproceedings", "proceedings",
     "manual"
   )) {
+    # Just name
     tobibentry$organization <- x$institution$name
   } else {
     tobibentry$institution <- x$institution$name
@@ -350,8 +317,21 @@ cff_bibtex_parser <- function(x) {
   # journal----
   tobibentry$journal <- x$journal
 
-  # key First two given of author and year----
-  aut_sur <- lapply(tobibentry$author$family[1:2], clean_str)
+  # key: First two given of author and year----
+  # Bear in mind institutions has only given
+  # Use the first two authors
+  aut_sur <- lapply(tobibentry$author[1:2], function(z) {
+    unz <- unlist(z)
+    if ("family" %in% names(unz)) {
+      r <- unz["family"]
+      return(clean_str(r))
+    }
+
+    r <- unz["given"]
+    return(clean_str(r))
+  })
+
+
   aut_sur <- tolower(paste0(unlist(aut_sur), collapse = ""))
   aut_sur <- gsub("\\s*", "", aut_sur)
 
@@ -491,6 +471,7 @@ cff_bibtex_parser <- function(x) {
   tobibentry$urldate <- x$`date-accessed`
   tobibentry$version <- x$version
   # Translators
+
   trns <- x$translators
 
   trnsbib <- lapply(trns, function(y) {
@@ -511,10 +492,6 @@ cff_bibtex_parser <- function(x) {
   })
 
   tobibentry$translator <- paste(unlist(trnsbib), collapse = " and ")
-
-
-
-
 
   # sort ----
   # based on default by
