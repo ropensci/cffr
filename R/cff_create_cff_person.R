@@ -259,7 +259,10 @@ create_person_from_txt <- function(as_bib_text) {
     perl = TRUE
   )
 
-  commas <- as.character(length(grep(",", unlist(strsplit(protected, "|")))))
+  commas <- as.character(lengths(regmatches(
+    protected,
+    gregexpr(",", protected)
+  )))
 
   # Assign the corresponding fun
   bibtex_name_str <- switch(commas,

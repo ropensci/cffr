@@ -7,6 +7,9 @@ template:
 repo:
   branch: main
 
+development:
+  mode: auto
+
 # reference:
 #   - title: Main function
 #     desc: >-
