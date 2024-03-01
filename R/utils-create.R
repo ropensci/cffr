@@ -117,10 +117,10 @@ parse_dependencies <- function(desc_path,
     n <- av_deps[y, ]
 
     if (n$package == "R") {
-      mod <- cff_parse_citation(citation()[1])
+      mod <- cff_parse_citation(citation())[[1]]
       mod$year <- format(Sys.Date(), "%Y")
     } else {
-      mod <- try(cff_parse_citation(citation(n$package, auto = TRUE)[1]),
+      mod <- try(cff_parse_citation(citation(n$package, auto = TRUE)[1])[[1]],
         silent = TRUE
       )
 

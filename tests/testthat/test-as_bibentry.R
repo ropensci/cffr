@@ -257,12 +257,12 @@ test_that("particle names", {
 
 
   bibparsed <- cff_parse_citation(bib)
-  bibparsed$authors <- as_cff_person(
+  bibparsed[[1]]$authors <- as_cff_person(
     "van Leunen, Mary-Claire and Davis, Jr., Sammy"
   )
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -283,7 +283,7 @@ test_that("From plain cff with a citation", {
     month = 3
   )
 
-  s$`preferred-citation` <- cff_parse_citation(acit)
+  s$`preferred-citation` <- cff_parse_citation(acit)[[1]]
   s$`preferred-citation`$editors <- as_cff_person("A name")
 
   bib <- as_bibentry(s)
@@ -478,7 +478,7 @@ test_that("Corrupt entry", {
     month = "January",
     keywords = "Some, simple, keywords"
   )
-  x <- cff_parse_citation(bib)
+  x <- cff_parse_citation(bib)[[1]]
   x$year <- NULL
   x$journal <- NULL
   expect_snapshot(n <- as_bibentry(x))

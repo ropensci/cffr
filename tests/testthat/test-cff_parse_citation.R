@@ -55,7 +55,7 @@ test_that("Add wrong field to citation", {
 
   cffobj <- cff_create(cff(),
     keys = list(
-      references = list(bibparsed)
+      references = bibparsed
     )
   )
 
@@ -81,9 +81,7 @@ test_that("Fix wrong orcid", {
   expect_s3_class(bibparsed, "cff")
 
   cffobj <- cff_create(cff(),
-    keys = list(
-      references = list(bibparsed)
-    )
+    keys = list(references = bibparsed)
   )
 
   expect_snapshot(cffobj)
@@ -113,7 +111,7 @@ test_that("Several identifiers and duplicates", {
 
   cffobj <- cff_create(cff(),
     keys = list(
-      references = list(bibparsed)
+      references = bibparsed
     )
   )
 
@@ -138,7 +136,7 @@ test_that("Test keywords and urls", {
 
   cffobj <- cff_create(cff(),
     keys = list(
-      references = list(bibparsed)
+      references = bibparsed
     )
   )
 
@@ -168,7 +166,7 @@ test_that("Parse persons on CITATION", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -193,7 +191,7 @@ test_that("Test inputs", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -228,7 +226,7 @@ test_that("Article", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -267,7 +265,7 @@ test_that("Book", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -299,7 +297,7 @@ test_that("Booklet", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -350,7 +348,7 @@ test_that("Conference", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -389,7 +387,7 @@ test_that("InBook", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -429,7 +427,7 @@ test_that("InCollection", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -470,7 +468,7 @@ test_that("InProceedings", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -501,7 +499,7 @@ test_that("Manual", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -533,7 +531,7 @@ test_that("MastersThesis", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -562,7 +560,7 @@ test_that("Misc", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -595,7 +593,7 @@ test_that("PhdThesis", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -630,7 +628,7 @@ test_that("Proceedings", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -665,7 +663,7 @@ test_that("TechReport", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -693,7 +691,7 @@ test_that("Unpublished", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -725,7 +723,7 @@ test_that("InBook with booktitle", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -760,14 +758,14 @@ test_that("Test entry without author", {
   bibparsed <- cff_parse_citation(bib)
 
   expect_identical(
-    bibparsed$authors[[1]]$name,
+    bibparsed[[1]]$authors[[1]]$name,
     "anonymous"
   )
 
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -792,7 +790,7 @@ test_that("Test entry without author but has a key", {
   bibparsed <- cff_parse_citation(bib)
 
   expect_identical(
-    bibparsed$authors[[1]]$name,
+    bibparsed[[1]]$authors[[1]]$name,
     "anonymous"
   )
 
@@ -800,7 +798,7 @@ test_that("Test entry without author but has a key", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -822,7 +820,7 @@ test_that("Test entry without author and key", {
   bibparsed <- cff_parse_citation(bib)
 
   expect_identical(
-    bibparsed$authors[[1]]$name,
+    bibparsed[[1]]$authors[[1]]$name,
     "anonymous"
   )
 
@@ -830,7 +828,7 @@ test_that("Test entry without author and key", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -845,12 +843,12 @@ test_that("Skip misc without title", {
     year = 2018
   )
 
-  expect_message(bibparsed <- cff_parse_citation(bib), "Skipping")
+  expect_snapshot(bibparsed <- cff_parse_citation(bib))
 
   expect_null(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_snapshot(cffobj)
@@ -862,18 +860,13 @@ test_that("Skip misc without title", {
 test_that("Skip misc without title, not skipping the good one", {
   bib <- c(
     bibentry(
-      bibtype = "misc",
-      author = c(person("SHERPA/RoMEO")),
-      url = "http://www.sherpa.ac.uk/romeo/",
-      year = 2018
+      bibtype = "misc", author = c(person("SHERPA/RoMEO")),
+      url = "http://www.sherpa.ac.uk/romeo/", year = 2018
     ),
     bibentry(
       bibtype = "misc",
       title = "{rromeo}: An {R} Client for {SHERPA/RoMEO} {API}",
-      author = c(
-        person("Matthias", "Grenié"),
-        person("Hugo", "Gruson")
-      ),
+      author = c(person("Matthias", "Grenié"), person("Hugo", "Gruson")),
       year = 2019,
       header = "To cite this package in publications, please use:",
       url = "https://CRAN.R-project.org/package=rromeo"
@@ -884,11 +877,9 @@ test_that("Skip misc without title, not skipping the good one", {
 
   expect_message(bibparsed <- cff_parse_citation(bib), "SHERPA/RoMEO")
 
-  expect_length(bibparsed, 2)
+  expect_length(bibparsed, 1)
 
-  expect_null(bibparsed[[1]])
-
-  expect_s3_class(bibparsed[[2]], "cff")
+  expect_s3_class(bibparsed[[1]], "cff")
 
   cffobj <- cff_create(cff(),
     keys = list(references = bibparsed)
@@ -935,7 +926,7 @@ test_that("Check extended BibLatex Fields", {
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = list(bibparsed))
+    keys = list(references = bibparsed)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))

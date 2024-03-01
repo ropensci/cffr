@@ -397,18 +397,18 @@
     Code
       bibparsed
     Output
-      type: book
-      title: A Handbook for Scholars
-      authors:
-      - family-names: Leunen
-        given-names: Mary-Claire
-        name-particle: van
-      - family-names: Davis
-        given-names: Sammy
-        name-suffix: Jr.
-      year: '1979'
-      publisher:
-        name: Knopf
+      - type: book
+        title: A Handbook for Scholars
+        authors:
+        - family-names: Leunen
+          given-names: Mary-Claire
+          name-particle: van
+        - family-names: Davis
+          given-names: Sammy
+          name-suffix: Jr.
+        year: '1979'
+        publisher:
+          name: Knopf
 
 ---
 

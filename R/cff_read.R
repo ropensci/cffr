@@ -256,7 +256,7 @@ cff_read_citation <- function(path, meta = NULL, ...) {
     }
     # nocov end
   }
-  tocff <- lapply(the_cit, cff_parse_citation)
+  tocff <- cff_parse_citation(the_cit)
   tocff <- new_cff(tocff)
   unname(tocff)
 }
@@ -288,7 +288,7 @@ cff_read_bib <- function(path, encoding = "UTF-8", ...) {
   read_bib <- bibtex::read.bib(file = path, encoding = encoding, ...)
 
 
-  tocff <- lapply(read_bib, cff_parse_citation)
+  tocff <- cff_parse_citation(read_bib)
   tocff <- new_cff(tocff)
   unname(tocff)
 }
@@ -312,15 +312,8 @@ cff_safe_read_citation <- function(desc_path, cit_path) {
   }
 
   # Need to be named here
-  tocff <- lapply(the_cit, cff_parse_citation)
-  make_names <- vapply(tocff, function(x) {
-    myname <- gsub("[^a-z]", "", tolower(x$title))
-    substr(myname, 1, 10)
-  }, character(1))
-
-  names(tocff) <- make_names
+  tocff <- cff_parse_citation(the_cit)
   tocff <- new_cff(tocff)
-  unname(tocff)
 }
 
 # Helpers ----

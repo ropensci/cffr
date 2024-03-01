@@ -11,7 +11,7 @@ cff_parse_citation(bib)
 (preferred) or \code{\link[=citEntry]{citEntry()}}.}
 }
 \value{
-A \code{\link{cff}} object ready to be used on \code{\link[=cff_create]{cff_create()}}.
+A list \code{\link{cff}} object ready to be used on \code{\link[=cff_create]{cff_create()}}.
 }
 \description{
 Parse a \code{bibentry} object to a valid format for a \code{CITATION.cff} file.
