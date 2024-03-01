@@ -65,12 +65,12 @@ test_that("cff_parse_person", {
   p <- person("A", "person")
   expect_snapshot(pend <- cff_parse_person(p))
 
-  expect_identical(pend, cff_create_cff_person(p))
+  expect_identical(pend, as_cff_person(p))
 })
 
 test_that("cff_parse_person_bibtex", {
   p <- "{Elephant and Castle}"
   expect_snapshot(pend <- cff_parse_person_bibtex(p))
 
-  expect_identical(pend, cff_create_cff_person(p))
+  expect_identical(pend, as_cff_person(p))
 })

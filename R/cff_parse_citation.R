@@ -123,7 +123,7 @@ cff_parse_citation <- function(bib) {
   }
 
   ## authors ----
-  parse_all_authors <- cff_create_cff_person(parsed_fields$authors)
+  parse_all_authors <- as_cff_person(parsed_fields$authors)
   parsed_fields$authors <- unique(parse_all_authors)
 
   ## other persons----

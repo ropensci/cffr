@@ -1,35 +1,51 @@
 # cffr (development version)
 
-## Major changes
+This is a major release with some notable changes. The change mainly **affects
+to non-core functions**, hence the natural workflow (`cff_create()` →
+`cff_write()` → `cff_validate()`) shouldn't be affected.
 
-Now `class()` of `cff` objects are `c("cff", "list")` instead of single value
-(`"cff"`).
+## Major changes
 
 ### API
 
-The API has been reviewed to provide more clarity on names and better
-maintenance. Now each function does less things but better. The change **affects
-to non-core functions** that an user would rarely call, while `cff_create()`,
-`cff_write()` and `cff_validate()` (core functions) hasn't been visibly
-modified:
+The API has been completely reviewed to provide more clarity on functions naming
+and to facilitate internal maintenance. This change **only** **affects to
+non-core functions**. Now each function does less things but does it better. The
+old API [has been
+deprecated](https://lifecycle.r-lib.org/articles/stages.html#deprecated) and it
+would warn when used, providing advice on the replacement function.
 
+#### Deprecations
+
+-   `cff_to_bibtex()` and `cff_extract_to_bibtex()`: replaced by
+    `as_bibentry()`.
+-   `cff_from_bibtex()`: replaced by `cff_read_bib()` (for `*.bib` files) and
+    `cff_read_bib_text()` (for character strings).
+-   `write_bib()` and `write_citation()` : replaced by `cff_write_bib()` and
+    `cff_write_citation()` respectively.
+-   `cff_parse_person()` and `cff_parse_person_bibtex()`: replacedy by
+    `as_cff_person()`.
 -   The conversion from `cff` to `bibentry` is performed now by a new function
     `as_bibentry()`. Previous names of this function were `cff_to_bibtex()` and
     `cff_extract_to_bibtex()` that are now deprecated.
--   Now reading from external files is performed exclusively by `cff_read()` and
-    additionally by the more-specific new functions `cff_read_cff_citation()`,
-    `cff_read_description()`, `cff_read_citation()` and `cff_read_bib()`. It is
-    also possible to read BibTeX lines with `cff_read_bib_text()`. Previous
-    function `cff_from_bibtex()` is now deprecated.
--   `write_bib()` and `write_citation()` deprecated by `cff_write_bib()` and
-    `cff_write_citation()`.
--   `cff_parse_person()` and `cff_parse_person_bibtex()` are deprecated. Use
-    `cff_create_cff_person()` instead.
 
-### Methods
+#### New capabilities
 
+-   Now reading from external files is performed exclusively by `cff_read()`
+    (that is designed to fit all supported file types on a single entry point)
+    and the new specific readers (that are used under the hood by `cff_read()`),
+    namely:
+    -   `cff_read_cff_citation()`,
+    -   `cff_read_description()`,
+    -   `cff_read_citation()`
+    -   `cff_read_bib()`.
+
+## Other changes
+
+-   Minimum **R** version required now is **4.0.0**.
+-   Now `class()` of `cff` objects are `c("cff", "list")` instead of single
+    value (`"cff"`).
 -   New methods added:
-
     -   `as.data.frame.cff().`
     -   `as.person.cff()`, that provides results **only** for CFF keys defined
         as
@@ -39,16 +55,13 @@ modified:
         (e.g. `authors`, `contacts`, `editors`, `publisher`).
     -   `head.cff()`, `tail.cff()`.
     -   `toBibtex.cff()`.
-
-## Other changes
-
--   Minimum **R** version required now is **4.0.0**.
-
-### BibTeX crosswalk
-
--   **\@inbook** and **\@book** gains a new value on [CFF]{.underline} when
-    **series** is provided: [collection-type: book-series.]{.underline}
--   Review and update `vignette("bibtex_cff", package = "cffr")`.
+-   Update of BibTeX crosswalk (see `vignette("bibtex_cff", package = "cffr")`)
+    and consecuently changes in the mapping performed by `as_bibtex()`
+    `cff_parse_citation()`:
+    -   **\@inbook** and **\@book** gains a new value on [CFF]{.underline} when
+        **series** is provided: [collection-type: book-series.]{.underline}
+    -   Can handle BibLaTeX **\@inbook**, that differs significantly from BibTeX
+        **\@inbook**.
 
 # cffr 0.5.0
 
@@ -65,7 +78,7 @@ modified:
 ## Enhancements
 
 -   Additional authors of a **R** package can be now included based on the role
-    on the DESCRIPTION file, via the parameter `authors_roles` (#49).
+    on the `DESCRIPTION` file, via the parameter `authors_roles` (#49).
 
 -   New message interface based on [**cli**](https://cli.r-lib.org/)
     capabilities.
@@ -93,7 +106,7 @@ modified:
 
 # cffr 0.3.0
 
--   `preferred-citation` is only produced when a CITATION (**R**) file has been
+-   `preferred-citation` is only produced when a `CITATION` **R** file has been
     provided with the package (#37).
 -   Improve email handling on authors.
 -   Add `cff_read()` function. This functionality was already implemented on
@@ -110,7 +123,6 @@ modified:
 # cffr 0.2.1
 
 -   GitHub Action now runs only on `master` or `main`branch.
-
 -   Better handling of references
 
 # cffr 0.2.0
@@ -118,31 +130,22 @@ modified:
 -   Now **cffr** extracts also information of the package dependencies and adds
     the main citation of the dependencies to the `references` field, using
     `citation(auto = TRUE)`.
-
     -   New `dependencies` parameter on `cff_create()` and `cff_write()`.
-
 -   Other improvements on `cff_parse_citation():`
-
     -   `cff_parse_citation()` extracts more information of authors, based on
-        the fields provided on the DESCRIPTION file.
-
+        the fields provided on the `DESCRIPTION` file.
     -   `cff_parse_citation()` does a better job extracting information from
         `bibentry()` /BibTeX and mapping it to `preferred-citation/references`
         fields of CFF.
-
 -   Add new functions for working with git pre-commit hooks
     [![Experimental](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental):
-
     -   `cff_git_hook_install()`
     -   `cff_git_hook_remove()`
-
 -   New BibTeX functions:
-
     -   `cff_extract_to_bibtex()`
     -   `cff_to_bibtex()`
     -   `cff_parse_person_bibtex()`
     -   `write_bib()`
-
 -   Add a new dependency: `lifecycle`.
 
 # cffr 0.1.1
@@ -159,16 +162,16 @@ modified:
 
 # cffr 0.0.2
 
--   `cffr` is part now of rOpenSci.
+-   **cffr** is part now of rOpenSci.
 -   Update on docs and README.
 -   Add fuzzy match on `keys` parameter.
 -   New dataset: `cran_to_spdx`.
 -   Add DOI <https://doi.org/10.5281/zenodo.5509766>
 -   Citation of installed packages extracted using `citation().`
--   Auto-generating `preferred-citation` key from DESCRIPTION.
+-   Auto-generating `preferred-citation` key from `DESCRIPTION`.
 -   Rename `cff_schema_definitions_reference()` to
     `cff_schema_definitions_refs()`.
--   "repository" key is supported.
+-   `repository` key is supported.
 -   Added vignette: `vignette("crosswalk", package = "cffr")`.
 -   Add support to Bioconductor packages.
 -   New function: `cff_gha_update()`.

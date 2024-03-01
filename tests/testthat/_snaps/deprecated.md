@@ -80,7 +80,7 @@
     Condition
       Warning:
       `cff_parse_person()` was deprecated in cffr 1.0.0.
-      i Please use `cff_create_cff_person()` instead.
+      i Please use `as_cff_person()` instead.
 
 # cff_parse_person_bibtex
 
@@ -89,5 +89,5 @@
     Condition
       Warning:
       `cff_parse_person_bibtex()` was deprecated in cffr 1.0.0.
-      i Please use `cff_create_cff_person()` instead.
+      i Please use `as_cff_person()` instead.
 

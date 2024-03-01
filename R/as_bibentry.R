@@ -15,6 +15,9 @@
 #' object and performs a mapping of the metadata to BibTeX, according to
 #' `vignette("bibtex_cff", "cffr")`.
 #'
+#' The inverse transformation (`bibtex` object to `cff` reference) can be done
+#' with [cff_parse_citation()].
+#'
 #' @seealso
 #' [utils::bibentry()]
 #'

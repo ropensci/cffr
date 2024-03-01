@@ -21,7 +21,7 @@ See \strong{Examples}.
 A person in format \code{cff}.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use \code{\link[=cff_create_cff_person]{cff_create_cff_person()}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use \code{\link[=as_cff_person]{as_cff_person()}}
 }
 \examples{
 # Create a person object
@@ -36,7 +36,7 @@ a_person <- person(
 
 a_person
 
-cff_person <- cff_create_cff_person(a_person)
+cff_person <- as_cff_person(a_person)
 
 cff_person
 
@@ -48,23 +48,23 @@ a_str <- paste0(
   "Julio Iglesias <fake@email.com> ",
   "(<https://orcid.org/0000-0001-8457-4658>)"
 )
-cff_create_cff_person(a_str)
+as_cff_person(a_str)
 
 # Several persons
 persons <- c(person("Clark", "Kent"), person("Lois", "Lane"))
 
-cff_create_cff_person(persons)
+as_cff_person(persons)
 
 # Or you can use BibTeX style if you prefer
 
 x <- "Frank Sinatra and Dean Martin and Davis, Jr., Sammy and Joey Bishop"
 
-cff_create_cff_person(x)
+as_cff_person(x)
 
-cff_create_cff_person("Herbert von Karajan")
+as_cff_person("Herbert von Karajan")
 }
 \seealso{
-\code{\link[=cff_create_cff_person]{cff_create_cff_person()}}
+\code{\link[=as_cff_person]{as_cff_person()}}
 
 Other deprecated functions:
 \code{\link{cff_extract_to_bibtex}()},

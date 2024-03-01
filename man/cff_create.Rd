@@ -83,7 +83,7 @@ newkeys <- list(
   message = "This overwrites fields",
   abstract = "New abstract",
   keywords = c("A", "new", "list", "of", "keywords"),
-  authors = cff_create_cff_person("New author")
+  authors = as_cff_person("New author")
 )
 
 cff_create(demo_file, keys = newkeys)
@@ -95,7 +95,7 @@ old <- cff_create(demo_file)
 
 new_contact <- append(
   old$contact,
-  cff_create_cff_person(person(
+  as_cff_person(person(
     given = "I am",
     family = "New Contact"
   ))

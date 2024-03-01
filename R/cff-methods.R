@@ -44,16 +44,16 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
   return(the_df)
 }
 
-#' @rdname cff_create_cff_person
+#' @rdname as_cff_person
 #' @name as.person.cff
 #' @order 2
 #'
 #' @description
-#' Additionally, it is also provided a method for [as.person()], that can
-#' convert [`cff`][cff-class] objects to `person` objects as
-#' provided by [utils::person()].
 #'
-#' This method only works with CFF persons, not with full `cff` objects.
+#' The inverse transformation (`cff` person to [`person`][utils::as.person()])
+#' object can be done through the [as.person.cff()] method. Note that this is
+#' expected to be used with a `cff` person, not with a complete `cff` object.
+#'
 #'
 #' @family s3method
 #' @export
@@ -103,9 +103,8 @@ tail.cff <- function(x, n = 6L, ...) {
 #'
 #' @description
 #' Additionally, it is also provided a method for [toBibtex()], that can
-#' convert [`cff`][cff-class] objects to `Bibtex` objects as
-#' provided by [utils::toBibtex()]. These objects are character vectors with
-#' BibTeX markup.
+#' convert [`cff`][cff-class] objects to `Bibtex` objects as provided by
+#' [utils::toBibtex()]. These objects are character vectors with BibTeX markup.
 #'
 #' @family s3method
 #' @export

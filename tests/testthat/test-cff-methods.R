@@ -82,7 +82,7 @@ test_that("Convert a citation only", {
 
 
 test_that("Convert authors only", {
-  a_pers_list <- cff_create_cff_person(
+  a_pers_list <- as_cff_person(
     "A person and {A Entity inc.} and {One person} more"
   )
 

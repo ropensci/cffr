@@ -13,18 +13,21 @@
 #'
 #' ```
 #'
-#' [cff_create_cff_person()] can convert the following objects:
+#' [as_cff_person()] can convert the following objects:
 #' - Objects with class `person` as provided by [utils::person()].
 #' - A `character` string with the definition of an author or several authors,
 #'   using the standard BibTeX notation. See Markey (2007) for a full
 #'   explanation.
 #'
+#' [as_cff_person()] would recognize if the input should be converted using the
+#' CFF reference `person` or `entity`.
+#'
 #' @seealso
 #' Examples in `vignette("cffr", "cffr")` and [utils::person()].
 #'
 #' @export
-#' @rdname cff_create_cff_person
-#' @name cff_create_cff_person
+#' @rdname as_cff_person
+#' @name as_cff_person
 #' @order 1
 #'
 #' @family coercing
@@ -35,7 +38,7 @@
 #'   See **Examples**.
 #'
 #' @return
-#' `cff_create_cff_person()` returns A list of persons or entities with class
+#' `as_cff_person()` returns A list of persons or entities with class
 #'  `cff` converted to the
 #' ```{r, echo=FALSE, results='asis'}
 #'
@@ -48,21 +51,26 @@
 #'
 #' @details
 #'
-#' `cff_create_cff_person()` uses a custom algorithm that tries to break a name
-#' as explained in Section 11 of "Tame the BeaST" (Markey, 2007):
-#'  - `First von Last`
-#'  - `von Last, First`
-#'  - `von Last, Jr, First`
+#' `as_cff_person()` uses a custom algorithm that tries to break a name as
+#' explained in Section 11 of "Tame the BeaST" (Markey, 2007) (see also
+#' Decoret, 2007):
 #'
-#'  `First` is mapped to the CFF field `given-names`, `von` to `name-particle`,
-#'  `Last` to `family-names` and `Jr` to `name-suffix`.
+#'  - `First von Last`.
+#'  - `von Last, First`.
+#'  - `von Last, Jr, First`.
+#'
+#'  Mapping is performed as follows:
+#'  - `First` is mapped to the CFF field `given-names`.
+#'  - `von` is mapped to the CFF field `name-particle`.
+#'  - `Last` is mapped to the CFF field `family-names`.
+#'  - `Jr` is mapped to the CFF field `name-suffix`.
 #'
 #'  In the case of entities, the whole `character` would be mapped to `name`.
 #'  It is a good practice to "protect" entity's names with `{}`:
 #'
 #' ```{r child = "man/chunks/person.Rmd"}
 #' ```
-#' `cff_create_cff_person()` would try to add as many information as possible.
+#' `as_cff_person()` would try to add as many information as possible.
 #' On `character` string coming from [`format(person())`][utils::person()] the
 #' email and the ORCID would be gathered as well.
 #'
@@ -73,6 +81,13 @@
 #' - Markey, Nicolas. "Tame the BeaST"
 #'   *The B to X of BibTeX, Version 1.4* (October 2007).
 #'   <https://osl.ugr.es/CTAN/info/bibtex/tamethebeast/ttb_en.pdf>.
+#' - Decoret X (2007). "A summary of BibTex."
+#' ```{r, echo=FALSE, results='asis'}
+#'
+#' cat(paste0("<https://maverick.inria.fr/~Xavier.Decoret/resources/xdkbibtex/",
+#'            "bibtex_summary.html#names>"))
+#'
+#' ```
 #'
 #' See **Examples** for more information.
 #'
@@ -90,7 +105,7 @@
 #'
 #' a_person
 #'
-#' cff_person <- cff_create_cff_person(a_person)
+#' cff_person <- as_cff_person(a_person)
 #'
 #' cff_person
 #'
@@ -102,21 +117,21 @@
 #'   "Julio Iglesias <fake@email.com> ",
 #'   "(<https://orcid.org/0000-0001-8457-4658>)"
 #' )
-#' cff_create_cff_person(a_str)
+#' as_cff_person(a_str)
 #'
 #' # Several persons
 #' persons <- c(person("Clark", "Kent"), person("Lois", "Lane"))
 #'
-#' cff_create_cff_person(persons)
+#' as_cff_person(persons)
 #'
 #' # Or you can use BibTeX style if you prefer
 #'
 #' x <- "Frank Sinatra and Dean Martin and Davis, Jr., Sammy and Joey Bishop"
 #'
-#' cff_create_cff_person(x)
+#' as_cff_person(x)
 #'
-#' cff_create_cff_person("Herbert von Karajan")
-cff_create_cff_person <- function(person) {
+#' as_cff_person("Herbert von Karajan")
+as_cff_person <- function(person) {
   if (any(is.null(person), is.na(person), length(person) == 0)) {
     return(NULL)
   }
@@ -126,7 +141,7 @@ cff_create_cff_person <- function(person) {
   verbopt <- getOption("cffr_message_verbosity", "none")
   if (verbopt == "debug") {
     cli::cli_alert_info(
-      "In {.fn cff_create_cff_person} using internal for {.val {hint}}."
+      "In {.fn as_cff_person} using internal for {.val {hint}}."
     )
   }
 

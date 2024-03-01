@@ -257,7 +257,7 @@ test_that("particle names", {
 
 
   bibparsed <- cff_parse_citation(bib)
-  bibparsed$authors <- cff_create_cff_person(
+  bibparsed$authors <- as_cff_person(
     "van Leunen, Mary-Claire and Davis, Jr., Sammy"
   )
 
@@ -284,7 +284,7 @@ test_that("From plain cff with a citation", {
   )
 
   s$`preferred-citation` <- cff_parse_citation(acit)
-  s$`preferred-citation`$editors <- cff_create_cff_person("A name")
+  s$`preferred-citation`$editors <- as_cff_person("A name")
 
   bib <- as_bibentry(s)
   expect_snapshot(toBibtex(bib))

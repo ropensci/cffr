@@ -190,17 +190,17 @@ write_citation <- function(x,
 #'
 #' @description
 #'
-#' `r lifecycle::badge('deprecated')` Please use [cff_create_cff_person()]
+#' `r lifecycle::badge('deprecated')` Please use [as_cff_person()]
 #'
 #' @rdname deprecated_cff_person
 #' @export
 #' @keywords internal
 #' @family deprecated
 #'
-#' @inheritParams cff_create_cff_person
+#' @inheritParams as_cff_person
 #' @return A person in format `cff`.
 #'
-#' @seealso [cff_create_cff_person()]
+#' @seealso [as_cff_person()]
 #'
 #' @examples
 #' # Create a person object
@@ -215,7 +215,7 @@ write_citation <- function(x,
 #'
 #' a_person
 #'
-#' cff_person <- cff_create_cff_person(a_person)
+#' cff_person <- as_cff_person(a_person)
 #'
 #' cff_person
 #'
@@ -227,27 +227,27 @@ write_citation <- function(x,
 #'   "Julio Iglesias <fake@email.com> ",
 #'   "(<https://orcid.org/0000-0001-8457-4658>)"
 #' )
-#' cff_create_cff_person(a_str)
+#' as_cff_person(a_str)
 #'
 #' # Several persons
 #' persons <- c(person("Clark", "Kent"), person("Lois", "Lane"))
 #'
-#' cff_create_cff_person(persons)
+#' as_cff_person(persons)
 #'
 #' # Or you can use BibTeX style if you prefer
 #'
 #' x <- "Frank Sinatra and Dean Martin and Davis, Jr., Sammy and Joey Bishop"
 #'
-#' cff_create_cff_person(x)
+#' as_cff_person(x)
 #'
-#' cff_create_cff_person("Herbert von Karajan")
+#' as_cff_person("Herbert von Karajan")
 cff_parse_person <- function(person) {
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_soft(
-      "1.0.0", "cff_parse_person()", "cff_create_cff_person()"
+      "1.0.0", "cff_parse_person()", "as_cff_person()"
     )
   }
-  cff_create_cff_person(person)
+  as_cff_person(person)
 }
 
 #' @rdname deprecated_cff_person
@@ -256,8 +256,8 @@ cff_parse_person <- function(person) {
 cff_parse_person_bibtex <- function(person) {
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_soft(
-      "1.0.0", "cff_parse_person_bibtex()", "cff_create_cff_person()"
+      "1.0.0", "cff_parse_person_bibtex()", "as_cff_person()"
     )
   }
-  cff_create_cff_person(person)
+  as_cff_person(person)
 }

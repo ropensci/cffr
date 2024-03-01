@@ -7,11 +7,11 @@ options("cffr_message_verbosity" = NULL)
 ```{r}
 # Don't do
 entity <- "Elephant and Castle"
-cff_create_cff_person(entity)
+as_cff_person(entity)
 
 # Do
 entity_protect <- "{Elephant and Castle}"
-cff_create_cff_person(entity_protect)
+as_cff_person(entity_protect)
 ```
 
 ```{r include=FALSE}

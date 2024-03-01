@@ -1,21 +1,21 @@
 # debugging messages
 
     Code
-      a <- cff_create_cff_person(ap)
+      a <- as_cff_person(ap)
     Message
-      i In `cff_create_cff_person()` using internal for "person".
+      i In `as_cff_person()` using internal for "person".
 
 ---
 
     Code
-      b <- cff_create_cff_person("Example")
+      b <- as_cff_person("Example")
     Message
-      i In `cff_create_cff_person()` using internal for "txt".
+      i In `as_cff_person()` using internal for "txt".
 
 # Parse one person
 
     Code
-      cff_create_cff_person(p)
+      as_cff_person(p)
     Output
       - family-names: person
         given-names: one
@@ -23,7 +23,7 @@
 # Parse several persons
 
     Code
-      cff_create_cff_person(p)
+      as_cff_person(p)
     Output
       - family-names: person
         given-names: one
@@ -35,7 +35,7 @@
 # Parse bibtex persons
 
     Code
-      cff_create_cff_person(s)
+      as_cff_person(s)
     Output
       - family-names: Wright
         given-names: Frank Edwin
@@ -44,7 +44,7 @@
 ---
 
     Code
-      cff_create_cff_person(s)
+      as_cff_person(s)
     Output
       - family-names: person
         given-names: A
@@ -55,7 +55,7 @@
 # Parse bibtex persons with masks
 
     Code
-      cff_create_cff_person(s)
+      as_cff_person(s)
     Output
       - name: Elephant
       - name: Castle
@@ -63,14 +63,14 @@
 ---
 
     Code
-      cff_create_cff_person(s)
+      as_cff_person(s)
     Output
       - name: Elephant and Castle
 
 ---
 
     Code
-      cff_create_cff_person(s)
+      as_cff_person(s)
     Output
       - name: Elephant and Castle
       - name: this
@@ -79,7 +79,7 @@
 ---
 
     Code
-      cff_create_cff_person(s)
+      as_cff_person(s)
     Output
       - name: Elephant and Castle
       - name: this AND Ltd.

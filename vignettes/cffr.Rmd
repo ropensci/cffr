@@ -158,7 +158,7 @@ chiquito <- person("Gregorio",
 chiquito
 
 # Parse it
-chiquito_parsed <- cff_create_cff_person(chiquito)
+chiquito_parsed <- as_cff_person(chiquito)
 chiquito_parsed
 
 
