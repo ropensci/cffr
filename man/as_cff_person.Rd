@@ -139,10 +139,12 @@ Examples in \code{vignette("cffr", "cffr")} and \code{\link[utils:person]{utils:
 \code{\link[utils:person]{utils::person()}}
 
 Other functions for converting between \strong{R} classes:
-\code{\link{as_bibentry}()}
+\code{\link{as_bibentry}()},
+\code{\link{cff_parse_citation}()}
 
 Other S3 Methods for \code{cff}:
-\code{\link{as_bibentry}()}
+\code{\link{as_bibentry}()},
+\code{\link{cff-class}}
 }
 \concept{coercing}
 \concept{s3method}

@@ -43,8 +43,8 @@
 #'
 #'
 #' ```
-#'
-#' `vignette("cffr", "cffr")`
+#' See also [cff_write()] for creating a CFF file. `vignette("cffr", "cffr")`
+#' shows an introduction on how manipulate `cff` objects.
 #'
 #' @details
 #'

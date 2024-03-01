@@ -4,6 +4,8 @@
 #' on CRAN packages and its (approximate) match on the
 #' [SPDX License List](https://spdx.org/licenses/).
 #'
+#' @family datasets
+#'
 #' @format A data frame with `r nrow(cran_to_spdx)` rows and 2 variables:
 #'
 #'  * `r names(cran_to_spdx)[1]`: A valid `License` string on CRAN.

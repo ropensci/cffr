@@ -6,7 +6,7 @@
 #'
 #' @export
 #'
-#' @family parsers
+#' @family coercing
 #'
 #' @param bib A `bibentry` object, either created with [bibentry()]
 #'   (preferred) or [citEntry()].

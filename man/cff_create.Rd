@@ -107,12 +107,11 @@ cff_create(demo_file, keys = list("contact" = new_contact))
 }
 \seealso{
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
-
-\code{vignette("cffr", "cffr")}
+See also \code{\link[=cff_write]{cff_write()}} for creating a CFF file. \code{vignette("cffr", "cffr")}
+shows an introduction on how manipulate \code{cff} objects.
 
 Other core functions of \CRANpkg{cffr}:
 \code{\link{cff}()},
-\code{\link{cff_validate}()},
-\code{\link{cff_write}()}
+\code{\link{cff_validate}()}
 }
 \concept{core}

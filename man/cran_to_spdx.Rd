@@ -31,4 +31,5 @@ head(cran_to_spdx, 20)
 \seealso{
 \emph{Writing R Extensions}, \href{https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Licensing}{Licensing section}.
 }
+\concept{datasets}
 \keyword{datasets}

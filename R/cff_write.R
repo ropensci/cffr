@@ -10,8 +10,7 @@
 #' [`cff`][cff-class] object and writes it out to a YAML-formatted file in
 #' one command.
 #'
-#' @family core
-#' @family write
+#' @family writing
 #'
 #' @param x The source that would be used for generating
 #'   the `CITATION.cff` file. It could be:
@@ -50,6 +49,9 @@
 #'
 #'
 #' ```
+#' This function unifies the workflow [cff_create()] + [cff_write()] +
+#' [cff_validate()].
+#'
 #' @examples
 #' \donttest{
 #' tmpfile <- tempfile(fileext = ".cff")

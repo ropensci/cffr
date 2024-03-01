@@ -52,7 +52,6 @@ try(cff_validate(system.file("CITATION", package = "cffr")))
 
 Other core functions of \CRANpkg{cffr}:
 \code{\link{cff}()},
-\code{\link{cff_create}()},
-\code{\link{cff_write}()}
+\code{\link{cff_create}()}
 }
 \concept{core}

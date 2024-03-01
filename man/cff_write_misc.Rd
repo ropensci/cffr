@@ -122,4 +122,4 @@ Other functions for creating external files:
 \code{\link{cff_write}()}
 }
 \concept{bibtex}
-\concept{write}
+\concept{writing}

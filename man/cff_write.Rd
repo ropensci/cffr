@@ -79,14 +79,10 @@ file.remove(tmpfile)
 }
 \seealso{
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
-
-Other core functions of \CRANpkg{cffr}:
-\code{\link{cff}()},
-\code{\link{cff_create}()},
-\code{\link{cff_validate}()}
+This function unifies the workflow \code{\link[=cff_create]{cff_create()}} + \code{\link[=cff_write]{cff_write()}} +
+\code{\link[=cff_validate]{cff_validate()}}.
 
 Other functions for creating external files:
 \code{\link{cff_write_bib}()}
 }
-\concept{core}
-\concept{write}
+\concept{writing}

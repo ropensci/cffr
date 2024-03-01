@@ -106,7 +106,6 @@ cffobj
 \seealso{
 Other core functions of \CRANpkg{cffr}:
 \code{\link{cff_create}()},
-\code{\link{cff_validate}()},
-\code{\link{cff_write}()}
+\code{\link{cff_validate}()}
 }
 \concept{core}

@@ -80,5 +80,9 @@ cff_parse_citation(citation("rmarkdown"))
 }
 \seealso{
 \code{\link[=cff_create]{cff_create()}}, \code{vignette("bibtex_cff", "cffr")}, \code{\link[=bibentry]{bibentry()}}
+
+Other functions for converting between \strong{R} classes:
+\code{\link{as_bibentry}()},
+\code{\link{as_cff_person}()}
 }
-\concept{parsers}
+\concept{coercing}

@@ -1,8 +1,9 @@
 ---
 title: "From R to CFF"
 subtitle: "Crosswalk"
-description: >
-  A comprehensive description of the internal mappings performed by **cffr**.
+description: >-
+  A comprehensive description of the internal mappings performed by 
+  the cffr package.
 author: Diego Hernangómez
 bibliography: REFERENCES.bib
 link-citations: yes

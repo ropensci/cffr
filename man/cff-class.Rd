@@ -178,4 +178,12 @@ as.person(the_cff$authors)
 }\if{html}{\out{</div>}}
 }
 }
+\seealso{
+\code{vignette("cffr", "cffr")} for a hands-on example.
+
+Other S3 Methods for \code{cff}:
+\code{\link{as_bibentry}()},
+\code{\link{as_cff_person}()}
+}
+\concept{s3method}
 \keyword{internal}

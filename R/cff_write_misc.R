@@ -23,7 +23,7 @@
 #' @export
 #' @rdname cff_write_misc
 #' @family bibtex
-#' @family write
+#' @family writing
 #'
 #' @return
 #' Writes the corresponding file specified on the `file` parameter.

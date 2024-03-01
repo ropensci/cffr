@@ -15,7 +15,7 @@ old API [has been
 deprecated](https://lifecycle.r-lib.org/articles/stages.html#deprecated) and it
 would warn when used, providing advice on the replacement function.
 
-#### Deprecations
+#### Deprecation
 
 -   `cff_to_bibtex()` and `cff_extract_to_bibtex()`: replaced by
     `as_bibentry()`.
@@ -23,7 +23,7 @@ would warn when used, providing advice on the replacement function.
     `cff_read_bib_text()` (for character strings).
 -   `write_bib()` and `write_citation()` : replaced by `cff_write_bib()` and
     `cff_write_citation()` respectively.
--   `cff_parse_person()` and `cff_parse_person_bibtex()`: replacedy by
+-   `cff_parse_person()` and `cff_parse_person_bibtex()`: replaced by
     `as_cff_person()`.
 -   The conversion from `cff` to `bibentry` is performed now by a new function
     `as_bibentry()`. Previous names of this function were `cff_to_bibtex()` and
@@ -56,7 +56,7 @@ would warn when used, providing advice on the replacement function.
     -   `head.cff()`, `tail.cff()`.
     -   `toBibtex.cff()`.
 -   Update of BibTeX crosswalk (see `vignette("bibtex_cff", package = "cffr")`)
-    and consecuently changes in the mapping performed by `as_bibtex()`
+    and consequently changes in the mapping performed by `as_bibtex()`
     `cff_parse_citation()`:
     -   **\@inbook** and **\@book** gains a new value on [CFF]{.underline} when
         **series** is provided: [collection-type: book-series.]{.underline}

@@ -126,10 +126,12 @@ Other functions for working with BibTeX format:
 \code{\link{encoded_utf_to_latex}()}
 
 Other functions for converting between \strong{R} classes:
-\code{\link{as_cff_person}()}
+\code{\link{as_cff_person}()},
+\code{\link{cff_parse_citation}()}
 
 Other S3 Methods for \code{cff}:
-\code{\link{as_cff_person}()}
+\code{\link{as_cff_person}()},
+\code{\link{cff-class}}
 }
 \concept{bibtex}
 \concept{coercing}

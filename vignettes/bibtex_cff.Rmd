@@ -4,9 +4,8 @@ subtitle: A potential crosswalk
 bibliography: REFERENCES.bib
 author: Diego Hernangómez
 description: >-
-  This article presents a crosswalk between BibTeX and Citation File Format 
-  [@druskat_citation_2021], as it is performed by the **cffr** package 
-  [@hernangomez2021].
+  This article presents a crosswalk between BibTeX and Citation File Format, as 
+  it is performed by the cffr package.
 abstract: >-
   This article introduces a crosswalk between **BibTeX** and the Citation File 
   Format (CFF) [@druskat_citation_2021], as implemented by the **cffr** package 
