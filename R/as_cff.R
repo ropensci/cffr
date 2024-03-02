@@ -28,12 +28,16 @@
 #' For `as_cff.bibentry()` / `as_cff.Bibtex()` see
 #' `vignette("bibtex_cff", "cffr")` to understand how the mapping is performed.
 #'
+#' [as_cff_person()] is preferred over `as_cff.person()` since it can handle
+#' `character` person such as `"Davis, Jr., Sammy"`. For `person` objects both
+#' functions are similar.
 #'
 #' @seealso
 #' - [cff()]: Create a full `cff` object from scratch.
 #' - [cff_modify()]: Modify a `cff` object.
 #' - [cff_create()]: Create a `cff` object of a **R** package.
 #' - [cff_read()]: Create a `cff` object from a external file.
+#' - [as_cff_person()]: Recommended way for creating persons in CFF format.
 #'
 #' @export
 #'
@@ -84,8 +88,7 @@ as_cff.list <- function(x, ...) {
   new_cff(x_clean)
 }
 
-#' @rdname as_cff_person
-#' @order 2
+#' @rdname as_cff
 #' @export
 as_cff.person <- function(x, ...) {
   as_cff(as_cff_person(x), ...)
@@ -101,7 +104,16 @@ as_cff.bibentry <- function(x, ...) {
     return(NULL)
   }
 
-  as_cff(cff_ref, ...)
+  cff_refs <- as_cff(cff_ref, ...)
+
+  # Add clases
+  cff_refs_class <- lapply(cff_refs, function(x) {
+    class(x) <- unique(c("cff_ref", "cff", class(x)))
+    x
+  })
+
+  class(cff_refs_class) <- c("cff_ref_list", "cff", "list")
+  cff_refs_class
 }
 
 #' @rdname as_cff
@@ -110,7 +122,16 @@ as_cff.Bibtex <- function(x, ...) {
   tmp <- tempfile(fileext = ".bib")
   writeLines(x, tmp)
   abib <- cff_read_bib(tmp)
-  as_cff(abib, ...)
+  cff_refs <- as_cff(abib, ...)
+
+  # Add clases
+  cff_refs_class <- lapply(cff_refs, function(x) {
+    class(x) <- unique(c("cff_ref", "cff", class(x)))
+    x
+  })
+
+  class(cff_refs_class) <- c("cff_ref_list", "cff", "list")
+  cff_refs_class
 }
 
 # nolint start
@@ -173,4 +194,14 @@ new_cff <- function(x) {
 
   class(x) <- c("cff", "list")
   x
+}
+
+
+# Based in person method
+# https://github.com/wch/r-source/blob/trunk/src/library/utils/R/citation.R
+#' @export
+`[.cff_ref_list` <- function(x, i) {
+  rval <- unclass(x)[i]
+  class(rval) <- class(x[[i]])
+  return(rval)
 }

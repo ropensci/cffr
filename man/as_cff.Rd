@@ -4,6 +4,7 @@
 \alias{as_cff}
 \alias{as_cff.default}
 \alias{as_cff.list}
+\alias{as_cff.person}
 \alias{as_cff.bibentry}
 \alias{as_cff.Bibtex}
 \alias{as.cff}
@@ -14,6 +15,8 @@ as_cff(x, ...)
 \method{as_cff}{default}(x, ...)
 
 \method{as_cff}{list}(x, ...)
+
+\method{as_cff}{person}(x, ...)
 
 \method{as_cff}{bibentry}(x, ...)
 
@@ -44,6 +47,10 @@ be used to complement or modify complete \code{cff} objects.
 \details{
 For \code{as_cff.bibentry()} / \code{as_cff.Bibtex()} see
 \code{vignette("bibtex_cff", "cffr")} to understand how the mapping is performed.
+
+\code{\link[=as_cff_person]{as_cff_person()}} is preferred over \code{as_cff.person()} since it can handle
+\code{character} person such as \code{"Davis, Jr., Sammy"}. For \code{person} objects both
+functions are similar.
 }
 \examples{
 
@@ -79,6 +86,7 @@ as_cff(a_cit)
 \item \code{\link[=cff_modify]{cff_modify()}}: Modify a \code{cff} object.
 \item \code{\link[=cff_create]{cff_create()}}: Create a \code{cff} object of a \strong{R} package.
 \item \code{\link[=cff_read]{cff_read()}}: Create a \code{cff} object from a external file.
+\item \code{\link[=as_cff_person]{as_cff_person()}}: Recommended way for creating persons in CFF format.
 }
 
 Other functions for converting between \strong{R} classes:

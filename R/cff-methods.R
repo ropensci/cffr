@@ -29,8 +29,11 @@ c.cff <- function(..., recursive = FALSE) {
 #' @noRd
 #' @export
 as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
-  # If the cff is unnamed is a list of persons/references
-  if (is.null(names(x))) {
+  # List of references
+  if (inherits(x, "cff_ref_list")) {
+    x_n <- list("references" = x)
+    the_df <- cff_to_df(x_n)
+  } else if (is.null(names(x))) {
     the_df <- cff_list_to_df(x)
   } else {
     the_df <- cff_to_df(x)
@@ -43,6 +46,7 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
 
   return(the_df)
 }
+
 
 #' @rdname as_cff_person
 #' @name as.person.cff

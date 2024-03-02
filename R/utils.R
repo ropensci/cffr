@@ -37,6 +37,10 @@ clean_str <- function(str) {
 #' @param x The list to be cleaned
 #' @noRd
 drop_null <- function(x) {
+  # Already been here
+  if (inherits(x, "cff")) {
+    return(x)
+  }
   x[lengths(x) != 0]
 }
 
