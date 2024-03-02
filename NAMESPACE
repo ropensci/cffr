@@ -2,6 +2,7 @@
 
 S3method(as.data.frame,cff)
 S3method(as.person,cff)
+S3method(as_cff,Bibtex)
 S3method(as_cff,bibentry)
 S3method(as_cff,default)
 S3method(as_cff,list)

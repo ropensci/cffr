@@ -51,8 +51,8 @@ The function tries to map the information of the source \code{x} into a \code{cf
 object and performs a mapping of the metadata to BibTeX, according to
 \code{vignette("bibtex_cff", "cffr")}.
 
-The inverse transformation (\code{bibtex} object to \code{cff} reference) can be done
-with \code{\link[=cff_parse_citation]{cff_parse_citation()}}.
+The inverse transformation (\code{bibentry} object to \code{cff} reference) can
+be done with the corresponding \code{\link[=as_cff]{as_cff()}} method.
 
 Additionally, it is also provided a method for \code{\link[=toBibtex]{toBibtex()}}, that can
 convert \code{\link[=cff-class]{cff}} objects to \code{Bibtex} objects as provided by
@@ -126,10 +126,11 @@ Other functions for working with BibTeX format:
 \code{\link{encoded_utf_to_latex}()}
 
 Other functions for converting between \strong{R} classes:
-\code{\link{as_cff_person}()},
-\code{\link{cff_parse_citation}()}
+\code{\link{as_cff}()},
+\code{\link{as_cff_person}()}
 
 Other S3 Methods for \code{cff}:
+\code{\link{as_cff}()},
 \code{\link{as_cff_person}()},
 \code{\link{cff-class}}
 }

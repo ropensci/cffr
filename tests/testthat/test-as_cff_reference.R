@@ -49,7 +49,7 @@ test_that("Add wrong field to citation", {
     type = "I should be removed"
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
 
   expect_s3_class(bibparsed, "cff")
 
@@ -76,7 +76,7 @@ test_that("Fix wrong orcid", {
     )
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
 
   expect_s3_class(bibparsed, "cff")
 
@@ -105,7 +105,7 @@ test_that("Several identifiers and duplicates", {
     identifiers = "a,b"
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
 
   expect_s3_class(bibparsed, "cff")
 
@@ -130,7 +130,7 @@ test_that("Test keywords and urls", {
     keywords = "Some, random keywords, in, here, here"
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
 
   expect_s3_class(bibparsed, "cff")
 
@@ -162,7 +162,7 @@ test_that("Parse persons on CITATION", {
     "translators" = "Translator one and Translator two"
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
@@ -173,9 +173,6 @@ test_that("Parse persons on CITATION", {
 })
 
 test_that("Test inputs", {
-  bib <- c(1:5)
-  expect_null(cff_parse_citation(bib))
-
   # Remove type
 
   bib <- bibentry("Book",
@@ -187,7 +184,7 @@ test_that("Test inputs", {
   )
 
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
@@ -195,14 +192,6 @@ test_that("Test inputs", {
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
-})
-
-test_that("NULL bibs and others strange errors", {
-  bib <- 1
-  expect_null(cff_parse_citation(bib))
-  class(bib) <- "bibentry"
-  bib <- NULL
-  expect_null(cff_parse_citation(bib))
 })
 
 # Parse citation from BibTeX ----
@@ -222,7 +211,7 @@ test_that("Article", {
     note = "Example modified for testing purposes"
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
@@ -261,7 +250,7 @@ test_that("Book", {
     keywords = c("Two, keyword")
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
@@ -293,7 +282,7 @@ test_that("Booklet", {
     keywords = "java"
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
@@ -343,7 +332,7 @@ test_that("Conference", {
   bib <- list(bib_un)
   class(bib) <- "bibentry"
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
 
   expect_snapshot(bibparsed)
 
@@ -383,7 +372,7 @@ test_that("InBook", {
     note = "Example modified for testing purposes"
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
@@ -423,7 +412,7 @@ test_that("InCollection", {
     note = "A note"
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
@@ -464,7 +453,7 @@ test_that("InProceedings", {
     note = "Example modified for testing purposes"
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
@@ -495,7 +484,7 @@ test_that("Manual", {
     note = "Example modified for testing purposes"
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
@@ -527,7 +516,7 @@ test_that("MastersThesis", {
     month = "August",
     note = "Example modified for testing purposes"
   )
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
@@ -556,7 +545,7 @@ test_that("Misc", {
     note = "A note"
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
@@ -589,7 +578,7 @@ test_that("PhdThesis", {
     note = "Example modified for testing purposes"
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
@@ -624,7 +613,7 @@ test_that("Proceedings", {
     note = "Example modified for testing purposes"
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
@@ -659,7 +648,7 @@ test_that("TechReport", {
     note = "Example modified for testing purposes"
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
@@ -687,7 +676,7 @@ test_that("Unpublished", {
     month = "aug",
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
@@ -719,7 +708,7 @@ test_that("InBook with booktitle", {
     chapter = "4.5"
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),
@@ -755,7 +744,7 @@ test_that("Test entry without author", {
     isbn = "1-59593-322-02",
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
 
   expect_identical(
     bibparsed[[1]]$authors[[1]]$name,
@@ -787,7 +776,7 @@ test_that("Test entry without author but has a key", {
     isbn = "1-59593-322-02",
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
 
   expect_identical(
     bibparsed[[1]]$authors[[1]]$name,
@@ -817,7 +806,7 @@ test_that("Test entry without author and key", {
     isbn = "1-59593-322-02",
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
 
   expect_identical(
     bibparsed[[1]]$authors[[1]]$name,
@@ -843,7 +832,7 @@ test_that("Skip misc without title", {
     year = 2018
   )
 
-  expect_snapshot(bibparsed <- cff_parse_citation(bib))
+  expect_message(bibparsed <- as_cff(bib), "Skipping")
 
   expect_null(bibparsed)
 
@@ -875,7 +864,7 @@ test_that("Skip misc without title, not skipping the good one", {
 
 
 
-  expect_message(bibparsed <- cff_parse_citation(bib), "SHERPA/RoMEO")
+  expect_message(bibparsed <- as_cff(bib), "SHERPA/RoMEO")
 
   expect_length(bibparsed, 1)
 
@@ -922,7 +911,7 @@ test_that("Check extended BibLatex Fields", {
     url = "http://www.ctan.org"
   )
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   expect_snapshot(bibparsed)
 
   cffobj <- cff_create(cff(),

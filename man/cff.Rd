@@ -2,28 +2,24 @@
 % Please edit documentation in R/cff.R
 \name{cff}
 \alias{cff}
-\alias{as.cff}
+\alias{cff_modify}
 \title{Read and manipulate \code{cff} objects}
 \usage{
 cff(path, ...)
-
-as.cff(x)
 }
 \arguments{
 \item{path}{The path to a \code{CITATION.cff} file.}
 
-\item{...}{Named arguments to be used for creating a \code{\link{cff}} object. See
+\item{...}{Named arguments to be used for creating a \code{cff} object. See
 \strong{Details}.}
-
-\item{x}{a character string for the \code{\link{as.cff}} default method}
 }
 \value{
-A \code{cff} object. Under the hood, a \code{cff} object is a regular \code{\link{list}} object
+A \code{cff} object. Under the hood, a \code{cff} object is a regular \code{list} object
 with a special \code{\link[=print]{print()}} method.
 }
 \description{
 A class and utility methods for reading, creating and holding CFF
-information.
+information. See \code{\linkS4class{cff}} to learn more about \code{cff} objects.
 }
 \details{
 This object can be manipulated using \code{\link[=cff_create]{cff_create()}}.
@@ -90,18 +86,6 @@ new
 # Would pass
 cff_validate(new)
 }
-
-
-# Convert a list to "cff" object
-cffobj <- as.cff(list(
-  "cff-version" = "1.2.0",
-  title = "Manipulating files"
-))
-
-class(cffobj)
-
-# Nice display thanks to yaml package
-cffobj
 }
 \seealso{
 Other core functions of \CRANpkg{cffr}:

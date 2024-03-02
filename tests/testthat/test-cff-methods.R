@@ -57,7 +57,7 @@ test_that("Convert a citation only", {
   path <- system.file("examples/DESCRIPTION_many_persons", package = "cffr")
   a_cit <- as_bibentry(cff_create(path))
 
-  the_cff <- cff_parse_citation(a_cit)
+  the_cff <- as_cff(a_cit)
 
   # To df
   the_df <- as.data.frame(the_cff)

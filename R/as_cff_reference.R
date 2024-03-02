@@ -1,7 +1,7 @@
 #' Internal functions for `as_cff.bibentry` method
 #'
 #' @noRd
-as_cff_bibentry <- function(x) {
+as_cff_reference <- function(x) {
   # Need always to be unnamed bibentry
   bib <- unname(x)
 
@@ -113,9 +113,8 @@ make_cff_reference <- function(bib) {
   parse_cit <- parse_cit[names(parse_cit) %in% validnames]
 
   parse_cit <- drop_null(parse_cit)
-  parse_cit_result <- as.cff(parse_cit)
 
-  return(parse_cit_result)
+  return(parse_cit)
 }
 
 #' Extract and map BibTeX entry

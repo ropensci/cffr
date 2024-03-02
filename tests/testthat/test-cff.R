@@ -52,22 +52,6 @@ test_that("Walk trough full lifecycle", {
   file.remove(tmp)
 })
 
-test_that("Other convertes", {
-  a <- cff()
-  expect_s3_class(a, "cff")
-  a <- cff(a)
-  expect_s3_class(a, "cff")
-  a <- as.cff(a)
-  expect_true(is_cff(a))
-  expect_s3_class(a, "cff")
-
-  expect_message(noadd <- cff(address = "New York", version = 5))
-  expect_true(is_cff(noadd))
-  expect_false(is_cff(list(a = 1, b = 2)))
-  expect_true(is_cff(as.cff(list(a = 1, b = 2))))
-})
-
-
 test_that("Recursive parsing", {
   complete <- system.file("examples/CITATION_complete.cff",
     package = "cffr"

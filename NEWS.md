@@ -28,9 +28,18 @@ would warn when used, providing advice on the replacement function.
 -   The conversion from `cff` to `bibentry` is performed now by a new function
     `as_bibentry()`. Previous names of this function were `cff_to_bibtex()` and
     `cff_extract_to_bibtex()` that are now deprecated.
+-   `cff_parse_citation()`: replaced by `as_cff()`, see **New capabilities**.
 
-#### New capabilities
+### New capabilities
 
+-   New `as_cff()` S3 generic method (replacing `as.cff()`): This method coerces
+    **R** objects to `cff-class` format. Current methods provided are:
+    -   `as_cff.Bibtex()`.
+    -   `as_cff.bibentry()`, replacing cff_parse_citation().
+    -   `as_cff.person()`, similar to `as_cff_person()` but only for `person`
+        objects. We recommend using `as_cff_person()` since it can parse also
+        string representing authors in BibTeX markup (`"{von Neumen}, James"`),
+        that can't be captured properly via methods.
 -   Now reading from external files is performed exclusively by `cff_read()`
     (that is designed to fit all supported file types on a single entry point)
     and the new specific readers (that are used under the hood by `cff_read()`),
@@ -45,14 +54,14 @@ would warn when used, providing advice on the replacement function.
 -   Minimum **R** version required now is **4.0.0**.
 -   Now `class()` of `cff` objects are `c("cff", "list")` instead of single
     value (`"cff"`).
--   New methods added:
+-   New S3 **base** and **utils** methods added:
     -   `as.data.frame.cff().`
     -   `as.person.cff()`, that provides results **only** for CFF keys defined
         as
         [person](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsperson)
         or
         [entity](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsentity)
-        (e.g. `authors`, `contacts`, `editors`, `publisher`).
+        (e.g. `authors`, `contacts`, `editors`, `publisher,` etc.).
     -   `head.cff()`, `tail.cff()`.
     -   `toBibtex.cff()`.
 -   Update of BibTeX crosswalk (see `vignette("bibtex_cff", package = "cffr")`)

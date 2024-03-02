@@ -697,13 +697,6 @@
 # Skip misc without title
 
     Code
-      bibparsed <- cff_parse_citation(bib)
-    Message
-      ! Entry "SHERPA/RoMEO (2018). <http://www.sherpa.ac.uk/romeo/>." without title. Skipping
-
----
-
-    Code
       cffobj
     Output
       cff-version: 1.2.0

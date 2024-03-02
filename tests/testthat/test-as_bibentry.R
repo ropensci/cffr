@@ -13,7 +13,7 @@ test_that("Article to bibtex", {
     keywords = "Some, simple, keywords"
   )
   expect_snapshot(toBibtex(bib))
-  x <- cff_parse_citation(bib)
+  x <- as_cff(bib)
   bib <- as_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
@@ -41,7 +41,7 @@ test_that("Book to bibtex", {
   )
 
   expect_snapshot(toBibtex(bib))
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
@@ -62,7 +62,7 @@ test_that("Booklet to bibtex", {
   )
 
   expect_snapshot(toBibtex(bib))
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
@@ -90,7 +90,7 @@ test_that("InBook to bibtex with pages", {
   )
 
   expect_snapshot(toBibtex(bib))
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
@@ -109,7 +109,7 @@ test_that("InCollection to bibtex", {
   )
 
   expect_snapshot(toBibtex(bib))
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
@@ -134,7 +134,7 @@ test_that("InProceedings to bibtex", {
   )
 
   expect_snapshot(toBibtex(bib))
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
@@ -152,7 +152,7 @@ test_that("Manual to bibtex", {
   )
 
   expect_snapshot(toBibtex(bib))
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
@@ -171,7 +171,7 @@ test_that("MastersThesis to bibtex", {
   )
 
   expect_snapshot(toBibtex(bib))
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
@@ -188,7 +188,7 @@ test_that("PhdThesis to bibtex", {
   )
 
   expect_snapshot(toBibtex(bib))
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
@@ -207,7 +207,7 @@ test_that("Proceedings to bibtex", {
   )
 
   expect_snapshot(toBibtex(bib))
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
@@ -223,7 +223,7 @@ test_that("TechReport to bibtex", {
   )
 
   expect_snapshot(toBibtex(bib))
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
@@ -241,7 +241,7 @@ test_that("Unpublished to bibtex", {
   )
 
   expect_snapshot(toBibtex(bib))
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
@@ -256,7 +256,7 @@ test_that("particle names", {
   )
 
 
-  bibparsed <- cff_parse_citation(bib)
+  bibparsed <- as_cff(bib)
   bibparsed[[1]]$authors <- as_cff_person(
     "van Leunen, Mary-Claire and Davis, Jr., Sammy"
   )
@@ -283,7 +283,7 @@ test_that("From plain cff with a citation", {
     month = 3
   )
 
-  s$`preferred-citation` <- cff_parse_citation(acit)[[1]]
+  s$`preferred-citation` <- as_cff(acit)[[1]]
   s$`preferred-citation`$editors <- as_cff_person("A name")
 
   bib <- as_bibentry(s)
@@ -316,7 +316,7 @@ test_that("Test anonymous", {
   )
 
 
-  expect_silent(back <- as_bibentry(cff_parse_citation(bib)))
+  expect_silent(back <- as_bibentry(as_cff(bib)))
   expect_snapshot(toBibtex(back))
 
 
@@ -325,7 +325,7 @@ test_that("Test anonymous", {
   )
 
 
-  expect_silent(back <- as_bibentry(cff_parse_citation(bib)))
+  expect_silent(back <- as_bibentry(as_cff(bib)))
   expect_snapshot(toBibtex(back))
 
   bib <- bibentry("misc",
@@ -333,7 +333,7 @@ test_that("Test anonymous", {
   )
 
 
-  expect_silent(back <- as_bibentry(cff_parse_citation(bib)))
+  expect_silent(back <- as_bibentry(as_cff(bib)))
   expect_snapshot(toBibtex(back))
 
   bib <- bibentry("proceedings",
@@ -342,7 +342,7 @@ test_that("Test anonymous", {
   )
 
 
-  expect_silent(back <- as_bibentry(cff_parse_citation(bib)))
+  expect_silent(back <- as_bibentry(as_cff(bib)))
   expect_snapshot(toBibtex(back))
 })
 
@@ -356,7 +356,7 @@ test_that("Fallback month", {
   )
 
   expect_snapshot(toBibtex(bib))
-  x <- cff_parse_citation(bib)
+  x <- as_cff(bib)
 
   # Delete here the month
   x$month <- NULL
@@ -392,7 +392,7 @@ test_that("Test BibLateX entry", {
     url = "http://www.ctan.org"
   )
   expect_snapshot(toBibtex(bib))
-  x <- cff_parse_citation(bib)
+  x <- as_cff(bib)
 
 
   parsed <- as_bibentry(x)
@@ -478,7 +478,7 @@ test_that("Corrupt entry", {
     month = "January",
     keywords = "Some, simple, keywords"
   )
-  x <- cff_parse_citation(bib)[[1]]
+  x <- as_cff(bib)[[1]]
   x$year <- NULL
   x$journal <- NULL
   expect_snapshot(n <- as_bibentry(x))

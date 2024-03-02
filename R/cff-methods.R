@@ -46,7 +46,7 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
 
 #' @rdname as_cff_person
 #' @name as.person.cff
-#' @order 2
+#' @order 3
 #'
 #' @description
 #'
@@ -85,7 +85,7 @@ as.person.cff <- function(x) {
 #' @noRd
 #' @export
 head.cff <- function(x, n = 6L, ...) {
-  as.cff(NextMethod())
+  as_cff(NextMethod())
 }
 
 #' Tail
@@ -93,7 +93,7 @@ head.cff <- function(x, n = 6L, ...) {
 #' @noRd
 #' @export
 tail.cff <- function(x, n = 6L, ...) {
-  as.cff(NextMethod())
+  as_cff(NextMethod())
 }
 
 

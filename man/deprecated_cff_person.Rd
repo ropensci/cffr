@@ -3,7 +3,7 @@
 \name{cff_parse_person}
 \alias{cff_parse_person}
 \alias{cff_parse_person_bibtex}
-\title{Previous API: Parse a person to \code{\link[=cff-class]{cff}}}
+\title{Previous API: Parse a \code{person} to \code{\link[=cff-class]{cff}}}
 \usage{
 cff_parse_person(person)
 
@@ -69,6 +69,7 @@ as_cff_person("Herbert von Karajan")
 Other deprecated functions:
 \code{\link{cff_extract_to_bibtex}()},
 \code{\link{cff_from_bibtex}()},
+\code{\link{cff_parse_citation}()},
 \code{\link{write_bib}()}
 }
 \concept{deprecated}

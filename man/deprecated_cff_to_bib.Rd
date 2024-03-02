@@ -50,6 +50,7 @@ bib <- as_bibentry(cff_object)
 \seealso{
 Other deprecated functions:
 \code{\link{cff_from_bibtex}()},
+\code{\link{cff_parse_citation}()},
 \code{\link{cff_parse_person}()},
 \code{\link{write_bib}()}
 }

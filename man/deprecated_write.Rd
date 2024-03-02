@@ -60,6 +60,7 @@ cat(readLines(my_temp_bib), sep = "\n")
 Other deprecated functions:
 \code{\link{cff_extract_to_bibtex}()},
 \code{\link{cff_from_bibtex}()},
+\code{\link{cff_parse_citation}()},
 \code{\link{cff_parse_person}()}
 }
 \concept{deprecated}

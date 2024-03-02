@@ -10,8 +10,8 @@
 \strong{cffr} implements a S3 object with \code{\link[=class]{class()}} \code{cff}, that it is used to
 represent the information of a \verb{*.cff} file in \strong{R}.
 
-Under the hood, a \code{cff} object is simply a named \code{\link[=list]{list()}} to which we added
-additional methods, most notably \code{\link[=print]{print()}}.
+Under the hood, a \code{cff} object is simply a named \code{\link{list}} to which we added
+additional methods, most notably \code{\link[=print]{print()}} and \code{\link[=as_cff]{as_cff()}}.
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{a_named_list <- list(
   first = "I", second = "am", third = "a", fourth = "list",
@@ -47,10 +47,10 @@ a_named_list
 #> NULL
 
 # But
-a_cff_object <- as.cff(a_named_list)
+a_cff_object <- as_cff(a_named_list)
 
 class(a_cff_object)
-#> [1] "cff"
+#> [1] "cff"  "list"
 
 a_cff_object
 #> first: I
@@ -62,10 +62,11 @@ a_cff_object
 
 dput(a_cff_object)
 #> structure(list(first = "I", second = "am", third = "a", fourth = "list", 
-#>     fifth = "with", sixth = "names"), class = "cff")
+#>     fifth = "with", sixth = "names"), class = c("cff", "list"
+#> ))
 }\if{html}{\out{</div>}}
 
-\code{\link[=as.cff]{as.cff()}} not only converts a \code{\link[=list]{list()}} to \code{cff} but also removes items (known
+\code{\link[=as_cff]{as_cff()}} not only converts a \code{list} to \code{cff} but also removes items (known
 as \code{keys} in CFF terminology) that are \code{NULL} or \code{NA}.
 }
 
@@ -183,6 +184,7 @@ as.person(the_cff$authors)
 
 Other S3 Methods for \code{cff}:
 \code{\link{as_bibentry}()},
+\code{\link{as_cff}()},
 \code{\link{as_cff_person}()}
 }
 \concept{s3method}

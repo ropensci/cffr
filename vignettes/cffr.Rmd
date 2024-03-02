@@ -188,7 +188,7 @@ On the following example, we would add two references, one of each type:
 cff_schema_definitions_refs()
 
 # Auto parsed from another R package
-base_r <- cff_parse_citation(citation("base"))
+base_r <- as_cff(citation("base"))
 
 base_r
 
@@ -205,7 +205,7 @@ bib
 
 # Now parse it
 
-bookparsed <- cff_parse_citation(bib)
+bookparsed <- as_cff(bib)
 
 bookparsed
 ```

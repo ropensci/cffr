@@ -9,9 +9,6 @@ template:
 repo:
   branch: main
 
-development:
-  mode: auto
-
 home:
   title: cffr | Generate Citation File Format (CFF) files for R packages
   description: >-

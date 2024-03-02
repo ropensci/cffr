@@ -91,3 +91,12 @@
       `cff_parse_person_bibtex()` was deprecated in cffr 1.0.0.
       i Please use `as_cff_person()` instead.
 
+# cff_parse_citation
+
+    Code
+      pend <- cff_parse_citation(p)
+    Condition
+      Warning:
+      `cff_parse_citation()` was deprecated in cffr 1.0.0.
+      i Please use `as_cff.bibentry()` instead.
+

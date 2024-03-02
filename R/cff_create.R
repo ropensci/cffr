@@ -146,7 +146,7 @@ cff_create <- function(x, keys = list(), cff_version = "1.2.0",
     keys <- fuzzy_keys(keys)
     cffobjendmod <- cffobjend[setdiff(names(cffobjend), names(keys))]
     cffobjend <- modifyList(cffobjendmod, keys, keep.null = FALSE)
-    cffobjend <- as.cff(cffobjend)
+    cffobjend <- as_cff(cffobjend)
   }
 
 
@@ -157,7 +157,7 @@ cff_create <- function(x, keys = list(), cff_version = "1.2.0",
   if (!is.null(cffobjend$`preferred-citation`)) {
     cffobjend$`preferred-citation`$authors <- enhance_pref_authors(cffobjend)
   }
-  cffobjend <- as.cff(cffobjend)
+  cffobjend <- as_cff(cffobjend)
   cffobjend
 }
 

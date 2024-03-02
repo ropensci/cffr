@@ -4,8 +4,9 @@
 \alias{as_cff}
 \alias{as_cff.default}
 \alias{as_cff.list}
-\alias{as_cff.person}
 \alias{as_cff.bibentry}
+\alias{as_cff.Bibtex}
+\alias{as.cff}
 \title{Coerce lists, \code{person} and \code{bibentry} objects to \code{\link[=cff-class]{cff}}}
 \usage{
 as_cff(x, ...)
@@ -14,9 +15,9 @@ as_cff(x, ...)
 
 \method{as_cff}{list}(x, ...)
 
-\method{as_cff}{person}(x, ...)
-
 \method{as_cff}{bibentry}(x, ...)
+
+\method{as_cff}{Bibtex}(x, ...)
 }
 \arguments{
 \item{x}{A \code{person}, \code{bibentry} or other object that could be coerced to a
@@ -24,14 +25,70 @@ list.}
 
 \item{...}{Additional arguments to be passed on to other methods.}
 }
+\value{
+A \code{cff} object. These objects are rarely \link[=cff_validate]{valid}, but can
+be used to complement or modify complete \code{cff} objects.
+}
 \description{
 \code{as_cff()} turns an existing list-like \strong{R} object into a so-called
 \code{\link[=cff-class]{cff}}, a list with class \code{cff}.
 
 \code{as_cff} is an S3 generic, with methods for:
 \itemize{
-\item \code{person} objects as produced by \code{utils::person()}.
-\item \code{bibentry} objects as produced by \code{utils::bibentry()}.
+\item \code{person} objects as produced by \code{\link[utils:person]{utils::person()}}.
+\item \code{bibentry} objects as produced by \code{\link[utils:bibentry]{utils::bibentry()}}.
+\item \code{Bibtex} object as produced by \code{\link[=toBibtex]{toBibtex()}}.
 \item Default: Other inputs are first coerced with \code{\link[=as.list]{as.list()}}.
 }
 }
+\details{
+For \code{as_cff.bibentry()} / \code{as_cff.Bibtex()} see
+\code{vignette("bibtex_cff", "cffr")} to understand how the mapping is performed.
+}
+\examples{
+
+# Convert a list to "cff" object
+cffobj <- as_cff(list(
+  "cff-version" = "1.2.0",
+  title = "Manipulating files"
+))
+
+class(cffobj)
+
+# Nice display thanks to yaml package
+cffobj
+
+# bibentry method
+a_cit <- citation("cffr")[[1]]
+
+a_cit
+
+as_cff(a_cit)
+
+# Bibtex method
+a_bib <- toBibtex(a_cit)
+
+a_bib
+
+as_cff(a_cit)
+
+}
+\seealso{
+\itemize{
+\item \code{\link[=cff]{cff()}}: Create a full \code{cff} object from scratch.
+\item \code{\link[=cff_modify]{cff_modify()}}: Modify a \code{cff} object.
+\item \code{\link[=cff_create]{cff_create()}}: Create a \code{cff} object of a \strong{R} package.
+\item \code{\link[=cff_read]{cff_read()}}: Create a \code{cff} object from a external file.
+}
+
+Other functions for converting between \strong{R} classes:
+\code{\link{as_bibentry}()},
+\code{\link{as_cff_person}()}
+
+Other S3 Methods for \code{cff}:
+\code{\link{as_bibentry}()},
+\code{\link{as_cff_person}()},
+\code{\link{cff-class}}
+}
+\concept{coercing}
+\concept{s3method}

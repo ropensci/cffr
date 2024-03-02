@@ -3,8 +3,8 @@
 **cffr** implements a S3 object with [class()] `cff`, that it is used to
 represent the information of a `*.cff` file in **R**.
 
-Under the hood, a `cff` object is simply a named [list()] to which we added
-additional methods, most notably [print()].
+Under the hood, a `cff` object is simply a named [`list`] to which we added
+additional methods, most notably [print()] and [as_cff()].
 
 ```{r include=FALSE}
 library(cffr)
@@ -23,7 +23,7 @@ dput(a_named_list)
 a_named_list
 
 # But
-a_cff_object <- as.cff(a_named_list)
+a_cff_object <- as_cff(a_named_list)
 
 class(a_cff_object)
 
@@ -32,7 +32,7 @@ a_cff_object
 dput(a_cff_object)
 ```
 
-[as.cff()] not only converts a [list()] to `cff` but also removes items (known
+[as_cff()] not only converts a `list` to `cff` but also removes items (known
 as `keys` in CFF terminology) that are `NULL` or `NA`.
 
 ## Valid `cff` objects

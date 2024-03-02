@@ -1,18 +1,19 @@
 #' Read and manipulate `cff` objects
 #'
 #' A class and utility methods for reading, creating and holding CFF
-#' information.
+#' information. See [`cff-class`] to learn more about `cff` objects.
 #'
 #' @rdname cff
 #' @name cff
+#' @aliases cff_modify
 #' @return
-#' A `cff` object. Under the hood, a `cff` object is a regular [`list`] object
+#' A `cff` object. Under the hood, a `cff` object is a regular `list` object
 #' with a special [print()] method.
 #'
 #' @family core
 #'
 #' @param path The path to a `CITATION.cff` file.
-#' @param ... Named arguments to be used for creating a [`cff`] object. See
+#' @param ... Named arguments to be used for creating a `cff` object. See
 #' **Details**.
 #'
 #' @details
@@ -96,111 +97,7 @@ cff <- function(path, ...) {
   }
   cffobj <- drop_null(cffobj)
 
-  cffobj <- as.cff(cffobj)
+  cffobj <- as_cff(cffobj)
 
   return(cffobj)
-}
-
-
-
-
-#' @rdname cff
-#'
-#' @param x a character string for the [`as.cff`] default method
-#'
-#' @export
-#'
-#' @examples
-#'
-#'
-#' # Convert a list to "cff" object
-#' cffobj <- as.cff(list(
-#'   "cff-version" = "1.2.0",
-#'   title = "Manipulating files"
-#' ))
-#'
-#' class(cffobj)
-#'
-#' # Nice display thanks to yaml package
-#' cffobj
-as.cff <- function(x) {
-  if (is_cff(x)) {
-    return(x)
-  }
-
-  # Clean all strings recursively
-
-  x <- rapply(x, function(x) {
-    if (is.list(x) || length(x) > 1) {
-      return(x)
-    }
-    return(clean_str(x))
-  },
-  how = "list"
-  )
-
-  # Remove NULLs
-  x <- drop_null(x)
-
-  # Remove duplicated names
-  x <- x[!duplicated(names(x))]
-
-  # Now apply cff class to nested lists
-  x <- lapply(x, rapply_cff)
-
-  class(x) <- "cff"
-  x
-}
-
-# Helper----
-
-#' Recursively clean lists and assign cff classes
-#' to all nested lists
-#'
-#'
-#' @noRd
-rapply_cff <- function(x) {
-  if (inherits(x, "cff")) {
-    return(x)
-  }
-
-  if (is.list(x) && length(x) > 0) {
-    x <- drop_null(x)
-    x <- lapply(x, rapply_cff)
-    return(structure(x, class = c("cff", "list")))
-  } else {
-    return(x)
-  }
-}
-
-# https://adv-r.hadley.nz/s3.html#s3-constructor
-# Constructor
-new_cff <- function(x) {
-  if (is_cff(x)) {
-    class(x) <- c("cff", "list")
-    return(x)
-  }
-
-  # Clean all strings recursively
-
-  x <- rapply(x, function(x) {
-    if (is.list(x) || length(x) > 1) {
-      return(x)
-    }
-    return(clean_str(x))
-  },
-  how = "list"
-  )
-
-  # Remove NULLs
-  x <- drop_null(x)
-
-  # Remove duplicated names if named
-  if (!is.null(names(x))) x <- x[!duplicated(names(x))]
-
-  # Now apply cff class to nested lists
-  x <- lapply(x, rapply_cff)
-
-  class(x) <- c("cff", "list")
-  x
 }

@@ -74,3 +74,11 @@ test_that("cff_parse_person_bibtex", {
 
   expect_identical(pend, as_cff_person(p))
 })
+
+
+test_that("cff_parse_citation", {
+  p <- citation("testthat")
+  expect_snapshot(pend <- cff_parse_citation(p))
+
+  expect_identical(pend, as_cff(p))
+})

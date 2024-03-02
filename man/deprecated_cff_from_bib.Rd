@@ -58,6 +58,7 @@ if (requireNamespace("bibtex", quietly = TRUE)) {
 \seealso{
 Other deprecated functions:
 \code{\link{cff_extract_to_bibtex}()},
+\code{\link{cff_parse_citation}()},
 \code{\link{cff_parse_person}()},
 \code{\link{write_bib}()}
 }

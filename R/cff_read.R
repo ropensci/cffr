@@ -256,9 +256,9 @@ cff_read_citation <- function(path, meta = NULL, ...) {
     }
     # nocov end
   }
-  tocff <- cff_parse_citation(the_cit)
-  tocff <- new_cff(tocff)
-  unname(tocff)
+  tocff <- as_cff(the_cit)
+
+  tocff
 }
 
 #' @export
@@ -288,9 +288,8 @@ cff_read_bib <- function(path, encoding = "UTF-8", ...) {
   read_bib <- bibtex::read.bib(file = path, encoding = encoding, ...)
 
 
-  tocff <- cff_parse_citation(read_bib)
-  tocff <- new_cff(tocff)
-  unname(tocff)
+  tocff <- as_cff(read_bib)
+  tocff
 }
 
 # Internal safe ----
@@ -312,8 +311,8 @@ cff_safe_read_citation <- function(desc_path, cit_path) {
   }
 
   # Need to be named here
-  tocff <- cff_parse_citation(the_cit)
-  tocff <- new_cff(tocff)
+  tocff <- as_cff(the_cit)
+  tocff
 }
 
 # Helpers ----

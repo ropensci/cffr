@@ -186,7 +186,7 @@ write_citation <- function(x,
 }
 
 
-#' Previous API: Parse a person to [`cff`][cff-class]
+#' Previous API: Parse a `person` to [`cff`][cff-class]
 #'
 #' @description
 #'
@@ -260,4 +260,39 @@ cff_parse_person_bibtex <- function(person) {
     )
   }
   as_cff_person(person)
+}
+
+#' Previous API: Parse a `bibentry` to `cff`
+#'
+#' @description
+#'
+#' `r lifecycle::badge('deprecated')` Please use [as_cff.bibentry()] method
+#'
+#' @rdname deprecated_cff_bibentry
+#' @export
+#' @keywords internal
+#' @family deprecated
+#'
+#' @param bib A `bibentry` object.
+#' @return A `bibentry` in format `cff`.
+#'
+#' @seealso [as_cff.bibentry()]
+#'
+#' @examples
+#'
+#' bib <- citation("base")
+#' bib
+#'
+#'
+#' # To cff
+#' bib_to_cff <- as_cff(bib)
+#' bib_to_cff
+#'
+cff_parse_citation <- function(bib) {
+  if (requireNamespace("lifecycle", quietly = TRUE)) {
+    lifecycle::deprecate_soft(
+      "1.0.0", "cff_parse_citation()", "as_cff.bibentry()"
+    )
+  }
+  as_cff(bib)
 }
