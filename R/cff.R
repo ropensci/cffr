@@ -7,26 +7,25 @@
 #' @name cff
 #' @aliases cff_modify
 #' @return
+#'
 #' A `cff` object. Under the hood, a `cff` object is a regular `list` object
 #' with a special [print()] method.
 #'
 #' @family core
 #'
-#' @param path The path to a `CITATION.cff` file.
+#' @param path `r lifecycle::badge("deprecated")` `path` is no longer supported,
+#'   use [cff_read_cff_citation()] instead.
 #' @param ... Named arguments to be used for creating a `cff` object. See
 #' **Details**.
 #'
 #' @details
 #'
-#' This object can be manipulated using [cff_create()].
-#'
-#' **Note that** this function reads `CITATION.cff` files. If you want to
-#' create `cff` objects from DESCRIPTION files use [cff_create()].
-#'
 #' If no additional `...` parameters are supplied (the default behavior),
-#' a minimal valid `cff` object is created. Valid parameters are those
-#' specified on [cff_schema_keys()]:
+#' a minimal valid `cff` object is created. `cff` would convert `_` in the name
+#' of the argument to `-` (e.g, `cff_version = "1.2.0'` would be converted to
+#' `cff-version = "1.2.0'`)
 #'
+#' Valid parameters are those specified on [cff_schema_keys()]:
 #'
 #'
 #' ```{r, echo=FALSE}
@@ -40,14 +39,8 @@
 #' ```
 #' @export
 #' @examples
-#'
 #' # Blank cff
 #' cff()
-#'
-#' # From file
-#' cff_read(system.file("examples/CITATION_basic.cff",
-#'   package = "cffr"
-#' ))
 #'
 #' # Use custom params
 #' test <- cff(
@@ -59,43 +52,71 @@
 #' \donttest{
 #' # Would fail
 #' cff_validate(test)
-#'
+#' }
 #'
 #' # Modify with cff_create
 #' new <- cff_create(test, keys = list(
-#'   "cff-version" = "1.2.0",
+#'   "cff_version" = "1.2.0",
 #'   message = "A blank file"
 #' ))
 #' new
 #'
 #' # Would pass
 #' cff_validate(new)
-#' }
+#'
 #' @export
 cff <- function(path, ...) {
-  if (!missing(path) && is_cff(path)) {
-    return(path)
+  if (!missing(path)) {
+    if (is_cff_file(path)) {
+      lifecycle::deprecate_soft(
+        "1.0.0", "cff(path)", "cff_read_cff_citation()"
+      )
+      return(cff_read_cff_citation(path))
+    } else {
+      lifecycle::deprecate_soft(
+        "1.0.0", "cff(path)",
+        details = "Argument ignored."
+      )
+    }
   }
 
-  # Capture args
   cffobj <- list(...)
-
-  if (!missing(path)) {
-    stopifnotexists(path)
-    stopifnotcff(path)
-    cffobj <- yaml::read_yaml(path)
-  } else if (length(cffobj) != 0) {
-    cffobj <- fuzzy_keys(cffobj)
-
-    cffobj <- cffobj
-  } else {
+  if (length(cffobj) == 0) {
     # If nothing is provided use a minimal cff
     path <- system.file("examples/CITATION_skeleton.cff",
       package = "cffr"
     )
-    cffobj <- yaml::read_yaml(path)
+
+    return(cff_read_cff_citation(path))
   }
-  cffobj <- drop_null(cffobj)
+
+  # Check names
+
+  has_names <- names(cffobj)
+  if (is.null(has_names)) {
+    cli::cli_abort(
+      "Elements in {.arg ...} should be named."
+    )
+  }
+
+  if (any(has_names == "")) {
+    index <- as.character(which(has_names %in% ""))
+
+    cli::cli_alert_warning(
+      "Found {length(index)} not-named argument{?s} in position{?s} {index}."
+    )
+    cli::cli_alert_info("Removing unnamed arguments")
+    cffobj <- cffobj[has_names != ""]
+  }
+
+
+
+  cffobj <- fuzzy_keys(cffobj)
+
+  if (any(duplicated(names(cffobj)))) {
+    cli::cli_alert_warning("Removing duplicated keys.")
+    cffobj <- cffobj[!duplicated(names(cffobj))]
+  }
 
   cffobj <- as_cff(cffobj)
 

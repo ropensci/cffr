@@ -29,6 +29,7 @@ would warn when used, providing advice on the replacement function.
     `as_bibentry()`. Previous names of this function were `cff_to_bibtex()` and
     `cff_extract_to_bibtex()` that are now deprecated.
 -   `cff_parse_citation()`: replaced by `as_cff()`, see **New capabilities**.
+-   Argument `path` in `cff()` is also deprecated, use `cff_read()`.
 
 ### New capabilities
 

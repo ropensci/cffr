@@ -58,8 +58,6 @@ test_that("as_cff.default", {
 test_that("Other convertes", {
   a <- cff()
   expect_s3_class(a, "cff")
-  a <- cff(a)
-  expect_s3_class(a, "cff")
   a <- as_cff(a)
   expect_true(is_cff(a))
   expect_s3_class(a, "cff")
@@ -89,4 +87,21 @@ test_that("]] cff_ref", {
   b2_reg <- bbb[2]
   expect_length(b2_reg, 1)
   expect_s3_class(b2_reg, c("cff_ref", "cff", "list"), exact = TRUE)
+})
+
+test_that("]] cff_pers", {
+  b1 <- person("One", "person")
+  b2 <- person("ntity")
+
+  b_all <- c(b1, b2)
+
+  expect_s3_class(b_all, "person", exact = TRUE)
+  bbb <- as_cff(b_all)
+
+  expect_s3_class(bbb, c("cff_pers_list", "cff", "list"), exact = TRUE)
+  expect_length(bbb, 2)
+
+  b2_reg <- bbb[2]
+  expect_length(b2_reg, 1)
+  expect_s3_class(b2_reg, c("cff_pers", "cff", "list"), exact = TRUE)
 })

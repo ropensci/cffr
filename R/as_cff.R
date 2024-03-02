@@ -91,7 +91,7 @@ as_cff.list <- function(x, ...) {
 #' @rdname as_cff
 #' @export
 as_cff.person <- function(x, ...) {
-  as_cff(as_cff_person(x), ...)
+  as_cff_person(x)
 }
 
 
@@ -196,11 +196,19 @@ new_cff <- function(x) {
   x
 }
 
+# Just for pretty printing on extract
 
 # Based in person method
 # https://github.com/wch/r-source/blob/trunk/src/library/utils/R/citation.R
 #' @export
 `[.cff_ref_list` <- function(x, i) {
+  rval <- unclass(x)[i]
+  class(rval) <- class(x[[i]])
+  return(rval)
+}
+
+#' @export
+`[.cff_pers_list` <- function(x, i) {
   rval <- unclass(x)[i]
   class(rval) <- class(x[[i]])
   return(rval)

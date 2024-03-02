@@ -1,12 +1,26 @@
+# Test message on cff
+
+    Code
+      def <- cff("abcde")
+    Condition
+      Warning:
+      The `path` argument of `cff()` is deprecated as of cffr 1.0.0.
+      i Argument ignored.
+
+---
+
+    Code
+      afile <- cff(nocff)
+    Condition
+      Warning:
+      The `path` argument of `cff()` is deprecated as of cffr 1.0.0.
+      i Argument ignored.
+
 # Walk trough full lifecycle
 
     Code
-      print_snapshot("Read object", read)
+      read
     Output
-      
-      
-      ## Read object 
-      
       cff-version: 1.2.0
       message: If you use this software, please cite it as below.
       abstract: This is an awesome piece of research software!
@@ -840,18 +854,12 @@
           date-start: '2017-01-01'
           date-end: '2017-01-31'
           location: The team garage
-      
-      ---
 
 ---
 
     Code
-      print_snapshot("Modify object", modify)
+      modify
     Output
-      
-      
-      ## Modify object 
-      
       cff-version: 1.2.0
       message: If you use this software, please cite it as below.
       type: software
@@ -1685,25 +1693,85 @@
       - type: other
         value: other-schema://abcd.1234.efgh.5678
       license-url: https://spdx.org/licenses/CC-BY-SA-4.0.html#licenseText
-      
-      ---
+
+# Recursive parsing
+
+    Code
+      read <- cff(complete)
+    Condition
+      Warning:
+      The `path` argument of `cff()` is deprecated as of cffr 1.0.0.
+      i Please use `cff_read_cff_citation()` instead.
 
 # Fuzzy matching of keys on cff
 
     Code
-      print_snapshot("Fuzzy keys", cffobj)
+      cff(tittle = "a", cff_version = "ar", version = "200", messange = "Fix my keys")
+    Message
+      i Found misspelled keys. Trying to map:
+      v tittle: title
+      v messange: message
     Output
-      
-      
-      ## Fuzzy keys 
-      
       title: a
-      cff-version: 1.2.0
+      cff-version: ar
       version: '200'
-      authors:
-      - family-names: a
-        given-names: b
       message: Fix my keys
-      
-      ---
+
+---
+
+    Code
+      cffobj <- cff(tittle = "a", cff_version = "1.2.0", version = "200", messange = "aa",
+        anthor = list(list(`family-names` = "a", `given-names` = "b")))
+    Message
+      i Found misspelled keys. Trying to map:
+      v tittle: title
+      v messange: message
+      v anthor: authors
+
+# duplicated
+
+    Code
+      ss <- cff(tittle = "a", tittle = "ar", version = "200", messange = "Fix my keys")
+    Message
+      i Found misspelled keys. Trying to map:
+      v tittle: title
+      v tittle: title
+      v messange: message
+      ! Removing duplicated keys.
+
+# unnamed
+
+    Code
+      ss <- cff(path = "a", "200", "Fix my keys")
+    Condition
+      Warning:
+      The `path` argument of `cff()` is deprecated as of cffr 1.0.0.
+      i Argument ignored.
+      Error in `cff()`:
+      ! Elements in `...` should be named.
+
+---
+
+    Code
+      s1 <- cff(path = NULL, title = "a", "b", version = 1)
+    Condition
+      Warning:
+      The `path` argument of `cff()` is deprecated as of cffr 1.0.0.
+      i Argument ignored.
+    Message
+      ! Found 1 not-named argument in position 2.
+      i Removing unnamed arguments
+
+---
+
+    Code
+      s2 <- cff(path = NULL, title = "a", "aa", "bb", "cc", "b", version = 1, "h",
+        "j")
+    Condition
+      Warning:
+      The `path` argument of `cff()` is deprecated as of cffr 1.0.0.
+      i Argument ignored.
+    Message
+      ! Found 6 not-named arguments in positions 2, 3, 4, 5, 7, and 8.
+      i Removing unnamed arguments
 

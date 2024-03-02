@@ -157,7 +157,16 @@ as_cff_person <- function(person) {
     return(NULL)
   }
   the_obj <- new_cff(the_obj)
-  the_obj
+
+  # Add classes
+  cff_pers_class <- lapply(the_obj, function(x) {
+    class(x) <- unique(c("cff_pers", "cff", class(x)))
+    x
+  })
+
+  class(cff_pers_class) <- c("cff_pers_list", "cff", "list")
+
+  cff_pers_class
 }
 
 create_person_from_r <- function(person) {

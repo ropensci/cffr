@@ -8,7 +8,8 @@
 cff(path, ...)
 }
 \arguments{
-\item{path}{The path to a \code{CITATION.cff} file.}
+\item{path}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} \code{path} is no longer supported,
+use \code{\link[=cff_read_cff_citation]{cff_read_cff_citation()}} instead.}
 
 \item{...}{Named arguments to be used for creating a \code{cff} object. See
 \strong{Details}.}
@@ -22,14 +23,12 @@ A class and utility methods for reading, creating and holding CFF
 information. See \code{\linkS4class{cff}} to learn more about \code{cff} objects.
 }
 \details{
-This object can be manipulated using \code{\link[=cff_create]{cff_create()}}.
-
-\strong{Note that} this function reads \code{CITATION.cff} files. If you want to
-create \code{cff} objects from DESCRIPTION files use \code{\link[=cff_create]{cff_create()}}.
-
 If no additional \code{...} parameters are supplied (the default behavior),
-a minimal valid \code{cff} object is created. Valid parameters are those
-specified on \code{\link[=cff_schema_keys]{cff_schema_keys()}}:\tabular{l}{
+a minimal valid \code{cff} object is created. \code{cff} would convert \verb{_} in the name
+of the argument to \code{-} (e.g, \verb{cff_version = "1.2.0'} would be converted to
+\verb{cff-version = "1.2.0'})
+
+Valid parameters are those specified on \code{\link[=cff_schema_keys]{cff_schema_keys()}}:\tabular{l}{
    \strong{valid cff keys} \cr
    cff-version \cr
    message \cr
@@ -55,14 +54,8 @@ specified on \code{\link[=cff_schema_keys]{cff_schema_keys()}}:\tabular{l}{
 }
 }
 \examples{
-
 # Blank cff
 cff()
-
-# From file
-cff_read(system.file("examples/CITATION_basic.cff",
-  package = "cffr"
-))
 
 # Use custom params
 test <- cff(
@@ -74,18 +67,18 @@ test
 \donttest{
 # Would fail
 cff_validate(test)
-
+}
 
 # Modify with cff_create
 new <- cff_create(test, keys = list(
-  "cff-version" = "1.2.0",
+  "cff_version" = "1.2.0",
   message = "A blank file"
 ))
 new
 
 # Would pass
 cff_validate(new)
-}
+
 }
 \seealso{
 Other core functions of \CRANpkg{cffr}:

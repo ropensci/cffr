@@ -1,23 +1,15 @@
-test_that("Test errors on cff", {
-  expect_error(cff("abcde"))
-  nocff <- system.file("CITATION",
+test_that("Test message on cff", {
+  expect_snapshot(def <- cff("abcde"))
+
+  expect_identical(def, cff())
+  nocff <- system.file("examples/CITATION_skeleton.cff",
     package = "cffR"
   )
-  expect_error(cff_create(nocff))
+  expect_snapshot(afile <- cff(nocff))
+
+  expect_identical(afile, cff())
 })
 
-test_that("Compare blank cff with skeleton", {
-  skeleton <- system.file("examples/CITATION_skeleton.cff",
-    package = "cffr"
-  )
-
-  fromfile <- cff(skeleton)
-  fromfunction <- cff()
-  expect_true(all(unlist(fromfile) == unlist(fromfunction)))
-
-  # Validate
-  expect_true(cff_validate(fromfunction, verbose = FALSE))
-})
 
 test_that("Walk trough full lifecycle", {
   complete <- system.file("examples/CITATION_complete.cff",
@@ -28,12 +20,11 @@ test_that("Walk trough full lifecycle", {
   read <- cff_read(complete)
   expect_s3_class(read, "cff")
   expect_true(cff_validate(read, verbose = FALSE))
-  expect_snapshot(print_snapshot("Read object", read))
+  expect_snapshot(read)
 
   # Modify
   modify <- cff_create(read, keys = list(title = "A new title"))
-  expect_snapshot(print_snapshot("Modify object", modify))
-  expect_true(all(unlist(read) == unlist(read)))
+  expect_snapshot(modify)
   expect_true(length(read) == length(modify))
   expect_true(length((setdiff(names(read), names(modify)))) == 0)
   expect_false(read$title == modify$title)
@@ -58,7 +49,8 @@ test_that("Recursive parsing", {
   )
 
   # Read
-  read <- cff(complete)
+  expect_snapshot(read <- cff(complete))
+  read <- cff_read(complete)
 
   # Test all levels
   expect_s3_class(read, "cff")
@@ -71,28 +63,48 @@ test_that("Recursive parsing", {
 
 
 test_that("Fuzzy matching of keys on cff", {
-  expect_message(cff(
+  expect_snapshot(cff(
     tittle = "a",
     cff_version = "ar",
     version = "200",
     messange = "Fix my keys"
-  ), "messange: message")
+  ))
 
-  cffobj <- suppressMessages(
-    cff(
-      tittle = "a",
-      cff_version = "1.2.0",
-      version = "200",
-      anthor = list(list(
-        "family-names" = "a",
-        "given-names" = "b"
-      )),
-      messange = "Fix my keys"
-    )
-  )
+  expect_snapshot(cffobj <- cff(
+    tittle = "a",
+    cff_version = "1.2.0", version = "200",
+    messange = "aa",
+    anthor = list(list(
+      "family-names" = "a",
+      "given-names" = "b"
+    ))
+  ))
 
   expect_true(is_cff(cffobj))
   expect_true(cff_validate(cffobj, verbose = FALSE))
+})
 
-  expect_snapshot(print_snapshot("Fuzzy keys", cffobj))
+test_that("duplicated", {
+  expect_snapshot(ss <- cff(
+    tittle = "a", tittle = "ar",
+    version = "200",
+    messange = "Fix my keys"
+  ))
+
+  expect_s3_class(ss, "cff")
+  expect_length(ss, 3)
+})
+
+test_that("unnamed", {
+  expect_snapshot(ss <- cff(
+    path = "a", "200", "Fix my keys"
+  ), error = TRUE)
+
+  expect_snapshot(s1 <- cff(path = NULL, title = "a", "b", version = 1))
+  expect_snapshot(s2 <- cff(
+    path = NULL, title = "a", "aa", "bb", "cc",
+    "b", version = 1, "h", "j"
+  ))
+
+  expect_identical(s1, s2)
 })
