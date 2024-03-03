@@ -1,46 +1,62 @@
 url: 'https://docs.ropensci.org/cffr'
+
 template:
   opengraph:
     twitter:
       creator: '@dhernangomez'
       card: summary_large_image
+
 repo:
   branch: main
+
+home:
+  title: cffr | Generate Citation File Format (CFF) files for R packages
+  description: >-
+    Utilities to generate and validate CFF files with R.
+
 reference:
-  - title: Main function
+  - title: The whole game
+  - subtitle: The function
     desc: >-
       The main function of the package and likely to be the only one you would
       need.
+    contents: cff_write
+  - subtitle: Other core functions
+    desc: 'Create, modify and write and `cff` objects.'
+    contents: has_concept("core")
+  - subtitle: The `cff` class
+    desc: Brief introduction to the `cff` class and S3 Methods available.
     contents:
-      - cff_write
-  - title: Other core functions
-    desc: 'Create, write and manipulate files and objects.'
-    contents:
-      - has_concept("Core functions")
-  - title: Citation File Format schema
+      - cff-class
+      - has_concept("s3method")
+  - subtitle: Citation File Format schema
     desc: >-
       These functions provides lists of valid keys and fields as defined by the
       CFF schema.json **(v1.2.0)**.
-    contents:
-      - has_concept("Schemas")
-  - title: Parsers
-    desc: Helper functions to parse information.
-    contents:
-      - has_concept("Parsers")
-  - title: BibTeX
-    desc: Convert CFF to BibTeX and viceversa
-    contents:
-      - has_concept("BibTeX helpers")
-      - cff_parse_citation
-  - title: Datasets
-    contents:
-      - has_keyword("datasets")
+    contents: has_concept("schemas")
   - title: Continuous Integration
+    contents: has_concept("git")
+  - title: Additional features
+  - subtitle: Read and write files
+    desc: >-
+      Read and write local files on different formats (CFF files, BibTeX,
+      etc.).
     contents:
-      - has_concept("Git helpers")
+      - has_concept("reading")
+      - has_concept("writing")
+  - subtitle: Coercing objects
+    desc: >-
+      Coerce **R** objects into different classes (`cff`, `person`, `bibentry`)
+      and more:
+    contents: has_concept("coercing")
+  - subtitle: BibTeX helpers
+    desc: Functions that works with BibTeX markup language.
+    contents: has_concept("bibtex")
+  - title: Datasets
+    contents: has_concept("datasets")
   - title: About the package
-    contents:
-      - cffr-package
+    contents: cffr-package
+
 navbar:
   structure:
     left:
@@ -64,12 +80,14 @@ navbar:
           href: 'https://ropensci.org/blog/2021/11/23/how-i-test-cffr/'
         - text: '---'
         - text: Blogs
-        - text: 'How To Call Package Citations in R programming'
-          href: 'https://medium.com/analytics-vidhya/how-to-call-package-citations-in-r-programming-6f01f1176301'
+        - text: How To Call Package Citations in R programming
+          href: >-
+            https://medium.com/analytics-vidhya/how-to-call-package-citations-in-r-programming-6f01f1176301
         - text: '---'
         - text: Podcasts
         - text: 'R Weekly Highlights: Issue 2021-W48 Highlights'
           href: 'https://share.fireside.fm/episode/87RSVeFz+4R-j8_xW'
+
 authors:
   Diego Hernangómez:
     href: 'https://dieghernan.github.io/'

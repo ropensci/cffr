@@ -7,7 +7,7 @@
 cff_validate(x = "CITATION.cff", verbose = TRUE)
 }
 \arguments{
-\item{x}{This is expected to be either a \code{\link{cff}} object created
+\item{x}{This is expected to be either a \code{cff} object created
 with \code{\link[=cff_create]{cff_create()}} or the path to a \code{CITATION.cff} file to be validated.}
 
 \item{verbose}{Logical \code{TRUE/FALSE}. On \code{TRUE} the function would display
@@ -15,8 +15,8 @@ informative messages.}
 }
 \value{
 A message indicating the result of the validation and an invisible
-value \code{TRUE/FALSE}. On error, the results would have an attribute \verb{"errors}
-containing the error summary (see \strong{Examples} and \code{\link[=attr]{attr()}}).
+value \code{TRUE/FALSE}. On error, the results would have an attribute
+\code{"errors"} containing the error summary (see \strong{Examples} and \code{\link[=attr]{attr()}}).
 }
 \description{
 Validate a \code{CITATION.cff} file or a \code{\link{cff}} object created with
@@ -50,9 +50,9 @@ try(cff_validate(system.file("CITATION", package = "cffr")))
 \seealso{
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
 
-Other Core functions: 
+Other core functions of \CRANpkg{cffr}:
+\code{\link{cff}()},
 \code{\link{cff_create}()},
-\code{\link{cff_read}()},
-\code{\link{cff_write}()}
+\code{\link{cff_modify}()}
 }
-\concept{Core functions}
+\concept{core}

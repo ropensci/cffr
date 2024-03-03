@@ -37,6 +37,10 @@ clean_str <- function(str) {
 #' @param x The list to be cleaned
 #' @noRd
 drop_null <- function(x) {
+  # Already been here
+  if (inherits(x, "cff")) {
+    return(x)
+  }
   x[lengths(x) != 0]
 }
 
@@ -110,6 +114,8 @@ detect_repos <- function(repos = getOption("repos")) {
 #' @inheritParams cff_create
 #' @noRd
 fuzzy_keys <- function(keys) {
+  nm <- names(keys)
+  names(keys) <- gsub("_", "-", nm, fixed = TRUE)
   valid_keys <- cff_schema_keys()
 
   names <- names(keys)
@@ -133,20 +139,23 @@ fuzzy_keys <- function(keys) {
       keys_match,
       function(x) {
         if (length(x) == 0) {
-          return("No match")
+          return("No match, removing.")
         }
         return(x[1])
       }
     ))
 
     # Message
-    ll <- paste0("{.dt ", names_fuzzy, "}{.dl ", keys_match, "}\n",
-      collapse = ""
-    )
-    cli::cli_alert_warning(
-      paste0("Found misspelled keys. Trying to map:\n", ll)
+    ll <- paste0("{.dt ", names_fuzzy, "}{.dl ", keys_match, "}")
+
+    bullets <- rep("v", length(ll))
+    bullets[keys_match == "No match, removing."] <- "x"
+    names(ll) <- bullets
+    cli::cli_alert_info(
+      paste0("Found misspelled keys. Trying to map:")
     )
 
+    cli::cli_bullets(ll)
     # Modify names
     names[!is_valid_key] <- keys_match
   }
@@ -157,4 +166,47 @@ fuzzy_keys <- function(keys) {
   new_keys <- new_keys[names %in% valid_keys]
 
   return(new_keys)
+}
+
+guess_cff_named_part <- function(x) {
+  nms <- names(x)
+  # Search for names
+  is_person <- any(grepl("^name$|family|given|particle", nms))
+  if (is_person) {
+    return("cff_pers")
+  }
+
+  # VALID full cff file
+  is_full <- any(grepl("cff-version|message", nms))
+  if (is_full) {
+    return("cff_full")
+  }
+
+  # Reference
+  is_ref <- any(grepl("title|type", nms))
+  if (is_ref) {
+    return("cff_ref")
+  }
+
+  # Else
+  return("unclear")
+}
+
+
+guess_cff_part <- function(x) {
+  named <- is_named(x)
+  if (named) {
+    return(guess_cff_named_part(x))
+  }
+
+  # Look to first element
+  guess <- guess_cff_named_part(x[[1]])
+
+  fin <- switch(guess,
+    "cff_pers" = "cff_pers_list",
+    "cff_ref" = "cff_ref_list",
+    "unclear"
+  )
+
+  fin
 }

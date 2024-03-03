@@ -19,6 +19,8 @@ test_that("Check is_email", {
       is_email("felix@nicebread@de"),
       is_email("felixnicebread.de"),
       is_email("@felixnicebread"),
+      is_email("a @felixnicebread.co"),
+      is_email("a@fe lixnicebread.de"),
       is_email(NULL),
       is_email(NA)
     )

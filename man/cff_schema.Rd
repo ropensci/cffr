@@ -59,4 +59,4 @@ cff_schema_definitions_entity()
 
 cff_schema_definitions_refs()
 }
-\concept{Schemas}
+\concept{schemas}

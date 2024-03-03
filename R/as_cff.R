@@ -1,0 +1,215 @@
+#' Coerce lists, `person` and `bibentry` objects to [`cff`]
+#'
+#' @description
+#' `as_cff()` turns an existing list-like **R** object into a so-called
+#' [`cff`], a list with class `cff`.
+#'
+#' `as_cff` is an S3 generic, with methods for:
+#' - `person` objects as produced by [utils::person()].
+#' - `bibentry` objects as produced by [utils::bibentry()].
+#' - `Bibtex` object as produced by [toBibtex()].
+#' -  Default: Other inputs are first coerced with [as.list()].
+#'
+#' @param x A `person`, `bibentry` or other object that could be coerced to a
+#'   list.
+#' @param ... Additional arguments to be passed on to other methods.
+#'
+#' @rdname as_cff
+#'
+#' @returns
+#'
+#' A `cff` object. These objects are rarely [valid][cff_validate()], but can
+#' be used to complement or modify complete `cff` objects.
+#'
+#' @family coercing
+#' @family s3method
+#'
+#' @details
+#' For `as_cff.bibentry()` / `as_cff.Bibtex()` see
+#' `vignette("bibtex_cff", "cffr")` to understand how the mapping is performed.
+#'
+#' [as_cff_person()] is preferred over `as_cff.person()` since it can handle
+#' `character` person such as `"Davis, Jr., Sammy"`. For `person` objects both
+#' functions are similar.
+#'
+#' @seealso
+#' - [cff()]: Create a full `cff` object from scratch.
+#' - [cff_modify()]: Modify a `cff` object.
+#' - [cff_create()]: Create a `cff` object of a **R** package.
+#' - [cff_read()]: Create a `cff` object from a external file.
+#' - [as_cff_person()]: Recommended way for creating persons in CFF format.
+#'
+#' @export
+#'
+#' @examples
+#'
+#' # Convert a list to "cff" object
+#' cffobj <- as_cff(list(
+#'   "cff-version" = "1.2.0",
+#'   title = "Manipulating files"
+#' ))
+#'
+#' class(cffobj)
+#'
+#' # Nice display thanks to yaml package
+#' cffobj
+#'
+#' # bibentry method
+#' a_cit <- citation("cffr")[[1]]
+#'
+#' a_cit
+#'
+#' as_cff(a_cit)
+#'
+#' # Bibtex method
+#' a_bib <- toBibtex(a_cit)
+#'
+#' a_bib
+#'
+#' as_cff(a_cit)
+#'
+as_cff <- function(x, ...) {
+  UseMethod("as_cff")
+}
+
+#' @rdname as_cff
+#' @export
+as_cff.default <- function(x, ...) {
+  as_cff(as.list(x), ...)
+}
+
+
+#' @rdname as_cff
+#' @export
+as_cff.list <- function(x, ...) {
+  # Clean up empty values on top
+  clean_up <- vapply(x, is.null, FUN.VALUE = logical(1))
+  x_clean <- x[!clean_up]
+  new_cff(x_clean)
+}
+
+#' @rdname as_cff
+#' @export
+as_cff.person <- function(x, ...) {
+  as_cff_person(x)
+}
+
+
+#' @rdname as_cff
+#' @export
+as_cff.bibentry <- function(x, ...) {
+  cff_ref <- as_cff_reference(x)
+  clean_up <- vapply(cff_ref, is.null, FUN.VALUE = logical(1))
+  if (all(clean_up)) {
+    return(NULL)
+  }
+
+  cff_refs <- as_cff(cff_ref, ...)
+
+  # Add clases
+  cff_refs_class <- lapply(cff_refs, function(x) {
+    class(x) <- unique(c("cff_ref", "cff", class(x)))
+    x
+  })
+
+  class(cff_refs_class) <- c("cff_ref_list", "cff", "list")
+  cff_refs_class
+}
+
+#' @rdname as_cff
+#' @export
+as_cff.Bibtex <- function(x, ...) {
+  tmp <- tempfile(fileext = ".bib")
+  writeLines(x, tmp)
+  abib <- cff_read_bib(tmp)
+  cff_refs <- as_cff(abib, ...)
+
+  # Add clases
+  cff_refs_class <- lapply(cff_refs, function(x) {
+    class(x) <- unique(c("cff_ref", "cff", class(x)))
+    x
+  })
+
+  class(cff_refs_class) <- c("cff_ref_list", "cff", "list")
+  cff_refs_class
+}
+
+# nolint start
+#' @export
+#' @rdname as_cff
+#' @usage NULL
+as.cff <- function(x) {
+  as_cff(x)
+}
+# nolint end
+
+# Helper----
+
+#' Recursively clean lists and assign cff classes
+#' to all nested lists
+#'
+#'
+#' @noRd
+rapply_cff <- function(x) {
+  if (inherits(x, "cff")) {
+    return(x)
+  }
+
+  if (is.list(x) && length(x) > 0) {
+    x <- drop_null(x)
+    x <- lapply(x, rapply_cff)
+    return(structure(x, class = c("cff", "list")))
+  } else {
+    return(x)
+  }
+}
+
+# https://adv-r.hadley.nz/s3.html#s3-constructor
+# Constructor
+new_cff <- function(x) {
+  if (is_cff(x)) {
+    class(x) <- c("cff", "list")
+    return(x)
+  }
+
+  # Clean all strings recursively
+
+  x <- rapply(x, function(x) {
+    if (is.list(x) || length(x) > 1) {
+      return(x)
+    }
+    return(clean_str(x))
+  },
+  how = "list"
+  )
+
+  # Remove NULLs
+  x <- drop_null(x)
+
+  # Remove duplicated names if named
+  if (!is.null(names(x))) x <- x[!duplicated(names(x))]
+
+  # Now apply cff class to nested lists
+  x <- lapply(x, rapply_cff)
+
+  class(x) <- c("cff", "list")
+  x
+}
+
+# Just for pretty printing on extract
+
+# Based in person method
+# https://github.com/wch/r-source/blob/trunk/src/library/utils/R/citation.R
+#' @export
+`[.cff_ref_list` <- function(x, i) {
+  rval <- unclass(x)[i]
+  class(rval) <- class(x[[i]])
+  return(rval)
+}
+
+#' @export
+`[.cff_pers_list` <- function(x, i) {
+  rval <- unclass(x)[i]
+  class(rval) <- class(x[[i]])
+  return(rval)
+}

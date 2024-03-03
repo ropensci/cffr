@@ -13,7 +13,7 @@
 #' ```
 #' @export
 #'
-#' @family Core functions
+#' @family core
 #'
 #' @seealso
 #' ```{r, echo=FALSE, results='asis'}
@@ -26,10 +26,10 @@
 #' ```
 #'
 #' @return A message indicating the result of the validation and an invisible
-#'   value `TRUE/FALSE`. On error, the results would have an attribute `"errors`
-#'   containing the error summary (see **Examples** and [attr()]).
+#'   value `TRUE/FALSE`. On error, the results would have an attribute
+#'   `"errors"` containing the error summary (see **Examples** and [attr()]).
 #'
-#' @param x This is expected to be either a [`cff`] object created
+#' @param x This is expected to be either a `cff` object created
 #'   with [cff_create()] or the path to a `CITATION.cff` file to be validated.
 #' @inheritParams cff_write
 #'

@@ -260,49 +260,22 @@ bibtex_pers_first_von_last <- function(x) {
   return(end_list)
 }
 
-as_person_bibtex <- function(x) {
-  # Identify the pattern
-  # It may be one of:
-  # A. Given von Family
-  # B. von Family, Given
-  # C. von Family, Junior, Given
+validate_cff_person_fields <- function(parsed_person) {
+  # Entity of person
 
-  # Protect commas on brackets to avoid error counting
-  protected <- gsub(",(?![^\\}]*(\\{|$))", "@comma@",
-    x,
-    perl = TRUE
+  # Guess entity or person
+  is_entity <- as.character("name" %in% names(parsed_person))
+
+  # Keep only valid tags - Would depend on entity or person
+  definition <- switch(is_entity,
+    "TRUE" = cff_schema_definitions_entity(),
+    cff_schema_definitions_person()
   )
 
-  commas <- length(grep(",", unlist(strsplit(protected, "|"))))
+  parsed_person <- parsed_person[names(parsed_person) %in% definition]
 
-  if (commas == 0) {
-    # Case A
-    end_list <- bibtex_pers_first_von_last(x)
-  } else if (commas == 1) {
-    # Case B
-    end_list <- bibtex_pers_von_last_first(x)
-  } else if (commas == 2) {
-    # Case C
-    end_list <- bibtex_pers_von_last_first_jr(x)
-  } else {
-    # Not considered by BibTeX. everything to family
-    end_list <- list(family = paste(x, collapse = " "))
-  }
+  # Duplicates removed
+  parsed_person <- parsed_person[!duplicated(names(parsed_person))]
 
-  # Clean
-  end_list <- lapply(end_list, function(z) {
-    if (is.null(z)) {
-      return(NULL)
-    }
-    if (any((is.na(z) | z == ""))) {
-      return(NULL)
-    }
-
-    gsub("\\{|\\}", "", z)
-  })
-
-  end_list <- lapply(end_list, clean_str)
-
-
-  return(end_list)
+  parsed_person
 }

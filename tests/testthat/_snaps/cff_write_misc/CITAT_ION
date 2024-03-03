@@ -1,0 +1,16 @@
+
+bibentry(bibtype = "Misc",
+         title = "My title",
+         author = person(given = "Fran",
+                         family = "Pérez"))
+
+bibentry(bibtype = "Misc",
+         key = "basic:1999",
+         title = "basicdescdate: A Basic Description with Date",
+         author = person(given = "Marc",
+                         family = "Basic",
+                         email = "marcbasic@gmail.com"),
+         year = "1999",
+         url = "https://basic.github.io/package",
+         abstract = "A very basic description. Should parse without problems. I have a Date",
+         version = "0.1.6")

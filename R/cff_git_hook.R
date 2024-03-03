@@ -3,13 +3,19 @@
 #' @description
 #'
 #' Install a
-#' [pre-commit
-#' hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workflow_hooks)
+#'
+#' ```{r, echo=FALSE, results='asis'}
+#'
+#' cat(paste0(" [pre-commit hook]",
+#'            "(https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks",
+#'            "#_committing_workflow_hooks) "))
+#'
+#' ```
 #' that remembers you to update your `CITATION.cff` file.
 #'
 #' @name cff_git_hook
 #'
-#' @family Git helpers
+#' @family git
 #'
 #' @export
 #'
@@ -25,9 +31,9 @@
 #' A pre-commit hook is a script that identifies  simple issues before
 #' submission to code review. This pre-commit hook would warn you if any of the
 #' following conditions are met:
-#' - You included in a commit your DESCRIPTION or inst/CITATION file, you
+#' - You included in a commit your `DESCRIPTION` or `inst/CITATION` file, you
 #'   are not including your `CITATION.cff` and the `CITATION.cff` file is
-#'   "older" than any of your DESCRIPTION or inst/CITATION file, or
+#'   "older" than any of your `DESCRIPTION` or `inst/CITATION` file.
 #' - You have updated your `CITATION.cff` but you are not including it on
 #'   your commit.
 #'
@@ -37,14 +43,15 @@
 #' `CITATION.cff`. However, the mechanism of detection is not perfect and would
 #' be triggered also even if you have tried to update your `CITATION.cff` file.
 #'
-#' This is typically the case when you have updated your DESCRIPTION or
-#' inst/CITATION files but those changes doesn't make a change on your
+#' This is typically the case when you have updated your `DESCRIPTION` or
+#' `inst/CITATION` files but those changes doesn't make a change on your
 #' `CITATION.cff` file (i.e. you are including new dependencies).
 #'
 #' In those cases, you can override the check running `git commit --no-verify`
-#' on the Terminal tab. If you are using
-#' RStudio you can run also this command from a R script by selecting that
-#' line and sending it to the Terminal using:
+#' on the terminal.
+#'
+#' If you are using **RStudio** you can run also this command from a **R**
+#' script by selecting that line and sending it to the terminal using:
 #'
 #' - `Ctrl+Alt+Enter` (Windows & Linux), or
 #' - `Cmd+Option+Return` (Mac).
@@ -63,10 +70,7 @@ cff_git_hook_install <- function() {
   bash_file <- system.file("bash/citation-cff-pre-commit.sh", package = "cffr")
 
   if (requireNamespace("usethis", quietly = TRUE)) {
-    usethis::use_git_hook(
-      "pre-commit",
-      readLines(con = bash_file)
-    )
+    usethis::use_git_hook("pre-commit", readLines(con = bash_file))
   } else {
     cli::cli_alert_danger(
       paste0(

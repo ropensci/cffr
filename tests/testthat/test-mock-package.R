@@ -24,7 +24,7 @@ test_that("Test in mock package", {
   )
 
 
-  expect_silent(write_citation(cit, verbose = FALSE))
+  expect_silent(cff_write_citation(cit, "./inst/CITATION", verbose = FALSE))
   expect_true(file.exists("./inst/CITATION"))
 
   # Create Rbuildignore

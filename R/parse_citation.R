@@ -1,54 +1,3 @@
-## Parsers ----
-
-#' Used for parsing CITATION R-native files
-#' @noRd
-parse_r_citation <- function(desc_path, cit_path) {
-  if (!file.exists(cit_path) || !file.exists(desc_path)) {
-    return(NULL)
-  }
-  # Create meta
-  meta <- parse_package_meta(desc_path)
-
-  # First try - Would normally be enough
-  parsed <- tryCatch(
-    utils::readCitationFile(cit_path, meta = meta),
-    warning = function(cit_path, meta) {
-      # Avoid warnings
-      # nocov start
-      suppressWarnings(
-        utils::readCitationFile(cit_path, meta = meta)
-      )
-    },
-    error = function(x) {
-      return(NULL)
-    }
-    # nocov end
-  )
-
-  parsed
-}
-
-#' Parse and clean data from DESCRIPTION to create metadata
-#' @noRd
-parse_package_meta <- function(desc_path) {
-  pkg <- desc::desc(desc_path)
-  pkg$coerce_authors_at_r()
-  # Extract package data
-  meta <- pkg$get(desc::cran_valid_fields)
-
-  # Clean missing and drop empty fields
-  meta <- drop_null(lapply(meta, clean_str))
-
-  # Check encoding
-  if (!is.null(meta$Encoding)) {
-    meta <- lapply(meta, iconv, from = meta$Encoding, to = "UTF-8")
-  } else {
-    meta$Encoding <- "UTF-8"
-  }
-
-  meta
-}
-
 ## Building blocks ----
 
 #' BB for doi
@@ -190,8 +139,11 @@ building_other_persons <- function(parsed_fields) {
   toentity_pers <- others[names(others) %in% toent_pers]
   toentity_pers <- lapply(toentity_pers, function(x) {
     bibtex <- paste(x, collapse = " and ")
+    # Unname
+    names(bibtex) <- NULL
 
-    end <- cff_parse_person_bibtex(bibtex)
+
+    end <- as_cff_person(bibtex)
 
     # If has names then it should be moved to a lower level on a list
     if (!is.null(names(end))) end <- list(end)
@@ -201,16 +153,7 @@ building_other_persons <- function(parsed_fields) {
 
 
   toperson <- others[names(others) %in% toauto_end]
-  toperson <- lapply(toperson, cff_parse_person_bibtex)
-  # This should be vectors, so include on lists
-  toperson <- lapply(toperson, function(x) {
-    if (!is.null(names(x))) {
-      x <- list(x)
-    } else {
-      x
-    }
-  })
-
+  toperson <- lapply(toperson, as_cff_person)
 
 
   # Bind and reorder

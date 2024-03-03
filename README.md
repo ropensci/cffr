@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2024-02-13 there are at least 235 repos on GitHub using **cffr**.
+As per 2024-03-03 there are at least 306 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -545,8 +545,9 @@ test <- cff_create("rmarkdown")
         given-names: Radford
       - family-names: Bell
         given-names: Kendon
-      - family-names: de Queljoe
+      - family-names: Queljoe
         given-names: Matthew
+        name-particle: de
       - family-names: Suruceanu
         given-names: Ion
       - family-names: Denney
@@ -570,6 +571,7 @@ test <- cff_create("rmarkdown")
       authors:
       - family-names: Vanderkam
         given-names: Dan
+        website: http://dygraphs.com/
       - family-names: Allaire
         given-names: JJ
       - family-names: Owen
@@ -749,6 +751,18 @@ test <- cff_create("rmarkdown")
       - family-names: Vaughan
         given-names: Davis
         email: davis@posit.co
+      year: '2024'
+    - type: software
+      title: cleanrmd
+      abstract: 'cleanrmd: Clean Class-Less ''R Markdown'' HTML Documents'
+      notes: Suggests
+      url: https://pkg.garrickadenbuie.com/cleanrmd/
+      repository: https://CRAN.R-project.org/package=cleanrmd
+      authors:
+      - family-names: Aden-Buie
+        given-names: Garrick
+        email: garrick@adenbuie.com
+        orcid: https://orcid.org/0000-0002-7111-0077
       year: '2024'
     - type: software
       title: withr

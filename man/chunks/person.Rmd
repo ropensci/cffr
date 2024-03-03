@@ -1,0 +1,20 @@
+```{r include=FALSE}
+library(cffr)
+initopt <- getOption("cffr_message_verbosity", NULL)
+options("cffr_message_verbosity" = NULL)
+```
+
+```{r}
+# Don't do
+entity <- "Elephant and Castle"
+as_cff_person(entity)
+
+# Do
+entity_protect <- "{Elephant and Castle}"
+as_cff_person(entity_protect)
+```
+
+```{r include=FALSE}
+# Restore
+options("cffr_message_verbosity" = initopt)
+```
