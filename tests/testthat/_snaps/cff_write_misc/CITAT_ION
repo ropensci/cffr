@@ -5,7 +5,7 @@ bibentry(bibtype = "Misc",
                          family = "Pérez"))
 
 bibentry(bibtype = "Misc",
-         key = "basic",
+         key = "basic:1999",
          title = "basicdescdate: A Basic Description with Date",
          author = person(given = "Marc",
                          family = "Basic",

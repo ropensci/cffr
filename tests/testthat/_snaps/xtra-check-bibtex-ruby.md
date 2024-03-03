@@ -102,7 +102,7 @@
     Code
       toBibtex(bib)
     Output
-      @Article{hartmannwong,
+      @Article{hartmannwong:2020,
         title = {An image-based data-driven analysis of cellular architecture in a developing tissue},
         author = {Jonas Hartmann and Mie Wong and Elisa Gallo and Darren Gilmour},
         year = {2020},

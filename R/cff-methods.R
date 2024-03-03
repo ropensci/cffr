@@ -24,6 +24,7 @@ c.cff <- function(..., recursive = FALSE) {
 }
 
 
+# nolint start
 #' Coerce to a Data Frame
 #'
 #' @noRd
@@ -47,6 +48,7 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
   return(the_df)
 }
 
+# nolint end
 
 #' @rdname as_cff_person
 #' @name as.person.cff
@@ -134,7 +136,7 @@ toBibtex.cff <- function(object, ...,
       class(object) <- c("cff", "list")
     }
 
-    bib_list <- lapply(object, cff_bibtex_parser)
+    bib_list <- lapply(object, make_bibentry)
     biblist_cff <- do.call(c, bib_list)
   }
   toBibtex(biblist_cff, ...)

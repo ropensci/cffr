@@ -44,15 +44,11 @@ is_substring <- function(x, sub) {
   }
 }
 
-#' Check if a object is cff
+#' Check if a object is `cff`
 #' @param x object to be evaluated
 #' @noRd
 is_cff <- function(x) {
-  if (inherits(x, "cff")) {
-    return(TRUE)
-  } else {
-    return(FALSE)
-  }
+  inherits(x, "cff")
 }
 
 #' Check if a object is cff file
@@ -71,7 +67,7 @@ is_cff_file <- function(x) {
   return(TRUE)
 }
 
-#' Check if a object is cff
+#' Check if an url is from GitHub
 #' @param x object to be evaluated
 #' @noRd
 is_github <- function(x) {
@@ -83,7 +79,7 @@ is_github <- function(x) {
   return(res)
 }
 
-#' Error if it is not a cff file
+#' Error if it is not a `cff` file or object
 #' @param x file to be evaluated
 #' @noRd
 stopifnotcff <- function(x) {
@@ -113,4 +109,11 @@ stopifnotexists <- function(x) {
     cli::cli_abort("{.file {x}} doesn't exist")
   }
   return(invisible(NULL))
+}
+
+#' Check if `x` has names
+#' @param x object to be evaluated
+#' @noRd
+is_named <- function(x) {
+  !is.null(names(x))
 }

@@ -1,3 +1,4 @@
+# Test Bibtex ----
 test_that("Article to bibtex", {
   bib <- bibentry("Article",
     key = "knuth:1984",
@@ -137,6 +138,12 @@ test_that("InProceedings to bibtex", {
   bibparsed <- as_cff(bib)
   bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
+
+  # If we remove collection title use conference
+  bibparsed[[1]]$`collection-title` <- NULL
+  bibparsed[[1]]$conference$name <- "I Am a conference"
+  bib <- as_bibentry(bibparsed)
+  expect_snapshot(toBibtex(bib))
 })
 
 
@@ -244,8 +251,14 @@ test_that("Unpublished to bibtex", {
   bibparsed <- as_cff(bib)
   bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
+
+  # With custom note
+  bibparsed[[1]]$notes <- NULL
+  bib <- as_bibentry(bibparsed)
+  expect_snapshot(toBibtex(bib))
 })
 
+# Other testers ----
 
 test_that("particle names", {
   bib <- bibentry("Book",
@@ -486,5 +499,7 @@ test_that("Corrupt entry", {
 })
 
 test_that("Parser return nulls", {
-  expect_null(cff_bibtex_parser(NULL))
+  expect_null(make_bibentry(NULL))
 })
+
+# Classes ----

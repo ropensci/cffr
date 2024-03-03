@@ -167,3 +167,46 @@ fuzzy_keys <- function(keys) {
 
   return(new_keys)
 }
+
+guess_cff_named_part <- function(x) {
+  nms <- names(x)
+  # Search for names
+  is_person <- any(grepl("^name$|family|given|particle", nms))
+  if (is_person) {
+    return("cff_pers")
+  }
+
+  # VALID full cff file
+  is_full <- any(grepl("cff-version|message", nms))
+  if (is_full) {
+    return("cff_full")
+  }
+
+  # Reference
+  is_ref <- any(grepl("title|type", nms))
+  if (is_ref) {
+    return("cff_ref")
+  }
+
+  # Else
+  return("unclear")
+}
+
+
+guess_cff_part <- function(x) {
+  named <- is_named(x)
+  if (named) {
+    return(guess_cff_named_part(x))
+  }
+
+  # Look to first element
+  guess <- guess_cff_named_part(x[[1]])
+
+  fin <- switch(guess,
+    "cff_pers" = "cff_pers_list",
+    "cff_ref" = "cff_ref_list",
+    "unclear"
+  )
+
+  fin
+}

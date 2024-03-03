@@ -118,18 +118,10 @@ as_bibentry <- function(x,
   }
 
 
-  # Three cases:
-  # A) Full cff reference object or
-  # B) Individual reference list
-  # C) List of references
+  # Guess case
+  cff_type <- guess_cff_part(obj)
 
-
-  # Detect case A
-  is_full_cff <- "cff-version" %in% names(obj)
-  # Detect case B
-  is_single_ref <- "type" %in% names(obj)
-
-  if (is_full_cff) {
+  if (cff_type == "cff_full") {
     # Try to generate preferred if not present
     if (!("preferred-citation" %in% names(obj))) {
       prefcit <- obj
@@ -146,7 +138,7 @@ as_bibentry <- function(x,
       "references" = obj$references,
       c(list(obj$`preferred-citation`), obj$references)
     )
-  } else if (is_single_ref) {
+  } else if (cff_type == "cff_ref") {
     obj_extract <- list(obj)
   } else {
     obj_extract <- obj
@@ -158,19 +150,17 @@ as_bibentry <- function(x,
     return(NULL)
   }
 
-  ref <- lapply(obj_extract, cff_bibtex_parser)
+  ref <- lapply(obj_extract, make_bibentry)
   ref <- do.call(c, ref)
 
   return(ref)
 }
 
 
-cff_bibtex_parser <- function(x) {
+make_bibentry <- function(x) {
   if (is.null(x)) {
     return(NULL)
   }
-
-  stopifnotcff(x)
 
   # Partially based on ruby parser
   # https://github.com/citation-file-format/ruby-cff/blob/main/lib/cff/ >>
@@ -184,79 +174,13 @@ cff_bibtex_parser <- function(x) {
   # edition institution journal month number pages publisher title volume year
 
   # Guess type of entry----
-  tobibentry$bibtype <- switch(tolower(x$type),
-    "article" = "article",
-    "book" = "book",
-    "manual" = "manual",
-    "unpublished" = "unpublished",
-    "conference" = "inproceedings",
-    "conference-paper" = "inproceedings",
-    "proceedings" = "proceedings",
-    "magazine-article" = "article",
-    "newspaper-article" = "article",
-    "pamphlet" = "booklet",
-    "report" = "techreport",
-    "thesis" = "mastersthesis",
-    # We would need to guess
-    "misc"
-  )
-  # Try guess thesis
-  ttype <- clean_str(gsub("[[:punct:]]", "",
-    x$`thesis-type`,
-    perl = TRUE
-  ))
 
-  if (!is.null(ttype) && x$type == "thesis") {
-    if (grepl("Phd", ttype, ignore.case = TRUE)) {
-      tobibentry$bibtype <- "phdthesis"
-    }
-  }
-
-  # Check if it may be an incollection
-  # Hint: is misc with collection-title and publisher
-
-  if (all(
-    tobibentry$bibtype == "misc", !is.null(x$`collection-title`),
-    !is.null(x$publisher), !is.null(x$year)
-  )) {
-    tobibentry$bibtype <- "incollection"
-  }
-
-
+  tobibentry$bibtype <- guess_bibtype(x)
   # address----
-  # BibTeX 'address' is taken from the publisher (book, others) or the
-  # conference (inproceedings).
-  # Set logic: conference > institution > publisher
-  if (!is.null(x$conference)) {
-    addr_search <- x$conference
-  } else if (!is.null(x$institution)) {
-    addr_search <- x$institution
-  } else {
-    addr_search <- x$publisher
-  }
-
-
-  tobibentry$address <- clean_str(paste(
-    c(
-      addr_search$address,
-      addr_search$city,
-      addr_search$region,
-      addr_search$country
-    ),
-    collapse = ", "
-  ))
-
-  # As a fallback, use also location
-  if (is.null(tobibentry$address) && !is.null(x$location)) {
-    tobibentry$address <- x$location$name
-  }
-
-
+  tobibentry$address <- guess_address(x)
 
   # author----
-  aut <- x$authors
-  author <- as.person(aut)
-  tobibentry$author <- author
+  tobibentry$author <- as.person(x$authors)
 
 
   # booktitle ----
@@ -268,7 +192,10 @@ cff_bibtex_parser <- function(x) {
 
   # Fallback to conference name
 
-  if (tobibentry$bibtype == "inproceedings" && is.null(tobibentry$booktitle)) {
+  if (all(
+    tobibentry$bibtype == "inproceedings",
+    is.null(tobibentry$booktitle)
+  )) {
     tobibentry$booktitle <- x$conference$name
   }
 
@@ -280,21 +207,10 @@ cff_bibtex_parser <- function(x) {
 
   # editor----
   # Same case than authors
-  editors <- as.person(x$editors)
-  tobibentry$editor <- editors
+  tobibentry$editor <- as.person(x$editors)
 
   # howpublished----
-
-  howpublished <- x$medium
-
-  if (!is.null(howpublished)) {
-    # Capitalize first letter
-    letts <- unlist(strsplit(howpublished, "|"))
-    howpublished <-
-      clean_str(paste0(c(toupper(letts[1]), letts[-1]), collapse = ""))
-
-    tobibentry$howpublished <- howpublished
-  }
+  tobibentry$howpublished <- make_howpublised(x)
 
   # institution/organization ----
 
@@ -319,41 +235,6 @@ cff_bibtex_parser <- function(x) {
 
   # journal----
   tobibentry$journal <- x$journal
-
-  # key: First two given of author and year----
-  # Bear in mind institutions has only given
-  # Use the first two authors
-  aut_sur <- lapply(tobibentry$author[1:2], function(z) {
-    unz <- unlist(z)
-    if ("family" %in% names(unz)) {
-      r <- unz["family"]
-      return(clean_str(r))
-    }
-
-    r <- unz["given"]
-    return(clean_str(r))
-  })
-
-
-  aut_sur <- tolower(paste0(unlist(aut_sur), collapse = ""))
-  aut_sur <- gsub("\\s*", "", aut_sur)
-
-  # Try hard to remove accents
-  # First with iconv
-  aut_sur <- iconv(aut_sur,
-    from = "UTF-8", to = "ASCII//TRANSLIT",
-    sub = "?"
-  )
-
-  # Next to latex
-  aut_sur <- encoded_utf_to_latex(aut_sur)
-
-  # Finally keep only a-z letters for key
-  aut_sur <- gsub("[^_a-z]", "", aut_sur)
-
-  y <- x$year
-
-  tobibentry$key <- paste(c(aut_sur, y), collapse = ":")
 
   # month----
   m <- x$month
@@ -446,6 +327,10 @@ cff_bibtex_parser <- function(x) {
     tobibentry$bibtype <- "inbook"
   }
 
+  # key: First two given of author and year----
+  tobibentry$key <- make_bibkey(tobibentry)
+
+
   # Handle anonymous author----
   # If anonymous and not needed, then not use it
 
@@ -524,4 +409,131 @@ cff_bibtex_parser <- function(x) {
   bib <- bib[[1]]
 
   return(bib)
+}
+
+
+guess_bibtype <- function(x) {
+  init_guess <- switch(tolower(x$type),
+    "article" = "article",
+    "book" = "book",
+    "manual" = "manual",
+    "unpublished" = "unpublished",
+    "conference" = "inproceedings",
+    "conference-paper" = "inproceedings",
+    "proceedings" = "proceedings",
+    "magazine-article" = "article",
+    "newspaper-article" = "article",
+    "pamphlet" = "booklet",
+    "report" = "techreport",
+    "thesis" = "mastersthesis",
+    # We would need to guess
+    "misc"
+  )
+
+
+  # Try guess thesis
+  ttype <- clean_str(gsub("[[:punct:]]", "",
+    x$`thesis-type`,
+    perl = TRUE
+  ))
+
+  if (!is.null(ttype) && x$type == "thesis") {
+    if (grepl("Phd", ttype, ignore.case = TRUE)) {
+      init_guess <- "phdthesis"
+    }
+  }
+
+  # Check if it may be an incollection
+  # Hint: is misc with collection-title and publisher
+
+  if (all(
+    init_guess == "misc", !is.null(x$`collection-title`),
+    !is.null(x$publisher), !is.null(x$year)
+  )) {
+    init_guess <- "incollection"
+  }
+
+  init_guess
+}
+
+guess_address <- function(x) {
+  # BibTeX 'address' is taken from the publisher (book, others) or the
+  # conference (inproceedings).
+  # Set logic: conference > institution > publisher
+  if (!is.null(x$conference)) {
+    addr_search <- x$conference
+  } else if (!is.null(x$institution)) {
+    addr_search <- x$institution
+  } else {
+    addr_search <- x$publisher
+  }
+
+
+  address <- clean_str(paste(
+    c(
+      addr_search$address,
+      addr_search$city,
+      addr_search$region,
+      addr_search$country
+    ),
+    collapse = ", "
+  ))
+
+  # As a fallback, use also location
+  if (is.null(address) && !is.null(x$location)) {
+    address <- clean_str(x$location$name)
+  }
+
+  address
+}
+
+
+make_bibkey <- function(tobibentry) {
+  # Bear in mind institutions has only given
+  # Use the first two authors
+  aut_sur <- lapply(tobibentry$author[1:2], function(z) {
+    unz <- unlist(z)
+    if ("family" %in% names(unz)) {
+      r <- unz["family"]
+      return(clean_str(r))
+    }
+
+    r <- unz["given"]
+    return(clean_str(r))
+  })
+
+
+  aut_sur <- tolower(paste0(unlist(aut_sur), collapse = ""))
+  aut_sur <- gsub("\\s*", "", aut_sur)
+
+  # Try hard to remove accents
+  # First with iconv
+  aut_sur <- iconv(aut_sur,
+    from = "UTF-8", to = "ASCII//TRANSLIT",
+    sub = "?"
+  )
+
+  # Next to latex
+  aut_sur <- encoded_utf_to_latex(aut_sur)
+
+  # Finally keep only a-z letters for key
+  aut_sur <- gsub("[^_a-z]", "", aut_sur)
+
+  y <- tobibentry$year
+
+  key <- paste(c(aut_sur, y), collapse = ":")
+  key
+}
+
+make_howpublised <- function(x) {
+  howpublished <- x$medium
+
+  if (!is.null(howpublished)) {
+    # Capitalize first letter
+    letts <- unlist(strsplit(howpublished, "|"))
+    howpublished <-
+      clean_str(paste0(c(toupper(letts[1]), letts[-1]), collapse = ""))
+  }
+
+  clean_str(howpublished)
 }

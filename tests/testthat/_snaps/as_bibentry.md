@@ -224,6 +224,23 @@
         organization = {IJCAI},
       }
 
+---
+
+    Code
+      toBibtex(bib)
+    Output
+      @InProceedings{aberdeenbayer:1999,
+        title = {Implementing Practical Dialogue Systems with the DARPA Communicator Architecture},
+        author = {John Aberdeen and Samuel Bayer and Sasha Caskey and Laurie Damianos and Alan Goldschen and Lynette Hirschman and Dan Loehr and Hugo Trapper},
+        year = {1999},
+        booktitle = {I Am a conference},
+        publisher = {International Joint Conference on Artificial Intelligence},
+        address = {Murray Hill, New Jersey},
+        editor = {Jan Alexandersson},
+        pages = {81--86},
+        organization = {IJCAI},
+      }
+
 # Manual to bibtex
 
     Code
@@ -390,6 +407,18 @@
         author = {John M. Aronis and Foster J. Provost},
         year = {1959},
         note = {Unpublished MS, Computer Science Department, University of Pittsburgh.},
+      }
+
+---
+
+    Code
+      toBibtex(bib)
+    Output
+      @Unpublished{aronisprovost:1959,
+        title = {Efficiently Constructing Relational Features from Background},
+        author = {John M. Aronis and Foster J. Provost},
+        year = {1959},
+        note = {Extracted with cffr R package},
       }
 
 # particle names
@@ -616,7 +645,7 @@
     Code
       toBibtex(parsed)
     Output
-      @Misc{doe,
+      @Misc{doe:2020,
         title = {My Research Software},
         author = {John Doe},
         year = {2020},
