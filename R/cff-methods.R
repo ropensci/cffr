@@ -107,7 +107,7 @@ tail.cff <- function(x, n = 6L, ...) {
 #'
 #' @description
 #' Additionally, it is also provided a method for [toBibtex()], that can
-#' convert [`cff`][cff-class] objects to `Bibtex` objects as provided by
+#' convert [`cff`] objects to `Bibtex` objects as provided by
 #' [utils::toBibtex()]. These objects are character vectors with BibTeX markup.
 #'
 #' @family s3method

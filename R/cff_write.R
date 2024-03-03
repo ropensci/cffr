@@ -7,7 +7,7 @@
 #'
 #' This function writes out a `CITATION.cff` file for a given package. This
 #' function is basically a wrapper around [cff_create()] to both create the
-#' [`cff`][cff-class] object and writes it out to a YAML-formatted file in
+#' [`cff`] object and writes it out to a YAML-formatted file in
 #' one command.
 #'
 #' @family writing

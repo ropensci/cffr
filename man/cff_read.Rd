@@ -6,7 +6,7 @@
 \alias{cff_read_description}
 \alias{cff_read_citation}
 \alias{cff_read_bib}
-\title{Read an external file as a \code{\link[=cff-class]{cff}} object}
+\title{Read an external file as a \code{\link{cff}} object}
 \usage{
 cff_read(path, ...)
 
@@ -37,7 +37,7 @@ cff_read_bib(path, encoding = "UTF-8", ...)
 GitHub, would you like to add the repo topics as keywords?}
 
 \item{authors_roles}{Roles to be considered as authors of the package when
-generating the \code{\link[=cff-class]{cff}} object.}
+generating the \code{\link{cff}} object.}
 
 \item{meta}{A list of package metadata as obtained by
 \code{\link[utils:packageDescription]{utils::packageDescription()}} or \code{NULL} (the default). See \strong{Details}.}
@@ -45,7 +45,7 @@ generating the \code{\link[=cff-class]{cff}} object.}
 \item{encoding}{Encoding to be assumed for \code{path}. See \code{\link[=readLines]{readLines()}}.}
 }
 \value{
-A \code{\link[=cff-class]{cff}} object. In the case of \code{\link[=cff_read_cff_citation]{cff_read_cff_citation()}} and
+A \code{\link{cff}} object. In the case of \code{\link[=cff_read_cff_citation]{cff_read_cff_citation()}} and
 \code{\link[=cff_read_description]{cff_read_description()}} a full and (potentially) valid \code{cff} object.
 
 In the case of \code{\link[=cff_read_bib]{cff_read_bib()}} and \code{\link[=cff_read_citation]{cff_read_citation()}}, the result is
@@ -55,7 +55,7 @@ that can be used to complement another \code{cff} object. See
 conversion is performed.
 }
 \description{
-Read files and convert them to \code{\link[=cff-class]{cff}} objects. Files supported
+Read files and convert them to \code{\link{cff}} objects. Files supported
 are:
 \itemize{
 \item \code{CITATION.cff} files.

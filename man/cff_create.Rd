@@ -2,7 +2,7 @@
 % Please edit documentation in R/cff_create.R
 \name{cff_create}
 \alias{cff_create}
-\title{Create a \code{\link[=cff-class]{cff}} object}
+\title{Create a \code{\link{cff}} object}
 \usage{
 cff_create(
   x,
@@ -15,16 +15,16 @@ cff_create(
 }
 \arguments{
 \item{x}{The source that would be used for generating
-the \code{\link[=cff-class]{cff}} object. It could be:
+the \code{\link{cff}} object. It could be:
 \itemize{
 \item A missing value. That would retrieve the \code{DESCRIPTION} file on your
 in-development \strong{R} package.
-\item An existing \code{\link[=cff-class]{cff}} object,
+\item An existing \code{\link{cff}} object,
 \item The name of an installed package (\code{"jsonlite"}), or
 \item Path to a \code{DESCRIPTION} file (\code{"./DESCRIPTION"}).
 }}
 
-\item{keys}{List of additional keys to add to the \code{\link[=cff-class]{cff}} object. See
+\item{keys}{List of additional keys to add to the \code{\link{cff}} object. See
 \strong{Details}.}
 
 \item{cff_version}{The Citation File Format schema version that the
@@ -40,10 +40,10 @@ of your package to the \code{references} CFF key?}
 generating the \code{CITATION.cff} file. See \strong{Details}.}
 }
 \value{
-A \code{\link[=cff-class]{cff}} object.
+A \code{\link{cff}} object.
 }
 \description{
-Create a \code{\link[=cff-class]{cff}} object from a given source for further
+Create a \code{\link{cff}} object from a given source for further
 manipulation. This object can be written to a \verb{*.cff } file with
 \code{\link[=cff_write]{cff_write()}}, see \strong{Examples}.
 
@@ -112,6 +112,7 @@ shows an introduction on how manipulate \code{cff} objects.
 
 Other core functions of \CRANpkg{cffr}:
 \code{\link{cff}()},
+\code{\link{cff_modify}()},
 \code{\link{cff_validate}()}
 }
 \concept{core}

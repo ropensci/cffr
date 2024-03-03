@@ -1,7 +1,7 @@
-#' Validate a `CITATION.cff` file or a [`cff`][cff-class] object
+#' Validate a `CITATION.cff` file or a [`cff`] object
 #'
 #' @description
-#' Validate a `CITATION.cff` file or a [`cff`][cff-class] object created with
+#' Validate a `CITATION.cff` file or a [`cff`] object created with
 #' [cff_create()] using the corresponding validation
 #' ```{r, echo=FALSE, results='asis'}
 #'

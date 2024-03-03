@@ -2,13 +2,13 @@
 % Please edit documentation in R/deprecated.R
 \name{cff_from_bibtex}
 \alias{cff_from_bibtex}
-\title{Previous API: Create a \code{\link[=cff-class]{cff}} object from BibTeX entries}
+\title{Previous API: Create a \code{\link{cff}} object from BibTeX entries}
 \usage{
 cff_from_bibtex(x, encoding = "UTF-8", ...)
 }
 \arguments{
 \item{x}{The source that would be used for generating the
-\code{\link[=cff-class]{cff}} object. Must be \code{character} object indicating either:
+\code{\link{cff}} object. Must be \code{character} object indicating either:
 \itemize{
 \item The path to a BibTeX file.
 \item A vector of characters with the full BibTeX string. See \strong{Examples}.

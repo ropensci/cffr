@@ -49,6 +49,7 @@ would warn when used, providing advice on the replacement function.
     -   `cff_read_description()`,
     -   `cff_read_citation()`
     -   `cff_read_bib()`.
+-   New `cff_modify()` function for updating and modifying `cff` objects easily.
 
 ## Other changes
 

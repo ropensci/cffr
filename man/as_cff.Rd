@@ -8,7 +8,7 @@
 \alias{as_cff.bibentry}
 \alias{as_cff.Bibtex}
 \alias{as.cff}
-\title{Coerce lists, \code{person} and \code{bibentry} objects to \code{\link[=cff-class]{cff}}}
+\title{Coerce lists, \code{person} and \code{bibentry} objects to \code{\link{cff}}}
 \usage{
 as_cff(x, ...)
 
@@ -34,7 +34,7 @@ be used to complement or modify complete \code{cff} objects.
 }
 \description{
 \code{as_cff()} turns an existing list-like \strong{R} object into a so-called
-\code{\link[=cff-class]{cff}}, a list with class \code{cff}.
+\code{\link{cff}}, a list with class \code{cff}.
 
 \code{as_cff} is an S3 generic, with methods for:
 \itemize{

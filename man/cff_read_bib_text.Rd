@@ -2,7 +2,7 @@
 % Please edit documentation in R/cff_read_bib_text.R
 \name{cff_read_bib_text}
 \alias{cff_read_bib_text}
-\title{Read BibTeX markup as a \code{\link[=cff-class]{cff}} object}
+\title{Read BibTeX markup as a \code{\link{cff}} object}
 \usage{
 cff_read_bib_text(x, encoding = "UTF-8", ...)
 }
@@ -23,7 +23,7 @@ A \code{\link[=cff-class]{cff}} object ready to be used with other functions (i.
 }
 \description{
 Convert a \code{\link[=character]{character}} representing a BibTeX entry to a
-\code{\link[=cff-class]{cff}} object.
+\code{\link{cff}} object.
 }
 \details{
 This is a helper function that writes \code{x} to a \verb{*.bib} file and reads it with

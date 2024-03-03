@@ -3,7 +3,7 @@
 \name{as_cff_person}
 \alias{as_cff_person}
 \alias{as.person.cff}
-\title{Create a person with the corresponding \code{\link[=cff-class]{cff}} structure}
+\title{Create a person with the corresponding \code{\link{cff}} structure}
 \usage{
 as_cff_person(person)
 

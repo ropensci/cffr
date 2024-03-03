@@ -3,7 +3,7 @@
 \name{cff_parse_person}
 \alias{cff_parse_person}
 \alias{cff_parse_person_bibtex}
-\title{Previous API: Parse a \code{person} to \code{\link[=cff-class]{cff}}}
+\title{Previous API: Parse a \code{person} to \code{\link{cff}}}
 \usage{
 cff_parse_person(person)
 

@@ -23,7 +23,7 @@ cff_write_citation(
 )
 }
 \arguments{
-\item{x}{A \code{\link[=bibentry]{bibentry}} or a \code{\link[=cff-class]{cff}} object.}
+\item{x}{A \code{\link[=bibentry]{bibentry}} or a \code{\link{cff}} object.}
 
 \item{file}{Name of the file to be created. If \code{NULL} it would display the
 lines to be written.}

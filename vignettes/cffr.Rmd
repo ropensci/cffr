@@ -1,5 +1,5 @@
 ---
-title: "Manipulating Citations with **cffr**"
+title: "Manipulating Citations with cffr"
 description: >
   Learn how to modify `cff` objects.
 output: 
@@ -8,7 +8,7 @@ output:
 bibliography: REFERENCES.bib
 link-citations: yes
 vignette: >
-  %\VignetteIndexEntry{Manipulating Citations with **cffr**}
+  %\VignetteIndexEntry{Manipulating Citations with cffr}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -35,7 +35,7 @@ information of the following files:
 
 [Citation File Format (CFF](https://citation-file-format.github.io/))
 [@druskat_citation_2021] (v1.2.0) are plain text files with human- and
-machine-readable citation information for software (and datasets). Code
+machine-readable citation information for software (and data sets). Code
 developers can include them in their repositories to let others know how to
 correctly cite their software.
 
@@ -73,6 +73,7 @@ cff_write()
 Under the hood, `cff_write()` performs the following tasks:
 
 -   It extracts the metadata using `cff_create()`.
+-   Optionally modifies it with `cff_modify()`.
 -   Writes a `CITATION.cff` file using `yaml::write_yaml()`.
 -   Validates the result using `cff_validate()`.
 
@@ -89,10 +90,7 @@ would add or modify contents of it.
 ### Adding new fields
 
 ```{r newfields}
-newobject <- cff_create(cff())
-
-# For modifying your auto-generated object, run this line instead:
-# newoobject <- cff_create()
+newobject <- cff()
 
 newobject
 ```
@@ -106,19 +104,17 @@ cff_schema_keys()
 ```
 
 In this case, we are going to add `url`, `version` and `repository`. We would
-also overwrite the `title` key. We just need to create a list and pass it to the
-`keys` argument of `cff_create()`:
+also overwrite the `title` key. We just need to add those parameters to
+`cff_modify()`:
 
 ```{r modify}
-newkeys <- list(
-  "url" = "https://ropensci.org/",
-  "version" = "0.0.1",
-  "repository" = "https://github.com/ropensci/cffr",
+modobject <- cff_modify(newobject,
+  url = "https://ropensci.org/",
+  version = "0.0.1",
+  repository = "https://github.com/ropensci/cffr",
   # If the field is already present, it would be overridden
   title = "Modifying a 'cff' object"
 )
-
-modobject <- cff_create(newobject, keys = newkeys)
 
 modobject
 
@@ -127,11 +123,11 @@ modobject
 cff_validate(modobject)
 ```
 
-### Parsing persons and citations
+### Persons and references
 
-**cffr** provides two functions that parse `person` objects and `bibentry`
-objects (See `?person` and `?bibentry`). These objects are included in the
-**utils** package and are a core part of the metadata of any **R** package.
+**cffr** provides two functions that convert `person` and `bibentry` objects
+(see `?person` and `?bibentry`) according to the [Citation File Format
+schema](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md).
 
 Following the previous example, we are going to add a new author first. For
 doing that, we need first to extract the current author of the package and
@@ -157,7 +153,7 @@ chiquito <- person("Gregorio",
 
 chiquito
 
-# Parse it
+# To cff
 chiquito_parsed <- as_cff_person(chiquito)
 chiquito_parsed
 
@@ -167,20 +163,16 @@ chiquito_parsed
 newauthors <- c(modobject$authors, chiquito_parsed)
 newauthors
 
-newauthorobject <- cff_create(modobject, keys = list(authors = newauthors))
+newauthorobject <- cff_modify(modobject, authors = newauthors)
 
 newauthorobject
 
 cff_validate(newauthorobject)
 ```
 
-Now, we may want to add `references` to our data. **cffr** supports two types of
-references:
-
--   References created with `bibentry()`
--   References extracted from packages using `citation()`
-
-On the following example, we would add two references, one of each type:
+Now, we may want to add `references` to our data. On the following example, we
+would add two references, one created with `bibentry()` and another with
+`citation()`:
 
 ```{r parsingcits}
 # Valid reference keys
@@ -188,11 +180,7 @@ On the following example, we would add two references, one of each type:
 cff_schema_definitions_refs()
 
 # Auto parsed from another R package
-base_r <- as_cff(citation("base"))
-
-base_r
-
-# Create with bibentry
+base_r <- citation("base")
 
 bib <- bibentry("Book",
   title = "This is a book",
@@ -201,24 +189,23 @@ bib <- bibentry("Book",
   publisher = "McGraw Hill",
   volume = 2
 )
-bib
 
-# Now parse it
+refs <- c(base_r, bib)
 
-bookparsed <- as_cff(bib)
+refs
 
-bookparsed
+# Now to cff
+
+refs_cff <- as_cff(refs)
+
+refs_cff
 ```
 
-Now the process is similar to the example with `person`: we append both
-references (as lists) and add them to our object:
+Now the process is similar to the example with `person`: we just modify our
+`cff` object:
 
 ```{r references}
-refkeys <- list(references = c(list(base_r), list(bookparsed)))
-
-refkeys
-
-finalobject <- cff_create(newauthorobject, keys = refkeys)
+finalobject <- cff_modify(newauthorobject, references = refs_cff)
 
 finalobject
 
@@ -235,13 +222,13 @@ tmp <- tempfile(fileext = ".cff")
 
 see_res <- cff_write(finalobject, outfile = tmp)
 
-see_res
+cat(readLines(tmp), sep = "\n")
 ```
 
-And finally we can read our created `CITATION.cff` file using `cff()`:
+And finally we can read our created `CITATION.cff` file using `cff_read()`:
 
 ```{r read}
-reading <- cff(tmp)
+reading <- cff_read(tmp)
 
 reading
 ```
@@ -257,7 +244,7 @@ allkeys <- list(
   # If the field is already present, it would be overridden
   title = "Modifying a 'cff' object",
   authors = newauthors,
-  references = c(list(base_r), list(bookparsed))
+  references = refs_cff
 )
 
 tmp2 <- tempfile(fileext = ".cff")
@@ -265,6 +252,12 @@ tmp2 <- tempfile(fileext = ".cff")
 res <- cff_write(cff(), outfile = tmp2, keys = allkeys)
 
 res
+```
+
+```{r include=FALSE}
+# Clean temps
+unlink(tmp)
+unlink(tmp2)
 ```
 
 ## References

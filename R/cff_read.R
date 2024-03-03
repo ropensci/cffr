@@ -1,7 +1,7 @@
-#' Read an external file as a [`cff`][cff-class] object
+#' Read an external file as a [`cff`] object
 #'
 #' @description
-#' Read files and convert them to [`cff`][cff-class] objects. Files supported
+#' Read files and convert them to [`cff`] objects. Files supported
 #' are:
 #' - `CITATION.cff` files.
 #' - `DESCRIPTION` files.
@@ -33,7 +33,7 @@
 #' @param gh_keywords Logical `TRUE/FALSE`. If the package is hosted on
 #'   GitHub, would you like to add the repo topics as keywords?
 #' @param authors_roles Roles to be considered as authors of the package when
-#'   generating the [`cff`][cff-class] object.
+#'   generating the [`cff`] object.
 #' @param encoding Encoding to be assumed for `path`. See [readLines()].
 #' @param meta A list of package metadata as obtained by
 #'   [utils::packageDescription()] or `NULL` (the default). See **Details**.
@@ -41,7 +41,7 @@
 #'   [yaml::read_yaml()], [bibtex::read.bib()], etc.).
 #'
 #' @return
-#' A [`cff`][cff-class] object. In the case of [cff_read_cff_citation()] and
+#' A [`cff`] object. In the case of [cff_read_cff_citation()] and
 #' [cff_read_description()] a full and (potentially) valid `cff` object.
 #'
 #'

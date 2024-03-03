@@ -1747,7 +1747,7 @@
       Warning:
       The `path` argument of `cff()` is deprecated as of cffr 1.0.0.
       i Argument ignored.
-      Error in `cff()`:
+      Error in `validate_extra_keys()`:
       ! Elements in `...` should be named.
 
 ---

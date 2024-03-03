@@ -5,7 +5,6 @@
 #'
 #' @rdname cff
 #' @name cff
-#' @aliases cff_modify
 #' @return
 #'
 #' A `cff` object. Under the hood, a `cff` object is a regular `list` object
@@ -92,25 +91,7 @@ cff <- function(path, ...) {
 
   # Check names
 
-  has_names <- names(cffobj)
-  if (is.null(has_names)) {
-    cli::cli_abort(
-      "Elements in {.arg ...} should be named."
-    )
-  }
-
-  if (any(has_names == "")) {
-    index <- as.character(which(has_names %in% ""))
-
-    cli::cli_alert_warning(
-      "Found {length(index)} not-named argument{?s} in position{?s} {index}."
-    )
-    cli::cli_alert_info("Removing unnamed arguments")
-    cffobj <- cffobj[has_names != ""]
-  }
-
-
-
+  cffobj <- validate_extra_keys(cffobj)
   cffobj <- fuzzy_keys(cffobj)
 
   if (any(duplicated(names(cffobj)))) {

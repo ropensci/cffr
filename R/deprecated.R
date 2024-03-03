@@ -45,7 +45,7 @@ cff_to_bibtex <- function(x,
   as_bibentry(x, what)
 }
 
-#' Previous API: Create a [`cff`][cff-class] object from BibTeX entries
+#' Previous API: Create a [`cff`] object from BibTeX entries
 #'
 #' @description
 #'
@@ -58,7 +58,7 @@ cff_to_bibtex <- function(x,
 #' @family deprecated
 #'
 #' @param x The source that would be used for generating the
-#'   [`cff`][cff-class] object. Must be `character` object indicating either:
+#'   [`cff`] object. Must be `character` object indicating either:
 #'   - The path to a BibTeX file.
 #'   - A vector of characters with the full BibTeX string. See **Examples**.
 #' @param encoding Encoding to be assumed for `x`. See [readLines()].
@@ -186,7 +186,7 @@ write_citation <- function(x,
 }
 
 
-#' Previous API: Parse a `person` to [`cff`][cff-class]
+#' Previous API: Parse a `person` to [`cff`]
 #'
 #' @description
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/cff_validate.R
 \name{cff_validate}
 \alias{cff_validate}
-\title{Validate a \code{CITATION.cff} file or a \code{\link[=cff-class]{cff}} object}
+\title{Validate a \code{CITATION.cff} file or a \code{\link{cff}} object}
 \usage{
 cff_validate(x = "CITATION.cff", verbose = TRUE)
 }
@@ -19,7 +19,7 @@ value \code{TRUE/FALSE}. On error, the results would have an attribute
 \code{"errors"} containing the error summary (see \strong{Examples} and \code{\link[=attr]{attr()}}).
 }
 \description{
-Validate a \code{CITATION.cff} file or a \code{\link[=cff-class]{cff}} object created with
+Validate a \code{CITATION.cff} file or a \code{\link{cff}} object created with
 \code{\link[=cff_create]{cff_create()}} using the corresponding validation
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema.json}{schema.json}.
 }
@@ -52,6 +52,7 @@ try(cff_validate(system.file("CITATION", package = "cffr")))
 
 Other core functions of \CRANpkg{cffr}:
 \code{\link{cff}()},
-\code{\link{cff_create}()}
+\code{\link{cff_create}()},
+\code{\link{cff_modify}()}
 }
 \concept{core}

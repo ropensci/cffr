@@ -7,7 +7,7 @@
 #' - [cff_write_citation()] creates a **R** citation file as explained in
 #'   Section 1.9 CITATION files of *Writing R Extensions* (R Core Team 2023).
 #'
-#' @param x A [`bibentry`][bibentry()] or a [`cff`][cff-class] object.
+#' @param x A [`bibentry`][bibentry()] or a [`cff`] object.
 #' @param file Name of the file to be created. If `NULL` it would display the
 #'   lines to be written.
 #' @param append Whether to append the entries to an existing file or not.

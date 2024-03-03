@@ -1,8 +1,8 @@
-#' Coerce lists, `person` and `bibentry` objects to [`cff`][cff-class]
+#' Coerce lists, `person` and `bibentry` objects to [`cff`]
 #'
 #' @description
 #' `as_cff()` turns an existing list-like **R** object into a so-called
-#' [`cff`][cff-class], a list with class `cff`.
+#' [`cff`], a list with class `cff`.
 #'
 #' `as_cff` is an S3 generic, with methods for:
 #' - `person` objects as produced by [utils::person()].

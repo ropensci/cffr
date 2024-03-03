@@ -2,7 +2,6 @@
 % Please edit documentation in R/cff.R
 \name{cff}
 \alias{cff}
-\alias{cff_modify}
 \title{Read and manipulate \code{cff} objects}
 \usage{
 cff(path, ...)
@@ -83,6 +82,7 @@ cff_validate(new)
 \seealso{
 Other core functions of \CRANpkg{cffr}:
 \code{\link{cff_create}()},
+\code{\link{cff_modify}()},
 \code{\link{cff_validate}()}
 }
 \concept{core}

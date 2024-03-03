@@ -1,8 +1,8 @@
-#' Read BibTeX markup as a [`cff`][cff-class] object
+#' Read BibTeX markup as a [`cff`] object
 #'
 #' @description
 #' Convert a [`character`][character()] representing a BibTeX entry to a
-#' [`cff`][cff-class] object.
+#' [`cff`] object.
 #'
 #' @family bibtex
 #' @family reading

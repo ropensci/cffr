@@ -55,7 +55,7 @@ The inverse transformation (\code{bibentry} object to \code{cff} reference) can
 be done with the corresponding \code{\link[=as_cff]{as_cff()}} method.
 
 Additionally, it is also provided a method for \code{\link[=toBibtex]{toBibtex()}}, that can
-convert \code{\link[=cff-class]{cff}} objects to \code{Bibtex} objects as provided by
+convert \code{\link{cff}} objects to \code{Bibtex} objects as provided by
 \code{\link[utils:toLatex]{utils::toBibtex()}}. These objects are character vectors with BibTeX markup.
 }
 \examples{

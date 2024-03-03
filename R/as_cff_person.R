@@ -1,4 +1,4 @@
-#' Create a person with the corresponding [`cff`][cff-class] structure
+#' Create a person with the corresponding [`cff`] structure
 #'
 #' @description
 #'

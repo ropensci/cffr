@@ -1,29 +1,29 @@
-#' Create a [`cff`][cff-class] object
+#' Create a [`cff`] object
 #'
 #' @description
 #'
-#' Create a [`cff`][cff-class] object from a given source for further
+#' Create a [`cff`] object from a given source for further
 #' manipulation. This object can be written to a `*.cff ` file with
 #' [cff_write()], see **Examples**.
 #'
 #' Most of the heavy lifting of \CRANpkg{cffr} is done via this function.
 #'
-#' @return A [`cff`][cff-class] object.
+#' @return A [`cff`] object.
 #'
 #' @family core
 #'
 #' @export
 #'
 #' @param x The source that would be used for generating
-#'   the [`cff`][cff-class] object. It could be:
+#'   the [`cff`] object. It could be:
 #'   * A missing value. That would retrieve the `DESCRIPTION` file on your
 #'     in-development **R** package.
-#'   * An existing [`cff`][cff-class] object,
+#'   * An existing [`cff`] object,
 #'   * The name of an installed package (`"jsonlite"`), or
 #'   * Path to a `DESCRIPTION` file (`"./DESCRIPTION"`).
 #'
 #' @param keys
-#'   List of additional keys to add to the [`cff`][cff-class] object. See
+#'   List of additional keys to add to the [`cff`] object. See
 #'   **Details**.
 #' @param cff_version The Citation File Format schema version that the
 #'   `CITATION.cff` file adheres to for providing the citation metadata.
@@ -141,14 +141,8 @@ cff_create <- function(x, keys = list(), cff_version = "1.2.0",
     cffobjend$references <- unique(c(cffobjend$references, deps))
   }
 
-  # Additional keys
-  if (!is.null(keys)) {
-    keys <- fuzzy_keys(keys)
-    cffobjendmod <- cffobjend[setdiff(names(cffobjend), names(keys))]
-    cffobjend <- modifyList(cffobjendmod, keys, keep.null = FALSE)
-    cffobjend <- as_cff(cffobjend)
-  }
-
+  # Additional keys, using internals of cff_modify
+  cffobjend <- modify_cff(cffobjend, keys, "keys")
 
   # Order
   cffobjend <- cffobjend[cff_schema_keys()]
