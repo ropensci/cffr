@@ -145,33 +145,63 @@ as.cff <- function(x) {
 
 # Helper----
 
-#' Recursively clean lists and assign cff classes
-#' to all nested lists
+#' Recursively clean lists
 #'
 #'
 #' @noRd
-rapply_cff <- function(x) {
-  if (inherits(x, "cff")) {
-    return(x)
-  }
-
+rapply_drop_null <- function(x) {
   if (is.list(x) && length(x) > 0) {
     x <- drop_null(x)
-    x <- lapply(x, rapply_cff)
-    return(structure(x, class = c("cff", "list")))
+    x <- lapply(x, rapply_drop_null)
+    return(x)
   } else {
     return(x)
   }
 }
 
+
+rapply_class <- function(x) {
+  if (is_named(x)) x <- x[!duplicated(names(x))]
+
+  xend <- lapply(x, function(el) {
+    xelement <- el
+    guess <- guess_cff_part(xelement)
+
+    if (guess %in% c("unclear", "cff_full")) {
+      return(xelement)
+    }
+
+    if (guess == "cff_pers_list") {
+      xelement <- lapply(xelement, function(j) {
+        j_in <- j
+        class(j_in) <- c("cff_pers", "cff", "list")
+        j_in
+      })
+      class(xelement) <- c("cff_pers_list", "cff", "list")
+    }
+
+    if (guess == "cff_ref_list") {
+      xelement <- lapply(xelement, function(j) {
+        j_in <- rapply_class(j)
+        class(j_in) <- c("cff_ref", "cff", "list")
+        j_in
+      })
+      class(xelement) <- c("cff_ref_list", "cff", "list")
+    }
+
+    if (guess %in% c("cff_ref", "cff_pers")) {
+      xin <- rapply_class(xelement)
+      class(xin) <- c(guess, "cff", "list")
+      xelement <- xin
+    }
+    return(xelement)
+  })
+  xend
+}
+
 # https://adv-r.hadley.nz/s3.html#s3-constructor
 # Constructor
 new_cff <- function(x) {
-  if (is_cff(x)) {
-    class(x) <- c("cff", "list")
-    return(x)
-  }
-
   # Clean all strings recursively
 
   x <- rapply(x, function(x) {
@@ -187,13 +217,36 @@ new_cff <- function(x) {
   x <- drop_null(x)
 
   # Remove duplicated names if named
-  if (!is.null(names(x))) x <- x[!duplicated(names(x))]
+  if (is_named(x)) x <- x[!duplicated(names(x))]
 
-  # Now apply cff class to nested lists
-  x <- lapply(x, rapply_cff)
+  # Now apply drop null to nested lists
+  x <- lapply(x, rapply_drop_null)
 
-  class(x) <- c("cff", "list")
-  x
+  # Reclass nested
+  guess_x <- guess_cff_part(x)
+  if (guess_x == "cff_ref_list") {
+    x2 <- lapply(x, function(j) {
+      j2 <- rapply_class(j)
+      class(j2) <- c("cff_ref", "cff", "list")
+      j2
+    })
+    class(x2) <- c(guess_x, "cff", "list")
+    return(x2)
+  }
+
+  xend <- rapply_class(x)
+
+  final_class <- switch(guess_x,
+    "cff_full" = c("cff", "list"),
+    "unclear" = c("cff", "list"),
+    c(guess_x, "cff", "list")
+  )
+
+  if (!is.null(final_class)) {
+    class(xend) <- final_class
+  }
+
+  xend
 }
 
 # Just for pretty printing on extract

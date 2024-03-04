@@ -146,6 +146,7 @@ as_bibentry <- function(x,
   }
 
   # Cleanup
+  obj_extract <- as.list(obj_extract)
   obj_extract <- obj_extract[lengths(obj_extract) > 0]
   if (length(obj_extract) == 0) {
     return(NULL)
@@ -162,6 +163,9 @@ make_bibentry <- function(x) {
   if (is.null(x)) {
     return(NULL)
   }
+
+  # Relist to cff for dispatching methods
+  x <- as_cff(x)
 
   # Partially based on ruby parser
   # https://github.com/citation-file-format/ruby-cff/blob/main/lib/cff/ >>

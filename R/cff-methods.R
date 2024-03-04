@@ -34,6 +34,16 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
   if (inherits(x, "cff_ref_list")) {
     x_n <- list("references" = x)
     the_df <- cff_to_df(x_n)
+  } else if (inherits(x, "cff_pers_list")) {
+    n_l <- seq_len(length(x))
+    end_df <- lapply(n_l, function(i) {
+      df <- as.data.frame(x[[i]])
+      nm <- names(df)
+      names(df) <- paste0("person", ".", sprintf("%02d", i - 1), ".", nm)
+      return(df)
+    })
+
+    the_df <- do.call(cbind, end_df)
   } else if (is.null(names(x))) {
     the_df <- cff_list_to_df(x)
   } else {
@@ -101,6 +111,27 @@ head.cff <- function(x, n = 6L, ...) {
 tail.cff <- function(x, n = 6L, ...) {
   as_cff(NextMethod())
 }
+
+
+#' List
+#'
+#' @noRd
+#' @export
+as.list.cff <- function(x, ...) {
+  xl <- rapply(x, function(x) {
+    if (is.list(x) || length(x) > 1) {
+      return(unclass(x))
+    }
+    return(unclass(x))
+  },
+  how = "list"
+  )
+
+  as.list(xl)
+}
+
+
+
 
 
 #' @rdname as_bibentry

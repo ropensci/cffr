@@ -251,3 +251,34 @@ test_that("toBibtex", {
   froml <- toBibtex(cff_read_bib_text(string))
   expect_equal(sum(names(froml) == "title"), 1)
 })
+
+
+test_that("as.list", {
+  f <- system.file("examples/CITATION_complete.cff", package = "cffr")
+
+  full_cff <- cff_read_cff_citation(f)
+
+  # Capture dput and search
+  dput_cff <- capture.output(dput(full_cff))
+
+  ntot_class <- sum(grepl("\"cff\"", dput_cff))
+
+  expect_gt(ntot_class, 30)
+
+  # Unlist
+  unl <- as.list(full_cff)
+
+  # Capture dput and search
+  dput_unl <- capture.output(dput(unl))
+
+  ntot_class_unl <- sum(grepl("\"cff\"", unl))
+
+  expect_identical(ntot_class_unl, 0L)
+
+  # Reclass
+  regen_cff <- as_cff(unl)
+
+  expect_identical(full_cff, regen_cff)
+
+  expect_true(cff_validate(regen_cff, verbose = FALSE))
+})

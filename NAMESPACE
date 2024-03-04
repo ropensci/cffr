@@ -3,6 +3,7 @@
 S3method("[",cff_pers_list)
 S3method("[",cff_ref_list)
 S3method(as.data.frame,cff)
+S3method(as.list,cff)
 S3method(as.person,cff)
 S3method(as_cff,Bibtex)
 S3method(as_cff,bibentry)
