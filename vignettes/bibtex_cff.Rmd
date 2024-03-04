@@ -493,6 +493,8 @@ We provide more detail on some of the mappings presented in the table above:
     {3--5}** would be parsed as [start: 3]{.underline}, [end: 5]{.underline} in
     [CFF]{.underline}.
 
+#### BibLaTeX
+
 Additionally, there are other [CFF]{.underline} keys that correspond to
 **BibLaTeX** fields. We propose to include these fields in the crosswalk[^6],
 even though they are not part of the core **BibTeX** fields definition.

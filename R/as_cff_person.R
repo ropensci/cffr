@@ -470,3 +470,11 @@ extract_person_comments <- function(person) {
 
   fin_list
 }
+
+protect_bib_braces <- function(x) {
+  paste0("{", x, "}")
+}
+
+cff_person_to_string <- function(x) {
+
+}

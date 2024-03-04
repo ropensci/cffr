@@ -1,8 +1,8 @@
 # A minimal CFF file with only the required fields included.
 
-authors:
-  - family-names: Doe
-    given-names: John
 cff-version: 1.2.0
 message: "If you use this software, please cite it using these metadata."
 title: "My Research Software"
+authors:
+  - family-names: Doe
+    given-names: John

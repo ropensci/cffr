@@ -221,7 +221,9 @@ test_that("Proceedings to bibtex", {
 
 test_that("TechReport to bibtex", {
   bib <- bibentry("TechReport",
-    author = "John M. Aronis",
+    author = person("John M.", "Aronis",
+      comment = c(affiliation = "rOpenSci")
+    ),
     title = "Implementing Inheritance on the Connection Machine",
     institution = "Intelligent Systems Program, University of Pittsburgh",
     number = "ISP 93-1",
@@ -231,6 +233,12 @@ test_that("TechReport to bibtex", {
 
   expect_snapshot(toBibtex(bib))
   bibparsed <- as_cff(bib)
+  bib <- as_bibentry(bibparsed)
+  expect_snapshot(toBibtex(bib))
+
+  # Fallback when missing institution
+  bibparsed[[1]]$institution <- NULL
+
   bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
@@ -257,6 +265,40 @@ test_that("Unpublished to bibtex", {
   bib <- as_bibentry(bibparsed)
   expect_snapshot(toBibtex(bib))
 })
+
+test_that("Test BibLateX entry", {
+  bib <- bibentry("Article",
+    author = "M. A. Kastenholz, and Philippe H. Hünenbergerb",
+    title = "Computation of methodology hyphen independent ionic solvation
+                  free energies from molecular simulations",
+    journal = "J. Chem. Phys.",
+    year = 2006,
+    note = "Example modified for testing purposes",
+    pages = "55--65",
+
+    # Additional BibLatex Fields
+    date = "2006-03-15",
+    file = "a_file.pdf",
+    issuetitle = "Semantic {3D} Media and Content",
+    translator = "Wicksteed, P. H. and {The translator factory}",
+    urldate = "2006-10-01",
+    pagetotal = 528,
+    abstract = "The computation of ionic solvation free energies from
+                  atomistic simulations is a surprisingly difficult problem that
+                  has found no satisfactory solution for more than 15 years.",
+    doi = "10.1063/1.2172593",
+    isbn = "0-816-52066-6",
+    issn = "0097-8493",
+    url = "http://www.ctan.org"
+  )
+  expect_snapshot(toBibtex(bib))
+  x <- as_cff(bib)
+
+
+  parsed <- as_bibentry(x)
+  expect_snapshot(toBibtex(parsed))
+})
+
 
 # Other testers ----
 
@@ -379,40 +421,6 @@ test_that("Fallback month", {
 })
 
 
-test_that("Test BibLateX entry", {
-  bib <- bibentry("Article",
-    author = "M. A. Kastenholz, and Philippe H. Hünenbergerb",
-    title = "Computation of methodology hyphen independent ionic solvation
-                  free energies from molecular simulations",
-    journal = "J. Chem. Phys.",
-    year = 2006,
-    note = "Example modified for testing purposes",
-    pages = "55--65",
-
-    # Additional BibLatex Fields
-    date = "2006-03-15",
-    file = "a_file.pdf",
-    issuetitle = "Semantic {3D} Media and Content",
-    translator = "Wicksteed, P. H. and {The translator factory}",
-    urldate = "2006-10-01",
-    pagetotal = 528,
-    abstract = "The computation of ionic solvation free energies from
-                  atomistic simulations is a surprisingly difficult problem that
-                  has found no satisfactory solution for more than 15 years.",
-    doi = "10.1063/1.2172593",
-    isbn = "0-816-52066-6",
-    issn = "0097-8493",
-    url = "http://www.ctan.org"
-  )
-  expect_snapshot(toBibtex(bib))
-  x <- as_cff(bib)
-
-
-  parsed <- as_bibentry(x)
-  expect_snapshot(toBibtex(parsed))
-})
-
-
 test_that("Test Fallback year", {
   x <- cff()
 
@@ -501,5 +509,36 @@ test_that("Corrupt entry", {
 test_that("Parser return nulls", {
   expect_null(make_bibentry(NULL))
 })
+
+test_that("Fallback month", {
+  bib <- bibentry("Article",
+    key = "knuth:1984",
+    author = person("R Core Team"),
+    title = "Literate Programming",
+    journal = "The Computer Journal",
+    year = "1984",
+    # Optional
+    volume = "27",
+    number = 2,
+    pages = "97--111",
+    month = "January",
+    keywords = "Some, simple, keywords"
+  )
+
+  expect_identical(clean_str(bib[[1]]$month), "January")
+  x <- as_cff(bib)
+
+  expect_identical(x[[1]]$month, "1")
+
+  x[[1]]$month <- NULL
+  x[[1]]$`date-published` <- "2010-12-31"
+  bib2 <- as_bibentry(x)
+
+
+  expect_identical(clean_str(bib2[[1]]$month), "dec")
+  x2 <- as_cff(bib2)
+  expect_identical(x2[[1]]$month, "12")
+})
+
 
 # Classes ----

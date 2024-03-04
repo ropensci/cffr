@@ -7,15 +7,15 @@
 #' @description
 #'
 #' This function creates `bibentry` objects (see [utils::bibentry()]) from
-#' different metadata sources (`cff` objects, `DESCRIPTION` files, etc.). Note
-#' that a **R** `bibentry` object is the representation of a BibTeX entry,
+#' different metadata sources ([`cff`] objects, `DESCRIPTION` files, etc.).
+#' Note that a **R** `bibentry` object is the representation of a BibTeX entry,
 #' see **Examples**
 #'
-#' The function tries to map the information of the source `x` into a `cff`
+#' The function tries to map the information of the source `x` into a [`cff`]
 #' object and performs a mapping of the metadata to BibTeX, according to
 #' `vignette("bibtex_cff", "cffr")`.
 #'
-#' The inverse transformation (`bibentry` object to `cff` reference) can
+#' The inverse transformation (`bibentry` object to [`cff`] reference) can
 #' be done with the corresponding [as_cff()] method.
 #'
 #' @seealso
@@ -34,13 +34,14 @@
 #'   <https://docs.ropensci.org/cffr/articles/bibtex_cff.html>.
 #'
 #' @param x The source that would be used for generating
-#'   the [bibentry()] object via `cff`. It could be:
+#'   the [bibentry()] object via \CRANpkg{cffr}. It could be:
 #'   * A missing value. That would retrieve the DESCRIPTION
 #'     file on your in-development package.
-#'   * An existing [`cff`] object,
-#'   * Path to a CITATION.cff file (`"*/CITATION.cff*"`),
+#'   * An existing `cff` object created with [cff()], [cff_create()] or
+#'     [as_cff()].
+#'   * Path to a CITATION.cff file (`"CITATION.cff"`),
 #'   * The name of an installed package (`"jsonlite"`), or
-#'   * Path to a DESCRIPTION file (`"*/DESCRIPTION*"`).
+#'   * Path to a DESCRIPTION file (`"DESCRIPTION"`).
 #' @param what Fields to extract. The value could be:
 #'   - `preferred`: This would create a single entry with the main citation
 #'      info of the package.
@@ -52,7 +53,7 @@
 #' @family coercing
 #'
 #' @return
-#' `as_bibentry()` returns s `bibentry` object (or a list of `bibentry`
+#' `as_bibentry()` returns a `bibentry` object (or a list of `bibentry`
 #' objects).
 #'
 #' @export
@@ -170,218 +171,108 @@ make_bibentry <- function(x) {
 
   tobibentry <- list()
 
-  # No mapping needed (direct mapping) ----
-  # edition institution journal month number pages publisher title volume year
+  # Direct mapping ----
 
-  # Guess type of entry----
-
-  tobibentry$bibtype <- guess_bibtype(x)
-  # address----
-  tobibentry$address <- guess_address(x)
-
-  # author----
+  ## From BibTeX ----
+  ### author----
   tobibentry$author <- as.person(x$authors)
-
-
-  # booktitle ----
-
-  # Only for incollections and inproceedings
-  if (tobibentry$bibtype %in% c("incollection", "inproceedings")) {
-    tobibentry$booktitle <- x[["collection-title"]]
-  }
-
-  # Fallback to conference name
-
-  if (all(
-    tobibentry$bibtype == "inproceedings",
-    is.null(tobibentry$booktitle)
-  )) {
-    tobibentry$booktitle <- x$conference$name
-  }
-
-  # chapter----
+  ### chapter----
   tobibentry$chapter <- x$section
 
-  # edition----
+  ### edition----
   tobibentry$edition <- x$edition
 
-  # editor----
-  # Same case than authors
+  ### editor----
   tobibentry$editor <- as.person(x$editors)
 
-  # howpublished----
-  tobibentry$howpublished <- make_howpublised(x)
+  ### howpublished----
+  tobibentry$howpublished <- get_bib_howpublised(x)
 
-  # institution/organization ----
-
-  # For inproceedings, proceedings and manual this field
-  # is organization
-
-  if (tobibentry$bibtype %in% c(
-    "inproceedings", "proceedings",
-    "manual"
-  )) {
-    # Just name
-    tobibentry$organization <- x$institution$name
-  } else {
-    tobibentry$institution <- x$institution$name
-  }
-
-
-  # Fallback for techreport, search on affiliation first author
-  if (tobibentry$bibtype == "techreport" && is.null(tobibentry$institution)) {
-    tobibentry$institution <- x$authors[[1]]$affiliation
-  }
-
-  # journal----
+  ### journal----
   tobibentry$journal <- x$journal
 
-  # month----
-  m <- x$month
+  ### note ----
+  tobibentry$note <- get_bib_note(x)
 
-  # Fallback
+  ### number----
+  tobibentry$number <- clean_str(x[["issue"]])
 
-  if (is.null(m) && !is.null(x$`date-published`)) {
-    # Should be YYYY-MM-DD to be valid on cff, so
-    m <- as.integer(format(as.Date(x$`date-published`), "%m"))
-  }
+  ### pages ----
+  tobibentry$pages <- clean_str(
+    paste(unique(c(x$start, x$end)), collapse = "--")
+  )
 
-  # Try to parse to 3 month string
-  m_int <- suppressWarnings(as.integer(m))
-  m_letters <- clean_str(tolower(month.abb[m_int]))
+  ### publisher ----
+  tobibentry$publisher <- clean_str(x$publisher$name)
 
-  if (!is.null(m_letters)) {
-    tobibentry$month <- m_letters
-  } else {
-    tobibentry$month <- clean_str(m)
-  }
-
-
-
-  # note ----
-  tobibentry$note <- x$notes
-
-  # unpublished needs a note
-  if (all(is.null(x$notes), tobibentry$bibtype == "unpublished")) {
-    tobibentry$note <- "Extracted with cffr R package"
-  }
-
-  # number----
-
-
-  tobibentry$number <- x[["issue"]]
-
-  # pages ----
-
-  p <- unique(c(x$start, x$end))
-
-  if (!is.null(p)) tobibentry$pages <- paste(p, collapse = "--")
-
-  # publisher ----
-  tobibentry$publisher <- x$publisher$name
-
-  # school ----
-  # In thesis
-  if (x$type == "thesis") {
-    tobibentry$school <- tobibentry$institution
-    tobibentry$institution <- NULL
-  }
-
-
-  # series----
-  if (is.null(tobibentry$booktitle)) {
-    tobibentry$series <- x$`collection-title`
-  }
-
-  # title ----
-
+  ### title ----
   tobibentry$title <- x$title
 
-  # volume----
+  ### volume----
   tobibentry$volume <- x$volume
 
-  # year ----
-
-  tobibentry$year <- x$year
-
-  # Fallback
-
-  if (is.null(tobibentry$year) && !is.null(x$`date-released`)) {
-    # Should be YYYY-MM-DD to be valid on cff, so
-
-    tobibentry$year <- substr(x$`date-released`, 1, 4)
-  }
-
-
-  # Keywords
-  if (!is.null(x$keywords)) {
-    tobibentry$keywords <- paste(x$keywords, collapse = ", ")
-  }
-
-  # Guess inbook ----
-  # inbook is a book where chapter or pages are present
-
-  if (tobibentry$bibtype == "book" && !is.null(
-    c(tobibentry$chapter, tobibentry$pages)
-  )) {
-    tobibentry$bibtype <- "inbook"
-  }
-
-  # key: First two given of author and year----
-  tobibentry$key <- make_bibkey(tobibentry)
-
-
-  # Handle anonymous author----
-  # If anonymous and not needed, then not use it
-
-
-  if (!is.null(x$authors[[1]]$name)) {
-    if (x$authors[[1]]$name == "anonymous" &&
-      tobibentry$bibtype %in% c(
-        "booklet", "manual", "book", "inbook",
-        "misc", "proceedings"
-      )) {
-      tobibentry$author <- NULL
-    }
-  }
-
-  # Add other interesting fields for BibLateX ----
+  ## From BibLaTeX ----
 
   tobibentry$abstract <- x$abstract
-  tobibentry$doi <- x$doi
   tobibentry$date <- x$`date-published`
+  tobibentry$doi <- x$doi
   tobibentry$file <- x$filename
-  tobibentry$issuetitle <- x$`issue-title`
   tobibentry$isbn <- x$isbn
   tobibentry$issn <- x$issn
+  tobibentry$issuetitle <- x$`issue-title`
+  tobibentry$keywords <- clean_str(paste0(unique(x$keywords), collapse = ","))
   tobibentry$pagetotal <- x$pages
+  tobibentry$translator <- toBibtex(as.person(x$translators))
   tobibentry$url <- x$url
   tobibentry$urldate <- x$`date-accessed`
   tobibentry$version <- x$version
-  # Translators
 
-  trns <- x$translators
 
-  trnsbib <- lapply(trns, function(y) {
-    if ("name" %in% names(y)) {
-      # Person protected on family
-      paste0("{", clean_str(y$name), "}")
-    } else {
-      fam <- clean_str(paste(
-        clean_str(y$`name-particle`),
-        clean_str(y$`family-names`)
-      ))
-      jr <- clean_str(y$`name-suffix`)
+  # BibTeX entry----
 
-      given <- clean_str(y$`given-names`)
+  tobibentry$bibtype <- guess_bibtype(x)
 
-      paste(c(fam, jr, given), collapse = ", ")
-    }
-  })
+  # address----
+  tobibentry$address <- get_bib_address(x)
 
-  tobibentry$translator <- paste(unlist(trnsbib), collapse = " and ")
 
-  # sort ----
+  # booktitle /series ----
+  # Map cff collection-title
+  tobibentry <- c(tobibentry, get_bib_booktitle(x, tobibentry$bibtype))
+
+  # institution/organization/school ----
+  # Map cff institution
+  tobibentry <- c(tobibentry, get_bib_inst_org(x, tobibentry$bibtype))
+
+  # month----
+  tobibentry$month <- get_bib_month(x)
+
+  # year ----
+  tobibentry$year <- get_bib_year(x)
+
+
+  # Handle anonymous author----
+  # If anonymous coming from cff and not needed, then not use it
+
+  is_anon <- identical(clean_str(x$authors[[1]]$name), "anonymous")
+
+  # If unknown remove from bib types that doesn't require it strictly
+
+
+  if (all(
+    is_anon,
+    tobibentry$bibtype %in% c(
+      "booklet", "manual", "book", "inbook",
+      "misc", "proceedings"
+    )
+  )) {
+    tobibentry$author <- NULL
+  }
+  # BibTeX key----
+  tobibentry$key <- make_bibkey(tobibentry)
+
+  # Final steps ----
+  ##  Sort ----
   # based on default by
   # https://flamingtempura.github.io/bibtex-tidy/
   tosort <- c(
@@ -394,6 +285,7 @@ make_bibentry <- function(x) {
   sorted <- unique[unique %in% names(tobibentry)]
   tobibentry <- tobibentry[sorted]
 
+  ## Convert and catch errors ----
   bib <- try(do.call(bibentry, tobibentry), silent = TRUE)
 
   # If key missing
@@ -411,6 +303,29 @@ make_bibentry <- function(x) {
   return(bib)
 }
 
+# Helpers to extract info ----
+get_bib_howpublised <- function(x) {
+  howpublished <- x$medium
+
+  if (!is.null(howpublished)) {
+    f <- toupper(substr(howpublished, 0, 1))
+    rest <- substr(howpublished, 2, nchar(howpublished))
+    howpublished <- paste0(c(f, rest), collapse = "")
+  }
+
+  clean_str(howpublished)
+}
+
+get_bib_note <- function(x) {
+  note <- x$notes
+
+  # unpublished needs a note
+  if (all(is.null(note), tolower(x$type) == "unpublished")) {
+    note <- "Extracted with cffr R package"
+  }
+
+  clean_str(note)
+}
 
 guess_bibtype <- function(x) {
   init_guess <- switch(tolower(x$type),
@@ -430,33 +345,39 @@ guess_bibtype <- function(x) {
     "misc"
   )
 
+  # Try guess Inbook ----
+  # inbook is a book where chapter or pages are present
+  has_chapter <- !is.null(clean_str(x$section))
+  has_pages <- !is.null(
+    clean_str(paste(unique(c(x$start, x$end)), collapse = "--"))
+  )
 
-  # Try guess thesis
-  ttype <- clean_str(gsub("[[:punct:]]", "",
-    x$`thesis-type`,
-    perl = TRUE
-  ))
+  if (all(init_guess == "book", any(has_chapter, has_pages))) {
+    init_guess <- "inbook"
+    return(init_guess)
+  }
 
-  if (!is.null(ttype) && x$type == "thesis") {
-    if (grepl("Phd", ttype, ignore.case = TRUE)) {
-      init_guess <- "phdthesis"
+  # Try guess Phdthesis  ----
+  if (init_guess == "mastersthesis") {
+    ttype <- clean_str(gsub("[[:punct:]]", "", x$`thesis-type`, perl = TRUE))
+    # phd
+    if (all(!is.null(ttype), grepl("phd", ttype, ignore.case = TRUE))) {
+      return("phdthesis")
     }
   }
 
-  # Check if it may be an incollection
+  # Try guess InCollection  ----
   # Hint: is misc with collection-title and publisher
-
-  if (all(
-    init_guess == "misc", !is.null(x$`collection-title`),
-    !is.null(x$publisher), !is.null(x$year)
-  )) {
-    init_guess <- "incollection"
+  if (init_guess == "misc") {
+    if (!is.null(clean_str(x$`collection-title`))) {
+      return("incollection")
+    }
   }
 
   init_guess
 }
 
-guess_address <- function(x) {
+get_bib_address <- function(x) {
   # BibTeX 'address' is taken from the publisher (book, others) or the
   # conference (inproceedings).
   # Set logic: conference > institution > publisher
@@ -468,16 +389,12 @@ guess_address <- function(x) {
     addr_search <- x$publisher
   }
 
-
-  address <- clean_str(paste(
-    c(
-      addr_search$address,
-      addr_search$city,
-      addr_search$region,
+  address <- clean_str(
+    paste(c(
+      addr_search$address, addr_search$city, addr_search$region,
       addr_search$country
-    ),
-    collapse = ", "
-  ))
+    ), collapse = ", ")
+  )
 
   # As a fallback, use also location
   if (is.null(address) && !is.null(x$location)) {
@@ -487,53 +404,148 @@ guess_address <- function(x) {
   address
 }
 
+get_bib_booktitle <- function(x, bibtype) {
+  # This map collection title.
+  # If inproceedings, incollection to booktitle
+  # rest of cases to series
+
+  book_series <- list()
+  tag_value <- clean_str(x[["collection-title"]])
+
+
+  if (!bibtype %in% c("incollection", "inproceedings")) {
+    book_series$series <- tag_value
+  } else {
+    # Only for incollections and inproceedings map booktitle
+    book_series$booktitle <- tag_value
+
+    # Fallback to conference name for inproceedings
+    if (all(bibtype == "inproceedings", is.null(tag_value))) {
+      book_series$booktitle <- clean_str(x$conference$name)
+    }
+  }
+  book_series
+}
+
+get_bib_inst_org <- function(x, bibtype) {
+  # For inproceedings, proceedings and manual this field
+  # is organization
+  # For thesis it should be school
+
+  inst_org <- list()
+  # Just name
+  inst_name <- clean_str(x$institution$name)
+
+  if (bibtype %in% c("inproceedings", "proceedings", "manual")) {
+    inst_org$organization <- inst_name
+  } else if (grepl("thesis", bibtype, ignore.case = TRUE)) {
+    inst_org$school <- inst_name
+  } else {
+    inst_org$institution <- inst_name
+  }
+
+  # Fallback for techreport, search on affiliation first author
+
+  if (bibtype == "techreport" && is.null(inst_org$institution)) {
+    inst_org$institution <- clean_str(x$authors[[1]]$affiliation)
+  }
+
+  inst_org
+}
 
 make_bibkey <- function(tobibentry) {
-  # Bear in mind institutions has only given
-  # Use the first two authors
-  aut_sur <- lapply(tobibentry$author[1:2], function(z) {
-    unz <- unlist(z)
-    if ("family" %in% names(unz)) {
-      r <- unz["family"]
-      return(clean_str(r))
-    }
-
-    r <- unz["given"]
-    return(clean_str(r))
-  })
-
-
-  aut_sur <- tolower(paste0(unlist(aut_sur), collapse = ""))
-  aut_sur <- gsub("\\s*", "", aut_sur)
-
-  # Try hard to remove accents
-  # First with iconv
-  aut_sur <- iconv(aut_sur,
-    from = "UTF-8", to = "ASCII//TRANSLIT",
-    sub = "?"
-  )
-
-  # Next to latex
-  aut_sur <- encoded_utf_to_latex(aut_sur)
-
-  # Finally keep only a-z letters for key
-  aut_sur <- gsub("[^_a-z]", "", aut_sur)
+  # Be kind and provided a bibentry key
 
   y <- tobibentry$year
 
-  key <- paste(c(aut_sur, y), collapse = ":")
+
+  # Init etall
+  etall <- NULL
+
+
+  # Also Some entries don't have authors, but editors
+  # Others may have none (misc, pamphlet)
+
+  init_aut <- tobibentry$author
+
+  # Try get editor in null
+  if (is.null(init_aut)) {
+    init_aut <- tobibentry$editor
+  }
+
+  # If none then get a key based in title
+  if (any(is.null(init_aut), length(init_aut) == 0)) {
+    r <- tolower(tobibentry$title)
+    # Reduce lenght to 15 max
+    r <- substr(r, 0, 15)
+  } else {
+    # First name/surname and et_all if additional authors
+    # Bear in mind institutions has only given
+
+    nauths <- length(init_aut)
+    if (nauths > 1) etall <- "_etall"
+
+
+    # Get info of first author
+    unz <- unlist(init_aut[1])
+    if ("family" %in% names(unz)) {
+      r <- unz["family"]
+    } else {
+      r <- unz["given"]
+    }
+
+    r <- tolower(paste0(r, collapse = ""))
+  }
+
+  # Try hard to remove accents
+  # First with iconv
+  r <- iconv(r, from = "UTF-8", to = "ASCII//TRANSLIT", sub = "?")
+
+  # Next to latex
+  r <- encoded_utf_to_latex(r)
+
+  # Finally keep only a-z letters for key
+  r <- gsub("[^_a-z]", "", r)
+
+  # Append etall and year
+  key <- paste0(c(r, etall), collapse = "")
+  key <- paste(c(key, y), collapse = ":")
   key
 }
 
-make_howpublised <- function(x) {
-  howpublished <- x$medium
 
-  if (!is.null(howpublished)) {
-    # Capitalize first letter
-    letts <- unlist(strsplit(howpublished, "|"))
-    howpublished <-
-      clean_str(paste0(c(toupper(letts[1]), letts[-1]), collapse = ""))
+get_bib_month <- function(x) {
+  m <- x$month
+
+  # Fallback
+
+  if (is.null(m) && !is.null(x$`date-published`)) {
+    # Should be YYYY-MM-DD to be valid on cff, so
+    m <- as.integer(format(as.Date(x$`date-published`), "%m"))
   }
 
-  clean_str(howpublished)
+  # Try to parse to 3 month string
+  m_int <- suppressWarnings(as.integer(m))
+  m_letters <- clean_str(tolower(month.abb[m_int]))
+
+  if (!is.null(m_letters)) {
+    month <- m_letters
+  } else {
+    month <- clean_str(m)
+  }
+
+  month
+}
+
+get_bib_year <- function(x) {
+  year <- x$year
+
+  # Fallback
+
+  if (is.null(year) && !is.null(x$`date-released`)) {
+    # Should be YYYY-MM-DD to be valid on cff, so
+    year <- substr(x$`date-released`, 1, 4)
+  }
+
+  clean_str(year)
 }

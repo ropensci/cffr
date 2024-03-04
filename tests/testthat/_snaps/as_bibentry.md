@@ -29,7 +29,7 @@
         volume = {27},
         number = {2},
         pages = {97--111},
-        keywords = {Some, simple, keywords},
+        keywords = {Some,simple,keywords},
       }
 
 # Book to bibtex
@@ -58,7 +58,7 @@
     Code
       toBibtex(bib)
     Output
-      @Book{mittelbachgossens:2004,
+      @Book{mittelbach_etall:2004,
         title = {The LaTeX Companion},
         author = {Frank Mittelbach and Michel Gossens and Johannes Braams and David Carlisle and Chris Rowley},
         year = {2004},
@@ -71,7 +71,7 @@
         number = {7},
         note = {Example modified for testing purposes},
         edition = {Fourth},
-        keywords = {Two, keyword},
+        keywords = {Two,keyword},
       }
 
 # Booklet to bibtex
@@ -136,7 +136,7 @@
     Code
       toBibtex(bib)
     Output
-      @InBook{delemosgacek:2003,
+      @InBook{delemos_etall:2003,
         title = {Architectural Mismatch Tolerance},
         author = {R. {de Lemos} and C. Gacek and A. Romanovsky},
         year = {2003},
@@ -212,7 +212,7 @@
     Code
       toBibtex(bib)
     Output
-      @InProceedings{aberdeenbayer:1999,
+      @InProceedings{aberdeen_etall:1999,
         title = {Implementing Practical Dialogue Systems with the DARPA Communicator Architecture},
         author = {John Aberdeen and Samuel Bayer and Sasha Caskey and Laurie Damianos and Alan Goldschen and Lynette Hirschman and Dan Loehr and Hugo Trapper},
         year = {1999},
@@ -229,7 +229,7 @@
     Code
       toBibtex(bib)
     Output
-      @InProceedings{aberdeenbayer:1999,
+      @InProceedings{aberdeen_etall:1999,
         title = {Implementing Practical Dialogue Systems with the DARPA Communicator Architecture},
         author = {John Aberdeen and Samuel Bayer and Sasha Caskey and Laurie Damianos and Alan Goldschen and Lynette Hirschman and Dan Loehr and Hugo Trapper},
         year = {1999},
@@ -260,7 +260,7 @@
     Code
       toBibtex(bib)
     Output
-      @Manual{allweinbarkerplummer:1999,
+      @Manual{allwein_etall:1999,
         title = {LPL Software Manual},
         author = {Gerhard Allwein and Dave Barker-Plummer and Jon Barwise and John Etchemendy},
         year = {1999},
@@ -347,7 +347,7 @@
     Code
       toBibtex(bib)
     Output
-      @Proceedings{anonymous:1996,
+      @Proceedings{alferes_etall:1996,
         title = {An Abductive Framework for Negation in Disjunctive Logic Programming},
         year = {1996},
         publisher = {Springer-Verlag},
@@ -384,6 +384,19 @@
         institution = {Intelligent Systems Program, University of Pittsburgh},
       }
 
+---
+
+    Code
+      toBibtex(bib)
+    Output
+      @TechReport{aronis:1993,
+        title = {Implementing Inheritance on the Connection Machine},
+        author = {John M. Aronis},
+        year = {1993},
+        number = {ISP 93-1},
+        institution = {rOpenSci},
+      }
+
 # Unpublished to bibtex
 
     Code
@@ -402,7 +415,7 @@
     Code
       toBibtex(bib)
     Output
-      @Unpublished{aronisprovost:1959,
+      @Unpublished{aronis_etall:1959,
         title = {Efficiently Constructing Relational Features from Background},
         author = {John M. Aronis and Foster J. Provost},
         year = {1959},
@@ -414,166 +427,11 @@
     Code
       toBibtex(bib)
     Output
-      @Unpublished{aronisprovost:1959,
+      @Unpublished{aronis_etall:1959,
         title = {Efficiently Constructing Relational Features from Background},
         author = {John M. Aronis and Foster J. Provost},
         year = {1959},
         note = {Extracted with cffr R package},
-      }
-
-# particle names
-
-    Code
-      bibparsed
-    Output
-      - type: book
-        title: A Handbook for Scholars
-        authors:
-        - family-names: Leunen
-          given-names: Mary-Claire
-          name-particle: van
-        - family-names: Davis
-          given-names: Sammy
-          name-suffix: Jr.
-        year: '1979'
-        publisher:
-          name: Knopf
-
----
-
-    Code
-      toBibtex(bib)
-    Output
-      @Book{vanleunendavisjr:1979,
-        title = {A Handbook for Scholars},
-        author = {Mary-Claire {van Leunen} and Sammy {Davis Jr.}},
-        year = {1979},
-        publisher = {Knopf},
-      }
-
-# From plain cff with a citation
-
-    Code
-      toBibtex(bib)
-    Output
-      @Misc{doe:1999,
-        title = {title},
-        author = {John Doe},
-        year = {1999},
-        month = {mar},
-        editor = {A name},
-      }
-
-# From plain cff
-
-    Code
-      toBibtex(bib)
-    Output
-      @Misc{doe,
-        title = {My Research Software},
-        author = {John Doe},
-      }
-
-# From file
-
-    Code
-      toBibtex(bib)
-    Output
-      @InBook{vanderrealpersoniventityprojectteamconferenceentity:2017,
-        title = {Book Title},
-        author = {One Truly {van der Real Person IV} and {Entity Project Team Conference entity}},
-        year = {2017},
-        month = {mar},
-        journal = {PeerJ},
-        publisher = {Entity Project Team Conference entity},
-        address = {22 Acacia Avenue, Citationburgh, Renfrewshire, GB},
-        editor = {One Truly {van der Real Person IV} and {Entity Project Team Conference entity}},
-        series = {Collection Title},
-        volume = {2},
-        number = {123},
-        pages = {123--456},
-        doi = {10.5281/zenodo.1003150},
-        isbn = {978-1-89183-044-0},
-        issn = {1234-543X},
-        url = {http://j.mp},
-        note = {A field for general notes about the reference, usable in other formats such as BibTeX.},
-        chapter = {Chapter 2 - "Reference keys"},
-        edition = {2nd edition},
-        howpublished = {Hardcover book},
-        institution = {Entity Project Team Conference entity},
-        keywords = {Software, Citation},
-        abstract = {Description of the book.},
-        date = {2017-10-31},
-        file = {book.zip},
-        issuetitle = {Special Issue on Software Citation},
-        pagetotal = {765},
-        urldate = {2017-10-31},
-        version = {0.0.1423-BETA},
-        translator = {van der Real Person, IV, One Truly and {Entity Project Team Conference entity}},
-      }
-
-# Test anonymous
-
-    Code
-      toBibtex(back)
-    Output
-      @Booklet{anonymous,
-        title = {A booklet},
-      }
-
----
-
-    Code
-      toBibtex(back)
-    Output
-      @Manual{anonymous,
-        title = {A manual},
-      }
-
----
-
-    Code
-      toBibtex(back)
-    Output
-      @Misc{anonymous,
-        title = {A misc},
-      }
-
----
-
-    Code
-      toBibtex(back)
-    Output
-      @Proceedings{anonymous:1984,
-        title = {proceedings},
-        year = {1984},
-      }
-
-# Fallback month
-
-    Code
-      toBibtex(bib)
-    Output
-      @Article{,
-        title = {An Article},
-        author = {John Doe},
-        journal = {El Adelantado de Segovia},
-        year = {1678},
-        date = {1678-04-23},
-      }
-
----
-
-    Code
-      toBibtex(bibback)
-    Output
-      @Article{doe:1678,
-        title = {An Article},
-        author = {John Doe},
-        year = {1678},
-        month = {apr},
-        journal = {El Adelantado de Segovia},
-        date = {1678-04-23},
       }
 
 # Test BibLateX entry
@@ -609,7 +467,7 @@
     Code
       toBibtex(parsed)
     Output
-      @Article{kastenholzhunenbergerb:2006,
+      @Article{kastenholz_etall:2006,
         title = {Computation of methodology hyphen independent ionic solvation free energies from molecular simulations},
         author = {M. A. Kastenholz and Philippe H. Hünenbergerb},
         year = {2006},
@@ -626,8 +484,163 @@
         file = {a_file.pdf},
         issuetitle = {Semantic 3D Media and Content},
         pagetotal = {528},
-        urldate = {2006-10-01},
         translator = {Wicksteed, P. H. and {The translator factory}},
+        urldate = {2006-10-01},
+      }
+
+# particle names
+
+    Code
+      bibparsed
+    Output
+      - type: book
+        title: A Handbook for Scholars
+        authors:
+        - family-names: Leunen
+          given-names: Mary-Claire
+          name-particle: van
+        - family-names: Davis
+          given-names: Sammy
+          name-suffix: Jr.
+        year: '1979'
+        publisher:
+          name: Knopf
+
+---
+
+    Code
+      toBibtex(bib)
+    Output
+      @Book{vanleunen_etall:1979,
+        title = {A Handbook for Scholars},
+        author = {Mary-Claire {van Leunen} and Sammy {Davis Jr.}},
+        year = {1979},
+        publisher = {Knopf},
+      }
+
+# From plain cff with a citation
+
+    Code
+      toBibtex(bib)
+    Output
+      @Misc{doe:1999,
+        title = {title},
+        author = {John Doe},
+        year = {1999},
+        month = {mar},
+        editor = {A name},
+      }
+
+# From plain cff
+
+    Code
+      toBibtex(bib)
+    Output
+      @Misc{doe,
+        title = {My Research Software},
+        author = {John Doe},
+      }
+
+# From file
+
+    Code
+      toBibtex(bib)
+    Output
+      @InBook{vanderrealpersoniv_etall:2017,
+        title = {Book Title},
+        author = {One Truly {van der Real Person IV} and {Entity Project Team Conference entity}},
+        year = {2017},
+        month = {mar},
+        journal = {PeerJ},
+        publisher = {Entity Project Team Conference entity},
+        address = {22 Acacia Avenue, Citationburgh, Renfrewshire, GB},
+        editor = {One Truly {van der Real Person IV} and {Entity Project Team Conference entity}},
+        series = {Collection Title},
+        volume = {2},
+        number = {123},
+        pages = {123--456},
+        doi = {10.5281/zenodo.1003150},
+        isbn = {978-1-89183-044-0},
+        issn = {1234-543X},
+        url = {http://j.mp},
+        note = {A field for general notes about the reference, usable in other formats such as BibTeX.},
+        chapter = {Chapter 2 - "Reference keys"},
+        edition = {2nd edition},
+        howpublished = {Hardcover book},
+        abstract = {Description of the book.},
+        date = {2017-10-31},
+        file = {book.zip},
+        issuetitle = {Special Issue on Software Citation},
+        keywords = {Software,Citation},
+        pagetotal = {765},
+        translator = {van der Real Person IV, One Truly and {Entity Project Team Conference entity}},
+        urldate = {2017-10-31},
+        version = {0.0.1423-BETA},
+        institution = {Entity Project Team Conference entity},
+      }
+
+# Test anonymous
+
+    Code
+      toBibtex(back)
+    Output
+      @Booklet{abooklet,
+        title = {A booklet},
+      }
+
+---
+
+    Code
+      toBibtex(back)
+    Output
+      @Manual{amanual,
+        title = {A manual},
+      }
+
+---
+
+    Code
+      toBibtex(back)
+    Output
+      @Misc{amisc,
+        title = {A misc},
+      }
+
+---
+
+    Code
+      toBibtex(back)
+    Output
+      @Proceedings{proceedings:1984,
+        title = {proceedings},
+        year = {1984},
+      }
+
+# Fallback month
+
+    Code
+      toBibtex(bib)
+    Output
+      @Article{,
+        title = {An Article},
+        author = {John Doe},
+        journal = {El Adelantado de Segovia},
+        year = {1678},
+        date = {1678-04-23},
+      }
+
+---
+
+    Code
+      toBibtex(bibback)
+    Output
+      @Article{doe:1678,
+        title = {An Article},
+        author = {John Doe},
+        year = {1678},
+        month = {apr},
+        journal = {El Adelantado de Segovia},
+        date = {1678-04-23},
       }
 
 # Test Fallback year

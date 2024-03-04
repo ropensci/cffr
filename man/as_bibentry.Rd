@@ -11,14 +11,15 @@ as_bibentry(x, what = c("preferred", "references", "all"))
 }
 \arguments{
 \item{x}{The source that would be used for generating
-the \code{\link[=bibentry]{bibentry()}} object via \code{cff}. It could be:
+the \code{\link[=bibentry]{bibentry()}} object via \CRANpkg{cffr}. It could be:
 \itemize{
 \item A missing value. That would retrieve the DESCRIPTION
 file on your in-development package.
-\item An existing \code{\link{cff}} object,
-\item Path to a CITATION.cff file (\code{"*/CITATION.cff*"}),
+\item An existing \code{cff} object created with \code{\link[=cff]{cff()}}, \code{\link[=cff_create]{cff_create()}} or
+\code{\link[=as_cff]{as_cff()}}.
+\item Path to a CITATION.cff file (\code{"CITATION.cff"}),
 \item The name of an installed package (\code{"jsonlite"}), or
-\item Path to a DESCRIPTION file (\code{"*/DESCRIPTION*"}).
+\item Path to a DESCRIPTION file (\code{"DESCRIPTION"}).
 }}
 
 \item{what}{Fields to extract. The value could be:
@@ -35,7 +36,7 @@ both the preferred citation info and the references.
 \item{...}{Arguments passed to \code{\link[utils:toLatex]{utils::toBibtex()}}.}
 }
 \value{
-\code{as_bibentry()} returns s \code{bibentry} object (or a list of \code{bibentry}
+\code{as_bibentry()} returns a \code{bibentry} object (or a list of \code{bibentry}
 objects).
 
 \code{toBibtex.cff()} returns a \code{Bibtex} object that can be printed as BibTeX
@@ -43,15 +44,15 @@ markup.
 }
 \description{
 This function creates \code{bibentry} objects (see \code{\link[utils:bibentry]{utils::bibentry()}}) from
-different metadata sources (\code{cff} objects, \code{DESCRIPTION} files, etc.). Note
-that a \strong{R} \code{bibentry} object is the representation of a BibTeX entry,
+different metadata sources (\code{\link{cff}} objects, \code{DESCRIPTION} files, etc.).
+Note that a \strong{R} \code{bibentry} object is the representation of a BibTeX entry,
 see \strong{Examples}
 
-The function tries to map the information of the source \code{x} into a \code{cff}
+The function tries to map the information of the source \code{x} into a \code{\link{cff}}
 object and performs a mapping of the metadata to BibTeX, according to
 \code{vignette("bibtex_cff", "cffr")}.
 
-The inverse transformation (\code{bibentry} object to \code{cff} reference) can
+The inverse transformation (\code{bibentry} object to \code{\link{cff}} reference) can
 be done with the corresponding \code{\link[=as_cff]{as_cff()}} method.
 
 Additionally, it is also provided a method for \code{\link[=toBibtex]{toBibtex()}}, that can

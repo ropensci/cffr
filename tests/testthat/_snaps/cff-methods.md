@@ -814,15 +814,15 @@
       [14] "references.00.authors.03.name"        
       [15] "references.00.authors.03.date_end"    
       [16] "references.00.url"                    
-      [17] "references.00.keywords.00"            
-      [18] "references.00.keywords.01"            
-      [19] "references.00.keywords.02"            
-      [20] "references.00.keywords.03"            
-      [21] "references.00.keywords.04"            
-      [22] "references.00.keywords.05"            
-      [23] "references.00.keywords.06"            
-      [24] "references.00.keywords.07"            
-      [25] "references.00.abstract"               
+      [17] "references.00.abstract"               
+      [18] "references.00.keywords.00"            
+      [19] "references.00.keywords.01"            
+      [20] "references.00.keywords.02"            
+      [21] "references.00.keywords.03"            
+      [22] "references.00.keywords.04"            
+      [23] "references.00.keywords.05"            
+      [24] "references.00.keywords.06"            
+      [25] "references.00.keywords.07"            
       [26] "references.00.version"                
 
 # Convert authors only
@@ -927,37 +927,37 @@
     Code
       a_cff
     Output
-      authors:
-      - family-names: Doe
-        given-names: John
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       title: My Research Software
+      authors:
+      - family-names: Doe
+        given-names: John
 
 ---
 
     Code
       head(a_cff, 2)
     Output
-      authors:
-      - family-names: Doe
-        given-names: John
       cff-version: 1.2.0
+      message: If you use this software, please cite it using these metadata.
 
 ---
 
     Code
       tail(a_cff, 2)
     Output
-      message: If you use this software, please cite it using these metadata.
       title: My Research Software
+      authors:
+      - family-names: Doe
+        given-names: John
 
 # toBibtex
 
     Code
       toBibtex(full_cff)
     Output
-      @Misc{druskatspaaks:2021,
+      @Misc{druskat_etall:2021,
         title = {Citation File Format},
         author = {Stephan Druskat and Jurriaan H. Spaaks and Neil {Chue Hong} and Robert Haines and James Baker and Spencer Bliven and Egon Willighagen and David Pérez-Suárez and Alexander Konovalov},
         year = {2021},
@@ -987,7 +987,7 @@
         note = {Publisher: The Open Journal},
       }
       
-      @Article{boettigerchamberlain:2016,
+      @Article{boettiger_etall:2016,
         title = {RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic, Character, and Trait Data in R},
         author = {Carl Boettiger and Scott Chamberlain and Rutger Vos and Hilmar Lapp},
         year = {2016},
@@ -1011,7 +1011,7 @@
     Code
       toBibtex(full_cff, what = "all")
     Output
-      @Misc{druskatspaaks:2021,
+      @Misc{druskat_etall:2021,
         title = {Citation File Format},
         author = {Stephan Druskat and Jurriaan H. Spaaks and Neil {Chue Hong} and Robert Haines and James Baker and Spencer Bliven and Egon Willighagen and David Pérez-Suárez and Alexander Konovalov},
         year = {2021},
@@ -1036,7 +1036,7 @@
         note = {Publisher: The Open Journal},
       }
       
-      @Article{boettigerchamberlain:2016,
+      @Article{boettiger_etall:2016,
         title = {RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic, Character, and Trait Data in R},
         author = {Carl Boettiger and Scott Chamberlain and Rutger Vos and Hilmar Lapp},
         year = {2016},

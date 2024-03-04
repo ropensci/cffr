@@ -93,12 +93,12 @@ comply with the validation rules of the CFF specification.
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{minimal_cff <- cff()
 
 minimal_cff
-#> authors:
-#> - family-names: Doe
-#>   given-names: John
 #> cff-version: 1.2.0
 #> message: If you use this software, please cite it using these metadata.
 #> title: My Research Software
+#> authors:
+#> - family-names: Doe
+#>   given-names: John
 
 as_df <- as.data.frame(minimal_cff)
 
@@ -107,11 +107,11 @@ class(as_df)
 
 t(as_df)
 #>                         [,1]                                                            
-#> authors.00.family_names "Doe"                                                           
-#> authors.00.given_names  "John"                                                          
 #> cff_version             "1.2.0"                                                         
 #> message                 "If you use this software, please cite it using these metadata."
-#> title                   "My Research Software"
+#> title                   "My Research Software"                                          
+#> authors.00.family_names "Doe"                                                           
+#> authors.00.given_names  "John"
 }\if{html}{\out{</div>}}
 }
 
@@ -122,12 +122,12 @@ t(as_df)
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{new_keys <- c("date-released" = "2020-01-31", abstract = "Minimal example")
 
 c(minimal_cff, new_keys)
-#> authors:
-#> - family-names: Doe
-#>   given-names: John
 #> cff-version: 1.2.0
 #> message: If you use this software, please cite it using these metadata.
 #> title: My Research Software
+#> authors:
+#> - family-names: Doe
+#>   given-names: John
 #> date-released: '2020-01-31'
 #> abstract: Minimal example
 }\if{html}{\out{</div>}}
