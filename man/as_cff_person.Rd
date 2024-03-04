@@ -3,7 +3,7 @@
 \name{as_cff_person}
 \alias{as_cff_person}
 \alias{as.person.cff}
-\title{Create a person with the corresponding \code{\link{cff}} structure}
+\title{Create a \code{person} with the corresponding \code{\link{cff}} structure}
 \usage{
 as_cff_person(person)
 
@@ -20,13 +20,15 @@ See \strong{Examples}.
 \item{x}{\code{cff} object representing a person or entity.}
 }
 \value{
-\code{as_cff_person()} returns A list of persons or entities with class
-\code{cff} converted to the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
+\code{as_cff_person()} returns a list of persons or entities with class \code{cff} and
+subclass \code{cff_pers_list}, converted to the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
+Each element of the \code{cff_pers_list} would have a class \code{cff} and a subclass
+\code{cff_pers}.
 
 \code{as.person.cff()} returns a \code{person} object.
 }
 \description{
-Create a \code{person} or \code{entity} as defined by the
+Create a list of \code{person} or \code{entity} as defined by the
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
 
 \code{\link[=as_cff_person]{as_cff_person()}} can convert the following objects:
@@ -96,12 +98,20 @@ a_person
 
 cff_person <- as_cff_person(a_person)
 
+# Class cff and a special subclass
+class(cff_person)
+
+# With each element with other special subclass
+
+class(cff_person[[1]])
+
+# Print
 cff_person
 
 # Back to person object with S3 Method
 as.person(cff_person)
 
-# Parse a string
+# Coerce a string
 a_str <- paste0(
   "Julio Iglesias <fake@email.com> ",
   "(<https://orcid.org/0000-0001-8457-4658>)"

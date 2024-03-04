@@ -528,7 +528,7 @@ get_bib_month <- function(x) {
     m <- as.integer(format(as.Date(x$`date-published`), "%m"))
   }
 
-  # Try to parse to 3 month string
+  # Try to get 3 month string
   m_int <- suppressWarnings(as.integer(m))
   m_letters <- clean_str(tolower(month.abb[m_int]))
 

@@ -116,8 +116,11 @@ detect_repos <- function(repos = getOption("repos")) {
 fuzzy_keys <- function(keys) {
   nm <- names(keys)
   names(keys) <- gsub("_", "-", nm, fixed = TRUE)
-  valid_keys <- cff_schema_keys()
-
+  valid_keys <- unique(c(
+    cff_schema_keys(), cff_schema_definitions_entity(),
+    cff_schema_definitions_person(),
+    cff_schema_definitions_refs()
+  ))
   names <- names(keys)
   # Check valid keys as is
   is_valid_key <- names %in% valid_keys

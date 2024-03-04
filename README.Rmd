@@ -15,7 +15,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-# cffr <a href="https://docs.ropensci.org/cffr/"><img src="man/figures/logo.png" align="right" height="139" alt="cffr website" /></a>
+# cffr <a href="https://docs.ropensci.org/cffr/"><img src="man/figures/logo.png" alt="cffr website" align="right" height="139"/></a>
+
 <!-- badges: start -->
 
 [![CRAN-status](https://www.r-pkg.org/badges/version/cffr)](https://CRAN.R-project.org/package=cffr)
@@ -90,7 +91,10 @@ token <- token[!token %in% c(NA, NULL, "")][1]
 ghtoken <- paste("token", token)
 tmpfile <- tempfile(fileext = ".json")
 # Get numbers of repos
-api_url <- "https://api.github.com/search/code?q=cffr+extension:cff+filename:CITATION"
+api_url <- paste0(
+  "https://api.github.com/search/code?q=cffr+extension:",
+  "cff+filename:CITATION"
+)
 res <- tryCatch(
   download.file(api_url,
     tmpfile,
@@ -114,9 +118,10 @@ if (isTRUE(res)) {
 } else {
   nreps <- as.integer(jsonlite::read_json(tmpfile)$total_count)
   cat(paste0(
-    "As per ", today, " there are at least ", nreps, " repos on GitHub using **cffr**. ",
-    "[Check them out here]",
-    "(https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code)."
+    "As per ", today, " there are at least ", nreps,
+    " repos on GitHub using **cffr**. ", "[Check them out here]",
+    "(https://github.com/search?q=cffr%20path%3A**%2FCITATION.",
+    "cff&type=code)."
   ))
 }
 cat("\n")
