@@ -5,9 +5,9 @@
     Message
       x Can't convert to `bibentry()`: 
       i A bibentry of bibtype 'Book' has to specify the field: publisher
-      ! Returning "NULL"
+      ! Returning empty <bibentry>
     Output
-      NULL
+      bibentry()
 
 # preferred-citation-book
 

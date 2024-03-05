@@ -100,7 +100,7 @@ as.list.cff <- function(x, ...) {
 
 #' @rdname as_bibentry
 #' @name toBibtex.cff
-#' @order 2
+#' @order 9
 #'
 #' @description
 #'
@@ -123,18 +123,18 @@ as.list.cff <- function(x, ...) {
 #' markup.
 toBibtex.cff <- function(object, ...,
                          what = c("preferred", "references", "all")) {
-  toBibtex(as_bibentry(object, what), ...)
+  toBibtex(as_bibentry(object, what = what), ...)
 }
 
 #' @rdname as_bibentry
-#' @order 3
+#' @order 10
 #' @export
 toBibtex.cff_pers_list <- function(object, ...) {
   toBibtex(as.person(object), ...)
 }
 
 #' @rdname as_bibentry
-#' @order 4
+#' @order 11
 #' @export
 toBibtex.cff_pers <- function(object, ...) {
   toBibtex(as.person(object), ...)

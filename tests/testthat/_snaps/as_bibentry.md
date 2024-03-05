@@ -541,6 +541,14 @@
         author = {John Doe},
       }
 
+---
+
+    Code
+      as_bibentry(cff(), what = "anda")
+    Condition
+      Error in `as_bibentry()`:
+      ! `what` should be "preferred", "references", and "all", not "anda".
+
 # From file
 
     Code
@@ -578,6 +586,14 @@
         version = {0.0.1423-BETA},
         institution = {Entity Project Team Conference entity},
       }
+
+---
+
+    Code
+      as_bibentry("anunkonwpackage")
+    Condition
+      Error in `as_bibentry()`:
+      ! Don't know how to extract a <bibentry> from "anunkonwpackage". If it is a package run `install.packages("anunkonwpackage")` first.
 
 # Test anonymous
 
@@ -671,5 +687,16 @@
     Message
       x Can't convert to `bibentry()`: 
       i A bibentry of bibtype 'Article' has to specify the fields: journal, year
-      ! Returning "NULL"
+      ! Returning empty <bibentry>
+
+# default
+
+    Code
+      as_bibentry(a = 1)
+    Message
+      x Can't convert to `bibentry()`: 
+      i argument "bibtype" is missing, with no default
+      ! Returning empty <bibentry>
+    Output
+      bibentry()
 

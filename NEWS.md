@@ -34,15 +34,14 @@ package.
         objects. We recommend using `as_cff_person()` since it can parse also
         string representing authors in BibTeX markup (`"{von Neumen}, James"`),
         that can't be captured properly via methods.
+-   New `as_bibentry()` method for a variety of classes (`character`, `list`,
+    `NULL` and classes defined by **cffr**).
 -   The following **base** and **utils** methods supports now `cff` class:
     (TODO)
     -   `as.data.frame.cff()`.
-    -   `as.person.cff()`, that provides results **only** for CFF keys defined
-        as
-        [person](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsperson)
-        or
-        [entity](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsentity)
-        (e.g. `authors`, `contacts`, `editors`, `publisher,` etc.).
+    -   `as.person()`, although **only** for `definitions.person` or
+        `definitions.entity` (e.g. `authors`, `contacts`, `editors`,
+        `publisher,` etc.).
     -   `head.cff()`, `tail.cff()`.
     -   `toBibtex.cff()`.
 
@@ -57,8 +56,8 @@ would warn when used, providing advice on the replacement function.
 
 #### Deprecation
 
--   `cff_to_bibtex()` and `cff_extract_to_bibtex()`: replaced by
-    `as_bibentry()`.
+-   `cff_to_bibtex()` and `cff_extract_to_bibtex()`: replaced by `as_bibentry()`
+    method.
 -   `cff_from_bibtex()`: replaced by `cff_read_bib()` (for `*.bib` files) and
     `cff_read_bib_text()` (for character strings).
 -   `write_bib()` and `write_citation()` : replaced by `cff_write_bib()` and

@@ -2,12 +2,33 @@
 % Please edit documentation in R/as_bibentry.R, R/methods.R
 \name{as_bibentry}
 \alias{as_bibentry}
+\alias{as_bibentry.default}
+\alias{as_bibentry.character}
+\alias{as_bibentry.NULL}
+\alias{as_bibentry.list}
+\alias{as_bibentry.cff}
+\alias{as_bibentry.cff_ref_list}
+\alias{as_bibentry.cff_ref}
 \alias{toBibtex.cff}
 \alias{toBibtex.cff_pers_list}
 \alias{toBibtex.cff_pers}
 \title{Create \code{bibentry} objects from several sources}
 \usage{
-as_bibentry(x, what = c("preferred", "references", "all"))
+as_bibentry(x, ...)
+
+\method{as_bibentry}{default}(x, ...)
+
+\method{as_bibentry}{character}(x, ..., what = c("preferred", "references", "all"))
+
+\method{as_bibentry}{`NULL`}(x, ...)
+
+\method{as_bibentry}{list}(x, ...)
+
+\method{as_bibentry}{cff}(x, ..., what = c("preferred", "references", "all"))
+
+\method{as_bibentry}{cff_ref_list}(x, ...)
+
+\method{as_bibentry}{cff_ref}(x, ...)
 
 \method{toBibtex}{cff}(object, ..., what = c("preferred", "references", "all"))
 
@@ -28,6 +49,8 @@ file on your in-development package.
 \item Path to a DESCRIPTION file (\code{"DESCRIPTION"}).
 }}
 
+\item{...}{Arguments passed to \code{\link[utils:toLatex]{utils::toBibtex()}}.}
+
 \item{what}{Fields to extract. The value could be:
 \itemize{
 \item \code{preferred}: This would create a single entry with the main citation
@@ -38,8 +61,6 @@ both the preferred citation info and the references.
 }}
 
 \item{object}{For \code{toBibtex.cff()} a \code{\link{cff}} object.}
-
-\item{...}{Arguments passed to \code{\link[utils:toLatex]{utils::toBibtex()}}.}
 }
 \value{
 \code{as_bibentry()} returns a \code{bibentry} object (or a list of \code{bibentry}
@@ -108,6 +129,7 @@ desc_file <- as_bibentry(path2)
 
 toBibtex(desc_file)
 }
+
 }
 \references{
 \itemize{
@@ -141,7 +163,7 @@ Other functions for converting between \strong{R} classes:
 \code{\link{as_cff}()},
 \code{\link{as_cff_person}()}
 
-Other S3 Methods for \code{cff}:
+Other \strong{S3 Methods}:
 \code{\link{as_cff}()},
 \code{\link{as_cff_person}()},
 \code{\link{cff_class}}

@@ -213,3 +213,47 @@ guess_cff_part <- function(x) {
 
   fin
 }
+
+
+detect_x_source <- function(x) {
+  if (missing(x)) {
+    return("indev")
+  }
+
+  x <- as.character(x)[1]
+  instpack <- as.character(installed.packages()[, "Package"])
+
+  if (x %in% instpack) {
+    return("package")
+  }
+
+
+  if (grepl("\\.cff$", x, ignore.case = TRUE)) {
+    return("cff_citation")
+  }
+  if (grepl("\\.bib$", x, ignore.case = TRUE)) {
+    return("bib")
+  }
+  if (grepl("citat", x, ignore.case = TRUE)) {
+    return("citation")
+  }
+  if (grepl("desc", x, ignore.case = TRUE)) {
+    return("description")
+  }
+
+  return("dontknow")
+}
+
+match_cff_arg <- function(arg, valid, for_msg, call = environment()) {
+  arg <- as.character(arg)[1]
+  valid <- as.character(valid)
+
+  if (!arg %in% valid) {
+    cli::cli_abort(
+      "{.arg {for_msg}} should be {.val {valid}}, not {.val {arg}}.",
+      call = call
+    )
+  }
+
+  return(arg)
+}

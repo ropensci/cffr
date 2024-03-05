@@ -1,4 +1,5 @@
 test_that("Test in mock package", {
+  skip_on_cran()
   current_dir <- getwd()
 
   name <- paste0("mock-pack", runif(1) * 10)
@@ -15,6 +16,8 @@ test_that("Test in mock package", {
     to = "DESCRIPTION"
   )
 
+  # Get bibentry
+  a_bib <- as_bibentry()
   # Create citation
   cit <- utils::readCitationFile(
     system.file("examples/CITATION_basic",
@@ -75,4 +78,5 @@ test_that("Test in mock package", {
 
   expect_snapshot(cffobj)
   expect_snapshot(toBibtex(cit))
+  expect_snapshot(toBibtex(a_bib))
 })

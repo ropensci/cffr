@@ -8,6 +8,6 @@ list(
     schemas = "Other CFF schemas:",
     git = "Other Git/GitHub helpers:",
     deprecated = "Other deprecated functions:",
-    s3method = "Other S3 Methods for \\code{cff}:"
+    s3method = "Other \\strong{S3 Methods}:"
   )
 )

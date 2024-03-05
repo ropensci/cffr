@@ -173,7 +173,7 @@ Other functions for converting between \strong{R} classes:
 \code{\link{as_bibentry}()},
 \code{\link{as_cff}()}
 
-Other S3 Methods for \code{cff}:
+Other \strong{S3 Methods}:
 \code{\link{as_bibentry}()},
 \code{\link{as_cff}()},
 \code{\link{cff_class}}

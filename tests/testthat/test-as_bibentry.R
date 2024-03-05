@@ -348,6 +348,9 @@ test_that("From plain cff with a citation", {
 test_that("From plain cff", {
   expect_silent(bib <- as_bibentry(cff()))
   expect_snapshot(toBibtex(bib))
+
+
+  expect_snapshot(as_bibentry(cff(), what = "anda"), error = TRUE)
 })
 
 test_that("From file", {
@@ -357,11 +360,8 @@ test_that("From file", {
 
   bib <- as_bibentry(file)
   expect_snapshot(toBibtex(bib))
-})
 
-test_that("NULL", {
-  s <- NULL
-  expect_null(as_bibentry(s))
+  expect_snapshot(as_bibentry("anunkonwpackage"), error = TRUE)
 })
 
 
@@ -453,12 +453,12 @@ test_that("From package", {
 
   expect_length(base, 1)
 
-  refs <- as_bibentry("rmarkdown", "references")
+  refs <- as_bibentry("rmarkdown", what = "references")
   expect_s3_class(refs, "bibentry")
 
   expect_gte(length(refs), 1)
 
-  all <- as_bibentry("rmarkdown", "all")
+  all <- as_bibentry("rmarkdown", what = "all")
   expect_s3_class(all, "bibentry")
 
   expect_length(all, length(base) + length(refs))
@@ -467,10 +467,13 @@ test_that("From package", {
 test_that("NULL references", {
   basic <- cff()
 
-  expect_null(as_bibentry(basic, "references"))
+  expect_identical(
+    as_bibentry(basic, what = "references"),
+    bibentry()
+  )
 
   # Test all
-  expect_silent(l <- as_bibentry(basic, "all"))
+  expect_silent(l <- as_bibentry(basic, what = "all"))
   expect_length(l, 1)
 })
 
@@ -503,15 +506,13 @@ test_that("Corrupt entry", {
   x$year <- NULL
   x$journal <- NULL
   expect_snapshot(n <- as_bibentry(x))
-  expect_null(n)
+  expect_identical(bibentry(), bibentry())
 })
 
-test_that("Parser return nulls", {
-  expect_null(make_bibentry(NULL))
-})
 
-test_that("Fallback month", {
-  bib <- bibentry("Article",
+test_that("default", {
+  bib_coerced <- as_bibentry(
+    bibtype = "Article",
     key = "knuth:1984",
     author = person("R Core Team"),
     title = "Literate Programming",
@@ -525,17 +526,70 @@ test_that("Fallback month", {
     keywords = "Some, simple, keywords"
   )
 
-  expect_identical(clean_str(bib[[1]]$month), "January")
-  x <- as_cff(bib)
+  direct <- bibentry(
+    bibtype = "Article",
+    key = "knuth:1984",
+    author = person("R Core Team"),
+    title = "Literate Programming",
+    journal = "The Computer Journal",
+    year = "1984",
+    # Optional
+    volume = "27",
+    number = 2,
+    pages = "97--111",
+    month = "January",
+    keywords = "Some, simple, keywords"
+  )
+  expect_identical(bib_coerced, direct)
 
-  expect_identical(x[[1]]$month, "1")
+  with_number_first <- as_bibentry(
+    number = 2,
+    bibtype = "Article",
+    key = "knuth:1984",
+    author = person("R Core Team"),
+    title = "Literate Programming",
+    journal = "The Computer Journal",
+    year = "1984",
+    # Optional
+    volume = "27",
+    pages = "97--111",
+    month = "January",
+    keywords = "Some, simple, keywords"
+  )
 
-  x[[1]]$month <- NULL
-  x[[1]]$`date-published` <- "2010-12-31"
-  bib2 <- as_bibentry(x)
+  direct <- bibentry(
+    number = 2,
+    bibtype = "Article",
+    key = "knuth:1984",
+    author = person("R Core Team"),
+    title = "Literate Programming",
+    journal = "The Computer Journal",
+    year = "1984",
+    # Optional
+    volume = "27",
+    pages = "97--111",
+    month = "January",
+    keywords = "Some, simple, keywords"
+  )
+
+  expect_identical(with_number_first, direct)
+
+  with_number_first <- as_bibentry(
+    number = 2,
+    bibtype = "Article",
+    key = "knuth:1984",
+    author = person("R Core Team"),
+    title = "Literate Programming",
+    journal = "The Computer Journal",
+    year = "1984",
+    # Optional
+    volume = "27",
+    pages = "97--111",
+    month = "January",
+    keywords = "Some, simple, keywords"
+  )
 
 
-  expect_identical(clean_str(bib2[[1]]$month), "dec")
-  x2 <- as_cff(bib2)
-  expect_identical(x2[[1]]$month, "12")
+  # No additional dots
+  expect_snapshot(as_bibentry(a = 1))
 })

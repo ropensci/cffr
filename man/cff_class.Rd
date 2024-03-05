@@ -180,7 +180,7 @@ as.person(the_cff$authors)
 \seealso{
 \code{vignette("cffr", "cffr")} for a hands-on example.
 
-Other S3 Methods for \code{cff}:
+Other \strong{S3 Methods}:
 \code{\link{as_bibentry}()},
 \code{\link{as_cff}()},
 \code{\link{as_cff_person}()}

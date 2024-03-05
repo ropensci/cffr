@@ -37,14 +37,7 @@ lines to be written.}
 \item{...}{
   Arguments passed on to \code{\link[=as_bibentry]{as_bibentry}}
   \describe{
-    \item{\code{what}}{Fields to extract. The value could be:
-\itemize{
-\item \code{preferred}: This would create a single entry with the main citation
-info of the package.
-\item \code{references}: Extract all the entries on \code{references}.
-\item \code{all}: A combination of the previous two options. This would extract
-both the preferred citation info and the references.
-}}
+    \item{\code{}}{}
   }}
 }
 \value{

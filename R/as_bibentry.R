@@ -110,69 +110,147 @@
 #'
 #' toBibtex(desc_file)
 #' }
-as_bibentry <- function(x,
-                        what = c("preferred", "references", "all")) {
-  what <- match.arg(what)
-  if (is.null(x)) {
-    return(NULL)
+#'
+as_bibentry <- function(x, ...) {
+  UseMethod("as_bibentry")
+}
+
+
+#' @export
+#' @rdname as_bibentry
+#' @order 2
+as_bibentry.default <- function(x, ...) {
+  dot_list <- list(...)
+  as_bibentry(dot_list)
+}
+
+#' @export
+#' @rdname as_bibentry
+#' @order 3
+as_bibentry.character <- function(x, ...,
+                                  what = c("preferred", "references", "all")) {
+  # A named list
+  if (missing(x)) {
+    dot_list <- list(...)
+    return(as_bibentry(dot_list))
   }
 
-  if (is_cff_file(x)) {
-    x <- cff_read_cff_citation(x)
-  }
 
-  if (is_cff(x)) {
-    obj <- x
-  } else {
-    obj <- cff_create(x)
-  }
+  what <- match_cff_arg(
+    what, c("preferred", "references", "all"),
+    "what", environment()
+  )
 
 
-  # Guess case
-  cff_type <- guess_cff_part(obj)
+  x <- x[1]
+  src_detect <- detect_x_source(x)
 
-  if (cff_type == "cff_full") {
-    # Try to generate preferred if not present
-    if (!("preferred-citation" %in% names(obj))) {
-      prefcit <- obj
-      prefcit$type <- "generic"
-      prefcit <- prefcit[names(prefcit) %in% cff_schema_definitions_refs()]
-      prefcit <- new_cff(prefcit)
-      # And add to the object
-      obj$`preferred-citation` <- prefcit
-    }
-
-    # Select type to extract
-    obj_extract <- switch(what,
-      "preferred" = list(obj$`preferred-citation`),
-      "references" = obj$references,
-      c(list(obj$`preferred-citation`), obj$references)
+  if (src_detect == "dontknow") {
+    # nolint start
+    msg <- paste0('install.packages("', x, '")')
+    # nolint end
+    cli::cli_abort(
+      paste(
+        "Don't know how to extract a {.cls bibentry} from {.val {x}}.",
+        "If it is a package run {.run {msg}} first."
+      )
     )
-  } else if (cff_type == "cff_ref") {
-    obj_extract <- list(obj)
+  }
+
+  if (src_detect == "package") {
+    x <- cff_create(x)
   } else {
-    obj_extract <- obj
+    x <- cff_read(x)
   }
 
-  # Cleanup
-  obj_extract <- as.list(obj_extract)
-  obj_extract <- obj_extract[lengths(obj_extract) > 0]
-  if (length(obj_extract) == 0) {
-    return(NULL)
+  as_bibentry(x, what = what)
+}
+
+#' @export
+#' @rdname as_bibentry
+#' @order 4
+as_bibentry.NULL <- function(x, ...) {
+  cff_create()
+}
+
+
+#' @export
+#' @rdname as_bibentry
+#' @order 5
+as_bibentry.list <- function(x, ...) {
+  ## Convert and catch errors ----
+  bib <- try(do.call(bibentry, x), silent = TRUE)
+
+  # If key missing
+  if (inherits(bib, "try-error")) {
+    message <- attributes(bib)$condition$message
+    cli::cli_alert_danger(paste("Can't convert to {.fn bibentry}: "))
+    cli::cli_alert_info(message)
+    cli::cli_alert_warning("Returning empty {.cls bibentry}")
+    return(bibentry())
   }
 
-  ref <- lapply(obj_extract, make_bibentry)
+  # Unlist easy to undo the do.call effect
+  bib <- bib[[1]]
+}
+
+
+#' @export
+#' @rdname as_bibentry
+#' @order 6
+as_bibentry.cff <- function(x, ...,
+                            what = c("preferred", "references", "all")) {
+  what <- match_cff_arg(
+    what, c("preferred", "references", "all"),
+    "what", environment()
+  )
+
+  obj <- x
+  # Try to generate preferred if not present
+  if (!("preferred-citation" %in% names(obj))) {
+    prefcit <- obj
+    prefcit$type <- "generic"
+    prefcit <- prefcit[names(prefcit) %in% cff_schema_definitions_refs()]
+    prefcit <- new_cff(prefcit)
+    # And add to the object
+    obj$`preferred-citation` <- prefcit
+  }
+
+  # Select type to extract
+  obj_extract <- switch(what,
+    "preferred" = list(obj$`preferred-citation`),
+    "references" = obj$references,
+    c(list(obj$`preferred-citation`), obj$references)
+  )
+
+  if (is.null(obj_extract)) {
+    return(bibentry())
+  }
+
+  # Prepare for dispatching
+  objend <- as_cff(obj_extract)
+
+  as_bibentry(objend)
+}
+
+#' @export
+#' @rdname as_bibentry
+#' @order 7
+as_bibentry.cff_ref_list <- function(x, ...) {
+  ref <- lapply(x, function(y) {
+    # Reclass to dispatch method
+    as_bibentry(as_cff(y))
+  })
   ref <- do.call(c, ref)
-
   return(ref)
 }
 
 
-make_bibentry <- function(x) {
-  if (is.null(x)) {
-    return(NULL)
-  }
 
+#' @export
+#' @rdname as_bibentry
+#' @order 8
+as_bibentry.cff_ref <- function(x, ...) {
   # Relist to cff for dispatching methods on persons
   x <- as_cff(x)
 
@@ -298,22 +376,9 @@ make_bibentry <- function(x) {
   sorted <- unique[unique %in% names(tobibentry)]
   tobibentry <- tobibentry[sorted]
 
-  ## Convert and catch errors ----
-  bib <- try(do.call(bibentry, tobibentry), silent = TRUE)
+  ## Convert
 
-  # If key missing
-  if (inherits(bib, "try-error")) {
-    message <- attributes(bib)$condition$message
-    cli::cli_alert_danger(paste("Can't convert to {.fn bibentry}: "))
-    cli::cli_alert_info(message)
-    cli::cli_alert_warning("Returning {.val NULL}")
-    return(NULL)
-  }
-
-  # Unlist easy to undo the do.call effect
-  bib <- bib[[1]]
-
-  return(bib)
+  as_bibentry(tobibentry)
 }
 
 # Utils in utils-bib.R
