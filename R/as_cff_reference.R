@@ -100,11 +100,9 @@ make_cff_reference <- function(bib) {
   # Last step----
 
   # Initial order but starting with type, title, authors
-  final_order <- unique(c(
-    "type", "title", "authors",
-    init_ord,
-    names(parse_cit)
-  ))
+  final_order <- unique(
+    c("type", "title", "authors", init_ord, names(parse_cit))
+  )
 
   parse_cit <- parse_cit[final_order]
 
@@ -225,10 +223,6 @@ parse_bibtex_fields <- function(parse_cit) {
 
   names(parse_cit) <- nm
 
-  # Remove all instances of keywords except the first one
-  index <- which(nm == "keywords")
-  if (length(index) > 1) parse_cit <- parse_cit[-index[-1]]
-
   # Additionally, need to delete keywords if length is less than 2,
   # errors on validation
   if (length(parse_cit$keywords) < 2) {
@@ -243,30 +237,12 @@ parse_bibtex_fields <- function(parse_cit) {
 
 
 
-  # Treat dates----
-  datpub <- parse_cit$`date-published`
+  # Treat additional dates ----
+  dpub <- clean_str(parse_cit$`date-published`)
+  parse_cit$`date-published` <- clean_str(as.Date(dpub, optional = TRUE))
 
-
-  if (!is.null(datpub)) {
-    datepub <- as.Date(as.character(datpub), optional = TRUE)
-    if (is.na(datepub)) {
-      parse_cit$`date-published` <- NULL
-    } else {
-      parse_cit$`date-published` <- as.character(datepub)
-    }
-  }
-
-  datacc <- parse_cit$`date-accessed`
-
-
-  if (!is.null(datacc)) {
-    datacc <- as.Date(as.character(datacc), optional = TRUE)
-    if (is.na(datacc)) {
-      parse_cit$`date-accessed` <- NULL
-    } else {
-      parse_cit$`date-accessed` <- as.character(datacc)
-    }
-  }
+  datacc <- clean_str(parse_cit$`date-accessed`)
+  parse_cit$`date-accessed` <- clean_str(as.Date(datacc, optional = TRUE))
 
   # Treat pages
 

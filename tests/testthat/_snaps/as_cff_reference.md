@@ -282,6 +282,23 @@
         publisher:
           name: Random House
 
+# Fallback date
+
+    Code
+      init_cff
+    Output
+      - type: generic
+        title: Test
+        authors:
+        - family-names: Jean
+          given-names: Billy
+        date-published: '2050-01-12'
+        date-accessed: '2099-02-02'
+        publisher:
+          name: Random House
+        month: '1'
+        year: '2050'
+
 # Article
 
     Code

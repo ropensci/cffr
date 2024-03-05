@@ -194,6 +194,21 @@ test_that("Test inputs", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
+test_that("Fallback date", {
+  bib <- bibentry("Misc",
+    title = "Test",
+    author = "Billy Jean",
+    date = "2050-01-12",
+    urldate = "2099-02-02",
+    publisher = "Random House",
+    type = "RANDOM"
+  )
+
+  init_cff <- as_cff(bib)
+
+  expect_snapshot(init_cff)
+})
+
 # Parse citation from BibTeX ----
 
 test_that("Article", {
