@@ -1,13 +1,11 @@
 # preferred-citation-book-missing
 
     Code
-      as_bibentry(x)
+      s <- as_bibentry(x)
     Message
       x Can't convert to `bibentry()`: 
       i A bibentry of bibtype 'Book' has to specify the field: publisher
       ! Returning empty <bibentry>
-    Output
-      bibentry()
 
 # preferred-citation-book
 

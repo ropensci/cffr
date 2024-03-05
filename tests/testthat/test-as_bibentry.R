@@ -591,5 +591,5 @@ test_that("default", {
 
 
   # No additional dots
-  expect_snapshot(as_bibentry(a = 1))
+  expect_snapshot(s <- as_bibentry(a = 1))
 })

@@ -7,7 +7,7 @@ test_that("preferred-citation-book-missing", {
     package = "cffr"
   )
 
-  expect_snapshot(as_bibentry(x))
+  expect_snapshot(s <- as_bibentry(x))
 })
 
 test_that("preferred-citation-book", {
