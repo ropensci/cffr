@@ -108,11 +108,11 @@ as_cff.bibentry <- function(x, ...) {
 
   # Add clases
   cff_refs_class <- lapply(cff_refs, function(x) {
-    class(x) <- unique(c("cff_ref", "cff", class(x)))
+    class(x) <- c("cff_ref", "cff")
     x
   })
 
-  class(cff_refs_class) <- c("cff_ref_list", "cff", "list")
+  class(cff_refs_class) <- c("cff_ref_list", "cff")
   cff_refs_class
 }
 
@@ -126,11 +126,11 @@ as_cff.Bibtex <- function(x, ...) {
 
   # Add clases
   cff_refs_class <- lapply(cff_refs, function(x) {
-    class(x) <- unique(c("cff_ref", "cff", class(x)))
+    class(x) <- c("cff_ref", "cff")
     x
   })
 
-  class(cff_refs_class) <- c("cff_ref_list", "cff", "list")
+  class(cff_refs_class) <- c("cff_ref_list", "cff")
   cff_refs_class
 }
 
@@ -174,24 +174,24 @@ rapply_class <- function(x) {
     if (guess == "cff_pers_list") {
       xelement <- lapply(xelement, function(j) {
         j_in <- j
-        class(j_in) <- c("cff_pers", "cff", "list")
+        class(j_in) <- c("cff_pers", "cff")
         j_in
       })
-      class(xelement) <- c("cff_pers_list", "cff", "list")
+      class(xelement) <- c("cff_pers_list", "cff")
     }
 
     if (guess == "cff_ref_list") {
       xelement <- lapply(xelement, function(j) {
         j_in <- rapply_class(j)
-        class(j_in) <- c("cff_ref", "cff", "list")
+        class(j_in) <- c("cff_ref", "cff")
         j_in
       })
-      class(xelement) <- c("cff_ref_list", "cff", "list")
+      class(xelement) <- c("cff_ref_list", "cff")
     }
 
     if (guess %in% c("cff_ref", "cff_pers")) {
       xin <- rapply_class(xelement)
-      class(xin) <- c(guess, "cff", "list")
+      class(xin) <- c(guess, "cff")
       xelement <- xin
     }
     return(xelement)
@@ -227,19 +227,19 @@ new_cff <- function(x) {
   if (guess_x == "cff_ref_list") {
     x2 <- lapply(x, function(j) {
       j2 <- rapply_class(j)
-      class(j2) <- c("cff_ref", "cff", "list")
+      class(j2) <- c("cff_ref", "cff")
       j2
     })
-    class(x2) <- c(guess_x, "cff", "list")
+    class(x2) <- c(guess_x, "cff")
     return(x2)
   }
 
   xend <- rapply_class(x)
 
   final_class <- switch(guess_x,
-    "cff_full" = c("cff", "list"),
-    "unclear" = c("cff", "list"),
-    c(guess_x, "cff", "list")
+    "cff_full" = "cff",
+    "unclear" = "cff",
+    c(guess_x, "cff")
   )
 
   if (!is.null(final_class)) {

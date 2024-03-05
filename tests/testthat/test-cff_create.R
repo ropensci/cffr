@@ -120,11 +120,9 @@ test_that("Default roles on write", {
 
   # Same as
   tmp <- tempfile(fileext = ".cff")
-  expect_silent(
-    cf2 <- cff_write(p,
-      authors_roles = c("aut", "cre"), dependencies = FALSE,
-      outfile = tmp, verbose = FALSE, validate = FALSE
-    )
+  cf2 <- cff_write(p,
+    authors_roles = c("aut", "cre"), dependencies = FALSE,
+    outfile = tmp, verbose = FALSE, validate = FALSE
   )
 
   expect_identical(cf, cf2)

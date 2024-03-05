@@ -922,6 +922,30 @@
       [1] "One Truly van der Real Person IV <project@entity.com> (Citey, Excellent University, Niceplace, Arcadia, 22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io)"
       [2] "Entity Project Team Conference entity <project@entity.com> (22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io, 2017-01-01, 2017-01-31, The team garage)"   
 
+# Errors on other as.person methods
+
+    Code
+      as.person(the_cff)
+    Condition
+      Error in `as.person()`:
+      ! (cffr) `as.person.cff()` method not implemented yet.
+
+---
+
+    Code
+      as.person(key)
+    Condition
+      Error in `as.person()`:
+      ! (cffr) `as.person.cff_ref_list()` method not implemented yet.
+
+---
+
+    Code
+      as.person(key)
+    Condition
+      Error in `as.person()`:
+      ! (cffr) `as.person.cff_ref()` method not implemented yet.
+
 # head and tail
 
     Code
@@ -1054,4 +1078,25 @@
         isbn = {978-3-319-24277-4},
         url = {https://ggplot2.tidyverse.org},
       }
+
+---
+
+    Code
+      toBibtex(sev_auth)
+    Output
+      [1] "{The Big Bopper} and Sinatra, Frank and Martin, Dean and Davis Jr., Sammy"
+
+---
+
+    Code
+      toBibtex(single)
+    Output
+      [1] "person, A"
+
+---
+
+    Code
+      toBibtex(single)
+    Output
+      [1] "{A and B co}"
 

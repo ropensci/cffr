@@ -4,7 +4,7 @@
       cff_read_bib_text(a_cff)
     Condition
       Error in `cff_read_bib_text()`:
-      ! `x` should be a <character>, not a <cff/list>.
+      ! `x` should be a <character>, not a <cff>.
 
 ---
 

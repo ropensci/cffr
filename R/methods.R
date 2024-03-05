@@ -60,42 +60,6 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
 
 # nolint end
 
-#' @rdname as_cff_person
-#' @name as.person.cff
-#' @order 3
-#'
-#' @description
-#'
-#' The inverse transformation (`cff` person to [`person`][utils::as.person()])
-#' object can be done through the [as.person.cff()] method. Note that this is
-#' expected to be used with a `cff` person, not with a complete `cff` object.
-#'
-#'
-#' @family s3method
-#' @export
-#' @seealso [utils::person()]
-#'
-#' @param x `cff` object representing a person or entity.
-#'
-#' @return
-#'
-#' `as.person.cff()` returns a `person` object.
-as.person.cff <- function(x) {
-  # If single enclose on a list
-  is_single <- any(grepl("^name$|^given-names|^family-names", names(x)))
-
-  if (is_single) x <- list(x)
-
-
-  pers <- lapply(x, make_r_person)
-
-  # If not all extracted, malformed, return null
-  if (!all(lengths(pers) > 0)) {
-    return(person())
-  }
-  do.call(c, pers)
-}
-
 #' Head
 #'
 #' @noRd
@@ -139,15 +103,18 @@ as.list.cff <- function(x, ...) {
 #' @order 2
 #'
 #' @description
-#' Additionally, it is also provided a method for [toBibtex()], that can
-#' convert [`cff`] objects to `Bibtex` objects as provided by
-#' [utils::toBibtex()]. These objects are character vectors with BibTeX markup.
+#'
+#' `toBibtex.cff()` method can convert [`cff`] objects to `Bibtex` objects on
+#' the fly, see **Examples**.
 #'
 #' @family s3method
 #' @export
-#' @seealso [utils::toBibtex()]
+#' @seealso
 #'
-#' @param object `cff` object.
+#' [utils::toBibtex()] to get more information about the `toBibtex.cff()`
+#' method.
+#'
+#' @param object For `toBibtex.cff()` a [`cff`] object.
 #' @param ... Arguments passed to [utils::toBibtex()].
 #'
 #' @return
@@ -156,19 +123,89 @@ as.list.cff <- function(x, ...) {
 #' markup.
 toBibtex.cff <- function(object, ...,
                          what = c("preferred", "references", "all")) {
-  # If a single reference...
-  if ("cff-version" %in% names(object)) {
-    # If full cff
-    biblist_cff <- as_bibentry(x = object, what = what)
-  } else {
-    # Need to enlist if single
-    if ("type" %in% names(object)) {
-      object <- list(object)
-      class(object) <- c("cff", "list")
-    }
+  toBibtex(as_bibentry(object, what), ...)
+}
 
-    bib_list <- lapply(object, make_bibentry)
-    biblist_cff <- do.call(c, bib_list)
+#' @rdname as_bibentry
+#' @order 3
+#' @export
+toBibtex.cff_pers_list <- function(object, ...) {
+  toBibtex(as.person(object), ...)
+}
+
+#' @rdname as_bibentry
+#' @order 4
+#' @export
+toBibtex.cff_pers <- function(object, ...) {
+  toBibtex(as.person(object), ...)
+}
+
+#' @rdname as_cff_person
+#' @order 2
+#'
+#' @description
+#'
+#' The inverse transformation (`cff_pers / cff_pers_list` to
+#' [`person`][utils::as.person()]) object can be done through the
+#' `as.person.cff_pers()` / `as.person().cff_pers_list()` methods.
+#'
+#' The output also can printed on BibTeX markup via the corresponding
+#' [`toBibtex()`][toBibtex.cff_pers] methods.
+#'
+#'
+#'
+#' @family s3method
+#' @export
+#'
+#' @param x A `cff_pers` or `cff_pers_list` object.
+#'
+#' @return
+#'
+#' `as.person.cff_pers()` / `as.person.cff_pers_list()` returns a
+#' [`person`][utils::person] object.
+#'
+as.person.cff_pers <- function(x) {
+  # Enlist to dispatch to Next method
+  x_l <- list(as.list(x))
+  as.person(as_cff(x_l))
+}
+
+#' @rdname as_cff_person
+#' @order 3
+#' @export
+as.person.cff_pers_list <- function(x) {
+  pers <- lapply(x, make_r_person)
+
+  # If not all extracted, malformed, return null
+  if (!all(lengths(pers) > 0)) {
+    return(person())
   }
-  toBibtex(biblist_cff, ...)
+  do.call(c, pers)
+}
+
+
+#  as.person methods not implemented ----
+
+#' @export
+#' @noRd
+as.person.cff <- function(x) {
+  cli::cli_abort(
+    "({.pkg cffr}) {.fn as.person.cff} method not implemented yet."
+  )
+}
+
+#' @export
+#' @noRd
+as.person.cff_ref <- function(x) {
+  cli::cli_abort(
+    "({.pkg cffr}) {.fn as.person.cff_ref} method not implemented yet."
+  )
+}
+
+#' @export
+#' @noRd
+as.person.cff_ref_list <- function(x) {
+  cli::cli_abort(
+    "({.pkg cffr}) {.fn as.person.cff_ref_list} method not implemented yet."
+  )
 }

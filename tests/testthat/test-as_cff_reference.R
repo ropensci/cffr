@@ -33,7 +33,7 @@ test_that("Parsed several citations", {
   desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
   cit_path <- system.file("examples/CITATION_auto", package = "cffr")
   citobj <- cff_safe_read_citation(desc_path, cit_path)
-  expect_s3_class(citobj, c("cff_ref_list", "cff", "list"), exact = TRUE)
+  expect_s3_class(citobj, c("cff_ref_list", "cff"), exact = TRUE)
 
   expect_snapshot(citobj)
   expect_length(citobj, 3)

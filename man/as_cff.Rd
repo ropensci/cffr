@@ -96,7 +96,7 @@ Other functions for converting between \strong{R} classes:
 Other S3 Methods for \code{cff}:
 \code{\link{as_bibentry}()},
 \code{\link{as_cff_person}()},
-\code{\link{cff-class}}
+\code{\link{cff_class}}
 }
 \concept{coercing}
 \concept{s3method}

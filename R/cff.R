@@ -1,7 +1,7 @@
 #' Read and manipulate `cff` objects
 #'
 #' A class and utility methods for reading, creating and holding CFF
-#' information. See [`cff-class`] to learn more about `cff` objects.
+#' information. See [`cff_class`] to learn more about `cff` objects.
 #'
 #' @rdname cff
 #' @name cff

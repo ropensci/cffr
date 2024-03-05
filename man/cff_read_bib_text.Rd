@@ -18,7 +18,7 @@ cff_read_bib_text(x, encoding = "UTF-8", ...)
   }}
 }
 \value{
-A \code{\link[=cff-class]{cff}} object ready to be used with other functions (i.e.
+A \code{\link[=cff_class]{cff}} object ready to be used with other functions (i.e.
 \code{\link[=cff_create]{cff_create()}}.
 }
 \description{

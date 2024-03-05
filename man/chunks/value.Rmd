@@ -1,2 +1,2 @@
-A [`cff`][cff-class] object ready to be used with other functions (i.e.
+A [`cff`][cff_class] object ready to be used with other functions (i.e.
 [cff_create()].

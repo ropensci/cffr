@@ -539,6 +539,3 @@ test_that("Fallback month", {
   x2 <- as_cff(bib2)
   expect_identical(x2[[1]]$month, "12")
 })
-
-
-# Classes ----
