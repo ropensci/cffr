@@ -299,6 +299,13 @@
         month: '1'
         year: '2050'
 
+# Duplicates
+
+    Code
+      uniq <- as_cff(bibend)
+    Message
+      i Removing duplicate <bibentry> objects.
+
 # Article
 
     Code

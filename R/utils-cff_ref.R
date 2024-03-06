@@ -1,122 +1,4 @@
-#' Internal functions for `as_cff.bibentry` method
-#'
-#' @noRd
-as_cff_reference <- function(x) {
-  # Need always to be unnamed bibentry
-  bib <- unname(x)
-  if (any(duplicated(bib))) {
-    cli::cli_alert_info("Removing duplicate {.cls bibentry} objects.")
-    bib <- unique(bib)
-  }
-
-  # Return always a list
-  the_list <- lapply(bib, make_cff_reference)
-  the_list
-}
-
-make_cff_reference <- function(bib) {
-  # Get BibTeX entry ----
-  cit_list <- get_bibtex_entry(bib)
-
-  ## If no title (case of some Misc) then return null
-  if (!("title" %in% names(cit_list))) {
-    entry <- capture.output(print(bib, bibtex = FALSE))
-    entry <- as.character(entry)
-
-    cli::cli_alert_warning("Entry {.val {entry}} without title. Skipping")
-
-    return(NULL)
-  }
-
-  # Get BibTeX fields ----
-  field_list <- get_bibtex_fields(cit_list)
-  # VGAM: title is a vector
-  field_list$title <- clean_str(field_list$title)
-
-  ## Handle collection types ----
-  field_list <- add_bibtex_coltype(field_list)
-
-  ## Add conference
-  field_list <- add_conference(field_list)
-
-  # Create BibTeX to CFF institution logic ----
-  field_list <- get_bibtex_inst(field_list)
-
-  # Coerce persons ----
-  # Special case: authors
-  # Some keys does not strictly require authors, so we create one for cff
-  # https://github.com/citation-file-format/citation-file-format/blob/main/
-  # (cont) schema-guide.md#how-to-deal-with-unknown-individual-authors
-
-  if (is.null(field_list$authors)) {
-    field_list$authors <- person(family = "anonymous")
-  }
-
-  ## authors ----
-  get_all_authors <- as_cff_person(field_list$authors)
-  field_list$authors <- unique(get_all_authors)
-
-  ## other persons----
-  get_other_persons <- get_bibtex_other_pers(field_list)
-
-  # Keep order here, we would use it later
-  init_ord <- names(field_list)
-
-  cit_list <- c(
-    field_list[!names(field_list) %in% names(get_other_persons)],
-    get_other_persons
-  )
-
-  # Building blocks----
-
-  # Fallback for year and month: use date-published ----
-  cit_list <- fallback_dates(cit_list)
-
-  ## doi----
-  bb_doi <- get_bibtex_doi(cit_list)
-  cit_list$doi <- bb_doi$doi
-
-  ### identifiers ----
-  if (!is.null(bb_doi$identifiers)) cit_list$identifiers <- bb_doi$identifiers
-
-
-  ## url----
-  bb_url <- get_bibtex_url(cit_list)
-  cit_list$url <- bb_url$url
-
-  ### final identifiers----
-  # Identifies (additional dois and urls)
-  if (!is.null(bb_url$identifiers)) {
-    cit_list$identifiers <- append(
-      cit_list$identifiers,
-      bb_url$identifiers
-    )
-  }
-
-  ## Add thesis type ----
-  cit_list <- add_thesis(cit_list)
-
-  ## Handle location ----
-  cit_list <- add_address(cit_list)
-
-
-  # Last step----
-
-  # Initial order but starting with type, title, authors
-  final_order <- unique(
-    c("type", "title", "authors", init_ord, names(cit_list))
-  )
-
-  cit_list <- cit_list[final_order]
-
-  # Remove non-valid names
-  validnames <- cff_schema_definitions_refs()
-  cit_list <- cit_list[names(cit_list) %in% validnames]
-
-  cit_list <- drop_null(cit_list)
-
-  return(cit_list)
-}
+# Utils for as_cff_reference
 
 #' Extract and map BibTeX entry
 #' @noRd
@@ -398,4 +280,150 @@ fallback_dates <- function(cit_list) {
   cit_list$month <- get_bibtex_month(cit_list)
 
   return(cit_list)
+}
+
+#' BB for doi
+#' @noRd
+get_bibtex_doi <- function(cit_list) {
+  dois <- unlist(cit_list[names(cit_list) == "doi"])
+
+  dois <- unlist(lapply(dois, function(x) {
+    x <- gsub("^https://doi.org/", "", x)
+    x <- clean_str(x)
+  }))
+
+
+  dois <- unique(as.character(dois))
+
+
+  # The first doi goes to doi key
+  doi <- unlist(dois[1])
+
+  # The rest goes to identifies
+  identifiers <- lapply(dois[-1], function(x) {
+    list(
+      type = "doi",
+      value = clean_str(x)
+    )
+  })
+  if (length(identifiers) == 0) identifiers <- NULL
+  doi_list <- list(
+    doi = clean_str(doi),
+    identifiers = identifiers
+  )
+  return(doi_list)
+}
+
+#' BB for month
+#' @noRd
+get_bibtex_month <- function(cit_list) {
+  mnt <- clean_str(cit_list$month)
+
+  if (is.null(mnt)) {
+    return(NULL)
+  }
+
+  # If number
+  if (grepl("^\\d+$", mnt)) {
+    # Guess if a valid integer is provided and output
+    mnt_num <- as.numeric(mnt)
+    mnt_num <- mnt_num[mnt_num %in% seq(1, 12)]
+    return(clean_str(mnt_num))
+  }
+
+  # else transform
+  # Get month, everything in lowercase
+  month <- clean_str(tolower(mnt))
+  month <- substr(month, 1, 3)
+
+  # Index on abbreviation
+  low_month <- tolower(month.abb)
+  res <- seq(1, 12)[month == low_month]
+  clean_str(res[1])
+}
+
+#' BB for URL
+#' @noRd
+get_bibtex_url <- function(cit_list) {
+  ## Get url: see bug with cff_create("rgeos")
+  if (is.character(cit_list$url)) {
+    allurls <- as.character(cit_list[names(cit_list) == "url"])
+    allurls <- unlist(strsplit(allurls, " |,|\\n"))
+  } else {
+    allurls <- cit_list$url
+  }
+
+  allurls <- allurls[is_url(allurls)]
+  # The first url goes to url key
+
+  url <- unlist(allurls[1])
+
+  # The rest goes to identifies
+  identifiers <- lapply(allurls[-1], function(x) {
+    list(
+      type = "url",
+      value = clean_str(x)
+    )
+  })
+
+  if (length(identifiers) == 0) identifiers <- NULL
+
+  url_list <- list(
+    url = clean_str(url),
+    identifiers = identifiers
+  )
+
+  return(url_list)
+}
+
+#' BB for other persons
+#' @noRd
+get_bibtex_other_pers <- function(field_list) {
+  others <- drop_null(field_list[other_persons()])
+
+  # If any is person type (example, editors) then paste and collapse
+
+  others <- lapply(others, function(x) {
+    if (inherits(x, "person")) {
+      x <- paste(x, collapse = " and ")
+    } else {
+      return(x)
+    }
+  })
+
+
+
+  # Select subsets
+  all_pers <- other_persons()
+  toent <- other_persons_entity()
+  toent_pers <- entity_person()
+
+  toauto_end <- all_pers[!all_pers %in% c(toent, toent_pers)]
+  toent_end <- toent[!toent %in% toent_pers]
+
+  # Entity
+  toentity <- others[names(others) %in% toent_end]
+  toentity <- lapply(toentity, function(x) {
+    list(name = clean_str(x))
+  })
+
+  # As persons or entities using bibtex
+  toentity_pers <- others[names(others) %in% toent_pers]
+  toentity_pers <- lapply(toentity_pers, function(x) {
+    bibtex <- paste(x, collapse = " and ")
+    end <- as_cff_person(bibtex)
+
+    return(end)
+  })
+
+
+  toperson <- others[names(others) %in% toauto_end]
+  toperson <- lapply(toperson, as_cff_person)
+
+
+  # Bind and reorder
+  other_list <- c(toentity, toperson, toentity_pers)
+  other_list <- other_list[names(others)]
+
+  return(other_list)
 }

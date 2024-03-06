@@ -179,7 +179,7 @@ cff_read_description <- function(path, cff_version = "1.2.0",
   )
 
 
-  list_fields <- list(
+  field_list <- list(
     "cff-version" = cff_version,
     message = msg,
     type = "software",
@@ -198,11 +198,11 @@ cff_read_description <- function(path, cff_version = "1.2.0",
   )
 
   if (gh_keywords) {
-    ghtopics <- parse_ghtopics(list_fields)
-    list_fields$keywords <- unique(c(list_fields$keywords, ghtopics))
+    ghtopics <- parse_ghtopics(field_list)
+    field_list$keywords <- unique(c(field_list$keywords, ghtopics))
   }
 
-  new_cff(list_fields)
+  new_cff(field_list)
 }
 
 #' @export
