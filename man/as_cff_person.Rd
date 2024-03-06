@@ -169,6 +169,8 @@ See \strong{Examples} for more information.
 \seealso{
 Examples in \code{vignette("cffr", "cffr")} and \code{\link[utils:person]{utils::person()}}.
 
+Learn more about the \CRANpkg{cffr} class system in \link{cff_class}.
+
 Other functions for converting between \strong{R} classes:
 \code{\link{as_bibentry}()},
 \code{\link{as_cff}()}

@@ -53,8 +53,8 @@
 #' If you are using **RStudio** you can run also this command from a **R**
 #' script by selecting that line and sending it to the terminal using:
 #'
-#' - `Ctrl+Alt+Enter` (Windows & Linux), or
-#' - `Cmd+Option+Return` (Mac).
+#' - Windows & Linux: `Ctrl+Alt+Enter`.
+#' - Mac: `Cmd+Option+Return`.
 #'
 #' # Removing the git pre-commit hook
 #'

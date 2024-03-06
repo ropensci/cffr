@@ -216,8 +216,12 @@ guess_cff_part <- function(x) {
 
 
 detect_x_source <- function(x) {
-  if (missing(x)) {
+  if (any(missing(x), is.null(x))) {
     return("indev")
+  }
+
+  if (is_cff(x)) {
+    return("cff_obj")
   }
 
   x <- as.character(x)[1]
@@ -256,4 +260,15 @@ match_cff_arg <- function(arg, valid, for_msg, call = environment()) {
   }
 
   return(arg)
+}
+
+file_path_or_null <- function(x) {
+  x_c <- clean_str(x)
+  if (is.null(x_c)) {
+    return(x)
+  }
+  if (file.exists(x)) {
+    return(x)
+  }
+  return(NULL)
 }

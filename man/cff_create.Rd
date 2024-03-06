@@ -19,13 +19,13 @@ the \code{\link{cff}} object. It could be:
 \itemize{
 \item A missing value. That would retrieve the \code{DESCRIPTION} file on your
 in-development \strong{R} package.
-\item An existing \code{\link{cff}} object,
-\item The name of an installed package (\code{"jsonlite"}), or
+\item An existing \code{\link{cff}} object.
+\item The name of an installed package (\code{"jsonlite"}).
 \item Path to a \code{DESCRIPTION} file (\code{"./DESCRIPTION"}).
 }}
 
 \item{keys}{List of additional keys to add to the \code{\link{cff}} object. See
-\strong{Details}.}
+[cff_modify().}
 
 \item{cff_version}{The Citation File Format schema version that the
 \code{CITATION.cff} file adheres to for providing the citation metadata.}

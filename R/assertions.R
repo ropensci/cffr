@@ -94,7 +94,9 @@ stopifnotcff <- function(x) {
     )
   }
 
-  if (tools::file_ext(x) != "cff") {
+  guess <- detect_x_source(x)
+
+  if (guess != "cff_citation") {
     cli::cli_abort(
       "{.var x} is not a {.file *.cff} file"
     )

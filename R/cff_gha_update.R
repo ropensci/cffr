@@ -2,9 +2,9 @@
 #'
 #' @description
 #'
-#' This function would install a
-#' [GitHub Action](https://github.com/features/actions) on your repo. The action
-#' will update your `CITATION.cff` when any of these events occur:
+#' This function would install a [GitHub
+#' Action](https://github.com/features/actions) on your repo. The action will
+#' update your `CITATION.cff` when any of these events occur:
 #' - You publish a new release of the package.
 #' - Your `DESCRIPTION` or `inst/CITATION` are modified.
 #' - The action can be run also manually.

@@ -18,8 +18,15 @@
 #'
 #' @returns
 #'
-#' A `cff` object. These objects are rarely [valid][cff_validate()], but can
-#' be used to complement or modify complete `cff` objects.
+#' * `as_cff.person()` returns an object with classes `"cff_pers_list", "cff"`.
+#' * `as_cff.bibentry()` and `as_cff.Bibtex()` returns an object with classes
+#'   `"cff_ref_list", "cff"`.
+#' * The rest of methods returns usually an object of class `cff`. However if
+#'   `x` have an structure compatible with `definitions.person`,
+#'   `definitions.entity` or `definitions.reference` the object would have the
+#'   corresponding subclass.
+#'
+#' Learn more about the \CRANpkg{cffr} class system in [cff_class].
 #'
 #' @family coercing
 #' @family s3method
@@ -28,7 +35,7 @@
 #' For `as_cff.bibentry()` / `as_cff.Bibtex()` see
 #' `vignette("bibtex_cff", "cffr")` to understand how the mapping is performed.
 #'
-#' [as_cff_person()] is preferred over `as_cff.person()` since it can handle
+#' [as_cff_person()] is preferred over `as_cff.person()`, since it can handle
 #' `character` person such as `"Davis, Jr., Sammy"`. For `person` objects both
 #' functions are similar.
 #'
@@ -38,6 +45,8 @@
 #' - [cff_create()]: Create a `cff` object of a **R** package.
 #' - [cff_read()]: Create a `cff` object from a external file.
 #' - [as_cff_person()]: Recommended way for creating persons in CFF format.
+#'
+#' Learn more about the \CRANpkg{cffr} class system in [cff_class].
 #'
 #' @export
 #'

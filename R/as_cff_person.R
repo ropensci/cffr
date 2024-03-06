@@ -25,6 +25,8 @@
 #' @seealso
 #' Examples in `vignette("cffr", "cffr")` and [utils::person()].
 #'
+#' Learn more about the \CRANpkg{cffr} class system in [cff_class].
+#'
 #' @export
 #' @rdname as_cff_person
 #' @name as_cff_person
