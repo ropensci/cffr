@@ -9,7 +9,8 @@ cff_modify(x, ...)
 \arguments{
 \item{x}{A \code{\link{cff}} object.}
 
-\item{...}{Named arguments to be used for modifying \code{x}. See also \code{\link[=cff]{cff()}}.}
+\item{...}{Named arguments to be used for modifying \code{x}. See also \code{...}
+argument in \code{\link[=cff]{cff()}}.}
 }
 \value{
 A \code{\link{cff}} object.
@@ -18,8 +19,7 @@ A \code{\link{cff}} object.
 Add new keys or modify existing ones on a \code{\link{cff}} object.
 }
 \details{
-If any key provided in \code{...} is present in \code{x}, the result would have the
-key provided in \code{...}.
+Keys provided in \code{...} would override the corresponding key in \code{x}.
 }
 \examples{
 x <- cff()
@@ -42,11 +42,6 @@ cff_validate(x_mod)
 This function is wrapper of \code{\link[utils:modifyList]{utils::modifyList()}}.
 
 See \code{\link[=cff]{cff()}} for creating \code{\link{cff}} objects from scratch.
-
-Other core functions of \CRANpkg{cffr}:
-\code{\link{cff}()},
-\code{\link{cff_create}()},
-\code{\link{cff_validate}()}
 
 Other core functions of \CRANpkg{cffr}:
 \code{\link{cff}()},

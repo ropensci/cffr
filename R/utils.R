@@ -272,3 +272,60 @@ file_path_or_null <- function(x) {
   }
   return(NULL)
 }
+
+#' Parse and clean data from DESCRIPTION to create metadata
+#' @noRd
+clean_package_meta <- function(meta) {
+  if (!inherits(meta, "packageDescription")) {
+    # Add encoding
+    meta <- list()
+    meta$Encoding <- "UTF-8"
+    return(meta)
+  }
+
+  # Convert to a desc object
+
+  # First write to a dcf file
+  tmp <- tempfile("DESCRIPTION")
+  meta_unl <- unclass(meta)
+  write.dcf(meta_unl, tmp)
+  pkg <- desc::desc(tmp)
+  pkg$coerce_authors_at_r()
+  # Extract package data
+  meta <- pkg$get(desc::cran_valid_fields)
+
+  # Clean missing and drop empty fields
+  meta <- drop_null(lapply(meta, clean_str))
+
+  # Check encoding
+  if (!is.null(meta$Encoding)) {
+    meta <- lapply(meta, iconv, from = meta$Encoding, to = "UTF-8")
+  } else {
+    meta$Encoding <- "UTF-8"
+  }
+  unlink(tmp, force = TRUE)
+  meta
+}
+
+
+
+# Convert a DESCRIPTION object to meta object using desc package
+desc_to_meta <- function(x) {
+  src <- x
+  my_meta <- desc::desc(src)
+  my_meta$coerce_authors_at_r()
+
+
+  # As list
+  my_meta_l <- my_meta$get(desc::cran_valid_fields)
+  my_meta_l <- as.list(my_meta_l)
+  v_nas <- vapply(my_meta_l, is.na, logical(1))
+  my_meta_l <- my_meta_l[!v_nas]
+
+  meta_proto <- packageDescription("cffr")
+
+  class(my_meta_l) <- class(meta_proto)
+  attr(my_meta_l, "file") <- x
+
+  my_meta_l
+}

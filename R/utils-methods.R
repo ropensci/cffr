@@ -175,26 +175,3 @@ cff_to_df <- function(x) {
 
   return(final_df)
 }
-
-cff_list_to_df <- function(x) {
-  # Applicable to lists of persons or references
-  # Guess type
-  if (!"type" %in% names(x[[1]])) {
-    guess <- "person"
-  } else {
-    guess <- "reference"
-  }
-
-
-  x_len <- seq_len(length(x))
-  df_l <- lapply(x_len, function(y) {
-    df <- as.data.frame(x[y])
-    newnames <- paste0(guess, ".", sprintf("%02d", y - 1), ".", names(df))
-    names(df) <- newnames
-
-    df
-  })
-
-  df_end <- df_list_to_df(df_l)
-  df_end
-}

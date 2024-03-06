@@ -24,7 +24,8 @@ See \strong{Examples}.
 }
 \value{
 \code{as_cff_person()} returns an object of classes \verb{"cff_pers_list", "cff"}
-according to the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
+according to the \code{definitions.person} or \code{definitions.entity} specified in
+the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
 Each element of the \verb{"cff_pers_list", "cff"} object would have classes
 \verb{"cff_pers", "cff"}. Learn more about the \CRANpkg{cffr} class system in
 \link{cff_class}.

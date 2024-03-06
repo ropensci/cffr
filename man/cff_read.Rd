@@ -45,14 +45,17 @@ generating the \code{\link{cff}} object.}
 \item{encoding}{Encoding to be assumed for \code{path}. See \code{\link[=readLines]{readLines()}}.}
 }
 \value{
-A \code{\link{cff}} object. In the case of \code{\link[=cff_read_cff_citation]{cff_read_cff_citation()}} and
-\code{\link[=cff_read_description]{cff_read_description()}} a full and (potentially) valid \code{cff} object.
-
-In the case of \code{\link[=cff_read_bib]{cff_read_bib()}} and \code{\link[=cff_read_citation]{cff_read_citation()}}, the result is
-the \code{cff} version of a \code{\link[=bibentry]{bibentry()}} object (i.e. a bibliographic reference),
-that can be used to complement another \code{cff} object. See
-\code{vignette("bibtex_cff", "cffr")} to get further insights on how this
+\itemize{
+\item \code{cff_read_cff_citation()} and \code{cff_read_description()} returns a object
+with class \code{cff}.
+\item \code{cff_read_citation()} and \code{cff_read_bib()} returns an object of classes
+\verb{"cff_ref_list", "cff"} according to the \code{definitions.references}
+specified in the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
+See \code{vignette("bibtex_cff", "cffr")} to get further insights on how this
 conversion is performed.
+}
+
+Learn more about the \CRANpkg{cffr} class system in \link{cff_class}.
 }
 \description{
 Read files and convert them to \code{\link{cff}} objects. Files supported

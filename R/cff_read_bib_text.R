@@ -7,6 +7,7 @@
 #' @family bibtex
 #' @family reading
 #' @seealso
+#'
 #' [cff_read_bib()] for reading `*.bib` files.
 #'
 #' @export
@@ -18,10 +19,23 @@
 #'
 #' @return
 #'
-#' ```{r child = "man/chunks/value.Rmd"}
+#' An object of classes `"cff_ref_list", "cff"` according to the
+#' `definitions.references` specified in
+#' the
+#' ```{r, echo=FALSE, results='asis'}
+#'
+#' cat(paste0(" [Citation File Format schema]",
+#'            "(https://github.com/citation-file-format/",
+#'            "citation-file-format/blob/main/schema-guide.md). "))
+#'
+#'
 #' ```
+#' Each element of the `"cff_ref_list", "cff"` object would have classes
+#' `"cff_ref", "cff"`. Learn more about the \CRANpkg{cffr} class system in
+#' [cff_class].
 #'
 #' @details
+#'
 #' This is a helper function that writes `x` to a `*.bib` file and reads it with
 #' [cff_read_bib()].
 #'

@@ -41,7 +41,8 @@
 #'
 #' @return
 #' `as_cff_person()` returns an object of classes `"cff_pers_list", "cff"`
-#' according to the
+#' according to the `definitions.person` or `definitions.entity` specified in
+#' the
 #' ```{r, echo=FALSE, results='asis'}
 #'
 #' cat(paste0(" [Citation File Format schema]",

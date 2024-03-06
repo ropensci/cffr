@@ -44,8 +44,6 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
     })
 
     the_df <- do.call(cbind, end_df)
-  } else if (is.null(names(x))) {
-    the_df <- cff_list_to_df(x)
   } else {
     the_df <- cff_to_df(x)
   }

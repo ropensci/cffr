@@ -41,16 +41,24 @@
 #'   [yaml::read_yaml()], [bibtex::read.bib()], etc.).
 #'
 #' @return
-#' A [`cff`] object. In the case of [cff_read_cff_citation()] and
-#' [cff_read_description()] a full and (potentially) valid `cff` object.
+#'
+#' * `cff_read_cff_citation()` and `cff_read_description()` returns a object
+#'   with class `cff`.
+#' * `cff_read_citation()` and `cff_read_bib()` returns an object of classes
+#'   `"cff_ref_list", "cff"` according to the `definitions.references`
+#'   specified in the
+#' ```{r, echo=FALSE, results='asis'}
+#'
+#' cat(paste0(" [Citation File Format schema]",
+#'            "(https://github.com/citation-file-format/",
+#'            "citation-file-format/blob/main/schema-guide.md)."))
 #'
 #'
-#' In the case of [cff_read_bib()] and [cff_read_citation()], the result is
-#' the `cff` version of a [bibentry()] object (i.e. a bibliographic reference),
-#' that can be used to complement another `cff` object. See
-#' `vignette("bibtex_cff", "cffr")` to get further insights on how this
-#' conversion is performed.
+#' ```
+#'  See `vignette("bibtex_cff", "cffr")` to get further insights on how this
+#'  conversion is performed.
 #'
+#' Learn more about the \CRANpkg{cffr} class system in [cff_class].
 #'
 #' @references
 #'
@@ -118,9 +126,9 @@ cff_read <- function(path, ...) {
       )
     )
   }
-  filetype <- guess_type_file(path)
+  filetype <- detect_x_source(path)
 
-  if (is.null(filetype)) {
+  if (filetype == "dontknow") {
     cli::cli_abort(
       paste0(
         "Don't recognize the file type of {.file {path}}.",
@@ -134,7 +142,7 @@ cff_read <- function(path, ...) {
     "description" = cff_read_description(path, ...),
     "bib" = cff_read_bib(path, ...),
     "citation" = cff_read_citation(path, ...),
-    NULL
+    cli::cli_abort("Don't know how to read {.val {x}}.")
   )
 
   endobj
@@ -315,78 +323,4 @@ cff_safe_read_citation <- function(desc_path, cit_path) {
   tocff
 }
 
-# Helpers ----
-
-guess_type_file <- function(path) {
-  if (grepl("\\.cff$", path, ignore.case = TRUE)) {
-    return("cff_citation")
-  }
-  if (grepl("\\.bib$", path, ignore.case = TRUE)) {
-    return("bib")
-  }
-  if (grepl("citat", path, ignore.case = TRUE)) {
-    return("citation")
-  }
-  if (grepl("desc", path, ignore.case = TRUE)) {
-    return("description")
-  }
-
-  return(NULL)
-}
-
-#' Parse and clean data from DESCRIPTION to create metadata
-#' @noRd
-clean_package_meta <- function(meta) {
-  if (!inherits(meta, "packageDescription")) {
-    # Add encoding
-    meta <- list()
-    meta$Encoding <- "UTF-8"
-    return(meta)
-  }
-
-  # Convert to a desc object
-
-  # First write to a dcf file
-  tmp <- tempfile("DESCRIPTION")
-  meta_unl <- unclass(meta)
-  write.dcf(meta_unl, tmp)
-  pkg <- desc::desc(tmp)
-  pkg$coerce_authors_at_r()
-  # Extract package data
-  meta <- pkg$get(desc::cran_valid_fields)
-
-  # Clean missing and drop empty fields
-  meta <- drop_null(lapply(meta, clean_str))
-
-  # Check encoding
-  if (!is.null(meta$Encoding)) {
-    meta <- lapply(meta, iconv, from = meta$Encoding, to = "UTF-8")
-  } else {
-    meta$Encoding <- "UTF-8"
-  }
-  unlink(tmp, force = TRUE)
-  meta
-}
-
-
-
-# Convert a DESCRIPTION object to meta object using desc package
-desc_to_meta <- function(x) {
-  src <- x
-  my_meta <- desc::desc(src)
-  my_meta$coerce_authors_at_r()
-
-
-  # As list
-  my_meta_l <- my_meta$get(desc::cran_valid_fields)
-  my_meta_l <- as.list(my_meta_l)
-  v_nas <- vapply(my_meta_l, is.na, logical(1))
-  my_meta_l <- my_meta_l[!v_nas]
-
-  meta_proto <- packageDescription("cffr")
-
-  class(my_meta_l) <- class(meta_proto)
-  attr(my_meta_l, "file") <- x
-
-  my_meta_l
-}
+# See utils.R
