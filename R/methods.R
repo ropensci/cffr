@@ -174,11 +174,18 @@ as.person.cff_pers <- function(x) {
 as.person.cff_pers_list <- function(x) {
   pers <- lapply(x, make_r_person)
 
-  # If not all extracted, malformed, return null
+  # If not all extracted inform
   if (!all(lengths(pers) > 0)) {
-    return(person())
+    cli::cli_alert_info(
+      "Can't create {.cls person} for some elements of {.arg x}."
+    )
   }
-  do.call(c, pers)
+  end <- do.call(c, pers)
+  if (any(duplicated(end))) {
+    cli::cli_alert_info("Removing duplicate {.cls person} objects.")
+    end <- end[!duplicated(end)]
+  }
+  end
 }
 
 

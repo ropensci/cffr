@@ -145,13 +145,13 @@ cff_create <- function(x, keys = list(), cff_version = "1.2.0",
   }
 
   # Build cff and return paths if any
-  result_parsed <- build_cff_and_paths(
+  result_paths <- build_cff_and_paths(
     x, cff_version, gh_keywords,
     dependencies, authors_roles, hint_source
   )
 
-  desc_path <- result_parsed[["desc_path"]]
-  cffobjend <- result_parsed[["cffobjend"]]
+  desc_path <- result_paths[["desc_path"]]
+  cffobjend <- result_paths[["cffobjend"]]
 
 
 

@@ -31,7 +31,7 @@ package.
     -   `as_cff.Bibtex()`.
     -   `as_cff.bibentry()`, replacing cff_parse_citation().
     -   `as_cff.person()`, similar to `as_cff_person()` but only for `person`
-        objects. We recommend using `as_cff_person()` since it can parse also
+        objects. We recommend using `as_cff_person()` since it can coerce also
         string representing authors in BibTeX markup (`"{von Neumen}, James"`),
         that can't be captured properly via methods.
 -   New `as_bibentry()` method for a variety of classes (`character`, `list`,

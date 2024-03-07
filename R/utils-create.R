@@ -1,4 +1,4 @@
-#' Merge the information of a parsed description with a parsed citation
+#' Merge the information of a coerced description with a coerced citation
 #' @noRd
 merge_desc_cit <- function(cffobj, citobj) {
   # If no citobj then return null
@@ -82,7 +82,7 @@ parse_dependencies <- function(desc_path,
   if (!is.character(desc_path)) {
     return(NULL)
   }
-  if (!file.exists(desc_path)) {
+  if (!file_exist_abort(desc_path)) {
     return(NULL)
   }
   # nocov end
@@ -143,7 +143,7 @@ parse_dependencies <- function(desc_path,
     # urls from citation() vary due to auto = TRUE
     dfile <- system.file("DESCRIPTION", package = n$package)
 
-    if (file.exists(dfile)) {
+    if (file_exist_abort(dfile)) {
       pkg <- desc::desc(dfile)
       mod$url <- parse_desc_urls(pkg)$url
       mod$repository <- parse_desc_repository(pkg)

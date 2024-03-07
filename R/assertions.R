@@ -55,16 +55,8 @@ is_cff <- function(x) {
 #' @param x object to be evaluated
 #' @noRd
 is_cff_file <- function(x) {
-  if (!inherits(x, "character")) {
-    return(FALSE)
-  }
-
-  if (tools::file_ext(x) != "cff") {
-    return(FALSE)
-  }
-
-  stopifnotexists(x)
-  return(TRUE)
+  src <- detect_x_source(x)
+  return(src == "cff_citation")
 }
 
 #' Check if an url is from GitHub
@@ -77,40 +69,6 @@ is_github <- function(x) {
   ) == 1)
 
   return(res)
-}
-
-#' Error if it is not a `cff` file or object
-#' @param x file to be evaluated
-#' @noRd
-stopifnotcff <- function(x) {
-  if (is_cff(x)) {
-    return(invisible())
-  }
-
-  # x should be character at least
-  if (!inherits(x, "character")) {
-    cli::cli_abort(
-      "{.var x} is an object of class {.cls {class(x)}}, not {.cls cff}."
-    )
-  }
-
-  guess <- detect_x_source(x)
-
-  if (guess != "cff_citation") {
-    cli::cli_abort(
-      "{.var x} is not a {.file *.cff} file"
-    )
-  }
-}
-
-#' Error if file doesn't exists
-#' @param x file to be evaluated
-#' @noRd
-stopifnotexists <- function(x) {
-  if (!file.exists(x)) {
-    cli::cli_abort("{.file {x}} doesn't exist")
-  }
-  return(invisible(NULL))
 }
 
 #' Check if `x` has names

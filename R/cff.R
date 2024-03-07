@@ -66,14 +66,12 @@
 #' @export
 cff <- function(path, ...) {
   if (!missing(path)) {
-    if (is_cff_file(path)) {
-      lifecycle::deprecate_soft(
-        "1.0.0", "cff(path)", "cff_read_cff_citation()"
-      )
+    src <- detect_x_source(path)
+    if (src == "cff_citation") {
+      lifecycle::deprecate_soft("1.0.0", "cff(path)", "cff_read_cff_citation()")
       return(cff_read_cff_citation(path))
     } else {
-      lifecycle::deprecate_soft(
-        "1.0.0", "cff(path)",
+      lifecycle::deprecate_soft("1.0.0", "cff(path)",
         details = "Argument ignored."
       )
     }

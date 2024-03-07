@@ -118,14 +118,7 @@ cff_read <- function(path, ...) {
     )
   }
 
-  if (!file.exists(path)) {
-    cli::cli_abort(
-      paste(
-        "{.file {path}} does not exist. ",
-        "Check the {.file {dirname(path)}} directory"
-      )
-    )
-  }
+  file_exist_abort(path, abort = TRUE)
   filetype <- detect_x_source(path)
 
   if (filetype == "dontknow") {
@@ -151,14 +144,7 @@ cff_read <- function(path, ...) {
 #' @export
 #' @rdname cff_read
 cff_read_cff_citation <- function(path, ...) {
-  if (!file.exists(path)) {
-    cli::cli_abort(
-      paste(
-        "{.file {path}} does not exist. ",
-        "Check the {.file {dirname(path)}} directory"
-      )
-    )
-  }
+  file_exist_abort(path, abort = TRUE)
 
   cffobj <- yaml::read_yaml(path, ...)
   new_cff(cffobj)
@@ -169,14 +155,7 @@ cff_read_cff_citation <- function(path, ...) {
 cff_read_description <- function(path, cff_version = "1.2.0",
                                  gh_keywords = TRUE,
                                  authors_roles = c("aut", "cre"), ...) {
-  if (!file.exists(path)) {
-    cli::cli_abort(
-      paste(
-        "{.file {path}} does not exist. ",
-        "Check the {.file {dirname(path)}} directory"
-      )
-    )
-  }
+  file_exist_abort(path, abort = TRUE)
 
   pkg <- desc::desc(path)
   pkg$coerce_authors_at_r()
@@ -216,14 +195,7 @@ cff_read_description <- function(path, cff_version = "1.2.0",
 #' @export
 #' @rdname cff_read
 cff_read_citation <- function(path, meta = NULL, ...) {
-  if (!file.exists(path)) {
-    cli::cli_abort(
-      paste(
-        "{.file {path}} does not exist. ",
-        "Check the {.file {dirname(path)}} directory"
-      )
-    )
-  }
+  file_exist_abort(path, abort = TRUE)
 
   if (!any(is.null(meta), inherits(meta, "packageDescription"))) {
     # nolint start
@@ -273,14 +245,7 @@ cff_read_citation <- function(path, meta = NULL, ...) {
 #' @family bibtex
 #' @rdname cff_read
 cff_read_bib <- function(path, encoding = "UTF-8", ...) {
-  if (!file.exists(path)) {
-    cli::cli_abort(
-      paste(
-        "{.file {path}} does not exist. ",
-        "Check the {.file {dirname(path)}} directory"
-      )
-    )
-  }
+  file_exist_abort(path, abort = TRUE)
 
   # nocov start
   if (!requireNamespace("bibtex", quietly = TRUE)) {
@@ -304,7 +269,7 @@ cff_read_bib <- function(path, encoding = "UTF-8", ...) {
 #' Internal version of cff_read_citation, safe
 #' @noRd
 cff_safe_read_citation <- function(desc_path, cit_path) {
-  if (!file.exists(cit_path) || !file.exists(desc_path)) {
+  if (!file_exist_abort(cit_path) || !file_exist_abort(desc_path)) {
     return(NULL)
   }
   # Create meta

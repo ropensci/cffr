@@ -192,6 +192,8 @@ as_bibentry.list <- function(x, ...) {
 
   # Unlist easy to undo the do.call effect
   bib <- bib[[1]]
+
+  bib
 }
 
 
@@ -224,6 +226,12 @@ as_bibentry.cff <- function(x, ...,
   )
 
   if (is.null(obj_extract)) {
+    cli::cli_alert_warning(
+      paste0(
+        "In {.arg x} didn't find anything with {.arg what} = {.val {what}}. ",
+        "Returning empty {.cls bibentry}."
+      )
+    )
     return(bibentry())
   }
 

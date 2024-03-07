@@ -2,7 +2,6 @@ library(cffr)
 installed <- as.data.frame(installed.packages()[, c("Package", "Version")])
 installed <- installed[order(installed$Package), ]
 
-
 rownames(installed) <- seq_len(nrow(installed))
 
 l <- nrow(installed)

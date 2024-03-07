@@ -52,8 +52,8 @@ Section 1.9 CITATION files of \emph{Writing R Extensions} (R Core Team 2023).
 }
 }
 \details{
-When \code{x} is a \code{cff} object it would be converted to \code{bibentry} using
-\code{\link[=as_bibentry]{as_bibentry()}}.
+When \code{x} is a \code{cff} object it would be converted to \code{Bibtex} using
+\code{\link[=toBibtex.cff]{toBibtex.cff()}}.
 
 For security reasons, if the file already exists the function would create
 a backup copy on the same directory.

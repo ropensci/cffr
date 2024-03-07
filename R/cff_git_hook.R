@@ -89,7 +89,7 @@ cff_git_hook_remove <- function() {
   # nocov start
   hookfile <- file.path(".git", "hooks", "pre-commit")
 
-  if (file.exists(hookfile)) {
+  if (file_exist_abort(hookfile)) {
     cli::cli_alert_info(
       "Removing git pre-commit hook (was on {.path {hookfile}})"
     )

@@ -10,6 +10,35 @@ test_that("Test installed packages", {
   expect_silent(cff_create("yaml"))
 })
 
+test_that("Test indev", {
+  skip_on_cran()
+  current_dir <- getwd()
+
+  name <- paste0("mock-pack", runif(1) * 10)
+  new_dir <- file.path(tempdir(), name)
+
+  dir.create(new_dir, recursive = TRUE)
+
+  expect_true(dir.exists(new_dir))
+
+  setwd(new_dir)
+
+  # Move files
+  file.copy(system.file("examples/DESCRIPTION_basic", package = "cffr"),
+    to = "DESCRIPTION"
+  )
+
+  a_cff <- cff_create()
+
+  expect_true(cff_validate(a_cff, verbose = FALSE))
+  # Revert to initial wd
+  setwd(current_dir)
+
+  expect_snapshot(a_cff)
+
+  unlink(new_dir, recursive = TRUE, force = TRUE)
+})
+
 test_that("Test dependencies extraction", {
   yes <- cff_create("jsonlite")
   no <- cff_create("jsonlite", dependencies = FALSE)
@@ -163,80 +192,80 @@ test_that("Add new roles on write", {
 })
 
 # Check DESCRIPTION ----
-test_that("Parse date", {
+test_that("Coerce date", {
   desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
 
-  parsed <- cff_create(desc_path,
+  a_cff <- cff_create(desc_path,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   )
 
-  expect_false(is.null(parsed$`date-released`))
+  expect_false(is.null(a_cff$`date-released`))
 
-  expect_s3_class(parsed, "cff")
-  expect_snapshot(parsed)
-  expect_true(cff_validate(parsed, verbose = FALSE))
+  expect_s3_class(a_cff, "cff")
+  expect_snapshot(a_cff)
+  expect_true(cff_validate(a_cff, verbose = FALSE))
 })
 
-test_that("Parse date in another format", {
+test_that("Coerce date in another format", {
   desc_path <- system.file("examples/DESCRIPTION_basicdate", package = "cffr")
 
-  parsed <- cff_create(desc_path,
+  a_cff <- cff_create(desc_path,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   )
 
-  expect_false(is.null(parsed$`date-released`))
+  expect_false(is.null(a_cff$`date-released`))
 
-  expect_s3_class(parsed, "cff")
-  expect_snapshot(parsed)
-  expect_true(cff_validate(parsed, verbose = FALSE))
+  expect_s3_class(a_cff, "cff")
+  expect_snapshot(a_cff)
+  expect_true(cff_validate(a_cff, verbose = FALSE))
 })
 
 
-test_that("No date parsed in DESCRIPTION without it", {
+test_that("No date coerced in DESCRIPTION without it", {
   desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
-  parsed <- cff_create(desc_path,
+  a_cff <- cff_create(desc_path,
     keys = list(references = NULL)
   )
 
-  expect_true(is.null(parsed$`date-released`))
+  expect_true(is.null(a_cff$`date-released`))
 
-  expect_s3_class(parsed, "cff")
-  expect_true(cff_validate(parsed, verbose = FALSE))
+  expect_s3_class(a_cff, "cff")
+  expect_true(cff_validate(a_cff, verbose = FALSE))
 })
 
 test_that("Parsing many urls", {
   desc_path <- system.file("examples/DESCRIPTION_many_urls", package = "cffr")
 
-  parsed <- cff_create(desc_path,
+  a_cff <- cff_create(desc_path,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   )
 
-  expect_length(parsed$`repository-code`, 1)
-  expect_length(parsed$url, 1)
-  expect_length(parsed$identifiers, 3)
-  expect_s3_class(parsed, "cff")
-  expect_snapshot(parsed)
-  expect_true(cff_validate(parsed, verbose = FALSE))
+  expect_length(a_cff$`repository-code`, 1)
+  expect_length(a_cff$url, 1)
+  expect_length(a_cff$identifiers, 3)
+  expect_s3_class(a_cff, "cff")
+  expect_snapshot(a_cff)
+  expect_true(cff_validate(a_cff, verbose = FALSE))
 })
 
 
 test_that("Parsing Gitlab", {
   desc_path <- system.file("examples/DESCRIPTION_gitlab", package = "cffr")
 
-  parsed <- cff_create(desc_path,
+  a_cff <- cff_create(desc_path,
     keys = list(references = NULL)
   )
 
-  expect_length(parsed$`repository-code`, 1)
-  expect_length(parsed$url, 1)
-  expect_length(parsed$identifiers, 0)
-  expect_s3_class(parsed, "cff")
-  expect_snapshot(parsed)
-  expect_true(cff_validate(parsed, verbose = FALSE))
+  expect_length(a_cff$`repository-code`, 1)
+  expect_length(a_cff$url, 1)
+  expect_length(a_cff$identifiers, 0)
+  expect_s3_class(a_cff, "cff")
+  expect_snapshot(a_cff)
+  expect_true(cff_validate(a_cff, verbose = FALSE))
 })
 
 test_that("Parsing many persons", {
@@ -244,42 +273,42 @@ test_that("Parsing many persons", {
     package = "cffr"
   )
 
-  parsed <- cff_create(desc_path,
+  a_cff <- cff_create(desc_path,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   )
 
 
-  expect_length(parsed$authors, 4)
+  expect_length(a_cff$authors, 4)
 
 
-  authors <- unlist(parsed$authors)
+  authors <- unlist(a_cff$authors)
 
 
   expect_length(grep("erro", authors), 0)
-  names <- unlist(lapply(parsed$authors, names))
+  names <- unlist(lapply(a_cff$authors, names))
 
-  expect_s3_class(parsed, "cff")
-  expect_snapshot(parsed)
-  expect_true(cff_validate(parsed, verbose = FALSE))
+  expect_s3_class(a_cff, "cff")
+  expect_snapshot(a_cff)
+  expect_true(cff_validate(a_cff, verbose = FALSE))
 })
 
 
 test_that("Parsing wrong urls", {
   desc_path <- system.file("examples/DESCRIPTION_wrong_urls", package = "cffr")
 
-  parsed <- cff_create(desc_path,
+  a_cff <- cff_create(desc_path,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   )
 
-  expect_null(parsed$`repository-code`)
-  expect_length(parsed$url, 1)
-  expect_length(parsed$identifiers, 2)
+  expect_null(a_cff$`repository-code`)
+  expect_length(a_cff$url, 1)
+  expect_length(a_cff$identifiers, 2)
 
-  expect_s3_class(parsed, "cff")
-  expect_snapshot(parsed)
-  expect_true(cff_validate(parsed, verbose = FALSE))
+  expect_s3_class(a_cff, "cff")
+  expect_snapshot(a_cff)
+  expect_true(cff_validate(a_cff, verbose = FALSE))
 })
 
 
@@ -289,17 +318,17 @@ test_that("Parsing two maintainers", {
     package = "cffr"
   )
 
-  parsed <- cff_create(desc_path,
+  a_cff <- cff_create(desc_path,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   )
 
-  expect_length(parsed$authors, 3)
-  expect_length(parsed$contact, 2)
+  expect_length(a_cff$authors, 3)
+  expect_length(a_cff$contact, 2)
 
-  expect_s3_class(parsed, "cff")
-  expect_snapshot(parsed)
-  expect_true(cff_validate(parsed, verbose = FALSE))
+  expect_s3_class(a_cff, "cff")
+  expect_snapshot(a_cff)
+  expect_true(cff_validate(a_cff, verbose = FALSE))
 })
 
 test_that("Parsing r-universe", {
@@ -307,16 +336,16 @@ test_that("Parsing r-universe", {
     package = "cffr"
   )
 
-  parsed <- cff_create(desc_path,
+  a_cff <- cff_create(desc_path,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   )
 
-  expect_length(parsed$repository, 1)
+  expect_length(a_cff$repository, 1)
 
-  expect_s3_class(parsed, "cff")
-  expect_snapshot(parsed)
-  expect_true(cff_validate(parsed, verbose = FALSE))
+  expect_s3_class(a_cff, "cff")
+  expect_snapshot(a_cff)
+  expect_true(cff_validate(a_cff, verbose = FALSE))
 })
 
 
@@ -325,16 +354,16 @@ test_that("Parsing Bioconductor", {
     package = "cffr"
   )
 
-  parsed <- cff_create(desc_path,
+  a_cff <- cff_create(desc_path,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   )
 
-  expect_length(parsed$repository, 1)
+  expect_length(a_cff$repository, 1)
 
-  expect_s3_class(parsed, "cff")
-  expect_snapshot(parsed)
-  expect_true(cff_validate(parsed, verbose = FALSE))
+  expect_s3_class(a_cff, "cff")
+  expect_snapshot(a_cff)
+  expect_true(cff_validate(a_cff, verbose = FALSE))
 })
 
 test_that("Parsing Posit Package Manager", {
@@ -342,19 +371,19 @@ test_that("Parsing Posit Package Manager", {
     package = "cffr"
   )
 
-  parsed <- cff_create(desc_path,
+  a_cff <- cff_create(desc_path,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   )
 
-  expect_length(parsed$repository, 1)
+  expect_length(a_cff$repository, 1)
   expect_identical(
-    parsed$repository,
+    a_cff$repository,
     "https://CRAN.R-project.org/package=resmush"
   )
-  expect_s3_class(parsed, "cff")
-  expect_snapshot(parsed)
-  expect_true(cff_validate(parsed, verbose = FALSE))
+  expect_s3_class(a_cff, "cff")
+  expect_snapshot(a_cff)
+  expect_true(cff_validate(a_cff, verbose = FALSE))
 })
 
 test_that("Search package on CRAN", {
@@ -368,16 +397,16 @@ test_that("Search package on CRAN", {
 
   newfile <- desc::desc_set("Package", "ggplot2", file = tmp)
 
-  parsed <- cff_create(tmp, gh_keywords = FALSE)
-  expect_length(parsed$repository, 1)
+  a_cff <- cff_create(tmp, gh_keywords = FALSE)
+  expect_length(a_cff$repository, 1)
   expect_equal(clean_str(newfile$get("Package")), "ggplot2")
-  expect_equal(parsed$repository, "https://CRAN.R-project.org/package=ggplot2")
+  expect_equal(a_cff$repository, "https://CRAN.R-project.org/package=ggplot2")
 
 
 
-  expect_s3_class(parsed, "cff")
-  expect_snapshot(parsed)
-  expect_true(cff_validate(parsed, verbose = FALSE))
+  expect_s3_class(a_cff, "cff")
+  expect_snapshot(a_cff)
+  expect_true(cff_validate(a_cff, verbose = FALSE))
 })
 
 
@@ -479,7 +508,7 @@ test_that("Validate keywords", {
 })
 
 
-test_that("Parse keywords from GH", {
+test_that("Coerce keywords from GH", {
   skip_on_cran()
   skip_if_offline()
   skip_if(

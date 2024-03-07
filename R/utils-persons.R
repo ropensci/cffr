@@ -260,11 +260,11 @@ bibtex_pers_first_von_last <- function(x) {
   return(end_list)
 }
 
-validate_cff_person_fields <- function(parsed_person) {
+validate_cff_person_fields <- function(person_cff) {
   # Entity of person
 
   # Guess entity or person
-  is_entity <- as.character("name" %in% names(parsed_person))
+  is_entity <- as.character("name" %in% names(person_cff))
 
   # Keep only valid tags - Would depend on entity or person
   definition <- switch(is_entity,
@@ -272,12 +272,12 @@ validate_cff_person_fields <- function(parsed_person) {
     cff_schema_definitions_person()
   )
 
-  parsed_person <- parsed_person[names(parsed_person) %in% definition]
+  person_cff <- person_cff[names(person_cff) %in% definition]
 
   # Duplicates removed
-  parsed_person <- parsed_person[!duplicated(names(parsed_person))]
+  person_cff <- person_cff[!duplicated(names(person_cff))]
 
-  parsed_person
+  person_cff
 }
 
 guess_hint <- function(person) {

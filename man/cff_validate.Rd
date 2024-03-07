@@ -14,14 +14,12 @@ with \code{\link[=cff_create]{cff_create()}} or the path to a \code{CITATION.cff
 informative messages.}
 }
 \value{
-A message indicating the result of the validation and an invisible
-value \code{TRUE/FALSE}. On error, the results would have an attribute
-\code{"errors"} containing the error summary (see \strong{Examples} and \code{\link[=attr]{attr()}}).
+A message indicating the result of the validation and an invisible value
+\code{TRUE/FALSE}. On error, the results would have an attribute \code{"errors"}
+containing the error summary (see \strong{Examples} and \code{\link[=attr]{attr()}}).
 }
 \description{
-Validate a \code{CITATION.cff} file or a \code{\link{cff}} object created with
-\code{\link[=cff_create]{cff_create()}} using the corresponding validation
-\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema.json}{schema.json}.
+Validate a \code{CITATION.cff} file or a \code{\link{cff}} object using the corresponding \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema.json}{validation schema}.
 }
 \examples{
 \donttest{
@@ -49,6 +47,9 @@ try(cff_validate(system.file("CITATION", package = "cffr")))
 }
 \seealso{
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
+
+\code{\link[jsonvalidate:json_validate]{jsonvalidate::json_validate()}}, that is the function that performs the
+validation.
 
 Other core functions of \CRANpkg{cffr}:
 \code{\link{cff}()},

@@ -2,7 +2,7 @@ linters: linters_with_defaults() # see vignette("lintr")
 encoding: "UTF-8"
 exclusions: list(
                   "data-raw",
-                  "tests/testthat/test_ci/test-full_cff.R",
+                  "tests/testthat/test_ci",
                   "vignettes/cffr.Rmd",
                   "vignettes/bibtex_cff.Rmd"
                 )

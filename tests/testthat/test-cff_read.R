@@ -108,9 +108,9 @@ test_that("cff_read CITATION_basic", {
   my_meta <- desc_to_meta(a_desc)
 
   path <- system.file("examples/CITATION_basic", package = "cffr")
-  parsed <- cff_read(path, my_meta)
-  expect_s3_class(parsed, c("cff_ref_list", "cff"), exact = TRUE)
-  expect_equal(length(parsed), 2)
+  a_cff <- cff_read(path, my_meta)
+  expect_s3_class(a_cff, c("cff_ref_list", "cff"), exact = TRUE)
+  expect_equal(length(a_cff), 2)
 })
 
 test_that("cff_read CITATION with no encoding", {
@@ -118,8 +118,8 @@ test_that("cff_read CITATION with no encoding", {
   cit_path <- system.file("examples/CITATION_basic", package = "cffr")
 
   my_meta <- desc_to_meta(desc_path)
-  parsed <- cff_read_citation(cit_path, my_meta)
-  expect_s3_class(parsed, c("cff_ref_list", "cff"), exact = TRUE)
+  a_cff <- cff_read_citation(cit_path, my_meta)
+  expect_s3_class(a_cff, c("cff_ref_list", "cff"), exact = TRUE)
 })
 
 test_that("cff_read CITATION_auto", {
@@ -128,9 +128,9 @@ test_that("cff_read CITATION_auto", {
   cit_path <- system.file("examples/CITATION_auto", package = "cffr")
   my_meta <- desc_to_meta(desc_path)
 
-  parsed <- cff_read(cit_path, my_meta)
+  a_cff <- cff_read(cit_path, my_meta)
 
-  expect_equal(length(parsed), 3)
+  expect_equal(length(a_cff), 3)
 })
 
 test_that("cff_read CITATION_rmarkdown", {
@@ -138,48 +138,48 @@ test_that("cff_read CITATION_rmarkdown", {
   cit_path <- system.file("examples/CITATION_rmarkdown", package = "cffr")
 
   my_meta <- desc_to_meta(desc_path)
-  parsed <- cff_read(cit_path, my_meta)
+  a_cff <- cff_read(cit_path, my_meta)
 
-  expect_equal(length(parsed), 3)
+  expect_equal(length(a_cff), 3)
 })
 
 test_that("cff_read_safe CITATION_basic", {
   desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
   cit_path <- system.file("examples/CITATION_basic", package = "cffr")
-  parsed <- cff_safe_read_citation(desc_path, cit_path)
+  a_cff <- cff_safe_read_citation(desc_path, cit_path)
 
-  expect_s3_class(parsed, c("cff_ref_list", "cff"), exact = TRUE)
-  expect_equal(length(parsed), 2)
+  expect_s3_class(a_cff, c("cff_ref_list", "cff"), exact = TRUE)
+  expect_equal(length(a_cff), 2)
 })
 
 test_that("cff_read_safe CITATION with no encoding", {
   desc_path <- system.file("examples/DESCRIPTION_no_encoding", package = "cffr")
   cit_path <- system.file("examples/CITATION_basic", package = "cffr")
 
-  parsed <- cff_safe_read_citation(desc_path, cit_path)
+  a_cff <- cff_safe_read_citation(desc_path, cit_path)
 
-  expect_s3_class(parsed, c("cff_ref_list", "cff"), exact = TRUE)
-  expect_equal(length(parsed), 2)
+  expect_s3_class(a_cff, c("cff_ref_list", "cff"), exact = TRUE)
+  expect_equal(length(a_cff), 2)
 })
 
 test_that("cff_read_safe CITATION_auto", {
   # Needs an installed package
   desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
   cit_path <- system.file("examples/CITATION_auto", package = "cffr")
-  parsed <- cff_safe_read_citation(desc_path, cit_path)
+  a_cff <- cff_safe_read_citation(desc_path, cit_path)
 
-  expect_s3_class(parsed, c("cff_ref_list", "cff"), exact = TRUE)
-  expect_equal(length(parsed), 3)
+  expect_s3_class(a_cff, c("cff_ref_list", "cff"), exact = TRUE)
+  expect_equal(length(a_cff), 3)
 })
 
 test_that("cff_read_safe CITATION_rmarkdown", {
   desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
   cit_path <- system.file("examples/CITATION_rmarkdown", package = "cffr")
 
-  parsed <- cff_safe_read_citation(desc_path, cit_path)
+  a_cff <- cff_safe_read_citation(desc_path, cit_path)
 
-  expect_s3_class(parsed, c("cff_ref_list", "cff"), exact = TRUE)
-  expect_equal(length(parsed), 3)
+  expect_s3_class(a_cff, c("cff_ref_list", "cff"), exact = TRUE)
+  expect_equal(length(a_cff), 3)
 })
 
 
@@ -191,4 +191,21 @@ test_that("cff_read_safe CITATION NULL", {
     desc_path,
     cit_path
   ))
+})
+
+test_that("Corrupt CITATION", {
+  tmp <- tempfile("CITATION")
+  writeLines("I am a bad CITATION", tmp)
+  expect_message(
+    expect_message(anull <- cff_read(tmp), "It was not possible to read"),
+    "Can't"
+  )
+  expect_null(anull)
+
+
+  # Internal
+  desc_path <- system.file("x", package = "cffr")
+  expect_silent(anull <- cff_safe_read_citation(desc_path = desc_path, tmp))
+
+  expect_null(anull)
 })

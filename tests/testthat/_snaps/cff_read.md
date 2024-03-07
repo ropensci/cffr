@@ -11,32 +11,32 @@
     Code
       cff_read("abcde")
     Condition
-      Error in `cff_read()`:
-      ! 'abcde' does not exist.  Check the '.' directory
+      Error in `file_exist_abort()`:
+      ! 'abcde' doesn't exist. Check the '.' directory
 
 # cff_read citation.cff
 
     Code
       cff_read_cff_citation("a")
     Condition
-      Error in `cff_read_cff_citation()`:
-      ! 'a' does not exist.  Check the '.' directory
+      Error in `file_exist_abort()`:
+      ! 'a' doesn't exist. Check the '.' directory
 
 # cff_read DESCRIPTION
 
     Code
       cff_read_description("a")
     Condition
-      Error in `cff_read_description()`:
-      ! 'a' does not exist.  Check the '.' directory
+      Error in `file_exist_abort()`:
+      ! 'a' doesn't exist. Check the '.' directory
 
 # cff_read bib
 
     Code
       cff_read_bib("a")
     Condition
-      Error in `cff_read_bib()`:
-      ! 'a' does not exist.  Check the '.' directory
+      Error in `file_exist_abort()`:
+      ! 'a' doesn't exist. Check the '.' directory
 
 ---
 
@@ -65,8 +65,8 @@
     Code
       cff_read_citation("a")
     Condition
-      Error in `cff_read_citation()`:
-      ! 'a' does not exist.  Check the '.' directory
+      Error in `file_exist_abort()`:
+      ! 'a' doesn't exist. Check the '.' directory
 
 ---
 

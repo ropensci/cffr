@@ -248,32 +248,18 @@ detect_x_source <- function(x) {
   return("dontknow")
 }
 
-match_cff_arg <- function(arg, valid, for_msg, call = environment()) {
-  arg <- as.character(arg)[1]
-  valid <- as.character(valid)
-
-  if (!arg %in% valid) {
-    cli::cli_abort(
-      "{.arg {for_msg}} should be {.val {valid}}, not {.val {arg}}.",
-      call = call
-    )
-  }
-
-  return(arg)
-}
-
 file_path_or_null <- function(x) {
   x_c <- clean_str(x)
   if (is.null(x_c)) {
     return(x)
   }
-  if (file.exists(x)) {
+  if (file_exist_abort(x)) {
     return(x)
   }
   return(NULL)
 }
 
-#' Parse and clean data from DESCRIPTION to create metadata
+#' Coerce and clean data from DESCRIPTION to create metadata
 #' @noRd
 clean_package_meta <- function(meta) {
   if (!inherits(meta, "packageDescription")) {

@@ -1,4 +1,4 @@
-# Functions to parse field on DESCRIPTION file
+# Functions to convert fields on DESCRIPTION file
 
 #' Mapped to Description
 #' @noRd

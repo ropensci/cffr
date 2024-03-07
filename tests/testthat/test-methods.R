@@ -168,6 +168,24 @@ test_that("as.person method", {
   expect_snapshot(
     format(aut2, include = c("given", "family", "email", "role", "comment"))
   )
+
+  # Malformed
+  malf <- getref$authors
+  malf[[1]] <- list(a = "list")
+  expect_s3_class(malf, "cff_pers_list")
+
+  expect_snapshot(end <- as.person(malf))
+  expect_s3_class(end, "person")
+  expect_length(end, 1)
+
+  # Duplicates
+  aa <- getref$authors
+  aa[[3]] <- aa[[1]]
+  expect_s3_class(aa, "cff_pers_list")
+
+  expect_snapshot(aa2 <- as.person(aa))
+  expect_s3_class(aa2, "person")
+  expect_length(aa2, 2)
 })
 
 test_that("Errors on other as.person methods", {

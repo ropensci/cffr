@@ -32,7 +32,7 @@ Format schema version
 
 ## Summary {#summary}
 
-We summarize here the fields that **cffr** can parse and the original source of
+We summarize here the fields that **cffr** can coerce and the original source of
 information for each one of them. The details on each key are presented on the
 next section of the document. The assessment of fields are based on the [Guide
 to Citation File Format schema version
@@ -68,7 +68,7 @@ origin[keys %in% c(
 )] <- "CITATION file"
 
 
-origin[origin == FALSE] <- "Not parsed by cffr"
+origin[origin == FALSE] <- "Ignored by cffr"
 
 df <- data.frame(
   key = paste0("<a href='#", keys, "'>", keys, "</a>"),
@@ -111,7 +111,7 @@ cat(pkg$get("Description"))
 
 ### authors
 
-This key is parsed from the `"Authors"` or `"Authors@R"` field of the
+This key is coerced from the `"Authors"` or `"Authors@R"` field of the
 `DESCRIPTION` file. By default persons with the role `"aut"` or `"cre"` are
 considered, however this can be modified via the `authors_roles` parameter.
 
@@ -182,7 +182,7 @@ v1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/s
 
 ### contact
 
-This key is parsed from the `"Authors"` or `"Authors@R"` field of the
+This key is coerced from the `"Authors"` or `"Authors@R"` field of the
 `DESCRIPTION` file. Only persons with the role `"cre"` (i.e, the maintainer(s))
 are considered.
 
@@ -260,7 +260,7 @@ cat(cff_create(tmp)$`date-released`)
 
 ### doi {#doi}
 
-This key is parsed from the `"doi"` field of the
+This key is coerced from the `"doi"` field of the
 [preferred-citation](#preferred-citation) object.
 
 <details>

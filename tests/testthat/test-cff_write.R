@@ -6,13 +6,13 @@ test_that("Write basic", {
   tmp <- tempfile(fileext = ".cff")
   expect_message(cff_write(desc_file, outfile = tmp, validate = FALSE))
   expect_silent(cff_write(desc_file, outfile = tmp, verbose = FALSE))
-  expect_true(file.exists(tmp))
+  expect_true(file_exist_abort(tmp))
 
   # Validate from file
   expect_true(cff_validate(tmp, verbose = FALSE))
 
   file.remove(tmp)
-  expect_false(file.exists(tmp))
+  expect_false(file_exist_abort(tmp))
 })
 
 test_that("Write to a non-existing folder", {
@@ -31,13 +31,13 @@ test_that("Write to a non-existing folder", {
   expect_true(dir.exists(file.path(
     tempdir(), "test_new_folder", "recursive"
   )))
-  expect_true(file.exists(tmp))
+  expect_true(file_exist_abort(tmp))
 
   # Validate from file
   expect_true(cff_validate(tmp, verbose = FALSE))
 
   file.remove(tmp)
-  expect_false(file.exists(tmp))
+  expect_false(file_exist_abort(tmp))
 })
 
 test_that("Write no encoding", {
@@ -53,13 +53,13 @@ test_that("Write no encoding", {
     verbose = FALSE
   )
 
-  expect_true(file.exists(tmp))
+  expect_true(file_exist_abort(tmp))
 
   # Validate from file
   expect_true(cff_validate(tmp, verbose = FALSE))
 
   file.remove(tmp)
-  expect_false(file.exists(tmp))
+  expect_false(file_exist_abort(tmp))
 })
 
 test_that("Add new keys", {
@@ -92,13 +92,13 @@ test_that("Add new keys", {
   )
   expect_snapshot(s)
 
-  expect_true(file.exists(tmp))
+  expect_true(file_exist_abort(tmp))
 
   # Validate from file
   expect_true(cff_validate(tmp, verbose = FALSE))
 
   file.remove(tmp)
-  expect_false(file.exists(tmp))
+  expect_false(file_exist_abort(tmp))
 })
 
 
@@ -139,7 +139,7 @@ test_that("Append keys", {
   expect_true(cff_validate(tmp, verbose = FALSE))
 
   file.remove(tmp)
-  expect_false(file.exists(tmp))
+  expect_false(file_exist_abort(tmp))
 })
 
 test_that("Fix extension of the file", {
@@ -148,10 +148,10 @@ test_that("Fix extension of the file", {
   tmp <- tempfile()
   expect_silent(cff_write(cffobj, tmp, verbose = FALSE))
 
-  expect_false(file.exists(tmp))
-  expect_true(file.exists(paste0(tmp, ".cff")))
+  expect_false(file_exist_abort(tmp))
+  expect_true(file_exist_abort(paste0(tmp, ".cff")))
   expect_true(cff_validate(paste0(tmp, ".cff"), verbose = FALSE))
 
   file.remove(paste0(tmp, ".cff"))
-  expect_false(file.exists(paste0(tmp, ".cff")))
+  expect_false(file_exist_abort(paste0(tmp, ".cff")))
 })

@@ -82,7 +82,8 @@ Congratulations! Now you have a full `CITATION.cff` file for your **R** package.
 ## Modifying your `CITATION.cff` file
 
 You can easily customize the `cff` object (a custom class of **cffr**) using the
-parsers provided in the package, as well as making use of the `keys` parameter.
+coercion system provided in the package, as well as making use of the `keys`
+parameter.
 
 We would create a `cff` object using `cff()` (for example purposes only) and we
 would add or modify contents of it.
@@ -131,7 +132,7 @@ schema](https://github.com/citation-file-format/citation-file-format/blob/main/s
 
 Following the previous example, we are going to add a new author first. For
 doing that, we need first to extract the current author of the package and
-append the parsed person:
+append the coerced person:
 
 ```{r includeauthor}
 # Valid person keys
@@ -154,13 +155,13 @@ chiquito <- person("Gregorio",
 chiquito
 
 # To cff
-chiquito_parsed <- as_cff_person(chiquito)
-chiquito_parsed
+chiquito_cff <- as_cff_person(chiquito)
+chiquito_cff
 
 
 # Append to previous authors
 
-newauthors <- c(modobject$authors, chiquito_parsed)
+newauthors <- c(modobject$authors, chiquito_cff)
 newauthors
 
 newauthorobject <- cff_modify(modobject, authors = newauthors)
@@ -179,7 +180,7 @@ would add two references, one created with `bibentry()` and another with
 
 cff_schema_definitions_refs()
 
-# Auto parsed from another R package
+# Auto coercion from another R package
 base_r <- citation("base")
 
 bib <- bibentry("Book",

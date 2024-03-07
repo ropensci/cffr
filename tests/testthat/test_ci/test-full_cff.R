@@ -38,7 +38,7 @@
 #     cit_path <- file.path(find.package(installed[i, ]$Package), "CITATION")
 #
 #
-#     if (file.exists(cit_path)) {
+#     if (file_exist_abort(cit_path)) {
 #       withcit <- c(withcit, TRUE)
 #     } else {
 #       withcit <- c(withcit, FALSE)

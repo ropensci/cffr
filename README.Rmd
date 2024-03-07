@@ -36,7 +36,7 @@ bytes](https://img.shields.io/github/languages/code-size/ropensci/cffr)
 
 <!-- badges: end -->
 
-**cffr** provides utilities to generate, parse, modify and validate
+**cffr** provides utilities to generate, coerce, modify and validate
 `CITATION.cff` files automatically for **R** packages, as well as tools and
 examples for working with .cff more generally.
 

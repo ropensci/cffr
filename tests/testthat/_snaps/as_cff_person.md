@@ -12,7 +12,7 @@
     Message
       i In `as_cff_person()` using internal for "txt".
 
-# Parse one person
+# Coerce one person
 
     Code
       as_cff_person(p)
@@ -20,7 +20,7 @@
       - family-names: person
         given-names: one
 
-# Parse several persons
+# Coerce several persons
 
     Code
       as_cff_person(p)
@@ -32,7 +32,7 @@
       - family-names: more
         given-names: and one
 
-# Parse bibtex persons
+# Coerce bibtex persons
 
     Code
       as_cff_person(s)
@@ -52,7 +52,7 @@
       - family-names: one
         given-names: Another
 
-# Parse bibtex persons with masks
+# Coerce bibtex persons with masks
 
     Code
       as_cff_person(s)

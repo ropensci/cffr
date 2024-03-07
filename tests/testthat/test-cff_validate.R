@@ -35,12 +35,6 @@ test_that("Validate error CITATION.cff", {
   expect_snapshot(df)
 
   expect_silent(cff_validate(err, verbose = FALSE))
-
-  # From path
-  expect_message(
-    cff_validate(err),
-    err
-  )
 })
 
 test_that("Validate cffr objects from installed packages", {

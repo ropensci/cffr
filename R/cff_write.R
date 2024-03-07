@@ -121,7 +121,7 @@ cff_write <- function(x, outfile = "CITATION.cff", keys = list(),
   }
 
   # Add CITATION.cff to .Rbuildignore
-  if (!is_cff(x) && x == getwd() && file.exists(".Rbuildignore")) {
+  if (!is_cff(x) && x == getwd() && file_exist_abort(".Rbuildignore")) {
     ignore <- readLines(".Rbuildignore")
 
     # If not already
