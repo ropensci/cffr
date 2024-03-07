@@ -28,30 +28,6 @@
       Error in `as_bibentry()`:
       ! Don't know how to extract a <bibentry> from "invented_package". If it is a package run `install.packages("invented_package")` first.
 
----
-
-    Code
-      as_bibentry(f)
-    Output
-      Basic M (????). "basicdesc: A Basic Description."
-      <https://basic.github.io/package>.
-
----
-
-    Code
-      as_bibentry("invented_package")
-    Condition
-      Error in `as_bibentry()`:
-      ! Don't know how to extract a <bibentry> from "invented_package". If it is a package run `install.packages("invented_package")` first.
-
----
-
-    Code
-      as_bibentry(f)
-    Output
-      Basic M (????). "basicdesc: A Basic Description."
-      <https://basic.github.io/package>.
-
 # as_bibentry cff
 
     Code

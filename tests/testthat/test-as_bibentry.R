@@ -122,36 +122,8 @@ test_that("as_bibentry character", {
 
   # If another kind of file
   f <- system.file("examples/DESCRIPTION_basic", package = "cffr")
-
-  expect_snapshot(as_bibentry(f))
-})
-
-test_that("as_bibentry character", {
-  skip_if_not_installed("rmarkdown")
-
-  base <- as_bibentry("rmarkdown")
-
-  expect_s3_class(base, "bibentry")
-
-  expect_length(base, 1)
-
-  refs <- as_bibentry("rmarkdown", what = "references")
-  expect_s3_class(refs, "bibentry")
-
-  expect_gte(length(refs), 1)
-
-  all <- as_bibentry("rmarkdown", what = "all")
-  expect_s3_class(all, "bibentry")
-
-  expect_length(all, length(base) + length(refs))
-
-  # If an invented package
-  expect_snapshot(as_bibentry("invented_package"), error = TRUE)
-
-  # If another kind of file
-  f <- system.file("examples/DESCRIPTION_basic", package = "cffr")
-
-  expect_snapshot(as_bibentry(f))
+  s <- as_bibentry(f)
+  expect_s3_class(s, "bibentry")
 })
 
 test_that("as_bibentry cff", {

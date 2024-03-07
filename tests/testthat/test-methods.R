@@ -188,6 +188,18 @@ test_that("as.person method", {
   expect_length(aa2, 2)
 })
 
+test_that("as.person method names and particles", {
+  str <- "von Wicksteed, III, P. H. and {The translator factory}"
+
+  cf <- as_cff_person(str)
+  expect_snapshot(cf)
+
+  pers_bib <- toBibtex(as.person(cf))
+  again <- as_cff_person(pers_bib)
+  expect_identical(cf, again)
+
+})
+
 test_that("Errors on other as.person methods", {
   path <- system.file("examples/CITATION_complete.cff", package = "cffr")
   the_cff <- cff_read(path)

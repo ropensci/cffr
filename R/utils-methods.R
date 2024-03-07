@@ -20,10 +20,12 @@ make_r_person <- function(x) {
     family <- NULL
   } else {
     given <- clean_str(x[["given-names"]])
-    family <- clean_str(paste(
-      clean_str(x[["name-particle"]]), clean_str(x[["family-names"]]),
-      clean_str(x[["name-suffix"]])
-    ))
+    family <- paste(clean_str(x[["name-particle"]]),
+                    clean_str(x[["family-names"]]))
+    # Add suffix with comma
+    family <- paste0(c(family, clean_str(x[["name-suffix"]])), collapse = ", ")
+    family <- clean_str(family)
+
   }
 
   role <- clean_str(x$role)

@@ -879,7 +879,7 @@
     Code
       dput(aut)
     Output
-      structure(list(list(given = "One Truly", family = "van der Real Person IV", 
+      structure(list(list(given = "One Truly", family = "van der Real Person, IV", 
           role = NULL, email = "project@entity.com", comment = c(alias = "Citey", 
           affiliation = "Excellent University, Niceplace, Arcadia", 
           address = "22 Acacia Avenue", city = "Citationburgh", region = "Renfrewshire", 
@@ -892,14 +892,14 @@
     Code
       format(aut, include = c("given", "family", "email", "role", "comment"))
     Output
-      [1] "One Truly van der Real Person IV <project@entity.com> (Citey, Excellent University, Niceplace, Arcadia, 22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io)"
+      [1] "One Truly van der Real Person, IV <project@entity.com> (Citey, Excellent University, Niceplace, Arcadia, 22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io)"
 
 ---
 
     Code
       dput(aut2)
     Output
-      structure(list(list(given = "One Truly", family = "van der Real Person IV", 
+      structure(list(list(given = "One Truly", family = "van der Real Person, IV", 
           role = NULL, email = "project@entity.com", comment = c(alias = "Citey", 
           affiliation = "Excellent University, Niceplace, Arcadia", 
           address = "22 Acacia Avenue", city = "Citationburgh", region = "Renfrewshire", 
@@ -919,8 +919,8 @@
     Code
       format(aut2, include = c("given", "family", "email", "role", "comment"))
     Output
-      [1] "One Truly van der Real Person IV <project@entity.com> (Citey, Excellent University, Niceplace, Arcadia, 22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io)"
-      [2] "Entity Project Team Conference entity <project@entity.com> (22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io, 2017-01-01, 2017-01-31, The team garage)"   
+      [1] "One Truly van der Real Person, IV <project@entity.com> (Citey, Excellent University, Niceplace, Arcadia, 22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io)"
+      [2] "Entity Project Team Conference entity <project@entity.com> (22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io, 2017-01-01, 2017-01-31, The team garage)"    
 
 ---
 
@@ -935,6 +935,17 @@
       aa2 <- as.person(aa)
     Message
       i Removing duplicate <person> objects.
+
+# as.person method names and particles
+
+    Code
+      cf
+    Output
+      - family-names: Wicksteed
+        given-names: P. H.
+        name-particle: von
+        name-suffix: III
+      - name: The translator factory
 
 # Errors on other as.person methods
 
@@ -1098,7 +1109,7 @@
     Code
       toBibtex(sev_auth)
     Output
-      [1] "{The Big Bopper} and Sinatra, Frank and Martin, Dean and Davis Jr., Sammy"
+      [1] "{The Big Bopper} and Sinatra, Frank and Martin, Dean and Davis, Jr., Sammy"
 
 ---
 
