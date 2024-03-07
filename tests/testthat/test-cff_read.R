@@ -51,6 +51,17 @@ test_that("cff_read DESCRIPTION", {
   )
 
   expect_identical(f1_1, f2_1)
+
+  skip_on_cran()
+  # With gh keywords
+  f <- system.file("examples/DESCRIPTION_posit_package_manager",
+    package = "cffr"
+  )
+  fno <- cff_read_description(f, gh_keywords = FALSE)
+  f2 <- cff_read_description(f, gh_keywords = TRUE)
+
+  expect_false(is.null(f2$keywords))
+  expect_gt(length(f2$keywords), length(fno$keywords))
 })
 
 
@@ -204,8 +215,35 @@ test_that("Corrupt CITATION", {
 
 
   # Internal
-  desc_path <- system.file("x", package = "cffr")
+  desc_path <- system.file("examples/DESCRIPTION_basic",
+    package = "cffr"
+  )
   expect_silent(anull <- cff_safe_read_citation(desc_path = desc_path, tmp))
 
   expect_null(anull)
+})
+
+test_that("Creating cff from packages encoded in latin1", {
+  # Surveillance package
+  desc_path <- system.file("examples/DESCRIPTION_surveillance",
+    package = "cffr"
+  )
+  cit_path <- system.file("examples/CITATION_surveillance", package = "cffr")
+
+  expect_true(desc::desc(desc_path)$get("Encoding") == "latin1")
+
+  # Parse citation
+  bib <- cff_safe_read_citation(desc_path, cit_path)
+
+  expect_true("UTF-8" %in% Encoding(unlist(bib)))
+  expect_false("latin1" %in% Encoding(unlist(bib)))
+
+  # Create cff
+  cffobj <- cff_create(desc_path, keys = list(
+    references = bib
+  ))
+
+  expect_s3_class(cffobj, "cff")
+  expect_snapshot(cffobj)
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })

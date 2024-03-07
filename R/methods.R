@@ -30,32 +30,132 @@ c.cff <- function(..., recursive = FALSE) {
 #' @noRd
 #' @export
 as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
-  # List of references
-  if (inherits(x, "cff_ref_list")) {
-    x_n <- list("references" = x)
-    the_df <- cff_to_df(x_n)
-  } else if (inherits(x, "cff_pers_list")) {
-    n_l <- seq_len(length(x))
-    end_df <- lapply(n_l, function(i) {
-      df <- as.data.frame(x[[i]])
-      nm <- names(df)
-      names(df) <- paste0("person", ".", sprintf("%02d", i - 1), ".", nm)
+  # For better dispatching
+  x <- as_cff(as.list(x))
+
+  len <- length(x)
+  key_len <- seq_len(len)
+  ref_n <- names(x)
+
+  df_l <- lapply(key_len, function(y) {
+    el <- x[[y]]
+    nm <- ref_n[y]
+    nm <- gsub("-", "_", nm)
+
+    if (nm == "preferred_citation") {
+      return(as.data.frame(el, prefix = nm))
+    }
+
+    if (any(inherits(el, "cff_pers"), inherits(el, "cff_pers_list"))) {
+      return(as.data.frame(el, prefix = nm))
+    }
+
+    if (inherits(el, "cff_ref_list")) {
+      return(as.data.frame(el, prefix = nm))
+    }
+
+    if (length(el) > 1) {
+      ltot <- length(el)
+      df <- as.data.frame(matrix(el, nrow = 1))
+      nm2 <- paste0(nm, ".", sprintf("%02d", seq_len(ltot) - 1))
+
+      names(df) <- nm2
       return(df)
-    })
+    }
 
-    the_df <- do.call(cbind, end_df)
-  } else {
-    the_df <- cff_to_df(x)
-  }
+    df <- as.data.frame(x[y])
+    names(df) <- nm
+    df
+  })
 
-  the_df <- as.data.frame(the_df,
-    row.names = row.names, optional = optional,
-    ...
-  )
+  the_df <- do.call(cbind, df_l)
 
-  return(the_df)
+  as.data.frame(the_df, row.names = row.names, optional = optional, ...)
 }
 
+#' @export
+as.data.frame.cff_pers_list <- function(x, row.names = NULL, optional = FALSE,
+                                        ..., prefix = "person") {
+  # For better dispatching
+  x <- as_cff(as.list(x))
+
+  len <- length(x)
+  key_len <- seq_len(len)
+
+  df_l <- lapply(key_len, function(y) {
+    prefix <- paste0(prefix, ".", sprintf("%02d", y - 1))
+    el <- x[[y]]
+    df <- as.data.frame(el, prefix = prefix)
+    df
+  })
+
+  the_df <- do.call(cbind, df_l)
+
+  as.data.frame(the_df, row.names = row.names, optional = optional, ...)
+}
+
+#' @export
+as.data.frame.cff_pers <- function(x, row.names = NULL, optional = FALSE,
+                                   ..., prefix = NULL) {
+  # For better dispatching
+  x <- as_cff(as.list(x))
+
+  vals <- unlist(x)
+  nm <- names(vals)
+  nm <- gsub("-", "_", nm)
+  amat <- matrix(vals, nrow = 1, ncol = length(vals))
+  m <- as.data.frame(amat)
+
+  if (!is.null(clean_str(prefix))) nm <- paste0(prefix, ".", nm)
+
+  names(m) <- nm
+  m
+
+  as.data.frame(m, row.names = row.names, optional = optional, ...)
+}
+
+
+#' @export
+as.data.frame.cff_ref_list <- function(x, row.names = NULL, optional = FALSE,
+                                       ..., prefix = "references") {
+  # For better dispatching
+  x <- as_cff(as.list(x))
+
+  len <- length(x)
+  key_len <- seq_len(len)
+
+  df_l <- lapply(key_len, function(y) {
+    prefix <- paste0(prefix, ".", sprintf("%02d", y - 1))
+    el <- x[[y]]
+    df <- as.data.frame(el,
+      row.names = row.names, optional = optional,
+      ..., prefix = prefix
+    )
+    df
+  })
+
+  the_df <- do.call(cbind, df_l)
+
+  as.data.frame(the_df, row.names = row.names, optional = optional, ...)
+}
+
+
+#' @export
+as.data.frame.cff_ref <- function(x, row.names = NULL, optional = FALSE,
+                                  ..., prefix = NULL) {
+  # For better dispatching
+  # cff_ref is similar to cff, so we add only cff class
+  x <- as_cff(as.list(x))
+  class(x) <- "cff"
+
+  the_df <- as.data.frame(x)
+
+  if (!is.null(clean_str(prefix))) {
+    names(the_df) <- paste0(prefix, ".", names(the_df))
+  }
+
+  the_df
+}
 # nolint end
 
 #' Head

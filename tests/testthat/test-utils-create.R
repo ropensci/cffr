@@ -18,3 +18,17 @@ test_that("Merge all DESCRIPTION files with CITATION_basic", {
     expect_true(cff_validate(merged, verbose = FALSE))
   }
 })
+
+test_that("Check dependencies", {
+  skip_on_cran()
+  deps <- get_dependencies(system.file("DESCRIPTION", package = "cffr"))
+
+  # Extract selected fields
+  selected <- lapply(deps, function(x) {
+    y <- x[names(x) %in% c("title", "url", "repository")]
+    return(y)
+  })
+
+  class(selected) <- "cff"
+  expect_snapshot(print(selected))
+})

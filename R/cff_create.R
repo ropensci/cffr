@@ -158,7 +158,7 @@ cff_create <- function(x, keys = list(), cff_version = "1.2.0",
   # Add software dependencies
   if (dependencies) {
     instpack <- as.character(installed.packages()[, "Package"])
-    deps <- parse_dependencies(desc_path, instpack)
+    deps <- get_dependencies(desc_path, instpack)
 
     cffobjend$references <- unique(c(cffobjend$references, deps))
   }

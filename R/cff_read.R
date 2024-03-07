@@ -170,22 +170,22 @@ cff_read_description <- function(path, cff_version = "1.2.0",
     "cff-version" = cff_version,
     message = msg,
     type = "software",
-    title = parse_desc_title(pkg),
-    version = parse_desc_version(pkg),
-    authors = parse_desc_authors(pkg, authors_roles = authors_roles),
-    abstract = parse_desc_abstract(pkg),
-    repository = parse_desc_repository(pkg),
-    "repository-code" = parse_desc_urls(pkg)$repo,
-    url = parse_desc_urls(pkg)$url,
-    identifiers = parse_desc_urls(pkg)$identifiers,
-    "date-released" = parse_desc_date_released(pkg),
-    contact = parse_desc_contacts(pkg),
-    keywords = parse_desc_keywords(pkg),
-    license = unlist(parse_desc_license(pkg))
+    title = get_desc_title(pkg),
+    version = get_desc_version(pkg),
+    authors = get_desc_authors(pkg, authors_roles = authors_roles),
+    abstract = get_desc_abstract(pkg),
+    repository = get_desc_repository(pkg),
+    "repository-code" = get_desc_urls(pkg)$repo,
+    url = get_desc_urls(pkg)$url,
+    identifiers = get_desc_urls(pkg)$identifiers,
+    "date-released" = get_desc_date_released(pkg),
+    contact = get_desc_contacts(pkg),
+    keywords = get_desc_keywords(pkg),
+    license = unlist(get_desc_license(pkg))
   )
 
   if (gh_keywords) {
-    ghtopics <- parse_ghtopics(field_list)
+    ghtopics <- get_gh_topics(field_list)
     field_list$keywords <- unique(c(field_list$keywords, ghtopics))
   }
 

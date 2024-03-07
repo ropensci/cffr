@@ -197,7 +197,6 @@ test_that("as.person method names and particles", {
   pers_bib <- toBibtex(as.person(cf))
   again <- as_cff_person(pers_bib)
   expect_identical(cf, again)
-
 })
 
 test_that("Errors on other as.person methods", {
