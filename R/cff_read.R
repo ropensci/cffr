@@ -41,16 +41,24 @@
 #'   [yaml::read_yaml()], [bibtex::read.bib()], etc.).
 #'
 #' @return
-#' A [`cff`] object. In the case of [cff_read_cff_citation()] and
-#' [cff_read_description()] a full and (potentially) valid `cff` object.
+#'
+#' * `cff_read_cff_citation()` and `cff_read_description()` returns a object
+#'   with class `cff`.
+#' * `cff_read_citation()` and `cff_read_bib()` returns an object of classes
+#'   `"cff_ref_list", "cff"` according to the `definitions.references`
+#'   specified in the
+#' ```{r, echo=FALSE, results='asis'}
+#'
+#' cat(paste0(" [Citation File Format schema]",
+#'            "(https://github.com/citation-file-format/",
+#'            "citation-file-format/blob/main/schema-guide.md)."))
 #'
 #'
-#' In the case of [cff_read_bib()] and [cff_read_citation()], the result is
-#' the `cff` version of a [bibentry()] object (i.e. a bibliographic reference),
-#' that can be used to complement another `cff` object. See
-#' `vignette("bibtex_cff", "cffr")` to get further insights on how this
-#' conversion is performed.
+#' ```
+#'  See `vignette("bibtex_cff", "cffr")` to get further insights on how this
+#'  conversion is performed.
 #'
+#' Learn more about the \CRANpkg{cffr} class system in [cff_class].
 #'
 #' @references
 #'
@@ -110,17 +118,10 @@ cff_read <- function(path, ...) {
     )
   }
 
-  if (!file.exists(path)) {
-    cli::cli_abort(
-      paste(
-        "{.file {path}} does not exist. ",
-        "Check the {.file {dirname(path)}} directory"
-      )
-    )
-  }
-  filetype <- guess_type_file(path)
+  file_exist_abort(path, abort = TRUE)
+  filetype <- detect_x_source(path)
 
-  if (is.null(filetype)) {
+  if (filetype == "dontknow") {
     cli::cli_abort(
       paste0(
         "Don't recognize the file type of {.file {path}}.",
@@ -134,7 +135,7 @@ cff_read <- function(path, ...) {
     "description" = cff_read_description(path, ...),
     "bib" = cff_read_bib(path, ...),
     "citation" = cff_read_citation(path, ...),
-    NULL
+    cli::cli_abort("Don't know how to read {.val {x}}.")
   )
 
   endobj
@@ -143,14 +144,7 @@ cff_read <- function(path, ...) {
 #' @export
 #' @rdname cff_read
 cff_read_cff_citation <- function(path, ...) {
-  if (!file.exists(path)) {
-    cli::cli_abort(
-      paste(
-        "{.file {path}} does not exist. ",
-        "Check the {.file {dirname(path)}} directory"
-      )
-    )
-  }
+  file_exist_abort(path, abort = TRUE)
 
   cffobj <- yaml::read_yaml(path, ...)
   new_cff(cffobj)
@@ -161,14 +155,7 @@ cff_read_cff_citation <- function(path, ...) {
 cff_read_description <- function(path, cff_version = "1.2.0",
                                  gh_keywords = TRUE,
                                  authors_roles = c("aut", "cre"), ...) {
-  if (!file.exists(path)) {
-    cli::cli_abort(
-      paste(
-        "{.file {path}} does not exist. ",
-        "Check the {.file {dirname(path)}} directory"
-      )
-    )
-  }
+  file_exist_abort(path, abort = TRUE)
 
   pkg <- desc::desc(path)
   pkg$coerce_authors_at_r()
@@ -179,43 +166,36 @@ cff_read_description <- function(path, cff_version = "1.2.0",
   )
 
 
-  list_fields <- list(
+  field_list <- list(
     "cff-version" = cff_version,
     message = msg,
     type = "software",
-    title = parse_desc_title(pkg),
-    version = parse_desc_version(pkg),
-    authors = parse_desc_authors(pkg, authors_roles = authors_roles),
-    abstract = parse_desc_abstract(pkg),
-    repository = parse_desc_repository(pkg),
-    "repository-code" = parse_desc_urls(pkg)$repo,
-    url = parse_desc_urls(pkg)$url,
-    identifiers = parse_desc_urls(pkg)$identifiers,
-    "date-released" = parse_desc_date_released(pkg),
-    contact = parse_desc_contacts(pkg),
-    keywords = parse_desc_keywords(pkg),
-    license = unlist(parse_desc_license(pkg))
+    title = get_desc_title(pkg),
+    version = get_desc_version(pkg),
+    authors = get_desc_authors(pkg, authors_roles = authors_roles),
+    abstract = get_desc_abstract(pkg),
+    repository = get_desc_repository(pkg),
+    "repository-code" = get_desc_urls(pkg)$repo,
+    url = get_desc_urls(pkg)$url,
+    identifiers = get_desc_urls(pkg)$identifiers,
+    "date-released" = get_desc_date_released(pkg),
+    contact = get_desc_contacts(pkg),
+    keywords = get_desc_keywords(pkg),
+    license = unlist(get_desc_license(pkg))
   )
 
   if (gh_keywords) {
-    ghtopics <- parse_ghtopics(list_fields)
-    list_fields$keywords <- unique(c(list_fields$keywords, ghtopics))
+    ghtopics <- get_gh_topics(field_list)
+    field_list$keywords <- unique(c(field_list$keywords, ghtopics))
   }
 
-  new_cff(list_fields)
+  new_cff(field_list)
 }
 
 #' @export
 #' @rdname cff_read
 cff_read_citation <- function(path, meta = NULL, ...) {
-  if (!file.exists(path)) {
-    cli::cli_abort(
-      paste(
-        "{.file {path}} does not exist. ",
-        "Check the {.file {dirname(path)}} directory"
-      )
-    )
-  }
+  file_exist_abort(path, abort = TRUE)
 
   if (!any(is.null(meta), inherits(meta, "packageDescription"))) {
     # nolint start
@@ -265,14 +245,7 @@ cff_read_citation <- function(path, meta = NULL, ...) {
 #' @family bibtex
 #' @rdname cff_read
 cff_read_bib <- function(path, encoding = "UTF-8", ...) {
-  if (!file.exists(path)) {
-    cli::cli_abort(
-      paste(
-        "{.file {path}} does not exist. ",
-        "Check the {.file {dirname(path)}} directory"
-      )
-    )
-  }
+  file_exist_abort(path, abort = TRUE)
 
   # nocov start
   if (!requireNamespace("bibtex", quietly = TRUE)) {
@@ -296,7 +269,7 @@ cff_read_bib <- function(path, encoding = "UTF-8", ...) {
 #' Internal version of cff_read_citation, safe
 #' @noRd
 cff_safe_read_citation <- function(desc_path, cit_path) {
-  if (!file.exists(cit_path) || !file.exists(desc_path)) {
+  if (!file_exist_abort(cit_path) || !file_exist_abort(desc_path)) {
     return(NULL)
   }
   # Create meta
@@ -315,78 +288,4 @@ cff_safe_read_citation <- function(desc_path, cit_path) {
   tocff
 }
 
-# Helpers ----
-
-guess_type_file <- function(path) {
-  if (grepl("\\.cff$", path, ignore.case = TRUE)) {
-    return("cff_citation")
-  }
-  if (grepl("\\.bib$", path, ignore.case = TRUE)) {
-    return("bib")
-  }
-  if (grepl("citat", path, ignore.case = TRUE)) {
-    return("citation")
-  }
-  if (grepl("desc", path, ignore.case = TRUE)) {
-    return("description")
-  }
-
-  return(NULL)
-}
-
-#' Parse and clean data from DESCRIPTION to create metadata
-#' @noRd
-clean_package_meta <- function(meta) {
-  if (!inherits(meta, "packageDescription")) {
-    # Add encoding
-    meta <- list()
-    meta$Encoding <- "UTF-8"
-    return(meta)
-  }
-
-  # Convert to a desc object
-
-  # First write to a dcf file
-  tmp <- tempfile("DESCRIPTION")
-  meta_unl <- unclass(meta)
-  write.dcf(meta_unl, tmp)
-  pkg <- desc::desc(tmp)
-  pkg$coerce_authors_at_r()
-  # Extract package data
-  meta <- pkg$get(desc::cran_valid_fields)
-
-  # Clean missing and drop empty fields
-  meta <- drop_null(lapply(meta, clean_str))
-
-  # Check encoding
-  if (!is.null(meta$Encoding)) {
-    meta <- lapply(meta, iconv, from = meta$Encoding, to = "UTF-8")
-  } else {
-    meta$Encoding <- "UTF-8"
-  }
-  unlink(tmp, force = TRUE)
-  meta
-}
-
-
-
-# Convert a DESCRIPTION object to meta object using desc package
-desc_to_meta <- function(x) {
-  src <- x
-  my_meta <- desc::desc(src)
-  my_meta$coerce_authors_at_r()
-
-
-  # As list
-  my_meta_l <- my_meta$get(desc::cran_valid_fields)
-  my_meta_l <- as.list(my_meta_l)
-  v_nas <- vapply(my_meta_l, is.na, logical(1))
-  my_meta_l <- my_meta_l[!v_nas]
-
-  meta_proto <- packageDescription("cffr")
-
-  class(my_meta_l) <- class(meta_proto)
-  attr(my_meta_l, "file") <- x
-
-  my_meta_l
-}
+# See utils.R

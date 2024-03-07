@@ -11,14 +11,15 @@ cff_to_bibtex(x, what = c("preferred", "references", "all"))
 }
 \arguments{
 \item{x}{The source that would be used for generating
-the \code{\link[=bibentry]{bibentry()}} object via \code{cff}. It could be:
+the \code{\link[=bibentry]{bibentry()}} object via \CRANpkg{cffr}. It could be:
 \itemize{
-\item A missing value. That would retrieve the DESCRIPTION
+\item A missing value. That would retrieve the \code{DESCRIPTION}
 file on your in-development package.
-\item An existing \code{\link{cff}} object,
-\item Path to a CITATION.cff file (\code{"*/CITATION.cff*"}),
+\item An existing \code{cff} object created with \code{\link[=cff]{cff()}}, \code{\link[=cff_create]{cff_create()}} or
+\code{\link[=as_cff]{as_cff()}}.
+\item Path to a CITATION.cff file (\code{"CITATION.cff"}),
 \item The name of an installed package (\code{"jsonlite"}), or
-\item Path to a DESCRIPTION file (\code{"*/DESCRIPTION*"}).
+\item Path to a DESCRIPTION file (\code{"DESCRIPTION"}).
 }}
 
 \item{what}{Fields to extract. The value could be:

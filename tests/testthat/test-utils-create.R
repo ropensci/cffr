@@ -8,13 +8,27 @@ test_that("Merge all DESCRIPTION files with CITATION_basic", {
     package = "cffr"
   )
   for (i in seq_len(length(allfiles))) {
-    desc_parse <- cff_read_description(allfiles[i], gh_keywords = FALSE)
+    desc_cff <- cff_read_description(allfiles[i], gh_keywords = FALSE)
     generate_cit <- cff_safe_read_citation(allfiles[i], citpath)
-    merged <- merge_desc_cit(desc_parse, generate_cit)
+    merged <- merge_desc_cit(desc_cff, generate_cit)
     merged <- as_cff(merged)
 
     expect_snapshot(merged)
 
     expect_true(cff_validate(merged, verbose = FALSE))
   }
+})
+
+test_that("Check dependencies", {
+  skip_on_cran()
+  deps <- get_dependencies(system.file("DESCRIPTION", package = "cffr"))
+
+  # Extract selected fields
+  selected <- lapply(deps, function(x) {
+    y <- x[names(x) %in% c("title", "url", "repository")]
+    return(y)
+  })
+
+  class(selected) <- "cff"
+  expect_snapshot(print(selected))
 })

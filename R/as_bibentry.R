@@ -6,20 +6,19 @@
 
 #' @description
 #'
-#' This function creates `bibentry` objects (see [utils::bibentry()]) from
-#' different metadata sources (`cff` objects, `DESCRIPTION` files, etc.). Note
-#' that a **R** `bibentry` object is the representation of a BibTeX entry,
-#' see **Examples**
+#' This function creates [`bibentry`][utils::bibentry()] objects from different
+#' metadata sources ([`cff`] objects, `DESCRIPTION` files, etc.).
 #'
-#' The function tries to map the information of the source `x` into a `cff`
-#' object and performs a mapping of the metadata to BibTeX, according to
-#' `vignette("bibtex_cff", "cffr")`.
 #'
-#' The inverse transformation (`bibentry` object to `cff` reference) can
-#' be done with the corresponding [as_cff()] method.
+#' The inverse transformation (`bibentry` object to [`cff`] reference) can
+#' be done with the corresponding [as_cff.bibentry()] method.
 #'
 #' @seealso
-#' [utils::bibentry()]
+#' [utils::bibentry()] to understand more about the `bibentry` class.
+#'
+#' `vignette("bibtex_cff", "cffr")` provides detailed information about the
+#' internal mapping performed between `cff` objects and BibTeX markup (
+#' both `cff` to BibTeX and BibTeX to `cff`).
 #'
 #' @references
 #' - Patashnik, Oren. "BIBTEXTING" February 1988.
@@ -34,13 +33,14 @@
 #'   <https://docs.ropensci.org/cffr/articles/bibtex_cff.html>.
 #'
 #' @param x The source that would be used for generating
-#'   the [bibentry()] object via `cff`. It could be:
-#'   * A missing value. That would retrieve the DESCRIPTION
+#'   the [bibentry()] object via \CRANpkg{cffr}. It could be:
+#'   * A missing value. That would retrieve the `DESCRIPTION`
 #'     file on your in-development package.
-#'   * An existing [`cff`] object,
-#'   * Path to a CITATION.cff file (`"*/CITATION.cff*"`),
+#'   * An existing `cff` object created with [cff()], [cff_create()] or
+#'     [as_cff()].
+#'   * Path to a CITATION.cff file (`"CITATION.cff"`),
 #'   * The name of an installed package (`"jsonlite"`), or
-#'   * Path to a DESCRIPTION file (`"*/DESCRIPTION*"`).
+#'   * Path to a DESCRIPTION file (`"DESCRIPTION"`).
 #' @param what Fields to extract. The value could be:
 #'   - `preferred`: This would create a single entry with the main citation
 #'      info of the package.
@@ -51,15 +51,28 @@
 #' @family bibtex
 #' @family coercing
 #'
+#'
+#' @details
+#'
+#' A **R** [`bibentry`][utils::bibentry()]  object is the representation of a
+#' BibTeX entry. These objects can be converted to BibTeX markup with
+#' [utils::toBibtex()], that creates an object of class `Bibtex` and can be
+#' printed and exported as a valid BibTeX entry.
+#'
+#'
+#' `as_bibtex()` tries to map the information of the source `x` into a [`cff`]
+#' object and performs a mapping of the metadata to BibTeX, according to
+#' `vignette("bibtex_cff", "cffr")`.
+#'
 #' @return
-#' `as_bibentry()` returns s `bibentry` object (or a list of `bibentry`
+#' `as_bibentry()` returns a `bibentry` object (or a list of `bibentry`
 #' objects).
 #'
 #' @export
 #'
 #' @examples
 #' \donttest{
-#' # From a cff object
+#' # From a cff object ----
 #' cff_object <- cff()
 #'
 #' cff_object
@@ -72,95 +85,182 @@
 #' bib
 #'
 #' # Print as bibtex
-#'
 #' toBibtex(bib)
 #'
 #' # Thanks to the S3 Method we can also do
-#'
 #' toBibtex(cff_object)
 #'
-#' # From a CITATION.cff file with options
+#' # Other sources ----
+#' # From a CITATION.cff
 #'
 #' path <- system.file("examples/CITATION_complete.cff", package = "cffr")
-#' cff_file <- as_bibentry(path, what = "all")
+#' cff_file <- as_bibentry(path)
 #'
-#' toBibtex(cff_file)
+#' cff_file
 #'
-#' # For an installed package
+#' # For an installed package with options
+#' installed_package <- as_bibentry("jsonvalidate", what = "all")
 #'
-#' installed_package <- as_bibentry("jsonvalidate")
-#'
-#' toBibtex(installed_package)
+#' installed_package
 #'
 #'
 #' # Use a DESCRIPTION file
-#'
 #' path2 <- system.file("examples/DESCRIPTION_gitlab", package = "cffr")
 #' desc_file <- as_bibentry(path2)
 #'
 #' toBibtex(desc_file)
 #' }
-as_bibentry <- function(x,
-                        what = c("preferred", "references", "all")) {
-  what <- match.arg(what)
-  if (is.null(x)) {
-    return(NULL)
+#'
+as_bibentry <- function(x, ...) {
+  UseMethod("as_bibentry")
+}
+
+
+#' @export
+#' @rdname as_bibentry
+#' @order 2
+as_bibentry.default <- function(x, ...) {
+  dot_list <- list(...)
+  as_bibentry(dot_list)
+}
+
+#' @export
+#' @rdname as_bibentry
+#' @order 3
+as_bibentry.character <- function(x, ...,
+                                  what = c("preferred", "references", "all")) {
+  # A named list
+  if (missing(x)) {
+    dot_list <- list(...)
+    return(as_bibentry(dot_list))
   }
 
-  if (is_cff_file(x)) {
-    x <- cff_read_cff_citation(x)
-  }
 
-  if (is_cff(x)) {
-    obj <- x
-  } else {
-    obj <- cff_create(x)
-  }
+  what <- match_cff_arg(
+    what, c("preferred", "references", "all"),
+    "what", environment()
+  )
 
 
-  # Guess case
-  cff_type <- guess_cff_part(obj)
+  x <- x[1]
+  src_detect <- detect_x_source(x)
 
-  if (cff_type == "cff_full") {
-    # Try to generate preferred if not present
-    if (!("preferred-citation" %in% names(obj))) {
-      prefcit <- obj
-      prefcit$type <- "generic"
-      prefcit <- prefcit[names(prefcit) %in% cff_schema_definitions_refs()]
-      prefcit <- new_cff(prefcit)
-      # And add to the object
-      obj$`preferred-citation` <- prefcit
-    }
-
-    # Select type to extract
-    obj_extract <- switch(what,
-      "preferred" = list(obj$`preferred-citation`),
-      "references" = obj$references,
-      c(list(obj$`preferred-citation`), obj$references)
+  if (src_detect == "dontknow") {
+    # nolint start
+    msg <- paste0('install.packages("', x, '")')
+    # nolint end
+    cli::cli_abort(
+      paste(
+        "Don't know how to extract a {.cls bibentry} from {.val {x}}.",
+        "If it is a package run {.run {msg}} first."
+      )
     )
-  } else if (cff_type == "cff_ref") {
-    obj_extract <- list(obj)
+  }
+
+  if (src_detect == "package") {
+    x <- cff_create(x)
   } else {
-    obj_extract <- obj
+    x <- cff_read(x)
   }
 
-  # Cleanup
-  obj_extract <- obj_extract[lengths(obj_extract) > 0]
-  if (length(obj_extract) == 0) {
-    return(NULL)
+  as_bibentry(x, what = what)
+}
+
+#' @export
+#' @rdname as_bibentry
+#' @order 4
+as_bibentry.NULL <- function(x, ...) {
+  cff_create()
+}
+
+
+#' @export
+#' @rdname as_bibentry
+#' @order 5
+as_bibentry.list <- function(x, ...) {
+  ## Convert and catch errors ----
+  bib <- try(do.call(bibentry, x), silent = TRUE)
+
+  # If key missing
+  if (inherits(bib, "try-error")) {
+    message <- attributes(bib)$condition$message
+    cli::cli_alert_danger(paste("Can't convert to {.fn bibentry}: "))
+    cli::cli_alert_info(message)
+    cli::cli_alert_warning("Returning empty {.cls bibentry}")
+    return(bibentry())
   }
 
-  ref <- lapply(obj_extract, make_bibentry)
+  # Unlist easy to undo the do.call effect
+  bib <- bib[[1]]
+
+  bib
+}
+
+
+#' @export
+#' @rdname as_bibentry
+#' @order 6
+as_bibentry.cff <- function(x, ...,
+                            what = c("preferred", "references", "all")) {
+  what <- match_cff_arg(
+    what, c("preferred", "references", "all"),
+    "what", environment()
+  )
+
+  obj <- x
+  # Try to generate preferred if not present
+  if (!("preferred-citation" %in% names(obj))) {
+    prefcit <- obj
+    prefcit$type <- "generic"
+    prefcit <- prefcit[names(prefcit) %in% cff_schema_definitions_refs()]
+    prefcit <- new_cff(prefcit)
+    # And add to the object
+    obj$`preferred-citation` <- prefcit
+  }
+
+  # Select type to extract
+  obj_extract <- switch(what,
+    "preferred" = list(obj$`preferred-citation`),
+    "references" = obj$references,
+    c(list(obj$`preferred-citation`), obj$references)
+  )
+
+  if (is.null(obj_extract)) {
+    cli::cli_alert_warning(
+      paste0(
+        "In {.arg x} didn't find anything with {.arg what} = {.val {what}}. ",
+        "Returning empty {.cls bibentry}."
+      )
+    )
+    return(bibentry())
+  }
+
+  # Prepare for dispatching
+  objend <- as_cff(obj_extract)
+
+  as_bibentry(objend)
+}
+
+#' @export
+#' @rdname as_bibentry
+#' @order 7
+as_bibentry.cff_ref_list <- function(x, ...) {
+  ref <- lapply(x, function(y) {
+    # Reclass to dispatch method
+    as_bibentry(as_cff(y))
+  })
   ref <- do.call(c, ref)
-
   return(ref)
 }
 
 
-make_bibentry <- function(x) {
-  if (is.null(x)) {
-    return(NULL)
-  }
+
+#' @export
+#' @rdname as_bibentry
+#' @order 8
+as_bibentry.cff_ref <- function(x, ...) {
+  # Relist to cff for dispatching methods on persons
+  x <- as_cff(x)
 
   # Partially based on ruby parser
   # https://github.com/citation-file-format/ruby-cff/blob/main/lib/cff/ >>
@@ -170,218 +270,108 @@ make_bibentry <- function(x) {
 
   tobibentry <- list()
 
-  # No mapping needed (direct mapping) ----
-  # edition institution journal month number pages publisher title volume year
+  # Direct mapping ----
 
-  # Guess type of entry----
-
-  tobibentry$bibtype <- guess_bibtype(x)
-  # address----
-  tobibentry$address <- guess_address(x)
-
-  # author----
+  ## From BibTeX ----
+  ### author----
   tobibentry$author <- as.person(x$authors)
-
-
-  # booktitle ----
-
-  # Only for incollections and inproceedings
-  if (tobibentry$bibtype %in% c("incollection", "inproceedings")) {
-    tobibentry$booktitle <- x[["collection-title"]]
-  }
-
-  # Fallback to conference name
-
-  if (all(
-    tobibentry$bibtype == "inproceedings",
-    is.null(tobibentry$booktitle)
-  )) {
-    tobibentry$booktitle <- x$conference$name
-  }
-
-  # chapter----
+  ### chapter----
   tobibentry$chapter <- x$section
 
-  # edition----
+  ### edition----
   tobibentry$edition <- x$edition
 
-  # editor----
-  # Same case than authors
+  ### editor----
   tobibentry$editor <- as.person(x$editors)
 
-  # howpublished----
-  tobibentry$howpublished <- make_howpublised(x)
+  ### howpublished----
+  tobibentry$howpublished <- get_bib_howpublised(x)
 
-  # institution/organization ----
-
-  # For inproceedings, proceedings and manual this field
-  # is organization
-
-  if (tobibentry$bibtype %in% c(
-    "inproceedings", "proceedings",
-    "manual"
-  )) {
-    # Just name
-    tobibentry$organization <- x$institution$name
-  } else {
-    tobibentry$institution <- x$institution$name
-  }
-
-
-  # Fallback for techreport, search on affiliation first author
-  if (tobibentry$bibtype == "techreport" && is.null(tobibentry$institution)) {
-    tobibentry$institution <- x$authors[[1]]$affiliation
-  }
-
-  # journal----
+  ### journal----
   tobibentry$journal <- x$journal
 
-  # month----
-  m <- x$month
+  ### note ----
+  tobibentry$note <- get_bib_note(x)
 
-  # Fallback
+  ### number----
+  tobibentry$number <- clean_str(x[["issue"]])
 
-  if (is.null(m) && !is.null(x$`date-published`)) {
-    # Should be YYYY-MM-DD to be valid on cff, so
-    m <- as.integer(format(as.Date(x$`date-published`), "%m"))
-  }
+  ### pages ----
+  tobibentry$pages <- clean_str(
+    paste(unique(c(x$start, x$end)), collapse = "--")
+  )
 
-  # Try to parse to 3 month string
-  m_int <- suppressWarnings(as.integer(m))
-  m_letters <- clean_str(tolower(month.abb[m_int]))
+  ### publisher ----
+  tobibentry$publisher <- clean_str(x$publisher$name)
 
-  if (!is.null(m_letters)) {
-    tobibentry$month <- m_letters
-  } else {
-    tobibentry$month <- clean_str(m)
-  }
-
-
-
-  # note ----
-  tobibentry$note <- x$notes
-
-  # unpublished needs a note
-  if (all(is.null(x$notes), tobibentry$bibtype == "unpublished")) {
-    tobibentry$note <- "Extracted with cffr R package"
-  }
-
-  # number----
-
-
-  tobibentry$number <- x[["issue"]]
-
-  # pages ----
-
-  p <- unique(c(x$start, x$end))
-
-  if (!is.null(p)) tobibentry$pages <- paste(p, collapse = "--")
-
-  # publisher ----
-  tobibentry$publisher <- x$publisher$name
-
-  # school ----
-  # In thesis
-  if (x$type == "thesis") {
-    tobibentry$school <- tobibentry$institution
-    tobibentry$institution <- NULL
-  }
-
-
-  # series----
-  if (is.null(tobibentry$booktitle)) {
-    tobibentry$series <- x$`collection-title`
-  }
-
-  # title ----
-
+  ### title ----
   tobibentry$title <- x$title
 
-  # volume----
+  ### volume----
   tobibentry$volume <- x$volume
 
-  # year ----
-
-  tobibentry$year <- x$year
-
-  # Fallback
-
-  if (is.null(tobibentry$year) && !is.null(x$`date-released`)) {
-    # Should be YYYY-MM-DD to be valid on cff, so
-
-    tobibentry$year <- substr(x$`date-released`, 1, 4)
-  }
-
-
-  # Keywords
-  if (!is.null(x$keywords)) {
-    tobibentry$keywords <- paste(x$keywords, collapse = ", ")
-  }
-
-  # Guess inbook ----
-  # inbook is a book where chapter or pages are present
-
-  if (tobibentry$bibtype == "book" && !is.null(
-    c(tobibentry$chapter, tobibentry$pages)
-  )) {
-    tobibentry$bibtype <- "inbook"
-  }
-
-  # key: First two given of author and year----
-  tobibentry$key <- make_bibkey(tobibentry)
-
-
-  # Handle anonymous author----
-  # If anonymous and not needed, then not use it
-
-
-  if (!is.null(x$authors[[1]]$name)) {
-    if (x$authors[[1]]$name == "anonymous" &&
-      tobibentry$bibtype %in% c(
-        "booklet", "manual", "book", "inbook",
-        "misc", "proceedings"
-      )) {
-      tobibentry$author <- NULL
-    }
-  }
-
-  # Add other interesting fields for BibLateX ----
+  ## From BibLaTeX ----
 
   tobibentry$abstract <- x$abstract
-  tobibentry$doi <- x$doi
   tobibentry$date <- x$`date-published`
+  tobibentry$doi <- x$doi
   tobibentry$file <- x$filename
-  tobibentry$issuetitle <- x$`issue-title`
   tobibentry$isbn <- x$isbn
   tobibentry$issn <- x$issn
+  tobibentry$issuetitle <- x$`issue-title`
+  tobibentry$keywords <- clean_str(paste0(unique(x$keywords), collapse = ","))
   tobibentry$pagetotal <- x$pages
+  tobibentry$translator <- toBibtex(as.person(x$translators))
   tobibentry$url <- x$url
   tobibentry$urldate <- x$`date-accessed`
   tobibentry$version <- x$version
-  # Translators
 
-  trns <- x$translators
 
-  trnsbib <- lapply(trns, function(y) {
-    if ("name" %in% names(y)) {
-      # Person protected on family
-      paste0("{", clean_str(y$name), "}")
-    } else {
-      fam <- clean_str(paste(
-        clean_str(y$`name-particle`),
-        clean_str(y$`family-names`)
-      ))
-      jr <- clean_str(y$`name-suffix`)
+  # BibTeX entry----
 
-      given <- clean_str(y$`given-names`)
+  tobibentry$bibtype <- guess_bibtype(x)
 
-      paste(c(fam, jr, given), collapse = ", ")
-    }
-  })
+  # address----
+  tobibentry$address <- get_bib_address(x)
 
-  tobibentry$translator <- paste(unlist(trnsbib), collapse = " and ")
 
-  # sort ----
+  # booktitle /series ----
+  # Map cff collection-title
+  tobibentry <- c(tobibentry, get_bib_booktitle(x, tobibentry$bibtype))
+
+  # institution/organization/school ----
+  # Map cff institution
+  tobibentry <- c(tobibentry, get_bib_inst_org(x, tobibentry$bibtype))
+
+  # month----
+  tobibentry$month <- get_bib_month(x)
+
+  # year ----
+  tobibentry$year <- get_bib_year(x)
+
+
+  # Handle anonymous author----
+  # If anonymous coming from cff and not needed, then not use it
+
+  is_anon <- identical(clean_str(x$authors[[1]]$name), "anonymous")
+
+  # If unknown remove from bib types that doesn't require it strictly
+
+
+  if (all(
+    is_anon,
+    tobibentry$bibtype %in% c(
+      "booklet", "manual", "book", "inbook",
+      "misc", "proceedings"
+    )
+  )) {
+    tobibentry$author <- NULL
+  }
+  # BibTeX key----
+  tobibentry$key <- make_bibkey(tobibentry)
+
+  # Final steps ----
+  ##  Sort ----
   # based on default by
   # https://flamingtempura.github.io/bibtex-tidy/
   tosort <- c(
@@ -394,146 +384,9 @@ make_bibentry <- function(x) {
   sorted <- unique[unique %in% names(tobibentry)]
   tobibentry <- tobibentry[sorted]
 
-  bib <- try(do.call(bibentry, tobibentry), silent = TRUE)
+  ## Convert
 
-  # If key missing
-  if (inherits(bib, "try-error")) {
-    message <- attributes(bib)$condition$message
-    cli::cli_alert_danger(paste("Can't convert to {.fn bibentry}: "))
-    cli::cli_alert_info(message)
-    cli::cli_alert_warning("Returning {.val NULL}")
-    return(NULL)
-  }
-
-  # Unlist easy to undo the do.call effect
-  bib <- bib[[1]]
-
-  return(bib)
+  as_bibentry(tobibentry)
 }
 
-
-guess_bibtype <- function(x) {
-  init_guess <- switch(tolower(x$type),
-    "article" = "article",
-    "book" = "book",
-    "manual" = "manual",
-    "unpublished" = "unpublished",
-    "conference" = "inproceedings",
-    "conference-paper" = "inproceedings",
-    "proceedings" = "proceedings",
-    "magazine-article" = "article",
-    "newspaper-article" = "article",
-    "pamphlet" = "booklet",
-    "report" = "techreport",
-    "thesis" = "mastersthesis",
-    # We would need to guess
-    "misc"
-  )
-
-
-  # Try guess thesis
-  ttype <- clean_str(gsub("[[:punct:]]", "",
-    x$`thesis-type`,
-    perl = TRUE
-  ))
-
-  if (!is.null(ttype) && x$type == "thesis") {
-    if (grepl("Phd", ttype, ignore.case = TRUE)) {
-      init_guess <- "phdthesis"
-    }
-  }
-
-  # Check if it may be an incollection
-  # Hint: is misc with collection-title and publisher
-
-  if (all(
-    init_guess == "misc", !is.null(x$`collection-title`),
-    !is.null(x$publisher), !is.null(x$year)
-  )) {
-    init_guess <- "incollection"
-  }
-
-  init_guess
-}
-
-guess_address <- function(x) {
-  # BibTeX 'address' is taken from the publisher (book, others) or the
-  # conference (inproceedings).
-  # Set logic: conference > institution > publisher
-  if (!is.null(x$conference)) {
-    addr_search <- x$conference
-  } else if (!is.null(x$institution)) {
-    addr_search <- x$institution
-  } else {
-    addr_search <- x$publisher
-  }
-
-
-  address <- clean_str(paste(
-    c(
-      addr_search$address,
-      addr_search$city,
-      addr_search$region,
-      addr_search$country
-    ),
-    collapse = ", "
-  ))
-
-  # As a fallback, use also location
-  if (is.null(address) && !is.null(x$location)) {
-    address <- clean_str(x$location$name)
-  }
-
-  address
-}
-
-
-make_bibkey <- function(tobibentry) {
-  # Bear in mind institutions has only given
-  # Use the first two authors
-  aut_sur <- lapply(tobibentry$author[1:2], function(z) {
-    unz <- unlist(z)
-    if ("family" %in% names(unz)) {
-      r <- unz["family"]
-      return(clean_str(r))
-    }
-
-    r <- unz["given"]
-    return(clean_str(r))
-  })
-
-
-  aut_sur <- tolower(paste0(unlist(aut_sur), collapse = ""))
-  aut_sur <- gsub("\\s*", "", aut_sur)
-
-  # Try hard to remove accents
-  # First with iconv
-  aut_sur <- iconv(aut_sur,
-    from = "UTF-8", to = "ASCII//TRANSLIT",
-    sub = "?"
-  )
-
-  # Next to latex
-  aut_sur <- encoded_utf_to_latex(aut_sur)
-
-  # Finally keep only a-z letters for key
-  aut_sur <- gsub("[^_a-z]", "", aut_sur)
-
-  y <- tobibentry$year
-
-  key <- paste(c(aut_sur, y), collapse = ":")
-  key
-}
-
-make_howpublised <- function(x) {
-  howpublished <- x$medium
-
-  if (!is.null(howpublished)) {
-    # Capitalize first letter
-    letts <- unlist(strsplit(howpublished, "|"))
-    howpublished <-
-      clean_str(paste0(c(toupper(letts[1]), letts[-1]), collapse = ""))
-  }
-
-  clean_str(howpublished)
-}
+# Utils in utils-bib.R

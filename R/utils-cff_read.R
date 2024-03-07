@@ -1,8 +1,8 @@
-# Functions to parse field on DESCRIPTION file
+# Functions to convert fields on DESCRIPTION file
 
 #' Mapped to Description
 #' @noRd
-parse_desc_abstract <- function(pkg) {
+get_desc_abstract <- function(pkg) {
   abstract <- pkg$get("Description")
 
   abstract <- clean_str(abstract)
@@ -18,7 +18,7 @@ parse_desc_abstract <- function(pkg) {
 #' Feeback needed: is this approach correct?
 #' On CRAN, only first aut is used
 #' @noRd
-parse_desc_authors <- function(pkg, authors_roles = c("aut", "cre")) {
+get_desc_authors <- function(pkg, authors_roles = c("aut", "cre")) {
   # This extracts all the persons
   persons <- as.person(pkg$get_authors())
 
@@ -26,15 +26,15 @@ parse_desc_authors <- function(pkg, authors_roles = c("aut", "cre")) {
     any(x$role %in% r)
   }, logical(1))]
 
-  parse_all_authors <- as_cff_person(authors)
-  parse_all_authors <- unique(parse_all_authors)
+  get_all_authors <- as_cff_person(authors)
+  get_all_authors <- unique(get_all_authors)
 
-  parse_all_authors
+  get_all_authors
 }
 
 #' Mapped to Maintainer
 #' @noRd
-parse_desc_contacts <- function(pkg) {
+get_desc_contacts <- function(pkg) {
   persons <- as.person(pkg$get_authors())
 
   # Extract creators only
@@ -42,14 +42,14 @@ parse_desc_contacts <- function(pkg) {
     "cre" %in% x$role
   }, logical(1))]
 
-  parse_all_contacts <- as_cff_person(contact)
-  parse_all_contacts <- unique(parse_all_contacts)
-  parse_all_contacts
+  get_all_contacts <- as_cff_person(contact)
+  get_all_contacts <- unique(get_all_contacts)
+  get_all_contacts
 }
 
 #' Mapped to Date, Date/Publication or Packaged
 #' @noRd
-parse_desc_date_released <- function(pkg) {
+get_desc_date_released <- function(pkg) {
   # See https://cran.r-project.org/doc/manuals/R-exts.html#The-DESCRIPTION-file
   date1 <- pkg$get("Date")
   # This is for CRAN/BioConductor packages
@@ -84,7 +84,7 @@ parse_desc_date_released <- function(pkg) {
 
 #' Mapped to X-schema.org-keywords, as codemeta/codemetar
 #' @noRd
-parse_desc_keywords <- function(pkg) {
+get_desc_keywords <- function(pkg) {
   kword <- pkg$get("X-schema.org-keywords")
 
   kword <- clean_str(kword)
@@ -113,7 +113,7 @@ parse_desc_keywords <- function(pkg) {
 
 #' Mapped to License
 #' @noRd
-parse_desc_license <- function(pkg) {
+get_desc_license <- function(pkg) {
   licenses <- pkg$get_field("License")
 
   # The schema only accepts two LiCENSES max
@@ -144,7 +144,7 @@ parse_desc_license <- function(pkg) {
 
 #' Try to get Repository
 #' @noRd
-parse_desc_repository <- function(pkg) {
+get_desc_repository <- function(pkg) {
   name <- pkg$get("Package")
   repo <- clean_str(pkg$get("Repository"))
 
@@ -178,7 +178,7 @@ parse_desc_repository <- function(pkg) {
 
 #' Mapped to Package & Title
 #' @noRd
-parse_desc_title <- function(pkg) {
+get_desc_title <- function(pkg) {
   title <- paste0(
     pkg$get("Package"),
     ": ",
@@ -192,7 +192,7 @@ parse_desc_title <- function(pkg) {
 #' Mapped to URL and BugReports
 #' Additional urls as identifiers
 #' @noRd
-parse_desc_urls <- function(pkg) {
+get_desc_urls <- function(pkg) {
   url <- pkg$get_urls()
 
   # Get issue url
@@ -269,7 +269,7 @@ parse_desc_urls <- function(pkg) {
 
 #' Mapped to Version
 #' @noRd
-parse_desc_version <- function(pkg) {
+get_desc_version <- function(pkg) {
   version <- pkg$get("Version")
 
   version <- clean_str(version)
@@ -280,7 +280,7 @@ parse_desc_version <- function(pkg) {
 
 #' Extract topics as keywords for GH hosted packages
 #' @noRd
-parse_ghtopics <- function(x) {
+get_gh_topics <- function(x) {
   # Only for GitHub repos
   if (!is_github(x)) {
     return(NULL)

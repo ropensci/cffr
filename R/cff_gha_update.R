@@ -2,9 +2,9 @@
 #'
 #' @description
 #'
-#' This function would install a
-#' [GitHub Action](https://github.com/features/actions) on your repo. The action
-#' will update your `CITATION.cff` when any of these events occur:
+#' This function would install a [GitHub
+#' Action](https://github.com/features/actions) on your repo. The action will
+#' update your `CITATION.cff` when any of these events occur:
 #' - You publish a new release of the package.
 #' - Your `DESCRIPTION` or `inst/CITATION` are modified.
 #' - The action can be run also manually.
@@ -45,7 +45,7 @@ cff_gha_update <- function(path = ".",
 
   newfile <- file.path(destdir, "update-citation-cff.yaml")
 
-  if (!file.exists(newfile) || isTRUE(overwrite)) {
+  if (!file_exist_abort(newfile) || isTRUE(overwrite)) {
     cli::cli_alert_success("Installing {.file {newfile}}")
 
     file.copy(system.file("yaml/update-citation-cff.yaml", package = "cffr"),
@@ -61,7 +61,7 @@ cff_gha_update <- function(path = ".",
     )
   }
 
-  if (file.exists(file.path(path, ".Rbuildignore"))) {
+  if (file_exist_abort(file.path(path, ".Rbuildignore"))) {
     ignore <- readLines(file.path(path, ".Rbuildignore"))
 
     # If not already

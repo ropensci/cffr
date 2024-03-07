@@ -6,6 +6,45 @@ to non-core functions**, hence the natural workflow (`cff_create()` →
 
 ## Major changes
 
+### Classes and methods
+
+Now **cffr** implements a new class system for
+[`definitions.reference`](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsreference),
+[`definitions.person`](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsperson)
+and
+[`definitions.entity`](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsentity)
+objects:
+
+-   List of `definitions.reference` (e.g, `references)` has class
+    `cff_ref_list, cff` and individual elements (e.g `preferred-citation` or
+    each member of `references`) has class `cff_ref, cff`.
+-   List of `definitions.person` or `definitions.entity` (e.g. `authors`,
+    `contact`) has class `cff_pers_list, cff` and individual elements (e.g
+    `publisher` or each member of `authors`) has class `cff_pers, cff`.
+
+This change allow to write specific [S3
+Methods](https://adv-r.hadley.nz/s3.html) and extend the capabilities of the
+package.
+
+-   New `as_cff()` S3 generic method (replacing `as.cff()`): This method coerces
+    **R** objects to `cff` class format. Current methods provided are:
+    -   `as_cff.Bibtex()`.
+    -   `as_cff.bibentry()`, replacing cff_parse_citation().
+    -   `as_cff.person()`, similar to `as_cff_person()` but only for `person`
+        objects. We recommend using `as_cff_person()` since it can coerce also
+        string representing authors in BibTeX markup (`"{von Neumen}, James"`),
+        that can't be captured properly via methods.
+-   New `as_bibentry()` method for a variety of classes (`character`, `list`,
+    `NULL` and classes defined by **cffr**).
+-   The following **base** and **utils** methods supports now `cff` class:
+    (TODO)
+    -   `as.data.frame.cff()`.
+    -   `as.person()`, although **only** for `definitions.person` or
+        `definitions.entity` (e.g. `authors`, `contacts`, `editors`,
+        `publisher,` etc.).
+    -   `head.cff()`, `tail.cff()`.
+    -   `toBibtex.cff()`.
+
 ### API
 
 The API has been completely reviewed to provide more clarity on functions naming
@@ -17,8 +56,8 @@ would warn when used, providing advice on the replacement function.
 
 #### Deprecation
 
--   `cff_to_bibtex()` and `cff_extract_to_bibtex()`: replaced by
-    `as_bibentry()`.
+-   `cff_to_bibtex()` and `cff_extract_to_bibtex()`: replaced by `as_bibentry()`
+    method.
 -   `cff_from_bibtex()`: replaced by `cff_read_bib()` (for `*.bib` files) and
     `cff_read_bib_text()` (for character strings).
 -   `write_bib()` and `write_citation()` : replaced by `cff_write_bib()` and
@@ -33,14 +72,6 @@ would warn when used, providing advice on the replacement function.
 
 ### New capabilities
 
--   New `as_cff()` S3 generic method (replacing `as.cff()`): This method coerces
-    **R** objects to `cff-class` format. Current methods provided are:
-    -   `as_cff.Bibtex()`.
-    -   `as_cff.bibentry()`, replacing cff_parse_citation().
-    -   `as_cff.person()`, similar to `as_cff_person()` but only for `person`
-        objects. We recommend using `as_cff_person()` since it can parse also
-        string representing authors in BibTeX markup (`"{von Neumen}, James"`),
-        that can't be captured properly via methods.
 -   Now reading from external files is performed exclusively by `cff_read()`
     (that is designed to fit all supported file types on a single entry point)
     and the new specific readers (that are used under the hood by `cff_read()`),
@@ -54,8 +85,6 @@ would warn when used, providing advice on the replacement function.
 ## Other changes
 
 -   Minimum **R** version required now is **4.0.0**.
--   Now `class()` of `cff` objects are `c("cff", "list")` instead of single
-    value (`"cff"`).
 -   New S3 **base** and **utils** methods added:
     -   `as.data.frame.cff().`
     -   `as.person.cff()`, that provides results **only** for CFF keys defined

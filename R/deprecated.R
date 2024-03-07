@@ -101,7 +101,7 @@ cff_to_bibtex <- function(x,
 #'   cff_read_bib(x2)
 #' }
 cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
-  if (length(x) == 1 && file.exists(x)) {
+  if (length(x) == 1 && file_exist_abort(x)) {
     if (requireNamespace("lifecycle", quietly = TRUE)) {
       lifecycle::deprecate_soft(
         "1.0.0", "cff_from_bibtex()", "cff_read_bib()"

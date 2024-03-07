@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# cffr <a href="https://docs.ropensci.org/cffr/"><img src="man/figures/logo.png" align="right" height="139" alt="cffr website" /></a>
+# cffr <a href="https://docs.ropensci.org/cffr/"><img src="man/figures/logo.png" alt="cffr website" align="right" height="139"/></a>
 
 <!-- badges: start -->
 
@@ -22,7 +22,7 @@ bytes](https://img.shields.io/github/languages/code-size/ropensci/cffr)
 
 <!-- badges: end -->
 
-**cffr** provides utilities to generate, parse, modify and validate
+**cffr** provides utilities to generate, coerce, modify and validate
 `CITATION.cff` files automatically for **R** packages, as well as tools
 and examples for working with .cff more generally.
 
@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2024-03-03 there are at least 306 repos on GitHub using **cffr**.
+As per 2024-03-07 there are at least 294 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 

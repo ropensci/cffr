@@ -141,11 +141,11 @@
       [136] "preferred_citation.number"                         
       [137] "preferred_citation.number_volumes"                 
       [138] "preferred_citation.pages"                          
-      [139] "preferred_citation.patent-states.00"               
-      [140] "preferred_citation.patent-states.01"               
-      [141] "preferred_citation.patent-states.02"               
-      [142] "preferred_citation.patent-states.03"               
-      [143] "preferred_citation.patent-states.04"               
+      [139] "preferred_citation.patent_states.00"               
+      [140] "preferred_citation.patent_states.01"               
+      [141] "preferred_citation.patent_states.02"               
+      [142] "preferred_citation.patent_states.03"               
+      [143] "preferred_citation.patent_states.04"               
       [144] "preferred_citation.pmcid"                          
       [145] "preferred_citation.repository"                     
       [146] "preferred_citation.repository_code"                
@@ -165,15 +165,15 @@
       [160] "preferred_citation.conference.address"             
       [161] "preferred_citation.conference.city"                
       [162] "preferred_citation.conference.region"              
-      [163] "preferred_citation.conference.post-code"           
+      [163] "preferred_citation.conference.post_code"           
       [164] "preferred_citation.conference.country"             
       [165] "preferred_citation.conference.orcid"               
       [166] "preferred_citation.conference.email"               
       [167] "preferred_citation.conference.tel"                 
       [168] "preferred_citation.conference.fax"                 
       [169] "preferred_citation.conference.website"             
-      [170] "preferred_citation.conference.date-start"          
-      [171] "preferred_citation.conference.date-end"            
+      [170] "preferred_citation.conference.date_start"          
+      [171] "preferred_citation.conference.date_end"            
       [172] "preferred_citation.conference.location"            
       [173] "preferred_citation.authors.00.family_names"        
       [174] "preferred_citation.authors.00.given_names"         
@@ -235,20 +235,20 @@
       [230] "preferred_citation.contact.01.date_start"          
       [231] "preferred_citation.contact.01.date_end"            
       [232] "preferred_citation.contact.01.location"            
-      [233] "preferred_citation.database-provider.name"         
-      [234] "preferred_citation.database-provider.address"      
-      [235] "preferred_citation.database-provider.city"         
-      [236] "preferred_citation.database-provider.region"       
-      [237] "preferred_citation.database-provider.post-code"    
-      [238] "preferred_citation.database-provider.country"      
-      [239] "preferred_citation.database-provider.orcid"        
-      [240] "preferred_citation.database-provider.email"        
-      [241] "preferred_citation.database-provider.tel"          
-      [242] "preferred_citation.database-provider.fax"          
-      [243] "preferred_citation.database-provider.website"      
-      [244] "preferred_citation.database-provider.date-start"   
-      [245] "preferred_citation.database-provider.date-end"     
-      [246] "preferred_citation.database-provider.location"     
+      [233] "preferred_citation.database_provider.name"         
+      [234] "preferred_citation.database_provider.address"      
+      [235] "preferred_citation.database_provider.city"         
+      [236] "preferred_citation.database_provider.region"       
+      [237] "preferred_citation.database_provider.post_code"    
+      [238] "preferred_citation.database_provider.country"      
+      [239] "preferred_citation.database_provider.orcid"        
+      [240] "preferred_citation.database_provider.email"        
+      [241] "preferred_citation.database_provider.tel"          
+      [242] "preferred_citation.database_provider.fax"          
+      [243] "preferred_citation.database_provider.website"      
+      [244] "preferred_citation.database_provider.date_start"   
+      [245] "preferred_citation.database_provider.date_end"     
+      [246] "preferred_citation.database_provider.location"     
       [247] "preferred_citation.editors.00.family_names"        
       [248] "preferred_citation.editors.00.given_names"         
       [249] "preferred_citation.editors.00.name_particle"       
@@ -279,77 +279,77 @@
       [274] "preferred_citation.editors.01.date_start"          
       [275] "preferred_citation.editors.01.date_end"            
       [276] "preferred_citation.editors.01.location"            
-      [277] "preferred_citation.editors-series.00.family_names" 
-      [278] "preferred_citation.editors-series.00.given_names"  
-      [279] "preferred_citation.editors-series.00.name_particle"
-      [280] "preferred_citation.editors-series.00.name_suffix"  
-      [281] "preferred_citation.editors-series.00.alias"        
-      [282] "preferred_citation.editors-series.00.affiliation"  
-      [283] "preferred_citation.editors-series.00.address"      
-      [284] "preferred_citation.editors-series.00.city"         
-      [285] "preferred_citation.editors-series.00.region"       
-      [286] "preferred_citation.editors-series.00.post_code"    
-      [287] "preferred_citation.editors-series.00.country"      
-      [288] "preferred_citation.editors-series.00.orcid"        
-      [289] "preferred_citation.editors-series.00.email"        
-      [290] "preferred_citation.editors-series.00.tel"          
-      [291] "preferred_citation.editors-series.00.fax"          
-      [292] "preferred_citation.editors-series.00.website"      
-      [293] "preferred_citation.editors-series.01.name"         
-      [294] "preferred_citation.editors-series.01.address"      
-      [295] "preferred_citation.editors-series.01.city"         
-      [296] "preferred_citation.editors-series.01.region"       
-      [297] "preferred_citation.editors-series.01.post_code"    
-      [298] "preferred_citation.editors-series.01.country"      
-      [299] "preferred_citation.editors-series.01.orcid"        
-      [300] "preferred_citation.editors-series.01.email"        
-      [301] "preferred_citation.editors-series.01.tel"          
-      [302] "preferred_citation.editors-series.01.fax"          
-      [303] "preferred_citation.editors-series.01.website"      
-      [304] "preferred_citation.editors-series.01.date_start"   
-      [305] "preferred_citation.editors-series.01.date_end"     
-      [306] "preferred_citation.editors-series.01.location"     
+      [277] "preferred_citation.editors_series.00.family_names" 
+      [278] "preferred_citation.editors_series.00.given_names"  
+      [279] "preferred_citation.editors_series.00.name_particle"
+      [280] "preferred_citation.editors_series.00.name_suffix"  
+      [281] "preferred_citation.editors_series.00.alias"        
+      [282] "preferred_citation.editors_series.00.affiliation"  
+      [283] "preferred_citation.editors_series.00.address"      
+      [284] "preferred_citation.editors_series.00.city"         
+      [285] "preferred_citation.editors_series.00.region"       
+      [286] "preferred_citation.editors_series.00.post_code"    
+      [287] "preferred_citation.editors_series.00.country"      
+      [288] "preferred_citation.editors_series.00.orcid"        
+      [289] "preferred_citation.editors_series.00.email"        
+      [290] "preferred_citation.editors_series.00.tel"          
+      [291] "preferred_citation.editors_series.00.fax"          
+      [292] "preferred_citation.editors_series.00.website"      
+      [293] "preferred_citation.editors_series.01.name"         
+      [294] "preferred_citation.editors_series.01.address"      
+      [295] "preferred_citation.editors_series.01.city"         
+      [296] "preferred_citation.editors_series.01.region"       
+      [297] "preferred_citation.editors_series.01.post_code"    
+      [298] "preferred_citation.editors_series.01.country"      
+      [299] "preferred_citation.editors_series.01.orcid"        
+      [300] "preferred_citation.editors_series.01.email"        
+      [301] "preferred_citation.editors_series.01.tel"          
+      [302] "preferred_citation.editors_series.01.fax"          
+      [303] "preferred_citation.editors_series.01.website"      
+      [304] "preferred_citation.editors_series.01.date_start"   
+      [305] "preferred_citation.editors_series.01.date_end"     
+      [306] "preferred_citation.editors_series.01.location"     
       [307] "preferred_citation.institution.name"               
       [308] "preferred_citation.institution.address"            
       [309] "preferred_citation.institution.city"               
       [310] "preferred_citation.institution.region"             
-      [311] "preferred_citation.institution.post-code"          
+      [311] "preferred_citation.institution.post_code"          
       [312] "preferred_citation.institution.country"            
       [313] "preferred_citation.institution.orcid"              
       [314] "preferred_citation.institution.email"              
       [315] "preferred_citation.institution.tel"                
       [316] "preferred_citation.institution.fax"                
       [317] "preferred_citation.institution.website"            
-      [318] "preferred_citation.institution.date-start"         
-      [319] "preferred_citation.institution.date-end"           
+      [318] "preferred_citation.institution.date_start"         
+      [319] "preferred_citation.institution.date_end"           
       [320] "preferred_citation.institution.location"           
       [321] "preferred_citation.location.name"                  
       [322] "preferred_citation.location.address"               
       [323] "preferred_citation.location.city"                  
       [324] "preferred_citation.location.region"                
-      [325] "preferred_citation.location.post-code"             
+      [325] "preferred_citation.location.post_code"             
       [326] "preferred_citation.location.country"               
       [327] "preferred_citation.location.orcid"                 
       [328] "preferred_citation.location.email"                 
       [329] "preferred_citation.location.tel"                   
       [330] "preferred_citation.location.fax"                   
       [331] "preferred_citation.location.website"               
-      [332] "preferred_citation.location.date-start"            
-      [333] "preferred_citation.location.date-end"              
+      [332] "preferred_citation.location.date_start"            
+      [333] "preferred_citation.location.date_end"              
       [334] "preferred_citation.location.location"              
       [335] "preferred_citation.publisher.name"                 
       [336] "preferred_citation.publisher.address"              
       [337] "preferred_citation.publisher.city"                 
       [338] "preferred_citation.publisher.region"               
-      [339] "preferred_citation.publisher.post-code"            
+      [339] "preferred_citation.publisher.post_code"            
       [340] "preferred_citation.publisher.country"              
       [341] "preferred_citation.publisher.orcid"                
       [342] "preferred_citation.publisher.email"                
       [343] "preferred_citation.publisher.tel"                  
       [344] "preferred_citation.publisher.fax"                  
       [345] "preferred_citation.publisher.website"              
-      [346] "preferred_citation.publisher.date-start"           
-      [347] "preferred_citation.publisher.date-end"             
+      [346] "preferred_citation.publisher.date_start"           
+      [347] "preferred_citation.publisher.date_end"             
       [348] "preferred_citation.publisher.location"             
       [349] "preferred_citation.recipients.00.family_names"     
       [350] "preferred_citation.recipients.00.given_names"      
@@ -492,11 +492,11 @@
       [487] "references.00.number"                              
       [488] "references.00.number_volumes"                      
       [489] "references.00.pages"                               
-      [490] "references.00.patent-states.00"                    
-      [491] "references.00.patent-states.01"                    
-      [492] "references.00.patent-states.02"                    
-      [493] "references.00.patent-states.03"                    
-      [494] "references.00.patent-states.04"                    
+      [490] "references.00.patent_states.00"                    
+      [491] "references.00.patent_states.01"                    
+      [492] "references.00.patent_states.02"                    
+      [493] "references.00.patent_states.03"                    
+      [494] "references.00.patent_states.04"                    
       [495] "references.00.pmcid"                               
       [496] "references.00.repository"                          
       [497] "references.00.repository_code"                     
@@ -516,15 +516,15 @@
       [511] "references.00.conference.address"                  
       [512] "references.00.conference.city"                     
       [513] "references.00.conference.region"                   
-      [514] "references.00.conference.post-code"                
+      [514] "references.00.conference.post_code"                
       [515] "references.00.conference.country"                  
       [516] "references.00.conference.orcid"                    
       [517] "references.00.conference.email"                    
       [518] "references.00.conference.tel"                      
       [519] "references.00.conference.fax"                      
       [520] "references.00.conference.website"                  
-      [521] "references.00.conference.date-start"               
-      [522] "references.00.conference.date-end"                 
+      [521] "references.00.conference.date_start"               
+      [522] "references.00.conference.date_end"                 
       [523] "references.00.conference.location"                 
       [524] "references.00.authors.00.family_names"             
       [525] "references.00.authors.00.given_names"              
@@ -586,20 +586,20 @@
       [581] "references.00.contact.01.date_start"               
       [582] "references.00.contact.01.date_end"                 
       [583] "references.00.contact.01.location"                 
-      [584] "references.00.database-provider.name"              
-      [585] "references.00.database-provider.address"           
-      [586] "references.00.database-provider.city"              
-      [587] "references.00.database-provider.region"            
-      [588] "references.00.database-provider.post-code"         
-      [589] "references.00.database-provider.country"           
-      [590] "references.00.database-provider.orcid"             
-      [591] "references.00.database-provider.email"             
-      [592] "references.00.database-provider.tel"               
-      [593] "references.00.database-provider.fax"               
-      [594] "references.00.database-provider.website"           
-      [595] "references.00.database-provider.date-start"        
-      [596] "references.00.database-provider.date-end"          
-      [597] "references.00.database-provider.location"          
+      [584] "references.00.database_provider.name"              
+      [585] "references.00.database_provider.address"           
+      [586] "references.00.database_provider.city"              
+      [587] "references.00.database_provider.region"            
+      [588] "references.00.database_provider.post_code"         
+      [589] "references.00.database_provider.country"           
+      [590] "references.00.database_provider.orcid"             
+      [591] "references.00.database_provider.email"             
+      [592] "references.00.database_provider.tel"               
+      [593] "references.00.database_provider.fax"               
+      [594] "references.00.database_provider.website"           
+      [595] "references.00.database_provider.date_start"        
+      [596] "references.00.database_provider.date_end"          
+      [597] "references.00.database_provider.location"          
       [598] "references.00.editors.00.family_names"             
       [599] "references.00.editors.00.given_names"              
       [600] "references.00.editors.00.name_particle"            
@@ -630,77 +630,77 @@
       [625] "references.00.editors.01.date_start"               
       [626] "references.00.editors.01.date_end"                 
       [627] "references.00.editors.01.location"                 
-      [628] "references.00.editors-series.00.family_names"      
-      [629] "references.00.editors-series.00.given_names"       
-      [630] "references.00.editors-series.00.name_particle"     
-      [631] "references.00.editors-series.00.name_suffix"       
-      [632] "references.00.editors-series.00.alias"             
-      [633] "references.00.editors-series.00.affiliation"       
-      [634] "references.00.editors-series.00.address"           
-      [635] "references.00.editors-series.00.city"              
-      [636] "references.00.editors-series.00.region"            
-      [637] "references.00.editors-series.00.post_code"         
-      [638] "references.00.editors-series.00.country"           
-      [639] "references.00.editors-series.00.orcid"             
-      [640] "references.00.editors-series.00.email"             
-      [641] "references.00.editors-series.00.tel"               
-      [642] "references.00.editors-series.00.fax"               
-      [643] "references.00.editors-series.00.website"           
-      [644] "references.00.editors-series.01.name"              
-      [645] "references.00.editors-series.01.address"           
-      [646] "references.00.editors-series.01.city"              
-      [647] "references.00.editors-series.01.region"            
-      [648] "references.00.editors-series.01.post_code"         
-      [649] "references.00.editors-series.01.country"           
-      [650] "references.00.editors-series.01.orcid"             
-      [651] "references.00.editors-series.01.email"             
-      [652] "references.00.editors-series.01.tel"               
-      [653] "references.00.editors-series.01.fax"               
-      [654] "references.00.editors-series.01.website"           
-      [655] "references.00.editors-series.01.date_start"        
-      [656] "references.00.editors-series.01.date_end"          
-      [657] "references.00.editors-series.01.location"          
+      [628] "references.00.editors_series.00.family_names"      
+      [629] "references.00.editors_series.00.given_names"       
+      [630] "references.00.editors_series.00.name_particle"     
+      [631] "references.00.editors_series.00.name_suffix"       
+      [632] "references.00.editors_series.00.alias"             
+      [633] "references.00.editors_series.00.affiliation"       
+      [634] "references.00.editors_series.00.address"           
+      [635] "references.00.editors_series.00.city"              
+      [636] "references.00.editors_series.00.region"            
+      [637] "references.00.editors_series.00.post_code"         
+      [638] "references.00.editors_series.00.country"           
+      [639] "references.00.editors_series.00.orcid"             
+      [640] "references.00.editors_series.00.email"             
+      [641] "references.00.editors_series.00.tel"               
+      [642] "references.00.editors_series.00.fax"               
+      [643] "references.00.editors_series.00.website"           
+      [644] "references.00.editors_series.01.name"              
+      [645] "references.00.editors_series.01.address"           
+      [646] "references.00.editors_series.01.city"              
+      [647] "references.00.editors_series.01.region"            
+      [648] "references.00.editors_series.01.post_code"         
+      [649] "references.00.editors_series.01.country"           
+      [650] "references.00.editors_series.01.orcid"             
+      [651] "references.00.editors_series.01.email"             
+      [652] "references.00.editors_series.01.tel"               
+      [653] "references.00.editors_series.01.fax"               
+      [654] "references.00.editors_series.01.website"           
+      [655] "references.00.editors_series.01.date_start"        
+      [656] "references.00.editors_series.01.date_end"          
+      [657] "references.00.editors_series.01.location"          
       [658] "references.00.institution.name"                    
       [659] "references.00.institution.address"                 
       [660] "references.00.institution.city"                    
       [661] "references.00.institution.region"                  
-      [662] "references.00.institution.post-code"               
+      [662] "references.00.institution.post_code"               
       [663] "references.00.institution.country"                 
       [664] "references.00.institution.orcid"                   
       [665] "references.00.institution.email"                   
       [666] "references.00.institution.tel"                     
       [667] "references.00.institution.fax"                     
       [668] "references.00.institution.website"                 
-      [669] "references.00.institution.date-start"              
-      [670] "references.00.institution.date-end"                
+      [669] "references.00.institution.date_start"              
+      [670] "references.00.institution.date_end"                
       [671] "references.00.institution.location"                
       [672] "references.00.location.name"                       
       [673] "references.00.location.address"                    
       [674] "references.00.location.city"                       
       [675] "references.00.location.region"                     
-      [676] "references.00.location.post-code"                  
+      [676] "references.00.location.post_code"                  
       [677] "references.00.location.country"                    
       [678] "references.00.location.orcid"                      
       [679] "references.00.location.email"                      
       [680] "references.00.location.tel"                        
       [681] "references.00.location.fax"                        
       [682] "references.00.location.website"                    
-      [683] "references.00.location.date-start"                 
-      [684] "references.00.location.date-end"                   
+      [683] "references.00.location.date_start"                 
+      [684] "references.00.location.date_end"                   
       [685] "references.00.location.location"                   
       [686] "references.00.publisher.name"                      
       [687] "references.00.publisher.address"                   
       [688] "references.00.publisher.city"                      
       [689] "references.00.publisher.region"                    
-      [690] "references.00.publisher.post-code"                 
+      [690] "references.00.publisher.post_code"                 
       [691] "references.00.publisher.country"                   
       [692] "references.00.publisher.orcid"                     
       [693] "references.00.publisher.email"                     
       [694] "references.00.publisher.tel"                       
       [695] "references.00.publisher.fax"                       
       [696] "references.00.publisher.website"                   
-      [697] "references.00.publisher.date-start"                
-      [698] "references.00.publisher.date-end"                  
+      [697] "references.00.publisher.date_start"                
+      [698] "references.00.publisher.date_end"                  
       [699] "references.00.publisher.location"                  
       [700] "references.00.recipients.00.family_names"          
       [701] "references.00.recipients.00.given_names"           
@@ -814,15 +814,15 @@
       [14] "references.00.authors.03.name"        
       [15] "references.00.authors.03.date_end"    
       [16] "references.00.url"                    
-      [17] "references.00.keywords.00"            
-      [18] "references.00.keywords.01"            
-      [19] "references.00.keywords.02"            
-      [20] "references.00.keywords.03"            
-      [21] "references.00.keywords.04"            
-      [22] "references.00.keywords.05"            
-      [23] "references.00.keywords.06"            
-      [24] "references.00.keywords.07"            
-      [25] "references.00.abstract"               
+      [17] "references.00.abstract"               
+      [18] "references.00.keywords.00"            
+      [19] "references.00.keywords.01"            
+      [20] "references.00.keywords.02"            
+      [21] "references.00.keywords.03"            
+      [22] "references.00.keywords.04"            
+      [23] "references.00.keywords.05"            
+      [24] "references.00.keywords.06"            
+      [25] "references.00.keywords.07"            
       [26] "references.00.version"                
 
 # Convert authors only
@@ -879,7 +879,7 @@
     Code
       dput(aut)
     Output
-      structure(list(list(given = "One Truly", family = "van der Real Person IV", 
+      structure(list(list(given = "One Truly", family = "van der Real Person, IV", 
           role = NULL, email = "project@entity.com", comment = c(alias = "Citey", 
           affiliation = "Excellent University, Niceplace, Arcadia", 
           address = "22 Acacia Avenue", city = "Citationburgh", region = "Renfrewshire", 
@@ -892,14 +892,14 @@
     Code
       format(aut, include = c("given", "family", "email", "role", "comment"))
     Output
-      [1] "One Truly van der Real Person IV <project@entity.com> (Citey, Excellent University, Niceplace, Arcadia, 22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io)"
+      [1] "One Truly van der Real Person, IV <project@entity.com> (Citey, Excellent University, Niceplace, Arcadia, 22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io)"
 
 ---
 
     Code
       dput(aut2)
     Output
-      structure(list(list(given = "One Truly", family = "van der Real Person IV", 
+      structure(list(list(given = "One Truly", family = "van der Real Person, IV", 
           role = NULL, email = "project@entity.com", comment = c(alias = "Citey", 
           affiliation = "Excellent University, Niceplace, Arcadia", 
           address = "22 Acacia Avenue", city = "Citationburgh", region = "Renfrewshire", 
@@ -919,45 +919,94 @@
     Code
       format(aut2, include = c("given", "family", "email", "role", "comment"))
     Output
-      [1] "One Truly van der Real Person IV <project@entity.com> (Citey, Excellent University, Niceplace, Arcadia, 22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io)"
-      [2] "Entity Project Team Conference entity <project@entity.com> (22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io, 2017-01-01, 2017-01-31, The team garage)"   
+      [1] "One Truly van der Real Person, IV <project@entity.com> (Citey, Excellent University, Niceplace, Arcadia, 22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io)"
+      [2] "Entity Project Team Conference entity <project@entity.com> (22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io, 2017-01-01, 2017-01-31, The team garage)"    
+
+---
+
+    Code
+      end <- as.person(malf)
+    Message
+      i Can't create <person> for some elements of `x`.
+
+---
+
+    Code
+      aa2 <- as.person(aa)
+    Message
+      i Removing duplicate <person> objects.
+
+# as.person method names and particles
+
+    Code
+      cf
+    Output
+      - family-names: Wicksteed
+        given-names: P. H.
+        name-particle: von
+        name-suffix: III
+      - name: The translator factory
+
+# Errors on other as.person methods
+
+    Code
+      as.person(the_cff)
+    Condition
+      Error in `as.person()`:
+      ! (cffr) `as.person.cff()` method not implemented yet.
+
+---
+
+    Code
+      as.person(key)
+    Condition
+      Error in `as.person()`:
+      ! (cffr) `as.person.cff_ref_list()` method not implemented yet.
+
+---
+
+    Code
+      as.person(key)
+    Condition
+      Error in `as.person()`:
+      ! (cffr) `as.person.cff_ref()` method not implemented yet.
 
 # head and tail
 
     Code
       a_cff
     Output
-      authors:
-      - family-names: Doe
-        given-names: John
       cff-version: 1.2.0
       message: If you use this software, please cite it using these metadata.
       title: My Research Software
+      authors:
+      - family-names: Doe
+        given-names: John
 
 ---
 
     Code
       head(a_cff, 2)
     Output
-      authors:
-      - family-names: Doe
-        given-names: John
       cff-version: 1.2.0
+      message: If you use this software, please cite it using these metadata.
 
 ---
 
     Code
       tail(a_cff, 2)
     Output
-      message: If you use this software, please cite it using these metadata.
       title: My Research Software
+      authors:
+      - family-names: Doe
+        given-names: John
 
 # toBibtex
 
     Code
       toBibtex(full_cff)
     Output
-      @Misc{druskatspaaks:2021,
+      @Misc{druskat_etall:2021,
         title = {Citation File Format},
         author = {Stephan Druskat and Jurriaan H. Spaaks and Neil {Chue Hong} and Robert Haines and James Baker and Spencer Bliven and Egon Willighagen and David Pérez-Suárez and Alexander Konovalov},
         year = {2021},
@@ -987,7 +1036,7 @@
         note = {Publisher: The Open Journal},
       }
       
-      @Article{boettigerchamberlain:2016,
+      @Article{boettiger_etall:2016,
         title = {RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic, Character, and Trait Data in R},
         author = {Carl Boettiger and Scott Chamberlain and Rutger Vos and Hilmar Lapp},
         year = {2016},
@@ -1011,7 +1060,7 @@
     Code
       toBibtex(full_cff, what = "all")
     Output
-      @Misc{druskatspaaks:2021,
+      @Misc{druskat_etall:2021,
         title = {Citation File Format},
         author = {Stephan Druskat and Jurriaan H. Spaaks and Neil {Chue Hong} and Robert Haines and James Baker and Spencer Bliven and Egon Willighagen and David Pérez-Suárez and Alexander Konovalov},
         year = {2021},
@@ -1036,7 +1085,7 @@
         note = {Publisher: The Open Journal},
       }
       
-      @Article{boettigerchamberlain:2016,
+      @Article{boettiger_etall:2016,
         title = {RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic, Character, and Trait Data in R},
         author = {Carl Boettiger and Scott Chamberlain and Rutger Vos and Hilmar Lapp},
         year = {2016},
@@ -1054,4 +1103,25 @@
         isbn = {978-3-319-24277-4},
         url = {https://ggplot2.tidyverse.org},
       }
+
+---
+
+    Code
+      toBibtex(sev_auth)
+    Output
+      [1] "{The Big Bopper} and Sinatra, Frank and Martin, Dean and Davis, Jr., Sammy"
+
+---
+
+    Code
+      toBibtex(single)
+    Output
+      [1] "person, A"
+
+---
+
+    Code
+      toBibtex(single)
+    Output
+      [1] "{A and B co}"
 

@@ -48,8 +48,8 @@ on the terminal.
 If you are using \strong{RStudio} you can run also this command from a \strong{R}
 script by selecting that line and sending it to the terminal using:
 \itemize{
-\item \code{Ctrl+Alt+Enter} (Windows & Linux), or
-\item \code{Cmd+Option+Return} (Mac).
+\item Windows & Linux: \code{Ctrl+Alt+Enter}.
+\item Mac: \code{Cmd+Option+Return}.
 }
 }
 

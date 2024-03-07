@@ -18,8 +18,12 @@ cff_read_bib_text(x, encoding = "UTF-8", ...)
   }}
 }
 \value{
-A \code{\link[=cff-class]{cff}} object ready to be used with other functions (i.e.
-\code{\link[=cff_create]{cff_create()}}.
+An object of classes \verb{"cff_ref_list", "cff"} according to the
+\code{definitions.references} specified in
+the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
+Each element of the \verb{"cff_ref_list", "cff"} object would have classes
+\verb{"cff_ref", "cff"}. Learn more about the \CRANpkg{cffr} class system in
+\link{cff_class}.
 }
 \description{
 Convert a \code{\link[=character]{character}} representing a BibTeX entry to a

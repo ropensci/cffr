@@ -34,8 +34,7 @@ test_that("Walk trough full lifecycle", {
   # Write
   tmp <- tempfile(fileext = ".cff")
   cff_write(modify, outfile = tmp, validate = FALSE, verbose = FALSE)
-  stopifnotexists(tmp)
-  stopifnotcff(tmp)
+  expect_silent(file_exist_abort(tmp))
 
   # Validate
   expect_true(cff_validate(tmp, verbose = FALSE))

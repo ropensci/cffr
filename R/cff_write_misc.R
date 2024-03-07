@@ -30,8 +30,8 @@
 #'
 #' @details
 #'
-#' When `x` is a `cff` object it would be converted to `bibentry` using
-#' [as_bibentry()].
+#' When `x` is a `cff` object it would be converted to `Bibtex` using
+#' [toBibtex.cff()].
 #'
 #' For security reasons, if the file already exists the function would create
 #' a backup copy on the same directory.
@@ -84,7 +84,7 @@ cff_write_bib <- function(x, file = tempfile(fileext = ".bib"), append = FALSE,
     btex <- enc2utf8(btex)
   }
 
-  if (tools::file_ext(file) != "bib") file <- paste0(file, ".bib")
+  if (detect_x_source(file) != "bib") file <- paste0(file, ".bib")
   write_lines_msg(btex, file, verbose, append)
   return(invisible(NULL))
 }
@@ -127,41 +127,4 @@ cff_write_citation <- function(x, file = tempfile("CITATION_"),
   bentr <- c("", bentr)
   write_lines_msg(bentr, file, verbose, append)
   return(invisible(NULL))
-}
-
-
-write_lines_msg <- function(lines, file, verbose, append) {
-  # Check that the directory exists, if not create
-  dir <- dirname(path.expand(file))
-  if (!dir.exists(dir)) {
-    if (verbose) cli::cli_alert_info("Creating directory {.path {dir}}")
-    dir.create(dir, recursive = TRUE)
-  }
-
-  # If exists creates a backup
-  if (file.exists(file)) {
-    for (i in seq(1, 100)) {
-      f <- paste0(file, ".bk", i)
-      if (!file.exists(f)) break
-    }
-
-    if (verbose) {
-      cli::cli_alert_info(
-        "Creating a backup of {.file {file}} in {.file {f}}"
-      )
-    }
-    file.copy(file, f)
-  }
-
-
-  fh <- file(file, encoding = "UTF-8", open = ifelse(append, "a+", "w+"))
-  on.exit(if (isOpen(fh)) close(fh))
-  if (verbose) {
-    cli::cli_alert_info("Writing {length(lines)} entr{?y/ies} ...")
-  }
-
-  writeLines(lines, fh)
-  if (verbose) {
-    cli::cli_alert_success("Results written to {.file {file}}")
-  }
 }

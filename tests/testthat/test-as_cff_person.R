@@ -21,12 +21,12 @@ test_that("debugging messages", {
   options("cffr_message_verbosity" = initopt)
 })
 
-test_that("Parse one person", {
+test_that("Coerce one person", {
   p <- person("one", "person")
   expect_snapshot(as_cff_person(p))
 })
 
-test_that("Parse several persons", {
+test_that("Coerce several persons", {
   p <- c(
     person("one", "person"), person("another", "human"),
     person("and one", "more")
@@ -35,7 +35,7 @@ test_that("Parse several persons", {
 })
 
 
-test_that("Parse bibtex persons", {
+test_that("Coerce bibtex persons", {
   s <- "Wright, III, Frank Edwin"
 
   expect_snapshot(as_cff_person(s))
@@ -49,7 +49,7 @@ test_that("Parse bibtex persons", {
   expect_identical(as_cff_person(s), as_cff_person(s2))
 })
 
-test_that("Parse bibtex persons with masks", {
+test_that("Coerce bibtex persons with masks", {
   s <- "Elephant and Castle"
 
   expect_snapshot(as_cff_person(s))

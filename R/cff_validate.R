@@ -1,11 +1,10 @@
 #' Validate a `CITATION.cff` file or a [`cff`] object
 #'
 #' @description
-#' Validate a `CITATION.cff` file or a [`cff`] object created with
-#' [cff_create()] using the corresponding validation
+#' Validate a `CITATION.cff` file or a [`cff`] object using the corresponding
 #' ```{r, echo=FALSE, results='asis'}
 #'
-#' cat(paste0("\n", "[schema.json]",
+#' cat(paste0(" [validation schema]",
 #'            "(https://github.com/citation-file-format/",
 #'            "citation-file-format/blob/main/schema.json)."))
 #'
@@ -25,13 +24,19 @@
 #'
 #' ```
 #'
-#' @return A message indicating the result of the validation and an invisible
-#'   value `TRUE/FALSE`. On error, the results would have an attribute
-#'   `"errors"` containing the error summary (see **Examples** and [attr()]).
+#' @return
+#'
+#' A message indicating the result of the validation and an invisible value
+#' `TRUE/FALSE`. On error, the results would have an attribute `"errors"`
+#' containing the error summary (see **Examples** and [attr()]).
 #'
 #' @param x This is expected to be either a `cff` object created
 #'   with [cff_create()] or the path to a `CITATION.cff` file to be validated.
 #' @inheritParams cff_write
+#'
+#' @seealso
+#' [jsonvalidate::json_validate()], that is the function that performs the
+#' validation.
 #'
 #' @examples
 #' \donttest{
@@ -58,28 +63,20 @@
 #' try(cff_validate(system.file("CITATION", package = "cffr")))
 cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
   # If is a cff create the object
-  if (is_cff(x)) {
-    tmpfile <- tempfile(fileext = ".cff")
-    suppressMessages(yaml::write_yaml(x, tmpfile))
-    path <- tmpfile
-    is_tmpfile <- TRUE
+  if (!is_cff(x)) {
+    # Check
+    abort_if_not_cff(x)
+    is_a <- paste0("{.file ", x, "}")
+    # nolint end
+    x <- cff_read_cff_citation(x)
   } else {
-    path <- x
-    is_tmpfile <- FALSE
+    is_a <- "This {.cls cff}"
   }
 
-  # Check
-  stopifnotexists(path)
-  stopifnotcff(path)
 
+  # Convert to list
+  citfile <- as.list(x)
 
-  # Read file
-  citfile <- yaml::read_yaml(path)
-
-  # Clean up
-  if (is_tmpfile) file.remove(path)
-
-  # Convert all elements to character
   # This prevent errors with jsonvalidate
   citfile <- rapply(citfile, function(x) as.character(x), how = "replace")
 
@@ -103,37 +100,23 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
         get_errors$message, "}\n",
         collapse = ""
       )
-      if (is_tmpfile) {
-        cli::cli_alert_danger(
-          paste0(
-            "Oops! This {.cls cff} has the following errors:\n",
-            ll
-          )
-        )
-      } else {
-        cli::cli_alert_danger(
-          paste0(
-            "Oops! {.file {x}} has the following errors:\n",
-            ll
-          )
-        )
-      }
+      cli::cli_alert_danger(
+        paste0("Oops! ", is_a, " has the following errors:\n", ll)
+      )
     }
+
     # Prepare output
-    r <- FALSE
-    attr(r, "errors") <- get_errors
-    return(invisible(r))
-  } else {
-    if (verbose) {
-      cli::cat_rule("Validating cff", col = "cyan", line = 2)
-      if (is_tmpfile) {
-        cli::cli_alert_success("Congratulations! This {.cls cff} is valid")
-      } else {
-        cli::cli_alert_success("Congratulations! {.file {x}} is valid")
-      }
-    }
-    return(invisible(TRUE))
+    attr(result, "errors") <- get_errors
+    return(invisible(result))
   }
+
+  if (verbose) {
+    cli::cat_rule("Validating cff", col = "cyan", line = 2)
+    cli::cli_alert_success(
+      paste0("Congratulations! ", is_a, " is valid")
+    )
+  }
+  return(invisible(result))
 }
 
 # Validate schema

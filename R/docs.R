@@ -1,6 +1,6 @@
 #' The `cff` class
 #'
-#' @name cff-class
+#' @name cff_class
 #' @keywords internal
 #'
 #' @family s3method

@@ -3,12 +3,12 @@
 #' Add new keys or modify existing ones on a [`cff`] object.
 #'
 #' @param x A [`cff`] object.
-#' @param ... Named arguments to be used for modifying `x`. See also [cff()].
+#' @param ... Named arguments to be used for modifying `x`. See also `...`
+#'   argument in [cff()].
 #'
 #' @details
 #'
-#' If any key provided in `...` is present in `x`, the result would have the
-#' key provided in `...`.
+#' Keys provided in `...` would override the corresponding key in `x`.
 #'
 #' @returns
 #'
@@ -21,10 +21,6 @@
 #'
 #' See [cff()] for creating [`cff`] objects from scratch.
 #'
-#'
-#'
-#' @export
-#' @family core
 #' @examples
 #' x <- cff()
 #' x
@@ -76,7 +72,10 @@ modify_cff <- function(x, keys, argname = "...") {
 
   # Name order
   sorted_nm <- unique(c(init_ord, names(xend)))
-  as_cff(xend[sorted_nm])
+
+  # Relist and add classes
+  xend <- as.list(xend[sorted_nm])
+  as_cff(xend)
 }
 
 

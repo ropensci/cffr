@@ -16,9 +16,8 @@ action?}
 Invisible, this function is called by its side effects.
 }
 \description{
-This function would install a
-\href{https://github.com/features/actions}{GitHub Action} on your repo. The action
-will update your \code{CITATION.cff} when any of these events occur:
+This function would install a \href{https://github.com/features/actions}{GitHub Action} on your repo. The action will
+update your \code{CITATION.cff} when any of these events occur:
 \itemize{
 \item You publish a new release of the package.
 \item Your \code{DESCRIPTION} or \code{inst/CITATION} are modified.

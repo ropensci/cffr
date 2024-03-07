@@ -168,23 +168,52 @@ test_that("as.person method", {
   expect_snapshot(
     format(aut2, include = c("given", "family", "email", "role", "comment"))
   )
+
+  # Malformed
+  malf <- getref$authors
+  malf[[1]] <- list(a = "list")
+  expect_s3_class(malf, "cff_pers_list")
+
+  expect_snapshot(end <- as.person(malf))
+  expect_s3_class(end, "person")
+  expect_length(end, 1)
+
+  # Duplicates
+  aa <- getref$authors
+  aa[[3]] <- aa[[1]]
+  expect_s3_class(aa, "cff_pers_list")
+
+  expect_snapshot(aa2 <- as.person(aa))
+  expect_s3_class(aa2, "person")
+  expect_length(aa2, 2)
 })
 
-test_that("as person with another cff", {
+test_that("as.person method names and particles", {
+  str <- "von Wicksteed, III, P. H. and {The translator factory}"
+
+  cf <- as_cff_person(str)
+  expect_snapshot(cf)
+
+  pers_bib <- toBibtex(as.person(cf))
+  again <- as_cff_person(pers_bib)
+  expect_identical(cf, again)
+})
+
+test_that("Errors on other as.person methods", {
   path <- system.file("examples/CITATION_complete.cff", package = "cffr")
   the_cff <- cff_read(path)
-  expect_s3_class(the_cff, "cff")
-  expect_identical(as.person(the_cff), person())
+  expect_s3_class(the_cff, "cff", exact = TRUE)
+  expect_snapshot(as.person(the_cff), error = TRUE)
 
   # identifiers
   key <- the_cff$identifiers
-  expect_s3_class(key, "cff")
-  expect_identical(as.person(key), person())
+  expect_s3_class(key, c("cff_ref_list", "cff"), exact = TRUE)
+  expect_snapshot(as.person(key), error = TRUE)
 
   # preferred
   key <- the_cff$`preferred-citation`
-  expect_s3_class(key, "cff")
-  expect_identical(as.person(key), person())
+  expect_s3_class(key, c("cff_ref", "cff"), exact = TRUE)
+  expect_snapshot(as.person(key), error = TRUE)
 })
 
 test_that("head and tail", {
@@ -250,4 +279,57 @@ test_that("toBibtex", {
 
   froml <- toBibtex(cff_read_bib_text(string))
   expect_equal(sum(names(froml) == "title"), 1)
+
+
+  # Persons
+
+  sev_auth <- as_cff_person(
+    "{The Big Bopper} and Frank Sinatra and Dean Martin and Davis, Jr., Sammy"
+  )
+
+  expect_length(sev_auth, 4)
+  expect_s3_class(sev_auth, "cff_pers_list")
+  expect_snapshot(toBibtex(sev_auth))
+
+
+  # Single person
+  single <- as_cff_person(person("A", "person", email = "a@b.d"))[[1]]
+  expect_s3_class(single, "cff_pers")
+  expect_snapshot(toBibtex(single))
+
+  # Single entity
+  single <- as_cff_person(person("{A and B co}", email = "a@b.d"))[[1]]
+  expect_s3_class(single, "cff_pers")
+  expect_snapshot(toBibtex(single))
+})
+
+
+test_that("as.list", {
+  f <- system.file("examples/CITATION_complete.cff", package = "cffr")
+
+  full_cff <- cff_read_cff_citation(f)
+
+  # Capture dput and search
+  dput_cff <- capture.output(dput(full_cff))
+
+  ntot_class <- sum(grepl("\"cff\"", dput_cff))
+
+  expect_gt(ntot_class, 30)
+
+  # Unlist
+  unl <- as.list(full_cff)
+
+  # Capture dput and search
+  dput_unl <- capture.output(dput(unl))
+
+  ntot_class_unl <- sum(grepl("\"cff\"", unl))
+
+  expect_identical(ntot_class_unl, 0L)
+
+  # Reclass
+  regen_cff <- as_cff(unl)
+
+  expect_identical(full_cff, regen_cff)
+
+  expect_true(cff_validate(regen_cff, verbose = FALSE))
 })

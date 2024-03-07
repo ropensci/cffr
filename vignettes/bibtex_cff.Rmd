@@ -120,7 +120,7 @@ entry <- bibentry("book",
 toBibtex(entry)
 ```
 
-The final results of the entry as a text string would be parsed as[^1]:
+The final results of the entry as a text string would be coerced as[^1]:
 
 [^1]: By default **R** Pandoc would generate the cite on the Chicago author-date
     format [@rmarkdowncookbook2020]
@@ -490,8 +490,10 @@ We provide more detail on some of the mappings presented in the table above:
     **year** fields.
 
 -   When **pages** is provided as a range separated by `--`, i.e, **pages =
-    {3--5}** would be parsed as [start: 3]{.underline}, [end: 5]{.underline} in
+    {3--5}** would be coerced as [start: 3]{.underline}, [end: 5]{.underline} in
     [CFF]{.underline}.
+
+#### BibLaTeX
 
 Additionally, there are other [CFF]{.underline} keys that correspond to
 **BibLaTeX** fields. We propose to include these fields in the crosswalk[^6],
@@ -950,8 +952,8 @@ knitr::kable(df_table,
 
 **BibTeX entry**
 
-Note that **month** can't be parsed to a single integer in the range `1--12` as
-required on CFF, so it is not parsed to avoid validation errors.
+Note that **month** can't be coerce to a single integer in the range `1--12` as
+required on CFF, so it is ignored to avoid validation errors.
 
 ``` bibtex
 @manual{manual-full,

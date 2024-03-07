@@ -13,16 +13,16 @@ test_that("Write", {
 
   # Fix extensions
   file <- paste0(file, ".bib")
-  expect_true(file.exists(file))
+  expect_true(file_exist_abort(file))
 
   expect_snapshot_file(file)
 
   # Check backup
-  expect_false(file.exists(paste0(file, ".bk1")))
+  expect_false(file_exist_abort(paste0(file, ".bk1")))
 
   # Check now backup exists
   cff_write_bib(bib, file, append = TRUE)
-  expect_true(file.exists(paste0(file, ".bk1")))
+  expect_true(file_exist_abort(paste0(file, ".bk1")))
 
   file.remove(file)
   file.remove(paste0(file, ".bk1"))
@@ -99,7 +99,7 @@ test_that("Test dir creation", {
   expect_silent(cff_write_bib(bib, file, verbose = FALSE))
 
   expect_true(dir.exists(dir))
-  expect_true(file.exists(file))
+  expect_true(file_exist_abort(file))
 
   unlink(dir, recursive = TRUE, force = TRUE)
 
@@ -110,7 +110,7 @@ test_that("Test dir creation", {
   expect_message(cff_write_bib(bib, file, verbose = TRUE), "Creating directory")
 
   expect_true(dir.exists(dir))
-  expect_true(file.exists(file))
+  expect_true(file_exist_abort(file))
 
   unlink(dir, recursive = TRUE, force = TRUE)
 })
@@ -133,7 +133,7 @@ test_that("Write CITATION", {
   expect_message(cff_write_citation(bib, file, verbose = TRUE))
 
   # Check backup
-  expect_false(file.exists(paste0(file, ".bk1")))
+  expect_false(file_exist_abort(paste0(file, ".bk1")))
 
   # Check now backup exists and use cff
   expect_silent(cff_write_citation(f1, file,

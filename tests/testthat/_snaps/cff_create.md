@@ -1,3 +1,26 @@
+# Test indev
+
+    Code
+      a_cff
+    Output
+      cff-version: 1.2.0
+      message: 'To cite package "basicdesc" in publications use:'
+      type: software
+      license: GPL-3.0-only
+      title: 'basicdesc: A Basic Description'
+      version: 0.1.6
+      abstract: A very basic description. Should parse without problems.
+      authors:
+      - family-names: Basic
+        given-names: Marc
+        email: marcbasic@gmail.com
+      repository-code: https://github.com/basic/package
+      url: https://basic.github.io/package
+      contact:
+      - family-names: Basic
+        given-names: Marc
+        email: marcbasic@gmail.com
+
 # No auto generate preferred citations
 
     Code
@@ -92,10 +115,10 @@
       
       ---
 
-# Parse date
+# Coerce date
 
     Code
-      parsed
+      a_cff
     Output
       cff-version: 1.2.0
       message: 'To cite package "rgeos" in publications use:'
@@ -141,10 +164,10 @@
       - type: url
         value: http://rgeos.r-forge.r-project.org/index.html
 
-# Parse date in another format
+# Coerce date in another format
 
     Code
-      parsed
+      a_cff
     Output
       cff-version: 1.2.0
       message: 'To cite package "basicdescdate" in publications use:'
@@ -168,7 +191,7 @@
 # Parsing many urls
 
     Code
-      parsed
+      a_cff
     Output
       cff-version: 1.2.0
       message: 'To cite package "manyurls" in publications use:'
@@ -200,7 +223,7 @@
 # Parsing Gitlab
 
     Code
-      parsed
+      a_cff
     Output
       cff-version: 1.2.0
       message: 'To cite package "codemetar" in publications use:'
@@ -239,7 +262,7 @@
 # Parsing many persons
 
     Code
-      parsed
+      a_cff
     Output
       cff-version: 1.2.0
       message: 'To cite package "manypersons" in publications use:'
@@ -284,7 +307,7 @@
 # Parsing wrong urls
 
     Code
-      parsed
+      a_cff
     Output
       cff-version: 1.2.0
       message: 'To cite package "wrongurls" in publications use:'
@@ -322,7 +345,7 @@
 # Parsing two maintainers
 
     Code
-      parsed
+      a_cff
     Output
       cff-version: 1.2.0
       message: 'To cite package "codemetar" in publications use:'
@@ -357,7 +380,7 @@
 # Parsing r-universe
 
     Code
-      parsed
+      a_cff
     Output
       cff-version: 1.2.0
       message: 'To cite package "codemetar" in publications use:'
@@ -397,7 +420,7 @@
 # Parsing Bioconductor
 
     Code
-      parsed
+      a_cff
     Output
       cff-version: 1.2.0
       message: 'To cite package "GenomicRanges" in publications use:'
@@ -433,7 +456,7 @@
 # Parsing Posit Package Manager
 
     Code
-      parsed
+      a_cff
     Output
       cff-version: 1.2.0
       message: 'To cite package "resmush" in publications use:'
@@ -466,7 +489,7 @@
 # Search package on CRAN
 
     Code
-      parsed
+      a_cff
     Output
       cff-version: 1.2.0
       message: 'To cite package "ggplot2" in publications use:'

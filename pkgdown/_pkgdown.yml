@@ -27,7 +27,7 @@ reference:
   - subtitle: The `cff` class
     desc: Brief introduction to the `cff` class and S3 Methods available.
     contents:
-      - cff-class
+      - cff_class
       - has_concept("s3method")
   - subtitle: Citation File Format schema
     desc: >-

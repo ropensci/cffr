@@ -1,17 +1,19 @@
-#' Create a person with the corresponding [`cff`] structure
+#' Coerce strings or [person][utils::person] objects to [`cff`] objects
 #'
 #' @description
 #'
-#' Create a `person` or `entity` as defined by the
+#' Create a list of `definitions.person` or `definitions.entity` as defined by
+#' the
 #'
 #' ```{r, echo=FALSE, results='asis'}
 #'
 #' cat(paste0(" [Citation File Format schema]",
 #'            "(https://github.com/citation-file-format/",
-#'            "citation-file-format/blob/main/schema-guide.md)."))
+#'            "citation-file-format/blob/main/schema-guide.md) "))
 #'
 #'
 #' ```
+#' from different sources.
 #'
 #' [as_cff_person()] can convert the following objects:
 #' - Objects with class `person` as provided by [utils::person()].
@@ -19,11 +21,11 @@
 #'   using the standard BibTeX notation. See Markey (2007) for a full
 #'   explanation.
 #'
-#' [as_cff_person()] would recognize if the input should be converted using the
-#' CFF reference `person` or `entity`.
 #'
 #' @seealso
 #' Examples in `vignette("cffr", "cffr")` and [utils::person()].
+#'
+#' Learn more about the \CRANpkg{cffr} class system in [cff_class].
 #'
 #' @export
 #' @rdname as_cff_person
@@ -38,18 +40,25 @@
 #'   See **Examples**.
 #'
 #' @return
-#' `as_cff_person()` returns A list of persons or entities with class
-#'  `cff` converted to the
+#' `as_cff_person()` returns an object of classes `"cff_pers_list", "cff"`
+#' according to the `definitions.person` or `definitions.entity` specified in
+#' the
 #' ```{r, echo=FALSE, results='asis'}
 #'
 #' cat(paste0(" [Citation File Format schema]",
 #'            "(https://github.com/citation-file-format/",
-#'            "citation-file-format/blob/main/schema-guide.md)."))
+#'            "citation-file-format/blob/main/schema-guide.md). "))
 #'
 #'
 #' ```
+#' Each element of the `"cff_pers_list", "cff"` object would have classes
+#' `"cff_pers", "cff"`. Learn more about the \CRANpkg{cffr} class system in
+#' [cff_class].
 #'
 #' @details
+#'
+#' [as_cff_person()] would recognize if the input should be converted using the
+#' CFF reference for `definition.person` or `definition.entity`.
 #'
 #' `as_cff_person()` uses a custom algorithm that tries to break a name as
 #' explained in Section 11 of "Tame the BeaST" (Markey, 2007) (see also
@@ -107,12 +116,19 @@
 #'
 #' cff_person <- as_cff_person(a_person)
 #'
+#' # Class cff_pers_list / cff
+#' class(cff_person)
+#'
+#' # With each element with class cff_pers / cff
+#' class(cff_person[[1]])
+#'
+#' # Print
 #' cff_person
 #'
 #' # Back to person object with S3 Method
 #' as.person(cff_person)
 #'
-#' # Parse a string
+#' # Coerce a string
 #' a_str <- paste0(
 #'   "Julio Iglesias <fake@email.com> ",
 #'   "(<https://orcid.org/0000-0001-8457-4658>)"
@@ -120,9 +136,21 @@
 #' as_cff_person(a_str)
 #'
 #' # Several persons
-#' persons <- c(person("Clark", "Kent"), person("Lois", "Lane"))
+#' persons <- c(
+#'   person("Clark", "Kent", comment = c(affiliation = "Daily Planet")),
+#'   person("Lois", "Lane"), person("Oscorp Inc.")
+#' )
 #'
-#' as_cff_person(persons)
+#' a_cff <- as_cff_person(persons)
+#'
+#' a_cff
+#'
+#' # Printed as Bibtex thanks to the method
+#' toBibtex(a_cff)
+#'
+#' # Or as person object
+#' as.person(a_cff)
+#'
 #'
 #' # Or you can use BibTeX style if you prefer
 #'
@@ -131,6 +159,8 @@
 #' as_cff_person(x)
 #'
 #' as_cff_person("Herbert von Karajan")
+#'
+#' toBibtex(as_cff_person("Herbert von Karajan"))
 as_cff_person <- function(person) {
   if (any(is.null(person), is.na(person), length(person) == 0)) {
     return(NULL)
@@ -156,17 +186,8 @@ as_cff_person <- function(person) {
   if (!length(the_obj) > 0) {
     return(NULL)
   }
-  the_obj <- new_cff(the_obj)
-
-  # Add classes
-  cff_pers_class <- lapply(the_obj, function(x) {
-    class(x) <- unique(c("cff_pers", "cff", class(x)))
-    x
-  })
-
-  class(cff_pers_class) <- c("cff_pers_list", "cff", "list")
-
-  cff_pers_class
+  the_obj <- as_cff(the_obj)
+  the_obj
 }
 
 create_person_from_r <- function(person) {
@@ -210,24 +231,24 @@ create_person_from_r <- function(person) {
   if (is_entity) {
     as_bib_text <- paste(c(person$family, person$given), collapse = " ")
     # And protect it
-    as_bib_text <- paste0("{", as_bib_text, "}")
+    as_bib_text <- protect_bib_braces(as_bib_text)
   } else {
     # Use von Family, Junior, Given
     # Protect given
     giv <- paste0(person$given, collapse = " ")
-    giv <- paste0("{", giv, "}")
+    giv <- protect_bib_braces(giv)
     as_bib_text <- paste0(c(person$family, giv), collapse = ", ")
   }
 
-  parsed_person <- create_person_from_txt(as_bib_text)
-  parsed_comments <- extract_person_comments(person)
+  pers_cff <- create_person_from_txt(as_bib_text)
+  comm_cff <- extract_person_comments(person)
 
   # Add comments
-  parsed_person <- c(parsed_person, parsed_comments)
+  pers_cff <- c(pers_cff, comm_cff)
 
   # Validate fields
-  parsed_person <- validate_cff_person_fields(parsed_person)
-  parsed_person
+  pers_cff <- validate_cff_person_fields(pers_cff)
+  pers_cff
 }
 
 create_person_from_txt <- function(as_bib_text) {
@@ -254,20 +275,20 @@ create_person_from_txt <- function(as_bib_text) {
 
     # Fake a person object to extract comments
     fake_person <- paste0("{Fake} ", comment_only)
-    parsed_comments <- extract_person_comments(fake_person)
+    comm_cff <- extract_person_comments(fake_person)
   } else {
     # Does not
     person_only <- as_bib_text
-    parsed_comments <- list()
+    comm_cff <- list()
   }
 
   # Special case for Bioconductor
   if (is_substring(tolower(person_only), "bioconductor")) {
-    person_only <- paste0("{", person_only, "}")
+    person_only <- protect_bib_braces(person_only)
   }
   # Special case for R Core Team
   if (is_substring(tolower(person_only), "r core")) {
-    person_only <- paste0("{", person_only, "}")
+    person_only <- protect_bib_braces(person_only)
   }
 
 
@@ -283,10 +304,9 @@ create_person_from_txt <- function(as_bib_text) {
     perl = TRUE
   )
 
-  commas <- as.character(lengths(regmatches(
-    protected,
-    gregexpr(",", protected)
-  )))
+  commas <- as.character(
+    lengths(regmatches(protected, gregexpr(",", protected)))
+  )
 
   # Assign the corresponding fun
   bibtex_name_str <- switch(commas,
@@ -302,10 +322,7 @@ create_person_from_txt <- function(as_bib_text) {
 
   # Clean
   bibtex_name_str <- lapply(bibtex_name_str, function(z) {
-    if (is.null(z)) {
-      return(NULL)
-    }
-    if (any((is.na(z) | z == ""))) {
+    if (is.null(clean_str(z))) {
       return(NULL)
     }
 
@@ -313,13 +330,13 @@ create_person_from_txt <- function(as_bib_text) {
     clean_str(cleaned)
   })
 
-  # Final parsed person
+  # Final person
   if (is.null(bibtex_name_str$given)) {
     ent <- c(bibtex_name_str$von, bibtex_name_str$family, bibtex_name_str$jr)
     ent <- clean_str(paste(ent, collapse = " "))
-    parsed_person <- list(name = ent)
+    pers_cff <- list(name = ent)
   } else {
-    parsed_person <- list(
+    pers_cff <- list(
       "family-names" = bibtex_name_str$family,
       "given-names" = bibtex_name_str$given,
       "name-particle" = bibtex_name_str$von,
@@ -327,146 +344,12 @@ create_person_from_txt <- function(as_bib_text) {
     )
   }
 
-  parsed_person <- parsed_person[!lengths(parsed_person) == 0]
+  pers_cff <- pers_cff[!lengths(pers_cff) == 0]
 
   # Add comments
-  parsed_person <- c(parsed_person, parsed_comments)
+  pers_cff <- c(pers_cff, comm_cff)
 
   # Validate fields
-  parsed_person <- validate_cff_person_fields(parsed_person)
-  parsed_person
-}
-
-guess_hint <- function(person) {
-  if (inherits(person, "person")) {
-    return("person")
-  }
-
-  # Rest of cases "txt"
-  return("txt")
-}
-
-
-split_txt_persons <- function(person) {
-  person <- trimws(person)
-  person <- paste0(person, collapse = " and ")
-
-  # Remove role on [] as it comes from print.person by default
-  # We don't use it here
-  person <- gsub("\\[[^()]*\\]", "", person)
-
-  # Protect 'and' on brackets {}
-  # Lower
-  protected <- gsub("(and)(?![^\\}]*(\\{|$))", "@nd@",
-    person,
-    perl = TRUE
-  )
-
-  # upper
-  protected <- gsub("AND(?![^\\}]*(\\{|$))", "@ND@",
-    protected,
-    perl = TRUE
-  )
-
-  # Do the same for 'and' in comments "()" as provided by print.person
-  # Lower
-  protected <- gsub("(and)(?![^\\)]*(\\(|$))", "@nd@",
-    protected,
-    perl = TRUE
-  )
-
-  # upper
-  protected <- gsub("AND(?![^\\)]*(\\(|$))", "@ND@",
-    protected,
-    perl = TRUE
-  )
-
-  # Do the same for 'and' in "<>". These are email, should never happen
-  # Lower
-  protected <- gsub("(and)(?![^>]*(<|$))", "@nd@",
-    protected,
-    perl = TRUE
-  )
-
-  # upper
-  protected <- gsub("AND(?![^>]*(<|$))", "@ND@",
-    protected,
-    perl = TRUE
-  )
-
-  auths <- unlist(strsplit(protected, " and | AND "))
-
-  # Unprotec
-  auths_un <- gsub("@nd@", "and", auths)
-  auths_un <- gsub("@ND@", "AND", auths_un)
-
-  auths_un
-}
-
-extract_person_comments <- function(person) {
-  # Ensure person type
-  person <- as.person(person)
-
-  # Extract from comments
-  parsed_comments <- as.list(person$comment)
-  names(parsed_comments) <- tolower(names(parsed_comments))
-  nms_com <- names(parsed_comments)
-  comment_as_text <- tolower(clean_str(parsed_comments))
-
-  # Special case when coerced from text, only can extract orcid and web
-  if (all(
-    any(is.na(nms_com), length(nms_com) == 0),
-    length(comment_as_text > 0)
-  )
-  ) {
-    split_comments <- unlist(strsplit(comment_as_text, ",| |<|>"))
-
-    # Guess that seems to be a web
-    url_comment <- split_comments[is_url(split_comments)]
-
-    # guess orcid
-    orcid <- url_comment[grepl("orcid.org/", url_comment)]
-
-    # Get the first non-orcid url
-    web <- url_comment[!grepl("orcid.org/", url_comment)][1]
-
-    # Reset comment list
-    parsed_comments <- list()
-
-    parsed_comments$orcid <- clean_str(orcid)
-    parsed_comments$website <- clean_str(web)
-  }
-
-  # Add url to orcid if not present
-  # Parse leading invalid urls
-
-  if (!is.null(parsed_comments$orcid)) {
-    orcid <- gsub("^orcid.org/", "", parsed_comments$orcid)
-    orcid <- gsub("^https://orcid.org/", "", orcid)
-    orcid <- gsub("^http://orcid.org/", "", orcid)
-
-    parsed_comments$orcid <- paste0("https://orcid.org/", orcid)
-  }
-
-  # Add website
-  web <- parsed_comments$website
-
-  if (!is.null(web)) {
-    parsed_comments$website <- clean_str(web[is_url(web)])
-  }
-
-  # Add also email
-  # Check if several mails (MomTrunc 6.0)
-  look_emails <- c(unlist(person$email), parsed_comments$email)
-  valid_emails <- unlist(lapply(look_emails, is_email))
-  email <- look_emails[valid_emails][1]
-
-  # Final list
-  fin_list <- c(
-    list(email = NULL),
-    parsed_comments["email" != names(parsed_comments)]
-  )
-  fin_list$email <- clean_str(email)
-
-  fin_list
+  pers_cff <- validate_cff_person_fields(pers_cff)
+  pers_cff
 }

@@ -85,3 +85,16 @@
         url = {https://ggplot2.tidyverse.org},
       }
 
+---
+
+    Code
+      toBibtex(a_bib)
+    Output
+      @Misc{basic,
+        title = {manyurls: A lot of urls},
+        author = {Marc Basic},
+        url = {https://test.github.io/package/},
+        abstract = {This package has many urls. Specifically, 1 Bug Reports and 6 URLs. Expected is to have 1 repository-code, 1 url and 3 URLs, since there is 1 duplicate and 1 invalid url.},
+        version = {0.1.6},
+      }
+

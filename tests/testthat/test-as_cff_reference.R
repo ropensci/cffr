@@ -1,200 +1,4 @@
-test_that("Test citations with installed packages", {
-  installed <- as.character(installed.packages()[, 1])
-  inst <- c("base", "jsonlite", "rmarkdown")
-  for (i in seq_len(length(inst))) {
-    if (inst[i] %in% installed) {
-      desc <- cff_create(inst[i])
-      expect_true(length(desc$`preferred-citation`) > 1)
-      expect_true(cff_validate(desc, verbose = FALSE))
-    }
-  }
-})
-
-test_that("Test full with CITATION and (option = author)", {
-  # Needs an installed package
-  desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
-  cit_path <- system.file("examples/CITATION_auto", package = "cffr")
-  parsed <- cff_safe_read_citation(desc_path, cit_path)
-  expect_s3_class(parsed, "cff")
-
-  # Create cff
-  cffobj <- cff_create(desc_path, keys = list(
-    references = parsed
-  ))
-
-  expect_s3_class(cffobj, "cff")
-  expect_snapshot(cffobj)
-  expect_true(cff_validate(cffobj, verbose = FALSE))
-})
-
-
-test_that("Parsed several citations", {
-  # Needs an installed package
-  desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
-  cit_path <- system.file("examples/CITATION_auto", package = "cffr")
-  citobj <- cff_safe_read_citation(desc_path, cit_path)
-  expect_s3_class(citobj, c("cff_ref_list", "cff", "list"), exact = TRUE)
-
-  expect_snapshot(citobj)
-  expect_length(citobj, 3)
-})
-
-
-test_that("Add wrong field to citation", {
-  bib <- bibentry(
-    bibtype = "Manual",
-    title = "favoritefood is not valid on cff schema",
-    author = "Jane Smith",
-    favoritefood = "bananas",
-    type = "I should be removed"
-  )
-
-  bibparsed <- as_cff(bib)
-
-  expect_s3_class(bibparsed, "cff")
-
-  cffobj <- cff_create(cff(),
-    keys = list(
-      references = bibparsed
-    )
-  )
-
-  expect_snapshot(cffobj)
-  expect_true(cff_validate(cffobj, verbose = FALSE))
-})
-
-test_that("Fix wrong orcid", {
-  bib <- bibentry(
-    bibtype = "Manual",
-    title = "Wrong orcid fixed by cffr",
-    author = person("Jane",
-      "Smith",
-      comment = c(
-        ORCID =
-          "http://orcid.org/0000-0000-0000-306X"
-      )
-    )
-  )
-
-  bibparsed <- as_cff(bib)
-
-  expect_s3_class(bibparsed, "cff")
-
-  cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
-  )
-
-  expect_snapshot(cffobj)
-  expect_true(cff_validate(cffobj, verbose = FALSE))
-})
-
-test_that("Several identifiers and duplicates", {
-  bib <- bibentry(
-    bibtype = "Manual",
-    title = "A Language and Environment for Statistical Computing",
-    year = "2022",
-    year = "2023",
-    author = person("R Core Team"),
-    version = NULL,
-    error = "",
-    url = "https://www.R-project.org/",
-    url = "https://google.com/",
-    doi = "10.5281/zenodo.5366600",
-    doi = "10.5281/zenodo.5366601",
-    doi = "10.5281/zenodo.5366602",
-    identifiers = "a,b"
-  )
-
-  bibparsed <- as_cff(bib)
-
-  expect_s3_class(bibparsed, "cff")
-
-  cffobj <- cff_create(cff(),
-    keys = list(
-      references = bibparsed
-    )
-  )
-
-  expect_snapshot(cffobj)
-  expect_true(cff_validate(cffobj, verbose = FALSE))
-})
-
-test_that("Test keywords and urls", {
-  bib <- bibentry(
-    bibtype = "Manual",
-    title = "A Language and Environment for Statistical Computing",
-    year = "2022",
-    author = person("R Core Team"),
-    url = "https://www.R-project.org/",
-    url = "https://google.com/",
-    keywords = "Some, random keywords, in, here, here"
-  )
-
-  bibparsed <- as_cff(bib)
-
-  expect_s3_class(bibparsed, "cff")
-
-  cffobj <- cff_create(cff(),
-    keys = list(
-      references = bibparsed
-    )
-  )
-
-  expect_snapshot(cffobj)
-  expect_true(cff_validate(cffobj, verbose = FALSE))
-})
-
-test_that("Parse persons on CITATION", {
-  bib <- bibentry("Manual",
-    title = "A Language and Environment for Statistical Computing",
-    year = "2021",
-    author = person("R Core Team"),
-    contact = "A name and A contact",
-    conference = person("A", "conference"),
-    "database-provider" = person("Database", "provider"),
-    editors = "A editor and {Ben and Jerry}",
-    "editors-series" = "An {editor series} and Another",
-    "institution" = person("A", "institution"),
-    "address" = person("A", "location"),
-    "publisher" = person("A", "publisher"),
-    "recipients" = "A recipient",
-    "senders" = "{A Sender} and Another Sender",
-    "translators" = "Translator one and Translator two"
-  )
-
-  bibparsed <- as_cff(bib)
-  expect_snapshot(bibparsed)
-
-  cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
-  )
-
-  expect_true(cff_validate(cffobj, verbose = FALSE))
-})
-
-test_that("Test inputs", {
-  # Remove type
-
-  bib <- bibentry("Book",
-    title = "Test",
-    author = "Billy Jean",
-    year = "2021",
-    publisher = "Random House",
-    type = "RANDOM"
-  )
-
-
-  bibparsed <- as_cff(bib)
-  expect_snapshot(bibparsed)
-
-  cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
-  )
-
-  expect_true(cff_validate(cffobj, verbose = FALSE))
-})
-
-# Parse citation from BibTeX ----
+# Coerce citation from BibTeX ----
 
 test_that("Article", {
   bib <- bibentry("Article",
@@ -211,17 +15,17 @@ test_that("Article", {
     note = "Example modified for testing purposes"
   )
 
-  bibparsed <- as_cff(bib)
-  expect_snapshot(bibparsed)
+  bib_cff <- as_cff(bib)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- as_bibentry(bibparsed)
+  tobib <- as_bibentry(bib_cff)
 
   fld1 <- sort(names(unclass(bib)[[1]]))
   fld2 <- sort(names(unclass(tobib)[[1]]))
@@ -250,17 +54,17 @@ test_that("Book", {
     keywords = c("Two, keyword")
   )
 
-  bibparsed <- as_cff(bib)
-  expect_snapshot(bibparsed)
+  bib_cff <- as_cff(bib)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- as_bibentry(bibparsed)
+  tobib <- as_bibentry(bib_cff)
 
   fld1 <- sort(names(unclass(bib)[[1]]))
   fld2 <- sort(names(unclass(tobib)[[1]]))
@@ -282,22 +86,22 @@ test_that("Booklet", {
     keywords = "java"
   )
 
-  bibparsed <- as_cff(bib)
-  expect_snapshot(bibparsed)
+  bib_cff <- as_cff(bib)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- as_bibentry(bibparsed)
+  tobib <- as_bibentry(bib_cff)
 
   fld1 <- sort(names(unclass(bib)[[1]]))
   fld2 <- sort(names(unclass(tobib)[[1]]))
 
-  # Keyword is not parsed
+  # Keyword is not coerced
   expect_identical(setdiff(fld1, fld2), "keywords")
 })
 
@@ -332,18 +136,18 @@ test_that("Conference", {
   bib <- list(bib_un)
   class(bib) <- "bibentry"
 
-  bibparsed <- as_cff(bib)
+  bib_cff <- as_cff(bib)
 
-  expect_snapshot(bibparsed)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- as_bibentry(bibparsed)
+  tobib <- as_bibentry(bib_cff)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
@@ -372,16 +176,16 @@ test_that("InBook", {
     note = "Example modified for testing purposes"
   )
 
-  bibparsed <- as_cff(bib)
-  expect_snapshot(bibparsed)
+  bib_cff <- as_cff(bib)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
   # Back to bibtex and check names
-  tobib <- as_bibentry(bibparsed)
+  tobib <- as_bibentry(bib_cff)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
@@ -412,17 +216,17 @@ test_that("InCollection", {
     note = "A note"
   )
 
-  bibparsed <- as_cff(bib)
-  expect_snapshot(bibparsed)
+  bib_cff <- as_cff(bib)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- as_bibentry(bibparsed)
+  tobib <- as_bibentry(bib_cff)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
@@ -453,22 +257,28 @@ test_that("InProceedings", {
     note = "Example modified for testing purposes"
   )
 
-  bibparsed <- as_cff(bib)
-  expect_snapshot(bibparsed)
+  bib_cff <- as_cff(bib)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- as_bibentry(bibparsed)
+  tobib <- as_bibentry(bib_cff)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
 
   expect_identical(setdiff(fld1, fld2), "series")
+
+  # If we remove collection title use conference
+  bib_cff[[1]]$`collection-title` <- NULL
+  bib_cff[[1]]$conference$name <- "I Am a conference"
+  bib <- as_bibentry(bib_cff)
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("Manual", {
@@ -484,17 +294,17 @@ test_that("Manual", {
     note = "Example modified for testing purposes"
   )
 
-  bibparsed <- as_cff(bib)
-  expect_snapshot(bibparsed)
+  bib_cff <- as_cff(bib)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- as_bibentry(bibparsed)
+  tobib <- as_bibentry(bib_cff)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
@@ -516,17 +326,17 @@ test_that("MastersThesis", {
     month = "August",
     note = "Example modified for testing purposes"
   )
-  bibparsed <- as_cff(bib)
-  expect_snapshot(bibparsed)
+  bib_cff <- as_cff(bib)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- as_bibentry(bibparsed)
+  tobib <- as_bibentry(bib_cff)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
@@ -545,17 +355,17 @@ test_that("Misc", {
     note = "A note"
   )
 
-  bibparsed <- as_cff(bib)
-  expect_snapshot(bibparsed)
+  bib_cff <- as_cff(bib)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- as_bibentry(bibparsed)
+  tobib <- as_bibentry(bib_cff)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
@@ -578,17 +388,17 @@ test_that("PhdThesis", {
     note = "Example modified for testing purposes"
   )
 
-  bibparsed <- as_cff(bib)
-  expect_snapshot(bibparsed)
+  bib_cff <- as_cff(bib)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- as_bibentry(bibparsed)
+  tobib <- as_bibentry(bib_cff)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
@@ -613,17 +423,17 @@ test_that("Proceedings", {
     note = "Example modified for testing purposes"
   )
 
-  bibparsed <- as_cff(bib)
-  expect_snapshot(bibparsed)
+  bib_cff <- as_cff(bib)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- as_bibentry(bibparsed)
+  tobib <- as_bibentry(bib_cff)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
@@ -648,17 +458,17 @@ test_that("TechReport", {
     note = "Example modified for testing purposes"
   )
 
-  bibparsed <- as_cff(bib)
-  expect_snapshot(bibparsed)
+  bib_cff <- as_cff(bib)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- as_bibentry(bibparsed)
+  tobib <- as_bibentry(bib_cff)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
@@ -676,22 +486,27 @@ test_that("Unpublished", {
     month = "aug",
   )
 
-  bibparsed <- as_cff(bib)
-  expect_snapshot(bibparsed)
+  bib_cff <- as_cff(bib)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Back to bibtex and check names
-  tobib <- as_bibentry(bibparsed)
+  tobib <- as_bibentry(bib_cff)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
 
   expect_identical(fld1, fld2)
+
+  # With custom note
+  bib_cff[[1]]$notes <- NULL
+  bib <- as_bibentry(bib_cff)
+  expect_snapshot(toBibtex(bib))
 })
 
 test_that("InBook with booktitle", {
@@ -708,22 +523,22 @@ test_that("InBook with booktitle", {
     chapter = "4.5"
   )
 
-  bibparsed <- as_cff(bib)
-  expect_snapshot(bibparsed)
+  bib_cff <- as_cff(bib)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Should be an incollection now
-  res <- as_bibentry(bibparsed)
+  res <- as_bibentry(bib_cff)
   init_type <- attr(unclass(res)[[1]], "bibtype")
   expect_identical(tolower(init_type), "incollection")
 
   # Back to bibtex and check names
-  tobib <- as_bibentry(bibparsed)
+  tobib <- as_bibentry(bib_cff)
 
   fld1 <- unique(sort(names(unclass(bib)[[1]])))
   fld2 <- unique(sort(names(unclass(tobib)[[1]])))
@@ -744,17 +559,17 @@ test_that("Test entry without author", {
     isbn = "1-59593-322-02",
   )
 
-  bibparsed <- as_cff(bib)
+  bib_cff <- as_cff(bib)
 
   expect_identical(
-    bibparsed[[1]]$authors[[1]]$name,
+    bib_cff[[1]]$authors[[1]]$name,
     "anonymous"
   )
 
-  expect_snapshot(bibparsed)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -776,18 +591,18 @@ test_that("Test entry without author but has a key", {
     isbn = "1-59593-322-02",
   )
 
-  bibparsed <- as_cff(bib)
+  bib_cff <- as_cff(bib)
 
   expect_identical(
-    bibparsed[[1]]$authors[[1]]$name,
+    bib_cff[[1]]$authors[[1]]$name,
     "anonymous"
   )
 
 
-  expect_snapshot(bibparsed)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -806,18 +621,18 @@ test_that("Test entry without author and key", {
     isbn = "1-59593-322-02",
   )
 
-  bibparsed <- as_cff(bib)
+  bib_cff <- as_cff(bib)
 
   expect_identical(
-    bibparsed[[1]]$authors[[1]]$name,
+    bib_cff[[1]]$authors[[1]]$name,
     "anonymous"
   )
 
 
-  expect_snapshot(bibparsed)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
@@ -832,12 +647,12 @@ test_that("Skip misc without title", {
     year = 2018
   )
 
-  expect_message(bibparsed <- as_cff(bib), "Skipping")
+  expect_message(bib_cff <- as_cff(bib), "Skipping")
 
-  expect_null(bibparsed)
+  expect_null(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_snapshot(cffobj)
@@ -864,14 +679,14 @@ test_that("Skip misc without title, not skipping the good one", {
 
 
 
-  expect_message(bibparsed <- as_cff(bib), "SHERPA/RoMEO")
+  expect_message(bib_cff <- as_cff(bib), "SHERPA/RoMEO")
 
-  expect_length(bibparsed, 1)
+  expect_length(bib_cff, 1)
 
-  expect_s3_class(bibparsed[[1]], "cff")
+  expect_s3_class(bib_cff[[1]], "cff")
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
   expect_snapshot(cffobj)
@@ -911,12 +726,60 @@ test_that("Check extended BibLatex Fields", {
     url = "http://www.ctan.org"
   )
 
-  bibparsed <- as_cff(bib)
-  expect_snapshot(bibparsed)
+  bib_cff <- as_cff(bib)
+  expect_snapshot(bib_cff)
 
   cffobj <- cff_create(cff(),
-    keys = list(references = bibparsed)
+    keys = list(references = bib_cff)
   )
 
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+})
+
+test_that("Duplicate entries", {
+  bib <- bibentry("InBook",
+    title = "Bibliographies and citations",
+    year = "2020",
+    author = "Yihui Xie and Christophe Dervieux and Emily Riederer",
+    booktitle = "{R} Markdown Cookbook",
+    publisher = "Chapman and Hall/CRC",
+    address = "Boca Raton, Florida",
+    series = "The {R} Series",
+    isbn = "9780367563837",
+    url = "https://bookdown.org/yihui/rmarkdown-cookbook",
+    chapter = "4.5"
+  )
+
+  expect_snapshot(bib_cff <- as_cff(rep(bib, 2)))
+  expect_length(bib_cff, 1)
+})
+
+test_that("Identifiers and dois", {
+  bib <- bibentry(
+    bibtype = "Manual",
+    title = "A Language and Environment for Statistical Computing",
+    year = "2022",
+    year = "2023",
+    author = person("R Core Team"),
+    version = NULL,
+    error = "",
+    url = "https://www.R-project.org/",
+    url = "https://google.com/",
+    doi = "10.5281/zenodo.5366600",
+    doi = "10.5281/zenodo.5366601",
+    doi = "10.5281/zenodo.5366602",
+    identifiers = "a,b"
+  )
+
+  bib_cff <- as_cff(bib)
+  sin <- bib_cff[[1]]
+  checf <- sin[names(sin) %in% c("url", "doi", "identifiers")]
+  expect_snapshot(as_cff(checf))
+
+
+  cffobj <- cff_modify(cff(), references = bib_cff)
+
+
+  expect_snapshot(cffobj)
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })

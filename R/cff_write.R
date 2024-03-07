@@ -70,7 +70,7 @@ cff_write <- function(x, outfile = "CITATION.cff", keys = list(),
                       cff_version = "1.2.0", gh_keywords = TRUE,
                       dependencies = TRUE, validate = TRUE,
                       verbose = TRUE, authors_roles = c("aut", "cre")) {
-  # On missing use package root
+  # # On missing use NULL
   if (missing(x)) x <- getwd()
 
   citat <- cff_create(x,
@@ -121,7 +121,7 @@ cff_write <- function(x, outfile = "CITATION.cff", keys = list(),
   }
 
   # Add CITATION.cff to .Rbuildignore
-  if (!is_cff(x) && x == getwd() && file.exists(".Rbuildignore")) {
+  if (!is_cff(x) && x == getwd() && file_exist_abort(".Rbuildignore")) {
     ignore <- readLines(".Rbuildignore")
 
     # If not already

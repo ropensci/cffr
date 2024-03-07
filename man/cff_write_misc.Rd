@@ -37,14 +37,7 @@ lines to be written.}
 \item{...}{
   Arguments passed on to \code{\link[=as_bibentry]{as_bibentry}}
   \describe{
-    \item{\code{what}}{Fields to extract. The value could be:
-\itemize{
-\item \code{preferred}: This would create a single entry with the main citation
-info of the package.
-\item \code{references}: Extract all the entries on \code{references}.
-\item \code{all}: A combination of the previous two options. This would extract
-both the preferred citation info and the references.
-}}
+    \item{\code{}}{}
   }}
 }
 \value{
@@ -59,8 +52,8 @@ Section 1.9 CITATION files of \emph{Writing R Extensions} (R Core Team 2023).
 }
 }
 \details{
-When \code{x} is a \code{cff} object it would be converted to \code{bibentry} using
-\code{\link[=as_bibentry]{as_bibentry()}}.
+When \code{x} is a \code{cff} object it would be converted to \code{Bibtex} using
+\code{\link[=toBibtex.cff]{toBibtex.cff()}}.
 
 For security reasons, if the file already exists the function would create
 a backup copy on the same directory.

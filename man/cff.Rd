@@ -19,7 +19,7 @@ with a special \code{\link[=print]{print()}} method.
 }
 \description{
 A class and utility methods for reading, creating and holding CFF
-information. See \code{\linkS4class{cff}} to learn more about \code{cff} objects.
+information. See \code{\link{cff_class}} to learn more about \code{cff} objects.
 }
 \details{
 If no additional \code{...} parameters are supplied (the default behavior),

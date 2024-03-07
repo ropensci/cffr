@@ -1,13 +1,11 @@
 # preferred-citation-book-missing
 
     Code
-      as_bibentry(x)
+      s <- as_bibentry(x)
     Message
       x Can't convert to `bibentry()`: 
       i A bibentry of bibtype 'Book' has to specify the field: publisher
-      ! Returning "NULL"
-    Output
-      NULL
+      ! Returning empty <bibentry>
 
 # preferred-citation-book
 
@@ -29,7 +27,7 @@
     Code
       toBibtex(bib)
     Output
-      @InProceedings{gamblinlegendre:2016,
+      @InProceedings{gamblin_etall:2016,
         title = {The Spack Package Manager: Bringing Order to HPC Software Chaos},
         author = {Todd Gamblin and Matthew LeGendre and Michael R. Collette and Gregory L. Lee and Adam Moody and Bronis R. {de Supinski} and Scott Futral},
         year = {2016},
@@ -45,7 +43,7 @@
     Code
       toBibtex(bib)
     Output
-      @InProceedings{gamblinlegendre:2015,
+      @InProceedings{gamblin_etall:2015,
         title = {The Spack Package Manager: Bringing Order to HPC Software Chaos},
         author = {Todd Gamblin and Matthew LeGendre and Michael R. Collette and Gregory L. Lee and Adam Moody and Bronis R. {de Supinski} and Scott Futral},
         year = {2015},
@@ -59,7 +57,7 @@
     Code
       toBibtex(bib)
     Output
-      @InProceedings{rampinfreire:2016,
+      @InProceedings{rampin_etall:2016,
         title = {ReproZip: Computational Reproducibility With Ease},
         author = {Rémi Rampin and Juliana Freire and Fernando Chirigati and Dennis Shasha},
         year = {2016},
@@ -102,7 +100,7 @@
     Code
       toBibtex(bib)
     Output
-      @Article{hartmannwong:2020,
+      @Article{hartmann_etall:2020,
         title = {An image-based data-driven analysis of cellular architecture in a developing tissue},
         author = {Jonas Hartmann and Mie Wong and Elisa Gallo and Darren Gilmour},
         year = {2020},
@@ -176,7 +174,7 @@
     Code
       toBibtex(bib)
     Output
-      @Proceedings{rampinfreire:2016,
+      @Proceedings{rampin_etall:2016,
         title = {ReproZip: Computational Reproducibility With Ease},
         author = {Remi Rampin and Juliana Freire and Fernando Chirigati and Dennis Shasha},
         year = {2016},
@@ -192,7 +190,7 @@
     Code
       toBibtex(bib)
     Output
-      @Article{smithkatz:2016,
+      @Article{smith_etall:2016,
         title = {Software citation principles},
         author = {A. M. Smith and D. S. Katz and K. E. Niemeyer and {FORCE11 Software Citation Working Group}},
         year = {2016},

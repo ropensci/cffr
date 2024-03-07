@@ -18,13 +18,13 @@
 #'   the [`cff`] object. It could be:
 #'   * A missing value. That would retrieve the `DESCRIPTION` file on your
 #'     in-development **R** package.
-#'   * An existing [`cff`] object,
-#'   * The name of an installed package (`"jsonlite"`), or
+#'   * An existing [`cff`] object.
+#'   * The name of an installed package (`"jsonlite"`).
 #'   * Path to a `DESCRIPTION` file (`"./DESCRIPTION"`).
 #'
 #' @param keys
 #'   List of additional keys to add to the [`cff`] object. See
-#'   **Details**.
+#'   [cff_modify().
 #' @param cff_version The Citation File Format schema version that the
 #'   `CITATION.cff` file adheres to for providing the citation metadata.
 #' @param gh_keywords Logical `TRUE/FALSE`. If the package is hosted on
@@ -114,29 +114,51 @@
 cff_create <- function(x, keys = list(), cff_version = "1.2.0",
                        gh_keywords = TRUE, dependencies = TRUE,
                        authors_roles = c("aut", "cre")) {
-  # On missing use package root
-  if (missing(x)) x <- getwd()
-
-  if (!is_cff(x) && !is.character(x)) {
-    msg <- "{.arg x} should be a {.cls cff} or {.cls character} object."
-    cli::cli_abort(msg)
+  # Guess source
+  # On missing add getwd()
+  if (missing(x)) {
+    hint_source <- "indev"
+    x <- getwd()
+  } else if (identical(getwd(), x)) {
+    # This case is coming from cff_write
+    hint_source <- "indev"
+  } else {
+    hint_source <- detect_x_source(x)
   }
 
-  # Detect sources and build cff
-  result_parsed <- detect_sources(
+  # Abort in non-valid sources
+  valid_sources <- c("indev", "cff_obj", "package", "description")
+  if (!hint_source %in% valid_sources) {
+    # Abort, prepare message
+    msg_hint <- switch(hint_source,
+      "dontknow" = paste0(
+        "If it is a package ",
+        "you may need to install it with ",
+        "{.fn install.packages}."
+      ),
+      "bib" = "Maybe try with {.fn cff_read}."
+    )
+
+    cli::cli_abort(
+      paste0("{.arg x} not valid. ", msg_hint)
+    )
+  }
+
+  # Build cff and return paths if any
+  result_paths <- build_cff_and_paths(
     x, cff_version, gh_keywords,
-    dependencies, authors_roles
+    dependencies, authors_roles, hint_source
   )
 
-  desc_path <- result_parsed[["desc_path"]]
-  instpack <- result_parsed[["instpack"]]
-  cffobjend <- result_parsed[["cffobjend"]]
+  desc_path <- result_paths[["desc_path"]]
+  cffobjend <- result_paths[["cffobjend"]]
 
 
 
   # Add software dependencies
   if (dependencies) {
-    deps <- parse_dependencies(desc_path, instpack)
+    instpack <- as.character(installed.packages()[, "Package"])
+    deps <- get_dependencies(desc_path, instpack)
 
     cffobjend$references <- unique(c(cffobjend$references, deps))
   }
@@ -155,73 +177,68 @@ cff_create <- function(x, keys = list(), cff_version = "1.2.0",
   cffobjend
 }
 
-detect_sources <- function(x, cff_version = "1.2.0",
-                           gh_keywords = TRUE, dependencies = TRUE,
-                           authors_roles = c("aut", "cre")) {
-  instpack <- as.character(installed.packages()[, "Package"])
+build_cff_and_paths <- function(x, cff_version = "1.2.0",
+                                gh_keywords = TRUE, dependencies = TRUE,
+                                authors_roles = c("aut", "cre"), hint_source) {
+  collect_list <- list(
+    desc_path = NULL,
+    cffobjend = NULL
+  )
 
-  # Set initially citobj to NULL
-  citobj <- NULL
-  desc_path <- NULL
+  # "indev", "cff_obj", "package", "description"
 
-  # Paths
+  # Already cff, return it
   if (is_cff(x)) {
     # It is already an object
-    cffobj <- x
+    cffobj <- as_cff(as.list(x))
     cffobj["cff-version"] <- cff_version
-  } else {
-    # Detect a package
-    if (x %in% instpack) x <- file.path(find.package(x), "DESCRIPTION")
-    # If is on the root create DESCRIPTION path
-    if (x == getwd()) x <- file.path(x, "DESCRIPTION")
 
-    if (isTRUE(grep("DESCRIPTION", x) == 1)) {
-      # Call for a DESCRIPTION file
-      desc_path <- x
-      # Look if a CITATION file on inst/ folder
-      # for in-development packages
-      cit_path <- gsub("DESCRIPTION$", "inst/CITATION", x)
-      # If it doesn't exists look on the root
-      # this is for call to installed packages with system.file()
-      if (!file.exists(cit_path)) {
-        cit_path <- gsub("DESCRIPTION$", "CITATION", x)
-      }
-      if (file.exists(cit_path)) {
-        citobj <- cff_safe_read_citation(desc_path, cit_path)
-        if (length(citobj) == 0) citobj <- NULL
-        citobj <- drop_null(citobj)
-        citobj <- unname(citobj)
-      }
-    } else {
-      msg <- paste0(
-        "{.arg x} ({x}) not valid. If it is a package ",
-        "you may need to install it with ",
-        "{.fn install.packages}"
-      )
-      cli::cli_abort(msg)
-    }
-
-    if (!file.exists(desc_path)) {
-      cli::cli_abort("No {.file DESCRIPTION} file found with {.arg x}")
-    }
-
-    cffobj <- cff_read_description(desc_path, cff_version,
-      gh_keywords = gh_keywords,
-      authors_roles = authors_roles
-    )
+    collect_list$cffobjend <- cffobj
+    return(collect_list)
   }
 
-  citobj <- unique(citobj)
-
-  # Merge DESCRIPTION and CITATION
-
-  cffobjend <- merge_desc_cit(cffobj, citobj)
-
-  # Return collected info
-
-  list(
-    desc_path = desc_path,
-    instpack = instpack,
-    cffobjend = cffobjend
+  # Get info from DESCRIPTION
+  desc_path <- switch(hint_source,
+    "indev" = file.path(getwd(), "DESCRIPTION"),
+    "description" = x,
+    "package" = system.file("DESCRIPTION", package = x)
   )
+
+  if (is.null(file_path_or_null(desc_path))) {
+    cli::cli_abort("No {.file DESCRIPTION} file found with {.arg x}.")
+  }
+
+  cffobj <- cff_read_description(desc_path, cff_version,
+    gh_keywords = gh_keywords,
+    authors_roles = authors_roles
+  )
+
+
+  # Just for description case
+  try_get_citation <- function(x) {
+    cit1 <- file.path(dirname(x), "inst/CITATION")
+    cit2 <- file.path(dirname(x), "CITATION")
+
+    c(file_path_or_null(cit1), file_path_or_null(cit2))[1]
+  }
+
+  cit_path <- switch(hint_source,
+    "indev" = file.path(getwd(), "inst/CITATION"),
+    "description" = try_get_citation(x),
+    "package" = system.file("CITATION", package = x)
+  )
+
+  cit_path <- file_path_or_null(cit_path[1])
+
+  if (!is.null(cit_path)) {
+    citobj <- cff_safe_read_citation(desc_path, cit_path)
+    citobj <- unique(citobj)
+    # Merge DESCRIPTION and CITATION
+    cffobj <- merge_desc_cit(cffobj, citobj)
+  }
+
+  collect_list$desc_path <- desc_path
+  collect_list$cffobjend <- cffobj
+
+  return(collect_list)
 }

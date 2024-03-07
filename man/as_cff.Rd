@@ -29,8 +29,17 @@ list.}
 \item{...}{Additional arguments to be passed on to other methods.}
 }
 \value{
-A \code{cff} object. These objects are rarely \link[=cff_validate]{valid}, but can
-be used to complement or modify complete \code{cff} objects.
+\itemize{
+\item \code{as_cff.person()} returns an object with classes \verb{"cff_pers_list", "cff"}.
+\item \code{as_cff.bibentry()} and \code{as_cff.Bibtex()} returns an object with classes
+\verb{"cff_ref_list", "cff"}.
+\item The rest of methods returns usually an object of class \code{cff}. However if
+\code{x} have an structure compatible with \code{definitions.person},
+\code{definitions.entity} or \code{definitions.reference} the object would have the
+corresponding subclass.
+}
+
+Learn more about the \CRANpkg{cffr} class system in \link{cff_class}.
 }
 \description{
 \code{as_cff()} turns an existing list-like \strong{R} object into a so-called
@@ -48,7 +57,7 @@ be used to complement or modify complete \code{cff} objects.
 For \code{as_cff.bibentry()} / \code{as_cff.Bibtex()} see
 \code{vignette("bibtex_cff", "cffr")} to understand how the mapping is performed.
 
-\code{\link[=as_cff_person]{as_cff_person()}} is preferred over \code{as_cff.person()} since it can handle
+\code{\link[=as_cff_person]{as_cff_person()}} is preferred over \code{as_cff.person()}, since it can handle
 \code{character} person such as \code{"Davis, Jr., Sammy"}. For \code{person} objects both
 functions are similar.
 }
@@ -89,14 +98,16 @@ as_cff(a_cit)
 \item \code{\link[=as_cff_person]{as_cff_person()}}: Recommended way for creating persons in CFF format.
 }
 
+Learn more about the \CRANpkg{cffr} class system in \link{cff_class}.
+
 Other functions for converting between \strong{R} classes:
 \code{\link{as_bibentry}()},
 \code{\link{as_cff_person}()}
 
-Other S3 Methods for \code{cff}:
+Other \strong{S3 Methods}:
 \code{\link{as_bibentry}()},
 \code{\link{as_cff_person}()},
-\code{\link{cff-class}}
+\code{\link{cff_class}}
 }
 \concept{coercing}
 \concept{s3method}

@@ -1,4 +1,5 @@
 test_that("Test in mock package", {
+  skip_on_cran()
   current_dir <- getwd()
 
   name <- paste0("mock-pack", runif(1) * 10)
@@ -15,6 +16,8 @@ test_that("Test in mock package", {
     to = "DESCRIPTION"
   )
 
+  # Get bibentry
+  a_bib <- as_bibentry()
   # Create citation
   cit <- utils::readCitationFile(
     system.file("examples/CITATION_basic",
@@ -25,11 +28,11 @@ test_that("Test in mock package", {
 
 
   expect_silent(cff_write_citation(cit, "./inst/CITATION", verbose = FALSE))
-  expect_true(file.exists("./inst/CITATION"))
+  expect_true(file_exist_abort("./inst/CITATION"))
 
   # Create Rbuildignore
   file.create(".Rbuildignore", showWarnings = FALSE)
-  expect_true(file.exists(".Rbuildignore"))
+  expect_true(file_exist_abort(".Rbuildignore"))
 
   # Add action
   expect_message(
@@ -43,7 +46,7 @@ test_that("Test in mock package", {
   expect_message(cff_gha_update(), "already installed")
   expect_message(cff_gha_update(overwrite = TRUE), "Installing")
 
-  expect_true(file.exists(file.path(
+  expect_true(file_exist_abort(file.path(
     ".github",
     "workflows",
     "update-citation-cff.yaml"
@@ -55,7 +58,7 @@ test_that("Test in mock package", {
 
   expect_output(cff_write())
 
-  expect_true(file.exists("CITATION.cff"))
+  expect_true(file_exist_abort("CITATION.cff"))
 
   expect_true(cff_validate("CITATION.cff", verbose = FALSE))
 
@@ -75,4 +78,7 @@ test_that("Test in mock package", {
 
   expect_snapshot(cffobj)
   expect_snapshot(toBibtex(cit))
+  expect_snapshot(toBibtex(a_bib))
+
+  unlink(new_dir, recursive = TRUE, force = TRUE)
 })
