@@ -6,19 +6,11 @@ test_that("NULL gives NULL", {
   expect_null(as_cff_person(""))
 })
 
-test_that("debugging messages", {
-  initopt <- getOption("cffr_message_verbosity", NULL)
-  options("cffr_message_verbosity" = "debug")
-  ap <- person("Example")
-  expect_snapshot(a <- as_cff_person(ap))
-  expect_snapshot(b <- as_cff_person("Example"))
-  # Disconnect
-  options("cffr_message_verbosity" = NULL)
-  expect_silent(a <- as_cff_person(ap))
-  expect_silent(b <- as_cff_person("Example"))
+test_that("default", {
+  p <- list("One", "person")
+  expect_identical(as_cff_person(p), as_cff_person("One person"))
 
-  # Restore init
-  options("cffr_message_verbosity" = initopt)
+  expect_identical(as_cff_person(1), as_cff_person("1"))
 })
 
 test_that("Coerce one person", {

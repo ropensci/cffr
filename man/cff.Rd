@@ -2,7 +2,7 @@
 % Please edit documentation in R/cff.R
 \name{cff}
 \alias{cff}
-\title{Read and manipulate \code{cff} objects}
+\title{Create \code{\link{cff}} objects from direct inputs}
 \usage{
 cff(path, ...)
 }
@@ -10,22 +10,21 @@ cff(path, ...)
 \item{path}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} \code{path} is no longer supported,
 use \code{\link[=cff_read_cff_citation]{cff_read_cff_citation()}} instead.}
 
-\item{...}{Named arguments to be used for creating a \code{cff} object. See
-\strong{Details}.}
+\item{...}{Named arguments to be used for creating a \code{cff} object. If no
+arguments are supplied (the default behavior), a minimal valid \code{cff}
+object is created.}
 }
 \value{
-A \code{cff} object. Under the hood, a \code{cff} object is a regular \code{list} object
-with a special \code{\link[=print]{print()}} method.
+A \code{\link{cff}} object. Under the hood, a \code{cff} object is a regular \code{list} object
+with a special \link[=print.cff]{print()} method.
 }
 \description{
 A class and utility methods for reading, creating and holding CFF
 information. See \code{\link{cff_class}} to learn more about \code{cff} objects.
 }
 \details{
-If no additional \code{...} parameters are supplied (the default behavior),
-a minimal valid \code{cff} object is created. \code{cff} would convert \verb{_} in the name
-of the argument to \code{-} (e.g, \verb{cff_version = "1.2.0'} would be converted to
-\verb{cff-version = "1.2.0'})
+\code{cff()} would convert \verb{_} in the name of the argument to \code{-}, e.g.
+\verb{cff_version = "1.2.0'} would be converted to \verb{cff-version = "1.2.0'}.
 
 Valid parameters are those specified on \code{\link[=cff_schema_keys]{cff_schema_keys()}}:\tabular{l}{
    \strong{valid cff keys} \cr

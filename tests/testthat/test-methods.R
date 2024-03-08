@@ -172,7 +172,7 @@ test_that("as.person method", {
   # Malformed
   malf <- getref$authors
   malf[[1]] <- list(a = "list")
-  expect_s3_class(malf, "cff_pers_list")
+  expect_s3_class(malf, "cffperslist")
 
   expect_snapshot(end <- as.person(malf))
   expect_s3_class(end, "person")
@@ -181,7 +181,7 @@ test_that("as.person method", {
   # Duplicates
   aa <- getref$authors
   aa[[3]] <- aa[[1]]
-  expect_s3_class(aa, "cff_pers_list")
+  expect_s3_class(aa, "cffperslist")
 
   expect_snapshot(aa2 <- as.person(aa))
   expect_s3_class(aa2, "person")
@@ -207,12 +207,12 @@ test_that("Errors on other as.person methods", {
 
   # identifiers
   key <- the_cff$identifiers
-  expect_s3_class(key, c("cff_ref_list", "cff"), exact = TRUE)
+  expect_s3_class(key, c("cffreflist", "cff"), exact = TRUE)
   expect_snapshot(as.person(key), error = TRUE)
 
   # preferred
   key <- the_cff$`preferred-citation`
-  expect_s3_class(key, c("cff_ref", "cff"), exact = TRUE)
+  expect_s3_class(key, c("cffref", "cff"), exact = TRUE)
   expect_snapshot(as.person(key), error = TRUE)
 })
 
@@ -288,18 +288,18 @@ test_that("toBibtex", {
   )
 
   expect_length(sev_auth, 4)
-  expect_s3_class(sev_auth, "cff_pers_list")
+  expect_s3_class(sev_auth, "cffperslist")
   expect_snapshot(toBibtex(sev_auth))
 
 
   # Single person
   single <- as_cff_person(person("A", "person", email = "a@b.d"))[[1]]
-  expect_s3_class(single, "cff_pers")
+  expect_s3_class(single, "cffpers")
   expect_snapshot(toBibtex(single))
 
   # Single entity
   single <- as_cff_person(person("{A and B co}", email = "a@b.d"))[[1]]
-  expect_s3_class(single, "cff_pers")
+  expect_s3_class(single, "cffpers")
   expect_snapshot(toBibtex(single))
 })
 

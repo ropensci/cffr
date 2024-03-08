@@ -1,4 +1,4 @@
-#' Read and manipulate `cff` objects
+#' Create [`cff`] objects from direct inputs
 #'
 #' A class and utility methods for reading, creating and holding CFF
 #' information. See [`cff_class`] to learn more about `cff` objects.
@@ -7,22 +7,21 @@
 #' @name cff
 #' @return
 #'
-#' A `cff` object. Under the hood, a `cff` object is a regular `list` object
-#' with a special [print()] method.
+#' A [`cff`] object. Under the hood, a `cff` object is a regular `list` object
+#' with a special [print()][print.cff()] method.
 #'
 #' @family core
 #'
 #' @param path `r lifecycle::badge("deprecated")` `path` is no longer supported,
 #'   use [cff_read_cff_citation()] instead.
-#' @param ... Named arguments to be used for creating a `cff` object. See
-#' **Details**.
+#' @param ... Named arguments to be used for creating a `cff` object. If no
+#'   arguments are supplied (the default behavior), a minimal valid `cff`
+#'   object is created.
 #'
 #' @details
 #'
-#' If no additional `...` parameters are supplied (the default behavior),
-#' a minimal valid `cff` object is created. `cff` would convert `_` in the name
-#' of the argument to `-` (e.g, `cff_version = "1.2.0'` would be converted to
-#' `cff-version = "1.2.0'`)
+#' `cff()` would convert `_` in the name of the argument to `-`, e.g.
+#' `cff_version = "1.2.0'` would be converted to `cff-version = "1.2.0'`.
 #'
 #' Valid parameters are those specified on [cff_schema_keys()]:
 #'

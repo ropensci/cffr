@@ -1,4 +1,4 @@
-#' Create a [`cff`] object
+#' Create a [`cff`] object from several sources
 #'
 #' @description
 #'

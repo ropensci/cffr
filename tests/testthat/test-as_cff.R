@@ -23,8 +23,8 @@ test_that("as_cff.person", {
   )
 
   expect_silent(aa <- as_cff_person(pers))
-  expect_s3_class(aa, c("cff_pers_list", "cff"), exact = TRUE)
-  expect_s3_class(aa[[1]], c("cff_pers", "cff"), exact = TRUE)
+  expect_s3_class(aa, c("cffperslist", "cff"), exact = TRUE)
+  expect_s3_class(aa[[1]], c("cffpers", "cff"), exact = TRUE)
   expect_identical(aa, as_cff_person(pers))
   expect_snapshot(as_cff(pers))
 
@@ -32,7 +32,7 @@ test_that("as_cff.person", {
   single <- as.list(aa)[[1]]
   expect_false(inherits(single, "cff"))
   single_cff <- as_cff(single)
-  expect_s3_class(single_cff, c("cff_pers", "cff"), exact = TRUE)
+  expect_s3_class(single_cff, c("cffpers", "cff"), exact = TRUE)
   expect_snapshot(single_cff)
 })
 
@@ -44,8 +44,8 @@ test_that("as_cff.bibentry, toBibtex", {
 
   bbb <- as_cff(b)
 
-  expect_s3_class(bbb, c("cff_ref_list", "cff"), exact = TRUE)
-  expect_s3_class(bbb[[1]], c("cff_ref", "cff"), exact = TRUE)
+  expect_s3_class(bbb, c("cffreflist", "cff"), exact = TRUE)
+  expect_s3_class(bbb[[1]], c("cffref", "cff"), exact = TRUE)
   expect_snapshot(bbb)
 
   b_bib <- toBibtex(b)
@@ -59,7 +59,7 @@ test_that("as_cff.bibentry, toBibtex", {
   b_single <- as.list(bbb)[[1]]
   expect_false(inherits(b_single, "cff"))
   b_single_cff <- as_cff(b_single)
-  expect_s3_class(b_single_cff, c("cff_ref", "cff"), exact = TRUE)
+  expect_s3_class(b_single_cff, c("cffref", "cff"), exact = TRUE)
   expect_snapshot(b_single_cff)
 
   # Check empty
@@ -90,7 +90,7 @@ test_that("Other convertes", {
 })
 
 
-test_that("]] cff_ref", {
+test_that("]] cffref", {
   b1 <- bibentry("Misc",
     title = "title", author = "Author",
     editor = "Editor"
@@ -102,15 +102,15 @@ test_that("]] cff_ref", {
   expect_s3_class(b_all, "bibentry", exact = TRUE)
   bbb <- as_cff(b_all)
 
-  expect_s3_class(bbb, c("cff_ref_list", "cff"), exact = TRUE)
+  expect_s3_class(bbb, c("cffreflist", "cff"), exact = TRUE)
   expect_length(bbb, 2)
 
   b2_reg <- bbb[2]
   expect_length(b2_reg, 1)
-  expect_s3_class(b2_reg, c("cff_ref", "cff"), exact = TRUE)
+  expect_s3_class(b2_reg, c("cffref", "cff"), exact = TRUE)
 })
 
-test_that("]] cff_pers", {
+test_that("]] cffpers", {
   b1 <- person("One", "person")
   b2 <- person("ntity")
 
@@ -119,12 +119,12 @@ test_that("]] cff_pers", {
   expect_s3_class(b_all, "person", exact = TRUE)
   bbb <- as_cff(b_all)
 
-  expect_s3_class(bbb, c("cff_pers_list", "cff"), exact = TRUE)
+  expect_s3_class(bbb, c("cffperslist", "cff"), exact = TRUE)
   expect_length(bbb, 2)
 
   b2_reg <- bbb[2]
   expect_length(b2_reg, 1)
-  expect_s3_class(b2_reg, c("cff_pers", "cff"), exact = TRUE)
+  expect_s3_class(b2_reg, c("cffpers", "cff"), exact = TRUE)
 })
 
 # Check full classes with recursion

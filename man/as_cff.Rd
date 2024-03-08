@@ -30,9 +30,9 @@ list.}
 }
 \value{
 \itemize{
-\item \code{as_cff.person()} returns an object with classes \verb{"cff_pers_list", "cff"}.
+\item \code{as_cff.person()} returns an object with classes \verb{"cffperslist", "cff"}.
 \item \code{as_cff.bibentry()} and \code{as_cff.Bibtex()} returns an object with classes
-\verb{"cff_ref_list", "cff"}.
+\verb{"cffreflist", "cff"}.
 \item The rest of methods returns usually an object of class \code{cff}. However if
 \code{x} have an structure compatible with \code{definitions.person},
 \code{definitions.entity} or \code{definitions.reference} the object would have the
@@ -100,14 +100,9 @@ as_cff(a_cit)
 
 Learn more about the \CRANpkg{cffr} class system in \link{cff_class}.
 
-Other functions for converting between \strong{R} classes:
-\code{\link{as_bibentry}()},
-\code{\link{as_cff_person}()}
-
 Other \strong{S3 Methods}:
 \code{\link{as_bibentry}()},
 \code{\link{as_cff_person}()},
 \code{\link{cff_class}}
 }
-\concept{coercing}
 \concept{s3method}

@@ -196,8 +196,10 @@ write_citation <- function(x,
 #' @export
 #' @keywords internal
 #' @family deprecated
+#' @param person  It can be either:
+#'   - A `person` or list of `person` object created with [utils::person()].
+#'   - A `character` object or vector representing a person or persons.
 #'
-#' @inheritParams as_cff_person
 #' @return A person in format `cff`.
 #'
 #' @seealso [as_cff_person()]

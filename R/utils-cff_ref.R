@@ -1,4 +1,4 @@
-# Utils for as_cff_reference
+# Utils for as_cffreference
 
 #' Extract and map BibTeX entry
 #' @noRd

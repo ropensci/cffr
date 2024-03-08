@@ -74,14 +74,14 @@ test_that("Check is_substring", {
 test_that("Check cff", {
   a_pers <- as_cff_person("Barnes and Noble")
   sing <- a_pers[[1]]
-  expect_s3_class(sing, "cff_pers")
+  expect_s3_class(sing, "cffpers")
 
   a_bib <- as_cff(c(
     bibentry("misc", title = "a"),
     bibentry("misc", title = "b")
   ))
   sing2 <- a_bib[[1]]
-  expect_s3_class(sing2, "cff_ref")
+  expect_s3_class(sing2, "cffref")
   expect_true(
     all(
       is_cff(cff()),

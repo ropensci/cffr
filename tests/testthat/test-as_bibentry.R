@@ -138,7 +138,7 @@ test_that("as_bibentry cff", {
   expect_identical(end, bibentry())
 
 
-  expect_s3_class(theref, c("cff_ref", "cff"), exact = TRUE)
+  expect_s3_class(theref, c("cffref", "cff"), exact = TRUE)
   mod_ref <- cff_modify(theref,
     type = "manual",
     authors = as_cff_person("{anonymous}")

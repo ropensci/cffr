@@ -2,7 +2,7 @@
 % Please edit documentation in R/cff_create.R
 \name{cff_create}
 \alias{cff_create}
-\title{Create a \code{\link{cff}} object}
+\title{Create a \code{\link{cff}} object from several sources}
 \usage{
 cff_create(
   x,

@@ -19,7 +19,7 @@
 #'
 #' @return
 #'
-#' An object of classes `"cff_ref_list", "cff"` according to the
+#' An object of classes `"cffreflist", "cff"` according to the
 #' `definitions.references` specified in
 #' the
 #' ```{r, echo=FALSE, results='asis'}
@@ -30,8 +30,8 @@
 #'
 #'
 #' ```
-#' Each element of the `"cff_ref_list", "cff"` object would have classes
-#' `"cff_ref", "cff"`. Learn more about the \CRANpkg{cffr} class system in
+#' Each element of the `"cffreflist", "cff"` object would have classes
+#' `"cffref", "cff"`. Learn more about the \CRANpkg{cffr} class system in
 #' [cff_class].
 #'
 #' @details

@@ -45,7 +45,7 @@
 #' * `cff_read_cff_citation()` and `cff_read_description()` returns a object
 #'   with class `cff`.
 #' * `cff_read_citation()` and `cff_read_bib()` returns an object of classes
-#'   `"cff_ref_list", "cff"` according to the `definitions.references`
+#'   `"cffreflist", "cff"` according to the `definitions.references`
 #'   specified in the
 #' ```{r, echo=FALSE, results='asis'}
 #'

@@ -18,9 +18,9 @@
 #'
 #' @returns
 #'
-#' * `as_cff.person()` returns an object with classes `"cff_pers_list", "cff"`.
+#' * `as_cff.person()` returns an object with classes `"cffperslist", "cff"`.
 #' * `as_cff.bibentry()` and `as_cff.Bibtex()` returns an object with classes
-#'   `"cff_ref_list", "cff"`.
+#'   `"cffreflist", "cff"`.
 #' * The rest of methods returns usually an object of class `cff`. However if
 #'   `x` have an structure compatible with `definitions.person`,
 #'   `definitions.entity` or `definitions.reference` the object would have the
@@ -28,7 +28,6 @@
 #'
 #' Learn more about the \CRANpkg{cffr} class system in [cff_class].
 #'
-#' @family coercing
 #' @family s3method
 #'
 #' @details
@@ -107,22 +106,22 @@ as_cff.person <- function(x, ...) {
 #' @rdname as_cff
 #' @export
 as_cff.bibentry <- function(x, ...) {
-  cff_ref <- as_cff_reference(x)
-  clean_up <- vapply(cff_ref, is.null, FUN.VALUE = logical(1))
+  cffref <- as_cffreference(x)
+  clean_up <- vapply(cffref, is.null, FUN.VALUE = logical(1))
   if (all(clean_up)) {
     return(NULL)
   }
 
-  cff_refs <- as_cff(cff_ref, ...)
+  cffrefs <- as_cff(cffref, ...)
 
   # Add clases
-  cff_refs_class <- lapply(cff_refs, function(x) {
-    class(x) <- c("cff_ref", "cff")
+  cffrefs_class <- lapply(cffrefs, function(x) {
+    class(x) <- c("cffref", "cff")
     x
   })
 
-  class(cff_refs_class) <- c("cff_ref_list", "cff")
-  cff_refs_class
+  class(cffrefs_class) <- c("cffreflist", "cff")
+  cffrefs_class
 }
 
 #' @rdname as_cff
@@ -131,16 +130,16 @@ as_cff.Bibtex <- function(x, ...) {
   tmp <- tempfile(fileext = ".bib")
   writeLines(x, tmp)
   abib <- cff_read_bib(tmp)
-  cff_refs <- as_cff(abib, ...)
+  cffrefs <- as_cff(abib, ...)
 
   # Add clases
-  cff_refs_class <- lapply(cff_refs, function(x) {
-    class(x) <- c("cff_ref", "cff")
+  cffrefs_class <- lapply(cffrefs, function(x) {
+    class(x) <- c("cffref", "cff")
     x
   })
 
-  class(cff_refs_class) <- c("cff_ref_list", "cff")
-  cff_refs_class
+  class(cffrefs_class) <- c("cffreflist", "cff")
+  cffrefs_class
 }
 
 # nolint start
@@ -180,25 +179,25 @@ rapply_class <- function(x) {
       return(xelement)
     }
 
-    if (guess == "cff_pers_list") {
+    if (guess == "cffperslist") {
       xelement <- lapply(xelement, function(j) {
         j_in <- j
-        class(j_in) <- c("cff_pers", "cff")
+        class(j_in) <- c("cffpers", "cff")
         j_in
       })
-      class(xelement) <- c("cff_pers_list", "cff")
+      class(xelement) <- c("cffperslist", "cff")
     }
 
-    if (guess == "cff_ref_list") {
+    if (guess == "cffreflist") {
       xelement <- lapply(xelement, function(j) {
         j_in <- rapply_class(j)
-        class(j_in) <- c("cff_ref", "cff")
+        class(j_in) <- c("cffref", "cff")
         j_in
       })
-      class(xelement) <- c("cff_ref_list", "cff")
+      class(xelement) <- c("cffreflist", "cff")
     }
 
-    if (guess %in% c("cff_ref", "cff_pers")) {
+    if (guess %in% c("cffref", "cffpers")) {
       xin <- rapply_class(xelement)
       class(xin) <- c(guess, "cff")
       xelement <- xin
@@ -233,10 +232,10 @@ new_cff <- function(x) {
 
   # Reclass nested
   guess_x <- guess_cff_part(x)
-  if (guess_x == "cff_ref_list") {
+  if (guess_x == "cffreflist") {
     x2 <- lapply(x, function(j) {
       j2 <- rapply_class(j)
-      class(j2) <- c("cff_ref", "cff")
+      class(j2) <- c("cffref", "cff")
       j2
     })
     class(x2) <- c(guess_x, "cff")
@@ -263,14 +262,14 @@ new_cff <- function(x) {
 # Based in person method
 # https://github.com/wch/r-source/blob/trunk/src/library/utils/R/citation.R
 #' @export
-`[.cff_ref_list` <- function(x, i) {
+`[.cffreflist` <- function(x, i) {
   rval <- unclass(x)[i]
   class(rval) <- class(x[[i]])
   return(rval)
 }
 
 #' @export
-`[.cff_pers_list` <- function(x, i) {
+`[.cffperslist` <- function(x, i) {
   rval <- unclass(x)[i]
   class(rval) <- class(x[[i]])
   return(rval)

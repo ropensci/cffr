@@ -1,6 +1,12 @@
 #' The `cff` class
 #'
+#' @rdname cff_class
 #' @name cff_class
+#' @aliases cffref
+#' @aliases cffreflist
+#' @aliases cffpers
+#' @aliases cffperslist
+#'
 #' @keywords internal
 #'
 #' @family s3method

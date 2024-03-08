@@ -49,7 +49,7 @@ generating the \code{\link{cff}} object.}
 \item \code{cff_read_cff_citation()} and \code{cff_read_description()} returns a object
 with class \code{cff}.
 \item \code{cff_read_citation()} and \code{cff_read_bib()} returns an object of classes
-\verb{"cff_ref_list", "cff"} according to the \code{definitions.references}
+\verb{"cffreflist", "cff"} according to the \code{definitions.references}
 specified in the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
 See \code{vignette("bibtex_cff", "cffr")} to get further insights on how this
 conversion is performed.

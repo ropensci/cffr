@@ -1,20 +1,13 @@
-#' Print Values
-#'
-#' @noRd
 #' @export
+#' @rdname cff_class
+#' @usage NULL
 print.cff <- function(x, ...) {
   cat(yaml::as.yaml(x))
 }
 
-#' Combine Values into a Vector or List
-#'
-#' @source
-#' Based on `?c.person` \CRANpkg{utils}.
-#'
-#' <https://github.com/wch/r-source/blob/trunk/src/library/utils/R/citation.R>
-#'
-#' @noRd
 #' @export
+#' @rdname cff_class
+#' @usage NULL
 c.cff <- function(..., recursive = FALSE) {
   args <- list(...)
   args <- lapply(args, unclass)
@@ -25,10 +18,9 @@ c.cff <- function(..., recursive = FALSE) {
 
 
 # nolint start
-#' Coerce to a Data Frame
-#'
-#' @noRd
 #' @export
+#' @rdname cff_class
+#' @usage NULL
 as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
   # For better dispatching
   x <- as_cff(as.list(x))
@@ -46,11 +38,11 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
       return(as.data.frame(el, prefix = nm))
     }
 
-    if (any(inherits(el, "cff_pers"), inherits(el, "cff_pers_list"))) {
+    if (any(inherits(el, "cffpers"), inherits(el, "cffperslist"))) {
       return(as.data.frame(el, prefix = nm))
     }
 
-    if (inherits(el, "cff_ref_list")) {
+    if (inherits(el, "cffreflist")) {
       return(as.data.frame(el, prefix = nm))
     }
 
@@ -74,8 +66,10 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
 }
 
 #' @export
-as.data.frame.cff_pers_list <- function(x, row.names = NULL, optional = FALSE,
-                                        ..., prefix = "person") {
+#' @rdname cff_class
+#' @usage NULL
+as.data.frame.cffperslist <- function(x, row.names = NULL, optional = FALSE,
+                                      ..., prefix = "person") {
   # For better dispatching
   x <- as_cff(as.list(x))
 
@@ -95,8 +89,10 @@ as.data.frame.cff_pers_list <- function(x, row.names = NULL, optional = FALSE,
 }
 
 #' @export
-as.data.frame.cff_pers <- function(x, row.names = NULL, optional = FALSE,
-                                   ..., prefix = NULL) {
+#' @rdname cff_class
+#' @usage NULL
+as.data.frame.cffpers <- function(x, row.names = NULL, optional = FALSE,
+                                  ..., prefix = NULL) {
   # For better dispatching
   x <- as_cff(as.list(x))
 
@@ -116,8 +112,10 @@ as.data.frame.cff_pers <- function(x, row.names = NULL, optional = FALSE,
 
 
 #' @export
-as.data.frame.cff_ref_list <- function(x, row.names = NULL, optional = FALSE,
-                                       ..., prefix = "references") {
+#' @rdname cff_class
+#' @usage NULL
+as.data.frame.cffreflist <- function(x, row.names = NULL, optional = FALSE,
+                                     ..., prefix = "references") {
   # For better dispatching
   x <- as_cff(as.list(x))
 
@@ -141,10 +139,12 @@ as.data.frame.cff_ref_list <- function(x, row.names = NULL, optional = FALSE,
 
 
 #' @export
-as.data.frame.cff_ref <- function(x, row.names = NULL, optional = FALSE,
-                                  ..., prefix = NULL) {
+#' @rdname cff_class
+#' @usage NULL
+as.data.frame.cffref <- function(x, row.names = NULL, optional = FALSE,
+                                 ..., prefix = NULL) {
   # For better dispatching
-  # cff_ref is similar to cff, so we add only cff class
+  # cffref is similar to cff, so we add only cff class
   x <- as_cff(as.list(x))
   class(x) <- "cff"
 
@@ -158,27 +158,24 @@ as.data.frame.cff_ref <- function(x, row.names = NULL, optional = FALSE,
 }
 # nolint end
 
-#' Head
-#'
-#' @noRd
 #' @export
+#' @rdname cff_class
+#' @usage NULL
 head.cff <- function(x, n = 6L, ...) {
   as_cff(NextMethod())
 }
 
-#' Tail
-#'
-#' @noRd
 #' @export
+#' @rdname cff_class
+#' @usage NULL
 tail.cff <- function(x, n = 6L, ...) {
   as_cff(NextMethod())
 }
 
 
-#' List
-#'
-#' @noRd
 #' @export
+#' @rdname cff_class
+#' @usage NULL
 as.list.cff <- function(x, ...) {
   xl <- rapply(x, function(x) {
     if (is.list(x) || length(x) > 1) {
@@ -192,86 +189,55 @@ as.list.cff <- function(x, ...) {
   as.list(xl)
 }
 
-
-
-
-
-#' @rdname as_bibentry
-#' @name toBibtex.cff
-#' @order 9
-#'
-#' @description
-#'
-#' `toBibtex.cff()` method can convert [`cff`] objects to `Bibtex` objects on
-#' the fly, see **Examples**.
-#'
-#' @family s3method
 #' @export
-#' @seealso
-#'
-#' [utils::toBibtex()] to get more information about the `toBibtex.cff()`
-#' method.
-#'
-#' @param object For `toBibtex.cff()` a [`cff`] object.
-#' @param ... Arguments passed to [utils::toBibtex()].
-#'
-#' @return
-#'
-#' `toBibtex.cff()` returns a `Bibtex` object that can be printed as BibTeX
-#' markup.
+#' @rdname cff_class
+#' @usage NULL
 toBibtex.cff <- function(object, ...,
                          what = c("preferred", "references", "all")) {
   toBibtex(as_bibentry(object, what = what), ...)
 }
 
-#' @rdname as_bibentry
-#' @order 10
 #' @export
-toBibtex.cff_pers_list <- function(object, ...) {
+#' @rdname cff_class
+#' @usage NULL
+toBibtex.cffreflist <- function(object, ...) {
+  toBibtex(as_bibentry(object), ...)
+}
+
+#' @export
+#' @rdname cff_class
+#' @usage NULL
+toBibtex.cffref <- function(object, ...) {
+  toBibtex(as_bibentry(object), ...)
+}
+
+#' @export
+#' @rdname cff_class
+#' @usage NULL
+toBibtex.cffperslist <- function(object, ...) {
   toBibtex(as.person(object), ...)
 }
 
-#' @rdname as_bibentry
-#' @order 11
 #' @export
-toBibtex.cff_pers <- function(object, ...) {
+#' @rdname cff_class
+#' @usage NULL
+toBibtex.cffpers <- function(object, ...) {
   toBibtex(as.person(object), ...)
 }
 
-#' @rdname as_cff_person
-#' @order 2
-#'
-#' @description
-#'
-#' The inverse transformation (`cff_pers / cff_pers_list` to
-#' [`person`][utils::as.person()]) object can be done through the
-#' `as.person.cff_pers()` / `as.person().cff_pers_list()` methods.
-#'
-#' The output also can printed on BibTeX markup via the corresponding
-#' [`toBibtex()`][toBibtex.cff_pers] methods.
-#'
-#'
-#'
-#' @family s3method
 #' @export
-#'
-#' @param x A `cff_pers` or `cff_pers_list` object.
-#'
-#' @return
-#'
-#' `as.person.cff_pers()` / `as.person.cff_pers_list()` returns a
-#' [`person`][utils::person] object.
-#'
-as.person.cff_pers <- function(x) {
+#' @rdname cff_class
+#' @usage NULL
+as.person.cffpers <- function(x) {
   # Enlist to dispatch to Next method
   x_l <- list(as.list(x))
   as.person(as_cff(x_l))
 }
 
-#' @rdname as_cff_person
-#' @order 3
 #' @export
-as.person.cff_pers_list <- function(x) {
+#' @rdname cff_class
+#' @usage NULL
+as.person.cffperslist <- function(x) {
   pers <- lapply(x, make_r_person)
 
   # If not all extracted inform
@@ -292,7 +258,8 @@ as.person.cff_pers_list <- function(x) {
 #  as.person methods not implemented ----
 
 #' @export
-#' @noRd
+#' @rdname cff_class
+#' @usage NULL
 as.person.cff <- function(x) {
   cli::cli_abort(
     "({.pkg cffr}) {.fn as.person.cff} method not implemented yet."
@@ -300,17 +267,19 @@ as.person.cff <- function(x) {
 }
 
 #' @export
-#' @noRd
-as.person.cff_ref <- function(x) {
+#' @rdname cff_class
+#' @usage NULL
+as.person.cffref <- function(x) {
   cli::cli_abort(
-    "({.pkg cffr}) {.fn as.person.cff_ref} method not implemented yet."
+    "({.pkg cffr}) {.fn as.person.cffref} method not implemented yet."
   )
 }
 
 #' @export
-#' @noRd
-as.person.cff_ref_list <- function(x) {
+#' @rdname cff_class
+#' @usage NULL
+as.person.cffreflist <- function(x) {
   cli::cli_abort(
-    "({.pkg cffr}) {.fn as.person.cff_ref_list} method not implemented yet."
+    "({.pkg cffr}) {.fn as.person.cffreflist} method not implemented yet."
   )
 }
