@@ -13,7 +13,9 @@
 #' ```{r child = "man/chunks/cffclass.Rmd"}
 #' ```
 #'
-#' @seealso
+#' @references
 #'
-#' `vignette("cffr", "cffr")` for a hands-on example.
+#' - Wickham H (2019). "S3." In _Advanced R_, 2nd edition.
+#'   Chapman and Hall/CRC. \doi{10.1201/9781351201315},
+#'   <https://adv-r.hadley.nz/s3.html>.
 NULL

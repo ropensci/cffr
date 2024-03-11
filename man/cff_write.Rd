@@ -41,6 +41,9 @@ GitHub, would you like to add the repo topics as keywords?}
 \item{dependencies}{Logical \code{TRUE/FALSE}. Would you like to add the
 of your package to the \code{references} CFF key?}
 
+\item{validate}{validate Logical \code{TRUE/FALSE}. Should the new file be
+validated using \code{cff_validate()}?}
+
 \item{verbose}{Logical \code{TRUE/FALSE}. On \code{TRUE} the function would display
 informative messages.}
 

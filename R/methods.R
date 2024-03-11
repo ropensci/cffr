@@ -12,8 +12,10 @@ c.cff <- function(..., recursive = FALSE) {
   args <- list(...)
   args <- lapply(args, unclass)
   rval <- do.call("c", args)
-  class(rval) <- "cff"
-  rval
+
+  rval <- as.list(rval)
+  # Reclass
+  as_cff(rval)
 }
 
 

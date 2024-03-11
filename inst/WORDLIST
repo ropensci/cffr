@@ -10,6 +10,7 @@ Bliven
 Boettiger
 CFF
 CMD
+CRC
 Cabunoc
 Chue
 CodeMeta
@@ -50,6 +51,7 @@ SPDX
 Spaaks
 Suárez
 Waldir
+Wickham
 Willighagen
 YAML
 Zenodo
@@ -74,6 +76,7 @@ incollection
 inproceedings
 json
 jsonvalidate
+nd
 param
 plaintext
 pre

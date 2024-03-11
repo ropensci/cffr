@@ -18,6 +18,9 @@
 #' @param verbose Logical `TRUE/FALSE`. On `TRUE` the function would display
 #'   informative messages.
 #'
+#' @param validate validate Logical `TRUE/FALSE`. Should the new file be
+#'   validated using `cff_validate()`?
+#'
 #' @inheritParams cff_create
 #' @inheritParams cff_validate
 #'

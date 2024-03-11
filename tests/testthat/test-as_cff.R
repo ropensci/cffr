@@ -22,7 +22,7 @@ test_that("as_cff.person", {
     )
   )
 
-  expect_silent(aa <- as_cff_person(pers))
+  aa <- as_cff_person(pers)
   expect_s3_class(aa, c("cff_pers_lst", "cff"), exact = TRUE)
   expect_s3_class(aa[[1]], c("cff_pers", "cff"), exact = TRUE)
   expect_identical(aa, as_cff_person(pers))
