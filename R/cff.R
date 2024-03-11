@@ -1,14 +1,14 @@
 #' Create [`cff`] objects from direct inputs
 #'
 #' A class and utility methods for reading, creating and holding CFF
-#' information. See [`cff_class`] to learn more about `cff` objects.
+#' information. See [cff_class] to learn more about `cff` objects.
 #'
 #' @rdname cff
 #' @name cff
 #' @return
 #'
-#' A [`cff`] object. Under the hood, a `cff` object is a regular `list` object
-#' with a special [print()][print.cff()] method.
+#' A [`cff`] object. Under the hood, a `cff` object is a regular [`list`]
+#' object with a special [`print`][print.cff()] method.
 #'
 #' @family core
 #'
@@ -26,13 +26,10 @@
 #' Valid parameters are those specified on [cff_schema_keys()]:
 #'
 #'
-#' ```{r, echo=FALSE}
+#' ```{r, echo=FALSE, results='asis'}
+#' p <- paste0('  - `', cffr::cff_schema_keys(), '`', collapse = "\n")
 #'
-#'
-#' valid_keys <- cff_schema_keys()
-#'
-#' knitr::kable(valid_keys, col.names = "**valid cff keys**")
-#'
+#' cat(p)
 #'
 #' ```
 #' @export

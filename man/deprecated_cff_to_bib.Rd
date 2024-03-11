@@ -11,7 +11,7 @@ cff_to_bibtex(x, what = c("preferred", "references", "all"))
 }
 \arguments{
 \item{x}{The source that would be used for generating
-the \code{\link[=bibentry]{bibentry()}} object via \CRANpkg{cffr}. It could be:
+the \code{bibentry} object via \CRANpkg{cffr}. It could be:
 \itemize{
 \item A missing value. That would retrieve the \code{DESCRIPTION}
 file on your in-development package.
@@ -22,14 +22,16 @@ file on your in-development package.
 \item Path to a DESCRIPTION file (\code{"DESCRIPTION"}).
 }}
 
-\item{what}{Fields to extract. The value could be:
+\item{what}{Fields to extract from a full \code{cff} object. The value could be:
 \itemize{
 \item \code{preferred}: This would create a single entry with the main citation
-info of the package.
-\item \code{references}: Extract all the entries on \code{references}.
+info of the package (key \code{preferred-citation}).
+\item \code{references}: Extract all the entries of \code{references} key.
 \item \code{all}: A combination of the previous two options. This would extract
-both the preferred citation info and the references.
-}}
+both the \code{preferred-citation} and the \code{references} key.
+}
+
+See \code{vignette("crosswalk", package = "cffr")}.}
 }
 \value{
 See \code{\link[=as_bibentry]{as_bibentry()}}.

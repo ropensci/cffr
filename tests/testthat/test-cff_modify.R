@@ -34,6 +34,6 @@ test_that("Can reclass", {
 
 
   expect_true(cff_validate(mod, verbose = FALSE))
-  expect_s3_class(mod$contact, c("cffperslist", "cff"), exact = TRUE)
-  expect_s3_class(mod$contact[1], c("cffpers", "cff"), exact = TRUE)
+  expect_s3_class(mod$contact, c("cff_pers_lst", "cff"), exact = TRUE)
+  expect_s3_class(mod$contact[1], c("cff_pers", "cff"), exact = TRUE)
 })

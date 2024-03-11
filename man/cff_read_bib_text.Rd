@@ -2,7 +2,7 @@
 % Please edit documentation in R/cff_read_bib_text.R
 \name{cff_read_bib_text}
 \alias{cff_read_bib_text}
-\title{Read BibTeX markup as a \code{\link{cff}} object}
+\title{Read BibTeX markup as a \code{\link{cff_ref_lst}} object}
 \usage{
 cff_read_bib_text(x, encoding = "UTF-8", ...)
 }
@@ -18,16 +18,15 @@ cff_read_bib_text(x, encoding = "UTF-8", ...)
   }}
 }
 \value{
-An object of classes \verb{"cffreflist", "cff"} according to the
+An object of classes \code{\link[=cff_ref_lst]{cff_ref_lst, cff}} according to the
 \code{definitions.references} specified in
 the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
-Each element of the \verb{"cffreflist", "cff"} object would have classes
-\verb{"cffref", "cff"}. Learn more about the \CRANpkg{cffr} class system in
-\link{cff_class}.
+Each element of the \code{cff_ref_lst} object would have classes
+\code{\link[=cff_ref]{cff_ref, cff}}.
 }
 \description{
 Convert a \code{\link[=character]{character}} representing a BibTeX entry to a
-\code{\link{cff}} object.
+\code{\link{cff_ref_lst}} object.
 }
 \details{
 This is a helper function that writes \code{x} to a \verb{*.bib} file and reads it with

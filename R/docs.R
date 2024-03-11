@@ -2,10 +2,7 @@
 #'
 #' @rdname cff_class
 #' @name cff_class
-#' @aliases cffref
-#' @aliases cffreflist
-#' @aliases cffpers
-#' @aliases cffperslist
+#' @aliases cff_ref cff_ref_lst cff_pers cff_pers_lst
 #'
 #' @keywords internal
 #'

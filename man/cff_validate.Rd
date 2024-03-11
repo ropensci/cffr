@@ -7,8 +7,9 @@
 cff_validate(x = "CITATION.cff", verbose = TRUE)
 }
 \arguments{
-\item{x}{This is expected to be either a \code{cff} object created
-with \code{\link[=cff_create]{cff_create()}} or the path to a \code{CITATION.cff} file to be validated.}
+\item{x}{This is expected to be either a full \code{cff} object created
+with \code{\link[=cff_create]{cff_create()}} or the path to a \code{CITATION.cff} file to be validated.
+In the case of a \verb{*cff} file it would read with \code{\link[=cff_read_cff_citation]{cff_read_cff_citation()}}.}
 
 \item{verbose}{Logical \code{TRUE/FALSE}. On \code{TRUE} the function would display
 informative messages.}

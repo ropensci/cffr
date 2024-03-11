@@ -30,13 +30,15 @@
 #' `TRUE/FALSE`. On error, the results would have an attribute `"errors"`
 #' containing the error summary (see **Examples** and [attr()]).
 #'
-#' @param x This is expected to be either a `cff` object created
+#' @param x This is expected to be either a full `cff` object created
 #'   with [cff_create()] or the path to a `CITATION.cff` file to be validated.
+#'   In the case of a `*cff` file it would read with [cff_read_cff_citation()].
 #' @inheritParams cff_write
 #'
 #' @seealso
 #' [jsonvalidate::json_validate()], that is the function that performs the
 #' validation.
+#'
 #'
 #' @examples
 #' \donttest{

@@ -5,7 +5,7 @@
 \alias{as_cff_person.default}
 \alias{as_cff_person.person}
 \alias{as_cff_person.character}
-\title{Coerce \strong{R} objects to \code{\link{cff}} persons}
+\title{Coerce \strong{R} objects to \code{\link{cff_pers_lst}} objects (\code{cff} persons)}
 \usage{
 as_cff_person(x, ...)
 
@@ -21,29 +21,31 @@ as_cff_person(x, ...)
 \item{...}{Ignored by this method.}
 }
 \value{
-\code{as_cff_person()} returns an object of classes \verb{"cffperslist", "cff"}
-according to the \code{definitions.person} or \code{definitions.entity} specified in
-the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
-Each element of the \verb{"cffperslist", "cff"} object would have classes
-\verb{"cffpers", "cff"}. Learn more about the \CRANpkg{cffr} class system in
-\link{cff_class}.
+\code{as_cff_person()} returns an object of classes
+\code{\link[=cff_pers_lst]{cff_pers_lst, cff}} according to the \code{definitions.person}
+or \code{definitions.entity} specified in the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
+Each element of the \code{cff_pers_lst} object would have classes
+\code{\link[=cff_pers]{cff_pers, cff}}.
 }
 \description{
-\code{as_cff_person()} turns an existing list-like \strong{R} object into a \code{\link{cff}}
-object representing a list of \code{definitions.person} or \code{definitions.entity}
-as defined by the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
+\code{as_cff_person()} turns an existing list-like \strong{R} object into a
+\code{\link{cff_pers_lst}} object representing a list of \code{definitions.person} or
+\code{definitions.entity}, as defined by the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
 
 \code{as_cff_person} is an S3 generic, with methods for:
 \itemize{
-\item \code{person}: objects created with \code{\link[utils:person]{utils::person()}}.
+\item \code{person}: objects created with \code{\link[=person]{person()}}.
 \item \code{character}: String with the definition of an author or several authors,
 using the standard BibTeX notation (see Markey, 2007) and others, like
-the output of \code{\link[=format]{format()}} for person (see \code{?utils::format.person}).
+the output of \code{\link[=format]{format()}} for person (see \code{\link[=person]{format.person()}}).
 \item Default: Other inputs are first coerced with \code{\link[=as.character]{as.character()}}.
 }
+
+The inverse transformation (\code{cff_pers_lst} to \code{person}) can be done with
+the methods \code{\link[=as.person.cff_pers]{as.person.cff_pers()}} and \code{\link[=as.person.cff_pers_lst]{as.person.cff_pers_lst()}}.
 }
 \details{
-\code{\link[=as_cff_person]{as_cff_person()}} would recognize if the input should be converted using the
+\code{as_cff_person()} would recognize if the input should be converted using the
 CFF reference for \code{definition.person} or \code{definition.entity}.
 
 \code{as_cff_person()} uses a custom algorithm that tries to break a name as
@@ -79,7 +81,7 @@ as_cff_person(entity_protect)
 }\if{html}{\out{</div>}}
 
 \code{as_cff_person()} would try to add as many information as possible.
-On \code{character} string coming from \code{\link[utils:person]{format(person())}} the
+On \code{character} string coming from \code{\link[utils:person]{format.person()}} the
 email and the ORCID would be retrieved as well.
 }
 \examples{
@@ -97,10 +99,10 @@ a_person
 
 cff_person <- as_cff_person(a_person)
 
-# Class cffperslist / cff
+# Class cff_pers_lst / cff
 class(cff_person)
 
-# With each element with class cffpers / cff
+# With each element with class cff_pers / cff
 class(cff_person[[1]])
 
 # Print
@@ -158,9 +160,9 @@ See \strong{Examples} for more information.
 \seealso{
 Examples in \code{vignette("cffr", "cffr")} and \code{\link[utils:person]{utils::person()}}.
 
-Learn more about the \CRANpkg{cffr} class system in \link{cff_class}.
+Learn more about the classes \verb{cff_pers_lst, cff_pers} classes in \link{cff_class}.
 
-Other \strong{S3 Methods}:
+Coercing between \strong{R} classes with \strong{S3 Methods}:
 \code{\link{as_bibentry}()},
 \code{\link{as_cff}()},
 \code{\link{cff_class}}

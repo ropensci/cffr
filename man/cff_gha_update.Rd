@@ -7,7 +7,7 @@
 cff_gha_update(path = ".", overwrite = FALSE)
 }
 \arguments{
-\item{path}{Project directory.}
+\item{path}{Project root directory.}
 
 \item{overwrite}{Logical. If already present, do you want to overwrite your
 action?}
@@ -33,7 +33,7 @@ cff_gha_update()
 }
 }
 \seealso{
-Other Git/GitHub helpers:
+Other Git/GitHub helpers provided by \CRANpkg{cffr}:
 \code{\link{cff_git_hook}}
 }
 \concept{git}

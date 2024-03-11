@@ -2,7 +2,8 @@
 #'
 #' @description
 #' `as_cff()` turns an existing list-like **R** object into a so-called
-#' [`cff`], a list with class `cff`.
+#' [`cff`], a list with class `cff`, with the corresponding
+#' [sub-class][cff_class] if applicable, .
 #'
 #' `as_cff` is an S3 generic, with methods for:
 #' - `person` objects as produced by [utils::person()].
@@ -18,9 +19,10 @@
 #'
 #' @returns
 #'
-#' * `as_cff.person()` returns an object with classes `"cffperslist", "cff"`.
-#' * `as_cff.bibentry()` and `as_cff.Bibtex()` returns an object with classes
-#'   `"cffreflist", "cff"`.
+#' - `as_cff.person()` returns an object with classes
+#'   [`cff_pers_lst, cff`][cff_pers_lst].
+#' - `as_cff.bibentry()` and `as_cff.Bibtex()` returns an object with classes
+#'   [`cff_ref_lst, cff`][cff_ref_lst].
 #' * The rest of methods returns usually an object of class `cff`. However if
 #'   `x` have an structure compatible with `definitions.person`,
 #'   `definitions.entity` or `definitions.reference` the object would have the
@@ -106,22 +108,22 @@ as_cff.person <- function(x, ...) {
 #' @rdname as_cff
 #' @export
 as_cff.bibentry <- function(x, ...) {
-  cffref <- as_cffreference(x)
-  clean_up <- vapply(cffref, is.null, FUN.VALUE = logical(1))
+  cff_ref <- as_cff_reference(x)
+  clean_up <- vapply(cff_ref, is.null, FUN.VALUE = logical(1))
   if (all(clean_up)) {
     return(NULL)
   }
 
-  cffrefs <- as_cff(cffref, ...)
+  cff_refs <- as_cff(cff_ref, ...)
 
   # Add clases
-  cffrefs_class <- lapply(cffrefs, function(x) {
-    class(x) <- c("cffref", "cff")
+  cff_refs_class <- lapply(cff_refs, function(x) {
+    class(x) <- c("cff_ref", "cff")
     x
   })
 
-  class(cffrefs_class) <- c("cffreflist", "cff")
-  cffrefs_class
+  class(cff_refs_class) <- c("cff_ref_lst", "cff")
+  cff_refs_class
 }
 
 #' @rdname as_cff
@@ -130,16 +132,16 @@ as_cff.Bibtex <- function(x, ...) {
   tmp <- tempfile(fileext = ".bib")
   writeLines(x, tmp)
   abib <- cff_read_bib(tmp)
-  cffrefs <- as_cff(abib, ...)
+  cff_refs <- as_cff(abib, ...)
 
   # Add clases
-  cffrefs_class <- lapply(cffrefs, function(x) {
-    class(x) <- c("cffref", "cff")
+  cff_refs_class <- lapply(cff_refs, function(x) {
+    class(x) <- c("cff_ref", "cff")
     x
   })
 
-  class(cffrefs_class) <- c("cffreflist", "cff")
-  cffrefs_class
+  class(cff_refs_class) <- c("cff_ref_lst", "cff")
+  cff_refs_class
 }
 
 # nolint start
@@ -179,25 +181,25 @@ rapply_class <- function(x) {
       return(xelement)
     }
 
-    if (guess == "cffperslist") {
+    if (guess == "cff_pers_lst") {
       xelement <- lapply(xelement, function(j) {
         j_in <- j
-        class(j_in) <- c("cffpers", "cff")
+        class(j_in) <- c("cff_pers", "cff")
         j_in
       })
-      class(xelement) <- c("cffperslist", "cff")
+      class(xelement) <- c("cff_pers_lst", "cff")
     }
 
-    if (guess == "cffreflist") {
+    if (guess == "cff_ref_lst") {
       xelement <- lapply(xelement, function(j) {
         j_in <- rapply_class(j)
-        class(j_in) <- c("cffref", "cff")
+        class(j_in) <- c("cff_ref", "cff")
         j_in
       })
-      class(xelement) <- c("cffreflist", "cff")
+      class(xelement) <- c("cff_ref_lst", "cff")
     }
 
-    if (guess %in% c("cffref", "cffpers")) {
+    if (guess %in% c("cff_ref", "cff_pers")) {
       xin <- rapply_class(xelement)
       class(xin) <- c(guess, "cff")
       xelement <- xin
@@ -232,10 +234,10 @@ new_cff <- function(x) {
 
   # Reclass nested
   guess_x <- guess_cff_part(x)
-  if (guess_x == "cffreflist") {
+  if (guess_x == "cff_ref_lst") {
     x2 <- lapply(x, function(j) {
       j2 <- rapply_class(j)
-      class(j2) <- c("cffref", "cff")
+      class(j2) <- c("cff_ref", "cff")
       j2
     })
     class(x2) <- c(guess_x, "cff")
@@ -255,22 +257,4 @@ new_cff <- function(x) {
   }
 
   xend
-}
-
-# Just for pretty printing on extract
-
-# Based in person method
-# https://github.com/wch/r-source/blob/trunk/src/library/utils/R/citation.R
-#' @export
-`[.cffreflist` <- function(x, i) {
-  rval <- unclass(x)[i]
-  class(rval) <- class(x[[i]])
-  return(rval)
-}
-
-#' @export
-`[.cffperslist` <- function(x, i) {
-  rval <- unclass(x)[i]
-  class(rval) <- class(x[[i]])
-  return(rval)
 }

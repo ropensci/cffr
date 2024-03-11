@@ -176,7 +176,7 @@ guess_cff_named_part <- function(x) {
   # Search for names
   is_person <- any(grepl("^name$|family|given|particle", nms))
   if (is_person) {
-    return("cffpers")
+    return("cff_pers")
   }
 
   # VALID full cff file
@@ -188,7 +188,7 @@ guess_cff_named_part <- function(x) {
   # Reference
   is_ref <- any(grepl("title|type", nms))
   if (is_ref) {
-    return("cffref")
+    return("cff_ref")
   }
 
   # Else
@@ -206,8 +206,8 @@ guess_cff_part <- function(x) {
   guess <- guess_cff_named_part(x[[1]])
 
   fin <- switch(guess,
-    "cffpers" = "cffperslist",
-    "cffref" = "cffreflist",
+    "cff_pers" = "cff_pers_lst",
+    "cff_ref" = "cff_ref_lst",
     "unclear"
   )
 

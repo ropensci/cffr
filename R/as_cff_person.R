@@ -1,9 +1,9 @@
-#' Coerce **R** objects to [`cff`] persons
+#' Coerce **R** objects to [`cff_pers_lst`] objects (`cff` persons)
 #'
 #' @description
-#' `as_cff_person()` turns an existing list-like **R** object into a [`cff`]
-#' object representing a list of `definitions.person` or `definitions.entity`
-#' as defined by the
+#' `as_cff_person()` turns an existing list-like **R** object into a
+#' [`cff_pers_lst`] object representing a list of `definitions.person` or
+#' `definitions.entity`, as defined by the
 #' ```{r, echo=FALSE, results='asis'}
 #'
 #' cat(paste0(" [Citation File Format schema]",
@@ -14,16 +14,19 @@
 #' ```
 #'
 #' `as_cff_person` is an S3 generic, with methods for:
-#' - `person`: objects created with [utils::person()].
+#' - `person`: objects created with [person()].
 #' - `character`: String with the definition of an author or several authors,
 #'   using the standard BibTeX notation (see Markey, 2007) and others, like
-#'   the output of [format()] for person (see `?utils::format.person`).
+#'   the output of [format()] for person (see [`format.person()`][person()]).
 #' -  Default: Other inputs are first coerced with [as.character()].
+#'
+#' The inverse transformation (`cff_pers_lst` to `person`) can be done with
+#' the methods [as.person.cff_pers()] and [as.person.cff_pers_lst()].
 #'
 #' @seealso
 #' Examples in `vignette("cffr", "cffr")` and [utils::person()].
 #'
-#' Learn more about the \CRANpkg{cffr} class system in [cff_class].
+#' Learn more about the classes `cff_pers_lst, cff_pers` classes in [cff_class].
 #'
 #' @export
 #' @rdname as_cff_person
@@ -36,9 +39,9 @@
 #' @param ... Ignored by this method.
 #'
 #' @return
-#' `as_cff_person()` returns an object of classes `"cffperslist", "cff"`
-#' according to the `definitions.person` or `definitions.entity` specified in
-#' the
+#' `as_cff_person()` returns an object of classes
+#' [`cff_pers_lst, cff`][cff_pers_lst] according to the `definitions.person`
+#' or `definitions.entity` specified in the
 #' ```{r, echo=FALSE, results='asis'}
 #'
 #' cat(paste0(" [Citation File Format schema]",
@@ -47,13 +50,13 @@
 #'
 #'
 #' ```
-#' Each element of the `"cffperslist", "cff"` object would have classes
-#' `"cffpers", "cff"`. Learn more about the \CRANpkg{cffr} class system in
-#' [cff_class].
+#' Each element of the `cff_pers_lst` object would have classes
+#' [`cff_pers, cff`][cff_pers].
+#'
 #'
 #' @details
 #'
-#' [as_cff_person()] would recognize if the input should be converted using the
+#' `as_cff_person()` would recognize if the input should be converted using the
 #' CFF reference for `definition.person` or `definition.entity`.
 #'
 #' `as_cff_person()` uses a custom algorithm that tries to break a name as
@@ -76,7 +79,7 @@
 #' ```{r child = "man/chunks/person.Rmd"}
 #' ```
 #' `as_cff_person()` would try to add as many information as possible.
-#' On `character` string coming from [`format(person())`][utils::person()] the
+#' On `character` string coming from [`format.person()`][utils::person()] the
 #' email and the ORCID would be retrieved as well.
 #'
 #' @references
@@ -86,6 +89,7 @@
 #' - Markey, Nicolas. "Tame the BeaST"
 #'   *The B to X of BibTeX, Version 1.4* (October 2007).
 #'   <https://osl.ugr.es/CTAN/info/bibtex/tamethebeast/ttb_en.pdf>.
+#'
 #' - Decoret X (2007). "A summary of BibTex."
 #' ```{r, echo=FALSE, results='asis'}
 #'
@@ -112,10 +116,10 @@
 #'
 #' cff_person <- as_cff_person(a_person)
 #'
-#' # Class cffperslist / cff
+#' # Class cff_pers_lst / cff
 #' class(cff_person)
 #'
-#' # With each element with class cffpers / cff
+#' # With each element with class cff_pers / cff
 #' class(cff_person[[1]])
 #'
 #' # Print

@@ -16,11 +16,11 @@ and
 objects:
 
 -   List of `definitions.reference` (e.g, `references)` has class
-    `cffreflist, cff` and individual elements (e.g `preferred-citation` or
-    each member of `references`) has class `cffref, cff`.
+    `cff_ref_lst, cff` and individual elements (e.g `preferred-citation` or
+    each member of `references`) has class `cff_ref, cff`.
 -   List of `definitions.person` or `definitions.entity` (e.g. `authors`,
-    `contact`) has class `cffperslist, cff` and individual elements (e.g
-    `publisher` or each member of `authors`) has class `cffpers, cff`.
+    `contact`) has class `cff_pers_lst, cff` and individual elements (e.g
+    `publisher` or each member of `authors`) has class `cff_pers, cff`.
 
 This change allow to write specific [S3
 Methods](https://adv-r.hadley.nz/s3.html) and extend the capabilities of the

@@ -1,7 +1,7 @@
 #' Internal functions for `as_cff.bibentry` method
 #'
 #' @noRd
-as_cffreference <- function(x) {
+as_cff_reference <- function(x) {
   # Need always to be unnamed bibentry
   bib <- unname(x)
   if (any(duplicated(bib))) {
@@ -10,11 +10,11 @@ as_cffreference <- function(x) {
   }
 
   # Return always a list
-  the_list <- lapply(bib, make_cffreference)
+  the_list <- lapply(bib, make_cff_reference)
   the_list
 }
 
-make_cffreference <- function(bib) {
+make_cff_reference <- function(bib) {
   # Get BibTeX entry ----
   cit_list <- get_bibtex_entry(bib)
 

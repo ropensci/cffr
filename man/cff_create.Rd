@@ -25,7 +25,7 @@ in-development \strong{R} package.
 }}
 
 \item{keys}{List of additional keys to add to the \code{\link{cff}} object. See
-[cff_modify().}
+\code{\link[=cff_modify]{cff_modify()}}.}
 
 \item{cff_version}{The Citation File Format schema version that the
 \code{CITATION.cff} file adheres to for providing the citation metadata.}
@@ -43,21 +43,13 @@ generating the \code{CITATION.cff} file. See \strong{Details}.}
 A \code{\link{cff}} object.
 }
 \description{
-Create a \code{\link{cff}} object from a given source for further
-manipulation. This object can be written to a \verb{*.cff } file with
-\code{\link[=cff_write]{cff_write()}}, see \strong{Examples}.
+Create a full and possibly valid \code{\link{cff}} object from a given source. This
+object can be written to a \verb{*.cff } file with \code{\link[=cff_write]{cff_write()}},
+see \strong{Examples}.
 
 Most of the heavy lifting of \CRANpkg{cffr} is done via this function.
 }
 \details{
-It is possible to add additional keys not detected by \code{\link[=cff_create]{cff_create()}} using
-the \code{keys} argument. A list of valid keys can be retrieved with
-\code{\link[=cff_schema_keys]{cff_schema_keys()}}.
-
-Please refer to
-\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
-for additional details.
-
 If \code{x} is a path to a \code{DESCRIPTION} file or \code{inst/CITATION}, is not present
 on your package, \CRANpkg{cffr} would auto-generate a \code{preferred-citation}
 key using the information provided on that file.
@@ -65,7 +57,7 @@ key using the information provided on that file.
 By default, only persons whose role in the \code{DESCRIPTION} file of the package
 is author (\code{"aut"}) or maintainer (\code{"cre"}) are considered to be authors
 of the package. The default setting can be controlled via the \code{authors_roles}
-parameter. See \strong{Details} on \code{\link[utils:person]{utils::person()}} to get additional insights
+parameter. See \strong{Details} on \code{\link[=person]{person()}} to get additional insights
 on person roles.
 }
 \examples{
@@ -107,8 +99,14 @@ cff_create(demo_file, keys = list("contact" = new_contact))
 }
 \seealso{
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
-See also \code{\link[=cff_write]{cff_write()}} for creating a CFF file. \code{vignette("cffr", "cffr")}
-shows an introduction on how manipulate \code{cff} objects.
+\itemize{
+\item \code{\link[=cff_modify]{cff_modify()}} as the recommended way to modify a \code{cff} object.
+\item \code{\link[=cff_write]{cff_write()}} for creating a CFF file.
+\item \code{vignette("cffr", "cffr")} shows an introduction on how manipulate
+\code{cff} objects.
+\item \code{vignette("crosswalk", package = "cffr")} provides details on how the
+metadata of a package is mapped to produce a \code{cff} object.
+}
 
 Other core functions of \CRANpkg{cffr}:
 \code{\link{cff}()},

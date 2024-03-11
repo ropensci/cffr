@@ -16,7 +16,8 @@ Invisible. This function is called for its side effects.
 \description{
 Install a
 \href{https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workflow_hooks}{pre-commit hook}
-that remembers you to update your \code{CITATION.cff} file.
+that remembers you to update your \code{CITATION.cff} file. This is a wrapper of
+\code{\link[usethis:use_git_hook]{usethis::use_git_hook()}}.
 }
 \details{
 This function would install a pre-commit hook using
@@ -64,9 +65,14 @@ cff_git_hook_install()
 
 }
 \seealso{
-\code{\link[usethis:use_git_hook]{usethis::use_git_hook()}}, \code{\link[usethis:use_git]{usethis::use_git()}}
+\itemize{
+\item \code{\link[usethis:use_git_hook]{usethis::use_git_hook()}}, that is the underlying function used by
+\code{cff_git_hook_install()}.
+\item \code{\link[usethis:use_git]{usethis::use_git()}} and related function of \CRANpkg{usethis} for using
+Git with \strong{R} packages.
+}
 
-Other Git/GitHub helpers:
+Other Git/GitHub helpers provided by \CRANpkg{cffr}:
 \code{\link{cff_gha_update}()}
 }
 \concept{git}

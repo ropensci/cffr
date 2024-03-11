@@ -21,6 +21,29 @@
 #'
 #' See [cff()] for creating [`cff`] objects from scratch.
 #'
+#' @details
+#'
+#' It is possible to add additional keys not detected by [cff_create()] using
+#' the `keys` argument. A list of valid keys can be retrieved with
+#' [cff_schema_keys()]:
+#'
+#'
+#' ```{r, echo=FALSE, results='asis'}
+#'
+#'
+#' ```
+#'
+#' Please refer to
+#' ```{r, echo=FALSE, results='asis'}
+#'
+#' cat(paste0("\n", "[Guide to Citation File Format schema version 1.2.0]",
+#'            "(https://github.com/citation-file-format/",
+#'            "citation-file-format/blob/main/schema-guide.md)."))
+#'
+#'
+#' ```
+#' for additional details.
+#'
 #' @examples
 #' x <- cff()
 #' x

@@ -2,30 +2,32 @@
 % Please edit documentation in R/docs.R, R/methods.R
 \name{cff_class}
 \alias{cff_class}
-\alias{cffref}
-\alias{cffreflist}
-\alias{cffpers}
-\alias{cffperslist}
+\alias{cff_ref}
+\alias{cff_ref_lst}
+\alias{cff_pers}
+\alias{cff_pers_lst}
 \alias{print.cff}
 \alias{c.cff}
+\alias{[.cff_ref_lst}
+\alias{[.cff_pers_lst}
 \alias{as.data.frame.cff}
-\alias{as.data.frame.cffperslist}
-\alias{as.data.frame.cffpers}
-\alias{as.data.frame.cffreflist}
-\alias{as.data.frame.cffref}
+\alias{as.data.frame.cff_pers_lst}
+\alias{as.data.frame.cff_pers}
+\alias{as.data.frame.cff_ref_lst}
+\alias{as.data.frame.cff_ref}
 \alias{head.cff}
 \alias{tail.cff}
 \alias{as.list.cff}
 \alias{toBibtex.cff}
-\alias{toBibtex.cffreflist}
-\alias{toBibtex.cffref}
-\alias{toBibtex.cffperslist}
-\alias{toBibtex.cffpers}
-\alias{as.person.cffpers}
-\alias{as.person.cffperslist}
+\alias{toBibtex.cff_ref_lst}
+\alias{toBibtex.cff_ref}
+\alias{toBibtex.cff_pers_lst}
+\alias{toBibtex.cff_pers}
+\alias{as.person.cff_pers}
+\alias{as.person.cff_pers_lst}
 \alias{as.person.cff}
-\alias{as.person.cffref}
-\alias{as.person.cffreflist}
+\alias{as.person.cff_ref}
+\alias{as.person.cff_ref_lst}
 \title{The \code{cff} class}
 \description{
 \subsection{The \code{cff} class}{
@@ -204,7 +206,7 @@ as.person(the_cff$authors)
 \seealso{
 \code{vignette("cffr", "cffr")} for a hands-on example.
 
-Other \strong{S3 Methods}:
+Coercing between \strong{R} classes with \strong{S3 Methods}:
 \code{\link{as_bibentry}()},
 \code{\link{as_cff}()},
 \code{\link{as_cff_person}()}

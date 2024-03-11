@@ -1,11 +1,12 @@
-#' Read BibTeX markup as a [`cff`] object
+#' Read BibTeX markup as a [`cff_ref_lst`] object
 #'
 #' @description
 #' Convert a [`character`][character()] representing a BibTeX entry to a
-#' [`cff`] object.
+#' [`cff_ref_lst`] object.
 #'
 #' @family bibtex
 #' @family reading
+#'
 #' @seealso
 #'
 #' [cff_read_bib()] for reading `*.bib` files.
@@ -19,7 +20,7 @@
 #'
 #' @return
 #'
-#' An object of classes `"cffreflist", "cff"` according to the
+#' An object of classes [`cff_ref_lst, cff`][cff_ref_lst] according to the
 #' `definitions.references` specified in
 #' the
 #' ```{r, echo=FALSE, results='asis'}
@@ -30,9 +31,9 @@
 #'
 #'
 #' ```
-#' Each element of the `"cffreflist", "cff"` object would have classes
-#' `"cffref", "cff"`. Learn more about the \CRANpkg{cffr} class system in
-#' [cff_class].
+#' Each element of the `cff_ref_lst` object would have classes
+#' [`cff_ref, cff`][cff_ref].
+#'
 #'
 #' @details
 #'

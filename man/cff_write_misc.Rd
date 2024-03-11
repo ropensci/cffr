@@ -23,7 +23,7 @@ cff_write_citation(
 )
 }
 \arguments{
-\item{x}{A \code{\link[=bibentry]{bibentry}} or a \code{\link{cff}} object.}
+\item{x}{A \code{\link{bibentry}} or a \code{\link{cff}} object.}
 
 \item{file}{Name of the file to be created. If \code{NULL} it would display the
 lines to be written.}
@@ -35,9 +35,18 @@ lines to be written.}
 \item{ascii}{Whether to write the entries using ASCII characters only or not.}
 
 \item{...}{
-  Arguments passed on to \code{\link[=as_bibentry]{as_bibentry}}
+  Arguments passed on to \code{\link[=as_bibentry.cff]{as_bibentry.cff}}, \code{\link[=as_bibentry.cff_ref]{as_bibentry.cff_ref}}, \code{\link[=as_bibentry.cff_ref_lst]{as_bibentry.cff_ref_lst}}
   \describe{
-    \item{\code{}}{}
+    \item{\code{what}}{Fields to extract from a full \code{cff} object. The value could be:
+\itemize{
+\item \code{preferred}: This would create a single entry with the main citation
+info of the package (key \code{preferred-citation}).
+\item \code{references}: Extract all the entries of \code{references} key.
+\item \code{all}: A combination of the previous two options. This would extract
+both the \code{preferred-citation} and the \code{references} key.
+}
+
+See \code{vignette("crosswalk", package = "cffr")}.}
   }}
 }
 \value{

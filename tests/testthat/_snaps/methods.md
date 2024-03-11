@@ -961,7 +961,7 @@
       as.person(key)
     Condition
       Error in `as.person()`:
-      ! (cffr) `as.person.cffreflist()` method not implemented yet.
+      ! (cffr) `as.person.cff_ref_lst()` method not implemented yet.
 
 ---
 
@@ -969,7 +969,7 @@
       as.person(key)
     Condition
       Error in `as.person()`:
-      ! (cffr) `as.person.cffref()` method not implemented yet.
+      ! (cffr) `as.person.cff_ref()` method not implemented yet.
 
 # head and tail
 

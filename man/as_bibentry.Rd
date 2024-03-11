@@ -7,8 +7,8 @@
 \alias{as_bibentry.NULL}
 \alias{as_bibentry.list}
 \alias{as_bibentry.cff}
-\alias{as_bibentry.cffreflist}
-\alias{as_bibentry.cffref}
+\alias{as_bibentry.cff_ref_lst}
+\alias{as_bibentry.cff_ref}
 \title{Create \code{\link{bibentry}} objects from several sources}
 \usage{
 as_bibentry(x, ...)
@@ -23,13 +23,13 @@ as_bibentry(x, ...)
 
 \method{as_bibentry}{cff}(x, ..., what = c("preferred", "references", "all"))
 
-\method{as_bibentry}{cffreflist}(x, ...)
+\method{as_bibentry}{cff_ref_lst}(x, ...)
 
-\method{as_bibentry}{cffref}(x, ...)
+\method{as_bibentry}{cff_ref}(x, ...)
 }
 \arguments{
 \item{x}{The source that would be used for generating
-the \code{\link[=bibentry]{bibentry()}} object via \CRANpkg{cffr}. It could be:
+the \code{bibentry} object via \CRANpkg{cffr}. It could be:
 \itemize{
 \item A missing value. That would retrieve the \code{DESCRIPTION}
 file on your in-development package.
@@ -42,14 +42,16 @@ file on your in-development package.
 
 \item{...}{Additional arguments to be passed to or from methods.}
 
-\item{what}{Fields to extract. The value could be:
+\item{what}{Fields to extract from a full \code{cff} object. The value could be:
 \itemize{
 \item \code{preferred}: This would create a single entry with the main citation
-info of the package.
-\item \code{references}: Extract all the entries on \code{references}.
+info of the package (key \code{preferred-citation}).
+\item \code{references}: Extract all the entries of \code{references} key.
 \item \code{all}: A combination of the previous two options. This would extract
-both the preferred citation info and the references.
-}}
+both the \code{preferred-citation} and the \code{references} key.
+}
+
+See \code{vignette("crosswalk", package = "cffr")}.}
 }
 \value{
 \code{as_bibentry()} returns a \code{bibentry} object with one or more entries.
@@ -57,21 +59,19 @@ both the preferred citation info and the references.
 \description{
 This function creates \code{\link{bibentry}} objects from different metadata sources
 (\code{\link{cff}} objects, \code{DESCRIPTION} files, etc.). The inverse transformation
-(\code{bibentry} object to \code{\link{cffreflist}}) can be done with the
-corresponding \code{\link[=as_cff.bibentry]{as_cff.bibentry()}} method.
+(\code{bibentry} object to \code{\link{cff_ref_lst}}) can be done with the corresponding
+\code{\link[=as_cff.bibentry]{as_cff.bibentry()}} method.
 
 With \code{\link[=toBibtex.cff]{toBibtex()}} it is possible to convert \code{cff} objects
 to BibTeX markup on the fly, see \strong{Examples}.
 }
 \details{
-A \strong{R} \code{\link[utils:bibentry]{bibentry}}  object is the representation of a
-BibTeX entry. These objects can be converted to BibTeX markup with
-\code{\link[=toBibtex]{toBibtex()}}, that creates an object of class \code{Bibtex} and can be
-printed and exported as a valid BibTeX entry.
+A \strong{R} \code{bibentry} object is the representation of a BibTeX entry. These
+objects can be converted to BibTeX markup with \code{\link[=toBibtex]{toBibtex()}}, that creates an
+object of class \code{Bibtex} and can be printed and exported as a valid BibTeX
+entry.
 
-\code{as_bibtex()} tries to map the information of the source \code{x} into a \code{\link{cff}}
-object and performs a mapping of the metadata to BibTeX, according to
-\code{vignette("bibtex_cff", "cffr")}.
+\code{as_bibtex()} tries to map the information of the source \code{x} into a \verb{cff] object and performs a mapping of the metadata to BibTeX, according to }vignette("bibtex_cff", "cffr")`.
 }
 \examples{
 \donttest{
@@ -129,14 +129,17 @@ toBibtex(desc_file)
 }
 \seealso{
 \code{\link[utils:bibentry]{utils::bibentry()}} to understand more about the \code{bibentry} class.
-
-\code{vignette("bibtex_cff", "cffr")} provides detailed information about the
+\itemize{
+\item \code{vignette("crosswalk", package = "cffr")} provides details on how the
+metadata of a package is mapped to produce a \code{cff} object.
+\item \code{vignette("bibtex_cff", "cffr")} provides detailed information about the
 internal mapping performed between \code{cff} objects and BibTeX markup (
 both \code{cff} to BibTeX and BibTeX to \code{cff}).
+}
 
 Other related functions:
 \itemize{
-\item \code{\link[=toBibtex]{toBibtex()}}
+\item \code{\link[utils:toLatex]{utils::toBibtex()}}.
 }
 
 Other functions for working with BibTeX format:
@@ -145,7 +148,7 @@ Other functions for working with BibTeX format:
 \code{\link{cff_write_bib}()},
 \code{\link{encoded_utf_to_latex}()}
 
-Other \strong{S3 Methods}:
+Coercing between \strong{R} classes with \strong{S3 Methods}:
 \code{\link{as_cff}()},
 \code{\link{as_cff_person}()},
 \code{\link{cff_class}}

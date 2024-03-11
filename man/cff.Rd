@@ -15,40 +15,40 @@ arguments are supplied (the default behavior), a minimal valid \code{cff}
 object is created.}
 }
 \value{
-A \code{\link{cff}} object. Under the hood, a \code{cff} object is a regular \code{list} object
-with a special \link[=print.cff]{print()} method.
+A \code{\link{cff}} object. Under the hood, a \code{cff} object is a regular \code{\link{list}}
+object with a special \code{\link[=print.cff]{print}} method.
 }
 \description{
 A class and utility methods for reading, creating and holding CFF
-information. See \code{\link{cff_class}} to learn more about \code{cff} objects.
+information. See \link{cff_class} to learn more about \code{cff} objects.
 }
 \details{
 \code{cff()} would convert \verb{_} in the name of the argument to \code{-}, e.g.
 \verb{cff_version = "1.2.0'} would be converted to \verb{cff-version = "1.2.0'}.
 
-Valid parameters are those specified on \code{\link[=cff_schema_keys]{cff_schema_keys()}}:\tabular{l}{
-   \strong{valid cff keys} \cr
-   cff-version \cr
-   message \cr
-   type \cr
-   license \cr
-   title \cr
-   version \cr
-   doi \cr
-   abstract \cr
-   authors \cr
-   preferred-citation \cr
-   repository \cr
-   repository-artifact \cr
-   repository-code \cr
-   url \cr
-   date-released \cr
-   contact \cr
-   keywords \cr
-   references \cr
-   commit \cr
-   identifiers \cr
-   license-url \cr
+Valid parameters are those specified on \code{\link[=cff_schema_keys]{cff_schema_keys()}}:
+\itemize{
+\item \code{cff-version}
+\item \code{message}
+\item \code{type}
+\item \code{license}
+\item \code{title}
+\item \code{version}
+\item \code{doi}
+\item \code{abstract}
+\item \code{authors}
+\item \code{preferred-citation}
+\item \code{repository}
+\item \code{repository-artifact}
+\item \code{repository-code}
+\item \code{url}
+\item \code{date-released}
+\item \code{contact}
+\item \code{keywords}
+\item \code{references}
+\item \code{commit}
+\item \code{identifiers}
+\item \code{license-url}
 }
 }
 \examples{

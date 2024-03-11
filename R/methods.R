@@ -17,6 +17,30 @@ c.cff <- function(..., recursive = FALSE) {
 }
 
 
+# Just for pretty printing on extract
+
+# Based in person method
+# https://github.com/wch/r-source/blob/trunk/src/library/utils/R/citation.R
+
+#' @export
+#' @rdname cff_class
+#' @usage NULL
+`[.cff_ref_lst` <- function(x, i) {
+  rval <- unclass(x)[i]
+  class(rval) <- class(x[[i]])
+  return(rval)
+}
+
+#' @export
+#' @rdname cff_class
+#' @usage NULL
+`[.cff_pers_lst` <- function(x, i) {
+  rval <- unclass(x)[i]
+  class(rval) <- class(x[[i]])
+  return(rval)
+}
+
+
 # nolint start
 #' @export
 #' @rdname cff_class
@@ -38,11 +62,11 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
       return(as.data.frame(el, prefix = nm))
     }
 
-    if (any(inherits(el, "cffpers"), inherits(el, "cffperslist"))) {
+    if (any(inherits(el, "cff_pers"), inherits(el, "cff_pers_lst"))) {
       return(as.data.frame(el, prefix = nm))
     }
 
-    if (inherits(el, "cffreflist")) {
+    if (inherits(el, "cff_ref_lst")) {
       return(as.data.frame(el, prefix = nm))
     }
 
@@ -68,8 +92,8 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
 #' @export
 #' @rdname cff_class
 #' @usage NULL
-as.data.frame.cffperslist <- function(x, row.names = NULL, optional = FALSE,
-                                      ..., prefix = "person") {
+as.data.frame.cff_pers_lst <- function(x, row.names = NULL, optional = FALSE,
+                                       ..., prefix = "person") {
   # For better dispatching
   x <- as_cff(as.list(x))
 
@@ -91,8 +115,8 @@ as.data.frame.cffperslist <- function(x, row.names = NULL, optional = FALSE,
 #' @export
 #' @rdname cff_class
 #' @usage NULL
-as.data.frame.cffpers <- function(x, row.names = NULL, optional = FALSE,
-                                  ..., prefix = NULL) {
+as.data.frame.cff_pers <- function(x, row.names = NULL, optional = FALSE,
+                                   ..., prefix = NULL) {
   # For better dispatching
   x <- as_cff(as.list(x))
 
@@ -114,8 +138,8 @@ as.data.frame.cffpers <- function(x, row.names = NULL, optional = FALSE,
 #' @export
 #' @rdname cff_class
 #' @usage NULL
-as.data.frame.cffreflist <- function(x, row.names = NULL, optional = FALSE,
-                                     ..., prefix = "references") {
+as.data.frame.cff_ref_lst <- function(x, row.names = NULL, optional = FALSE,
+                                      ..., prefix = "references") {
   # For better dispatching
   x <- as_cff(as.list(x))
 
@@ -141,10 +165,10 @@ as.data.frame.cffreflist <- function(x, row.names = NULL, optional = FALSE,
 #' @export
 #' @rdname cff_class
 #' @usage NULL
-as.data.frame.cffref <- function(x, row.names = NULL, optional = FALSE,
-                                 ..., prefix = NULL) {
+as.data.frame.cff_ref <- function(x, row.names = NULL, optional = FALSE,
+                                  ..., prefix = NULL) {
   # For better dispatching
-  # cffref is similar to cff, so we add only cff class
+  # cff_ref is similar to cff, so we add only cff class
   x <- as_cff(as.list(x))
   class(x) <- "cff"
 
@@ -200,35 +224,35 @@ toBibtex.cff <- function(object, ...,
 #' @export
 #' @rdname cff_class
 #' @usage NULL
-toBibtex.cffreflist <- function(object, ...) {
+toBibtex.cff_ref_lst <- function(object, ...) {
   toBibtex(as_bibentry(object), ...)
 }
 
 #' @export
 #' @rdname cff_class
 #' @usage NULL
-toBibtex.cffref <- function(object, ...) {
+toBibtex.cff_ref <- function(object, ...) {
   toBibtex(as_bibentry(object), ...)
 }
 
 #' @export
 #' @rdname cff_class
 #' @usage NULL
-toBibtex.cffperslist <- function(object, ...) {
+toBibtex.cff_pers_lst <- function(object, ...) {
   toBibtex(as.person(object), ...)
 }
 
 #' @export
 #' @rdname cff_class
 #' @usage NULL
-toBibtex.cffpers <- function(object, ...) {
+toBibtex.cff_pers <- function(object, ...) {
   toBibtex(as.person(object), ...)
 }
 
 #' @export
 #' @rdname cff_class
 #' @usage NULL
-as.person.cffpers <- function(x) {
+as.person.cff_pers <- function(x) {
   # Enlist to dispatch to Next method
   x_l <- list(as.list(x))
   as.person(as_cff(x_l))
@@ -237,7 +261,7 @@ as.person.cffpers <- function(x) {
 #' @export
 #' @rdname cff_class
 #' @usage NULL
-as.person.cffperslist <- function(x) {
+as.person.cff_pers_lst <- function(x) {
   pers <- lapply(x, make_r_person)
 
   # If not all extracted inform
@@ -269,17 +293,17 @@ as.person.cff <- function(x) {
 #' @export
 #' @rdname cff_class
 #' @usage NULL
-as.person.cffref <- function(x) {
+as.person.cff_ref <- function(x) {
   cli::cli_abort(
-    "({.pkg cffr}) {.fn as.person.cffref} method not implemented yet."
+    "({.pkg cffr}) {.fn as.person.cff_ref} method not implemented yet."
   )
 }
 
 #' @export
 #' @rdname cff_class
 #' @usage NULL
-as.person.cffreflist <- function(x) {
+as.person.cff_ref_lst <- function(x) {
   cli::cli_abort(
-    "({.pkg cffr}) {.fn as.person.cffreflist} method not implemented yet."
+    "({.pkg cffr}) {.fn as.person.cff_ref_lst} method not implemented yet."
   )
 }

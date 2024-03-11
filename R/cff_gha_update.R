@@ -9,7 +9,7 @@
 #' - Your `DESCRIPTION` or `inst/CITATION` are modified.
 #' - The action can be run also manually.
 #'
-#' @param path Project directory.
+#' @param path Project root directory.
 #' @param overwrite Logical. If already present, do you want to overwrite your
 #'   action?
 #'
