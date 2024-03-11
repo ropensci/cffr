@@ -1,17 +1,3 @@
-# debugging messages
-
-    Code
-      a <- as_cff_person(ap)
-    Message
-      i In `as_cff_person()` using internal for "person".
-
----
-
-    Code
-      b <- as_cff_person("Example")
-    Message
-      i In `as_cff_person()` using internal for "txt".
-
 # Coerce one person
 
     Code

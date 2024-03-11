@@ -14,7 +14,6 @@ cff_parse_person_bibtex(person)
 \itemize{
 \item A \code{person} or list of \code{person} object created with \code{\link[utils:person]{utils::person()}}.
 \item A \code{character} object or vector representing a person or persons.
-See \strong{Examples}.
 }}
 }
 \value{

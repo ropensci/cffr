@@ -1,10 +1,11 @@
 ## The `cff` class
 
-**cffr** implements a S3 object with [class()] `cff`, that it is used to
-represent the information of a `*.cff` file in **R**.
+[**cffr**](https://cran.r-project.org/package=cffr) implements a S3 object with
+[`class`] `cff`, that it is used to represent the information of a
+`CITATION.cff` file in **R**.
 
 Under the hood, a `cff` object is simply a named [`list`] to which we added
-additional methods, most notably [print()] and [as_cff()].
+additional methods, most notably [`print`] and [as_cff()].
 
 ```{r include=FALSE}
 library(cffr)
@@ -16,38 +17,116 @@ a_named_list <- list(
   fifth = "with", sixth = "names", "none" = NULL
 )
 
-
-dput(a_named_list)
-
-# Default print
-a_named_list
-
-# But
+# As cff
 a_cff_object <- as_cff(a_named_list)
 
 class(a_cff_object)
 
 a_cff_object
 
-dput(a_cff_object)
+is.list(a_cff_object)
 ```
 
-[as_cff()] not only converts a `list` to `cff` but also removes items (known
-as `keys` in CFF terminology) that are `NULL` or `NA`.
+[as_cff()] not only converts a `list` to `cff` but also removes items (known as
+`keys` in CFF terminology) that are `NULL` or `NA`.
+
+### Sub-classes
+
+**cffr** implements two special sub-classes of `cff`, with the aim of
+representing two special types of objects defined in the [CFF
+Schema](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md):
+
+-   `definition.person` and `definition.entity`: CFF definition for sub-lists
+    representing persons or entities. In **cffr** the sub-class `cff_pers_lst`
+    has been implemented to collect an array of `definition.person/entity`,
+    where each individual person or entity of the array has a sub-class
+    `cff_pers`.
+
+-   Similarly, `definition.reference` is the definition of CFF for collecting
+    references to related works and other articles of software used in the
+    development of the main work of the CFF file. This is implemented in
+    **cffr** as a sub-class named `cff_ref_lst` for arrays of
+    `definition.reference` where each element of the array has a sub-class named
+    `cff_ref`.
+
+These two sub-classes does not provide full valid `cff` objects, but adapts
+information to the schema required by CFF:
+
+```{r}
+# Using the utils::person() function
+
+## Array
+two_persons <- as_cff_person(
+  c(
+    person("A", "person", comment = c(ORCID = "0000-0000-0000-0000")),
+    person("An entity", email = "fake@gmail.com")
+  )
+)
+
+two_persons
+
+class(two_persons)
+
+# Single element
+
+two_persons[[1]]
+
+class(two_persons[[1]])
+
+# Array of references
+
+cit <- c(citation(), citation("yaml"))
+
+ref_list <- as_cff(cit)
+
+ref_list
+
+class(ref_list)
+
+# Single element
+
+ref_list[[1]]
+
+class(ref_list[[1]])
+```
 
 ## Valid `cff` objects
 
-Although `a_cff_object` is a `cff` object, it is not valid, since it does not
-comply with the validation rules of the CFF specification.
+Creating a `cff` object does not ensure its validity according to the [CFF
+Schema](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md):
 
 ```{r}
+class(a_cff_object)
+
 cff_validate(a_cff_object)
 ```
 
 [cff_validate()] gives minimal messages of what's wrong with our `cff` and
 (invisibly) returns the result of the validation (`TRUE/FALSE`).
 
-## Other methods
+We can use [cff_modify()] to add more keys:
+
+```{r}
+cff_valid <- cff_modify(a_cff_object,
+  authors = as_cff_person("{James and James}"),
+  cff_version = "1.2.0",
+  message = "Hi there",
+  title = "My title"
+)
+
+
+# Remove invalid keys
+cff_valid <- as_cff(cff_valid[names(cff_valid) %in% cff_schema_keys()])
+
+cff_valid
+
+cff_validate(cff_valid)
+```
+
+## Base methods provided by **cffr**
+
+**cffr** version 1.0.0 provides additional S3 Methods for common coercing
+functions of the **base** and **utils** package.
 
 ### [as.data.frame()]
 
@@ -63,7 +142,7 @@ class(as_df)
 t(as_df)
 ```
 
-## [c()]
+### [c()]
 
 ```{r}
 new_keys <- c("date-released" = "2020-01-31", abstract = "Minimal example")
@@ -71,15 +150,29 @@ new_keys <- c("date-released" = "2020-01-31", abstract = "Minimal example")
 c(minimal_cff, new_keys)
 ```
 
-## [as.person()]
-
-Special case for those CFF keys that are person-like.
+### [as.list()]
 
 ```{r}
-path <- system.file("examples/CITATION_complete.cff", package = "cffr")
-the_cff <- cff_read(path)
+as.list(minimal_cff)
+```
 
-the_cff$authors
+### [as.person()]
 
-as.person(the_cff$authors)
+Only for `cff_pers_lst` and `cff_pers` objects:
+
+```{r}
+as.person(two_persons)
+```
+
+### [toBibtex()]
+
+```{r}
+# For cff
+toBibtex(minimal_cff)
+
+# cff_ref, cff_ref_lst
+toBibtex(cit)
+
+# cff_pers, cff_pers_lst
+toBibtex(two_persons)
 ```

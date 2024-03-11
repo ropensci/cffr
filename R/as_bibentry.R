@@ -1,24 +1,30 @@
-#' Create `bibentry` objects from several sources
+#' Create [`bibentry`] objects from several sources
 #'
 #' @rdname as_bibentry
 #' @name as_bibentry
 #' @order 1
-
 #' @description
 #'
-#' This function creates [`bibentry`][utils::bibentry()] objects from different
-#' metadata sources ([`cff`] objects, `DESCRIPTION` files, etc.).
+#' This function creates [`bibentry`] objects from different metadata sources
+#' ([`cff`] objects, `DESCRIPTION` files, etc.). The inverse transformation
+#' (`bibentry` object to [`cff_ref_lst`]) can be done with the corresponding
+#' [as_cff.bibentry()] method.
 #'
-#'
-#' The inverse transformation (`bibentry` object to [`cff`] reference) can
-#' be done with the corresponding [as_cff.bibentry()] method.
+#' With [`toBibtex()`][toBibtex.cff()] it is possible to convert `cff` objects
+#' to BibTeX markup on the fly, see **Examples**.
 #'
 #' @seealso
 #' [utils::bibentry()] to understand more about the `bibentry` class.
 #'
-#' `vignette("bibtex_cff", "cffr")` provides detailed information about the
-#' internal mapping performed between `cff` objects and BibTeX markup (
-#' both `cff` to BibTeX and BibTeX to `cff`).
+#' - `vignette("crosswalk", package = "cffr")` provides details on how the
+#'   metadata of a package is mapped to produce a `cff` object.
+#'
+#' - `vignette("bibtex_cff", "cffr")` provides detailed information about the
+#'   internal mapping performed between `cff` objects and BibTeX markup (
+#'   both `cff` to BibTeX and BibTeX to `cff`).
+#'
+#' Other related functions:
+#' - [utils::toBibtex()].
 #'
 #' @references
 #' - Patashnik, Oren. "BIBTEXTING" February 1988.
@@ -33,7 +39,7 @@
 #'   <https://docs.ropensci.org/cffr/articles/bibtex_cff.html>.
 #'
 #' @param x The source that would be used for generating
-#'   the [bibentry()] object via \CRANpkg{cffr}. It could be:
+#'   the `bibentry` object via \CRANpkg{cffr}. It could be:
 #'   * A missing value. That would retrieve the `DESCRIPTION`
 #'     file on your in-development package.
 #'   * An existing `cff` object created with [cff()], [cff_create()] or
@@ -41,32 +47,35 @@
 #'   * Path to a CITATION.cff file (`"CITATION.cff"`),
 #'   * The name of an installed package (`"jsonlite"`), or
 #'   * Path to a DESCRIPTION file (`"DESCRIPTION"`).
-#' @param what Fields to extract. The value could be:
+#' @param ... Additional arguments to be passed to or from methods.
+#'
+#' @param what Fields to extract from a full `cff` object. The value could be:
 #'   - `preferred`: This would create a single entry with the main citation
-#'      info of the package.
-#'   - `references`: Extract all the entries on `references`.
+#'      info of the package (key `preferred-citation`).
+#'   - `references`: Extract all the entries of `references` key.
 #'   - `all`: A combination of the previous two options. This would extract
-#'      both the preferred citation info and the references.
+#'      both the `preferred-citation` and the `references` key.
+#'
+#'  See `vignette("crosswalk", package = "cffr")`.
 #'
 #' @family bibtex
-#' @family coercing
+#' @family s3method
 #'
 #'
 #' @details
 #'
-#' A **R** [`bibentry`][utils::bibentry()]  object is the representation of a
-#' BibTeX entry. These objects can be converted to BibTeX markup with
-#' [utils::toBibtex()], that creates an object of class `Bibtex` and can be
-#' printed and exported as a valid BibTeX entry.
+#' A **R** `bibentry` object is the representation of a BibTeX entry. These
+#' objects can be converted to BibTeX markup with [toBibtex()], that creates an
+#' object of class `Bibtex` and can be printed and exported as a valid BibTeX
+#' entry.
 #'
 #'
-#' `as_bibtex()` tries to map the information of the source `x` into a [`cff`]
+#' `as_bibtex()` tries to map the information of the source `x` into a `cff]
 #' object and performs a mapping of the metadata to BibTeX, according to
 #' `vignette("bibtex_cff", "cffr")`.
 #'
 #' @return
-#' `as_bibentry()` returns a `bibentry` object (or a list of `bibentry`
-#' objects).
+#' `as_bibentry()` returns a `bibentry` object with one or more entries.
 #'
 #' @export
 #'
@@ -244,7 +253,7 @@ as_bibentry.cff <- function(x, ...,
 #' @export
 #' @rdname as_bibentry
 #' @order 7
-as_bibentry.cff_ref_list <- function(x, ...) {
+as_bibentry.cff_ref_lst <- function(x, ...) {
   ref <- lapply(x, function(y) {
     # Reclass to dispatch method
     as_bibentry(as_cff(y))

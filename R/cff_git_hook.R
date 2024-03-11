@@ -11,7 +11,8 @@
 #'            "#_committing_workflow_hooks) "))
 #'
 #' ```
-#' that remembers you to update your `CITATION.cff` file.
+#' that remembers you to update your `CITATION.cff` file. This is a wrapper of
+#' [usethis::use_git_hook()].
 #'
 #' @name cff_git_hook
 #'
@@ -21,7 +22,13 @@
 #'
 #' @return Invisible. This function is called for its side effects.
 #'
-#' @seealso [usethis::use_git_hook()], [usethis::use_git()]
+#' @seealso
+#'
+#' - [usethis::use_git_hook()], that is the underlying function used by
+#'   `cff_git_hook_install()`.
+#'
+#' - [usethis::use_git()] and related function of \CRANpkg{usethis} for using
+#'   Git with **R** packages.
 #'
 #' @details
 #'

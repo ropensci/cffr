@@ -30,9 +30,12 @@ list.}
 }
 \value{
 \itemize{
-\item \code{as_cff.person()} returns an object with classes \verb{"cff_pers_list", "cff"}.
+\item \code{as_cff.person()} returns an object with classes
+\code{\link[=cff_pers_lst]{cff_pers_lst, cff}}.
 \item \code{as_cff.bibentry()} and \code{as_cff.Bibtex()} returns an object with classes
-\verb{"cff_ref_list", "cff"}.
+\code{\link[=cff_ref_lst]{cff_ref_lst, cff}}.
+}
+\itemize{
 \item The rest of methods returns usually an object of class \code{cff}. However if
 \code{x} have an structure compatible with \code{definitions.person},
 \code{definitions.entity} or \code{definitions.reference} the object would have the
@@ -43,7 +46,8 @@ Learn more about the \CRANpkg{cffr} class system in \link{cff_class}.
 }
 \description{
 \code{as_cff()} turns an existing list-like \strong{R} object into a so-called
-\code{\link{cff}}, a list with class \code{cff}.
+\code{\link{cff}}, a list with class \code{cff}, with the corresponding
+\link[=cff_class]{sub-class} if applicable, .
 
 \code{as_cff} is an S3 generic, with methods for:
 \itemize{
@@ -100,14 +104,9 @@ as_cff(a_cit)
 
 Learn more about the \CRANpkg{cffr} class system in \link{cff_class}.
 
-Other functions for converting between \strong{R} classes:
-\code{\link{as_bibentry}()},
-\code{\link{as_cff_person}()}
-
-Other \strong{S3 Methods}:
+Coercing between \strong{R} classes with \strong{S3 Methods}:
 \code{\link{as_bibentry}()},
 \code{\link{as_cff_person}()},
 \code{\link{cff_class}}
 }
-\concept{coercing}
 \concept{s3method}

@@ -74,30 +74,30 @@
     Code
       df
     Output
-                                     class
-      authors            cff_pers_list|cff
-      contact            cff_pers_list|cff
-      identifiers         cff_ref_list|cff
-      references          cff_ref_list|cff
-      preferred-citation       cff_ref|cff
+                                    class
+      authors            cff_pers_lst|cff
+      contact            cff_pers_lst|cff
+      identifiers         cff_ref_lst|cff
+      references          cff_ref_lst|cff
+      preferred-citation      cff_ref|cff
 
 ---
 
     Code
       df2
     Output
-                                    class
-      authors           cff_pers_list|cff
-      contact           cff_pers_list|cff
-      editors           cff_pers_list|cff
-      editors-series    cff_pers_list|cff
-      recipients        cff_pers_list|cff
-      senders           cff_pers_list|cff
-      translators       cff_pers_list|cff
-      conference             cff_pers|cff
-      database-provider      cff_pers|cff
-      institution            cff_pers|cff
-      location               cff_pers|cff
-      publisher              cff_pers|cff
-      identifiers        cff_ref_list|cff
+                                   class
+      authors           cff_pers_lst|cff
+      contact           cff_pers_lst|cff
+      editors           cff_pers_lst|cff
+      editors-series    cff_pers_lst|cff
+      recipients        cff_pers_lst|cff
+      senders           cff_pers_lst|cff
+      translators       cff_pers_lst|cff
+      conference            cff_pers|cff
+      database-provider     cff_pers|cff
+      institution           cff_pers|cff
+      location              cff_pers|cff
+      publisher             cff_pers|cff
+      identifiers        cff_ref_lst|cff
 

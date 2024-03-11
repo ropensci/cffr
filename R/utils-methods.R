@@ -1,8 +1,5 @@
 # Utils for authors----
 make_r_person <- function(x) {
-  if (is.null(names(x))) {
-    return(person())
-  }
   checknames <- grepl("^name$|given-names|family-names", names(x))
   if (!isTRUE(any(checknames))) {
     return(person())
@@ -46,7 +43,7 @@ make_r_person <- function(x) {
   nm <- gsub("orcid", "ORCID", names(x_comments), fixed = TRUE)
   names(x_comments) <- nm
 
-  pers_list <- list(
+  pers_lst <- list(
     given = given,
     family = family,
     role = role,
@@ -55,5 +52,5 @@ make_r_person <- function(x) {
   )
 
 
-  do.call(person, pers_list)
+  do.call(person, pers_lst)
 }

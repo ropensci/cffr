@@ -82,11 +82,11 @@ test_that("Convert a citation only", {
 
 
 test_that("Convert authors only", {
-  a_pers_list <- as_cff_person(
+  a_pers_lst <- as_cff_person(
     "A person and {A Entity inc.} and {One person} more"
   )
 
-  the_cff <- a_pers_list[[1]]
+  the_cff <- a_pers_lst[[1]]
 
   # To df
   the_df <- as.data.frame(the_cff)
@@ -172,7 +172,7 @@ test_that("as.person method", {
   # Malformed
   malf <- getref$authors
   malf[[1]] <- list(a = "list")
-  expect_s3_class(malf, "cff_pers_list")
+  expect_s3_class(malf, "cff_pers_lst")
 
   expect_snapshot(end <- as.person(malf))
   expect_s3_class(end, "person")
@@ -181,7 +181,7 @@ test_that("as.person method", {
   # Duplicates
   aa <- getref$authors
   aa[[3]] <- aa[[1]]
-  expect_s3_class(aa, "cff_pers_list")
+  expect_s3_class(aa, "cff_pers_lst")
 
   expect_snapshot(aa2 <- as.person(aa))
   expect_s3_class(aa2, "person")
@@ -207,7 +207,7 @@ test_that("Errors on other as.person methods", {
 
   # identifiers
   key <- the_cff$identifiers
-  expect_s3_class(key, c("cff_ref_list", "cff"), exact = TRUE)
+  expect_s3_class(key, c("cff_ref_lst", "cff"), exact = TRUE)
   expect_snapshot(as.person(key), error = TRUE)
 
   # preferred
@@ -288,7 +288,7 @@ test_that("toBibtex", {
   )
 
   expect_length(sev_auth, 4)
-  expect_s3_class(sev_auth, "cff_pers_list")
+  expect_s3_class(sev_auth, "cff_pers_lst")
   expect_snapshot(toBibtex(sev_auth))
 
 

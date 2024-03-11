@@ -1,48 +1,47 @@
-#' Coerce strings or [person][utils::person] objects to [`cff`] objects
+#' Coerce **R** objects to [`cff_pers_lst`] objects (`cff` persons)
 #'
 #' @description
-#'
-#' Create a list of `definitions.person` or `definitions.entity` as defined by
-#' the
-#'
+#' `as_cff_person()` turns an existing list-like **R** object into a
+#' [`cff_pers_lst`] object representing a list of `definitions.person` or
+#' `definitions.entity`, as defined by the
 #' ```{r, echo=FALSE, results='asis'}
 #'
 #' cat(paste0(" [Citation File Format schema]",
 #'            "(https://github.com/citation-file-format/",
-#'            "citation-file-format/blob/main/schema-guide.md) "))
+#'            "citation-file-format/blob/main/schema-guide.md)."))
 #'
 #'
 #' ```
-#' from different sources.
 #'
-#' [as_cff_person()] can convert the following objects:
-#' - Objects with class `person` as provided by [utils::person()].
-#' - A `character` string with the definition of an author or several authors,
-#'   using the standard BibTeX notation. See Markey (2007) for a full
-#'   explanation.
+#' `as_cff_person` is an S3 generic, with methods for:
+#' - `person`: objects created with [person()].
+#' - `character`: String with the definition of an author or several authors,
+#'   using the standard BibTeX notation (see Markey, 2007) and others, like
+#'   the output of [format()] for person (see [`format.person()`][person()]).
+#' -  Default: Other inputs are first coerced with [as.character()].
 #'
+#' The inverse transformation (`cff_pers_lst` to `person`) can be done with
+#' the methods [as.person.cff_pers()] and [as.person.cff_pers_lst()].
 #'
 #' @seealso
 #' Examples in `vignette("cffr", "cffr")` and [utils::person()].
 #'
-#' Learn more about the \CRANpkg{cffr} class system in [cff_class].
+#' Learn more about the classes `cff_pers_lst, cff_pers` classes in [cff_class].
 #'
 #' @export
 #' @rdname as_cff_person
 #' @name as_cff_person
 #' @order 1
 #'
-#' @family coercing
+#' @family s3method
 #'
-#' @param person It can be either:
-#'   - A `person` or list of `person` object created with [utils::person()].
-#'   - A `character` object or vector representing a person or persons.
-#'   See **Examples**.
+#' @param x Any **R** object.
+#' @param ... Ignored by this method.
 #'
 #' @return
-#' `as_cff_person()` returns an object of classes `"cff_pers_list", "cff"`
-#' according to the `definitions.person` or `definitions.entity` specified in
-#' the
+#' `as_cff_person()` returns an object of classes
+#' [`cff_pers_lst, cff`][cff_pers_lst] according to the `definitions.person`
+#' or `definitions.entity` specified in the
 #' ```{r, echo=FALSE, results='asis'}
 #'
 #' cat(paste0(" [Citation File Format schema]",
@@ -51,13 +50,13 @@
 #'
 #'
 #' ```
-#' Each element of the `"cff_pers_list", "cff"` object would have classes
-#' `"cff_pers", "cff"`. Learn more about the \CRANpkg{cffr} class system in
-#' [cff_class].
+#' Each element of the `cff_pers_lst` object would have classes
+#' [`cff_pers, cff`][cff_pers].
+#'
 #'
 #' @details
 #'
-#' [as_cff_person()] would recognize if the input should be converted using the
+#' `as_cff_person()` would recognize if the input should be converted using the
 #' CFF reference for `definition.person` or `definition.entity`.
 #'
 #' `as_cff_person()` uses a custom algorithm that tries to break a name as
@@ -80,8 +79,8 @@
 #' ```{r child = "man/chunks/person.Rmd"}
 #' ```
 #' `as_cff_person()` would try to add as many information as possible.
-#' On `character` string coming from [`format(person())`][utils::person()] the
-#' email and the ORCID would be gathered as well.
+#' On `character` string coming from [`format.person()`][utils::person()] the
+#' email and the ORCID would be retrieved as well.
 #'
 #' @references
 #' - Patashnik, Oren. "BIBTEXTING" February 1988.
@@ -90,6 +89,7 @@
 #' - Markey, Nicolas. "Tame the BeaST"
 #'   *The B to X of BibTeX, Version 1.4* (October 2007).
 #'   <https://osl.ugr.es/CTAN/info/bibtex/tamethebeast/ttb_en.pdf>.
+#'
 #' - Decoret X (2007). "A summary of BibTex."
 #' ```{r, echo=FALSE, results='asis'}
 #'
@@ -116,7 +116,7 @@
 #'
 #' cff_person <- as_cff_person(a_person)
 #'
-#' # Class cff_pers_list / cff
+#' # Class cff_pers_lst / cff
 #' class(cff_person)
 #'
 #' # With each element with class cff_pers / cff
@@ -152,7 +152,7 @@
 #' as.person(a_cff)
 #'
 #'
-#' # Or you can use BibTeX style if you prefer
+#' # Or you can use BibTeX style as input if you prefer
 #'
 #' x <- "Frank Sinatra and Dean Martin and Davis, Jr., Sammy and Joey Bishop"
 #'
@@ -161,27 +161,30 @@
 #' as_cff_person("Herbert von Karajan")
 #'
 #' toBibtex(as_cff_person("Herbert von Karajan"))
-as_cff_person <- function(person) {
-  if (any(is.null(person), is.na(person), length(person) == 0)) {
+as_cff_person <- function(x, ...) {
+  UseMethod("as_cff_person")
+}
+
+
+#' @export
+#' @rdname as_cff_person
+#' @order 2
+as_cff_person.default <- function(x, ...) {
+  x <- clean_str(x)
+  if (is.null(x)) {
     return(NULL)
   }
 
-  hint <- guess_hint(person)
+  x_char <- unname(as.character(x))
 
-  verbopt <- getOption("cffr_message_verbosity", "none")
-  if (verbopt == "debug") {
-    cli::cli_alert_info(
-      "In {.fn as_cff_person} using internal for {.val {hint}}."
-    )
-  }
+  as_cff_person(x_char)
+}
 
-  if (hint == "txt") {
-    # Need to split the character
-    person_split <- split_txt_persons(person)
-    the_obj <- lapply(person_split, create_person_from_txt)
-  } else {
-    the_obj <- lapply(person, create_person_from_r)
-  }
+#' @export
+#' @rdname as_cff_person
+#' @order 3
+as_cff_person.person <- function(x, ...) {
+  the_obj <- lapply(x, create_person_from_r)
 
   if (!length(the_obj) > 0) {
     return(NULL)
@@ -189,6 +192,25 @@ as_cff_person <- function(person) {
   the_obj <- as_cff(the_obj)
   the_obj
 }
+
+#' @export
+#' @rdname as_cff_person
+#' @order 4
+as_cff_person.character <- function(x, ...) {
+  test_x <- clean_str(x)
+  if (is.null(test_x)) {
+    return(NULL)
+  }
+
+  # Need to split the character
+  person_split <- split_txt_persons(x)
+  the_obj <- lapply(person_split, create_person_from_txt)
+
+  the_obj <- as_cff(the_obj)
+  the_obj
+}
+
+
 
 create_person_from_r <- function(person) {
   person <- as.person(person)

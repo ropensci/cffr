@@ -27,25 +27,22 @@
 #' - [utils::readCitationFile()] for **R** citation files.
 #' - [bibtex::read.bib()] for BibTeX files (extension `*.bib`).
 #'
+#'
 #' @param path Path to a file.
-#' @param cff_version The Citation File Format schema version that the
-#'   `CITATION.cff` file adheres to for providing the citation metadata.
-#' @param gh_keywords Logical `TRUE/FALSE`. If the package is hosted on
-#'   GitHub, would you like to add the repo topics as keywords?
-#' @param authors_roles Roles to be considered as authors of the package when
-#'   generating the [`cff`] object.
 #' @param encoding Encoding to be assumed for `path`. See [readLines()].
 #' @param meta A list of package metadata as obtained by
 #'   [utils::packageDescription()] or `NULL` (the default). See **Details**.
 #' @param ... Arguments to be passed to other functions (i.e. to
 #'   [yaml::read_yaml()], [bibtex::read.bib()], etc.).
 #'
+#' @inheritParams cff_create
+#'
 #' @return
 #'
 #' * `cff_read_cff_citation()` and `cff_read_description()` returns a object
 #'   with class `cff`.
 #' * `cff_read_citation()` and `cff_read_bib()` returns an object of classes
-#'   `"cff_ref_list", "cff"` according to the `definitions.references`
+#'   [`cff_ref_lst, cff`][cff_ref_lst] according to the `definitions.references`
 #'   specified in the
 #' ```{r, echo=FALSE, results='asis'}
 #'
@@ -55,8 +52,6 @@
 #'
 #'
 #' ```
-#'  See `vignette("bibtex_cff", "cffr")` to get further insights on how this
-#'  conversion is performed.
 #'
 #' Learn more about the \CRANpkg{cffr} class system in [cff_class].
 #'
@@ -71,7 +66,9 @@
 #'
 #' @details
 #'
-#' # The `meta` object
+#' For details of `cff_read_description()` see [cff_create()].
+#'
+#' ## The `meta` object
 #'
 #' Section 1.9 CITATION files of *Writing R Extensions* (R Core Team 2023)
 #' specifies how to create dynamic `CITATION` files using `meta` object, hence

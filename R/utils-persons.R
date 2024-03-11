@@ -280,16 +280,6 @@ validate_cff_person_fields <- function(person_cff) {
   person_cff
 }
 
-guess_hint <- function(person) {
-  if (inherits(person, "person")) {
-    return("person")
-  }
-
-  # Rest of cases "txt"
-  return("txt")
-}
-
-
 split_txt_persons <- function(person) {
   person <- trimws(person)
   person <- paste0(person, collapse = " and ")

@@ -10,6 +10,7 @@ Bliven
 Boettiger
 CFF
 CMD
+CRC
 Cabunoc
 Chue
 CodeMeta
@@ -44,13 +45,13 @@ Pérez
 README
 RSPM
 RStudio
-Rbuildignore
 Reproducibility
 Riederer
 SPDX
 Spaaks
 Suárez
 Waldir
+Wickham
 Willighagen
 YAML
 Zenodo
@@ -75,6 +76,7 @@ incollection
 inproceedings
 json
 jsonvalidate
+nd
 param
 plaintext
 pre

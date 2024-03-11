@@ -37,7 +37,7 @@ cff_read_bib(path, encoding = "UTF-8", ...)
 GitHub, would you like to add the repo topics as keywords?}
 
 \item{authors_roles}{Roles to be considered as authors of the package when
-generating the \code{\link{cff}} object.}
+generating the \code{CITATION.cff} file. See \strong{Details}.}
 
 \item{meta}{A list of package metadata as obtained by
 \code{\link[utils:packageDescription]{utils::packageDescription()}} or \code{NULL} (the default). See \strong{Details}.}
@@ -49,10 +49,8 @@ generating the \code{\link{cff}} object.}
 \item \code{cff_read_cff_citation()} and \code{cff_read_description()} returns a object
 with class \code{cff}.
 \item \code{cff_read_citation()} and \code{cff_read_bib()} returns an object of classes
-\verb{"cff_ref_list", "cff"} according to the \code{definitions.references}
+\code{\link[=cff_ref_lst]{cff_ref_lst, cff}} according to the \code{definitions.references}
 specified in the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
-See \code{vignette("bibtex_cff", "cffr")} to get further insights on how this
-conversion is performed.
 }
 
 Learn more about the \CRANpkg{cffr} class system in \link{cff_class}.
@@ -77,13 +75,16 @@ we provide a series of alias for each specific type of file:
 \code{\link[bibtex:read.bib]{bibtex::read.bib()}}.
 }
 }
-\section{The \code{meta} object}{
+\details{
+For details of \code{cff_read_description()} see \code{\link[=cff_create]{cff_create()}}.
+\subsection{The \code{meta} object}{
+
 Section 1.9 CITATION files of \emph{Writing R Extensions} (R Core Team 2023)
 specifies how to create dynamic \code{CITATION} files using \code{meta} object, hence
 the \code{meta} argument in \code{\link[=cff_read_citation]{cff_read_citation()}} may be needed for reading
 some files correctly.
 }
-
+}
 \examples{
 
 # Create cff object from cff file

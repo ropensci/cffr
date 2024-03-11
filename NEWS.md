@@ -16,10 +16,10 @@ and
 objects:
 
 -   List of `definitions.reference` (e.g, `references)` has class
-    `cff_ref_list, cff` and individual elements (e.g `preferred-citation` or
-    each member of `references`) has class `cff_ref, cff`.
+    `cff_ref_lst, cff` and individual elements (e.g `preferred-citation` or each
+    member of `references`) has class `cff_ref, cff`.
 -   List of `definitions.person` or `definitions.entity` (e.g. `authors`,
-    `contact`) has class `cff_pers_list, cff` and individual elements (e.g
+    `contact`) has class `cff_pers_lst, cff` and individual elements (e.g
     `publisher` or each member of `authors`) has class `cff_pers, cff`.
 
 This change allow to write specific [S3
@@ -37,7 +37,6 @@ package.
 -   New `as_bibentry()` method for a variety of classes (`character`, `list`,
     `NULL` and classes defined by **cffr**).
 -   The following **base** and **utils** methods supports now `cff` class:
-    (TODO)
     -   `as.data.frame.cff()`.
     -   `as.person()`, although **only** for `definitions.person` or
         `definitions.entity` (e.g. `authors`, `contacts`, `editors`,
@@ -57,18 +56,15 @@ would warn when used, providing advice on the replacement function.
 #### Deprecation
 
 -   `cff_to_bibtex()` and `cff_extract_to_bibtex()`: replaced by `as_bibentry()`
-    method.
+    S3 generic.
 -   `cff_from_bibtex()`: replaced by `cff_read_bib()` (for `*.bib` files) and
     `cff_read_bib_text()` (for character strings).
 -   `write_bib()` and `write_citation()` : replaced by `cff_write_bib()` and
     `cff_write_citation()` respectively.
 -   `cff_parse_person()` and `cff_parse_person_bibtex()`: replaced by
     `as_cff_person()`.
--   The conversion from `cff` to `bibentry` is performed now by a new function
-    `as_bibentry()`. Previous names of this function were `cff_to_bibtex()` and
-    `cff_extract_to_bibtex()` that are now deprecated.
--   `cff_parse_citation()`: replaced by `as_cff()`, see **New capabilities**.
--   Argument `path` in `cff()` is also deprecated, use `cff_read()`.
+-   `cff_parse_citation()`: replaced by `as_cff()` S· generic.
+-   Argument `path` in `cff()` is also deprecated, use `cff_read()` instead.
 
 ### New capabilities
 
@@ -85,16 +81,6 @@ would warn when used, providing advice on the replacement function.
 ## Other changes
 
 -   Minimum **R** version required now is **4.0.0**.
--   New S3 **base** and **utils** methods added:
-    -   `as.data.frame.cff().`
-    -   `as.person.cff()`, that provides results **only** for CFF keys defined
-        as
-        [person](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsperson)
-        or
-        [entity](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsentity)
-        (e.g. `authors`, `contacts`, `editors`, `publisher,` etc.).
-    -   `head.cff()`, `tail.cff()`.
-    -   `toBibtex.cff()`.
 -   Update of BibTeX crosswalk (see `vignette("bibtex_cff", package = "cffr")`)
     and consequently changes in the mapping performed by `as_bibtex()`
     `cff_parse_citation()`:

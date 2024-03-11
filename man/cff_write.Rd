@@ -18,19 +18,19 @@ cff_write(
 }
 \arguments{
 \item{x}{The source that would be used for generating
-the \code{CITATION.cff} file. It could be:
+the \code{\link{cff}} object. It could be:
 \itemize{
 \item A missing value. That would retrieve the \code{DESCRIPTION} file on your
-in-development package.
-\item A \code{cff} object,
-\item The name of an installed package (\code{"jsonlite"}), or
-\item Path to a DESCRIPTION file (\code{"./DESCRIPTION"}).
+in-development \strong{R} package.
+\item An existing \code{\link{cff}} object.
+\item The name of an installed package (\code{"jsonlite"}).
+\item Path to a \code{DESCRIPTION} file (\code{"./DESCRIPTION"}).
 }}
 
 \item{outfile}{The name and path of the \code{CITATION.cff} to be created.}
 
-\item{keys}{List of additional keys to add to the \code{cff} object. See
-\code{\link[=cff_create]{cff_create()}} for details and examples.}
+\item{keys}{List of additional keys to add to the \code{\link{cff}} object. See
+\code{\link[=cff_modify]{cff_modify()}}.}
 
 \item{cff_version}{The Citation File Format schema version that the
 \code{CITATION.cff} file adheres to for providing the citation metadata.}
@@ -41,14 +41,14 @@ GitHub, would you like to add the repo topics as keywords?}
 \item{dependencies}{Logical \code{TRUE/FALSE}. Would you like to add the
 of your package to the \code{references} CFF key?}
 
-\item{validate}{Logical \code{TRUE/FALSE}. Should the new file be validated using
-\code{\link[=cff_validate]{cff_validate()}}?}
+\item{validate}{validate Logical \code{TRUE/FALSE}. Should the new file be
+validated using \code{cff_validate()}?}
 
 \item{verbose}{Logical \code{TRUE/FALSE}. On \code{TRUE} the function would display
 informative messages.}
 
 \item{authors_roles}{Roles to be considered as authors of the package when
-generating the \code{CITATION.cff} file. See \strong{Details} on \code{\link[=cff_create]{cff_create()}}.}
+generating the \code{CITATION.cff} file. See \strong{Details}.}
 }
 \value{
 A \code{CITATION.cff} file and an (invisible) \code{cff} object.
@@ -59,12 +59,15 @@ you would need when developing a package}.
 
 This function writes out a \code{CITATION.cff} file for a given package. This
 function is basically a wrapper around \code{\link[=cff_create]{cff_create()}} to both create the
-\code{\link{cff}} object and writes it out to a YAML-formatted file in
+\code{\link{cff}} object and write it out to a YAML-formatted file in
 one command.
 }
 \details{
+For details of \code{authors_roles} see \code{\link[=cff_create]{cff_create()}}.
+
 When creating and writing a \code{CITATION.cff} for the first time, the function
-adds "CITATION.cff" to ".Rbuildignore".
+adds the pattern \code{"^CITATION\\.cff$"} to your \code{.Rbuildignore} file to avoid
+\code{NOTE}s and \code{WARNING}s in \verb{R CMD CHECK}.
 }
 \examples{
 \donttest{
@@ -79,8 +82,8 @@ file.remove(tmpfile)
 }
 \seealso{
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
-This function unifies the workflow \code{\link[=cff_create]{cff_create()}} + \code{\link[=cff_write]{cff_write()}} +
-\code{\link[=cff_validate]{cff_validate()}}.
+This function unifies the workflow \code{\link[=cff_create]{cff_create()}} + \code{\link[=cff_validate]{cff_validate()}} +
+write a file.
 
 Other functions for creating external files:
 \code{\link{cff_write_bib}()}

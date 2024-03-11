@@ -961,7 +961,7 @@
       as.person(key)
     Condition
       Error in `as.person()`:
-      ! (cffr) `as.person.cff_ref_list()` method not implemented yet.
+      ! (cffr) `as.person.cff_ref_lst()` method not implemented yet.
 
 ---
 

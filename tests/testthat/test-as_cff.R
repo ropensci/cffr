@@ -22,8 +22,8 @@ test_that("as_cff.person", {
     )
   )
 
-  expect_silent(aa <- as_cff_person(pers))
-  expect_s3_class(aa, c("cff_pers_list", "cff"), exact = TRUE)
+  aa <- as_cff_person(pers)
+  expect_s3_class(aa, c("cff_pers_lst", "cff"), exact = TRUE)
   expect_s3_class(aa[[1]], c("cff_pers", "cff"), exact = TRUE)
   expect_identical(aa, as_cff_person(pers))
   expect_snapshot(as_cff(pers))
@@ -44,7 +44,7 @@ test_that("as_cff.bibentry, toBibtex", {
 
   bbb <- as_cff(b)
 
-  expect_s3_class(bbb, c("cff_ref_list", "cff"), exact = TRUE)
+  expect_s3_class(bbb, c("cff_ref_lst", "cff"), exact = TRUE)
   expect_s3_class(bbb[[1]], c("cff_ref", "cff"), exact = TRUE)
   expect_snapshot(bbb)
 
@@ -102,7 +102,7 @@ test_that("]] cff_ref", {
   expect_s3_class(b_all, "bibentry", exact = TRUE)
   bbb <- as_cff(b_all)
 
-  expect_s3_class(bbb, c("cff_ref_list", "cff"), exact = TRUE)
+  expect_s3_class(bbb, c("cff_ref_lst", "cff"), exact = TRUE)
   expect_length(bbb, 2)
 
   b2_reg <- bbb[2]
@@ -119,7 +119,7 @@ test_that("]] cff_pers", {
   expect_s3_class(b_all, "person", exact = TRUE)
   bbb <- as_cff(b_all)
 
-  expect_s3_class(bbb, c("cff_pers_list", "cff"), exact = TRUE)
+  expect_s3_class(bbb, c("cff_pers_lst", "cff"), exact = TRUE)
   expect_length(bbb, 2)
 
   b2_reg <- bbb[2]

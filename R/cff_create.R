@@ -1,10 +1,10 @@
-#' Create a [`cff`] object
+#' Create a [`cff`] object from several sources
 #'
 #' @description
 #'
-#' Create a [`cff`] object from a given source for further
-#' manipulation. This object can be written to a `*.cff ` file with
-#' [cff_write()], see **Examples**.
+#' Create a full and possibly valid [`cff`] object from a given source. This
+#' object can be written to a `*.cff ` file with [cff_write()],
+#' see **Examples**.
 #'
 #' Most of the heavy lifting of \CRANpkg{cffr} is done via this function.
 #'
@@ -24,7 +24,7 @@
 #'
 #' @param keys
 #'   List of additional keys to add to the [`cff`] object. See
-#'   [cff_modify().
+#'   [cff_modify()].
 #' @param cff_version The Citation File Format schema version that the
 #'   `CITATION.cff` file adheres to for providing the citation metadata.
 #' @param gh_keywords Logical `TRUE/FALSE`. If the package is hosted on
@@ -43,26 +43,15 @@
 #'
 #'
 #' ```
-#' See also [cff_write()] for creating a CFF file. `vignette("cffr", "cffr")`
-#' shows an introduction on how manipulate `cff` objects.
+#'
+#' - [cff_modify()] as the recommended way to modify a `cff` object.
+#' - [cff_write()] for creating a CFF file.
+#' - `vignette("cffr", "cffr")` shows an introduction on how manipulate
+#'   `cff` objects.
+#' - `vignette("crosswalk", package = "cffr")` provides details on how the
+#'  metadata of a package is mapped to produce a `cff` object.
 #'
 #' @details
-#'
-#' It is possible to add additional keys not detected by [cff_create()] using
-#' the `keys` argument. A list of valid keys can be retrieved with
-#' [cff_schema_keys()].
-#'
-#'
-#' Please refer to
-#' ```{r, echo=FALSE, results='asis'}
-#'
-#' cat(paste0("\n", "[Guide to Citation File Format schema version 1.2.0]",
-#'            "(https://github.com/citation-file-format/",
-#'            "citation-file-format/blob/main/schema-guide.md)."))
-#'
-#'
-#' ```
-#' for additional details.
 #'
 #' If `x` is a path to a `DESCRIPTION` file or `inst/CITATION`, is not present
 #' on your package, \CRANpkg{cffr} would auto-generate a `preferred-citation`
@@ -71,7 +60,7 @@
 #' By default, only persons whose role in the `DESCRIPTION` file of the package
 #' is author (`"aut"`) or maintainer (`"cre"`) are considered to be authors
 #' of the package. The default setting can be controlled via the `authors_roles`
-#' parameter. See **Details** on [utils::person()] to get additional insights
+#' parameter. See **Details** on [person()] to get additional insights
 #' on person roles.
 #'
 #'

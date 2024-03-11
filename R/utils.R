@@ -206,8 +206,8 @@ guess_cff_part <- function(x) {
   guess <- guess_cff_named_part(x[[1]])
 
   fin <- switch(guess,
-    "cff_pers" = "cff_pers_list",
-    "cff_ref" = "cff_ref_list",
+    "cff_pers" = "cff_pers_lst",
+    "cff_ref" = "cff_ref_lst",
     "unclear"
   )
 
