@@ -11,6 +11,8 @@ merge_desc_cit <- function(cffobj, citobj) {
   if (is.null(cffobj$doi)) {
     cffobj$doi <- clean_str(citobj[[1]]$doi)
   }
+
+  citobj <- as.list(citobj)
   cffobjend <- c(cffobj,
     "preferred-citation" = citobj[1],
     references = list(citobj[-1])
@@ -31,6 +33,8 @@ merge_desc_cit <- function(cffobj, citobj) {
 
   cffobjfinal <- drop_null(cffobjfinal)
 
+  # Reclass everything
+  cffobjfinal <- as_cff(as.list(cffobjfinal))
   return(cffobjfinal)
 }
 

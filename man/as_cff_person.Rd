@@ -135,7 +135,7 @@ toBibtex(a_cff)
 as.person(a_cff)
 
 
-# Or you can use BibTeX style if you prefer
+# Or you can use BibTeX style as input if you prefer
 
 x <- "Frank Sinatra and Dean Martin and Davis, Jr., Sammy and Joey Bishop"
 

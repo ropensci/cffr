@@ -23,9 +23,7 @@ Keys provided in \code{...} would override the corresponding key in \code{x}.
 
 It is possible to add additional keys not detected by \code{\link[=cff_create]{cff_create()}} using
 the \code{keys} argument. A list of valid keys can be retrieved with
-\code{\link[=cff_schema_keys]{cff_schema_keys()}}:
-
-Please refer to
+\code{\link[=cff_schema_keys]{cff_schema_keys()}}. Please refer to
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
 for additional details.
 }
@@ -43,6 +41,9 @@ x_mod <- cff_modify(x,
   abstract = "New abstract",
   doi = "10.21105/joss.03900"
 )
+
+x_mod
+
 cff_validate(x_mod)
 
 }

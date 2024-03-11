@@ -129,7 +129,7 @@ ref_list
 #>   institution:
 #>     name: R Foundation for Statistical Computing
 #>     address: Vienna, Austria
-#>   year: '2023'
+#>   year: '2024'
 #>   url: https://www.R-project.org/
 #> - type: manual
 #>   title: 'yaml: Methods to Convert R Data to YAML and Back'
@@ -176,7 +176,7 @@ ref_list[[1]]
 #> institution:
 #>   name: R Foundation for Statistical Computing
 #>   address: Vienna, Austria
-#> year: '2023'
+#> year: '2024'
 #> url: https://www.R-project.org/
 
 class(ref_list[[1]])
@@ -326,7 +326,7 @@ toBibtex(cit)
 #>   author = \{\{R Core Team\}\},
 #>   organization = \{R Foundation for Statistical Computing\},
 #>   address = \{Vienna, Austria\},
-#>   year = \{2023\},
+#>   year = \{2024\},
 #>   url = \{https://www.R-project.org/\},
 #> \}
 #> 

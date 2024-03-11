@@ -25,15 +25,7 @@
 #'
 #' It is possible to add additional keys not detected by [cff_create()] using
 #' the `keys` argument. A list of valid keys can be retrieved with
-#' [cff_schema_keys()]:
-#'
-#'
-#' ```{r, echo=FALSE, results='asis'}
-#'
-#'
-#' ```
-#'
-#' Please refer to
+#' [cff_schema_keys()]. Please refer to
 #' ```{r, echo=FALSE, results='asis'}
 #'
 #' cat(paste0("\n", "[Guide to Citation File Format schema version 1.2.0]",
@@ -58,6 +50,9 @@
 #'   abstract = "New abstract",
 #'   doi = "10.21105/joss.03900"
 #' )
+#'
+#' x_mod
+#'
 #' cff_validate(x_mod)
 #'
 cff_modify <- function(x, ...) {
