@@ -89,11 +89,8 @@ cff_write <- function(x, outfile = "CITATION.cff", keys = list(),
   }
 
 
-  # Write CITATION
-  yaml::write_yaml(citat, outfile)
-
-  addcomment <- readLines(outfile)
-  addcomment <- c(
+  # Write CITATION with comment
+  com <- c(
     "# -----------------------------------------------------------",
     paste0(
       "# CITATION file created with {cffr} R package, v",
@@ -104,11 +101,14 @@ cff_write <- function(x, outfile = "CITATION.cff", keys = list(),
       strsplit(packageDescription("cffr")$URL, ",")[[1]][1]
     ),
     "# -----------------------------------------------------------",
-    " ",
-    addcomment
+    " "
   )
 
-  writeLines(addcomment, outfile)
+  full_text <- c(com, yaml::as.yaml(citat))
+  fh <- file(outfile, encoding = "UTF-8")
+  on.exit(if (isOpen(fh)) close(fh))
+  writeLines(full_text, fh)
+
   if (verbose) {
     cli::cli_alert_success("{.file {outfile}} generated")
   }
