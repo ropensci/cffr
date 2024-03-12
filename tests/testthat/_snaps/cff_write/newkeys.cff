@@ -1,0 +1,29 @@
+# --------------------------------------------
+# CITATION file created with {cffr} R package
+# See also: https://docs.ropensci.org/cffr/
+# --------------------------------------------
+ 
+cff-version: 1.2.0
+message: This overwrites fields
+type: software
+license: GPL-3.0-only
+title: 'basicdesc: A Basic Description'
+version: 0.1.6
+abstract: New abstract
+authors:
+- family-names: Nadie
+  given-names: Don
+repository-code: https://github.com/basic/package
+url: https://basic.github.io/package
+date-released: '1900-01-01'
+contact:
+- family-names: Basic
+  given-names: Marc
+  email: marcbasic@gmail.com
+keywords:
+- A
+- new
+- list
+- of
+- keywords
+

@@ -1,0 +1,26 @@
+# --------------------------------------------
+# CITATION file created with {cffr} R package
+# See also: https://docs.ropensci.org/cffr/
+# --------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "idonthavencoding" in publications use:'
+type: software
+license: GPL-3.0-only
+title: 'idonthavencoding: No Encoding'
+version: 0.1.6
+abstract: I don't have Encoding field. Should parse without problems. Maybe some warning,
+  but because the missing Encoding field.
+authors:
+- family-names: Basic
+  given-names: Marc
+  email: marcbasic@gmail.com
+  orcid: https://orcid.org/0000-0000-0000-001X
+repository-code: https://github.com/idonthavencoding/package
+url: https://idonthavencoding.github.io/package
+contact:
+- family-names: Basic
+  given-names: Marc
+  email: marcbasic@gmail.com
+  orcid: https://orcid.org/0000-0000-0000-001X
+

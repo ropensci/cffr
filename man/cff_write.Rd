@@ -13,7 +13,8 @@ cff_write(
   dependencies = TRUE,
   validate = TRUE,
   verbose = TRUE,
-  authors_roles = c("aut", "cre")
+  authors_roles = c("aut", "cre"),
+  encoding = "UTF-8"
 )
 }
 \arguments{
@@ -49,6 +50,10 @@ informative messages.}
 
 \item{authors_roles}{Roles to be considered as authors of the package when
 generating the \code{CITATION.cff} file. See \strong{Details}.}
+
+\item{encoding}{The name of the encoding to be assumed. Default is \code{"UTF-8"},
+but it can be any other value as accepted by \code{\link[=iconv]{iconv()}}, such as
+\code{"ASCII//TRANSLIT"}.}
 }
 \value{
 A \code{CITATION.cff} file and an (invisible) \code{cff} object.

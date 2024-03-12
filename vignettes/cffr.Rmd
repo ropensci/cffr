@@ -74,7 +74,7 @@ Under the hood, `cff_write()` performs the following tasks:
 
 -   It extracts the metadata using `cff_create()`.
 -   Optionally modifies it with `cff_modify()`.
--   Writes a `CITATION.cff` file using `yaml::write_yaml()`.
+-   Writes a `CITATION.cff` file.
 -   Validates the result using `cff_validate()`.
 
 Congratulations! Now you have a full `CITATION.cff` file for your **R** package.

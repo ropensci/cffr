@@ -1,5 +1,8 @@
 # cffr (development version)
 
+-   Update `cff_write()` to add a new `encoding` argument to make it work with
+    different encodings, see `iconv()`.
+
 # cffr 1.0.0
 
 This is a major release with some notable changes. The change mainly **affects
