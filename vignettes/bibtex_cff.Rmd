@@ -45,30 +45,13 @@ table_master <- read.csv(p2file)
 ## Disclaimer
 
 *This article was reviewed and updated in 2024, along with the release of
-**cffr** v0.6.0.*
+**cffr** v1.0.0.*
 
 ## Citation
 
-Please cite this article as:
+Please cite this article using this **BibTeX** entry:
 
-```{r cit, echo=FALSE, results='asis'}
-thisart <- bibentry("article",
-  title = "{BibTeX} and {CFF}, a potential crosswalk",
-  key = "hernangomez2022",
-  author = "Diego Hernangómez",
-  journal = "The {cffr} package",
-  year = 2022,
-  volume = "Vignettes",
-  doi = "10.21105/joss.03900",
-  url = "https://docs.ropensci.org/cffr/articles/bibtex_cff.html"
-)
-cat("  \n")
-thisart
-```
-
-A **BibTeX** entry for LaTeX users:
-
-``` bibtex
+``` bib
 @article{hernangomez2022,
     title        = {{BibTeX} and {CFF}, a potential crosswalk},
     author       = {Diego Hernangómez},

@@ -1,4 +1,4 @@
-# cffr (development version)
+# cffr 1.0.0
 
 This is a major release with some notable changes. The change mainly **affects
 to non-core functions**, hence the natural workflow (`cff_create()` →
@@ -36,6 +36,7 @@ package.
         that can't be captured properly via methods.
 -   New `as_bibentry()` method for a variety of classes (`character`, `list`,
     `NULL` and classes defined by **cffr**).
+-   New `as_cff_person()` method.
 -   The following **base** and **utils** methods supports now `cff` class:
     -   `as.data.frame.cff()`.
     -   `as.person()`, although **only** for `definitions.person` or
@@ -57,13 +58,13 @@ would warn when used, providing advice on the replacement function.
 
 -   `cff_to_bibtex()` and `cff_extract_to_bibtex()`: replaced by `as_bibentry()`
     S3 generic.
+-   `cff_parse_person()` and `cff_parse_person_bibtex()`: replaced by
+    `as_cff_person()` S3 generic.
+-   `cff_parse_citation()`: replaced by `as_cff()` S3 generic.
 -   `cff_from_bibtex()`: replaced by `cff_read_bib()` (for `*.bib` files) and
     `cff_read_bib_text()` (for character strings).
 -   `write_bib()` and `write_citation()` : replaced by `cff_write_bib()` and
     `cff_write_citation()` respectively.
--   `cff_parse_person()` and `cff_parse_person_bibtex()`: replaced by
-    `as_cff_person()`.
--   `cff_parse_citation()`: replaced by `as_cff()` S· generic.
 -   Argument `path` in `cff()` is also deprecated, use `cff_read()` instead.
 
 ### New capabilities
