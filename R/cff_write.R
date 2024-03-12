@@ -94,6 +94,7 @@ cff_write <- function(x, outfile = "CITATION.cff", keys = list(),
   }
 
 
+  # See https://github.com/r-universe-org/help/issues/382
   # Write CITATION with comment
   com <- c(
     "# --------------------------------------------",
@@ -103,7 +104,10 @@ cff_write <- function(x, outfile = "CITATION.cff", keys = list(),
     " "
   )
 
-  full_text <- c(com, yaml::as.yaml(citat))
+  # MAX effort to get right the encoding
+  com <- enc2utf8(com)
+  out_yaml <- enc2utf8(capture.output(print(citat)))
+  full_text <- enc2utf8(c(com, out_yaml, ""))
   fh <- file(outfile, encoding = encoding)
   on.exit(if (isOpen(fh)) close(fh))
   writeLines(full_text, fh)
