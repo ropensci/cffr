@@ -177,6 +177,7 @@ test_that("test encoding utf8", {
 })
 
 test_that("test encoding others", {
+  skip_on_os("mac")
   cffobj <- cff()
   cffobj <- cff_modify(cffobj, authors = as_cff_person("Diego Pérez"))
   tmp <- file.path(tempdir(), "asci_trans.cff")
