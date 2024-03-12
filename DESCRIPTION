@@ -33,6 +33,7 @@ Suggests:
     usethis
 VignetteBuilder: 
     knitr
+Config/Needs/website: devtools
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
