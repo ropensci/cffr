@@ -11,11 +11,7 @@ cff_read_bib_text(x, encoding = "UTF-8", ...)
 
 \item{encoding}{Encoding to be assumed for \code{x}, see \code{\link[=readLines]{readLines()}}.}
 
-\item{...}{
-  Arguments passed on to \code{\link[=cff_read_bib]{cff_read_bib}}
-  \describe{
-    \item{\code{}}{}
-  }}
+\item{...}{Arguments passed on to \code{\link[=cff_read_bib]{cff_read_bib()}}.}
 }
 \value{
 An object of classes \code{\link[=cff_ref_lst]{cff_ref_lst, cff}} according to the

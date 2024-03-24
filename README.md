@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2024-03-18 there are at least 306 repos on GitHub using **cffr**.
+As per 2024-03-24 there are at least 312 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -385,9 +385,6 @@ test <- cff_create("rmarkdown")
         email: jeroen@berkeley.edu
         orcid: https://orcid.org/0000-0002-4035-0289
       year: '2024'
-      identifiers:
-      - type: url
-        value: https://arxiv.org/abs/1403.2805
     - type: software
       title: knitr
       abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'

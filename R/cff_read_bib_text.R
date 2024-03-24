@@ -16,7 +16,6 @@
 #' @param x A vector of `character` objects with the full BibTeX string.
 #' @param encoding Encoding to be assumed for `x`, see [readLines()].
 #' @param ... Arguments passed on to [cff_read_bib()].
-#' @inheritDotParams cff_read_bib -path
 #'
 #' @return
 #'

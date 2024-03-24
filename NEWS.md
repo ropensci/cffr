@@ -2,6 +2,7 @@
 
 -   Update `cff_write()` to add a new `encoding` argument to make it work with
     different encodings, see `iconv()`.
+-   Fix NOTEs due to empty lines in docs.
 
 # cffr 1.0.0
 
