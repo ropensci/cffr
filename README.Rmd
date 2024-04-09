@@ -138,7 +138,7 @@ install.packages("cffr")
 You can install the developing version of **cffr** with:
 
 ```{r, eval=FALSE}
-devtools::install_github("ropensci/cffr")
+remotes::install_github("ropensci/cffr")
 ```
 
 Alternatively, you can install **cffr** using the

@@ -161,7 +161,7 @@ ref_list
 #>     given-names: Zhian N.
 #>   year: '2023'
 #>   notes: R package version 2.3.8
-#>   url: https://github.com/vubiostat/r-yaml/
+#>   url: https://CRAN.R-project.org/package=yaml
 
 class(ref_list)
 #> [1] "cff_ref_lst" "cff"
@@ -335,7 +335,7 @@ toBibtex(cit)
 #>   author = \{Shawn P Garbett and Jeremy Stephens and Kirill Simonov and Yihui Xie and Zhuoer Dong and Hadley Wickham and Jeffrey Horner and \{reikoch\} and Will Beasley and Brendan O'Connor and Gregory R. Warnes and Michael Quinn and Zhian N. Kamvar\},
 #>   year = \{2023\},
 #>   note = \{R package version 2.3.8\},
-#>   url = \{https://github.com/vubiostat/r-yaml/\},
+#>   url = \{https://CRAN.R-project.org/package=yaml\},
 #> \}
 
 # cff_pers, cff_pers_lst
