@@ -32,3 +32,4 @@
 ^\.imgbotconfig$
 ^\.lintr$
 ^Rplots\.pdf$
+^codecov\.yml$
