@@ -73,7 +73,9 @@ entity <- "Elephant and Castle"
 as_cff_person(entity)
 - name: Elephant
 - name: Castle
+}\if{html}{\out{</div>}}
 
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{
 # Do
 entity_protect <- "\{Elephant and Castle\}"
 as_cff_person(entity_protect)

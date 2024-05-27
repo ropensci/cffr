@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2024-04-28 there are at least 279 repos on GitHub using **cffr**.
+As per 2024-05-27 there are at least 249 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -143,7 +143,7 @@ test <- cff_create("rmarkdown")
     type: software
     license: GPL-3.0-only
     title: 'rmarkdown: Dynamic Documents for R'
-    version: '2.26'
+    version: '2.27'
     abstract: Convert R Markdown documents into a variety of formats.
     authors:
     - family-names: Allaire
@@ -221,12 +221,12 @@ test <- cff_create("rmarkdown")
         email: rich@posit.co
         orcid: https://orcid.org/0000-0003-3925-190X
       year: '2024'
-      notes: R package version 2.26
+      notes: R package version 2.27
       url: https://github.com/rstudio/rmarkdown
     repository: https://CRAN.R-project.org/package=rmarkdown
     repository-code: https://github.com/rstudio/rmarkdown
     url: https://pkgs.rstudio.com/rmarkdown/
-    date-released: '2024-03-05'
+    date-released: '2024-05-17'
     contact:
     - family-names: Xie
       given-names: Yihui
@@ -780,6 +780,21 @@ test <- cff_create("rmarkdown")
         given-names: Winston
       year: '2024'
       version: '>= 2.4.2'
+    - type: software
+      title: xml2
+      abstract: 'xml2: Parse XML'
+      notes: Suggests
+      url: https://xml2.r-lib.org/
+      repository: https://CRAN.R-project.org/package=xml2
+      authors:
+      - family-names: Wickham
+        given-names: Hadley
+        email: hadley@posit.co
+      - family-names: Hester
+        given-names: Jim
+      - family-names: Ooms
+        given-names: Jeroen
+      year: '2024'
 
 </details>
 <p>
