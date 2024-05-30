@@ -28,6 +28,10 @@ reference:
     Lists of valid keys and fields as defined by the CFF schema.json
     **(v1.2.0)**.
   contents: has_concept("schemas")
+- subtitle: Documentation
+  desc: >
+    Learn more about the `cff` class system and S3 methods implemented.
+  contents: cff_class
 - title: Additional features
 - subtitle: Coercing objects
   desc: >
