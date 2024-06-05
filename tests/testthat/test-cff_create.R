@@ -424,9 +424,7 @@ test_that("Search package on r-universe", {
 
 
   # Get packages from my r-universe
-  dhh <- unlist(jsonlite::read_json(
-    "https://dieghernan.r-universe.dev/packages"
-  ))[1]
+  dhh <- "tidyterra"
 
 
   newpack <- desc::desc(tmp)

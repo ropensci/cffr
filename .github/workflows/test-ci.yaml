@@ -45,10 +45,11 @@ jobs:
 
       - name: Install packages
         run: |
-          # Install core packages of all views
           options(repos = c(
             CRAN = "https://cloud.r-project.org"
           ))
+
+          library(magrittr)
 
           allviews <- ctv::available.views()
           packs <- lapply(seq_len(length(allviews)), function(x) {
@@ -62,33 +63,54 @@ jobs:
           sel_views <- packs[packs$view %in% c("TimeSeries", "Distributions"), ]
 
           # rOpenSci packages from r-universe
-          ropensci <- unlist(jsonlite::read_json("https://ropensci.r-universe.dev/packages"))
-          ropenscireviewtools <- unlist(
-            jsonlite::read_json("https://ropenscireviewtools.r-universe.dev/packages")
-          )
+          ropensci <- jsonlite::read_json("https://ropensci.r-universe.dev/api/packages") %>%
+            lapply("[[", "Package") %>%
+            unlist()
+          ropenscireviewtools <- jsonlite::read_json("https://ropenscireviewtools.r-universe.dev/api/packages") %>%
+            lapply("[[", "Package") %>%
+            unlist()
+
 
           # R-lib packages
-          rlib <- unlist(jsonlite::read_json("https://r-lib.r-universe.dev/packages"))
+          rlib <- jsonlite::read_json("https://r-lib.r-universe.dev/api/packages") %>%
+            lapply("[[", "Package") %>%
+            unlist()
 
           # R-forge packages
-          rforge <- unlist(jsonlite::read_json("https://r-forge.r-universe.dev/packages"))
+          rforge <- jsonlite::read_json("https://r-forge.r-universe.dev/api/packages") %>%
+            lapply("[[", "Package") %>%
+            unlist()
 
           # R-Studio packages
-          rstudio <- unlist(jsonlite::read_json("https://rstudio.r-universe.dev/packages"))
+          rstudio <- jsonlite::read_json("https://rstudio.r-universe.dev/api/packages") %>%
+            lapply("[[", "Package") %>%
+            unlist()
 
           # rspatial packages
-          rspatial <- unlist(jsonlite::read_json("https://r-spatial.r-universe.dev/packages"))
+          rspatial <- jsonlite::read_json("https://r-spatial.r-universe.dev/api/packages") %>%
+            lapply("[[", "Package") %>%
+            unlist()
+
+
 
           # My universes packages
-          dieghernan <- unlist(jsonlite::read_json("https://dieghernan.r-universe.dev/packages"))
-          ropenspain <- unlist(jsonlite::read_json("https://ropenspain.r-universe.dev/packages"))
-          ropengov <- unlist(jsonlite::read_json("https://ropengov.r-universe.dev/packages"))
+          dieghernan <- jsonlite::read_json("https://dieghernan.r-universe.dev/api/packages") %>%
+            lapply("[[", "Package") %>%
+            unlist()
+          ropenspain <- jsonlite::read_json("https://ropenspain.r-universe.dev/api/packages") %>%
+            lapply("[[", "Package") %>%
+            unlist()
+          ropengov <- jsonlite::read_json("https://ropengov.r-universe.dev/api/packages") %>%
+            lapply("[[", "Package") %>%
+            unlist()
 
           # Gather packages
           all <- sort(unique(c(
             core$name, sel_views$name, ropensci, ropenscireviewtools, rlib, rforge, rstudio, rspatial,
             dieghernan, ropenspain, ropengov
           )))
+
+
 
           # Check packages not installed yet
           instpack <- as.character(installed.packages()[, "Package"])
@@ -105,12 +127,7 @@ jobs:
           # Check packages available
           pakav <- as.data.frame(available.packages(repos = getOption("repos")))
           toinstall <- toinstall_init[toinstall_init %in% pakav$Package]
-          message("Installing ", length(toinstall)," packages")
-
-          install.packages(toinstall,
-            dependencies = TRUE, verbose = TRUE,
-            quiet = TRUE, type = "binary"
-          )
+          message("Installing ", length(toinstall), " packages")
 
         shell: Rscript {0}
 
