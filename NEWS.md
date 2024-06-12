@@ -1,3 +1,7 @@
+# cffr (development version)
+
+-   Extract `commit` from `RemoteSha`.
+
 # cffr 1.0.1
 
 -   Update `cff_write()` to add a new `encoding` argument to make it work with

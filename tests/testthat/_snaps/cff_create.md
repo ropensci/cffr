@@ -416,6 +416,7 @@
       - citation
       - credit
       - linked-data
+      commit: bdd9a29d7eabcc43c3195fe461f884932eba763c
 
 # Parsing Bioconductor
 

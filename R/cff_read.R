@@ -178,7 +178,8 @@ cff_read_description <- function(path, cff_version = "1.2.0",
     "date-released" = get_desc_date_released(pkg),
     contact = get_desc_contacts(pkg),
     keywords = get_desc_keywords(pkg),
-    license = unlist(get_desc_license(pkg))
+    license = unlist(get_desc_license(pkg)),
+    commit = get_desc_sha(pkg)
   )
 
   if (gh_keywords) {

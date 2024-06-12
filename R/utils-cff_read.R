@@ -356,3 +356,13 @@ get_gh_topics <- function(x) {
 
   return(remotetopics)
 }
+
+
+get_desc_sha <- function(pkg) {
+  sha <- pkg$get("RemoteSha")
+
+  sha <- clean_str(sha)
+  sha <- unname(sha)
+
+  sha
+}
