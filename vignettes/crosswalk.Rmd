@@ -173,7 +173,7 @@ This is the case of packages installed using the
 
 <summary><strong>Example</strong></summary>
 
-```{r authors}
+```{r commit}
 # An example DESCRIPTION
 path <- system.file("examples/DESCRIPTION_r_universe", package = "cffr")
 pkg <- desc::desc(path)
