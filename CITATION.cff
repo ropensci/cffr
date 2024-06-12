@@ -8,7 +8,7 @@ message: 'To cite package "cffr" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'cffr: Generate Citation File Format (''cff'') Metadata for R Packages'
-version: 1.0.1
+version: 1.0.1.9000
 doi: 10.21105/joss.03900
 abstract: The Citation File Format version 1.2.0 <https://doi.org/10.5281/zenodo.5171937>
   is a human and machine readable file format which provides citation metadata for
