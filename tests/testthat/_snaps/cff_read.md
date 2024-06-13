@@ -87,6 +87,7 @@
       title: 'surveillance: Temporal and Spatio-Temporal Modeling and Monitoring of Epidemic
         Phenomena'
       version: 1.19.1
+      doi: 10.32614/CRAN.package.surveillance
       abstract: Statistical methods for the modeling and monitoring of time series of counts,
         proportions and categorical data, as well as for the modeling of continuous-time
         point processes of epidemic phenomena. The monitoring methods focus on aberration

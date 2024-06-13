@@ -35,19 +35,19 @@ Valid parameters are those specified on \code{\link[=cff_schema_keys]{cff_schema
 \item \code{title}
 \item \code{version}
 \item \code{doi}
+\item \code{identifiers}
 \item \code{abstract}
 \item \code{authors}
 \item \code{preferred-citation}
 \item \code{repository}
 \item \code{repository-artifact}
 \item \code{repository-code}
+\item \code{commit}
 \item \code{url}
 \item \code{date-released}
 \item \code{contact}
 \item \code{keywords}
 \item \code{references}
-\item \code{commit}
-\item \code{identifiers}
 \item \code{license-url}
 }
 }

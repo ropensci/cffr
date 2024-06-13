@@ -1,5 +1,14 @@
 # cffr (development version)
 
+-   Now **cffr** adds automatically dois to packages on **CRAN** (e.g.
+    <https://doi.org/10.32614/CRAN.package.cffr>):
+    -   If the package has a `CITATION` file providing a doi, the `CITATION` doi
+        would be used as the main `CITATION.cff` `doi` and the **CRAN** doi
+        would be added as an `identifier`.
+    -   Otherwise, **CRAN** doi would be used as `doi`.
+    -   When extracting dependencies (e.g `cff_create(dependencies = TRUE)` and
+        the package dependency is on **CRAN**, the **CRAN** doi would be used
+        for the dependency in the `references` key.
 -   Extract `commit` from `RemoteSha`.
 
 # cffr 1.0.1

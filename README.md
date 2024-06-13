@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2024-06-12 there are at least 271 repos on GitHub using **cffr**.
+As per 2024-06-13 there are at least 261 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -144,6 +144,9 @@ test <- cff_create("rmarkdown")
     license: GPL-3.0-only
     title: 'rmarkdown: Dynamic Documents for R'
     version: '2.27'
+    identifiers:
+    - type: doi
+      value: 10.32614/CRAN.package.rmarkdown
     abstract: Convert R Markdown documents into a variety of formats.
     authors:
     - family-names: Allaire
@@ -300,6 +303,7 @@ test <- cff_create("rmarkdown")
         email: garrick@posit.co
         orcid: https://orcid.org/0000-0002-7111-0077
       year: '2024'
+      doi: 10.32614/CRAN.package.bslib
       version: '>= 0.2.5.1'
     - type: software
       title: evaluate
@@ -316,6 +320,7 @@ test <- cff_create("rmarkdown")
         given-names: Yihui
         orcid: https://orcid.org/0000-0003-0645-5666
       year: '2024'
+      doi: 10.32614/CRAN.package.evaluate
       version: '>= 0.13'
     - type: software
       title: fontawesome
@@ -329,6 +334,7 @@ test <- cff_create("rmarkdown")
         email: rich@posit.co
         orcid: https://orcid.org/0000-0003-3925-190X
       year: '2024'
+      doi: 10.32614/CRAN.package.fontawesome
       version: '>= 0.5.0'
     - type: software
       title: htmltools
@@ -358,6 +364,7 @@ test <- cff_create("rmarkdown")
       - family-names: Allen
         given-names: Jeff
       year: '2024'
+      doi: 10.32614/CRAN.package.htmltools
       version: '>= 0.5.1'
     - type: software
       title: jquerylib
@@ -373,6 +380,7 @@ test <- cff_create("rmarkdown")
         given-names: Joe
         email: joe@rstudio.com
       year: '2024'
+      doi: 10.32614/CRAN.package.jquerylib
     - type: software
       title: jsonlite
       abstract: 'jsonlite: A Simple and Robust JSON Parser and Generator for R'
@@ -388,6 +396,7 @@ test <- cff_create("rmarkdown")
       identifiers:
       - type: url
         value: https://arxiv.org/abs/1403.2805
+      doi: 10.32614/CRAN.package.jsonlite
     - type: software
       title: knitr
       abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
@@ -400,6 +409,7 @@ test <- cff_create("rmarkdown")
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
       year: '2024'
+      doi: 10.32614/CRAN.package.knitr
       version: '>= 1.43'
     - type: software
       title: methods
@@ -411,6 +421,7 @@ test <- cff_create("rmarkdown")
         name: R Foundation for Statistical Computing
         address: Vienna, Austria
       year: '2024'
+      doi: 10.32614/CRAN.package.methods
     - type: software
       title: tinytex
       abstract: 'tinytex: Helper Functions to Install and Maintain TeX Live, and Compile
@@ -424,6 +435,7 @@ test <- cff_create("rmarkdown")
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
       year: '2024'
+      doi: 10.32614/CRAN.package.tinytex
       version: '>= 0.31'
     - type: software
       title: tools
@@ -435,6 +447,7 @@ test <- cff_create("rmarkdown")
         name: R Foundation for Statistical Computing
         address: Vienna, Austria
       year: '2024'
+      doi: 10.32614/CRAN.package.tools
     - type: software
       title: utils
       abstract: 'R: A Language and Environment for Statistical Computing'
@@ -445,6 +458,7 @@ test <- cff_create("rmarkdown")
         name: R Foundation for Statistical Computing
         address: Vienna, Austria
       year: '2024'
+      doi: 10.32614/CRAN.package.utils
     - type: software
       title: xfun
       abstract: 'xfun: Supporting Functions for Packages Maintained by ''Yihui Xie'''
@@ -457,6 +471,7 @@ test <- cff_create("rmarkdown")
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
       year: '2024'
+      doi: 10.32614/CRAN.package.xfun
       version: '>= 0.36'
     - type: software
       title: yaml
@@ -491,6 +506,7 @@ test <- cff_create("rmarkdown")
       - family-names: Kamvar
         given-names: Zhian N.
       year: '2024'
+      doi: 10.32614/CRAN.package.yaml
       version: '>= 2.1.19'
     - type: software
       title: digest
@@ -552,6 +568,7 @@ test <- cff_create("rmarkdown")
       - family-names: Chirico.
         given-names: Michael
       year: '2024'
+      doi: 10.32614/CRAN.package.digest
     - type: software
       title: dygraphs
       abstract: 'dygraphs: Interface to ''Dygraphs'' Interactive Time Series Charting
@@ -572,6 +589,7 @@ test <- cff_create("rmarkdown")
       - family-names: Thieurmel
         given-names: Benoit
       year: '2024'
+      doi: 10.32614/CRAN.package.dygraphs
     - type: software
       title: fs
       abstract: 'fs: Cross-Platform File System Operations Based on ''libuv'''
@@ -588,6 +606,7 @@ test <- cff_create("rmarkdown")
         given-names: Gábor
         email: csardi.gabor@gmail.com
       year: '2024'
+      doi: 10.32614/CRAN.package.fs
     - type: software
       title: rsconnect
       abstract: 'rsconnect: Deploy Docs, Apps, and APIs to ''Posit Connect'', ''shinyapps.io'',
@@ -608,6 +627,7 @@ test <- cff_create("rmarkdown")
       - family-names: Allaire
         given-names: JJ
       year: '2024'
+      doi: 10.32614/CRAN.package.rsconnect
     - type: software
       title: downlit
       abstract: 'downlit: Syntax Highlighting and Automatic Linking'
@@ -619,6 +639,7 @@ test <- cff_create("rmarkdown")
         given-names: Hadley
         email: hadley@posit.co
       year: '2024'
+      doi: 10.32614/CRAN.package.downlit
       version: '>= 0.4.0'
     - type: software
       title: katex
@@ -632,6 +653,7 @@ test <- cff_create("rmarkdown")
         email: jeroen@berkeley.edu
         orcid: https://orcid.org/0000-0002-4035-0289
       year: '2024'
+      doi: 10.32614/CRAN.package.katex
       version: '>= 1.4.0'
     - type: software
       title: sass
@@ -659,6 +681,7 @@ test <- cff_create("rmarkdown")
         email: carson@rstudio.com
         orcid: https://orcid.org/0000-0002-4958-2844
       year: '2024'
+      doi: 10.32614/CRAN.package.sass
       version: '>= 0.4.0'
     - type: software
       title: shiny
@@ -698,6 +721,7 @@ test <- cff_create("rmarkdown")
       - family-names: Borges
         given-names: Barbara
       year: '2024'
+      doi: 10.32614/CRAN.package.shiny
       version: '>= 1.6.0'
     - type: software
       title: testthat
@@ -710,6 +734,7 @@ test <- cff_create("rmarkdown")
         given-names: Hadley
         email: hadley@posit.co
       year: '2024'
+      doi: 10.32614/CRAN.package.testthat
       version: '>= 3.0.3'
     - type: software
       title: tibble
@@ -726,6 +751,7 @@ test <- cff_create("rmarkdown")
         given-names: Hadley
         email: hadley@rstudio.com
       year: '2024'
+      doi: 10.32614/CRAN.package.tibble
     - type: software
       title: vctrs
       abstract: 'vctrs: Vector Helpers'
@@ -743,6 +769,7 @@ test <- cff_create("rmarkdown")
         given-names: Davis
         email: davis@posit.co
       year: '2024'
+      doi: 10.32614/CRAN.package.vctrs
     - type: software
       title: cleanrmd
       abstract: 'cleanrmd: Clean Class-Less ''R Markdown'' HTML Documents'
@@ -755,6 +782,7 @@ test <- cff_create("rmarkdown")
         email: garrick@adenbuie.com
         orcid: https://orcid.org/0000-0002-7111-0077
       year: '2024'
+      doi: 10.32614/CRAN.package.cleanrmd
     - type: software
       title: withr
       abstract: 'withr: Run Code ''With'' Temporarily Modified Global State'
@@ -779,6 +807,7 @@ test <- cff_create("rmarkdown")
       - family-names: Chang
         given-names: Winston
       year: '2024'
+      doi: 10.32614/CRAN.package.withr
       version: '>= 2.4.2'
     - type: software
       title: xml2
@@ -795,6 +824,7 @@ test <- cff_create("rmarkdown")
       - family-names: Ooms
         given-names: Jeroen
       year: '2024'
+      doi: 10.32614/CRAN.package.xml2
 
 </details>
 <p>

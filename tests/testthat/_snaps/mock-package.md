@@ -10,6 +10,13 @@
       title: 'manyurls: A lot of urls'
       version: 0.1.6
       doi: 10.1111/2041-210X.12469
+      identifiers:
+      - type: url
+        value: https://r-forge.r-project.org/projects/test/
+      - type: url
+        value: http://google.ru
+      - type: url
+        value: https://gitlab.com/r-packages/behaviorchange
       abstract: This package has many urls. Specifically, 1 Bug Reports and 6 URLs. Expected
         is to have 1 repository-code, 1 url and 3 URLs, since there is 1 duplicate and 1
         invalid url.
@@ -53,13 +60,6 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
-      identifiers:
-      - type: url
-        value: https://r-forge.r-project.org/projects/test/
-      - type: url
-        value: http://google.ru
-      - type: url
-        value: https://gitlab.com/r-packages/behaviorchange
 
 ---
 

@@ -83,19 +83,19 @@ cff_schema_keys <- function(sorted = FALSE) {
       "title",
       "version",
       "doi",
+      "identifiers",
       "abstract",
       "authors",
       "preferred-citation",
       "repository",
       "repository-artifact",
       "repository-code",
+      "commit",
       "url",
       "date-released",
       "contact",
       "keywords",
       "references",
-      "commit",
-      "identifiers",
       "license-url"
     )
   }

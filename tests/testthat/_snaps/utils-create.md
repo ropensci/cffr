@@ -286,6 +286,9 @@
         doi: 10.1111/2041-210X.12469
         start: '352'
         end: '357'
+      identifiers:
+      - type: doi
+        value: 10.32614/CRAN.package.codemetar
       references:
       - type: book
         title: 'ggplot2: Elegant Graphics for Data Analysis'
@@ -493,6 +496,9 @@
         doi: 10.1111/2041-210X.12469
         start: '352'
         end: '357'
+      identifiers:
+      - type: doi
+        value: 10.32614/CRAN.package.codemetar
       references:
       - type: book
         title: 'ggplot2: Elegant Graphics for Data Analysis'
@@ -614,6 +620,9 @@
         doi: 10.1111/2041-210X.12469
         start: '352'
         end: '357'
+      identifiers:
+      - type: doi
+        value: 10.32614/CRAN.package.resmush
       references:
       - type: book
         title: 'ggplot2: Elegant Graphics for Data Analysis'
@@ -686,6 +695,9 @@
         doi: 10.1111/2041-210X.12469
         start: '352'
         end: '357'
+      identifiers:
+      - type: doi
+        value: 10.32614/CRAN.package.codemetar
       references:
       - type: book
         title: 'ggplot2: Elegant Graphics for Data Analysis'
@@ -854,6 +866,9 @@
         doi: 10.1111/2041-210X.12469
         start: '352'
         end: '357'
+      identifiers:
+      - type: doi
+        value: 10.32614/CRAN.package.surveillance
       references:
       - type: book
         title: 'ggplot2: Elegant Graphics for Data Analysis'
@@ -921,6 +936,9 @@
         doi: 10.1111/2041-210X.12469
         start: '352'
         end: '357'
+      identifiers:
+      - type: doi
+        value: 10.32614/CRAN.package.MomTrunc
       references:
       - type: book
         title: 'ggplot2: Elegant Graphics for Data Analysis'
@@ -987,6 +1005,9 @@
         doi: 10.1111/2041-210X.12469
         start: '352'
         end: '357'
+      identifiers:
+      - type: doi
+        value: 10.32614/CRAN.package.codemetar
       references:
       - type: book
         title: 'ggplot2: Elegant Graphics for Data Analysis'

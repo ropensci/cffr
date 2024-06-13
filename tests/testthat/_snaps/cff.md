@@ -867,6 +867,15 @@
       title: A new title
       version: 1.0.0
       doi: 10.5281/zenodo.1003150
+      identifiers:
+      - type: doi
+        value: 10.5281/zenodo.1003150
+      - type: swh
+        value: swh:1:rel:99f6850374dc6597af01bd0ee1d3fc0699301b9f
+      - type: url
+        value: https://example.com
+      - type: other
+        value: other-schema://abcd.1234.efgh.5678
       abstract: This is an awesome piece of research software!
       authors:
       - family-names: Real Person
@@ -1273,6 +1282,7 @@
       repository: https://www.example.com/foo/?bar=baz&inga=42&quux
       repository-artifact: https://files.pythonhosted.org/packages/0a/84/10507b69a07768bc16981184b4d147a0fc84b71fbf35c03bafc8dcced8e1/cffconvert-1.3.3.tar.gz
       repository-code: http://foo.com/blah_(wikipedia)_blah#cite-1
+      commit: 156a04c74a8a79d40c5d705cddf9d36735feab4d
       url: http://userid:password@example.com:8080/
       date-released: '2017-12-11'
       contact:
@@ -1682,16 +1692,6 @@
           date-start: '2017-01-01'
           date-end: '2017-01-31'
           location: The team garage
-      commit: 156a04c74a8a79d40c5d705cddf9d36735feab4d
-      identifiers:
-      - type: doi
-        value: 10.5281/zenodo.1003150
-      - type: swh
-        value: swh:1:rel:99f6850374dc6597af01bd0ee1d3fc0699301b9f
-      - type: url
-        value: https://example.com
-      - type: other
-        value: other-schema://abcd.1234.efgh.5678
       license-url: https://spdx.org/licenses/CC-BY-SA-4.0.html#licenseText
 
 # Recursive parsing

@@ -6,6 +6,15 @@ merge_desc_cit <- function(cffobj, citobj) {
   if (is.null(citobj)) {
     return(cffobj)
   }
+  # Play with cran DOI
+  cran_doi <- NULL
+  has_cran_doi <- FALSE
+  if (all(!is.null(cffobj$doi), grepl("CRAN", cffobj$doi))) {
+    has_cran_doi <- TRUE
+    cran_doi <- cffobj$doi
+    # First the citation object
+    cffobj$doi <- NULL
+  }
 
   # Add doi from citation if missing
   if (is.null(cffobj$doi)) {
@@ -21,8 +30,16 @@ merge_desc_cit <- function(cffobj, citobj) {
 
 
   # Merge identifiers
-  oldids <- cffobjend$identifiers
-  cffobjend$identifiers <- c(citobj[[1]]$identifiers, oldids)
+  merged_ids <- c(citobj[[1]]$identifiers, cffobjend$identifiers)
+
+
+  if (has_cran_doi) {
+    cranid <- as_cff(list(
+      list(type = "doi", value = clean_str(cran_doi))
+    ))
+    merged_ids <- c(cranid, merged_ids)
+  }
+  cffobjend$identifiers <- merged_ids
 
   # Reorder
   cffobjfinal <- c(
@@ -136,6 +153,10 @@ get_dependencies <- function(desc_path,
       # Avoid cluttering the output
       mod$abstract <- mod$title
       mod$title <- n$package
+      # If on CRAN add CRAN DOI
+      if (!is.null(n$package)) {
+        mod$doi <- paste0("10.32614/CRAN.package.", n$package)
+      }
     }
 
     mod$type <- "software"
