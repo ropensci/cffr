@@ -366,3 +366,13 @@ get_desc_sha <- function(pkg) {
 
   sha
 }
+
+get_desc_doi <- function(pkg) {
+  pkg <- pkg$get("Package")
+  if (is.null(search_on_repos(pkg))) {
+    return(NULL)
+  }
+
+  doi <- paste0("10.32614/CRAN.package.", pkg)
+  clean_str(doi)
+}

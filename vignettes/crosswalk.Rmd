@@ -270,7 +270,9 @@ cat(cff_create(tmp)$`date-released`)
 ### doi {#doi}
 
 This key is coerced from the `"doi"` field of the
-[preferred-citation](#preferred-citation) object.
+[preferred-citation](#preferred-citation) object. If not present and the package
+is on **CRAN**, it would be populated with the doi provided by **CRAN** (e.g.
+<https://doi.org/10.32614/CRAN.package.cffr>).
 
 <details>
 
@@ -298,6 +300,9 @@ This key includes all the possible identifiers of the package:
 -   From the `CITATION` file, it includes all the dois not included in
     [doi](#doi) and the identifiers (if any) not included in the `"identifiers"`
     key of [preferred-citation](#preferred-citation).
+
+-   If the package is on **CRAN** and it has a `CITATION` file providing a doi,
+    the doi provided by **CRAN** would be added as well.
 
 <details>
 

@@ -32,6 +32,9 @@
       license: GPL-2.0-or-later
       title: 'rgeos: Interface to Geometry Engine - Open Source (''GEOS'')'
       version: 0.5-7
+      identifiers:
+      - type: url
+        value: http://rgeos.r-forge.r-project.org/index.html
       abstract: 'Interface to Geometry Engine - Open Source (''GEOS'') using the C ''API''
         for topology operations on geometries. Please note that ''rgeos'' will be retired
         by the end of 2023, plan transition to sf functions using ''GEOS'' at your earliest
@@ -66,9 +69,6 @@
         given-names: Roger
         email: Roger.Bivand@nhh.no
         orcid: https://orcid.org/0000-0003-2392-6140
-      identifiers:
-      - type: url
-        value: http://rgeos.r-forge.r-project.org/index.html
 
 ---
 
@@ -126,6 +126,9 @@
       license: GPL-2.0-or-later
       title: 'rgeos: Interface to Geometry Engine - Open Source (''GEOS'')'
       version: 0.5-7
+      identifiers:
+      - type: url
+        value: http://rgeos.r-forge.r-project.org/index.html
       abstract: 'Interface to Geometry Engine - Open Source (''GEOS'') using the C ''API''
         for topology operations on geometries. Please note that ''rgeos'' will be retired
         by the end of 2023, plan transition to sf functions using ''GEOS'' at your earliest
@@ -160,9 +163,6 @@
         given-names: Roger
         email: Roger.Bivand@nhh.no
         orcid: https://orcid.org/0000-0003-2392-6140
-      identifiers:
-      - type: url
-        value: http://rgeos.r-forge.r-project.org/index.html
 
 # Coerce date in another format
 
@@ -199,6 +199,13 @@
       license: GPL-3.0-only
       title: 'manyurls: A lot of urls'
       version: 0.1.6
+      identifiers:
+      - type: url
+        value: https://r-forge.r-project.org/projects/test/
+      - type: url
+        value: http://google.ru
+      - type: url
+        value: https://gitlab.com/r-packages/behaviorchange
       abstract: This package has many urls. Specifically, 1 Bug Reports and 6 URLs. Expected
         is to have 1 repository-code, 1 url and 3 URLs, since there is 1 duplicate and 1
         invalid url.
@@ -212,13 +219,6 @@
       - family-names: Basic
         given-names: Marc
         email: marcbasic@gmail.com
-      identifiers:
-      - type: url
-        value: https://r-forge.r-project.org/projects/test/
-      - type: url
-        value: http://google.ru
-      - type: url
-        value: https://gitlab.com/r-packages/behaviorchange
 
 # Parsing Gitlab
 
@@ -231,6 +231,7 @@
       license: GPL-3.0-only
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
       version: 0.1.6
+      doi: 10.32614/CRAN.package.codemetar
       abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
         metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
         to generate, parse, and modify 'codemeta.json' files automatically for R packages,
@@ -315,6 +316,11 @@
       license: MIT
       title: 'wrongurls: Generate CodeMeta Metadata for R Packages'
       version: 0.1.0
+      identifiers:
+      - type: url
+        value: https://httpbin.org/status/429
+      - type: url
+        value: https://www.github.es/ropensci/codemeta
       abstract: Codemeta defines a 'JSON-LD' format for describing software metadata. This
         package provides utilities to generate, parse, and modify codemeta.jsonld files
         automatically for R packages.
@@ -336,11 +342,6 @@
       - citation
       - credit
       - linked-data
-      identifiers:
-      - type: url
-        value: https://httpbin.org/status/429
-      - type: url
-        value: https://www.github.es/ropensci/codemeta
 
 # Parsing two maintainers
 
@@ -353,6 +354,7 @@
       license: GPL-3.0-only
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
       version: 0.1.6
+      doi: 10.32614/CRAN.package.codemetar
       abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
         metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
         to generate, parse, and modify 'codemeta.json' files automatically for R packages,
@@ -388,6 +390,7 @@
       license: GPL-3.0-only
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'
       version: 0.3.5
+      doi: 10.32614/CRAN.package.codemetar
       abstract: The 'Codemeta' Project defines a 'JSON-LD' format for describing software
         metadata, as detailed at <https://codemeta.github.io>. This package provides utilities
         to generate, parse, and modify 'codemeta.json' files automatically for R packages,
@@ -402,6 +405,7 @@
         orcid: https://orcid.org/0000-0002-2815-0399
       repository: https://ropensci.r-universe.dev
       repository-code: https://github.com/ropensci/codemetar
+      commit: bdd9a29d7eabcc43c3195fe461f884932eba763c
       url: https://docs.ropensci.org/codemetar/
       date-released: '2024-02-09'
       contact:
@@ -416,7 +420,6 @@
       - citation
       - credit
       - linked-data
-      commit: bdd9a29d7eabcc43c3195fe461f884932eba763c
 
 # Parsing Bioconductor
 
@@ -465,6 +468,7 @@
       license: MIT
       title: 'resmush: Optimize and Compress Image Files with ''reSmush.it'''
       version: 0.1.0
+      doi: 10.32614/CRAN.package.resmush
       abstract: Compress local and online images using the 'reSmush.it' API service <https://resmush.it/>.
       authors:
       - family-names: Hernangómez
@@ -498,6 +502,7 @@
       license: GPL-3.0-only
       title: 'ggplot2: A Basic Description'
       version: 0.1.6
+      doi: 10.32614/CRAN.package.ggplot2
       abstract: A very basic description. Should parse without problems.
       authors:
       - family-names: Basic
