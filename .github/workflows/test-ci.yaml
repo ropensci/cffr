@@ -45,9 +45,7 @@ jobs:
 
       - name: Install packages
         run: |
-          options(repos = c(
-            CRAN = "https://cloud.r-project.org"
-          ))
+          options(repos = c(CRAN = "https://cloud.r-project.org"))
 
           library(magrittr)
 
@@ -91,8 +89,6 @@ jobs:
             lapply("[[", "Package") %>%
             unlist()
 
-
-
           # My universes packages
           dieghernan <- jsonlite::read_json("https://dieghernan.r-universe.dev/api/packages") %>%
             lapply("[[", "Package") %>%
@@ -110,8 +106,6 @@ jobs:
             dieghernan, ropenspain, ropengov
           )))
 
-
-
           # Check packages not installed yet
           instpack <- as.character(installed.packages()[, "Package"])
           toinstall_init <- setdiff(all, instpack)
@@ -128,6 +122,8 @@ jobs:
           pakav <- as.data.frame(available.packages(repos = getOption("repos")))
           toinstall <- toinstall_init[toinstall_init %in% pakav$Package]
           message("Installing ", length(toinstall), " packages")
+
+          install.packages("toinstall")
 
         shell: Rscript {0}
 
