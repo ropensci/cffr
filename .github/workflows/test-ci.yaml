@@ -123,7 +123,7 @@ jobs:
           toinstall <- toinstall_init[toinstall_init %in% pakav$Package]
           message("Installing ", length(toinstall), " packages")
 
-          install.packages("toinstall")
+          install.packages(toinstall)
 
         shell: Rscript {0}
 
