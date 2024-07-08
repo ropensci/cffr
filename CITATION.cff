@@ -199,6 +199,8 @@ references:
     given-names: Michael
   - family-names: Kamvar
     given-names: Zhian N.
+  - family-names: Gao
+    given-names: Charlie
   year: '2024'
   doi: 10.32614/CRAN.package.yaml
   version: '>= 2.2.1'

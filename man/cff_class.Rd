@@ -49,9 +49,7 @@ a_cff_object <- as_cff(a_named_list)
 
 class(a_cff_object)
 #> [1] "cff"
-}\if{html}{\out{</div>}}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{
 a_cff_object
 #> first: I
 #> second: am
@@ -59,9 +57,7 @@ a_cff_object
 #> fourth: list
 #> fifth: with
 #> sixth: names
-}\if{html}{\out{</div>}}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{
 is.list(a_cff_object)
 #> [1] TRUE
 }\if{html}{\out{</div>}}
@@ -105,28 +101,20 @@ two_persons
 #>   orcid: https://orcid.org/0000-0000-0000-0000
 #> - name: An entity
 #>   email: fake@gmail.com
-}\if{html}{\out{</div>}}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{
 class(two_persons)
 #> [1] "cff_pers_lst" "cff"
-}\if{html}{\out{</div>}}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{
 # Single element
 
 two_persons[[1]]
 #> family-names: person
 #> given-names: A
 #> orcid: https://orcid.org/0000-0000-0000-0000
-}\if{html}{\out{</div>}}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{
 class(two_persons[[1]])
 #> [1] "cff_pers" "cff"
-}\if{html}{\out{</div>}}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{
 # Array of references
 
 cit <- c(citation(), citation("yaml"))
@@ -171,17 +159,15 @@ ref_list
 #>     given-names: Michael
 #>   - family-names: Kamvar
 #>     given-names: Zhian N.
-#>   year: '2023'
-#>   notes: R package version 2.3.8
+#>   - family-names: Gao
+#>     given-names: Charlie
+#>   year: '2024'
+#>   notes: R package version 2.3.9
 #>   url: https://github.com/vubiostat/r-yaml/
-}\if{html}{\out{</div>}}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{
 class(ref_list)
 #> [1] "cff_ref_lst" "cff"
-}\if{html}{\out{</div>}}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{
 # Single element
 
 ref_list[[1]]
@@ -194,9 +180,7 @@ ref_list[[1]]
 #>   address: Vienna, Austria
 #> year: '2024'
 #> url: https://www.R-project.org/
-}\if{html}{\out{</div>}}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{
 class(ref_list[[1]])
 #> [1] "cff_ref" "cff"
 }\if{html}{\out{</div>}}
@@ -210,9 +194,7 @@ Creating a \code{cff} object does not ensure its validity according to the \href
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{class(a_cff_object)
 #> [1] "cff"
-}\if{html}{\out{</div>}}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{
 cff_validate(a_cff_object)
 #> == Validating cff ==============================================================
 #> x Oops! This <cff> has the following errors:
@@ -244,9 +226,7 @@ cff_valid
 #> cff-version: 1.2.0
 #> message: Hi there
 #> title: My title
-}\if{html}{\out{</div>}}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{
 cff_validate(cff_valid)
 #> == Validating cff ==============================================================
 #> v Congratulations! This <cff> is valid
@@ -268,16 +248,12 @@ minimal_cff
 #> authors:
 #> - family-names: Doe
 #>   given-names: John
-}\if{html}{\out{</div>}}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{
 as_df <- as.data.frame(minimal_cff)
 
 class(as_df)
 #> [1] "data.frame"
-}\if{html}{\out{</div>}}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{
 t(as_df)
 #>                         [,1]                                                            
 #> cff_version             "1.2.0"                                                         
@@ -344,9 +320,7 @@ toBibtex(minimal_cff)
 #>   title = \{My Research Software\},
 #>   author = \{John Doe\},
 #> \}
-}\if{html}{\out{</div>}}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{
 # cff_ref, cff_ref_lst
 toBibtex(cit)
 #> @Manual\{,
@@ -360,14 +334,12 @@ toBibtex(cit)
 #> 
 #> @Manual\{,
 #>   title = \{yaml: Methods to Convert R Data to YAML and Back\},
-#>   author = \{Shawn P Garbett and Jeremy Stephens and Kirill Simonov and Yihui Xie and Zhuoer Dong and Hadley Wickham and Jeffrey Horner and \{reikoch\} and Will Beasley and Brendan O'Connor and Gregory R. Warnes and Michael Quinn and Zhian N. Kamvar\},
-#>   year = \{2023\},
-#>   note = \{R package version 2.3.8\},
+#>   author = \{Shawn P Garbett and Jeremy Stephens and Kirill Simonov and Yihui Xie and Zhuoer Dong and Hadley Wickham and Jeffrey Horner and \{reikoch\} and Will Beasley and Brendan O'Connor and Gregory R. Warnes and Michael Quinn and Zhian N. Kamvar and Charlie Gao\},
+#>   year = \{2024\},
+#>   note = \{R package version 2.3.9\},
 #>   url = \{https://github.com/vubiostat/r-yaml/\},
 #> \}
-}\if{html}{\out{</div>}}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{
 # cff_pers, cff_pers_lst
 toBibtex(two_persons)
 #> [1] "person, A and \{An entity\}"
