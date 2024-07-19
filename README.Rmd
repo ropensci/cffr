@@ -55,7 +55,7 @@ This format is becoming popular within the software citation ecosystem. Recently
 included full support of this citation format [@druskat_stephan_making_2021].
 GitHub support is of special interest:
 
-```{r echo=FALSE, out.width="400", fig.align='center', fig.alt="GitHub-link"}
+```{r echo=FALSE, out.width="400", fig.align='center', fig.alt="Tweet of Nat Friedman about CFF files"}
 knitr::include_graphics("vignettes/tweet-1.png")
 ```
 

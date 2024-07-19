@@ -44,7 +44,7 @@ have included full support of this citation format ([Druskat
 2021](#ref-druskat_stephan_making_2021)). GitHub support is of special
 interest:
 
-<img src="vignettes/tweet-1.png" alt="GitHub-link" width="400" style="display: block; margin: auto;" />
+<img src="vignettes/tweet-1.png" alt="Tweet of Nat Friedman about CFF files" width="400" style="display: block; margin: auto;" />
 
 *— Nat Friedman (@natfriedman) July 27, 2021*
 
@@ -72,7 +72,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2024-07-08 there are at least 322 repos on GitHub using **cffr**.
+As per 2024-07-19 there are at least 288 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -393,9 +393,6 @@ test <- cff_create("rmarkdown")
         email: jeroen@berkeley.edu
         orcid: https://orcid.org/0000-0002-4035-0289
       year: '2024'
-      identifiers:
-      - type: url
-        value: https://arxiv.org/abs/1403.2805
       doi: 10.32614/CRAN.package.jsonlite
     - type: software
       title: knitr
