@@ -64,10 +64,10 @@ cff <- function(path, ...) {
   if (!missing(path)) {
     src <- detect_x_source(path)
     if (src == "cff_citation") {
-      lifecycle::deprecate_soft("1.0.0", "cff(path)", "cff_read_cff_citation()")
+      lifecycle::deprecate_warn("1.0.0", "cff(path)", "cff_read_cff_citation()")
       return(cff_read_cff_citation(path))
     } else {
-      lifecycle::deprecate_soft("1.0.0", "cff(path)",
+      lifecycle::deprecate_warn("1.0.0", "cff(path)",
         details = "Argument ignored."
       )
     }

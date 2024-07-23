@@ -23,6 +23,7 @@ knitr::opts_chunk$set(
 [![CRAN-results](https://badges.cranchecks.info/worst/cffr.svg)](https://cran.r-project.org/web/checks/check_results_cffr.html)
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/cffr?color=blue)](https://cran.r-project.org/package=cffr)
 [![R-CMD-check](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml)
+[![R-hub](https://github.com/ropensci/cffr/actions/workflows/rhub.yaml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/rhub.yaml)
 [![codecov](https://codecov.io/gh/ropensci/cffr/branch/main/graph/badge.svg?token=YRO3XL8RWK)](https://app.codecov.io/gh/ropensci/cffr)
 [![r-universe](https://ropensci.r-universe.dev/badges/cffr)](https://ropensci.r-universe.dev/cffr)
 [![CITATION-cff](https://github.com/ropensci/cffr/actions/workflows/cff-validator.yml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/cff-validator.yml)

@@ -5,7 +5,7 @@
 \alias{cran_to_spdx}
 \title{Mapping between \code{License} fields and SPDX}
 \format{
-A data frame with 91 rows and 2 variables:
+A data frame with 94 rows and 2 variables:
 \itemize{
 \item LICENSE: A valid \code{License} string on CRAN.
 \item SPDX. A valid SPDX License Identifier.
