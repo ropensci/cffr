@@ -120,7 +120,7 @@ different formats:
 -   `cff_read_bib_text()` can read **BibTeX** entries that are already stored in
     a variable.
 -   A S3 method `toBibtex.cff()` that converts from `cff` objects to Bibtex
-    objects (see `utils::tpBibtex()`).
+    objects (see `utils::toBibtex()`).
 
 ```{r cffbibread, comment="#>"}
 string <- "@book{einstein1921,
