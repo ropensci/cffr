@@ -328,13 +328,11 @@
       - family-names: Boettiger
         given-names: Carl
         email: cboettig@gmail.com
-        orcid: https://orcid.org/0000-0002-1642-628X
       url: https://httpbin.org/status/404
       contact:
       - family-names: Boettiger
         given-names: Carl
         email: cboettig@gmail.com
-        orcid: https://orcid.org/0000-0002-1642-628X
       keywords:
       - metadata
       - codemeta

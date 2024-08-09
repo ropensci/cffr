@@ -360,6 +360,11 @@ extract_person_comments <- function(person) {
     # guess orcid
     orcid <- url_comment[grepl("orcid.org/", url_comment)]
 
+    # Case for R > 4.4.1
+    if ("orcid" %in% names(comm_cff)) {
+      orcid <- clean_str(comm_cff$orcid)
+    }
+
     # Get the first non-orcid url
     web <- url_comment[!grepl("orcid.org/", url_comment)][1]
 

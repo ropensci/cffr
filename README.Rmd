@@ -63,7 +63,7 @@ knitr::include_graphics("vignettes/tweet-1.png")
 *--- Nat Friedman (\@natfriedman) July 27, 2021*
 
 See [Enhanced support for citations on
-GitHub](https://github.blog/2021-08-19-enhanced-support-citations-github/)
+GitHub](https://github.blog/news-insights/company-news/enhanced-support-citations-github/)
 [@smith2021] for more info.
 
 ### Related projects

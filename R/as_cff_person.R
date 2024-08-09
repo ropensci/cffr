@@ -170,7 +170,8 @@ as_cff_person <- function(x, ...) {
 #' @rdname as_cff_person
 #' @order 2
 as_cff_person.default <- function(x, ...) {
-  x <- clean_str(x)
+  # Check if this is protected
+  if (!inherits(x, "Bibtex")) x <- clean_str(x)
   if (is.null(x)) {
     return(NULL)
   }
@@ -197,7 +198,14 @@ as_cff_person.person <- function(x, ...) {
 #' @rdname as_cff_person
 #' @order 4
 as_cff_person.character <- function(x, ...) {
-  test_x <- clean_str(x)
+  # Maybe is protected ...
+  if (any(grepl("{", x, fixed = TRUE))) {
+    test_x <- x
+  } else {
+    test_x <- clean_str(x)
+  }
+
+
   if (is.null(test_x)) {
     return(NULL)
   }
