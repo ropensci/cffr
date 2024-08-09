@@ -936,7 +936,7 @@ Exchange Schema for Software Metadata*. KNB Data Repository.
 <div id="ref-smith2021" class="csl-entry">
 
 Smith, Arfon. 2021. “Enhanced Support for Citations on GitHub.”
-<https://github.blog/2021-08-19-enhanced-support-citations-github/>.
+<https://github.blog/news-insights/company-news/enhanced-support-citations-github/>.
 
 </div>
 
