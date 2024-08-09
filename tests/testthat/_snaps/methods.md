@@ -1109,19 +1109,19 @@
     Code
       toBibtex(sev_auth)
     Output
-      [1] "{The Big Bopper} and Sinatra, Frank and Martin, Dean and Davis, Jr., Sammy"
+      {The Big Bopper} and Sinatra, Frank and Martin, Dean and Davis, Jr., Sammy
 
 ---
 
     Code
       toBibtex(single)
     Output
-      [1] "person, A"
+      person, A
 
 ---
 
     Code
       toBibtex(single)
     Output
-      [1] "{A and B co}"
+      {A and B co}
 
