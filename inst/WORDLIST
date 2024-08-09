@@ -14,7 +14,6 @@ CRC
 Cabunoc
 Chue
 CodeMeta
-DOI
 Decoret
 Druskat
 Easi
@@ -46,7 +45,6 @@ Pérez
 README
 RSPM
 RStudio
-Reproducibility
 Riederer
 SPDX
 Spaaks
@@ -54,7 +52,6 @@ Suárez
 Waldir
 Wickham
 Willighagen
-YAML
 Zenodo
 Zotero
 al
@@ -78,13 +75,12 @@ inproceedings
 json
 jsonvalidate
 nd
+orcid
 pak
 param
 plaintext
 pre
 rOpenSci
-repo
-repos
 rmarkdown
 schemas
 testthat

@@ -154,7 +154,14 @@ get_dependencies <- function(desc_path,
       mod$abstract <- mod$title
       mod$title <- n$package
       # If on CRAN add CRAN DOI
-      if (!is.null(n$package)) {
+      # Base packs
+      base_pkgs <- rownames(installed.packages(priority = "base"))
+
+      cran_doi <- all(
+        n$package %in% avail_on_init$Package,
+        !n$package %in% base_pkgs
+      )
+      if (cran_doi) {
         mod$doi <- paste0("10.32614/CRAN.package.", n$package)
       }
     }

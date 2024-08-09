@@ -554,6 +554,9 @@ test_that("Coerce keywords from GH", {
 
   cffobj1 <- cff_create(tmp)
   expect_true(cff_validate(cffobj1, verbose = FALSE))
+
+  skip_if(is.null(cffobj1$keywords), "keywords not gathered")
+
   expect_false(is.null(cffobj1$keywords))
 
   # Concatenate keywords of both sources

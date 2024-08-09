@@ -200,7 +200,7 @@
   },
   "isPartOf": "https://ropensci.org",
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata", "r", "r-package", "citation-file-format", "rstats", "ropensci", "cran"],
-  "fileSize": "1623.723KB",
+  "fileSize": "1624.56KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

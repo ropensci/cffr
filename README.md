@@ -420,7 +420,6 @@ test <- cff_create("rmarkdown")
         name: R Foundation for Statistical Computing
         address: Vienna, Austria
       year: '2024'
-      doi: 10.32614/CRAN.package.methods
     - type: software
       title: tinytex
       abstract: 'tinytex: Helper Functions to Install and Maintain TeX Live, and Compile
@@ -446,7 +445,6 @@ test <- cff_create("rmarkdown")
         name: R Foundation for Statistical Computing
         address: Vienna, Austria
       year: '2024'
-      doi: 10.32614/CRAN.package.tools
     - type: software
       title: utils
       abstract: 'R: A Language and Environment for Statistical Computing'
@@ -457,7 +455,6 @@ test <- cff_create("rmarkdown")
         name: R Foundation for Statistical Computing
         address: Vienna, Austria
       year: '2024'
-      doi: 10.32614/CRAN.package.utils
     - type: software
       title: xfun
       abstract: 'xfun: Supporting Functions for Packages Maintained by ''Yihui Xie'''
