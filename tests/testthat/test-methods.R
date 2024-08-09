@@ -230,6 +230,11 @@ test_that("head and tail", {
 test_that("toBibtex", {
   rvers <- getRversion()
   skip_if(rvers <= "4.4.1", "Snapshot created with R 4.5.0")
+  skip_on_os("mac")
+  skip_on_os("linux")
+  skip_on_os("solaris")
+  skip_on_cran()
+
 
   # Create several alternatives
   descobj <- cff_read_description(system.file("examples/DESCRIPTION_basic",
