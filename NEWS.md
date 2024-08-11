@@ -1,4 +1,4 @@
-# cffr (development version)
+# cffr 1.1.1
 
 -   Adapt extraction of orcid to **R \> 4.4.1**.
 
