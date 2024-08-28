@@ -163,8 +163,7 @@ ref_list
 #>     given-names: Charlie
 #>   year: '2024'
 #>   notes: R package version 2.3.10
-#>   url: https://CRAN.R-project.org/package=yaml
-#>   doi: 10.32614/CRAN.package.yaml
+#>   url: https://github.com/vubiostat/r-yaml/
 
 class(ref_list)
 #> [1] "cff_ref_lst" "cff"
@@ -338,13 +337,12 @@ toBibtex(cit)
 #>   author = \{Shawn P Garbett and Jeremy Stephens and Kirill Simonov and Yihui Xie and Zhuoer Dong and Hadley Wickham and Jeffrey Horner and \{reikoch\} and Will Beasley and Brendan O'Connor and Gregory R. Warnes and Michael Quinn and Zhian N. Kamvar and Charlie Gao\},
 #>   year = \{2024\},
 #>   note = \{R package version 2.3.10\},
-#>   url = \{https://CRAN.R-project.org/package=yaml\},
-#>   doi = \{10.32614/CRAN.package.yaml\},
+#>   url = \{https://github.com/vubiostat/r-yaml/\},
 #> \}
 
 # cff_pers, cff_pers_lst
 toBibtex(two_persons)
-#> person, A and \{An entity\}
+#> [1] "person, A and \{An entity\}"
 }\if{html}{\out{</div>}}
 }
 

@@ -166,7 +166,7 @@ cat(cff_objv110$`cff-version`)
 
 This key is extracted from the `"RemoteSha"` field of the `DESCRIPTION` file.
 This is the case of packages installed using the
-[r-universe](https://r-universe.dev/) or packages such as **remotes** or
+[r-universe](https://r-universe.dev/search) or packages such as **remotes** or
 **pak**.
 
 <details>
@@ -220,7 +220,7 @@ This key is extracted from the `DESCRIPTION` file following this logic:
 -   If not present, from `"Date/Publication"`. This is present on packages built
     on **CRAN** and **Bioconductor**. or,
 -   If not present, from `"Packaged"`, that is present on packages built by the
-    [r-universe](https://r-universe.dev/search/).
+    [r-universe](https://r-universe.dev/searchsearch/).
 
 <details>
 
@@ -512,7 +512,7 @@ citation("rmarkdown")[-1]
 
 This key is extracted from the `"Repository"` field of the `DESCRIPTION` file.
 Usually, this field is auto-populated when a package is hosted on a repo (like
-**CRAN** or the [r-universe](https://r-universe.dev/)). For packages without
+**CRAN** or the [r-universe](https://r-universe.dev/search)). For packages without
 this field on the `DESCRIPTION` (that is the typical case for an in-development
 package), **cffr** would try to search the package on any of the default
 repositories specified on `options("repos")`.

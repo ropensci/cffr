@@ -73,9 +73,8 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2024-08-11 there are at least 296 repos on GitHub using **cffr**.
-[Check them out
-here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
+See [some projects already using
+**cffr**](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
 ### Installation
 
@@ -144,7 +143,7 @@ test <- cff_create("rmarkdown")
     type: software
     license: GPL-3.0-only
     title: 'rmarkdown: Dynamic Documents for R'
-    version: '2.27'
+    version: '2.28'
     identifiers:
     - type: doi
       value: 10.32614/CRAN.package.rmarkdown
@@ -225,13 +224,12 @@ test <- cff_create("rmarkdown")
         email: rich@posit.co
         orcid: https://orcid.org/0000-0003-3925-190X
       year: '2024'
-      notes: R package version 2.27
+      notes: R package version 2.28
       url: https://github.com/rstudio/rmarkdown
     repository: https://CRAN.R-project.org/package=rmarkdown
     repository-code: https://github.com/rstudio/rmarkdown
-    commit: '2.27'
     url: https://pkgs.rstudio.com/rmarkdown/
-    date-released: '2024-05-17'
+    date-released: '2024-08-17'
     contact:
     - family-names: Xie
       given-names: Yihui
@@ -395,6 +393,9 @@ test <- cff_create("rmarkdown")
         email: jeroen@berkeley.edu
         orcid: https://orcid.org/0000-0002-4035-0289
       year: '2024'
+      identifiers:
+      - type: url
+        value: https://arxiv.org/abs/1403.2805
       doi: 10.32614/CRAN.package.jsonlite
     - type: software
       title: knitr
@@ -513,60 +514,33 @@ test <- cff_create("rmarkdown")
       url: https://dirk.eddelbuettel.com/code/digest.html
       repository: https://CRAN.R-project.org/package=digest
       authors:
-      - family-names: Lucas
-        given-names: Dirk Eddelbuettel with contributions by Antoine
-        email: edd@debian.org
-      - family-names: Tuszynski
-        given-names: Jarek
-      - family-names: Bengtsson
-        given-names: Henrik
-      - family-names: Urbanek
-        given-names: Simon
-      - family-names: Frasca
-        given-names: Mario
-      - family-names: Lewis
-        given-names: Bryan
-      - family-names: Stokely
-        given-names: Murray
-      - family-names: Muehleisen
-        given-names: Hannes
-      - family-names: Murdoch
-        given-names: Duncan
-      - family-names: Hester
-        given-names: Jim
-      - family-names: Wu
-        given-names: Wush
-      - family-names: Kou
-        given-names: Qiang
-      - family-names: Onkelinx
-        given-names: Thierry
-      - family-names: Lang
-        given-names: Michel
-      - family-names: Simko
-        given-names: Viliam
-      - family-names: Hornik
-        given-names: Kurt
-      - family-names: Neal
-        given-names: Radford
-      - family-names: Bell
-        given-names: Kendon
-      - family-names: Queljoe
-        given-names: Matthew
-        name-particle: de
-      - family-names: Suruceanu
-        given-names: Ion
-      - family-names: Denney
-        given-names: Bill
-      - family-names: Schumacher
+      - family-names: Eddelbuettel
         given-names: Dirk
-      - family-names: Chang
-        given-names: Winston
-      - family-names: Attali
-        given-names: Dean
-      - family-names: Chirico.
-        given-names: Michael
+        email: edd@debian.org
+        orcid: https://orcid.org/0000-0001-6419-907X
       year: '2024'
       doi: 10.32614/CRAN.package.digest
+    - type: software
+      title: dygraphs
+      abstract: 'dygraphs: Interface to ''Dygraphs'' Interactive Time Series Charting
+        Library'
+      notes: Suggests
+      url: https://github.com/rstudio/dygraphs
+      repository: https://CRAN.R-project.org/package=dygraphs
+      authors:
+      - family-names: Vanderkam
+        given-names: Dan
+        website: http://dygraphs.com/
+      - family-names: Allaire
+        given-names: JJ
+      - family-names: Owen
+        given-names: Jonathan
+      - family-names: Gromer
+        given-names: Daniel
+      - family-names: Thieurmel
+        given-names: Benoit
+      year: '2024'
+      doi: 10.32614/CRAN.package.dygraphs
     - type: software
       title: fs
       abstract: 'fs: Cross-Platform File System Operations Based on ''libuv'''
@@ -585,6 +559,27 @@ test <- cff_create("rmarkdown")
       year: '2024'
       doi: 10.32614/CRAN.package.fs
     - type: software
+      title: rsconnect
+      abstract: 'rsconnect: Deploy Docs, Apps, and APIs to ''Posit Connect'', ''shinyapps.io'',
+        and ''RPubs'''
+      notes: Suggests
+      url: https://rstudio.github.io/rsconnect/
+      repository: https://CRAN.R-project.org/package=rsconnect
+      authors:
+      - family-names: Atkins
+        given-names: Aron
+        email: aron@posit.co
+      - family-names: Allen
+        given-names: Toph
+      - family-names: Wickham
+        given-names: Hadley
+      - family-names: McPherson
+        given-names: Jonathan
+      - family-names: Allaire
+        given-names: JJ
+      year: '2024'
+      doi: 10.32614/CRAN.package.rsconnect
+    - type: software
       title: downlit
       abstract: 'downlit: Syntax Highlighting and Automatic Linking'
       notes: Suggests
@@ -597,6 +592,20 @@ test <- cff_create("rmarkdown")
       year: '2024'
       doi: 10.32614/CRAN.package.downlit
       version: '>= 0.4.0'
+    - type: software
+      title: katex
+      abstract: 'katex: Rendering Math to HTML, ''MathML'', or R-Documentation Format'
+      notes: Suggests
+      url: https://docs.ropensci.org/katex/
+      repository: https://CRAN.R-project.org/package=katex
+      authors:
+      - family-names: Ooms
+        given-names: Jeroen
+        email: jeroen@berkeley.edu
+        orcid: https://orcid.org/0000-0002-4035-0289
+      year: '2024'
+      doi: 10.32614/CRAN.package.katex
+      version: '>= 1.4.0'
     - type: software
       title: sass
       abstract: 'sass: Syntactically Awesome Style Sheets (''Sass'')'
@@ -712,6 +721,19 @@ test <- cff_create("rmarkdown")
         email: davis@posit.co
       year: '2024'
       doi: 10.32614/CRAN.package.vctrs
+    - type: software
+      title: cleanrmd
+      abstract: 'cleanrmd: Clean Class-Less ''R Markdown'' HTML Documents'
+      notes: Suggests
+      url: https://pkg.garrickadenbuie.com/cleanrmd/
+      repository: https://CRAN.R-project.org/package=cleanrmd
+      authors:
+      - family-names: Aden-Buie
+        given-names: Garrick
+        email: garrick@adenbuie.com
+        orcid: https://orcid.org/0000-0002-7111-0077
+      year: '2024'
+      doi: 10.32614/CRAN.package.cleanrmd
     - type: software
       title: withr
       abstract: 'withr: Run Code ''With'' Temporarily Modified Global State'
