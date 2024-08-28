@@ -73,8 +73,9 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-See [some projects already using
-**cffr**](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
+As per 2024-08-28 there are at least 288 repos on GitHub using **cffr**.
+[Check them out
+here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
 ### Installation
 
@@ -393,9 +394,6 @@ test <- cff_create("rmarkdown")
         email: jeroen@berkeley.edu
         orcid: https://orcid.org/0000-0002-4035-0289
       year: '2024'
-      identifiers:
-      - type: url
-        value: https://arxiv.org/abs/1403.2805
       doi: 10.32614/CRAN.package.jsonlite
     - type: software
       title: knitr
