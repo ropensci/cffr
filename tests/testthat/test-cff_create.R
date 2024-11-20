@@ -295,9 +295,10 @@ test_that("Parsing many persons", {
 
 
 test_that("Parsing wrong urls", {
-  rvers <- getRversion()
-  skip_if(rvers <= "4.4.1", "Snapshot created with R 4.5.0")
   skip_on_cran()
+
+  rvers <- getRversion()
+  skip_if(rvers < "4.4.1", "Snapshot created with R 4.4.*")
 
   desc_path <- system.file("examples/DESCRIPTION_wrong_urls", package = "cffr")
 

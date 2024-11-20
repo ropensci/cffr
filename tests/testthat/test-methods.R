@@ -135,6 +135,7 @@ test_that("Convert list of authors", {
 
 
 test_that("as.person method", {
+
   path <- system.file("examples/CITATION_complete.cff", package = "cffr")
 
   the_cff <- cff_read(path)
@@ -228,8 +229,6 @@ test_that("head and tail", {
 })
 
 test_that("toBibtex", {
-  rvers <- getRversion()
-  skip_if(rvers <= "4.4.1", "Snapshot created with R 4.5.0")
   skip_on_os("mac")
   skip_on_os("linux")
   skip_on_os("solaris")
