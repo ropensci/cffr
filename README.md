@@ -73,9 +73,8 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2024-08-28 there are at least 288 repos on GitHub using **cffr**.
-[Check them out
-here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
+See [some projects already using
+**cffr**](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
 ### Installation
 
@@ -144,7 +143,7 @@ test <- cff_create("rmarkdown")
     type: software
     license: GPL-3.0-only
     title: 'rmarkdown: Dynamic Documents for R'
-    version: '2.28'
+    version: '2.29'
     identifiers:
     - type: doi
       value: 10.32614/CRAN.package.rmarkdown
@@ -225,12 +224,12 @@ test <- cff_create("rmarkdown")
         email: rich@posit.co
         orcid: https://orcid.org/0000-0003-3925-190X
       year: '2024'
-      notes: R package version 2.28
+      notes: R package version 2.29
       url: https://github.com/rstudio/rmarkdown
     repository: https://CRAN.R-project.org/package=rmarkdown
     repository-code: https://github.com/rstudio/rmarkdown
     url: https://pkgs.rstudio.com/rmarkdown/
-    date-released: '2024-08-17'
+    date-released: '2024-11-04'
     contact:
     - family-names: Xie
       given-names: Yihui
@@ -311,7 +310,7 @@ test <- cff_create("rmarkdown")
       abstract: 'evaluate: Parsing and Evaluation Tools that Provide More Details than
         the Default'
       notes: Imports
-      url: https://github.com/r-lib/evaluate
+      url: https://evaluate.r-lib.org/
       repository: https://CRAN.R-project.org/package=evaluate
       authors:
       - family-names: Wickham
@@ -391,9 +390,12 @@ test <- cff_create("rmarkdown")
       authors:
       - family-names: Ooms
         given-names: Jeroen
-        email: jeroen@berkeley.edu
+        email: jeroenooms@gmail.com
         orcid: https://orcid.org/0000-0002-4035-0289
       year: '2024'
+      identifiers:
+      - type: url
+        value: https://arxiv.org/abs/1403.2805
       doi: 10.32614/CRAN.package.jsonlite
     - type: software
       title: knitr
@@ -599,7 +601,7 @@ test <- cff_create("rmarkdown")
       authors:
       - family-names: Ooms
         given-names: Jeroen
-        email: jeroen@berkeley.edu
+        email: jeroenooms@gmail.com
         orcid: https://orcid.org/0000-0002-4035-0289
       year: '2024'
       doi: 10.32614/CRAN.package.katex

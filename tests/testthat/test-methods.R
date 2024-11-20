@@ -135,7 +135,6 @@ test_that("Convert list of authors", {
 
 
 test_that("as.person method", {
-
   path <- system.file("examples/CITATION_complete.cff", package = "cffr")
 
   the_cff <- cff_read(path)
