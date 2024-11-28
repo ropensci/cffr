@@ -228,9 +228,6 @@ test_that("head and tail", {
 })
 
 test_that("toBibtex", {
-  skip_on_os("mac")
-  skip_on_os("linux")
-  skip_on_os("solaris")
   skip_on_cran()
 
 

@@ -302,7 +302,7 @@ get_gh_topics <- function(x) {
   # fast the GH api limit (no auth)
   # Need to auth to increase limit
   # Try to get an stored token
-  token <- (Sys.getenv(c("GITHUB_PAT", "GITHUB_TOKEN")))
+  token <- c(Sys.getenv(c("GITHUB_TOKEN", "GITHUB_PAT")))
   token <- token[!token %in% c(NA, NULL, "")][1]
 
   ghtoken <- paste("token", token)
