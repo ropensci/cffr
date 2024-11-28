@@ -296,18 +296,23 @@ test_that("toBibtex", {
 
   expect_length(sev_auth, 4)
   expect_s3_class(sev_auth, "cff_pers_lst")
-  expect_snapshot(toBibtex(sev_auth))
-
+  expect_equal(
+    toBibtex(sev_auth),
+    paste(
+      "{The Big Bopper} and Sinatra, Frank and",
+      "Martin, Dean and Davis, Jr., Sammy"
+    )
+  )
 
   # Single person
   single <- as_cff_person(person("A", "person", email = "a@b.d"))[[1]]
   expect_s3_class(single, "cff_pers")
-  expect_snapshot(toBibtex(single))
+  expect_equal(toBibtex(single), "person, A")
 
   # Single entity
   single <- as_cff_person(person("{A and B co}", email = "a@b.d"))[[1]]
   expect_s3_class(single, "cff_pers")
-  expect_snapshot(toBibtex(single))
+  expect_equal(toBibtex(single), "{A and B co}")
 })
 
 

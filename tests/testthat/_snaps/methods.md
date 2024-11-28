@@ -1104,24 +1104,3 @@
         url = {https://ggplot2.tidyverse.org},
       }
 
----
-
-    Code
-      toBibtex(sev_auth)
-    Output
-      {The Big Bopper} and Sinatra, Frank and Martin, Dean and Davis, Jr., Sammy
-
----
-
-    Code
-      toBibtex(single)
-    Output
-      person, A
-
----
-
-    Code
-      toBibtex(single)
-    Output
-      {A and B co}
-
