@@ -298,7 +298,7 @@ test_that("Parsing wrong urls", {
   skip_on_cran()
 
   rvers <- getRversion()
-  skip_if(rvers < "4.4.1", "Snapshot created with R 4.4.*")
+  skip_if(!grepl("^4.4", rvers), "Snapshot created with R 4.4.*")
 
   desc_path <- system.file("examples/DESCRIPTION_wrong_urls", package = "cffr")
 

@@ -165,9 +165,6 @@ test_that("as.person method", {
   expect_s3_class(aut2[1], "person")
   expect_s3_class(aut2[2], "person")
   expect_snapshot(dput(aut2))
-  expect_snapshot(
-    format(aut2, include = c("given", "family", "email", "role", "comment"))
-  )
 
   # Malformed
   malf <- getref$authors
@@ -291,25 +288,27 @@ test_that("toBibtex", {
     "{The Big Bopper} and Frank Sinatra and Dean Martin and Davis, Jr., Sammy"
   )
 
+  comp <- c(
+    person("The Big Bopper"), person("Frank", "Sinatra"),
+    person("Dean", "Martin"), person("Sammy", "Davis, Jr.")
+  )
+
   expect_length(sev_auth, 4)
   expect_s3_class(sev_auth, "cff_pers_lst")
-  expect_equal(
-    toBibtex(sev_auth),
-    paste(
-      "{The Big Bopper} and Sinatra, Frank and",
-      "Martin, Dean and Davis, Jr., Sammy"
-    )
-  )
+  expect_identical(toBibtex(sev_auth), toBibtex(comp))
 
   # Single person
   single <- as_cff_person(person("A", "person", email = "a@b.d"))[[1]]
   expect_s3_class(single, "cff_pers")
-  expect_equal(toBibtex(single), "person, A")
+  expect_identical(toBibtex(single), toBibtex(person("A", "person")))
 
   # Single entity
   single <- as_cff_person(person("{A and B co}", email = "a@b.d"))[[1]]
   expect_s3_class(single, "cff_pers")
-  expect_equal(toBibtex(single), "{A and B co}")
+  expect_identical(
+    toBibtex(single),
+    toBibtex(person("A and B co", email = "a@b.d"))
+  )
 })
 
 

@@ -1,6 +1,6 @@
 test_that("Merge all DESCRIPTION files with CITATION_basic", {
   rvers <- getRversion()
-  skip_if(rvers < "4.4.1", "Snapshot created with R 4.4.*")
+  skip_if(!grepl("^4.4", rvers), "Snapshot created with R 4.4.*")
   skip_on_cran()
 
   allfiles <- list.files(
