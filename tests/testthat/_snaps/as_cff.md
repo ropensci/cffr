@@ -14,7 +14,7 @@
       - family-names: person
         given-names: A
         email: fake@gmail.com
-        orcid: https://orcid.org/0000-0000-0000-0000
+        orcid: https://orcid.org/0000-0001-8457-4658
         affiliation: Real Madrid
         website: https://www.google.com/
 
@@ -26,7 +26,7 @@
       family-names: person
       given-names: A
       email: fake@gmail.com
-      orcid: https://orcid.org/0000-0000-0000-0000
+      orcid: https://orcid.org/0000-0001-8457-4658
       affiliation: Real Madrid
       website: https://www.google.com/
 

@@ -16,7 +16,7 @@ test_that("as_cff.person", {
   pers <- person("A", "person",
     email = "fake@gmail.com",
     comment = c(
-      ORCID = "0000-0000-0000-0000",
+      ORCID = "0000-0001-8457-4658",
       affiliation = "Real Madrid",
       website = "https://www.google.com/"
     )
