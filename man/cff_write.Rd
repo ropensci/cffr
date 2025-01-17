@@ -10,6 +10,7 @@ cff_write(
   keys = list(),
   cff_version = "1.2.0",
   gh_keywords = TRUE,
+  r_citation = FALSE,
   dependencies = TRUE,
   validate = TRUE,
   verbose = TRUE,
@@ -38,6 +39,11 @@ in-development \strong{R} package.
 
 \item{gh_keywords}{Logical \code{TRUE/FALSE}. If the package is hosted on
 GitHub, would you like to add the repo topics as keywords?}
+
+\item{r_citation}{Logical \code{TRUE/FALSE}. On \code{TRUE} the \strong{R} package citation
+(i.e. \code{inst/CITATION}) would be created or updated.
+\strong{No backup copy would be created}, for more control use
+\code{\link[=cff_write_citation]{cff_write_citation()}}.}
 
 \item{dependencies}{Logical \code{TRUE/FALSE}. Would you like to add the
 of your package to the \code{references} CFF key?}

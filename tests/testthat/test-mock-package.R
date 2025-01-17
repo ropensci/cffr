@@ -16,6 +16,35 @@ test_that("Test in mock package", {
     to = "DESCRIPTION"
   )
 
+  # Create a cff
+  expect_silent(cff_write(verbose = FALSE))
+  expect_false(file.exists("inst/CITATION"))
+
+  # Create a cff also with auto_citation
+  expect_silent(cff_write(verbose = FALSE, r_citation = TRUE))
+  expect_true(file.exists("inst/CITATION"))
+
+  auto_cit1 <- utils::readCitationFile("inst/CITATION",
+    meta = list(Encoding = "UTF-8")
+  )
+
+  # Same but with verbose
+  ff <- cff_write(verbose = TRUE, r_citation = TRUE)
+
+  # No backup
+
+  expect_length(list.files("inst"), 1)
+
+  auto_cit2 <- utils::readCitationFile("inst/CITATION",
+    meta = list(Encoding = "UTF-8")
+  )
+
+  expect_identical(auto_cit1, auto_cit2)
+
+  # Clean
+  unlink("inst", recursive = TRUE, force = TRUE)
+  expect_false(dir.exists("inst"))
+
   # Get bibentry
   a_bib <- as_bibentry()
   # Create citation
@@ -76,6 +105,9 @@ test_that("Test in mock package", {
   # Revert to initial wd
   setwd(current_dir)
 
+  expect_false(identical(auto_cit1, cit))
+  expect_true(identical(auto_cit1, auto_cit2))
+  expect_snapshot(auto_cit1)
   expect_snapshot(cffobj)
   expect_snapshot(toBibtex(cit))
   expect_snapshot(toBibtex(a_bib))

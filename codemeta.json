@@ -8,13 +8,13 @@
   "codeRepository": "https://github.com/ropensci/cffr",
   "issueTracker": "https://github.com/ropensci/cffr/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.1.1",
+  "version": "1.1.1.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.2 (2024-10-31 ucrt)",
+  "runtimePlatform": "R version 4.4.2 (2024-10-31)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -200,7 +200,7 @@
   },
   "isPartOf": "https://ropensci.org",
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata", "citation-file-format", "cran", "r", "r-package", "ropensci", "rstats"],
-  "fileSize": "1623.325KB",
+  "fileSize": "1606.492KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
