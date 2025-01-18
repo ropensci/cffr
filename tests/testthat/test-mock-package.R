@@ -105,12 +105,15 @@ test_that("Test in mock package", {
   # Revert to initial wd
   setwd(current_dir)
 
+  unlink(new_dir, recursive = TRUE, force = TRUE)
+
+  rvers <- getRversion()
+  skip_if(!grepl("^4.4", rvers), "Snapshot created with R 4.4.*")
+
   expect_false(identical(auto_cit1, cit))
   expect_true(identical(auto_cit1, auto_cit2))
   expect_snapshot(auto_cit1)
   expect_snapshot(cffobj)
   expect_snapshot(toBibtex(cit))
   expect_snapshot(toBibtex(a_bib))
-
-  unlink(new_dir, recursive = TRUE, force = TRUE)
 })
