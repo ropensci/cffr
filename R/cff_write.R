@@ -15,6 +15,11 @@
 #'
 #' @param outfile The name and path of the `CITATION.cff` to be created.
 #'
+#' @param r_citation Logical `TRUE/FALSE`. On `TRUE` the **R** package citation
+#'   (i.e. `inst/CITATION`) would be created or updated.
+#'   **No backup copy would be created**, for more control use
+#'   [cff_write_citation()].
+#'
 #' @param verbose Logical `TRUE/FALSE`. On `TRUE` the function would display
 #'   informative messages.
 #'
@@ -65,9 +70,9 @@
 #'
 cff_write <- function(x, outfile = "CITATION.cff", keys = list(),
                       cff_version = "1.2.0", gh_keywords = TRUE,
-                      dependencies = TRUE, validate = TRUE,
-                      verbose = TRUE, authors_roles = c("aut", "cre"),
-                      encoding = "UTF-8") {
+                      r_citation = FALSE, dependencies = TRUE,
+                      validate = TRUE, verbose = TRUE,
+                      authors_roles = c("aut", "cre"), encoding = "UTF-8") {
   # # On missing use NULL
   if (missing(x)) x <- getwd()
 
@@ -136,5 +141,30 @@ cff_write <- function(x, outfile = "CITATION.cff", keys = list(),
     cff_validate(outfile, verbose)
   }
 
+  # Issue #79
+  auto_r_citation(
+    r_citation = r_citation,
+    outfile = outfile, verbose = verbose
+  )
+
   return(invisible(citat))
+}
+
+
+auto_r_citation <- function(r_citation = TRUE,
+                            outfile = "CITATION.cff", verbose = TRUE) {
+  # Do nothing
+  if (isFALSE(r_citation)) {
+    return(invisible(NULL))
+  }
+
+  # Else
+  if (verbose) {
+    cli::cat_rule("Updating inst/CITATION file", col = "cyan", line = 2)
+  }
+  cffobj <- cff_read(outfile)
+  fpath <- "./inst/CITATION"
+  if (file.exists(fpath)) unlink(fpath)
+
+  cff_write_citation(cffobj, file = fpath, verbose = verbose)
 }

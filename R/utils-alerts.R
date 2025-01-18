@@ -78,7 +78,7 @@ write_lines_msg <- function(lines, file, verbose, append) {
   fh <- file(file, encoding = "UTF-8", open = ifelse(append, "a+", "w+"))
   on.exit(if (isOpen(fh)) close(fh))
   if (verbose) {
-    cli::cli_alert_info("Writing {length(lines)} entr{?y/ies} ...")
+    cli::cli_alert_info("Writing {length(lines[lines != ''])} entr{?y/ies} ...")
   }
 
   writeLines(lines, fh)

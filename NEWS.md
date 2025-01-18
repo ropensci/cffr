@@ -1,3 +1,10 @@
+# cffr (development version)
+
+-   New parameter `r_citation` in `cff_write()`. When it is set to `TRUE` a
+    **R** citation file (`inst/CITATION`) would be generated/updated with the
+    information of the generated `CITATION.cff` file. **No backup copy would be
+    created**, for more control use `cff_write_citation()` (#79).
+
 # cffr 1.1.1
 
 -   Adapt extraction of orcid to **R \> 4.4.1**.
