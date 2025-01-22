@@ -76,6 +76,9 @@ cff_write <- function(x, outfile = "CITATION.cff", keys = list(),
   # # On missing use NULL
   if (missing(x)) x <- getwd()
 
+  # Issue #86 Need to remove first inst/CITATION
+  if (r_citation) unlink("inst/CITATION")
+
   citat <- cff_create(x,
     keys = keys,
     cff_version = cff_version,

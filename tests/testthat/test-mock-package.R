@@ -41,6 +41,20 @@ test_that("Test in mock package", {
 
   expect_identical(auto_cit1, auto_cit2)
 
+  # Update version and re-check
+
+  d <- desc::desc("DESCRIPTION")
+
+  expect_message(d$bump_version("major"))
+  d$write("DESCRIPTION")
+
+  # Check new vers
+  cff_write(verbose = FALSE, r_citation = TRUE)
+
+  auto_cit3 <- utils::readCitationFile("inst/CITATION",
+    meta = list(Encoding = "UTF-8")
+  )
+
   # Clean
   unlink("inst", recursive = TRUE, force = TRUE)
   expect_false(dir.exists("inst"))
@@ -113,6 +127,7 @@ test_that("Test in mock package", {
   expect_false(identical(auto_cit1, cit))
   expect_true(identical(auto_cit1, auto_cit2))
   expect_snapshot(auto_cit1)
+  expect_snapshot(auto_cit3)
   expect_snapshot(cffobj)
   expect_snapshot(toBibtex(cit))
   expect_snapshot(toBibtex(a_bib))
