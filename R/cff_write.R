@@ -76,8 +76,9 @@ cff_write <- function(x, outfile = "CITATION.cff", keys = list(),
   # # On missing use NULL
   if (missing(x)) x <- getwd()
 
-  # Issue #86 Need to remove first inst/CITATION
-  if (r_citation) unlink("inst/CITATION")
+  # Issue 86 Need to remove first "inst/CITATION"
+  fpath <- "./inst/CITATION"
+  if (r_citation) unlink(fpath)
 
   citat <- cff_create(x,
     keys = keys,
@@ -167,7 +168,6 @@ auto_r_citation <- function(r_citation = TRUE,
   }
   cffobj <- cff_read(outfile)
   fpath <- "./inst/CITATION"
-  if (file.exists(fpath)) unlink(fpath)
 
   cff_write_citation(cffobj, file = fpath, verbose = verbose)
 }
