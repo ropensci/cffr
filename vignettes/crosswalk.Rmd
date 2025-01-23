@@ -598,6 +598,7 @@ following repositories:
 -   [GitLab](https://about.gitlab.com/).
 -   [R-Forge](https://r-forge.r-project.org/).
 -   [Bitbucket](https://bitbucket.org/).
+-   [Codeberg](https://codeberg.org/).
 
 <details>
 
@@ -606,7 +607,7 @@ following repositories:
 ```{r repository-code}
 # Installed package on GitHub
 
-cff_create("jsonlite")$`repository-code`
+cat(cff_create("jsonlite")$`repository-code`)
 
 
 
@@ -617,9 +618,11 @@ gitlab <- system.file("examples/DESCRIPTION_gitlab", package = "cffr")
 cat(cff_create(gitlab)$`repository-code`)
 
 
-# Check
+# Codeberg
 
-desc::desc(gitlab)
+codeberg <- system.file("examples/DESCRIPTION_codeberg", package = "cffr")
+
+cat(cff_create(codeberg)$`repository-code`)
 ```
 
 </details>

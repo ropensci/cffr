@@ -4,6 +4,8 @@
     **R** citation file (`inst/CITATION`) would be generated/updated with the
     information of the generated `CITATION.cff` file. **No backup copy would be
     created**, for more control use `cff_write_citation()` (#79).
+-   `repository-code` now also recognizes [Codeberg](https://codeberg.org/) as a
+    valid repository (#88).
 
 # cffr 1.1.1
 

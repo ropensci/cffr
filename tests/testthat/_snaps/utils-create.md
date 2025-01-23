@@ -234,6 +234,66 @@
       merged
     Output
       cff-version: 1.2.0
+      message: 'To cite package "options" in publications use:'
+      type: software
+      title: 'options: Simple, Consistent Package Options'
+      version: 0.3.0
+      authors:
+      - family-names: Kelkhoff
+        given-names: Doug
+        email: doug.kelkhoff@gmail.com
+      abstract: Simple mechanisms for defining and interpreting package options. Provides
+        helpers for interpreting environment variables, global options, defining default
+        values and more.
+      repository: https://CRAN.R-project.org/package=options
+      repository-code: https://codeberg.org/dgkf/options
+      url: https://dgkf.github.io/options/
+      contact:
+      - family-names: Kelkhoff
+        given-names: Doug
+        email: doug.kelkhoff@gmail.com
+      license: MIT
+      doi: 10.1111/2041-210X.12469
+      preferred-citation:
+        type: article
+        title: 'RNeXML: A Package for Reading and Writing Richly Annotated Phylogenetic,
+          Character, and Trait Data in R'
+        authors:
+        - family-names: Boettiger
+          given-names: Carl
+        - family-names: Chamberlain
+          given-names: Scott
+        - family-names: Vos
+          given-names: Rutger
+        - family-names: Lapp
+          given-names: Hilmar
+        journal: Methods in Ecology and Evolution
+        year: '2016'
+        volume: '7'
+        doi: 10.1111/2041-210X.12469
+        start: '352'
+        end: '357'
+      identifiers:
+      - type: doi
+        value: 10.32614/CRAN.package.options
+      references:
+      - type: book
+        title: 'ggplot2: Elegant Graphics for Data Analysis'
+        authors:
+        - family-names: Wickham
+          given-names: Hadley
+        publisher:
+          name: Springer-Verlag New York
+        year: '2016'
+        isbn: 978-3-319-24277-4
+        url: https://ggplot2.tidyverse.org
+
+---
+
+    Code
+      merged
+    Output
+      cff-version: 1.2.0
       message: 'To cite package "codemetar" in publications use:'
       type: software
       title: 'codemetar: Generate ''CodeMeta'' Metadata for R Packages'

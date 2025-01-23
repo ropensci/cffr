@@ -204,7 +204,7 @@ get_desc_urls <- function(pkg) {
 
   # Clean if GitLab
   issues <- gsub("/-/issues$", "", issues)
-  # Clean if GitHub
+  # Clean if GitHub and codeberg.org
   issues <- gsub("/issues$", "", issues)
 
   # Join issues and urls
@@ -223,7 +223,8 @@ get_desc_urls <- function(pkg) {
     "github.com", "www.github.com",
     "gitlab.com",
     "r-forge.r-project.org",
-    "bitbucket.org"
+    "bitbucket.org",
+    "codeberg.org"
   ), collapse = "|")
 
   # Extract repo url
