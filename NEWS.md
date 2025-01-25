@@ -1,4 +1,4 @@
-# cffr (development version)
+# cffr 1.2.0
 
 -   New parameter `r_citation` in `cff_write()`. When it is set to `TRUE` a
     **R** citation file (`inst/CITATION`) would be generated/updated with the
@@ -6,6 +6,8 @@
     created**, for more control use `cff_write_citation()` (#79).
 -   `repository-code` now also recognizes [Codeberg](https://codeberg.org/) as a
     valid repository (#88).
+-   `repository-code` recognizes repositories regardless of casing. It is still
+    advised to use lower caps as a good practice for **R** developers.
 
 # cffr 1.1.1
 

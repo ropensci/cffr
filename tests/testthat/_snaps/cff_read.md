@@ -125,6 +125,7 @@
       - family-names: Paul
         given-names: Michaela
       repository: https://CRAN.R-project.org/package=surveillance
+      repository-code: https://surveillance.R-Forge.R-project.org/
       url: https://surveillance.R-Forge.R-project.org/
       date-released: '2021-03-30'
       contact:

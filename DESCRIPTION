@@ -1,6 +1,6 @@
 Package: cffr
 Title: Generate Citation File Format ('cff') Metadata for R Packages
-Version: 1.1.1.9001
+Version: 1.2.0
 Authors@R: c(
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658")),
@@ -42,4 +42,5 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 X-schema.org-isPartOf: https://ropensci.org
 X-schema.org-keywords: attribution, citation, credit, citation-files, cff,
-    metadata, citation-file-format, cran, r, r-package, ropensci, rstats
+    metadata, citation-file-format, cran, r, r-package, ropensci, rstats,
+    r-cran

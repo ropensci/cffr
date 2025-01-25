@@ -898,6 +898,7 @@
         overview of the implemented space-time modeling frameworks for epidemic phenomena
         is given by Meyer et al. (2017) <https://doi.org/10.18637/jss.v077.i11>.
       repository: https://CRAN.R-project.org/package=surveillance
+      repository-code: https://surveillance.R-Forge.R-project.org/
       url: https://surveillance.R-Forge.R-project.org/
       date-released: '2021-03-30'
       contact:

@@ -228,7 +228,7 @@ get_desc_urls <- function(pkg) {
   ), collapse = "|")
 
   # Extract repo url
-  repo_line <- grep(domains, allurls)[1]
+  repo_line <- grep(domains, allurls, ignore.case = TRUE)[1]
 
   repository_code <- clean_str(allurls[repo_line][1])
 
