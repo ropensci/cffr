@@ -8,13 +8,13 @@
   "codeRepository": "https://github.com/ropensci/cffr",
   "issueTracker": "https://github.com/ropensci/cffr/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.2.0",
+  "version": "1.2.0.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.2 (2024-10-31 ucrt)",
+  "runtimePlatform": "R version 4.4.2 (2024-10-31)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -200,7 +200,7 @@
   },
   "isPartOf": "https://ropensci.org",
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata", "citation-file-format", "cran", "r", "r-package", "ropensci", "rstats", "r-cran"],
-  "fileSize": "1632.421KB",
+  "fileSize": "1611.343KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -287,7 +287,6 @@
     }
   ],
   "releaseNotes": "https://github.com/ropensci/cffr/blob/master/NEWS.md",
-  "readme": "https://github.com/ropensci/cffr/blob/main/README.md",
   "contIntegration": ["https://github.com/ropensci/cffr/actions/workflows/check-full.yaml", "https://github.com/ropensci/cffr/actions/workflows/rhub.yaml", "https://app.codecov.io/gh/ropensci/cffr", "https://github.com/ropensci/cffr/actions/workflows/cff-validator.yml"],
   "developmentStatus": ["https://www.repostatus.org/#active", "https://lifecycle.r-lib.org/articles/stages.html#experimental"],
   "review": {
