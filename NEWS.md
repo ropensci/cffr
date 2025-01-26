@@ -1,3 +1,10 @@
+# cffr (development version)
+
+-   `cff_gha_update()` action now runs in `ubuntu-latest` by default to save
+    [GitHub Actions
+    quota](https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions#minute-multipliers)
+    (#90, thanks to \@Pakillo).
+
 # cffr 1.2.0
 
 -   New parameter `r_citation` in `cff_write()`. When it is set to `TRUE` a
