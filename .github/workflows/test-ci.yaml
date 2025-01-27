@@ -3,23 +3,14 @@ on:
   schedule:
       - cron:  '0 5 * * 2,5'
 
+permissions:
+  contents: read
 
 name: Test on GHA
 
 jobs:
   test-ci:
-    runs-on: ${{ matrix.config.os }}
-
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
-
-    strategy:
-      fail-fast: false
-      matrix:
-        config:
-          - {os: windows-latest, r: 'release'}
-          - {os: macOS-latest, r: 'release'}
-           #- {os: ubuntu-latest, r: 'release'}
-
+    runs-on: windows-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:

@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
     steps:
       - uses: actions/checkout@v4
 
@@ -19,7 +20,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          cache-version: "updatedocs"
+          cache-version: "testci"
           extra-packages: |
             local::.
             any::rmarkdown
@@ -28,7 +29,6 @@ jobs:
 
       - name: Update docs
         run: |
-          install.packages("rmarkdown", dependencies = TRUE)
           pkgdev::update_docs()
         shell: Rscript {0}
 
