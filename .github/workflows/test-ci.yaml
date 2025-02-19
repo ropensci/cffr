@@ -33,23 +33,51 @@ jobs:
             any::tidymodels
             any::tidyverse
             any::ctv
+            any::cranlog
+            r-lib/revdepcheck
+
 
       - name: Install packages
         run: |
+
           options(repos = c(CRAN = "https://cloud.r-project.org"))
 
           library(magrittr)
+          library(dplyr)
+          library(httr2)
+
+
+          # Downloads
+          trending <- request("https://cranlogs.r-pkg.org/trending") %>%
+            req_perform() %>%
+            resp_body_json(simplifyVector = TRUE) %>%
+            select(1) %>%
+            pull(1)
+
+          last_month <- cranlogs::cran_top_downloads("last-month", count = 100) %>%
+            select(package) %>%
+            pull()
+
+          # Views
 
           allviews <- ctv::available.views()
           packs <- lapply(seq_len(length(allviews)), function(x) {
             df <- allviews[[x]]$packagelist
             tibble::add_column(df, view = allviews[[x]]$name)
-          })
+          }) %>%
+            dplyr::bind_rows() %>%
+            as_tibble()
           packs <- dplyr::bind_rows(packs)
-          core <- dplyr::filter(packs, core == TRUE)
+          core <- dplyr::filter(packs, core == TRUE) %>%
+            pull(1)
 
-          # Selected views with several packages
-          sel_views <- packs[packs$view %in% c("TimeSeries", "Distributions"), ]
+          # Selected 1000 more packages
+          sel_views <- packs %>%
+            filter(core == FALSE) %>%
+            slice_head(n = 1000) %>%
+            pull(name)
+
+
 
           # rOpenSci packages from r-universe
           ropensci <- jsonlite::read_json("https://ropensci.r-universe.dev/api/packages") %>%
@@ -84,16 +112,21 @@ jobs:
           dieghernan <- jsonlite::read_json("https://dieghernan.r-universe.dev/api/packages") %>%
             lapply("[[", "Package") %>%
             unlist()
+
           ropenspain <- jsonlite::read_json("https://ropenspain.r-universe.dev/api/packages") %>%
             lapply("[[", "Package") %>%
             unlist()
+
           ropengov <- jsonlite::read_json("https://ropengov.r-universe.dev/api/packages") %>%
             lapply("[[", "Package") %>%
             unlist()
 
+
+
           # Gather packages
           all <- sort(unique(c(
-            core$name, sel_views$name, ropensci, ropenscireviewtools, rlib, rforge, rstudio, rspatial,
+            trending, last_month,
+            core, sel_views, ropensci, ropenscireviewtools, rlib, rforge, rstudio, rspatial,
             dieghernan, ropenspain, ropengov
           )))
 
