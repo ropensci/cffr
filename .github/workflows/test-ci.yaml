@@ -25,7 +25,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          cache-version: 'gha'
+          cache-version: 'test_full_ci'
           extra-packages: |
             local::.
             any::devtools
@@ -71,10 +71,10 @@ jobs:
           core <- dplyr::filter(packs, core == TRUE) %>%
             pull(1)
 
-          # Selected 1000 more packages
+          # Selected 1500 more packages
           sel_views <- packs %>%
             filter(core == FALSE) %>%
-            slice_head(n = 1000) %>%
+            slice_head(n = 1500) %>%
             pull(name)
 
 
