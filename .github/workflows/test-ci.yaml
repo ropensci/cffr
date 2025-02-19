@@ -74,7 +74,7 @@ jobs:
           # Selected 1500 more packages
           sel_views <- packs %>%
             filter(core == FALSE) %>%
-            slice_head(n = 1500) %>%
+            slice_head(n = 2500) %>%
             pull(name)
 
 
