@@ -33,7 +33,7 @@ jobs:
             any::tidymodels
             any::tidyverse
             any::ctv
-            any::cranlog
+            any::cranlogs
             r-lib/revdepcheck
 
 
