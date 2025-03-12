@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.2 (2024-10-31 ucrt)",
+  "runtimePlatform": "R version 4.4.3 (2025-02-28)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -200,7 +200,7 @@
   },
   "isPartOf": "https://ropensci.org",
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata", "citation-file-format", "cran", "r", "r-package", "ropensci", "rstats", "r-cran"],
-  "fileSize": "1638.448KB",
+  "fileSize": "1615.345KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

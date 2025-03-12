@@ -129,7 +129,7 @@ ref_list
 #>   institution:
 #>     name: R Foundation for Statistical Computing
 #>     address: Vienna, Austria
-#>   year: '2024'
+#>   year: '2025'
 #>   url: https://www.R-project.org/
 #> - type: manual
 #>   title: 'yaml: Methods to Convert R Data to YAML and Back'
@@ -163,7 +163,7 @@ ref_list
 #>     given-names: Charlie
 #>   year: '2024'
 #>   notes: R package version 2.3.10
-#>   url: https://CRAN.R-project.org/package=yaml
+#>   url: https://github.com/vubiostat/r-yaml/
 
 class(ref_list)
 #> [1] "cff_ref_lst" "cff"
@@ -178,7 +178,7 @@ ref_list[[1]]
 #> institution:
 #>   name: R Foundation for Statistical Computing
 #>   address: Vienna, Austria
-#> year: '2024'
+#> year: '2025'
 #> url: https://www.R-project.org/
 
 class(ref_list[[1]])
@@ -328,7 +328,7 @@ toBibtex(cit)
 #>   author = \{\{R Core Team\}\},
 #>   organization = \{R Foundation for Statistical Computing\},
 #>   address = \{Vienna, Austria\},
-#>   year = \{2024\},
+#>   year = \{2025\},
 #>   url = \{https://www.R-project.org/\},
 #> \}
 #> 
@@ -337,7 +337,7 @@ toBibtex(cit)
 #>   author = \{Shawn P Garbett and Jeremy Stephens and Kirill Simonov and Yihui Xie and Zhuoer Dong and Hadley Wickham and Jeffrey Horner and \{reikoch\} and Will Beasley and Brendan O'Connor and Gregory R. Warnes and Michael Quinn and Zhian N. Kamvar and Charlie Gao\},
 #>   year = \{2024\},
 #>   note = \{R package version 2.3.10\},
-#>   url = \{https://CRAN.R-project.org/package=yaml\},
+#>   url = \{https://github.com/vubiostat/r-yaml/\},
 #> \}
 
 # cff_pers, cff_pers_lst
