@@ -325,7 +325,7 @@ refkeys <- matrix(l, ncol = 5, byrow = TRUE)
 
 knitr::kable(refkeys,
   row.names = NA,
-  caption = "Valid keys on [CFF]{underline} `definition-reference` objects"
+  caption = "Valid keys on [CFF]{.underline} `definition-reference` objects"
 )
 ```
 
@@ -459,14 +459,6 @@ We provide more detail on some of the mappings presented in the table above:
     **inproceedings**, and in the rest of cases it would correspond to series. A
     consequence of this is that series information would be lost for
     incollection and inproceedings, but on those cases is an optional field.
-
--   Regarding **series**, it would be mapped to [collection-title]{.underline}
-    only for those entries that do not require **booktitle**. In practice, this
-    means that [collection-title]{.underline} would correspond to **booktitle**
-    for **\@incollection** and **\@inproceedings**, while in other cases it
-    would correspond to **series**. As a consequence, **series** information
-    would be lost for **\@incollection** and **\@inproceedings**, but in those
-    cases, it is an optional field.
 
 -   When converting from [CFF]{.underline} to **BibTeX**, we propose to use
     [date-published]{.underline} as a fallback for extracting **month** and
