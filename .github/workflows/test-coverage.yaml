@@ -7,7 +7,10 @@ on:
 
 name: test-coverage
 
-permissions: read-all
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   test-coverage:
