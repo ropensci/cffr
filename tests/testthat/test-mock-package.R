@@ -122,7 +122,7 @@ test_that("Test in mock package", {
   unlink(new_dir, recursive = TRUE, force = TRUE)
 
   rvers <- getRversion()
-  skip_if(!grepl("^4.4", rvers), "Snapshot created with R 4.4.*")
+  skip_if(!grepl("^4.5", rvers), "Snapshot created with R 4.5.*")
 
   expect_false(identical(auto_cit1, cit))
   expect_true(identical(auto_cit1, auto_cit2))

@@ -136,7 +136,7 @@ test_that("Convert list of authors", {
 
 test_that("as.person method", {
   rvers <- getRversion()
-  skip_if(!grepl("^4.4", rvers), "Snapshot created with R 4.4.*")
+  skip_if(!grepl("^4.5", rvers), "Snapshot created with R 4.5.*")
   skip_on_cran()
   path <- system.file("examples/CITATION_complete.cff", package = "cffr")
 

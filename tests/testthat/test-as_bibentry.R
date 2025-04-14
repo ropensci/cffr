@@ -99,6 +99,7 @@ test_that("as_bibentry NULL", {
 
 
 test_that("as_bibentry character", {
+  skip_on_cran()
   skip_if_not_installed("rmarkdown")
 
   base <- as_bibentry("rmarkdown")

@@ -872,7 +872,7 @@
     Code
       format(pub, include = c("given", "family", "email", "role", "comment"))
     Output
-      [1] "Entity Project Team Conference entity <project@entity.com> (22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io, 2017-01-01, 2017-01-31, The team garage)"
+      [1] "Entity Project Team Conference entity <project@entity.com> (address: 22 Acacia Avenue, city: Citationburgh, region: Renfrewshire, post-code: C13 7X7, country: GB, ORCID: <https://orcid.org/0000-0001-2345-6789>, tel: +44(0)141-323 4567, fax: +44(0)141-323 45678, website: https://www.entity-project-team.io, date-start: 2017-01-01, date-end: 2017-01-31, location: The team garage)"
 
 ---
 
@@ -892,7 +892,7 @@
     Code
       format(aut, include = c("given", "family", "email", "role", "comment"))
     Output
-      [1] "One Truly van der Real Person, IV <project@entity.com> (Citey, Excellent University, Niceplace, Arcadia, 22 Acacia Avenue, Citationburgh, Renfrewshire, C13 7X7, GB, <https://orcid.org/0000-0001-2345-6789>, +44(0)141-323 4567, +44(0)141-323 45678, https://www.entity-project-team.io)"
+      [1] "One Truly van der Real Person, IV <project@entity.com> (alias: Citey, affiliation: Excellent University, Niceplace, Arcadia, address: 22 Acacia Avenue, city: Citationburgh, region: Renfrewshire, post-code: C13 7X7, country: GB, ORCID: <https://orcid.org/0000-0001-2345-6789>, tel: +44(0)141-323 4567, fax: +44(0)141-323 45678, website: https://www.entity-project-team.io)"
 
 ---
 

@@ -73,7 +73,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2025-04-10 there are at least 360 repos on GitHub using **cffr**.
+As per 2025-04-14 there are at least 374 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -229,7 +229,6 @@ test <- cff_create("rmarkdown")
       url: https://github.com/rstudio/rmarkdown
     repository: https://CRAN.R-project.org/package=rmarkdown
     repository-code: https://github.com/rstudio/rmarkdown
-    commit: '2.29'
     url: https://pkgs.rstudio.com/rmarkdown/
     date-released: '2024-11-04'
     contact:
@@ -395,9 +394,6 @@ test <- cff_create("rmarkdown")
         email: jeroenooms@gmail.com
         orcid: https://orcid.org/0000-0002-4035-0289
       year: '2025'
-      identifiers:
-      - type: url
-        value: https://arxiv.org/abs/1403.2805
       doi: 10.32614/CRAN.package.jsonlite
     - type: software
       title: knitr
@@ -1013,7 +1009,7 @@ specification. Contributions of any kind are welcome!
 </td>
 <td align="center">
 <a href="https://github.com/hainesr">
-<img src="https://avatars.githubusercontent.com/u/143558?u=b10c7a4c311168b1f08aeaab84dc6f6b85f8233e&v=4" width="100px;" class="allctb-avatar" alt=""/>
+<img src="https://avatars.githubusercontent.com/u/143558?u=e8f3701a32432061199db87a2070476467c970d1&v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+commenter%3Ahainesr">hainesr</a>
 </td>
