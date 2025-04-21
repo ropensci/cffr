@@ -26,6 +26,8 @@ test_that("as_cff.person", {
   expect_s3_class(aa, c("cff_pers_lst", "cff"), exact = TRUE)
   expect_s3_class(aa[[1]], c("cff_pers", "cff"), exact = TRUE)
   expect_identical(aa, as_cff_person(pers))
+  rvers <- getRversion()
+  skip_if(!grepl("^4.5", rvers), "Snapshot created with R 4.5.*")
   expect_snapshot(as_cff(pers))
 
   # Check a single person

@@ -90,17 +90,15 @@ information to the schema required by CFF:
 ## Array
 two_persons <- as_cff_person(
   c(
-    person("A", "person", comment = c(ORCID = "0000-0000-0000-0000")),
+    person("A", "person", comment = c(ORCID = "0000-0001-8457-4658")),
     person("An entity", email = "fake@gmail.com")
   )
 )
-#> Warning in person1(given = given[[i]], family = family[[i]], middle =
-#> middle[[i]], : Invalid ORCID iD: '0000-0000-0000-0000'.
 
 two_persons
 #> - family-names: person
 #>   given-names: A
-#>   orcid: https://orcid.org/0000-0000-0000-0000
+#>   orcid: https://orcid.org/0000-0001-8457-4658
 #> - name: An entity
 #>   email: fake@gmail.com
 
@@ -112,7 +110,7 @@ class(two_persons)
 two_persons[[1]]
 #> family-names: person
 #> given-names: A
-#> orcid: https://orcid.org/0000-0000-0000-0000
+#> orcid: https://orcid.org/0000-0001-8457-4658
 
 class(two_persons[[1]])
 #> [1] "cff_pers" "cff"
@@ -310,9 +308,7 @@ c(minimal_cff, new_keys)
 Only for \code{cff_pers_lst} and \code{cff_pers} objects:
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{as.person(two_persons)
-#> Warning in person1(given = given[[i]], family = family[[i]], middle =
-#> middle[[i]], : Invalid ORCID iD: '0000-0000-0000-0000'.
-#> [1] "A person (ORCID: <https://orcid.org/0000-0000-0000-0000>)"
+#> [1] "A person (ORCID: <https://orcid.org/0000-0001-8457-4658>)"
 #> [2] "An entity <fake@gmail.com>"
 }\if{html}{\out{</div>}}
 }
@@ -348,8 +344,6 @@ toBibtex(cit)
 
 # cff_pers, cff_pers_lst
 toBibtex(two_persons)
-#> Warning in person1(given = given[[i]], family = family[[i]], middle =
-#> middle[[i]], : Invalid ORCID iD: '0000-0000-0000-0000'.
 #> person, A and \{An entity\}
 }\if{html}{\out{</div>}}
 }
