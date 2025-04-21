@@ -34,9 +34,7 @@ jobs:
             any::tidyverse
             any::ctv
             any::cranlogs
-            r-lib/revdepcheck
-
-
+            
       - name: Install packages
         run: |
 
