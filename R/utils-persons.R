@@ -337,6 +337,8 @@ split_txt_persons <- function(person) {
 }
 
 extract_person_comments <- function(person) {
+  # nocov start
+  # Not used in R >= 4.5.0
   # Ensure person type
   person <- as.person(person)
 
@@ -407,6 +409,7 @@ extract_person_comments <- function(person) {
   fin_list$email <- clean_str(email)
 
   fin_list
+  # nocov end
 }
 
 extract_person_comments45 <- function(person) {
@@ -451,9 +454,9 @@ extract_person_comments45 <- function(person) {
 
 
   names(comm_cff) <- tolower(names(comm_cff))
-  nms_com <- names(comm_cff)
   # Delete non-named comments
-  comm_cff <- comm_cff[nchar(names(comm_cff)) > 1]
+  nms_com <- names(comm_cff)
+  comm_cff <- comm_cff[nchar(nms_com) > 1]
 
   if (!is.null(comm_cff$orcid)) {
     orcid <- gsub("^orcid.org/", "", comm_cff$orcid)
@@ -482,10 +485,5 @@ extract_person_comments45 <- function(person) {
     comm_cff["email" != names(comm_cff)]
   )
   fin_list$email <- clean_str(email)
-  valid_fields <- unique(
-    cff_schema_definitions_entity(),
-    cff_schema_definitions_person()
-  )
-
   fin_list
 }
