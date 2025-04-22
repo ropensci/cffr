@@ -161,13 +161,17 @@ test_that("No valid emails", {
 })
 
 test_that("Can extract comments from format", {
+  rvers <- getRversion()
+  skip_if(!grepl("^4.5", rvers), "Snapshot created with R 4.5.*")
+
   pp <- person(
     given = "John",
     family = "Doe",
     email = "first_mail@gmail.com",
     comment = c(
       ORCID = "https://orcid.org/0000-0001-8457-4658",
-      website = "https://www.google.com/"
+      website = "https://www.google.com/",
+      address = "Sweet Home Chicago"
     )
   )
 

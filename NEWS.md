@@ -4,6 +4,7 @@
     [GitHub Actions
     quota](https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions#minute-multipliers)
     (#90, thanks to \@Pakillo).
+-   Improve comments detection and parsing in `as_cff_person()` function family.
 
 # cffr 1.2.0
 

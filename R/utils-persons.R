@@ -337,6 +337,8 @@ split_txt_persons <- function(person) {
 }
 
 extract_person_comments <- function(person) {
+  # nocov start
+  # Not used in R >= 4.5.0
   # Ensure person type
   person <- as.person(person)
 
@@ -406,5 +408,82 @@ extract_person_comments <- function(person) {
   )
   fin_list$email <- clean_str(email)
 
+  fin_list
+  # nocov end
+}
+
+extract_person_comments45 <- function(person) {
+  # Detect comments
+  # Last is )?
+
+  if ("person" %in% class(person)) person <- format(person)
+  last <- substr(person, nchar(person), nchar(person))
+  # Has another )?
+  start_comment <- min(regexpr("(", person, fixed = TRUE))
+
+  has_comment <- all(last == ")", start_comment > 5)
+
+  # If does not have comment convert to person
+  if (!has_comment) {
+    p <- as.person(person)
+    comm_cff <- list(fake = 123)
+  } else {
+    # Split and convert
+    the_person <- substr(person, 1, start_comment - 1)
+    p <- as.person(the_person)
+
+
+    # Comments
+    # Can't get commas in the comment :(
+    comm <- strsplit(substr(person, start_comment + 1, nchar(person) - 1), ",")
+    comm <- unlist(comm)
+    comm_list <- lapply(comm, function(x) {
+      detect_split <- min(regexpr(":", x, fixed = TRUE))
+      nm <- substr(x, 1, detect_split - 1)
+      val <- substr(x, detect_split + 1, nchar(x))
+      val <- clean_str(val)
+      val <- gsub("<|>", "", val)
+
+      nm <- clean_str(nm)
+      names(val) <- nm
+      val
+    })
+
+    comm_cff <- as.list(unlist(comm_list))
+  }
+
+
+  names(comm_cff) <- tolower(names(comm_cff))
+  # Delete non-named comments
+  nms_com <- names(comm_cff)
+  comm_cff <- comm_cff[nchar(nms_com) > 1]
+
+  if (!is.null(comm_cff$orcid)) {
+    orcid <- gsub("^orcid.org/", "", comm_cff$orcid)
+    orcid <- gsub("^https://orcid.org/", "", orcid)
+    orcid <- gsub("^http://orcid.org/", "", orcid)
+
+    comm_cff$orcid <- paste0("https://orcid.org/", orcid)
+  }
+
+  # Add website
+  web <- comm_cff$website
+
+  if (!is.null(web)) {
+    comm_cff$website <- clean_str(web[is_url(web)])
+  }
+
+  # Add also email
+  # Check if several mails (MomTrunc 6.0)
+  look_emails <- c(unlist(p$email), comm_cff$email)
+  valid_emails <- unlist(lapply(look_emails, is_email))
+  email <- look_emails[valid_emails][1]
+
+  # Final list
+  fin_list <- c(
+    list(email = NULL),
+    comm_cff["email" != names(comm_cff)]
+  )
+  fin_list$email <- clean_str(email)
   fin_list
 }

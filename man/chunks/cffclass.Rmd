@@ -58,7 +58,7 @@ information to the schema required by CFF:
 ## Array
 two_persons <- as_cff_person(
   c(
-    person("A", "person", comment = c(ORCID = "0000-0000-0000-0000")),
+    person("A", "person", comment = c(ORCID = "0000-0001-8457-4658")),
     person("An entity", email = "fake@gmail.com")
   )
 )

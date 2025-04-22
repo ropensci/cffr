@@ -271,8 +271,11 @@ create_person_from_r <- function(person) {
   }
 
   pers_cff <- create_person_from_txt(as_bib_text)
-  comm_cff <- extract_person_comments(person)
-
+  if (getRversion() < "4.5.0") {
+    comm_cff <- extract_person_comments(person) # nocov
+  } else {
+    comm_cff <- extract_person_comments45(person)
+  }
   # Add comments
   pers_cff <- c(pers_cff, comm_cff)
 
@@ -305,7 +308,11 @@ create_person_from_txt <- function(as_bib_text) {
 
     # Fake a person object to extract comments
     fake_person <- paste0("{Fake} ", comment_only)
-    comm_cff <- extract_person_comments(fake_person)
+    if (getRversion() < "4.5.0") {
+      comm_cff <- extract_person_comments(fake_person) # nocov
+    } else {
+      comm_cff <- extract_person_comments45(fake_person)
+    }
   } else {
     # Does not
     person_only <- as_bib_text
