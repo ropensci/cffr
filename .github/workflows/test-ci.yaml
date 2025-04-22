@@ -34,7 +34,7 @@ jobs:
             any::tidyverse
             any::ctv
             any::cranlogs
-            
+
       - name: Install packages
         run: |
 

@@ -131,7 +131,7 @@
 #' # Coerce a string
 #' a_str <- paste0(
 #'   "Julio Iglesias <fake@email.com> ",
-#'   "(<https://orcid.org/0000-0001-8457-4658>)"
+#'   "(city: Miami, region: California, country: US)"
 #' )
 #' as_cff_person(a_str)
 #'
