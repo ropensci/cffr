@@ -263,7 +263,6 @@ as_bibentry.cff_ref_lst <- function(x, ...) {
 }
 
 
-
 #' @export
 #' @rdname as_bibentry
 #' @order 8

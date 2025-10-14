@@ -28,11 +28,9 @@ sum(cran_packs[1:20, "n"])
 paste0(cran_packs[1:20, ]$LICENSE, collapse = " | ")
 
 
-
 # Extract all types of LICENSE
 
 lic_string <- as.character(cran_packs$LICENSE)
-
 
 
 # Split if needed
@@ -55,7 +53,6 @@ write.csv2(all_licenses,
 )
 
 
-
 # Map manually on csv
 
 # Once it is done, write to inst/extdata
@@ -73,12 +70,8 @@ licenses <- validator$definitions$`license-enum`$enum %>% unlist()
 cran_to_spdx %>% filter(!(SPDX %in% licenses))
 
 
-
-
-
 # Summary CRAN
 mymap <- as.character(cran_packs$LICENSE)
-
 
 
 devtools::load_all()
@@ -113,8 +106,6 @@ themap <- lapply(mymap, function(x) {
 
   !is.null(license_char)
 }) %>% unlist()
-
-
 
 
 mapped_end <- cran_packs

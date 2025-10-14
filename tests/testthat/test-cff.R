@@ -30,7 +30,6 @@ test_that("Walk trough full lifecycle", {
   expect_false(read$title == modify$title)
 
 
-
   # Write
   tmp <- tempfile(fileext = ".cff")
   cff_write(modify, outfile = tmp, validate = FALSE, verbose = FALSE)

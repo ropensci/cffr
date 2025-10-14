@@ -317,7 +317,6 @@ test_that("Parsing wrong urls", {
 })
 
 
-
 test_that("Parsing two maintainers", {
   desc_path <- system.file("examples/DESCRIPTION_twomaintainers",
     package = "cffr"
@@ -406,7 +405,6 @@ test_that("Search package on CRAN", {
   expect_length(a_cff$repository, 1)
   expect_equal(clean_str(newfile$get("Package")), "ggplot2")
   expect_equal(a_cff$repository, "https://CRAN.R-project.org/package=ggplot2")
-
 
 
   expect_s3_class(a_cff, "cff")

@@ -143,7 +143,6 @@ cff_create <- function(x, keys = list(), cff_version = "1.2.0",
   cffobjend <- result_paths[["cffobjend"]]
 
 
-
   # Add software dependencies
   if (dependencies) {
     instpack <- as.character(installed.packages()[, "Package"])

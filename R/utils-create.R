@@ -28,7 +28,6 @@ merge_desc_cit <- function(cffobj, citobj) {
   )
 
 
-
   # Merge identifiers
   merged_ids <- c(citobj[[1]]$identifiers, cffobjend$identifiers)
 

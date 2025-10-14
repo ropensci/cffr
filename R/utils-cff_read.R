@@ -212,7 +212,6 @@ get_desc_urls <- function(pkg) {
   allurls <- allurls[is_url(allurls)]
 
 
-
   # If no urls then return as null
   if (length(allurls) == 0) {
     url_list <- list(url = NULL)

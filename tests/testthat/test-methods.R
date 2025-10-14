@@ -40,7 +40,6 @@ test_that("as data frame partial", {
   expect_identical(ncol(the_df), length(unique(names(the_df))))
 
 
-
   # To df references only
   subcff <- the_cff$references[[1]]
   the_df <- as.data.frame(subcff)

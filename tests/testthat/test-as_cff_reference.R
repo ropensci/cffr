@@ -678,7 +678,6 @@ test_that("Skip misc without title, not skipping the good one", {
   )
 
 
-
   expect_message(bib_cff <- as_cff(bib), "SHERPA/RoMEO")
 
   expect_length(bib_cff, 1)

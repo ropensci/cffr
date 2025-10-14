@@ -121,7 +121,6 @@ get_bibtex_fields <- function(cit_list) {
   if (!is.null(loc)) cit_list$location <- loc
 
 
-
   # Treat additional dates ----
   dpub <- clean_str(cit_list$`date-published`)
   cit_list$`date-published` <- clean_str(as.Date(dpub, optional = TRUE))
@@ -183,8 +182,6 @@ add_conference <- function(field_list) {
   }
   return(field_list)
 }
-
-
 
 
 #' Adapt cff keys to bibtex entries
@@ -390,7 +387,6 @@ get_bibtex_other_pers <- function(field_list) {
       return(x)
     }
   })
-
 
 
   # Select subsets

@@ -73,7 +73,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2025-07-30 there are at least 408 repos on GitHub using **cffr**.
+As per 2025-10-14 there are at least 500 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -144,7 +144,7 @@ test <- cff_create("rmarkdown")
     type: software
     license: GPL-3.0-only
     title: 'rmarkdown: Dynamic Documents for R'
-    version: '2.29'
+    version: '2.30'
     identifiers:
     - type: doi
       value: 10.32614/CRAN.package.rmarkdown
@@ -224,14 +224,14 @@ test <- cff_create("rmarkdown")
         given-names: Richard
         email: rich@posit.co
         orcid: https://orcid.org/0000-0003-3925-190X
-      year: '2024'
-      notes: R package version 2.29
+      year: '2025'
+      notes: R package version 2.30
       url: https://github.com/rstudio/rmarkdown
     repository: https://CRAN.R-project.org/package=rmarkdown
     repository-code: https://github.com/rstudio/rmarkdown
-    commit: '2.29'
+    commit: '2.30'
     url: https://pkgs.rstudio.com/rmarkdown/
-    date-released: '2024-11-04'
+    date-released: '2025-09-28'
     contact:
     - family-names: Xie
       given-names: Yihui
@@ -929,7 +929,7 @@ specification. Contributions of any kind are welcome!
 <tr>
 <td align="center">
 <a href="https://github.com/Bisaloo">
-<img src="https://avatars.githubusercontent.com/u/10783929?u=38e3754466eaa200e20f0609709467b6331cdfbe&v=4" width="100px;" class="allctb-avatar" alt=""/>
+<img src="https://avatars.githubusercontent.com/u/10783929?u=92fdf68eafbcdcf8da283b460ab65a2cafb8c7fe&v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+author%3ABisaloo">Bisaloo</a>
 </td>

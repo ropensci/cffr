@@ -131,7 +131,6 @@ test_that("Several emails, select second if first no valid", {
 })
 
 
-
 test_that("No valid emails", {
   pp <- person(
     given = "John",

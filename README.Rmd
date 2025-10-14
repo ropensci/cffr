@@ -304,6 +304,7 @@ for more info.
 
 
 
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -339,7 +340,7 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <tr>
 <td align="center">
 <a href="https://github.com/Bisaloo">
-<img src="https://avatars.githubusercontent.com/u/10783929?u=38e3754466eaa200e20f0609709467b6331cdfbe&v=4" width="100px;" class="allctb-avatar" alt=""/>
+<img src="https://avatars.githubusercontent.com/u/10783929?u=92fdf68eafbcdcf8da283b460ab65a2cafb8c7fe&v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+author%3ABisaloo">Bisaloo</a>
 </td>
@@ -454,6 +455,7 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
 
 
 

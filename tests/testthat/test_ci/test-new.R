@@ -74,7 +74,6 @@ errcff <- setdiff(errors$Package, errother)
 errother_df <- installed[installed$Package %in% errother, c(1, 2)]
 
 
-
 write("\n## High level summary", outmd, append = TRUE)
 write(paste0("\n- I checked ", nrow(installed), " packages"),
   outmd,

@@ -219,7 +219,6 @@ as_cff_person.character <- function(x, ...) {
 }
 
 
-
 create_person_from_r <- function(person) {
   person <- as.person(person)
 

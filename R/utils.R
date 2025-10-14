@@ -294,7 +294,6 @@ clean_package_meta <- function(meta) {
 }
 
 
-
 # Convert a DESCRIPTION object to meta object using desc package
 desc_to_meta <- function(x) {
   src <- x
