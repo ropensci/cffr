@@ -14,10 +14,7 @@ cran_packs$perc <- 100 * round(cran_packs$n / sum(cran_packs$n), 6)
 cran_packs$cum <- 100 * cumsum(cran_packs$n) / sum(cran_packs$n)
 
 # Write raw
-write.csv(cran_packs,
-  "inst/extdata/cran_licenses.csv",
-  na = ""
-)
+write.csv(cran_packs, "inst/extdata/cran_licenses.csv", na = "")
 
 # Top10
 cran_packs[10, "cum"]
@@ -47,10 +44,7 @@ split <- split[-grep("file", split, ignore.case = TRUE)]
 
 all_licenses <- data.frame(LICENSE = split)
 
-write.csv2(all_licenses,
-  "data-raw/cran_licenses.csv",
-  row.names = FALSE
-)
+write.csv2(all_licenses, "data-raw/cran_licenses.csv", row.names = FALSE)
 
 
 # Map manually on csv
@@ -105,7 +99,8 @@ themap <- lapply(mymap, function(x) {
   license_char <- unlist(licenses_list)
 
   !is.null(license_char)
-}) %>% unlist()
+}) %>%
+  unlist()
 
 
 mapped_end <- cran_packs

@@ -19,7 +19,6 @@ test_that("Test first von last", {
   x <- "aa"
   expect_snapshot(unlist(create_person_from_txt(x)))
 
-
   x <- "AA bb CC"
   expect_snapshot(unlist(create_person_from_txt(x)))
 

@@ -3,9 +3,7 @@ test_that("Check abort_if_not_cff", {
 
   expect_silent(abort_if_not_cff(obj))
 
-  file <- system.file("examples/CITATION_skeleton.cff",
-    package = "cffr"
-  )
+  file <- system.file("examples/CITATION_skeleton.cff", package = "cffr")
 
   expect_silent(abort_if_not_cff(file))
 
@@ -30,7 +28,6 @@ test_that("Check file_exist_abort", {
   # With dir
   non_with_path <- "./R/no/existe"
   expect_snapshot(file_exist_abort(non_with_path, abort = TRUE), error = TRUE)
-
 
   tmp <- tempfile()
 

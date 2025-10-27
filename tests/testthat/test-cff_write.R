@@ -30,7 +30,9 @@ test_that("Write to a non-existing folder", {
   )
 
   expect_true(dir.exists(file.path(
-    tempdir(), "test_new_folder", "recursive"
+    tempdir(),
+    "test_new_folder",
+    "recursive"
   )))
   expect_true(file_exist_abort(tmp))
 
@@ -72,7 +74,6 @@ test_that("Add new keys", {
   expect_s3_class(desc_file, "cff")
   tmp <- file.path(tempdir(), "newkeys.cff")
 
-
   # Add additional keys
   newkeys <- list(
     message = "This overwrites fields",
@@ -91,7 +92,8 @@ test_that("Add new keys", {
       outfile = tmp,
       validate = FALSE,
       verbose = FALSE
-    ), "error: No match"
+    ),
+    "error: No match"
   )
   expect_snapshot(s)
 
@@ -114,16 +116,18 @@ test_that("Append keys", {
 
   expect_s3_class(desc_file, "cff")
 
-
   old_aut <- desc_file$authors
 
   # It should be a list
   new_aut <- append(
     old_aut,
     as_cff_person(
-      person("New", "author",
+      person(
+        "New",
+        "author",
         comment = c(
-          "error" = 123, website = "https://stackoverflow.com/",
+          "error" = 123,
+          website = "https://stackoverflow.com/",
           country = "IT"
         )
       )
@@ -181,7 +185,9 @@ test_that("test encoding others", {
   cffobj <- cff()
   cffobj <- cff_modify(cffobj, authors = as_cff_person("Diego Pérez"))
   tmp <- file.path(tempdir(), "asci_trans.cff")
-  expect_silent(cff_write(cffobj, tmp,
+  expect_silent(cff_write(
+    cffobj,
+    tmp,
     verbose = FALSE,
     encoding = "ASCII//TRANSLIT"
   ))

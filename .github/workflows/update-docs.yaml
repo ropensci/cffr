@@ -27,6 +27,12 @@ jobs:
             any::rcmdcheck
             dieghernan/pkgdev
 
+      - name: Install Air
+        uses: posit-dev/setup-air@v1
+
+      - name: Format with Air
+        run: air format .
+
       - name: Update docs
         run: |
           pkgdev::update_docs()

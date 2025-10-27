@@ -10,15 +10,19 @@ img <- magick::image_read("data-raw/network.png")
 g <- grid::rasterGrob(img, interpolate = TRUE)
 
 p <- ggplot2::ggplot() +
-  ggplot2::annotation_custom(g,
-    xmin = -Inf, xmax = Inf,
-    ymin = -Inf, ymax = Inf
+  ggplot2::annotation_custom(
+    g,
+    xmin = -Inf,
+    xmax = Inf,
+    ymin = -Inf,
+    ymax = Inf
   ) +
   ggplot2::theme_void()
 
 
 p
-sticker(p,
+sticker(
+  p,
   package = "cffr",
   p_family = "roboto",
   p_fontface = "bold",

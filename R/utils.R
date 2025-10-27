@@ -27,7 +27,9 @@ clean_str <- function(str) {
   # Encoding
   enc <- Encoding(clean)
 
-  if (enc != "UTF-8") clean <- iconv(clean, to = "UTF-8")
+  if (enc != "UTF-8") {
+    clean <- iconv(clean, to = "UTF-8")
+  }
 
   clean
 }
@@ -59,9 +61,11 @@ print_snapshot <- function(title = "----", obj) {
 #' [utils::available.packages()].
 #' @param repos vector of repos
 #' @noRd
-search_on_repos <- function(name,
-                            avail = avail_on_init,
-                            repos = detect_repos()) {
+search_on_repos <- function(
+  name,
+  avail = avail_on_init,
+  repos = detect_repos()
+) {
   get <- avail[name == avail$Package, "Repository"]
 
   get <- clean_str(get)
@@ -72,7 +76,6 @@ search_on_repos <- function(name,
 
   # Try to find in CRAN
   cran_repo <- clean_str(repos["CRAN"])
-
 
   if (length(grep(cran_repo, get) == 1)) {
     # Canonical url to CRAN
@@ -117,7 +120,8 @@ fuzzy_keys <- function(keys) {
   nm <- names(keys)
   names(keys) <- gsub("_", "-", nm, fixed = TRUE)
   valid_keys <- unique(c(
-    cff_schema_keys(), cff_schema_definitions_entity(),
+    cff_schema_keys(),
+    cff_schema_definitions_entity(),
     cff_schema_definitions_person(),
     cff_schema_definitions_refs()
   ))
@@ -129,13 +133,14 @@ fuzzy_keys <- function(keys) {
   if (isFALSE(all(is_valid_key))) {
     names_fuzzy <- names[!(is_valid_key)]
 
-    keys_match <- lapply(names_fuzzy,
-      agrep, valid_keys,
+    keys_match <- lapply(
+      names_fuzzy,
+      agrep,
+      valid_keys,
       ignore.case = TRUE,
       value = TRUE,
       fixed = FALSE
     )
-
 
     # Modify NULL correspondences
     keys_match <- unlist(lapply(
@@ -231,7 +236,6 @@ detect_x_source <- function(x) {
     return("package")
   }
 
-
   if (grepl("\\.cff$", x, ignore.case = TRUE)) {
     return("cff_citation")
   }
@@ -299,7 +303,6 @@ desc_to_meta <- function(x) {
   src <- x
   my_meta <- desc::desc(src)
   my_meta$coerce_authors_at_r()
-
 
   # As list
   my_meta_l <- my_meta$get(desc::cran_valid_fields)

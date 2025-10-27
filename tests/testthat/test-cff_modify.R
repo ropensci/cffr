@@ -3,9 +3,7 @@ test_that("Errors and messages", {
   a_list <- as.list(a_cff)
   expect_true(inherits(a_list, "list"))
   expect_false(is_cff(a_list))
-  expect_snapshot(cff_modify(a_list, abstract = "An abstract"),
-    error = TRUE
-  )
+  expect_snapshot(cff_modify(a_list, abstract = "An abstract"), error = TRUE)
 
   # Nothing provided
   expect_snapshot(xend <- cff_modify(a_cff))
@@ -27,11 +25,13 @@ test_that("Errors and messages", {
 test_that("Can reclass", {
   a_cff <- cff()
 
-  mod <- cff_modify(a_cff, contact = list(list(
-    name = "a contact",
-    address = "here"
-  )))
-
+  mod <- cff_modify(
+    a_cff,
+    contact = list(list(
+      name = "a contact",
+      address = "here"
+    ))
+  )
 
   expect_true(cff_validate(mod, verbose = FALSE))
   expect_s3_class(mod$contact, c("cff_pers_lst", "cff"), exact = TRUE)

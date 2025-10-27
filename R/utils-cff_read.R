@@ -22,9 +22,13 @@ get_desc_authors <- function(pkg, authors_roles = c("aut", "cre")) {
   # This extracts all the persons
   persons <- as.person(pkg$get_authors())
 
-  authors <- persons[vapply(persons, function(x, r = authors_roles) {
-    any(x$role %in% r)
-  }, logical(1))]
+  authors <- persons[vapply(
+    persons,
+    function(x, r = authors_roles) {
+      any(x$role %in% r)
+    },
+    logical(1)
+  )]
 
   get_all_authors <- as_cff_person(authors)
   get_all_authors <- unique(get_all_authors)
@@ -38,9 +42,13 @@ get_desc_contacts <- function(pkg) {
   persons <- as.person(pkg$get_authors())
 
   # Extract creators only
-  contact <- persons[vapply(persons, function(x) {
-    "cre" %in% x$role
-  }, logical(1))]
+  contact <- persons[vapply(
+    persons,
+    function(x) {
+      "cre" %in% x$role
+    },
+    logical(1)
+  )]
 
   get_all_contacts <- as_cff_person(contact)
   get_all_contacts <- unique(get_all_contacts)
@@ -71,12 +79,12 @@ get_desc_date_released <- function(pkg) {
   clean_dates <- unlist(clean_dates)[1]
 
   # Validate with format YYYY-MM-DD
-  date <- tryCatch(as.character(as.Date(clean_dates, format = "%Y-%m-%d")),
+  date <- tryCatch(
+    as.character(as.Date(clean_dates, format = "%Y-%m-%d")),
     error = function(cond) {
       return(NULL)
     }
   )
-
 
   date <- clean_str(date)
   date
@@ -100,13 +108,14 @@ get_desc_keywords <- function(pkg) {
   # Hack: The validator doesn't seem to recognize when keyword is
   # unique. I add a new keyword r-package
 
-  if (length(kword) == 1) kword <- unique(c(kword, "r-package"))
+  if (length(kword) == 1) {
+    kword <- unique(c(kword, "r-package"))
+  }
 
   # If still is 1 return NULL
   if (length(kword) == 1) {
     return(NULL)
   }
-
 
   kword
 }
@@ -160,7 +169,6 @@ get_desc_repository <- function(pkg) {
     return("https://bioconductor.org/")
   }
 
-
   # Repo is CRAN
   # Canonic url to CRAN
   if (is_substring(repo, "^CRAN$")) {
@@ -196,11 +204,9 @@ get_desc_urls <- function(pkg) {
   url <- pkg$get_urls()
 
   # Get issue url
-  issues <- tryCatch(pkg$get_field("BugReports")[1],
-    error = function(cond) {
-      return(pkg$get_urls())
-    }
-  )
+  issues <- tryCatch(pkg$get_field("BugReports")[1], error = function(cond) {
+    return(pkg$get_urls())
+  })
 
   # Clean if GitLab
   issues <- gsub("/-/issues$", "", issues)
@@ -211,20 +217,23 @@ get_desc_urls <- function(pkg) {
   allurls <- unique(c(issues, url))
   allurls <- allurls[is_url(allurls)]
 
-
   # If no urls then return as null
   if (length(allurls) == 0) {
     url_list <- list(url = NULL)
     return(url_list)
   }
   # Try to find an url of the repo
-  domains <- paste0(c(
-    "github.com", "www.github.com",
-    "gitlab.com",
-    "r-forge.r-project.org",
-    "bitbucket.org",
-    "codeberg.org"
-  ), collapse = "|")
+  domains <- paste0(
+    c(
+      "github.com",
+      "www.github.com",
+      "gitlab.com",
+      "r-forge.r-project.org",
+      "bitbucket.org",
+      "codeberg.org"
+    ),
+    collapse = "|"
+  )
 
   # Extract repo url
   repo_line <- grep(domains, allurls, ignore.case = TRUE)[1]
@@ -288,9 +297,11 @@ get_gh_topics <- function(x) {
 
   # Get topics from repo
   api_url <- paste0(
-    "https://api.github.com/repos", "/",
+    "https://api.github.com/repos",
+    "/",
     gsub(
-      "^http[a-z]://github.com/", "",
+      "^http[a-z]://github.com/",
+      "",
       x["repository-code"]
     )
   )
@@ -311,7 +322,8 @@ get_gh_topics <- function(x) {
 
   # Try with GHTOKEN
   res <- tryCatch(
-    download.file(api_url,
+    download.file(
+      api_url,
       tmpfile,
       quiet = TRUE,
       headers = c(Authorization = ghtoken)
@@ -328,10 +340,7 @@ get_gh_topics <- function(x) {
   if (isTRUE(res)) {
     # Regular call
     res <- tryCatch(
-      download.file(api_url,
-        tmpfile,
-        quiet = TRUE
-      ),
+      download.file(api_url, tmpfile, quiet = TRUE),
       warning = function(e) {
         return(TRUE)
       },

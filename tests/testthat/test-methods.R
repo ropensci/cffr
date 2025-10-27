@@ -13,12 +13,10 @@ test_that("as data frame complete", {
   allf <- unlist(the_cff, recursive = TRUE, use.names = FALSE)
   expect_identical(length(allf), ncol(the_df))
 
-
   expect_identical(ncol(the_df), length(unique(names(the_df))))
 
   # As vector
   df_as_v <- as.character(as.vector(the_df[1, ]))
-
 
   expect_identical(allf, df_as_v)
   expect_snapshot(names(the_df))
@@ -38,7 +36,6 @@ test_that("as data frame partial", {
   allf <- unlist(subcff, recursive = TRUE, use.names = FALSE)
   expect_identical(length(allf), ncol(the_df))
   expect_identical(ncol(the_df), length(unique(names(the_df))))
-
 
   # To df references only
   subcff <- the_cff$references[[1]]
@@ -68,12 +65,10 @@ test_that("Convert a citation only", {
   allf <- unlist(the_cff, recursive = TRUE, use.names = FALSE)
   expect_identical(length(allf), ncol(the_df))
 
-
   expect_identical(ncol(the_df), length(unique(names(the_df))))
 
   # As vector
   df_as_v <- as.character(as.vector(the_df[1, ]))
-
 
   expect_identical(allf, df_as_v)
   expect_snapshot(names(the_df))
@@ -102,7 +97,6 @@ test_that("Convert authors only", {
   # As vector
   df_as_v <- as.character(as.vector(the_df[1, ]))
 
-
   expect_identical(allf, df_as_v)
   expect_snapshot(names(the_df))
 })
@@ -126,7 +120,6 @@ test_that("Convert list of authors", {
 
   # As vector
   df_as_v <- as.character(as.vector(the_df[1, ]))
-
 
   expect_identical(allf, df_as_v)
   expect_snapshot(names(the_df))
@@ -229,18 +222,17 @@ test_that("head and tail", {
 test_that("toBibtex", {
   skip_on_cran()
 
-
   # Create several alternatives
-  descobj <- cff_read_description(system.file("examples/DESCRIPTION_basic",
+  descobj <- cff_read_description(system.file(
+    "examples/DESCRIPTION_basic",
     package = "cffr"
   ))
 
-  citobj <- cff_read_citation(system.file("examples/CITATION_basic",
+  citobj <- cff_read_citation(system.file(
+    "examples/CITATION_basic",
     package = "cffr"
   ))
-  newbib <- cff_read_bib(system.file("examples/example.bib",
-    package = "cffr"
-  ))
+  newbib <- cff_read_bib(system.file("examples/example.bib", package = "cffr"))
 
   full_cff <- merge_desc_cit(descobj, c(newbib, citobj))
   full_cff <- new_cff(full_cff)
@@ -260,7 +252,6 @@ test_that("toBibtex", {
   several <- toBibtex(full_cff$references)
   expect_s3_class(several, "Bibtex")
   expect_equal(sum(names(several) == "title"), 3)
-
 
   # One entry
   oneent <- toBibtex(full_cff$references[[1]])
@@ -283,7 +274,6 @@ test_that("toBibtex", {
   froml <- toBibtex(cff_read_bib_text(string))
   expect_equal(sum(names(froml) == "title"), 1)
 
-
   # Persons
 
   sev_auth <- as_cff_person(
@@ -291,8 +281,10 @@ test_that("toBibtex", {
   )
 
   comp <- c(
-    person("The Big Bopper"), person("Frank", "Sinatra"),
-    person("Dean", "Martin"), person("Sammy", "Davis, Jr.")
+    person("The Big Bopper"),
+    person("Frank", "Sinatra"),
+    person("Dean", "Martin"),
+    person("Sammy", "Davis, Jr.")
   )
 
   expect_length(sev_auth, 4)

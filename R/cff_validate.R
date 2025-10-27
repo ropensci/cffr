@@ -75,7 +75,6 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
     is_a <- "This {.cls cff}"
   }
 
-
   # Convert to list
   citfile <- as.list(x)
 
@@ -88,7 +87,6 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
   # Use local copy of the validator schema
   schema_local <- system.file("schema/schema.json", package = "cffr")
 
-
   # Validate
   result <- validate_schema(cit_temp, schema_local)
 
@@ -98,8 +96,12 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
 
     if (verbose) {
       cli::cat_rule("Validating cff", col = "cyan", line = 2)
-      ll <- paste0("* {.dt {.strong ", get_errors$field, "}}{.dl ",
-        get_errors$message, "}\n",
+      ll <- paste0(
+        "* {.dt {.strong ",
+        get_errors$field,
+        "}}{.dl ",
+        get_errors$message,
+        "}\n",
         collapse = ""
       )
       cli::cli_alert_danger(
@@ -125,10 +127,7 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
 #' @noRd
 validate_schema <- function(cit_temp, schema_temp) {
   x <- suppressMessages(
-    jsonvalidate::json_validate(cit_temp,
-      schema_temp,
-      verbose = TRUE
-    )
+    jsonvalidate::json_validate(cit_temp, schema_temp, verbose = TRUE)
   )
 
   x

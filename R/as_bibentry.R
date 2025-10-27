@@ -136,20 +136,23 @@ as_bibentry.default <- function(x, ...) {
 #' @export
 #' @rdname as_bibentry
 #' @order 3
-as_bibentry.character <- function(x, ...,
-                                  what = c("preferred", "references", "all")) {
+as_bibentry.character <- function(
+  x,
+  ...,
+  what = c("preferred", "references", "all")
+) {
   # A named list
   if (missing(x)) {
     dot_list <- list(...)
     return(as_bibentry(dot_list))
   }
 
-
   what <- match_cff_arg(
-    what, c("preferred", "references", "all"),
-    "what", environment()
+    what,
+    c("preferred", "references", "all"),
+    "what",
+    environment()
   )
-
 
   x <- x[1]
   src_detect <- detect_x_source(x)
@@ -209,11 +212,16 @@ as_bibentry.list <- function(x, ...) {
 #' @export
 #' @rdname as_bibentry
 #' @order 6
-as_bibentry.cff <- function(x, ...,
-                            what = c("preferred", "references", "all")) {
+as_bibentry.cff <- function(
+  x,
+  ...,
+  what = c("preferred", "references", "all")
+) {
   what <- match_cff_arg(
-    what, c("preferred", "references", "all"),
-    "what", environment()
+    what,
+    c("preferred", "references", "all"),
+    "what",
+    environment()
   )
 
   obj <- x
@@ -334,14 +342,12 @@ as_bibentry.cff_ref <- function(x, ...) {
   tobibentry$urldate <- x$`date-accessed`
   tobibentry$version <- x$version
 
-
   # BibTeX entry----
 
   tobibentry$bibtype <- guess_bibtype(x)
 
   # address----
   tobibentry$address <- get_bib_address(x)
-
 
   # booktitle /series ----
   # Map cff collection-title
@@ -357,7 +363,6 @@ as_bibentry.cff_ref <- function(x, ...) {
   # year ----
   tobibentry$year <- get_bib_year(x)
 
-
   # Handle anonymous author----
   # If anonymous coming from cff and not needed, then not use it
 
@@ -365,14 +370,20 @@ as_bibentry.cff_ref <- function(x, ...) {
 
   # If unknown remove from bib types that doesn't require it strictly
 
-
-  if (all(
-    is_anon,
-    tobibentry$bibtype %in% c(
-      "booklet", "manual", "book", "inbook",
-      "misc", "proceedings"
+  if (
+    all(
+      is_anon,
+      tobibentry$bibtype %in%
+        c(
+          "booklet",
+          "manual",
+          "book",
+          "inbook",
+          "misc",
+          "proceedings"
+        )
     )
-  )) {
+  ) {
     tobibentry$author <- NULL
   }
   # BibTeX key----
@@ -383,9 +394,25 @@ as_bibentry.cff_ref <- function(x, ...) {
   # based on default by
   # https://flamingtempura.github.io/bibtex-tidy/
   tosort <- c(
-    "title", "author", "year", "month", "day", "journal", "booktitle",
-    "publisher", "address", "editor", "series", "volume", "number", "pages",
-    "doi", "isbn", "issn", "url", "note"
+    "title",
+    "author",
+    "year",
+    "month",
+    "day",
+    "journal",
+    "booktitle",
+    "publisher",
+    "address",
+    "editor",
+    "series",
+    "volume",
+    "number",
+    "pages",
+    "doi",
+    "isbn",
+    "issn",
+    "url",
+    "note"
   )
 
   unique <- unique(c(tosort, names(tobibentry)))

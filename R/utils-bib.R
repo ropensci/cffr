@@ -89,10 +89,15 @@ get_bib_address <- function(x) {
   }
 
   address <- clean_str(
-    paste(c(
-      addr_search$address, addr_search$city, addr_search$region,
-      addr_search$country
-    ), collapse = ", ")
+    paste(
+      c(
+        addr_search$address,
+        addr_search$city,
+        addr_search$region,
+        addr_search$country
+      ),
+      collapse = ", "
+    )
   )
 
   # As a fallback, use also location
@@ -110,7 +115,6 @@ get_bib_booktitle <- function(x, bibtype) {
 
   book_series <- list()
   tag_value <- clean_str(x[["collection-title"]])
-
 
   if (!bibtype %in% c("incollection", "inproceedings")) {
     book_series$series <- tag_value
@@ -157,10 +161,8 @@ make_bibkey <- function(tobibentry) {
 
   y <- tobibentry$year
 
-
   # Init etall
   etall <- NULL
-
 
   # Also Some entries don't have authors, but editors
   # Others may have none (misc, pamphlet)
@@ -182,8 +184,9 @@ make_bibkey <- function(tobibentry) {
     # Bear in mind institutions has only given
 
     nauths <- length(init_aut)
-    if (nauths > 1) etall <- "_etall"
-
+    if (nauths > 1) {
+      etall <- "_etall"
+    }
 
     # Get info of first author
     unz <- unlist(init_aut[1])

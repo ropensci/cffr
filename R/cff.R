@@ -67,7 +67,9 @@ cff <- function(path, ...) {
       lifecycle::deprecate_warn("1.0.0", "cff(path)", "cff_read_cff_citation()")
       return(cff_read_cff_citation(path))
     } else {
-      lifecycle::deprecate_warn("1.0.0", "cff(path)",
+      lifecycle::deprecate_warn(
+        "1.0.0",
+        "cff(path)",
         details = "Argument ignored."
       )
     }
@@ -76,9 +78,7 @@ cff <- function(path, ...) {
   cffobj <- list(...)
   if (length(cffobj) == 0) {
     # If nothing is provided use a minimal cff
-    path <- system.file("examples/CITATION_skeleton.cff",
-      package = "cffr"
-    )
+    path <- system.file("examples/CITATION_skeleton.cff", package = "cffr")
 
     return(cff_read_cff_citation(path))
   }

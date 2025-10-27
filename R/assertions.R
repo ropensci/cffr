@@ -9,8 +9,11 @@ is_email <- function(email) {
   email <- trimws(as.character(email))
 
   # See CFF  validation schema
-  x <- grepl("^[\\S]+@[\\S]+\\.[\\S]{2,}$", email,
-    ignore.case = TRUE, perl = TRUE
+  x <- grepl(
+    "^[\\S]+@[\\S]+\\.[\\S]{2,}$",
+    email,
+    ignore.case = TRUE,
+    perl = TRUE
   )
   x
 }
@@ -63,10 +66,13 @@ is_cff_file <- function(x) {
 #' @param x object to be evaluated
 #' @noRd
 is_github <- function(x) {
-  res <- isTRUE(grep(
-    "^http[a-z]://github.com/",
-    x["repository-code"]
-  ) == 1)
+  res <- isTRUE(
+    grep(
+      "^http[a-z]://github.com/",
+      x["repository-code"]
+    ) ==
+      1
+  )
 
   return(res)
 }

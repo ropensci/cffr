@@ -1,6 +1,5 @@
 # nocov start
 
-
 # Detect repos onLoad
 .onLoad <- function(libname, pkgname) {
   avail_on_init <- as.data.frame(
@@ -8,7 +7,6 @@
       repos = detect_repos(),
     )
   )[, c("Package", "Repository")]
-
 
   assign("avail_on_init", avail_on_init, envir = parent.env(environment()))
 }

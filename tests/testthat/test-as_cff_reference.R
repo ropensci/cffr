@@ -1,7 +1,8 @@
 # Coerce citation from BibTeX ----
 
 test_that("Article", {
-  bib <- bibentry("Article",
+  bib <- bibentry(
+    "Article",
     key = "knuth:1984",
     author = person("R Core Team"),
     title = "Literate Programming",
@@ -18,9 +19,7 @@ test_that("Article", {
   bib_cff <- as_cff(bib)
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
@@ -34,7 +33,8 @@ test_that("Article", {
 
 
 test_that("Book", {
-  bib <- bibentry("Book",
+  bib <- bibentry(
+    "Book",
     key = "latex:companion",
     author = "Frank Mittelbach and Michel Gossens
             and Johannes Braams and David Carlisle
@@ -57,9 +57,7 @@ test_that("Book", {
   bib_cff <- as_cff(bib)
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
@@ -73,7 +71,8 @@ test_that("Book", {
 
 
 test_that("Booklet", {
-  bib <- bibentry("Booklet",
+  bib <- bibentry(
+    "Booklet",
     key = "Mustermann2016",
     title = "Java Booklet",
     # Optional
@@ -89,9 +88,7 @@ test_that("Booklet", {
   bib_cff <- as_cff(bib)
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
@@ -106,7 +103,8 @@ test_that("Booklet", {
 })
 
 test_that("Conference", {
-  bib <- bibentry("InProceedings",
+  bib <- bibentry(
+    "InProceedings",
     key = "inproceedings-full",
     author = "Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis",
     title = "On Notions of Information Transfer in {VLSI} Circuits",
@@ -140,9 +138,7 @@ test_that("Conference", {
 
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
@@ -156,7 +152,8 @@ test_that("Conference", {
 })
 
 test_that("InBook", {
-  bib <- bibentry("InBook",
+  bib <- bibentry(
+    "InBook",
     key = "1326",
     author = "A. King",
     editor = "E Tick and G Succi",
@@ -179,9 +176,7 @@ test_that("InBook", {
   bib_cff <- as_cff(bib)
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
   # Back to bibtex and check names
@@ -194,7 +189,8 @@ test_that("InBook", {
 })
 
 test_that("InCollection", {
-  bib <- bibentry("InCollection",
+  bib <- bibentry(
+    "InCollection",
     key = "Mihalcea:2006",
     author = "Rada Mihalcea",
     title = "Knowledge-Based Methods for {WSD}",
@@ -219,9 +215,7 @@ test_that("InCollection", {
   bib_cff <- as_cff(bib)
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
@@ -235,7 +229,8 @@ test_that("InCollection", {
 })
 
 test_that("InProceedings", {
-  bib <- bibentry("InProceedings",
+  bib <- bibentry(
+    "InProceedings",
     key = "inproceedings-full",
     author = "Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis",
     title = "On Notions of Information Transfer in {VLSI} Circuits",
@@ -260,9 +255,7 @@ test_that("InProceedings", {
   bib_cff <- as_cff(bib)
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
@@ -282,7 +275,8 @@ test_that("InProceedings", {
 })
 
 test_that("Manual", {
-  bib <- bibentry("Manual",
+  bib <- bibentry(
+    "Manual",
     title = "A Language and Environment for Statistical Computing",
     # Optional
     author = person("R Core Team"),
@@ -297,9 +291,7 @@ test_that("Manual", {
   bib_cff <- as_cff(bib)
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
@@ -313,7 +305,8 @@ test_that("Manual", {
 })
 
 test_that("MastersThesis", {
-  bib <- bibentry("MastersThesis",
+  bib <- bibentry(
+    "MastersThesis",
     key = "Master2006",
     author = "Eesa Alsolami",
     title = "An examination of keystroke dynamics
@@ -329,9 +322,7 @@ test_that("MastersThesis", {
   bib_cff <- as_cff(bib)
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
@@ -345,7 +336,8 @@ test_that("MastersThesis", {
 })
 
 test_that("Misc", {
-  bib <- bibentry("Misc",
+  bib <- bibentry(
+    "Misc",
     # Optional
     author = person("R Core Team"),
     title = "A Language and Environment for Statistical Computing",
@@ -358,9 +350,7 @@ test_that("Misc", {
   bib_cff <- as_cff(bib)
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
@@ -375,7 +365,8 @@ test_that("Misc", {
 
 
 test_that("PhdThesis", {
-  bib <- bibentry("PhdThesis",
+  bib <- bibentry(
+    "PhdThesis",
     author = "Eesa Alsolami",
     title = "An examination of keystroke dynamics
                 for continuous user authentication",
@@ -391,9 +382,7 @@ test_that("PhdThesis", {
   bib_cff <- as_cff(bib)
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
@@ -408,7 +397,8 @@ test_that("PhdThesis", {
 
 
 test_that("Proceedings", {
-  bib <- bibentry("Proceedings",
+  bib <- bibentry(
+    "Proceedings",
     title = "Proc. Fifteenth Annual STOC",
     year = "1983",
     # Optional
@@ -426,9 +416,7 @@ test_that("Proceedings", {
   bib_cff <- as_cff(bib)
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
@@ -442,7 +430,8 @@ test_that("Proceedings", {
 })
 
 test_that("TechReport", {
-  bib <- bibentry("TechReport",
+  bib <- bibentry(
+    "TechReport",
     author = "Matthew C. Jadud and Sally A. Fincher",
     title = "Naive tools for studying compilation histories",
     institution = "University of Kent Canterbury",
@@ -461,9 +450,7 @@ test_that("TechReport", {
   bib_cff <- as_cff(bib)
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
@@ -477,7 +464,8 @@ test_that("TechReport", {
 })
 
 test_that("Unpublished", {
-  bib <- bibentry("Unpublished",
+  bib <- bibentry(
+    "Unpublished",
     author = "D. Kaplan",
     title = "Demonstratives",
     note = "Unpublished manuscript, UCLA",
@@ -489,9 +477,7 @@ test_that("Unpublished", {
   bib_cff <- as_cff(bib)
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
@@ -510,7 +496,8 @@ test_that("Unpublished", {
 })
 
 test_that("InBook with booktitle", {
-  bib <- bibentry("InBook",
+  bib <- bibentry(
+    "InBook",
     title = "Bibliographies and citations",
     year = "2020",
     author = "Yihui Xie and Christophe Dervieux and Emily Riederer",
@@ -526,9 +513,7 @@ test_that("InBook with booktitle", {
   bib_cff <- as_cff(bib)
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
@@ -547,11 +532,15 @@ test_that("InBook with booktitle", {
 })
 
 test_that("Test entry without author", {
-  bib <- bibentry("Proceedings",
+  bib <- bibentry(
+    "Proceedings",
     editor = "Yolande Berbers and Willy Zwaenepoel",
     title = "Proceedings of the 6th European Conference on Computer Systems",
-    booktitle = paste("Proceedings of the 6th European", "
-                      Conference on Computer Systems"),
+    booktitle = paste(
+      "Proceedings of the 6th European",
+      "
+                      Conference on Computer Systems"
+    ),
     publisher = "ACM",
     venue = "Leuven, Belgium",
     month = "apr",
@@ -568,16 +557,15 @@ test_that("Test entry without author", {
 
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 
 test_that("Test entry without author but has a key", {
-  bib <- bibentry("Misc",
+  bib <- bibentry(
+    "Misc",
     key = "I am the key",
     title = "Proceedings of the 6th European Conference on Computer Systems",
     booktitle = paste(
@@ -598,22 +586,23 @@ test_that("Test entry without author but has a key", {
     "anonymous"
   )
 
-
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 
 test_that("Test entry without author and key", {
-  bib <- bibentry("Misc",
+  bib <- bibentry(
+    "Misc",
     title = "Proceedings of the 6th European Conference on Computer Systems",
-    booktitle = paste("Proceedings of the 6th European", "
-                      Conference on Computer Systems"),
+    booktitle = paste(
+      "Proceedings of the 6th European",
+      "
+                      Conference on Computer Systems"
+    ),
     publisher = "ACM",
     venue = "Leuven, Belgium",
     month = "apr",
@@ -628,12 +617,9 @@ test_that("Test entry without author and key", {
     "anonymous"
   )
 
-
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
@@ -651,9 +637,7 @@ test_that("Skip misc without title", {
 
   expect_null(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_snapshot(cffobj)
 
@@ -664,8 +648,10 @@ test_that("Skip misc without title", {
 test_that("Skip misc without title, not skipping the good one", {
   bib <- c(
     bibentry(
-      bibtype = "misc", author = c(person("SHERPA/RoMEO")),
-      url = "http://www.sherpa.ac.uk/romeo/", year = 2018
+      bibtype = "misc",
+      author = c(person("SHERPA/RoMEO")),
+      url = "http://www.sherpa.ac.uk/romeo/",
+      year = 2018
     ),
     bibentry(
       bibtype = "misc",
@@ -677,16 +663,13 @@ test_that("Skip misc without title, not skipping the good one", {
     )
   )
 
-
   expect_message(bib_cff <- as_cff(bib), "SHERPA/RoMEO")
 
   expect_length(bib_cff, 1)
 
   expect_s3_class(bib_cff[[1]], "cff")
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_snapshot(cffobj)
 
@@ -700,7 +683,8 @@ test_that("Skip misc without title, not skipping the good one", {
 
 
 test_that("Check extended BibLatex Fields", {
-  bib <- bibentry("Article",
+  bib <- bibentry(
+    "Article",
     author = "M. A. Kastenholz, and Philippe H. Hünenbergerb",
     title = "Computation of methodology hyphen independent ionic solvation
                   free energies from molecular simulations",
@@ -728,15 +712,14 @@ test_that("Check extended BibLatex Fields", {
   bib_cff <- as_cff(bib)
   expect_snapshot(bib_cff)
 
-  cffobj <- cff_create(cff(),
-    keys = list(references = bib_cff)
-  )
+  cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 test_that("Duplicate entries", {
-  bib <- bibentry("InBook",
+  bib <- bibentry(
+    "InBook",
     title = "Bibliographies and citations",
     year = "2020",
     author = "Yihui Xie and Christophe Dervieux and Emily Riederer",
@@ -775,9 +758,7 @@ test_that("Identifiers and dois", {
   checf <- sin[names(sin) %in% c("url", "doi", "identifiers")]
   expect_snapshot(as_cff(checf))
 
-
   cffobj <- cff_modify(cff(), references = bib_cff)
-
 
   expect_snapshot(cffobj)
   expect_true(cff_validate(cffobj, verbose = FALSE))

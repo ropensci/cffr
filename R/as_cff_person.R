@@ -171,7 +171,9 @@ as_cff_person <- function(x, ...) {
 #' @order 2
 as_cff_person.default <- function(x, ...) {
   # Check if this is protected
-  if (!inherits(x, "Bibtex")) x <- clean_str(x)
+  if (!inherits(x, "Bibtex")) {
+    x <- clean_str(x)
+  }
   if (is.null(x)) {
     return(NULL)
   }
@@ -205,7 +207,6 @@ as_cff_person.character <- function(x, ...) {
     test_x <- clean_str(x)
   }
 
-
   if (is.null(test_x)) {
     return(NULL)
   }
@@ -237,10 +238,12 @@ create_person_from_r <- function(person) {
   }
 
   # Special case for R Core Team
-  if (all(
-    is_substring(clean_str(person$given), "R Core"),
-    is_substring(person$family, "Team")
-  )) {
+  if (
+    all(
+      is_substring(clean_str(person$given), "R Core"),
+      is_substring(person$family, "Team")
+    )
+  ) {
     person <- person(
       given = paste(
         clean_str(person$given),
@@ -290,8 +293,10 @@ create_person_from_txt <- function(as_bib_text) {
   # but we protect this if inside brackets
   comments_pattern <- "<|>|\\(|\\)|\\[|\\]"
 
-  protected <- gsub(paste0("(", comments_pattern, ")(?![^\\}]*(\\{|$))"),
-    "0", as_bib_text,
+  protected <- gsub(
+    paste0("(", comments_pattern, ")(?![^\\}]*(\\{|$))"),
+    "0",
+    as_bib_text,
     perl = TRUE
   )
 
@@ -301,7 +306,8 @@ create_person_from_txt <- function(as_bib_text) {
     # has comments
     person_only <- trimws(substr(as_bib_text, 1, start_comment - 1))
     comment_only <- trimws(substr(
-      as_bib_text, start_comment,
+      as_bib_text,
+      start_comment,
       nchar(as_bib_text)
     ))
 
@@ -327,7 +333,6 @@ create_person_from_txt <- function(as_bib_text) {
     person_only <- protect_bib_braces(person_only)
   }
 
-
   # Now extract structure for person_only string
   # It may be one of:
   # A. Given von Family
@@ -335,10 +340,7 @@ create_person_from_txt <- function(as_bib_text) {
   # C. von Family, Junior, Given
 
   # Protect commas on brackets to avoid error counting
-  protected <- gsub(",(?![^\\}]*(\\{|$))", "@comma@",
-    person_only,
-    perl = TRUE
-  )
+  protected <- gsub(",(?![^\\}]*(\\{|$))", "@comma@", person_only, perl = TRUE)
 
   commas <- as.character(
     lengths(regmatches(protected, gregexpr(",", protected)))

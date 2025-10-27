@@ -23,7 +23,6 @@ test_that("cff_read citation.cff", {
 test_that("cff_read DESCRIPTION", {
   expect_snapshot(cff_read_description("a"), error = TRUE)
 
-
   f <- system.file("examples/DESCRIPTION_no_URL", package = "cffr")
 
   f1 <- cff_read(f, gh_keywords = FALSE)
@@ -34,10 +33,11 @@ test_that("cff_read DESCRIPTION", {
   f2 <- cff_read_description(f, gh_keywords = FALSE)
   expect_identical(f1, f2)
 
-
   # Use other params
-  f1_1 <- cff_read(f,
-    gh_keywords = FALSE, cff_version = 3000,
+  f1_1 <- cff_read(
+    f,
+    gh_keywords = FALSE,
+    cff_version = 3000,
     authors_roles = c("aut", "cre", "ctb")
   )
 
@@ -45,8 +45,10 @@ test_that("cff_read DESCRIPTION", {
 
   expect_gt(length(f1_1$authors), length(f1$authors))
 
-  f2_1 <- cff_read_description(f,
-    gh_keywords = FALSE, cff_version = 3000,
+  f2_1 <- cff_read_description(
+    f,
+    gh_keywords = FALSE,
+    cff_version = 3000,
     authors_roles = c("aut", "cre", "ctb")
   )
 
@@ -54,7 +56,8 @@ test_that("cff_read DESCRIPTION", {
 
   skip_on_cran()
   # With gh keywords
-  f <- system.file("examples/DESCRIPTION_posit_package_manager",
+  f <- system.file(
+    "examples/DESCRIPTION_posit_package_manager",
     package = "cffr"
   )
   fno <- cff_read_description(f, gh_keywords = FALSE)
@@ -62,7 +65,6 @@ test_that("cff_read DESCRIPTION", {
 
   # In some instances keywords are not retrieved
   skip_if(is.null(f2$keywords), "keywords not gathered")
-
 
   expect_false(is.null(f2$keywords))
   expect_gt(length(f2$keywords), length(fno$keywords))
@@ -74,7 +76,6 @@ test_that("cff_read bib", {
 
   expect_snapshot(cff_read_bib("a"), error = TRUE)
 
-
   f <- system.file("REFERENCES.bib", package = "cffr")
 
   f1 <- cff_read(f)
@@ -84,7 +85,6 @@ test_that("cff_read bib", {
   # Specific
   f2 <- cff_read_bib(f)
   expect_identical(f1, f2)
-
 
   # With encodings
 
@@ -102,7 +102,6 @@ test_that("cff_read bib", {
 
 test_that("cff_read citation messages", {
   expect_snapshot(cff_read_citation("a"), error = TRUE)
-
 
   f <- system.file("examples/CITATION_basic", package = "cffr")
   my_meta <- packageDescription("testthat")
@@ -217,11 +216,8 @@ test_that("Corrupt CITATION", {
   )
   expect_null(anull)
 
-
   # Internal
-  desc_path <- system.file("examples/DESCRIPTION_basic",
-    package = "cffr"
-  )
+  desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
   expect_silent(anull <- cff_safe_read_citation(desc_path = desc_path, tmp))
 
   expect_null(anull)
@@ -229,7 +225,8 @@ test_that("Corrupt CITATION", {
 
 test_that("Creating cff from packages encoded in latin1", {
   # Surveillance package
-  desc_path <- system.file("examples/DESCRIPTION_surveillance",
+  desc_path <- system.file(
+    "examples/DESCRIPTION_surveillance",
     package = "cffr"
   )
   cit_path <- system.file("examples/CITATION_surveillance", package = "cffr")
@@ -243,9 +240,12 @@ test_that("Creating cff from packages encoded in latin1", {
   expect_false("latin1" %in% Encoding(unlist(bib)))
 
   # Create cff
-  cffobj <- cff_create(desc_path, keys = list(
-    references = bib
-  ))
+  cffobj <- cff_create(
+    desc_path,
+    keys = list(
+      references = bib
+    )
+  )
 
   expect_s3_class(cffobj, "cff")
   expect_snapshot(cffobj)

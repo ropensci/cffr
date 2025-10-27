@@ -61,8 +61,14 @@
 #' cff_write_bib(bib, file = my_temp_bib, ascii = TRUE, append = TRUE)
 #'
 #' cat(readLines(my_temp_bib), sep = "\n")
-cff_write_bib <- function(x, file = tempfile(fileext = ".bib"), append = FALSE,
-                          verbose = TRUE, ascii = FALSE, ...) {
+cff_write_bib <- function(
+  x,
+  file = tempfile(fileext = ".bib"),
+  append = FALSE,
+  verbose = TRUE,
+  ascii = FALSE,
+  ...
+) {
   if (inherits(x, "cff")) {
     x <- as_bibentry(x, ...)
   }
@@ -86,7 +92,9 @@ cff_write_bib <- function(x, file = tempfile(fileext = ".bib"), append = FALSE,
     btex <- enc2utf8(btex)
   }
 
-  if (detect_x_source(file) != "bib") file <- paste0(file, ".bib")
+  if (detect_x_source(file) != "bib") {
+    file <- paste0(file, ".bib")
+  }
   write_lines_msg(btex, file, verbose, append)
   return(invisible(NULL))
 }
@@ -110,8 +118,13 @@ cff_write_bib <- function(x, file = tempfile(fileext = ".bib"), append = FALSE,
 #' meta$Encoding <- "UTF-8"
 #'
 #' utils::readCitationFile(out, meta)
-cff_write_citation <- function(x, file = tempfile("CITATION_"),
-                               append = FALSE, verbose = TRUE, ...) {
+cff_write_citation <- function(
+  x,
+  file = tempfile("CITATION_"),
+  append = FALSE,
+  verbose = TRUE,
+  ...
+) {
   if (inherits(x, "cff")) {
     x <- as_bibentry(x, ...)
   }

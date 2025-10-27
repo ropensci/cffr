@@ -77,8 +77,9 @@ make_cff_reference <- function(bib) {
   cit_list$doi <- bb_doi$doi
 
   ### identifiers ----
-  if (!is.null(bb_doi$identifiers)) cit_list$identifiers <- bb_doi$identifiers
-
+  if (!is.null(bb_doi$identifiers)) {
+    cit_list$identifiers <- bb_doi$identifiers
+  }
 
   ## url----
   bb_url <- get_bibtex_url(cit_list)
@@ -98,7 +99,6 @@ make_cff_reference <- function(bib) {
 
   ## Handle location ----
   cit_list <- add_address(cit_list)
-
 
   # Last step----
 

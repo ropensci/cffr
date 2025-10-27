@@ -29,10 +29,18 @@ make_r_person <- function(x) {
   role <- clean_str(x$role)
 
   # Make comments
-  x_comments <- x[!names(x) %in% c(
-    "family-names", "given-names", "name",
-    "name-particle", "name-suffix", "email", "role"
-  )]
+  x_comments <- x[
+    !names(x) %in%
+      c(
+        "family-names",
+        "given-names",
+        "name",
+        "name-particle",
+        "name-suffix",
+        "email",
+        "role"
+      )
+  ]
 
   x_comments <- lapply(x_comments, clean_str)
   x_comments <- unlist(x_comments, use.names = TRUE)
@@ -50,7 +58,6 @@ make_r_person <- function(x) {
     email = clean_str(x$email),
     comment = x_comments
   )
-
 
   do.call(person, pers_lst)
 }

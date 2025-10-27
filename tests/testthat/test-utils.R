@@ -15,7 +15,6 @@ test_that("Try cleaning string", {
     c("a b")
   )
 
-
   expect_null(clean_str(NA))
   expect_null(clean_str(NULL))
   expect_null(clean_str(""))

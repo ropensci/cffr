@@ -20,11 +20,14 @@
 #' # bibentry object
 #' bib <- as_bibentry(cff_object)
 #' }
-cff_extract_to_bibtex <- function(x,
-                                  what = c("preferred", "references", "all")) {
+cff_extract_to_bibtex <- function(
+  x,
+  what = c("preferred", "references", "all")
+) {
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_warn(
-      "0.5.0", "cff_extract_to_bibtex()",
+      "0.5.0",
+      "cff_extract_to_bibtex()",
       details = "Function renamed, use `as_bibentry()` instead."
     )
   }
@@ -34,11 +37,11 @@ cff_extract_to_bibtex <- function(x,
 #' @rdname deprecated_cff_to_bib
 #' @export
 #' @keywords internal
-cff_to_bibtex <- function(x,
-                          what = c("preferred", "references", "all")) {
+cff_to_bibtex <- function(x, what = c("preferred", "references", "all")) {
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_warn(
-      "1.0.0", "cff_extract_to_bibtex()",
+      "1.0.0",
+      "cff_extract_to_bibtex()",
       details = "Function renamed, use `as_bibentry()` instead."
     )
   }
@@ -104,7 +107,9 @@ cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
   if (length(x) == 1 && file_exist_abort(x)) {
     if (requireNamespace("lifecycle", quietly = TRUE)) {
       lifecycle::deprecate_warn(
-        "1.0.0", "cff_from_bibtex()", "cff_read_bib()"
+        "1.0.0",
+        "cff_from_bibtex()",
+        "cff_read_bib()"
       )
     }
 
@@ -114,7 +119,9 @@ cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
 
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_warn(
-      "1.0.0", "cff_from_bibtex()", "cff_read_bib_text()"
+      "1.0.0",
+      "cff_from_bibtex()",
+      "cff_read_bib_text()"
     )
   }
   cff_read_bib_text(x, encoding = encoding, ...)
@@ -156,14 +163,18 @@ cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
 #' cff_write_bib(bib, file = my_temp_bib, ascii = TRUE, append = TRUE)
 #'
 #' cat(readLines(my_temp_bib), sep = "\n")
-write_bib <- function(x,
-                      file = tempfile(),
-                      append = FALSE,
-                      verbose = TRUE,
-                      ascii = FALSE) {
+write_bib <- function(
+  x,
+  file = tempfile(),
+  append = FALSE,
+  verbose = TRUE,
+  ascii = FALSE
+) {
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_warn(
-      "1.0.0", "write_bib()", "cff_write_bib()"
+      "1.0.0",
+      "write_bib()",
+      "cff_write_bib()"
     )
   }
 
@@ -172,14 +183,18 @@ write_bib <- function(x,
 
 #' @rdname deprecated_write
 #' @export
-write_citation <- function(x,
-                           file = "./inst/CITATION",
-                           append = FALSE,
-                           verbose = TRUE,
-                           ...) {
+write_citation <- function(
+  x,
+  file = "./inst/CITATION",
+  append = FALSE,
+  verbose = TRUE,
+  ...
+) {
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_warn(
-      "1.0.0", "write_citation()", "cff_write_citation()"
+      "1.0.0",
+      "write_citation()",
+      "cff_write_citation()"
     )
   }
   cff_write_citation(x, file, append, verbose, ...)
@@ -246,7 +261,9 @@ write_citation <- function(x,
 cff_parse_person <- function(person) {
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_warn(
-      "1.0.0", "cff_parse_person()", "as_cff_person()"
+      "1.0.0",
+      "cff_parse_person()",
+      "as_cff_person()"
     )
   }
   as_cff_person(person)
@@ -258,7 +275,9 @@ cff_parse_person <- function(person) {
 cff_parse_person_bibtex <- function(person) {
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_warn(
-      "1.0.0", "cff_parse_person_bibtex()", "as_cff_person()"
+      "1.0.0",
+      "cff_parse_person_bibtex()",
+      "as_cff_person()"
     )
   }
   as_cff_person(person)
@@ -293,7 +312,9 @@ cff_parse_person_bibtex <- function(person) {
 cff_parse_citation <- function(bib) {
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_warn(
-      "1.0.0", "cff_parse_citation()", "as_cff.bibentry()"
+      "1.0.0",
+      "cff_parse_citation()",
+      "as_cff.bibentry()"
     )
   }
   as_cff(bib)

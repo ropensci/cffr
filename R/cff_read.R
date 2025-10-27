@@ -149,19 +149,23 @@ cff_read_cff_citation <- function(path, ...) {
 
 #' @export
 #' @rdname cff_read
-cff_read_description <- function(path, cff_version = "1.2.0",
-                                 gh_keywords = TRUE,
-                                 authors_roles = c("aut", "cre"), ...) {
+cff_read_description <- function(
+  path,
+  cff_version = "1.2.0",
+  gh_keywords = TRUE,
+  authors_roles = c("aut", "cre"),
+  ...
+) {
   file_exist_abort(path, abort = TRUE)
 
   pkg <- desc::desc(path)
   pkg$coerce_authors_at_r()
 
   msg <- paste0(
-    'To cite package "', pkg$get("Package"),
+    'To cite package "',
+    pkg$get("Package"),
     '" in publications use:'
   )
-
 
   field_list <- list(
     "cff-version" = cff_version,
@@ -223,7 +227,8 @@ cff_read_citation <- function(path, meta = NULL, ...) {
       )
     )
     new_meta <- packageDescription("base")
-    the_cit <- try(utils::readCitationFile(path, meta = new_meta),
+    the_cit <- try(
+      utils::readCitationFile(path, meta = new_meta),
       silent = TRUE
     )
     # nocov start
@@ -259,7 +264,6 @@ cff_read_bib <- function(path, encoding = "UTF-8", ...) {
   # Read from tempfile
   read_bib <- bibtex::read.bib(file = path, encoding = encoding, ...)
 
-
   tocff <- as_cff(read_bib)
   tocff
 }
@@ -274,7 +278,6 @@ cff_safe_read_citation <- function(desc_path, cit_path) {
   # Create meta
   meta <- desc_to_meta(desc_path)
   meta <- clean_package_meta(meta)
-
 
   the_cit <- try(utils::readCitationFile(cit_path, meta = meta), silent = TRUE)
   # Try

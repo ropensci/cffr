@@ -94,8 +94,13 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
 #' @export
 #' @rdname cff_class
 #' @usage NULL
-as.data.frame.cff_pers_lst <- function(x, row.names = NULL, optional = FALSE,
-                                       ..., prefix = "person") {
+as.data.frame.cff_pers_lst <- function(
+  x,
+  row.names = NULL,
+  optional = FALSE,
+  ...,
+  prefix = "person"
+) {
   # For better dispatching
   x <- as_cff(as.list(x))
 
@@ -117,8 +122,13 @@ as.data.frame.cff_pers_lst <- function(x, row.names = NULL, optional = FALSE,
 #' @export
 #' @rdname cff_class
 #' @usage NULL
-as.data.frame.cff_pers <- function(x, row.names = NULL, optional = FALSE,
-                                   ..., prefix = NULL) {
+as.data.frame.cff_pers <- function(
+  x,
+  row.names = NULL,
+  optional = FALSE,
+  ...,
+  prefix = NULL
+) {
   # For better dispatching
   x <- as_cff(as.list(x))
 
@@ -128,7 +138,9 @@ as.data.frame.cff_pers <- function(x, row.names = NULL, optional = FALSE,
   amat <- matrix(vals, nrow = 1, ncol = length(vals))
   m <- as.data.frame(amat)
 
-  if (!is.null(clean_str(prefix))) nm <- paste0(prefix, ".", nm)
+  if (!is.null(clean_str(prefix))) {
+    nm <- paste0(prefix, ".", nm)
+  }
 
   names(m) <- nm
   m
@@ -140,8 +152,13 @@ as.data.frame.cff_pers <- function(x, row.names = NULL, optional = FALSE,
 #' @export
 #' @rdname cff_class
 #' @usage NULL
-as.data.frame.cff_ref_lst <- function(x, row.names = NULL, optional = FALSE,
-                                      ..., prefix = "references") {
+as.data.frame.cff_ref_lst <- function(
+  x,
+  row.names = NULL,
+  optional = FALSE,
+  ...,
+  prefix = "references"
+) {
   # For better dispatching
   x <- as_cff(as.list(x))
 
@@ -151,9 +168,12 @@ as.data.frame.cff_ref_lst <- function(x, row.names = NULL, optional = FALSE,
   df_l <- lapply(key_len, function(y) {
     prefix <- paste0(prefix, ".", sprintf("%02d", y - 1))
     el <- x[[y]]
-    df <- as.data.frame(el,
-      row.names = row.names, optional = optional,
-      ..., prefix = prefix
+    df <- as.data.frame(
+      el,
+      row.names = row.names,
+      optional = optional,
+      ...,
+      prefix = prefix
     )
     df
   })
@@ -167,8 +187,13 @@ as.data.frame.cff_ref_lst <- function(x, row.names = NULL, optional = FALSE,
 #' @export
 #' @rdname cff_class
 #' @usage NULL
-as.data.frame.cff_ref <- function(x, row.names = NULL, optional = FALSE,
-                                  ..., prefix = NULL) {
+as.data.frame.cff_ref <- function(
+  x,
+  row.names = NULL,
+  optional = FALSE,
+  ...,
+  prefix = NULL
+) {
   # For better dispatching
   # cff_ref is similar to cff, so we add only cff class
   x <- as_cff(as.list(x))
@@ -203,13 +228,15 @@ tail.cff <- function(x, n = 6L, ...) {
 #' @rdname cff_class
 #' @usage NULL
 as.list.cff <- function(x, ...) {
-  xl <- rapply(x, function(x) {
-    if (is.list(x) || length(x) > 1) {
+  xl <- rapply(
+    x,
+    function(x) {
+      if (is.list(x) || length(x) > 1) {
+        return(unclass(x))
+      }
       return(unclass(x))
-    }
-    return(unclass(x))
-  },
-  how = "list"
+    },
+    how = "list"
   )
 
   as.list(xl)
@@ -218,8 +245,11 @@ as.list.cff <- function(x, ...) {
 #' @export
 #' @rdname cff_class
 #' @usage NULL
-toBibtex.cff <- function(object, ...,
-                         what = c("preferred", "references", "all")) {
+toBibtex.cff <- function(
+  object,
+  ...,
+  what = c("preferred", "references", "all")
+) {
   toBibtex(as_bibentry(object, what = what), ...)
 }
 

@@ -17,12 +17,17 @@ for (i in seq_len(nrow(installed))) {
   pkg <- installed[i, ]$Package
   # Display some advances
   message(
-    "Testing ", i, "/", nrow(installed),
-    " (", sprintf("%05.02f", i / nrow(installed) * 100), "%) [",
-    installed[i, ]$Package, "]"
+    "Testing ",
+    i,
+    "/",
+    nrow(installed),
+    " (",
+    sprintf("%05.02f", i / nrow(installed) * 100),
+    "%) [",
+    installed[i, ]$Package,
+    "]"
   )
   cit_path <- file.path(find.package(installed[i, ]$Package), "CITATION")
-
 
   if (file.exists(cit_path)) {
     withcit <- c(withcit, TRUE)
@@ -38,7 +43,9 @@ for (i in seq_len(nrow(installed))) {
 
   if (inherits(cffobj, "cff")) {
     s <- try(cff_validate(cffobj, verbose = FALSE), silent = TRUE)
-    if (!is.logical(s)) s <- FALSE
+    if (!is.logical(s)) {
+      s <- FALSE
+    }
 
     res <- c(res, s)
     note <- c(note, "")
@@ -75,15 +82,18 @@ errother_df <- installed[installed$Package %in% errother, c(1, 2)]
 
 
 write("\n## High level summary", outmd, append = TRUE)
-write(paste0("\n- I checked ", nrow(installed), " packages"),
+write(
+  paste0("\n- I checked ", nrow(installed), " packages"),
   outmd,
   append = TRUE
 )
-write(paste0("- Invalid cff in ", length(errcff), " packages"),
+write(
+  paste0("- Invalid cff in ", length(errcff), " packages"),
   outmd,
   append = TRUE
 )
-write(paste0("- I failed to generate cff in ", length(errother), " packages"),
+write(
+  paste0("- I failed to generate cff in ", length(errother), " packages"),
   outmd,
   append = TRUE
 )
@@ -97,27 +107,27 @@ if (nrow(errors) == 0) {
 } else {
   write("\nPackages with errors:", outmd, append = TRUE)
   conn <- file(outmd, "a")
-  capture.output(knitr::kable(errors, row.names = FALSE),
-    file = conn
-  )
+  capture.output(knitr::kable(errors, row.names = FALSE), file = conn)
   close(conn)
-
 
   if (length(errother) > 0) {
     pk <- paste0(errother, collapse = ", ")
     line <- paste0("\n## Packages with errors not coming from cff")
     write(line, outmd, append = TRUE)
     conn <- file(outmd, "a")
-    capture.output(knitr::kable(errother_df, row.names = FALSE),
-      file = conn
-    )
+    capture.output(knitr::kable(errother_df, row.names = FALSE), file = conn)
     close(conn)
   }
 
   if (length(errcff) > 0) {
     write("\n## cff errors reported", outmd, append = TRUE)
     # Prepare links
-    cfflist <- paste0("- [", errcff, "](#", tolower(errcff), ")",
+    cfflist <- paste0(
+      "- [",
+      errcff,
+      "](#",
+      tolower(errcff),
+      ")",
       collapse = "\n"
     )
     write(cfflist, outmd, append = TRUE)
@@ -133,7 +143,6 @@ if (nrow(errors) == 0) {
       close(conn)
       write("```\n", outmd, append = TRUE)
       write("</details>", outmd, append = TRUE)
-
 
       write("\n#### Validation results", outmd, append = TRUE)
 

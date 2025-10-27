@@ -20,7 +20,8 @@ test_that("Coerce one person", {
 
 test_that("Coerce several persons", {
   p <- c(
-    person("one", "person"), person("another", "human"),
+    person("one", "person"),
+    person("another", "human"),
     person("and one", "more")
   )
   expect_snapshot(as_cff_person(p))
@@ -87,7 +88,8 @@ test_that("R Core Team", {
 
 test_that("Bioconductor", {
   # Several tastes of Bioconductor
-  bio <- person("Bioconductor Package Maintainer",
+  bio <- person(
+    "Bioconductor Package Maintainer",
     role = "cre",
     email = "maintainer@bioconductor.org"
   )
@@ -141,10 +143,13 @@ test_that("No valid emails", {
 
   p <- as_cff_person(pp)
 
-  expect_equal(p, as_cff_person(person(
-    given = "John",
-    family = "Doe"
-  )))
+  expect_equal(
+    p,
+    as_cff_person(person(
+      given = "John",
+      family = "Doe"
+    ))
+  )
 
   pp2 <- person(
     given = "John",
@@ -153,10 +158,13 @@ test_that("No valid emails", {
 
   p2 <- as_cff_person(pp2)
 
-  expect_equal(p, as_cff_person(person(
-    given = "John",
-    family = "Doe"
-  )))
+  expect_equal(
+    p,
+    as_cff_person(person(
+      given = "John",
+      family = "Doe"
+    ))
+  )
 })
 
 test_that("Can extract comments from format", {

@@ -22,15 +22,14 @@ merge_desc_cit <- function(cffobj, citobj) {
   }
 
   citobj <- as.list(citobj)
-  cffobjend <- c(cffobj,
+  cffobjend <- c(
+    cffobj,
     "preferred-citation" = citobj[1],
     references = list(citobj[-1])
   )
 
-
   # Merge identifiers
   merged_ids <- c(citobj[[1]]$identifiers, cffobjend$identifiers)
-
 
   if (has_cran_doi) {
     cranid <- as_cff(list(
@@ -94,10 +93,12 @@ enhance_pref_authors <- function(cffobjend) {
 }
 
 
-get_dependencies <- function(desc_path,
-                             instpack = as.character(
-                               installed.packages()[, "Package"]
-                             )) {
+get_dependencies <- function(
+  desc_path,
+  instpack = as.character(
+    installed.packages()[, "Package"]
+  )
+) {
   # nocov start
   if (!is.character(desc_path)) {
     return(NULL)
@@ -121,13 +122,16 @@ get_dependencies <- function(desc_path,
   # Dedupe rows
   deps <- unique(deps[, c("package", "version_clean")])
 
-
   # Get dependency type and add to scope
-  scope <- vapply(deps$package, function(x) {
-    y <- origdeps[origdeps$package == x, "type"]
+  scope <- vapply(
+    deps$package,
+    function(x) {
+      y <- origdeps[origdeps$package == x, "type"]
 
-    y[1]
-  }, FUN.VALUE = character(1))
+      y[1]
+    },
+    FUN.VALUE = character(1)
+  )
   deps$scope <- scope
 
   av_deps <- deps[deps$package %in% c("R", instpack), ]
@@ -140,7 +144,8 @@ get_dependencies <- function(desc_path,
       mod <- as_cff(citation())[[1]]
       mod$year <- format(Sys.Date(), "%Y")
     } else {
-      mod <- try(as_cff(citation(n$package, auto = TRUE)[1])[[1]],
+      mod <- try(
+        as_cff(citation(n$package, auto = TRUE)[1])[[1]],
         silent = TRUE
       )
 
@@ -166,10 +171,7 @@ get_dependencies <- function(desc_path,
     }
 
     mod$type <- "software"
-    mod$version <- ifelse(is.na(n$version_clean),
-      NULL,
-      paste(n$version_clean)
-    )
+    mod$version <- ifelse(is.na(n$version_clean), NULL, paste(n$version_clean))
     # Get url and repo from package DESCRIPTION
     # urls from citation() vary due to auto = TRUE
     dfile <- system.file("DESCRIPTION", package = n$package)
@@ -197,10 +199,17 @@ get_dependencies <- function(desc_path,
     # Re-arrange
     mod <- c(
       mod[c("type", "title", "abstract", "notes", "url", "repository")],
-      mod[!names(mod) %in% c(
-        "type", "title", "abstract", "notes",
-        "url", "repository"
-      )]
+      mod[
+        !names(mod) %in%
+          c(
+            "type",
+            "title",
+            "abstract",
+            "notes",
+            "url",
+            "repository"
+          )
+      ]
     )
 
     mod <- as_cff(mod)

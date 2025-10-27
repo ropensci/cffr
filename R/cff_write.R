@@ -68,19 +68,32 @@
 #' adds the pattern `"^CITATION\.cff$"` to your `.Rbuildignore` file to avoid
 #' `NOTE`s and `WARNING`s in `R CMD CHECK`.
 #'
-cff_write <- function(x, outfile = "CITATION.cff", keys = list(),
-                      cff_version = "1.2.0", gh_keywords = TRUE,
-                      r_citation = FALSE, dependencies = TRUE,
-                      validate = TRUE, verbose = TRUE,
-                      authors_roles = c("aut", "cre"), encoding = "UTF-8") {
+cff_write <- function(
+  x,
+  outfile = "CITATION.cff",
+  keys = list(),
+  cff_version = "1.2.0",
+  gh_keywords = TRUE,
+  r_citation = FALSE,
+  dependencies = TRUE,
+  validate = TRUE,
+  verbose = TRUE,
+  authors_roles = c("aut", "cre"),
+  encoding = "UTF-8"
+) {
   # # On missing use NULL
-  if (missing(x)) x <- getwd()
+  if (missing(x)) {
+    x <- getwd()
+  }
 
   # Issue 86 Need to remove first "inst/CITATION"
   fpath <- "./inst/CITATION"
-  if (r_citation) unlink(fpath)
+  if (r_citation) {
+    unlink(fpath)
+  }
 
-  citat <- cff_create(x,
+  citat <- cff_create(
+    x,
     keys = keys,
     cff_version = cff_version,
     gh_keywords = gh_keywords,
@@ -88,20 +101,17 @@ cff_write <- function(x, outfile = "CITATION.cff", keys = list(),
     authors_roles = authors_roles
   )
 
-
   # Fix string if it is not cff
-  if (!is_substring(outfile, ".cff$")) outfile <- paste0(outfile, ".cff")
+  if (!is_substring(outfile, ".cff$")) {
+    outfile <- paste0(outfile, ".cff")
+  }
 
   # Check if dir exist and if not create
   outdir <- dirname(outfile)
 
   if (!dir.exists(outdir)) {
-    dir.create(outdir,
-      showWarnings = FALSE,
-      recursive = TRUE
-    )
+    dir.create(outdir, showWarnings = FALSE, recursive = TRUE)
   }
-
 
   # See https://github.com/r-universe-org/help/issues/382
   # Write CITATION with comment
@@ -148,15 +158,19 @@ cff_write <- function(x, outfile = "CITATION.cff", keys = list(),
   # Issue #79
   auto_r_citation(
     r_citation = r_citation,
-    outfile = outfile, verbose = verbose
+    outfile = outfile,
+    verbose = verbose
   )
 
   return(invisible(citat))
 }
 
 
-auto_r_citation <- function(r_citation = TRUE,
-                            outfile = "CITATION.cff", verbose = TRUE) {
+auto_r_citation <- function(
+  r_citation = TRUE,
+  outfile = "CITATION.cff",
+  verbose = TRUE
+) {
   # Do nothing
   if (isFALSE(r_citation)) {
     return(invisible(NULL))

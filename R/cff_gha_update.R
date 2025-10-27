@@ -33,8 +33,7 @@
 #' @export
 #'
 #' @family git
-cff_gha_update <- function(path = ".",
-                           overwrite = FALSE) {
+cff_gha_update <- function(path = ".", overwrite = FALSE) {
   destdir <- file.path(path, ".github", "workflows")
   checkdir <- dir.exists(destdir)
 
@@ -48,7 +47,8 @@ cff_gha_update <- function(path = ".",
   if (!file_exist_abort(newfile) || isTRUE(overwrite)) {
     cli::cli_alert_success("Installing {.file {newfile}}")
 
-    file.copy(system.file("yaml/update-citation-cff.yaml", package = "cffr"),
+    file.copy(
+      system.file("yaml/update-citation-cff.yaml", package = "cffr"),
       newfile,
       overwrite = TRUE
     )

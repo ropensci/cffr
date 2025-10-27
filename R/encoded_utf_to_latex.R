@@ -45,7 +45,10 @@ encoded_utf_to_latex <- function(x) {
   encoded <- enc2utf8(x)
   out <- encoded_text_to_latex(encoded, encoding = "UTF-8")
   out <- gsub("(?<=\\\\)a ", " ", out, perl = TRUE, ignore.case = FALSE)
-  out <- gsub("(?<=\\\\)a(?=[[:punct:]])", "", out,
+  out <- gsub(
+    "(?<=\\\\)a(?=[[:punct:]])",
+    "",
+    out,
     perl = TRUE,
     ignore.case = FALSE
   )

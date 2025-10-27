@@ -80,13 +80,13 @@ test_that("as_bibentry NULL", {
   setwd(new_dir)
 
   # Move files
-  file.copy(system.file("examples/DESCRIPTION_basic", package = "cffr"),
+  file.copy(
+    system.file("examples/DESCRIPTION_basic", package = "cffr"),
     to = "DESCRIPTION"
   )
 
   # Get bibentry
   a_bib <- as_bibentry()
-
 
   # Revert to initial wd
   setwd(current_dir)
@@ -137,9 +137,9 @@ test_that("as_bibentry cff", {
   expect_snapshot(end <- as_bibentry(a_cff, what = "references"))
   expect_identical(end, bibentry())
 
-
   expect_s3_class(theref, c("cff_ref", "cff"), exact = TRUE)
-  mod_ref <- cff_modify(theref,
+  mod_ref <- cff_modify(
+    theref,
     type = "manual",
     authors = as_cff_person("{anonymous}")
   )

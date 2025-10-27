@@ -100,9 +100,14 @@
 #'
 #' cff_create(demo_file, keys = list("contact" = new_contact))
 #' }
-cff_create <- function(x, keys = list(), cff_version = "1.2.0",
-                       gh_keywords = TRUE, dependencies = TRUE,
-                       authors_roles = c("aut", "cre")) {
+cff_create <- function(
+  x,
+  keys = list(),
+  cff_version = "1.2.0",
+  gh_keywords = TRUE,
+  dependencies = TRUE,
+  authors_roles = c("aut", "cre")
+) {
   # Guess source
   # On missing add getwd()
   if (missing(x)) {
@@ -135,13 +140,16 @@ cff_create <- function(x, keys = list(), cff_version = "1.2.0",
 
   # Build cff and return paths if any
   result_paths <- build_cff_and_paths(
-    x, cff_version, gh_keywords,
-    dependencies, authors_roles, hint_source
+    x,
+    cff_version,
+    gh_keywords,
+    dependencies,
+    authors_roles,
+    hint_source
   )
 
   desc_path <- result_paths[["desc_path"]]
   cffobjend <- result_paths[["cffobjend"]]
-
 
   # Add software dependencies
   if (dependencies) {
@@ -165,9 +173,14 @@ cff_create <- function(x, keys = list(), cff_version = "1.2.0",
   cffobjend
 }
 
-build_cff_and_paths <- function(x, cff_version = "1.2.0",
-                                gh_keywords = TRUE, dependencies = TRUE,
-                                authors_roles = c("aut", "cre"), hint_source) {
+build_cff_and_paths <- function(
+  x,
+  cff_version = "1.2.0",
+  gh_keywords = TRUE,
+  dependencies = TRUE,
+  authors_roles = c("aut", "cre"),
+  hint_source
+) {
   collect_list <- list(
     desc_path = NULL,
     cffobjend = NULL
@@ -196,11 +209,12 @@ build_cff_and_paths <- function(x, cff_version = "1.2.0",
     cli::cli_abort("No {.file DESCRIPTION} file found with {.arg x}.")
   }
 
-  cffobj <- cff_read_description(desc_path, cff_version,
+  cffobj <- cff_read_description(
+    desc_path,
+    cff_version,
     gh_keywords = gh_keywords,
     authors_roles = authors_roles
   )
-
 
   # Just for description case
   try_get_citation <- function(x) {

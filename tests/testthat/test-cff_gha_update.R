@@ -12,10 +12,10 @@ test_that("Test in mock package", {
   setwd(new_dir)
 
   # Move files
-  file.copy(system.file("examples/DESCRIPTION_many_urls", package = "cffr"),
+  file.copy(
+    system.file("examples/DESCRIPTION_many_urls", package = "cffr"),
     to = "DESCRIPTION"
   )
-
 
   # Create Rbuildignore
   file.create(".Rbuildignore", showWarnings = FALSE)
@@ -32,7 +32,6 @@ test_that("Test in mock package", {
     "workflows",
     "update-citation-cff.yaml"
   )))
-
 
   # Revert to initial wd
   setwd(current_dir)

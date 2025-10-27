@@ -24,7 +24,8 @@ test_that("Test indev", {
   setwd(new_dir)
 
   # Move files
-  file.copy(system.file("examples/DESCRIPTION_basic", package = "cffr"),
+  file.copy(
+    system.file("examples/DESCRIPTION_basic", package = "cffr"),
     to = "DESCRIPTION"
   )
 
@@ -58,7 +59,8 @@ test_that("Test error formats on inputs", {
 test_that("Validate all DESCRIPTION files", {
   allfiles <- list.files(
     system.file("examples", package = "cffr"),
-    pattern = "^DESC", full.names = TRUE
+    pattern = "^DESC",
+    full.names = TRUE
   )
 
   for (i in seq_len(length(allfiles))) {
@@ -71,19 +73,17 @@ test_that("Validate all DESCRIPTION files", {
 })
 
 test_that("No auto generate preferred citations", {
-  rgeos <- system.file("examples/DESCRIPTION_rgeos",
-    package = "cffr"
-  )
+  rgeos <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
 
-  expect_snapshot(cff_create(rgeos,
+  expect_snapshot(cff_create(
+    rgeos,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   ))
 
-  basicdate <- system.file("examples/DESCRIPTION_basicdate",
-    package = "cffr"
-  )
-  expect_snapshot(cff_create(basicdate,
+  basicdate <- system.file("examples/DESCRIPTION_basicdate", package = "cffr")
+  expect_snapshot(cff_create(
+    basicdate,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   ))
@@ -132,7 +132,8 @@ test_that("Add new roles", {
   p <- system.file("examples/DESCRIPTION_no_URL", package = "cffr")
 
   cf <- cff_create(p, dependencies = FALSE)
-  cf2 <- cff_create(p,
+  cf2 <- cff_create(
+    p,
     authors_roles = c("aut", "cre", "ctb"),
     dependencies = FALSE
   )
@@ -149,9 +150,13 @@ test_that("Default roles on write", {
 
   # Same as
   tmp <- tempfile(fileext = ".cff")
-  cf2 <- cff_write(p,
-    authors_roles = c("aut", "cre"), dependencies = FALSE,
-    outfile = tmp, verbose = FALSE, validate = FALSE
+  cf2 <- cff_write(
+    p,
+    authors_roles = c("aut", "cre"),
+    dependencies = FALSE,
+    outfile = tmp,
+    verbose = FALSE,
+    validate = FALSE
   )
 
   expect_identical(cf, cf2)
@@ -161,7 +166,8 @@ test_that("Add new roles", {
   p <- system.file("examples/DESCRIPTION_no_URL", package = "cffr")
 
   cf <- cff_create(p, dependencies = FALSE)
-  cf2 <- cff_create(p,
+  cf2 <- cff_create(
+    p,
     authors_roles = c("aut", "cre", "ctb"),
     dependencies = FALSE
   )
@@ -181,10 +187,7 @@ test_that("Add new roles on write", {
   # Same as
   tmp <- tempfile(fileext = ".cff")
   expect_message(
-    cf2 <- cff_write(p,
-      authors_roles = "ctb", outfile = tmp,
-      validate = FALSE
-    ),
+    cf2 <- cff_write(p, authors_roles = "ctb", outfile = tmp, validate = FALSE),
     "generated"
   )
 
@@ -195,7 +198,8 @@ test_that("Add new roles on write", {
 test_that("Coerce date", {
   desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
 
-  a_cff <- cff_create(desc_path,
+  a_cff <- cff_create(
+    desc_path,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   )
@@ -210,7 +214,8 @@ test_that("Coerce date", {
 test_that("Coerce date in another format", {
   desc_path <- system.file("examples/DESCRIPTION_basicdate", package = "cffr")
 
-  a_cff <- cff_create(desc_path,
+  a_cff <- cff_create(
+    desc_path,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   )
@@ -226,9 +231,7 @@ test_that("Coerce date in another format", {
 test_that("No date coerced in DESCRIPTION without it", {
   desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
-  a_cff <- cff_create(desc_path,
-    keys = list(references = NULL)
-  )
+  a_cff <- cff_create(desc_path, keys = list(references = NULL))
 
   expect_true(is.null(a_cff$`date-released`))
 
@@ -239,7 +242,8 @@ test_that("No date coerced in DESCRIPTION without it", {
 test_that("Parsing many urls", {
   desc_path <- system.file("examples/DESCRIPTION_many_urls", package = "cffr")
 
-  a_cff <- cff_create(desc_path,
+  a_cff <- cff_create(
+    desc_path,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   )
@@ -256,9 +260,7 @@ test_that("Parsing many urls", {
 test_that("Parsing Gitlab", {
   desc_path <- system.file("examples/DESCRIPTION_gitlab", package = "cffr")
 
-  a_cff <- cff_create(desc_path,
-    keys = list(references = NULL)
-  )
+  a_cff <- cff_create(desc_path, keys = list(references = NULL))
 
   expect_length(a_cff$`repository-code`, 1)
   expect_length(a_cff$url, 1)
@@ -269,21 +271,20 @@ test_that("Parsing Gitlab", {
 })
 
 test_that("Parsing many persons", {
-  desc_path <- system.file("examples/DESCRIPTION_many_persons",
+  desc_path <- system.file(
+    "examples/DESCRIPTION_many_persons",
     package = "cffr"
   )
 
-  a_cff <- cff_create(desc_path,
+  a_cff <- cff_create(
+    desc_path,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   )
 
-
   expect_length(a_cff$authors, 4)
 
-
   authors <- unlist(a_cff$authors)
-
 
   expect_length(grep("erro", authors), 0)
   names <- unlist(lapply(a_cff$authors, names))
@@ -302,7 +303,8 @@ test_that("Parsing wrong urls", {
 
   desc_path <- system.file("examples/DESCRIPTION_wrong_urls", package = "cffr")
 
-  a_cff <- cff_create(desc_path,
+  a_cff <- cff_create(
+    desc_path,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   )
@@ -318,11 +320,13 @@ test_that("Parsing wrong urls", {
 
 
 test_that("Parsing two maintainers", {
-  desc_path <- system.file("examples/DESCRIPTION_twomaintainers",
+  desc_path <- system.file(
+    "examples/DESCRIPTION_twomaintainers",
     package = "cffr"
   )
 
-  a_cff <- cff_create(desc_path,
+  a_cff <- cff_create(
+    desc_path,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   )
@@ -336,11 +340,10 @@ test_that("Parsing two maintainers", {
 })
 
 test_that("Parsing r-universe", {
-  desc_path <- system.file("examples/DESCRIPTION_r_universe",
-    package = "cffr"
-  )
+  desc_path <- system.file("examples/DESCRIPTION_r_universe", package = "cffr")
 
-  a_cff <- cff_create(desc_path,
+  a_cff <- cff_create(
+    desc_path,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   )
@@ -354,11 +357,13 @@ test_that("Parsing r-universe", {
 
 
 test_that("Parsing Bioconductor", {
-  desc_path <- system.file("examples/DESCRIPTION_bioconductor",
+  desc_path <- system.file(
+    "examples/DESCRIPTION_bioconductor",
     package = "cffr"
   )
 
-  a_cff <- cff_create(desc_path,
+  a_cff <- cff_create(
+    desc_path,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   )
@@ -371,11 +376,13 @@ test_that("Parsing Bioconductor", {
 })
 
 test_that("Parsing Posit Package Manager", {
-  desc_path <- system.file("examples/DESCRIPTION_posit_package_manager",
+  desc_path <- system.file(
+    "examples/DESCRIPTION_posit_package_manager",
     package = "cffr"
   )
 
-  a_cff <- cff_create(desc_path,
+  a_cff <- cff_create(
+    desc_path,
     gh_keywords = FALSE,
     keys = list(references = NULL)
   )
@@ -391,9 +398,7 @@ test_that("Parsing Posit Package Manager", {
 })
 
 test_that("Search package on CRAN", {
-  basic_path <- system.file("examples/DESCRIPTION_basic",
-    package = "cffr"
-  )
+  basic_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
   tmp <- tempfile("DESCRIPTION_basic")
   # Create a temporary file
@@ -406,7 +411,6 @@ test_that("Search package on CRAN", {
   expect_equal(clean_str(newfile$get("Package")), "ggplot2")
   expect_equal(a_cff$repository, "https://CRAN.R-project.org/package=ggplot2")
 
-
   expect_s3_class(a_cff, "cff")
   expect_snapshot(a_cff)
   expect_true(cff_validate(a_cff, verbose = FALSE))
@@ -417,18 +421,14 @@ test_that("Search package on r-universe", {
   skip_on_cran()
   skip_if_offline()
 
-  basic_path <- system.file("examples/DESCRIPTION_basic",
-    package = "cffr"
-  )
+  basic_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
   tmp <- tempfile("DESCRIPTION_basic")
   # Create a temporary file
   file.copy(basic_path, tmp)
 
-
   # Get packages from my r-universe
   dhh <- "tidyterra"
-
 
   newpack <- desc::desc(tmp)
 
@@ -437,7 +437,6 @@ test_that("Search package on r-universe", {
   newtitle <- desc::desc_set("Package", dhh, file = tmp)
 
   expect_false(oldtitle == clean_str(newtitle$get("Package")))
-
 
   # Configure to search on r-universe
   newrepos <- c(
@@ -454,7 +453,6 @@ test_that("Search package on r-universe", {
     "https://dieghernan.r-universe.dev/"
   )
 
-
   # Search now ggplot2, should be canonical url
 
   expect_equal(
@@ -465,9 +463,7 @@ test_that("Search package on r-universe", {
 
 
 test_that("Validate keywords", {
-  desc_path <- system.file("examples/DESCRIPTION_basic",
-    package = "cffr"
-  )
+  desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
   tmp <- tempfile("DESCRIPTION_keyword")
 
@@ -479,7 +475,8 @@ test_that("Validate keywords", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Add keywords
-  silent <- desc::desc_set("X-schema.org-keywords",
+  silent <- desc::desc_set(
+    "X-schema.org-keywords",
     "keyword1, keyword1, keyword3",
     file = tmp
   )
@@ -489,7 +486,8 @@ test_that("Validate keywords", {
   expect_true(cff_validate(cffobj2, verbose = FALSE))
 
   # Single keyword
-  silent <- desc::desc_set("X-schema.org-keywords",
+  silent <- desc::desc_set(
+    "X-schema.org-keywords",
     "keyword1, keyword1",
     file = tmp
   )
@@ -499,10 +497,7 @@ test_that("Validate keywords", {
   expect_true(cff_validate(cffobj3, verbose = FALSE))
 
   # NULL case keyword
-  silent <- desc::desc_set("X-schema.org-keywords",
-    "r-package",
-    file = tmp
-  )
+  silent <- desc::desc_set("X-schema.org-keywords", "r-package", file = tmp)
   cffobj4 <- cff_create(tmp)
   expect_null(cffobj4$keywords)
   expect_true(cff_validate(cffobj4, verbose = FALSE))
@@ -517,9 +512,7 @@ test_that("Coerce keywords from GH", {
     "No GITHUB_TOKEN environment variable found"
   )
 
-  desc_path <- system.file("examples/DESCRIPTION_basic",
-    package = "cffr"
-  )
+  desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
   tmp <- tempfile("DESCRIPTION_keyword_gh")
 
@@ -531,7 +524,8 @@ test_that("Coerce keywords from GH", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # A site with no topics
-  silent <- desc::desc_set("BugReports",
+  silent <- desc::desc_set(
+    "BugReports",
     "https://github.com/dieghernan/cfftest/issues",
     file = tmp
   )
@@ -541,12 +535,14 @@ test_that("Coerce keywords from GH", {
   expect_null(cffobjnokeys$keywords)
 
   # Add keywords from url
-  silent <- desc::desc_set("URL",
+  silent <- desc::desc_set(
+    "URL",
     "https://github.com/ropensci/cffr",
     file = tmp
   )
 
-  silent <- desc::desc_set("BugReports",
+  silent <- desc::desc_set(
+    "BugReports",
     "https://github.com/ropensci/cffr/issues",
     file = tmp
   )
@@ -561,10 +557,7 @@ test_that("Coerce keywords from GH", {
   # Concatenate keywords of both sources
 
   # Add keywords
-  silent <- desc::desc_set("X-schema.org-keywords",
-    "keyword1",
-    file = tmp
-  )
+  silent <- desc::desc_set("X-schema.org-keywords", "keyword1", file = tmp)
 
   cffobj2 <- cff_create(tmp)
   expect_true(cff_validate(cffobj2, verbose = FALSE))

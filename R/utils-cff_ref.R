@@ -8,7 +8,6 @@ get_bibtex_entry <- function(bib) {
   init_type <- attr(unclass(bib)[[1]], "bibtype")
   init_type <- clean_str(tolower(init_type))
 
-
   cit_list <- drop_null(unclass(bib)[[1]])
 
   # Add fields
@@ -34,14 +33,12 @@ get_bibtex_entry <- function(bib) {
     "generic"
   )
 
-
   # Check if it an inbook with booktitle (BibLaTeX style)
   if (all(init_type == "inbook", "booktitle" %in% names(cit_list))) {
     # Make it incollection
     cit_list$bibtex_entry <- "incollection"
     cit_list$type <- "generic"
   }
-
 
   return(cit_list)
 }
@@ -89,7 +86,6 @@ get_bibtex_fields <- function(cit_list) {
   # Other BibLaTeX fields that does not require any mapping
   # abstract, doi, isbn, issn, url, version
 
-
   # Keywords may be duplicated, unify
   if ("keywords" %in% nm) {
     kwords <- unlist(cit_list["keywords" == nm])
@@ -118,8 +114,9 @@ get_bibtex_fields <- function(cit_list) {
 
   loc <- cit_list$location
 
-  if (!is.null(loc)) cit_list$location <- loc
-
+  if (!is.null(loc)) {
+    cit_list$location <- loc
+  }
 
   # Treat additional dates ----
   dpub <- clean_str(cit_list$`date-published`)
@@ -289,9 +286,7 @@ get_bibtex_doi <- function(cit_list) {
     x <- clean_str(x)
   }))
 
-
   dois <- unique(as.character(dois))
-
 
   # The first doi goes to doi key
   doi <- unlist(dois[1])
@@ -303,7 +298,9 @@ get_bibtex_doi <- function(cit_list) {
       value = clean_str(x)
     )
   })
-  if (length(identifiers) == 0) identifiers <- NULL
+  if (length(identifiers) == 0) {
+    identifiers <- NULL
+  }
   doi_list <- list(
     doi = clean_str(doi),
     identifiers = identifiers
@@ -363,7 +360,9 @@ get_bibtex_url <- function(cit_list) {
     )
   })
 
-  if (length(identifiers) == 0) identifiers <- NULL
+  if (length(identifiers) == 0) {
+    identifiers <- NULL
+  }
 
   url_list <- list(
     url = clean_str(url),
@@ -388,7 +387,6 @@ get_bibtex_other_pers <- function(field_list) {
     }
   })
 
-
   # Select subsets
   all_pers <- other_persons()
   toent <- other_persons_entity()
@@ -412,10 +410,8 @@ get_bibtex_other_pers <- function(field_list) {
     return(end)
   })
 
-
   toperson <- others[names(others) %in% toauto_end]
   toperson <- lapply(toperson, as_cff_person)
-
 
   # Bind and reorder
   other_list <- c(toentity, toperson, toentity_pers)

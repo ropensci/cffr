@@ -12,7 +12,8 @@ test_that("Test in mock package", {
   setwd(new_dir)
 
   # Move files
-  file.copy(system.file("examples/DESCRIPTION_many_urls", package = "cffr"),
+  file.copy(
+    system.file("examples/DESCRIPTION_many_urls", package = "cffr"),
     to = "DESCRIPTION"
   )
 
@@ -24,7 +25,8 @@ test_that("Test in mock package", {
   expect_silent(cff_write(verbose = FALSE, r_citation = TRUE))
   expect_true(file.exists("inst/CITATION"))
 
-  auto_cit1 <- utils::readCitationFile("inst/CITATION",
+  auto_cit1 <- utils::readCitationFile(
+    "inst/CITATION",
     meta = list(Encoding = "UTF-8")
   )
 
@@ -35,7 +37,8 @@ test_that("Test in mock package", {
 
   expect_length(list.files("inst"), 1)
 
-  auto_cit2 <- utils::readCitationFile("inst/CITATION",
+  auto_cit2 <- utils::readCitationFile(
+    "inst/CITATION",
     meta = list(Encoding = "UTF-8")
   )
 
@@ -51,7 +54,8 @@ test_that("Test in mock package", {
   # Check new vers
   cff_write(verbose = FALSE, r_citation = TRUE)
 
-  auto_cit3 <- utils::readCitationFile("inst/CITATION",
+  auto_cit3 <- utils::readCitationFile(
+    "inst/CITATION",
     meta = list(Encoding = "UTF-8")
   )
 
@@ -63,12 +67,9 @@ test_that("Test in mock package", {
   a_bib <- as_bibentry()
   # Create citation
   cit <- utils::readCitationFile(
-    system.file("examples/CITATION_basic",
-      package = "cffr"
-    ),
+    system.file("examples/CITATION_basic", package = "cffr"),
     meta = list(Encoding = "UTF-8")
   )
-
 
   expect_silent(cff_write_citation(cit, "./inst/CITATION", verbose = FALSE))
   expect_true(file_exist_abort("./inst/CITATION"))
@@ -95,9 +96,7 @@ test_that("Test in mock package", {
     "update-citation-cff.yaml"
   )))
 
-
   cffobj <- cff_create()
-
 
   expect_output(cff_write())
 
@@ -110,9 +109,9 @@ test_that("Test in mock package", {
   expect_true(("^CITATION\\.cff$" %in% ignore))
   expect_true(("^\\.github$" %in% ignore))
 
-
   # Check citation from package
-  cit <- utils::readCitationFile("./inst/CITATION",
+  cit <- utils::readCitationFile(
+    "./inst/CITATION",
     meta = list(Encoding = "UTF-8")
   )
 
