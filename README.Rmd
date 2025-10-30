@@ -103,10 +103,10 @@ res <- tryCatch(
     headers = c(Authorization = ghtoken)
   ),
   warning = function(e) {
-    return(TRUE)
+    TRUE
   },
   error = function(e) {
-    return(TRUE)
+    TRUE
   }
 )
 # If not successful
