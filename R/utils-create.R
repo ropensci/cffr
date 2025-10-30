@@ -50,7 +50,8 @@ merge_desc_cit <- function(cffobj, citobj) {
 
   # Reclass everything
   cffobjfinal <- as_cff(as.list(cffobjfinal))
-  return(cffobjfinal)
+
+  cffobjfinal
 }
 
 #' Enhance authors info from preferred-citation using metadata from DESCRIPTION

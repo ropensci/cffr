@@ -78,7 +78,7 @@ bibtex_pers_von_last_first_jr <- function(x) {
     jr = jr
   )
 
-  return(end_list)
+  end_list
 }
 
 bibtex_pers_von_last_first <- function(x) {
@@ -155,7 +155,7 @@ bibtex_pers_von_last_first <- function(x) {
     family = family
   )
 
-  return(end_list)
+  end_list
 }
 
 
@@ -241,7 +241,7 @@ bibtex_pers_first_von_last <- function(x) {
     family = family
   )
 
-  return(end_list)
+  end_list
 }
 
 validate_cff_person_fields <- function(person_cff) {

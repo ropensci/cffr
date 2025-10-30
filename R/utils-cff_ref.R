@@ -40,7 +40,7 @@ get_bibtex_entry <- function(bib) {
     cit_list$type <- "generic"
   }
 
-  return(cit_list)
+  cit_list
 }
 
 #' Adapt names from R citation()/BibTeX to cff format
@@ -136,7 +136,7 @@ get_bibtex_fields <- function(cit_list) {
     if (length(spl) > 1) cit_list$end <- paste(spl[-1], collapse = "--")
   }
 
-  return(cit_list)
+  cit_list
 }
 
 #' Modify mapping of some org. fields on BibTeX to CFF
@@ -177,7 +177,7 @@ add_conference <- function(field_list) {
   if (bibtex_entry %in% c("conference", "inproceedings", "proceedings")) {
     field_list$conference <- field_list$`collection-title`
   }
-  return(field_list)
+  field_list
 }
 
 
@@ -232,7 +232,7 @@ add_address <- function(cit_list) {
     cit_list$location <- NULL
   }
 
-  return(cit_list)
+  cit_list
 }
 
 add_bibtex_coltype <- function(field_list) {
@@ -257,7 +257,7 @@ add_bibtex_coltype <- function(field_list) {
 
   field_list <- field_list[nms_end]
 
-  return(field_list)
+  field_list
 }
 
 fallback_dates <- function(cit_list) {
@@ -273,7 +273,7 @@ fallback_dates <- function(cit_list) {
   ## month ----
   cit_list$month <- get_bibtex_month(cit_list)
 
-  return(cit_list)
+  cit_list
 }
 
 #' BB for doi
@@ -305,7 +305,7 @@ get_bibtex_doi <- function(cit_list) {
     doi = clean_str(doi),
     identifiers = identifiers
   )
-  return(doi_list)
+  doi_list
 }
 
 #' BB for month
@@ -369,7 +369,7 @@ get_bibtex_url <- function(cit_list) {
     identifiers = identifiers
   )
 
-  return(url_list)
+  url_list
 }
 
 #' BB for other persons
@@ -383,7 +383,7 @@ get_bibtex_other_pers <- function(field_list) {
     if (inherits(x, "person")) {
       x <- paste(x, collapse = " and ")
     } else {
-      return(x)
+      x
     }
   })
 
@@ -407,7 +407,7 @@ get_bibtex_other_pers <- function(field_list) {
     bibtex <- paste(x, collapse = " and ")
     end <- as_cff_person(bibtex)
 
-    return(end)
+    end
   })
 
   toperson <- others[names(others) %in% toauto_end]
@@ -417,5 +417,5 @@ get_bibtex_other_pers <- function(field_list) {
   other_list <- c(toentity, toperson, toentity_pers)
   other_list <- other_list[names(others)]
 
-  return(other_list)
+  other_list
 }

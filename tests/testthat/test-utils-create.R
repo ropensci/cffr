@@ -29,7 +29,7 @@ test_that("Check dependencies", {
   # Extract selected fields
   selected <- lapply(deps, function(x) {
     y <- x[names(x) %in% c("title", "url", "repository")]
-    return(y)
+    y
   })
 
   class(selected) <- "cff"

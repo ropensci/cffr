@@ -267,7 +267,7 @@ as_bibentry.cff_ref_lst <- function(x, ...) {
     as_bibentry(as_cff(y))
   })
   ref <- do.call(c, ref)
-  return(ref)
+  ref
 }
 
 

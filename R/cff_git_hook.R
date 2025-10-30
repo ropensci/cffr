@@ -86,7 +86,7 @@ cff_git_hook_install <- function() {
       )
     )
   }
-  return(invisible())
+  invisible()
   # nocov end
 }
 
@@ -103,6 +103,6 @@ cff_git_hook_remove <- function() {
     unlink(hookfile, force = TRUE)
   }
 
-  return(invisible())
+  invisible()
   # nocov end
 }
