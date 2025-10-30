@@ -95,5 +95,5 @@ cff <- function(path, ...) {
 
   cffobj <- as_cff(cffobj)
 
-  return(cffobj)
+  cffobj
 }

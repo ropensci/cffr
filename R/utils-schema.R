@@ -277,7 +277,7 @@ other_persons <- function() {
     entity_person()
   )))
 
-  return(pers_ent)
+  pers_ent
 }
 
 #' Vector other persons to be coerced as entities

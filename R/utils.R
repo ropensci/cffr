@@ -149,7 +149,7 @@ fuzzy_keys <- function(keys) {
         if (length(x) == 0) {
           return("No match, removing.")
         }
-        return(x[1])
+        x[1]
       }
     ))
 
@@ -173,7 +173,7 @@ fuzzy_keys <- function(keys) {
 
   new_keys <- new_keys[names %in% valid_keys]
 
-  return(new_keys)
+  new_keys
 }
 
 guess_cff_named_part <- function(x) {
@@ -197,7 +197,7 @@ guess_cff_named_part <- function(x) {
   }
 
   # Else
-  return("unclear")
+  "unclear"
 }
 
 
@@ -249,7 +249,7 @@ detect_x_source <- function(x) {
     return("description")
   }
 
-  return("dontknow")
+  "dontknow"
 }
 
 file_path_or_null <- function(x) {
@@ -260,7 +260,7 @@ file_path_or_null <- function(x) {
   if (file_exist_abort(x)) {
     return(x)
   }
-  return(NULL)
+  NULL
 }
 
 #' Coerce and clean data from DESCRIPTION to create metadata

@@ -115,5 +115,5 @@ make_cff_reference <- function(bib) {
 
   cit_list <- drop_null(cit_list)
 
-  return(cit_list)
+  cit_list
 }

@@ -30,7 +30,7 @@ c.cff <- function(..., recursive = FALSE) {
 `[.cff_ref_lst` <- function(x, i) {
   rval <- unclass(x)[i]
   class(rval) <- class(x[[i]])
-  return(rval)
+  rval
 }
 
 #' @export
@@ -39,7 +39,7 @@ c.cff <- function(..., recursive = FALSE) {
 `[.cff_pers_lst` <- function(x, i) {
   rval <- unclass(x)[i]
   class(rval) <- class(x[[i]])
-  return(rval)
+  rval
 }
 
 
@@ -234,7 +234,7 @@ as.list.cff <- function(x, ...) {
       if (is.list(x) || length(x) > 1) {
         return(unclass(x))
       }
-      return(unclass(x))
+      unclass(x)
     },
     how = "list"
   )

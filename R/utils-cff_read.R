@@ -73,7 +73,7 @@ get_desc_date_released <- function(pkg) {
     if (!is.character(x)) {
       return(NULL)
     }
-    return(substr(x, 1, 10))
+    substr(x, 1, 10)
   })
 
   clean_dates <- unlist(clean_dates)[1]
@@ -82,7 +82,7 @@ get_desc_date_released <- function(pkg) {
   date <- tryCatch(
     as.character(as.Date(clean_dates, format = "%Y-%m-%d")),
     error = function(cond) {
-      return(NULL)
+      NULL
     }
   )
 
@@ -181,7 +181,7 @@ get_desc_repository <- function(pkg) {
 
   repourl <- search_on_repos(name)
 
-  return(repourl)
+  repourl
 }
 
 #' Mapped to Package & Title
@@ -205,7 +205,7 @@ get_desc_urls <- function(pkg) {
 
   # Get issue url
   issues <- tryCatch(pkg$get_field("BugReports")[1], error = function(cond) {
-    return(pkg$get_urls())
+    pkg$get_urls()
   })
 
   # Clean if GitLab
@@ -273,7 +273,7 @@ get_desc_urls <- function(pkg) {
     url = clean_str(url_end),
     identifiers = identifiers
   )
-  return(url_list)
+  url_list
 }
 
 #' Mapped to Version
@@ -329,10 +329,10 @@ get_gh_topics <- function(x) {
       headers = c(Authorization = ghtoken)
     ),
     warning = function(e) {
-      return(TRUE)
+      TRUE
     },
     error = function(e) {
-      return(TRUE)
+      TRUE
     }
   )
 
@@ -342,10 +342,10 @@ get_gh_topics <- function(x) {
     res <- tryCatch(
       download.file(api_url, tmpfile, quiet = TRUE),
       warning = function(e) {
-        return(TRUE)
+        TRUE
       },
       error = function(e) {
-        return(TRUE)
+        TRUE
       }
     )
   }
@@ -363,7 +363,7 @@ get_gh_topics <- function(x) {
     return(NULL)
   }
 
-  return(remotetopics)
+  remotetopics
 }
 
 

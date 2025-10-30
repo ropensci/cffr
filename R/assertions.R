@@ -41,9 +41,9 @@ is_substring <- function(x, sub) {
   }
 
   if (isTRUE(grep(sub, x) == 1)) {
-    return(TRUE)
+    TRUE
   } else {
-    return(FALSE)
+    FALSE
   }
 }
 
@@ -59,7 +59,8 @@ is_cff <- function(x) {
 #' @noRd
 is_cff_file <- function(x) {
   src <- detect_x_source(x)
-  return(src == "cff_citation")
+  val <- src == "cff_citation"
+  val
 }
 
 #' Check if an url is from GitHub
@@ -74,7 +75,7 @@ is_github <- function(x) {
       1
   )
 
-  return(res)
+  res
 }
 
 #' Check if `x` has names
