@@ -73,7 +73,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2025-10-30 there are at least 488 repos on GitHub using **cffr**.
+As per 2025-11-07 there are at least 492 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -135,9 +135,7 @@ test <- cff_create("rmarkdown")
 ```
 
 <details>
-
 <summary>
-
 <code>CITATION.cff</code> for <strong>rmarkdown</strong>
 </summary>
 
@@ -710,7 +708,6 @@ test <- cff_create("rmarkdown")
       doi: 10.32614/CRAN.package.xml2
 
 </details>
-
 <p>
 
 We can validate the result using `cff_validate()`:
@@ -899,9 +896,7 @@ Smith, Arfon. 2021. “Enhanced Support for Citations on GitHub.”
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-
 <!-- prettier-ignore-start -->
-
 <!-- markdownlint-disable -->
 
 All contributions to this project are gratefully acknowledged using the
@@ -912,183 +907,133 @@ specification. Contributions of any kind are welcome!
 ### Code
 
 <table class="table allctb-table">
-
 <tr>
-
 <td align="center">
-
 <a href="https://github.com/dieghernan">
 <img src="https://avatars.githubusercontent.com/u/25656809?v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/commits?author=dieghernan">dieghernan</a>
 </td>
-
 <td align="center">
-
 <a href="https://github.com/dpprdan">
 <img src="https://avatars.githubusercontent.com/u/1423562?v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/commits?author=dpprdan">dpprdan</a>
 </td>
-
 </tr>
-
 </table>
 
 ### Issue Authors
 
 <table class="table allctb-table">
-
 <tr>
-
 <td align="center">
-
 <a href="https://github.com/Bisaloo">
 <img src="https://avatars.githubusercontent.com/u/10783929?u=92fdf68eafbcdcf8da283b460ab65a2cafb8c7fe&v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+author%3ABisaloo">Bisaloo</a>
 </td>
-
 <td align="center">
-
 <a href="https://github.com/jeroen">
 <img src="https://avatars.githubusercontent.com/u/216319?u=4825a007eee4f78466b5f833b9728547c74067b5&v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+author%3Ajeroen">jeroen</a>
 </td>
-
 <td align="center">
-
 <a href="https://github.com/joelnitta">
 <img src="https://avatars.githubusercontent.com/u/13459362?u=205e0d1ae66884c3b361a78dd6802cd10160b041&v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+author%3Ajoelnitta">joelnitta</a>
 </td>
-
 <td align="center">
-
 <a href="https://github.com/jeyabbalas">
 <img src="https://avatars.githubusercontent.com/u/8127432?u=e8ff0eaf02a8f847532e8bde25629da0e4d611ff&v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+author%3Ajeyabbalas">jeyabbalas</a>
 </td>
-
 <td align="center">
-
 <a href="https://github.com/aadler">
 <img src="https://avatars.githubusercontent.com/u/5596401?v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+author%3Aaadler">aadler</a>
 </td>
-
 <td align="center">
-
 <a href="https://github.com/larnsce">
 <img src="https://avatars.githubusercontent.com/u/18212549?u=9235b7a0b56b5611d81ca6e1d5bf3b6c39a0bfae&v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+author%3Alarnsce">larnsce</a>
 </td>
-
 <td align="center">
-
 <a href="https://github.com/iembry">
 <img src="https://avatars.githubusercontent.com/u/12459905?v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+author%3Aiembry">iembry</a>
 </td>
-
 <td align="center">
-
 <a href="https://github.com/IndrajeetPatil">
 <img src="https://avatars.githubusercontent.com/u/11330453?u=f89d9c0da9d8524adbb956f6c4e12dbdd15bd785&v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+author%3AIndrajeetPatil">IndrajeetPatil</a>
 </td>
-
 </tr>
-
 <tr>
-
 <td align="center">
-
 <a href="https://github.com/roaldarbol">
 <img src="https://avatars.githubusercontent.com/u/25629697?u=a33918dd468c74b7f5823b637b8495b26ae32ee6&v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+author%3Aroaldarbol">roaldarbol</a>
 </td>
-
 <td align="center">
-
 <a href="https://github.com/nfrerebeau">
 <img src="https://avatars.githubusercontent.com/u/33983845?u=1c25b820f07d8630b7f4b660fbeaff8896195750&v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+author%3Anfrerebeau">nfrerebeau</a>
 </td>
-
 <td align="center">
-
 <a href="https://github.com/Pakillo">
 <img src="https://avatars.githubusercontent.com/u/1597843?u=5b4252f6b618be5dccbf605480d6e1e5ef006544&v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+author%3APakillo">Pakillo</a>
 </td>
-
 </tr>
-
 </table>
 
 ### Issue Contributors
 
 <table class="table allctb-table">
-
 <tr>
-
 <td align="center">
-
 <a href="https://github.com/arfon">
 <img src="https://avatars.githubusercontent.com/u/4483?u=3141f3209860719936ae9424f51c40cfb9d1cbd6&v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+commenter%3Aarfon">arfon</a>
 </td>
-
 <td align="center">
-
 <a href="https://github.com/hainesr">
 <img src="https://avatars.githubusercontent.com/u/143558?u=e8f3701a32432061199db87a2070476467c970d1&v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+commenter%3Ahainesr">hainesr</a>
 </td>
-
 <td align="center">
-
 <a href="https://github.com/llrs">
 <img src="https://avatars.githubusercontent.com/u/6818218?u=c0a96a5dc32b3035f057ee75a7679680363b1a89&v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+commenter%3Allrs">llrs</a>
 </td>
-
 <td align="center">
-
 <a href="https://github.com/njtierney">
 <img src="https://avatars.githubusercontent.com/u/6488485?u=3eacd57f61342d1c3cecd5c8ac741b1c4897e1de&v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+commenter%3Anjtierney">njtierney</a>
 </td>
-
 <td align="center">
-
 <a href="https://github.com/zeileis">
 <img src="https://avatars.githubusercontent.com/u/61125774?u=acdd5579c5dd3e1e0b109d8974b3a9db7bbc2385&v=4" width="100px;" class="allctb-avatar" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/cffr/issues?q=is%3Aissue+commenter%3Azeileis">zeileis</a>
 </td>
-
 </tr>
-
 </table>
-
 <!-- markdownlint-enable -->
-
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
