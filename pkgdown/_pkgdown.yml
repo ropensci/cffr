@@ -93,3 +93,14 @@ authors:
   Scott Chamberlain:
     href: https://scottchamberlain.info/
 
+articles:
+- title: JOSS paper
+  navbar: JOSS paper
+  contents:
+  - joss-paper
+- title: Crosswalks
+  navbar: Crosswalks
+  contents:
+  - r-cff
+  - bibtex-cff
+

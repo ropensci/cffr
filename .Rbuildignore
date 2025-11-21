@@ -33,3 +33,5 @@
 ^\.lintr$
 ^Rplots\.pdf$
 ^codecov\.yml$
+^[.]?air[.]toml$
+^\.vscode$
