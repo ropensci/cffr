@@ -68,8 +68,6 @@ cran_to_spdx %>% filter(!(SPDX %in% licenses))
 mymap <- as.character(cran_packs$LICENSE)
 
 
-devtools::load_all()
-
 themap <- lapply(mymap, function(x) {
   message(x)
 
