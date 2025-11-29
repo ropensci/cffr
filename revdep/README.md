@@ -2,7 +2,7 @@
 
 |field    |value                                                  |
 |:--------|:------------------------------------------------------|
-|version  |R version 4.5.1 (2025-06-13)                           |
+|version  |R version 4.5.2 (2025-10-31)                           |
 |os       |Ubuntu 24.04.3 LTS                                     |
 |system   |x86_64, linux-gnu                                      |
 |ui       |X11                                                    |
@@ -10,7 +10,7 @@
 |collate  |C.UTF-8                                                |
 |ctype    |C.UTF-8                                                |
 |tz       |UTC                                                    |
-|date     |2025-10-23                                             |
+|date     |2025-11-29                                             |
 |pandoc   |3.1.11 @ /opt/hostedtoolcache/pandoc/3.1.11/x64/pandoc |
 |quarto   |NA                                                     |
 
@@ -27,7 +27,7 @@
 |R6           |2.6.1  |2.6.1      |   |
 |Rcpp         |1.1.0  |1.1.0      |   |
 |V8           |8.0.1  |8.0.1      |   |
-|yaml         |2.3.10 |2.3.10     |   |
+|yaml         |2.3.11 |2.3.11     |   |
 
 # Revdeps
 
