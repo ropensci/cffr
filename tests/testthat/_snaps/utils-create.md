@@ -1168,7 +1168,7 @@
         url: https://docs.ropensci.org/jsonvalidate/
         repository: https://CRAN.R-project.org/package=jsonvalidate
       - title: yaml
-        url: https://github.com/vubiostat/r-yaml/
+        url: https://yaml.r-lib.org
         repository: https://CRAN.R-project.org/package=yaml
       - title: bibtex
         url: https://docs.ropensci.org/bibtex/

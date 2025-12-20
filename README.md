@@ -73,7 +73,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2025-11-22 there are at least 506 repos on GitHub using **cffr**.
+As per 2025-12-20 there are at least 556 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -475,36 +475,13 @@ test <- cff_create("rmarkdown")
       title: yaml
       abstract: 'yaml: Methods to Convert R Data to YAML and Back'
       notes: Imports
-      url: https://github.com/vubiostat/r-yaml/
+      url: https://yaml.r-lib.org
       repository: https://CRAN.R-project.org/package=yaml
       authors:
-      - family-names: Garbett
-        given-names: Shawn P
       - family-names: Stephens
         given-names: Jeremy
       - family-names: Simonov
         given-names: Kirill
-      - family-names: Xie
-        given-names: Yihui
-      - family-names: Dong
-        given-names: Zhuoer
-      - family-names: Wickham
-        given-names: Hadley
-      - family-names: Horner
-        given-names: Jeffrey
-      - name: reikoch
-      - family-names: Beasley
-        given-names: Will
-      - family-names: O'Connor
-        given-names: Brendan
-      - family-names: Warnes
-        given-names: Gregory R.
-      - family-names: Quinn
-        given-names: Michael
-      - family-names: Kamvar
-        given-names: Zhian N.
-      - family-names: Gao
-        given-names: Charlie
       year: '2025'
       doi: 10.32614/CRAN.package.yaml
       version: '>= 2.1.19'
@@ -604,6 +581,10 @@ test <- cff_create("rmarkdown")
         given-names: Barret
         email: barret@posit.co
         orcid: https://orcid.org/0000-0001-9986-114X
+      - family-names: Aden-Buie
+        given-names: Garrick
+        email: garrick@adenbuie.com
+        orcid: https://orcid.org/0000-0002-7111-0077
       - family-names: Xie
         given-names: Yihui
         email: yihui@posit.co

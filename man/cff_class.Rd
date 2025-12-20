@@ -134,35 +134,12 @@ ref_list
 #> - type: manual
 #>   title: 'yaml: Methods to Convert R Data to YAML and Back'
 #>   authors:
-#>   - family-names: Garbett
-#>     given-names: Shawn P
 #>   - family-names: Stephens
 #>     given-names: Jeremy
 #>   - family-names: Simonov
 #>     given-names: Kirill
-#>   - family-names: Xie
-#>     given-names: Yihui
-#>   - family-names: Dong
-#>     given-names: Zhuoer
-#>   - family-names: Wickham
-#>     given-names: Hadley
-#>   - family-names: Horner
-#>     given-names: Jeffrey
-#>   - name: reikoch
-#>   - family-names: Beasley
-#>     given-names: Will
-#>   - family-names: O'Connor
-#>     given-names: Brendan
-#>   - family-names: Warnes
-#>     given-names: Gregory R.
-#>   - family-names: Quinn
-#>     given-names: Michael
-#>   - family-names: Kamvar
-#>     given-names: Zhian N.
-#>   - family-names: Gao
-#>     given-names: Charlie
-#>   year: '2024'
-#>   notes: R package version 2.3.10
+#>   year: '2025'
+#>   notes: R package version 2.3.12
 #>   url: https://CRAN.R-project.org/package=yaml
 #>   doi: 10.32614/CRAN.package.yaml
 
@@ -335,9 +312,9 @@ toBibtex(cit)
 #> 
 #> @Manual\{,
 #>   title = \{yaml: Methods to Convert R Data to YAML and Back\},
-#>   author = \{Shawn P Garbett and Jeremy Stephens and Kirill Simonov and Yihui Xie and Zhuoer Dong and Hadley Wickham and Jeffrey Horner and \{reikoch\} and Will Beasley and Brendan O'Connor and Gregory R. Warnes and Michael Quinn and Zhian N. Kamvar and Charlie Gao\},
-#>   year = \{2024\},
-#>   note = \{R package version 2.3.10\},
+#>   author = \{Jeremy Stephens and Kirill Simonov\},
+#>   year = \{2025\},
+#>   note = \{R package version 2.3.12\},
 #>   url = \{https://CRAN.R-project.org/package=yaml\},
 #>   doi = \{10.32614/CRAN.package.yaml\},
 #> \}
