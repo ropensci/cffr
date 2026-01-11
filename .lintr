@@ -4,5 +4,5 @@ exclusions: list(
                   "data-raw",
                   "tests/testthat/test_ci",
                   "vignettes/cffr.Rmd",
-                  "vignettes/bibtex_cff.Rmd"
+                  "vignettes/bibtex-cff.Rmd"
                 )

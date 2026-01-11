@@ -120,7 +120,7 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
       paste0("Congratulations! ", is_a, " is valid")
     )
   }
-  return(invisible(result))
+  invisible(result)
 }
 
 # Validate schema

@@ -34,7 +34,7 @@ file_exist_abort <- function(x, abort = FALSE) {
       "{.file {x}} doesn't exist. Check the {.file {dirname(x)}} directory"
     )
   }
-  return(invisible(res))
+  invisible(res)
 }
 
 match_cff_arg <- function(arg, valid, for_msg, call = environment()) {
@@ -48,7 +48,7 @@ match_cff_arg <- function(arg, valid, for_msg, call = environment()) {
     )
   }
 
-  return(arg)
+  arg
 }
 
 write_lines_msg <- function(lines, file, verbose, append) {

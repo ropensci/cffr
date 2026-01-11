@@ -36,7 +36,7 @@
 #'
 #' - Hernangomez D (2022). "BibTeX and CFF, a potential crosswalk."
 #'   *The cffr package, Vignettes*. \doi{10.21105/joss.03900},
-#'   <https://docs.ropensci.org/cffr/articles/bibtex_cff.html>.
+#'   <https://docs.ropensci.org/cffr/articles/bibtex-cff.html>.
 #'
 #' @param x The source that would be used for generating
 #'   the `bibentry` object via \CRANpkg{cffr}. It could be:

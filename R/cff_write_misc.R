@@ -96,7 +96,7 @@ cff_write_bib <- function(
     file <- paste0(file, ".bib")
   }
   write_lines_msg(btex, file, verbose, append)
-  return(invisible(NULL))
+  invisible(NULL)
 }
 
 #' @export
@@ -141,5 +141,5 @@ cff_write_citation <- function(
   bentr <- format(x, style = "R")
   bentr <- c("", bentr)
   write_lines_msg(bentr, file, verbose, append)
-  return(invisible(NULL))
+  invisible(NULL)
 }

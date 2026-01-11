@@ -124,7 +124,7 @@ toBibtex(desc_file)
 \doi{10.5281/zenodo.1184077}.
 \item Hernangomez D (2022). "BibTeX and CFF, a potential crosswalk."
 \emph{The cffr package, Vignettes}. \doi{10.21105/joss.03900},
-\url{https://docs.ropensci.org/cffr/articles/bibtex_cff.html}.
+\url{https://docs.ropensci.org/cffr/articles/bibtex-cff.html}.
 }
 }
 \seealso{

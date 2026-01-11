@@ -73,5 +73,5 @@ cff_gha_update <- function(path = ".", overwrite = FALSE) {
     }
   }
 
-  return(invisible())
+  invisible()
 }

@@ -162,7 +162,7 @@ cff_write <- function(
     verbose = verbose
   )
 
-  return(invisible(citat))
+  invisible(citat)
 }
 
 

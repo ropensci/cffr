@@ -63,7 +63,7 @@ test_that("Validate all DESCRIPTION files", {
     full.names = TRUE
   )
 
-  for (i in seq_len(length(allfiles))) {
+  for (i in seq_along(allfiles)) {
     cffobj <- cff_create(allfiles[i], gh_keywords = FALSE)
     # Check that no preferred citation is created
     expect_null(cffobj$`preferred-citation`)

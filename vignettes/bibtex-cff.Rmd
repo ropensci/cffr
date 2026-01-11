@@ -59,7 +59,7 @@ Please cite this article using this **BibTeX** entry:
     journal      = {The {cffr} package},
     volume       = {Vignettes},
     doi          = {10.21105/joss.03900},
-    url          = {https://docs.ropensci.org/cffr/articles/bibtex_cff.html}
+    url          = {https://docs.ropensci.org/cffr/articles/bibtex-cff.html}
 }
 ```
 

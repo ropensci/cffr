@@ -54,7 +54,7 @@ bibtex_pers_von_last_first_jr <- function(x) {
   # Get more family parts
   invert <- rev(upper)
   # Then need to get sequentally the family
-  for (i in seq_len(length(invert))) {
+  for (i in seq_along(invert)) {
     if (invert[i] == FALSE) {
       break
     }
@@ -132,7 +132,7 @@ bibtex_pers_von_last_first <- function(x) {
   # Get more family parts
   invert <- rev(upper)
   # Then need to get sequentally the family
-  for (i in seq_len(length(invert))) {
+  for (i in seq_along(invert)) {
     if (invert[i] == FALSE) {
       break
     }
@@ -206,7 +206,7 @@ bibtex_pers_first_von_last <- function(x) {
   if (!all(mix, upper)) {
     invert <- rev(upper)
     # Then need to get sequentally the family
-    for (i in seq_len(length(invert))) {
+    for (i in seq_along(invert)) {
       if (invert[i] == FALSE) {
         break
       }

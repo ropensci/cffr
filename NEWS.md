@@ -1,4 +1,4 @@
-# cffr (development version)
+# cffr 1.2.1
 
 -   `cff_gha_update()` action now runs in `ubuntu-latest` by default to save
     [GitHub Actions

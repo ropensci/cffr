@@ -64,7 +64,7 @@ test_that("Test append", {
   lines2 <- readLines(file)
 
   # First lines identical, more lines on append
-  expect_true(all(lines1 == lines2[seq_len(length(lines1))]))
+  expect_true(all(lines1 == lines2[seq_along(lines1)]))
 
   expect_gt(length(lines2), length(lines1))
 
@@ -72,7 +72,7 @@ test_that("Test append", {
   cff_write_bib(bib2, file, verbose = FALSE, append = FALSE)
   lines3 <- readLines(file)
 
-  expect_false(all(lines1 == lines3[seq_len(length(lines1))]))
+  expect_false(all(lines1 == lines3[seq_along(lines1)]))
   expect_lt(length(lines3), length(lines2))
 })
 

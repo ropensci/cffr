@@ -14,7 +14,7 @@ test_that("Parse Licenses on CRAN (Top 10)", {
     tmp,
     overwrite = TRUE
   )
-  for (i in seq_len(length(sel))) {
+  for (i in seq_along(sel)) {
     p <- desc::desc_set("License", sel[i], file = tmp)
     expect_silent(r <- cff_validate(cff_create(tmp), verbose = FALSE))
     expect_true(r)

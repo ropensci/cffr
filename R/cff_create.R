@@ -242,5 +242,5 @@ build_cff_and_paths <- function(
   collect_list$desc_path <- desc_path
   collect_list$cffobjend <- cffobj
 
-  return(collect_list)
+  collect_list
 }

@@ -222,5 +222,5 @@ get_dependencies <- function(
 
   class(cff_deps) <- "cff"
 
-  return(cff_deps)
+  cff_deps
 }

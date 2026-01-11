@@ -73,7 +73,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2025-12-20 there are at least 556 repos on GitHub using **cffr**.
+As per 2026-01-11 there are at least 524 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -286,7 +286,7 @@ test <- cff_create("rmarkdown")
       institution:
         name: R Foundation for Statistical Computing
         address: Vienna, Austria
-      year: '2025'
+      year: '2026'
       version: '>= 3.0'
     - type: software
       title: bslib
@@ -306,7 +306,7 @@ test <- cff_create("rmarkdown")
         given-names: Garrick
         email: garrick@posit.co
         orcid: https://orcid.org/0000-0002-7111-0077
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.bslib
       version: '>= 0.2.5.1'
     - type: software
@@ -323,7 +323,7 @@ test <- cff_create("rmarkdown")
       - family-names: Xie
         given-names: Yihui
         orcid: https://orcid.org/0000-0003-0645-5666
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.evaluate
       version: '>= 0.13'
     - type: software
@@ -337,7 +337,7 @@ test <- cff_create("rmarkdown")
         given-names: Richard
         email: rich@posit.co
         orcid: https://orcid.org/0000-0003-3925-190X
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.fontawesome
       version: '>= 0.5.0'
     - type: software
@@ -367,7 +367,7 @@ test <- cff_create("rmarkdown")
         email: yihui@posit.co
       - family-names: Allen
         given-names: Jeff
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.htmltools
       version: '>= 0.5.1'
     - type: software
@@ -383,7 +383,7 @@ test <- cff_create("rmarkdown")
       - family-names: Cheng
         given-names: Joe
         email: joe@rstudio.com
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.jquerylib
     - type: software
       title: jsonlite
@@ -396,7 +396,7 @@ test <- cff_create("rmarkdown")
         given-names: Jeroen
         email: jeroenooms@gmail.com
         orcid: https://orcid.org/0000-0002-4035-0289
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.jsonlite
     - type: software
       title: knitr
@@ -409,7 +409,7 @@ test <- cff_create("rmarkdown")
         given-names: Yihui
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.knitr
       version: '>= 1.43'
     - type: software
@@ -421,7 +421,7 @@ test <- cff_create("rmarkdown")
       institution:
         name: R Foundation for Statistical Computing
         address: Vienna, Austria
-      year: '2025'
+      year: '2026'
     - type: software
       title: tinytex
       abstract: 'tinytex: Helper Functions to Install and Maintain TeX Live, and Compile
@@ -434,7 +434,7 @@ test <- cff_create("rmarkdown")
         given-names: Yihui
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.tinytex
       version: '>= 0.31'
     - type: software
@@ -446,7 +446,7 @@ test <- cff_create("rmarkdown")
       institution:
         name: R Foundation for Statistical Computing
         address: Vienna, Austria
-      year: '2025'
+      year: '2026'
     - type: software
       title: utils
       abstract: 'R: A Language and Environment for Statistical Computing'
@@ -456,7 +456,7 @@ test <- cff_create("rmarkdown")
       institution:
         name: R Foundation for Statistical Computing
         address: Vienna, Austria
-      year: '2025'
+      year: '2026'
     - type: software
       title: xfun
       abstract: 'xfun: Supporting Functions for Packages Maintained by ''Yihui Xie'''
@@ -468,7 +468,7 @@ test <- cff_create("rmarkdown")
         given-names: Yihui
         email: xie@yihui.name
         orcid: https://orcid.org/0000-0003-0645-5666
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.xfun
       version: '>= 0.36'
     - type: software
@@ -482,7 +482,7 @@ test <- cff_create("rmarkdown")
         given-names: Jeremy
       - family-names: Simonov
         given-names: Kirill
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.yaml
       version: '>= 2.1.19'
     - type: software
@@ -496,7 +496,7 @@ test <- cff_create("rmarkdown")
         given-names: Dirk
         email: edd@debian.org
         orcid: https://orcid.org/0000-0001-6419-907X
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.digest
     - type: software
       title: fs
@@ -513,7 +513,7 @@ test <- cff_create("rmarkdown")
       - family-names: Csárdi
         given-names: Gábor
         email: csardi.gabor@gmail.com
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.fs
     - type: software
       title: downlit
@@ -525,7 +525,7 @@ test <- cff_create("rmarkdown")
       - family-names: Wickham
         given-names: Hadley
         email: hadley@posit.co
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.downlit
       version: '>= 0.4.0'
     - type: software
@@ -553,7 +553,7 @@ test <- cff_create("rmarkdown")
         given-names: Carson
         email: carson@rstudio.com
         orcid: https://orcid.org/0000-0002-4958-2844
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.sass
       version: '>= 0.4.0'
     - type: software
@@ -597,7 +597,7 @@ test <- cff_create("rmarkdown")
         given-names: Alan
       - family-names: Borges
         given-names: Barbara
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.shiny
       version: '>= 1.6.0'
     - type: software
@@ -610,7 +610,7 @@ test <- cff_create("rmarkdown")
       - family-names: Wickham
         given-names: Hadley
         email: hadley@posit.co
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.testthat
       version: '>= 3.0.3'
     - type: software
@@ -627,7 +627,7 @@ test <- cff_create("rmarkdown")
       - family-names: Wickham
         given-names: Hadley
         email: hadley@rstudio.com
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.tibble
     - type: software
       title: vctrs
@@ -645,7 +645,7 @@ test <- cff_create("rmarkdown")
       - family-names: Vaughan
         given-names: Davis
         email: davis@posit.co
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.vctrs
     - type: software
       title: withr
@@ -670,7 +670,7 @@ test <- cff_create("rmarkdown")
         email: hadley@posit.co
       - family-names: Chang
         given-names: Winston
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.withr
       version: '>= 2.4.2'
     - type: software
@@ -687,7 +687,7 @@ test <- cff_create("rmarkdown")
       - family-names: Ooms
         given-names: Jeroen
         email: jeroenooms@gmail.com
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.xml2
 
 </details>

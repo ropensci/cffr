@@ -107,7 +107,7 @@ detect_repos <- function(repos = getOption("repos")) {
     repos["CRAN"] <- "https://cloud.r-project.org/"
   }
 
-  return(repos)
+  repos
 }
 
 #' Function for fuzzy matching the names of the keys
