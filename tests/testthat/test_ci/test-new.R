@@ -75,7 +75,7 @@ close(conn)
 write("```\n", outmd, append = TRUE)
 write("</details>", outmd, append = TRUE)
 
-errors <- installed[installed$is_ok == FALSE, ]
+errors <- installed[!installed$is_ok, ]
 errother <- errors$Package[errors$note == "Other errors"]
 errcff <- setdiff(errors$Package, errother)
 errother_df <- installed[installed$Package %in% errother, c(1, 2)]

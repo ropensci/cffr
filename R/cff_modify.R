@@ -78,7 +78,7 @@ modify_cff <- function(x, keys, argname = "...") {
 
   new_keys <- validate_extra_keys(keys, argname)
   new_keys <- fuzzy_keys(new_keys)
-  if (any(duplicated(names(new_keys)))) {
+  if (anyDuplicated(names(new_keys)) > 0) {
     cli::cli_alert_warning("Removing duplicated keys.")
     new_keys <- new_keys[!duplicated(names(new_keys))]
   }

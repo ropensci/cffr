@@ -286,7 +286,7 @@ test_that("Parsing many persons", {
 
   authors <- unlist(a_cff$authors)
 
-  expect_length(grep("erro", authors), 0)
+  expect_length(grep("erro", authors, fixed = TRUE), 0)
   names <- unlist(lapply(a_cff$authors, names))
 
   expect_s3_class(a_cff, "cff")

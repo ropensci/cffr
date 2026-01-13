@@ -90,7 +90,7 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
   # Validate
   result <- validate_schema(cit_temp, schema_local)
 
-  if (result == FALSE) {
+  if (!result) {
     get_errors <- attr(result, "errors")
     get_errors$field <- gsub("^data", "cff", get_errors$field)
 

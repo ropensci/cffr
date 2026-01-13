@@ -77,7 +77,7 @@ search_on_repos <- function(
   # Try to find in CRAN
   cran_repo <- clean_str(repos["CRAN"])
 
-  if (length(grep(cran_repo, get) == 1)) {
+  if (length(grep(cran_repo, get)) == 1) {
     # Canonical url to CRAN
 
     repos <- paste0("https://CRAN.R-project.org/package=", name)
@@ -98,9 +98,9 @@ search_on_repos <- function(
 detect_repos <- function(repos = getOption("repos")) {
   # Not use RSPM
   repos <- repos[names(repos) != "RSPM"]
-  repos <- repos[!grepl("rspm", repos)]
-  repos <- repos[!grepl("posit", repos)]
-  repos <- repos[!grepl("rstudio", repos)]
+  repos <- repos[!grepl("rspm", repos, fixed = TRUE)]
+  repos <- repos[!grepl("posit", repos, fixed = TRUE)]
+  repos <- repos[!grepl("rstudio", repos, fixed = TRUE)]
 
   # If not set use 0-Cloud
   if (!is_url(repos["CRAN"])) {

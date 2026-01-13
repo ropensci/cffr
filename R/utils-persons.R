@@ -5,7 +5,7 @@ bibtex_pers_von_last_first_jr <- function(x) {
   parts_comma <- trimws(unlist(strsplit(protected, ",")))
 
   # Unprotect
-  parts_comma <- gsub("@comma@", ",", parts_comma)
+  parts_comma <- gsub("@comma@", ",", parts_comma, fixed = TRUE)
 
   if (length(parts_comma) == 3) {
     given <- parts_comma[3]
@@ -32,7 +32,7 @@ bibtex_pers_von_last_first_jr <- function(x) {
   parts <- unlist(strsplit(protected, " "))
 
   # Unprotect
-  parts <- gsub("@blank@", " ", parts)
+  parts <- gsub("@blank@", " ", parts, fixed = TRUE)
 
   # Start building
   # Assess casing
@@ -55,7 +55,7 @@ bibtex_pers_von_last_first_jr <- function(x) {
   invert <- rev(upper)
   # Then need to get sequentally the family
   for (i in seq_along(invert)) {
-    if (invert[i] == FALSE) {
+    if (!invert[i]) {
       break
     }
     family <- c(names(invert[i]), family)
@@ -88,7 +88,7 @@ bibtex_pers_von_last_first <- function(x) {
   parts_comma <- trimws(unlist(strsplit(protected, ",")))
 
   # Unprotect
-  parts_comma <- gsub("@comma@", ",", parts_comma)
+  parts_comma <- gsub("@comma@", ",", parts_comma, fixed = TRUE)
 
   if (length(parts_comma) == 2) {
     given <- parts_comma[2]
@@ -110,7 +110,7 @@ bibtex_pers_von_last_first <- function(x) {
   parts <- unlist(strsplit(protected, " "))
 
   # Unprotect
-  parts <- gsub("@blank@", " ", parts)
+  parts <- gsub("@blank@", " ", parts, fixed = TRUE)
 
   # Start building
   # Assess casing
@@ -133,7 +133,7 @@ bibtex_pers_von_last_first <- function(x) {
   invert <- rev(upper)
   # Then need to get sequentally the family
   for (i in seq_along(invert)) {
-    if (invert[i] == FALSE) {
+    if (!invert[i]) {
       break
     }
     family <- c(names(invert[i]), family)
@@ -182,7 +182,7 @@ bibtex_pers_first_von_last <- function(x) {
   parts <- trimws(unlist(strsplit(x, " ")))
 
   # Unprotect
-  parts <- gsub("@blank@", " ", parts)
+  parts <- gsub("@blank@", " ", parts, fixed = TRUE)
 
   # Start building
   # Assess casing
@@ -207,7 +207,7 @@ bibtex_pers_first_von_last <- function(x) {
     invert <- rev(upper)
     # Then need to get sequentally the family
     for (i in seq_along(invert)) {
-      if (invert[i] == FALSE) {
+      if (!invert[i]) {
         break
       }
       family <- c(names(invert[i]), family)
@@ -219,7 +219,7 @@ bibtex_pers_first_von_last <- function(x) {
 
   # von part
   # Detect casing index on remaining parts
-  von_assess <- as.integer(which(upper == FALSE))
+  von_assess <- as.integer(which(!upper))
 
   # von
   # if no lenght then no von
@@ -296,8 +296,8 @@ split_txt_persons <- function(person) {
   auths <- unlist(strsplit(protected, " and | AND "))
 
   # Unprotec
-  auths_un <- gsub("@nd@", "and", auths)
-  auths_un <- gsub("@ND@", "AND", auths_un)
+  auths_un <- gsub("@nd@", "and", auths, fixed = TRUE)
+  auths_un <- gsub("@ND@", "AND", auths_un, fixed = TRUE)
 
   auths_un
 }
@@ -317,8 +317,8 @@ extract_person_comments <- function(person) {
   # Special case when coerced from text, only can extract orcid and web
   if (
     all(
-      any(is.na(nms_com), length(nms_com) == 0),
-      length(comment_as_text > 0)
+      (is.na(nms_com) || length(nms_com) == 0),
+      length(comment_as_text) > 0
     )
   ) {
     split_comments <- unlist(strsplit(comment_as_text, ",| |<|>"))
@@ -383,7 +383,7 @@ extract_person_comments45 <- function(person) {
   # Detect comments
   # Last is )?
 
-  if ("person" %in% class(person)) {
+  if (inherits(person, "person")) {
     person <- format(person)
   }
   last <- substr(person, nchar(person), nchar(person))

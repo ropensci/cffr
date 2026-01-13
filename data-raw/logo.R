@@ -29,7 +29,7 @@ sticker(
   s_width = 1.4,
   s_height = 1.4,
   s_x = 0.9,
-  s_y = .77,
+  s_y = 0.77,
   p_color = "#1892E3",
   p_size = 30,
   p_y = 1.6,

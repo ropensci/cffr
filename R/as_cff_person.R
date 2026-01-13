@@ -343,7 +343,7 @@ create_person_from_txt <- function(as_bib_text) {
   protected <- gsub(",(?![^\\}]*(\\{|$))", "@comma@", person_only, perl = TRUE)
 
   commas <- as.character(
-    lengths(regmatches(protected, gregexpr(",", protected)))
+    lengths(regmatches(protected, gregexpr(",", protected, fixed = TRUE)))
   )
 
   # Assign the corresponding fun

@@ -2,6 +2,8 @@ on:
   workflow_dispatch:
 
 name: update-docs
+permissions:
+  contents: write
 
 jobs:
   update-docs:
@@ -20,12 +22,18 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          cache-version: "testci"
+          cache-version: "update-docs"
           extra-packages: |
             local::.
             any::rmarkdown
             any::rcmdcheck
             dieghernan/pkgdev
+
+      - name: Run jarl
+        uses: etiennebacher/setup-jarl@v0.1.0
+        continue-on-error: true
+        with:
+          args: check . --fix --min-r-version 4.0
 
       - name: Install Air
         uses: posit-dev/setup-air@v1
