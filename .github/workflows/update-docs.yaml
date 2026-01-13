@@ -29,11 +29,12 @@ jobs:
             any::rcmdcheck
             dieghernan/pkgdev
 
-      - name: Run jarl
-        uses: etiennebacher/setup-jarl@v0.1.0
-        continue-on-error: true
-        with:
-          args: check . --fix --min-r-version 4.0
+      # NO RUN! It removes some files on CI
+      # - name: Run jarl
+      #   uses: etiennebacher/setup-jarl@v0.1.0
+      #   continue-on-error: true
+      #   with:
+      #     args: check . --fix --min-r-version 4.0
 
       - name: Install Air
         uses: posit-dev/setup-air@v1
