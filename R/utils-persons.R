@@ -317,7 +317,7 @@ extract_person_comments <- function(person) {
   # Special case when coerced from text, only can extract orcid and web
   if (
     all(
-      (is.na(nms_com) || length(nms_com) == 0),
+      any(length(nms_com) == 0, is.na(nms_com)),
       length(comment_as_text) > 0
     )
   ) {

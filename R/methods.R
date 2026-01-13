@@ -58,7 +58,7 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
   df_l <- lapply(key_len, function(y) {
     el <- x[[y]]
     nm <- ref_n[y]
-    nm <- gsub("-", "_", nm)
+    nm <- gsub("-", "_", nm, fixed = TRUE)
 
     if (nm == "preferred_citation") {
       return(as.data.frame(el, prefix = nm))
@@ -134,7 +134,7 @@ as.data.frame.cff_pers <- function(
 
   vals <- unlist(x)
   nm <- names(vals)
-  nm <- gsub("-", "_", nm)
+  nm <- gsub("-", "_", nm, fixed = TRUE)
   amat <- matrix(vals, nrow = 1, ncol = length(vals))
   m <- as.data.frame(amat)
 
