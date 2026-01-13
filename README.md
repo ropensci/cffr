@@ -73,7 +73,7 @@ file and the `CITATION` file (if present) of your package. Note that
 **cffr** works best if your package pass
 `R CMD check/devtools::check()`.
 
-As per 2026-01-13 there are at least 526 repos on GitHub using **cffr**.
+As per 2026-01-13 there are at least 534 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -135,9 +135,7 @@ test <- cff_create("rmarkdown")
 ```
 
 <details>
-
 <summary>
-
 <code>CITATION.cff</code> for <strong>rmarkdown</strong>
 </summary>
 
@@ -231,6 +229,7 @@ test <- cff_create("rmarkdown")
       url: https://github.com/rstudio/rmarkdown
     repository: https://CRAN.R-project.org/package=rmarkdown
     repository-code: https://github.com/rstudio/rmarkdown
+    commit: '2.30'
     url: https://pkgs.rstudio.com/rmarkdown/
     date-released: '2025-09-28'
     contact:
@@ -690,7 +689,6 @@ test <- cff_create("rmarkdown")
       doi: 10.32614/CRAN.package.xml2
 
 </details>
-
 <p>
 
 We can validate the result using `cff_validate()`:
