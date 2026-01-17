@@ -81,7 +81,7 @@ jobs:
           ropensci <- jsonlite::read_json("https://ropensci.r-universe.dev/api/packages") %>%
             lapply("[[", "Package") %>%
             unlist()
-          ropenscireviewtools <- jsonlite::read_json("https://ropenscireviewtools.r-universe.dev/api/packages") %>%
+          ropenscireviewtools <- jsonlite::read_json("https://ropensci-review-tools.r-universe.dev/api/packages") %>%
             lapply("[[", "Package") %>%
             unlist()
 
@@ -140,7 +140,10 @@ jobs:
           # Check packages available
           pakav <- as.data.frame(available.packages(repos = getOption("repos")))
           toinstall <- toinstall_init[toinstall_init %in% pakav$Package]
-          message("Installing ", length(toinstall), " packages")
+          message(
+            "Installing ", length(toinstall), " packages of ",
+            nrow(pakav), " available"
+          )
 
           install.packages(toinstall)
 

@@ -1,3 +1,7 @@
+# cffr (development version)
+
+-   Minimum **R** version required now is **4.1.0**.
+
 # cffr 1.2.1
 
 -   `cff_gha_update()` action now runs in `ubuntu-latest` by default to save
@@ -9,8 +13,8 @@
 
 # cffr 1.2.0
 
--   New argument `r_citation` in `cff_write()`. When it is set to `TRUE` a
-    **R** citation file (`inst/CITATION`) would be generated/updated with the
+-   New argument `r_citation` in `cff_write()`. When it is set to `TRUE` a **R**
+    citation file (`inst/CITATION`) would be generated/updated with the
     information of the generated `CITATION.cff` file. **No backup copy would be
     created**, for more control use `cff_write_citation()` (#79).
 -   `repository-code` now also recognizes [Codeberg](https://codeberg.org/) as a
@@ -45,8 +49,8 @@
 # cffr 1.0.0
 
 This is a major release with some notable changes. The change mainly **affects
-non-core functions**, hence the natural workflow (`cff_create()` →
-`cff_write()` → `cff_validate()`) shouldn't be affected.
+non-core functions**, hence the natural workflow (`cff_create()` → `cff_write()`
+→ `cff_validate()`) shouldn't be affected.
 
 ## Major changes
 
@@ -92,9 +96,9 @@ package.
 ### API
 
 The API has been completely reviewed to provide more clarity on functions naming
-and to facilitate internal maintenance. This change **only** **affects
-non-core functions**. Now each function does fewer things but does it better. The
-old API [has been
+and to facilitate internal maintenance. This change **only** **affects non-core
+functions**. Now each function does fewer things but does it better. The old API
+[has been
 deprecated](https://lifecycle.r-lib.org/articles/stages.html#deprecated) and it
 would warn when used, providing advice on the replacement function.
 

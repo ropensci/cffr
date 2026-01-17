@@ -39,8 +39,9 @@ machine-readable citation information for software (and data sets). Code
 developers can include them in their repositories to let others know how to
 correctly cite their software.
 
-This format is gaining popularity within the software citation ecosystem. 
-Recently [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
+This format is gaining popularity within the software citation ecosystem.
+Recently
+[GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
 [Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-) and
 [Zotero](https://citation-file-format.github.io/#/supported-by-zotero-) have
 included full support of this citation format [@druskat_stephan_making_2021].

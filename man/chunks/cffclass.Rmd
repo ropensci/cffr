@@ -1,8 +1,8 @@
 ## The `cff` class
 
 [**cffr**](https://cran.r-project.org/package=cffr) implements a S3 object with
-[`class`] `cff`, that is used to represent the information of a
-`CITATION.cff` file in **R**.
+[`class`] `cff`, that is used to represent the information of a `CITATION.cff`
+file in **R**.
 
 Under the hood, a `cff` object is simply a named [`list`] to which we added
 additional methods, most notably [`print`] and [as_cff()].

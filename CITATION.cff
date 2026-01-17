@@ -8,7 +8,7 @@ message: 'To cite package "cffr" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'cffr: Generate Citation File Format (''cff'') Metadata for R Packages'
-version: 1.2.1
+version: 1.2.1.9000
 doi: 10.21105/joss.03900
 identifiers:
 - type: doi
@@ -38,7 +38,7 @@ preferred-citation:
   issue: '67'
   journal: Journal of Open Source Software
   start: '3900'
-repository: https://CRAN.R-project.org/package=cffr
+repository: https://ropensci.r-universe.dev/
 repository-code: https://github.com/ropensci/cffr
 url: https://docs.ropensci.org/cffr/
 contact:
@@ -100,7 +100,7 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2026'
-  version: '>= 4.0.0'
+  version: '>= 4.1.0'
 - type: software
   title: cli
   abstract: 'cli: Helpers for Developing Command Line Interfaces'

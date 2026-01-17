@@ -33,8 +33,8 @@
 \subsection{The \code{cff} class}{
 
 \href{https://cran.r-project.org/package=cffr}{\strong{cffr}} implements a S3 object with
-\code{\link{class}} \code{cff}, that is used to represent the information of a
-\code{CITATION.cff} file in \strong{R}.
+\code{\link{class}} \code{cff}, that is used to represent the information of a \code{CITATION.cff}
+file in \strong{R}.
 
 Under the hood, a \code{cff} object is simply a named \code{\link{list}} to which we added
 additional methods, most notably \code{\link{print}} and \code{\link[=as_cff]{as_cff()}}.
@@ -174,7 +174,7 @@ Creating a \code{cff} object does not ensure its validity according to the \href
 #> [1] "cff"
 
 cff_validate(a_cff_object)
-#> == Validating cff ====================================================
+#> == Validating cff ==============================================================
 #> x Oops! This <cff> has the following errors:
 #> * cff.authors: is required
 #> * cff["cff-version"]: is required
@@ -206,7 +206,7 @@ cff_valid
 #> title: My title
 
 cff_validate(cff_valid)
-#> == Validating cff ====================================================
+#> == Validating cff ==============================================================
 #> v Congratulations! This <cff> is valid
 }\if{html}{\out{</div>}}
 }

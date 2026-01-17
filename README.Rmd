@@ -49,12 +49,13 @@ machine-readable citation information for software (and datasets). Code
 developers can include them in their repositories to let others know how to
 correctly cite their software.
 
-This format is gaining popularity within the software citation ecosystem. 
-Recently, [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
+This format is gaining popularity within the software citation ecosystem.
+Recently,
+[GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
 [Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-), and
 [Zotero](https://citation-file-format.github.io/#/supported-by-zotero-) have
-fully supported this citation format [@druskat_stephan_making_2021].
-GitHub support is of special interest:
+fully supported this citation format [@druskat_stephan_making_2021]. GitHub
+support is of special interest:
 
 ```{r echo=FALSE, out.width="400", fig.align='center', fig.alt="Tweet of Nat Friedman about CFF files"}
 knitr::include_graphics("vignettes/tweet-1.png")
@@ -74,13 +75,13 @@ metadata across repositories and organizations. One of the many uses of a
 `codemeta.json` file (created following the standards defined by The CodeMeta
 Project) is to provide citation metadata such as title, authors, publication
 year, and venue [@fenner2021]. The packages **codemeta** [@codemeta] and
-**codemetar** [@codemetar2021] allow for generating `codemeta.json` files from 
-R package metadata.
+**codemetar** [@codemetar2021] allow for generating `codemeta.json` files from R
+package metadata.
 
 ## The cffr package
 
 **cffr** maximizes data extraction by utilizing both the `DESCRIPTION` file and
-the `CITATION` file (if present) from your package. Note that **cffr** works 
+the `CITATION` file (if present) from your package. Note that **cffr** works
 best if your package passes `R CMD check/devtools::check()`.
 
 ```{r count_cffr, echo=FALSE, results='asis'}
@@ -173,9 +174,9 @@ cff_write()
 However, **cffr** provides also custom print methods and mechanisms that allows
 you to customize the `CITATION.cff` and integrate them in your workflows.
 
-This is a basic example which shows you how to create a `cff` object (see 
-`?cff` for more info). In this case, we are creating a `cff` object from the 
-metadata of the **rmarkdown** package:
+This is a basic example which shows you how to create a `cff` object (see `?cff`
+for more info). In this case, we are creating a `cff` object from the metadata
+of the **rmarkdown** package:
 
 ```{r }
 library(cffr)
@@ -234,10 +235,10 @@ hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workf
 
 > The `pre-commit` hook is run first, before you even type in a commit message.
 > It's used to inspect the snapshot that's about to be committed, to see if
-> you've forgotten something, to make sure tests run, or to examine whatever 
-> you need to inspect in the code. Exiting non-zero from this hook aborts the
-> need to inspect in the code. Exiting non-zero from this hook aborts the
-> commit, although you can bypass it with `git commit --no-verify`.
+> you've forgotten something, to make sure tests run, or to examine whatever you
+> need to inspect in the code. Exiting non-zero from this hook aborts the need
+> to inspect in the code. Exiting non-zero from this hook aborts the commit,
+> although you can bypass it with `git commit --no-verify`.
 
 A specific pre-commit hook can be installed with `cff_git_hook_install()`. If
 you want to use a pre-commit hook, please make sure you have the **testthat**
@@ -298,4 +299,3 @@ for more info.
 :::
 
 [![footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
-

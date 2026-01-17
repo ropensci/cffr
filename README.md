@@ -135,7 +135,9 @@ test <- cff_create("rmarkdown")
 ```
 
 <details>
+
 <summary>
+
 <code>CITATION.cff</code> for <strong>rmarkdown</strong>
 </summary>
 
@@ -689,6 +691,7 @@ test <- cff_create("rmarkdown")
       doi: 10.32614/CRAN.package.xml2
 
 </details>
+
 <p>
 
 We can validate the result using `cff_validate()`:
