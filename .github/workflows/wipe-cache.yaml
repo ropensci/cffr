@@ -8,7 +8,7 @@ concurrency:
 on:
   workflow_dispatch:
   schedule:
-    - cron: "20 16 10,20 * *"
+    - cron: "01 00 1 * *"
 
 jobs:
   cache-clear:
