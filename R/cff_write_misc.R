@@ -28,7 +28,7 @@
 #' @family writing
 #'
 #' @return
-#' Writes the corresponding file specified on the `file` parameter.
+#' Writes the corresponding file specified on the `file` argument.
 #'
 #' @details
 #'

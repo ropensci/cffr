@@ -4,9 +4,14 @@ on:
       - CITATION.cff
   workflow_dispatch:
 
-name: CITATION.cff
+name: CITATION-cff
 permissions:
   contents: write
+
+# This will cancel running jobs once a new run is triggered
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
 
 jobs:
   Validate-CITATION-cff:
@@ -14,10 +19,18 @@ jobs:
     name: Validate CITATION.cff
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      RSPM: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"
+
     steps:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Validate CITATION.cff
-        uses: dieghernan/cff-validator@v4
+      # This is needed for workflows running on
+      # ubuntu-20.04 or later
+      - name: Install V8
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get install -y libv8-dev
 
+      - name: Validate CITATION.cff
+        uses: dieghernan/cff-validator@main

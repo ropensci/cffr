@@ -7,10 +7,11 @@ on:
 
 name: test-coverage
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+permissions: read-all
+# This will cancel running jobs once a new run is triggered
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
 
 jobs:
   test-coverage:
@@ -37,13 +38,17 @@ jobs:
           # Need to config junit on working dir to locate it
           wdir <- file.path(normalizePath(getwd(), winslash = "/"))
           junfile <- file.path(wdir, "junit.xml")
+
           # And get the name
           pkgname <- as.character(unname(read.dcf("DESCRIPTION", "Package")))
+
           # Create junit code as character
           junreport <- paste0(
             "testthat::test_package('",
-            pkgname, "', reporter = testthat::JunitReporter$new(file = '", junfile, "'))"
+            pkgname, "',
+            reporter = testthat::JunitReporter$new(file = '", junfile, "'))"
           )
+
           cov <- covr::package_coverage(
             quiet = FALSE,
             clean = FALSE,
@@ -53,8 +58,10 @@ jobs:
             ), "package"),
             code = junreport
           )
+
           # Show results
           print(cov)
+
           # Generate files for upload in the working dir
           covr::to_cobertura(cov)
         shell: Rscript {0}
@@ -71,11 +78,13 @@ jobs:
 
       - name: Upload test results to Codecov
         if: ${{ !cancelled() }}
-        uses: codecov/test-results-action@v1
+        uses: codecov/codecov-action@v5
         with:
           # Fail if error if not on PR, or if on PR and token is given
           fail_ci_if_error: ${{ github.event_name != 'pull_request' || secrets.CODECOV_TOKEN }}
-          file: ./junit.xml
+          files: ./junit.xml
+          report_type: test_results
+          plugins: noop
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Show testthat output
@@ -91,4 +100,3 @@ jobs:
         with:
           name: coverage-test-failures
           path: ${{ runner.temp }}/package
-

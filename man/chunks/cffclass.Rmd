@@ -1,7 +1,7 @@
 ## The `cff` class
 
 [**cffr**](https://cran.r-project.org/package=cffr) implements a S3 object with
-[`class`] `cff`, that it is used to represent the information of a
+[`class`] `cff`, that is used to represent the information of a
 `CITATION.cff` file in **R**.
 
 Under the hood, a `cff` object is simply a named [`list`] to which we added
@@ -49,7 +49,7 @@ Schema](https://github.com/citation-file-format/citation-file-format/blob/main/s
     `definition.reference` where each element of the array has a sub-class named
     `cff_ref`.
 
-These two sub-classes does not provide full valid `cff` objects, but adapts
+These two sub-classes do not provide full valid `cff` objects, but adapt
 information to the schema required by CFF:
 
 ```{r}
@@ -101,7 +101,7 @@ class(a_cff_object)
 cff_validate(a_cff_object)
 ```
 
-[cff_validate()] gives minimal messages of what's wrong with our `cff` and
+[cff_validate()] gives minimal messages about what's wrong with our `cff` and
 (invisibly) returns the result of the validation (`TRUE/FALSE`).
 
 We can use [cff_modify()] to add more keys:

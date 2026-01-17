@@ -23,7 +23,7 @@
 #' @param verbose Logical `TRUE/FALSE`. On `TRUE` the function would display
 #'   informative messages.
 #'
-#' @param validate validate Logical `TRUE/FALSE`. Should the new file be
+#' @param validate Logical `TRUE/FALSE`. Should the new file be
 #'   validated using `cff_validate()`?
 #'
 #' @param encoding The name of the encoding to be assumed. Default is `"UTF-8"`,

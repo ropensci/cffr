@@ -2,15 +2,17 @@ on:
   workflow_dispatch:
 
 name: update-docs
-permissions:
-  contents: write
+permissions: write-all
+# This will cancel running jobs once a new run is triggered
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
 
 jobs:
   update-docs:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-
     steps:
       - uses: actions/checkout@v6
 
@@ -22,29 +24,28 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          cache-version: "update-docs"
           extra-packages: |
             local::.
-            any::rmarkdown
-            any::rcmdcheck
             dieghernan/pkgdev
+          needs: website
 
-      # NO RUN! It removes some files on CI
-      # - name: Run jarl
-      #   uses: etiennebacher/setup-jarl@v0.1.0
-      #   continue-on-error: true
-      #   with:
-      #     args: check . --fix --min-r-version 4.0
+      - name: Run jarl
+        uses: etiennebacher/setup-jarl@v0.1.0
+        continue-on-error: true
+        with:
+          args: check . --fix --min-r-version 4.0.0
 
       - name: Install Air
         uses: posit-dev/setup-air@v1
 
-      - name: Format with Air
+      - name: Format package
         run: air format .
 
       - name: Update docs
         run: |
-          pkgdev::update_docs()
+
+          pkgdev::update_docs(opt_dir = c("man/figures", "img", "vignettes"))
+
         shell: Rscript {0}
 
       - name: Commit results
@@ -56,4 +57,3 @@ jobs:
           git push origin || echo "No changes to commit"
 
       - uses: r-lib/actions/check-r-package@v2
-

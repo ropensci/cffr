@@ -105,7 +105,7 @@ toBibtex(entry)
 
 The final results of the entry as a text string would be coerced as[^1]:
 
-[^1]: By default **R** Pandoc would generate the cite on the Chicago author-date
+[^1]: By default **R** Pandoc would generate the cite in the Chicago author-date
     format [@rmarkdowncookbook2020]
 
 ```{r echo=FALSE, results='asis'}
@@ -293,7 +293,7 @@ mandatory.
 
 ## Citation File Format
 
-[Citation File Format (CFF](https://citation-file-format.github.io/))
+[Citation File Format (CFF)](https://citation-file-format.github.io/)
 [@druskat_citation_2021] consists of plain text files containing both human- and
 machine-readable citation information for software and datasets. Within
 [CFF]{.underline}, there are two important keys: `preferred-citation` and

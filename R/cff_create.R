@@ -3,7 +3,7 @@
 #' @description
 #'
 #' Create a full and possibly valid [`cff`] object from a given source. This
-#' object can be written to a `*.cff ` file with [cff_write()],
+#' object can be written to a `*.cff` file with [cff_write()],
 #' see **Examples**.
 #'
 #' Most of the heavy lifting of \CRANpkg{cffr} is done via this function.
@@ -30,7 +30,7 @@
 #' @param gh_keywords Logical `TRUE/FALSE`. If the package is hosted on
 #'   GitHub, would you like to add the repo topics as keywords?
 #' @param dependencies Logical `TRUE/FALSE`. Would you like to add the
-#'   of your package to the `references` CFF key?
+#'   dependencies of your package to the `references` CFF key?
 #' @param authors_roles Roles to be considered as authors of the package when
 #'   generating the `CITATION.cff` file. See **Details**.
 #'
@@ -53,14 +53,14 @@
 #'
 #' @details
 #'
-#' If `x` is a path to a `DESCRIPTION` file or `inst/CITATION`, is not present
+#' If `x` is a path to a `DESCRIPTION` file or if `inst/CITATION` is not present
 #' on your package, \CRANpkg{cffr} would auto-generate a `preferred-citation`
 #' key using the information provided on that file.
 #'
 #' By default, only persons whose role in the `DESCRIPTION` file of the package
 #' is author (`"aut"`) or maintainer (`"cre"`) are considered to be authors
 #' of the package. The default setting can be controlled via the `authors_roles`
-#' parameter. See **Details** on [person()] to get additional insights
+#' argument. See **Details** on [person()] to get additional insights
 #' on person roles.
 #'
 #'

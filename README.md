@@ -23,9 +23,9 @@ bytes](https://img.shields.io/github/languages/code-size/ropensci/cffr)
 
 <!-- badges: end -->
 
-**cffr** provides utilities to generate, coerce, modify and validate
-`CITATION.cff` files automatically for **R** packages, as well as tools
-and examples for working with .cff more generally.
+**cffr** provides utilities to generate, coerce, modify, and validate
+`CITATION.cff` files automatically for **R** packages, along with tools
+and examples for working with .cff files more generally.
 
 ## What is a `CITATION.cff` file?
 
@@ -35,13 +35,13 @@ text files with human- and machine-readable citation information for
 software (and datasets). Code developers can include them in their
 repositories to let others know how to correctly cite their software.
 
-This format is becoming popular within the software citation ecosystem.
-Recently
+This format is gaining popularity within the software citation
+ecosystem. Recently,
 [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
-[Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-)
+[Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-),
 and
 [Zotero](https://citation-file-format.github.io/#/supported-by-zotero-)
-have included full support of this citation format ([Druskat
+have fully supported this citation format ([Druskat
 2021](#ref-druskat_stephan_making_2021)). GitHub support is of special
 interest:
 
@@ -51,7 +51,7 @@ interest:
 
 See [Enhanced support for citations on
 GitHub](https://github.blog/news-insights/company-news/enhanced-support-citations-github/)
-([Smith 2021](#ref-smith2021)) for more info.
+([Smith 2021](#ref-smith2021)) for more information.
 
 ### Related projects
 
@@ -59,21 +59,21 @@ GitHub](https://github.blog/news-insights/company-news/enhanced-support-citation
 2017](#ref-jones2017)) creates a concept vocabulary that can be used to
 standardize the exchange of software metadata across repositories and
 organizations. One of the many uses of a `codemeta.json` file (created
-following the standards defined on The CodeMeta Project) is to provide
+following the standards defined by The CodeMeta Project) is to provide
 citation metadata such as title, authors, publication year, and venue
 ([Fenner 2021](#ref-fenner2021)). The packages **codemeta** ([Boettiger
-and Salmon 2021a](#ref-codemeta)) / **codemetar** ([Boettiger and Salmon
-2021b](#ref-codemetar2021)) allows to generate `codemeta.json` files
-from R packages metadata.
+and Salmon 2021a](#ref-codemeta)) and **codemetar** ([Boettiger and
+Salmon 2021b](#ref-codemetar2021)) allow for generating `codemeta.json`
+files from R package metadata.
 
 ## The cffr package
 
-**cffr** maximizes the data extraction by using both the `DESCRIPTION`
-file and the `CITATION` file (if present) of your package. Note that
-**cffr** works best if your package pass
+**cffr** maximizes data extraction by utilizing both the `DESCRIPTION`
+file and the `CITATION` file (if present) from your package. Note that
+**cffr** works best if your package passes
 `R CMD check/devtools::check()`.
 
-As per 2026-01-13 there are at least 530 repos on GitHub using **cffr**.
+As per 2026-01-17 there are at least 538 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -135,9 +135,7 @@ test <- cff_create("rmarkdown")
 ```
 
 <details>
-
 <summary>
-
 <code>CITATION.cff</code> for <strong>rmarkdown</strong>
 </summary>
 
@@ -691,7 +689,6 @@ test <- cff_create("rmarkdown")
       doi: 10.32614/CRAN.package.xml2
 
 </details>
-
 <p>
 
 We can validate the result using `cff_validate()`:
@@ -738,8 +735,9 @@ hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workf
 > message. It’s used to inspect the snapshot that’s about to be
 > committed, to see if you’ve forgotten something, to make sure tests
 > run, or to examine whatever you need to inspect in the code. Exiting
-> non-zero from this hook aborts the commit, although you can bypass it
-> with `git commit --no-verify`.
+> non-zero from this hook aborts the need to inspect in the code.
+> Exiting non-zero from this hook aborts the commit, although you can
+> bypass it with `git commit --no-verify`.
 
 A specific pre-commit hook can be installed with
 `cff_git_hook_install()`. If you want to use a pre-commit hook, please

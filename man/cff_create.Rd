@@ -34,7 +34,7 @@ in-development \strong{R} package.
 GitHub, would you like to add the repo topics as keywords?}
 
 \item{dependencies}{Logical \code{TRUE/FALSE}. Would you like to add the
-of your package to the \code{references} CFF key?}
+dependencies of your package to the \code{references} CFF key?}
 
 \item{authors_roles}{Roles to be considered as authors of the package when
 generating the \code{CITATION.cff} file. See \strong{Details}.}
@@ -44,20 +44,20 @@ A \code{\link{cff}} object.
 }
 \description{
 Create a full and possibly valid \code{\link{cff}} object from a given source. This
-object can be written to a \verb{*.cff } file with \code{\link[=cff_write]{cff_write()}},
+object can be written to a \verb{*.cff} file with \code{\link[=cff_write]{cff_write()}},
 see \strong{Examples}.
 
 Most of the heavy lifting of \CRANpkg{cffr} is done via this function.
 }
 \details{
-If \code{x} is a path to a \code{DESCRIPTION} file or \code{inst/CITATION}, is not present
+If \code{x} is a path to a \code{DESCRIPTION} file or if \code{inst/CITATION} is not present
 on your package, \CRANpkg{cffr} would auto-generate a \code{preferred-citation}
 key using the information provided on that file.
 
 By default, only persons whose role in the \code{DESCRIPTION} file of the package
 is author (\code{"aut"}) or maintainer (\code{"cre"}) are considered to be authors
 of the package. The default setting can be controlled via the \code{authors_roles}
-parameter. See \strong{Details} on \code{\link[=person]{person()}} to get additional insights
+argument. See \strong{Details} on \code{\link[=person]{person()}} to get additional insights
 on person roles.
 }
 \examples{

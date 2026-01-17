@@ -37,9 +37,9 @@ bytes](https://img.shields.io/github/languages/code-size/ropensci/cffr)
 
 <!-- badges: end -->
 
-**cffr** provides utilities to generate, coerce, modify and validate
-`CITATION.cff` files automatically for **R** packages, as well as tools and
-examples for working with .cff more generally.
+**cffr** provides utilities to generate, coerce, modify, and validate
+`CITATION.cff` files automatically for **R** packages, along with tools and
+examples for working with .cff files more generally.
 
 ## What is a `CITATION.cff` file?
 
@@ -49,11 +49,11 @@ machine-readable citation information for software (and datasets). Code
 developers can include them in their repositories to let others know how to
 correctly cite their software.
 
-This format is becoming popular within the software citation ecosystem. Recently
-[GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
-[Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-) and
+This format is gaining popularity within the software citation ecosystem. 
+Recently, [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
+[Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-), and
 [Zotero](https://citation-file-format.github.io/#/supported-by-zotero-) have
-included full support of this citation format [@druskat_stephan_making_2021].
+fully supported this citation format [@druskat_stephan_making_2021].
 GitHub support is of special interest:
 
 ```{r echo=FALSE, out.width="400", fig.align='center', fig.alt="Tweet of Nat Friedman about CFF files"}
@@ -64,24 +64,24 @@ knitr::include_graphics("vignettes/tweet-1.png")
 
 See [Enhanced support for citations on
 GitHub](https://github.blog/news-insights/company-news/enhanced-support-citations-github/)
-[@smith2021] for more info.
+[@smith2021] for more information.
 
 ### Related projects
 
 [The CodeMeta Project](https://codemeta.github.io/) [@jones2017] creates a
 concept vocabulary that can be used to standardize the exchange of software
 metadata across repositories and organizations. One of the many uses of a
-`codemeta.json` file (created following the standards defined on The CodeMeta
+`codemeta.json` file (created following the standards defined by The CodeMeta
 Project) is to provide citation metadata such as title, authors, publication
-year, and venue [@fenner2021]. The packages **codemeta** [@codemeta] /
-**codemetar** [@codemetar2021] allows to generate `codemeta.json` files from R
-packages metadata.
+year, and venue [@fenner2021]. The packages **codemeta** [@codemeta] and
+**codemetar** [@codemetar2021] allow for generating `codemeta.json` files from 
+R package metadata.
 
 ## The cffr package
 
-**cffr** maximizes the data extraction by using both the `DESCRIPTION` file and
-the `CITATION` file (if present) of your package. Note that **cffr** works best
-if your package pass `R CMD check/devtools::check()`.
+**cffr** maximizes data extraction by utilizing both the `DESCRIPTION` file and
+the `CITATION` file (if present) from your package. Note that **cffr** works 
+best if your package passes `R CMD check/devtools::check()`.
 
 ```{r count_cffr, echo=FALSE, results='asis'}
 cat("\n")
@@ -173,9 +173,9 @@ cff_write()
 However, **cffr** provides also custom print methods and mechanisms that allows
 you to customize the `CITATION.cff` and integrate them in your workflows.
 
-This is a basic example which shows you how to create a `cff` object (see `?cff`
-for more info). In this case, we are creating a `cff` object from the metadata
-of the **rmarkdown** package:
+This is a basic example which shows you how to create a `cff` object (see 
+`?cff` for more info). In this case, we are creating a `cff` object from the 
+metadata of the **rmarkdown** package:
 
 ```{r }
 library(cffr)
@@ -234,7 +234,8 @@ hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workf
 
 > The `pre-commit` hook is run first, before you even type in a commit message.
 > It's used to inspect the snapshot that's about to be committed, to see if
-> you've forgotten something, to make sure tests run, or to examine whatever you
+> you've forgotten something, to make sure tests run, or to examine whatever 
+> you need to inspect in the code. Exiting non-zero from this hook aborts the
 > need to inspect in the code. Exiting non-zero from this hook aborts the
 > commit, although you can bypass it with `git commit --no-verify`.
 

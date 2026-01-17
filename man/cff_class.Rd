@@ -33,7 +33,7 @@
 \subsection{The \code{cff} class}{
 
 \href{https://cran.r-project.org/package=cffr}{\strong{cffr}} implements a S3 object with
-\code{\link{class}} \code{cff}, that it is used to represent the information of a
+\code{\link{class}} \code{cff}, that is used to represent the information of a
 \code{CITATION.cff} file in \strong{R}.
 
 Under the hood, a \code{cff} object is simply a named \code{\link{list}} to which we added
@@ -82,7 +82,7 @@ development of the main work of the CFF file. This is implemented in
 \code{cff_ref}.
 }
 
-These two sub-classes does not provide full valid \code{cff} objects, but adapts
+These two sub-classes do not provide full valid \code{cff} objects, but adapt
 information to the schema required by CFF:
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{# Using the utils::person() function
@@ -174,7 +174,7 @@ Creating a \code{cff} object does not ensure its validity according to the \href
 #> [1] "cff"
 
 cff_validate(a_cff_object)
-#> == Validating cff ==============================================================
+#> == Validating cff ====================================================
 #> x Oops! This <cff> has the following errors:
 #> * cff.authors: is required
 #> * cff["cff-version"]: is required
@@ -182,7 +182,7 @@ cff_validate(a_cff_object)
 #> * cff.title: is required
 }\if{html}{\out{</div>}}
 
-\code{\link[=cff_validate]{cff_validate()}} gives minimal messages of what's wrong with our \code{cff} and
+\code{\link[=cff_validate]{cff_validate()}} gives minimal messages about what's wrong with our \code{cff} and
 (invisibly) returns the result of the validation (\code{TRUE/FALSE}).
 
 We can use \code{\link[=cff_modify]{cff_modify()}} to add more keys:
@@ -206,7 +206,7 @@ cff_valid
 #> title: My title
 
 cff_validate(cff_valid)
-#> == Validating cff ==============================================================
+#> == Validating cff ====================================================
 #> v Congratulations! This <cff> is valid
 }\if{html}{\out{</div>}}
 }

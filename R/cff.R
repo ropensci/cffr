@@ -21,9 +21,9 @@
 #' @details
 #'
 #' `cff()` would convert `_` in the name of the argument to `-`, e.g.
-#' `cff_version = "1.2.0'` would be converted to `cff-version = "1.2.0'`.
+#' `cff_version = "1.2.0"` would be converted to `cff-version = "1.2.0"`.
 #'
-#' Valid parameters are those specified on [cff_schema_keys()]:
+#' Valid arguments are those specified on [cff_schema_keys()]:
 #'
 #'
 #' ```{r, echo=FALSE, results='asis'}

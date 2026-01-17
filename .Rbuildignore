@@ -35,3 +35,4 @@
 ^codecov\.yml$
 ^[.]?air[.]toml$
 ^\.vscode$
+^jarl\.toml$

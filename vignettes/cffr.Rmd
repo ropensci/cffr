@@ -33,14 +33,14 @@ information of the following files:
 
 ## What is a `CITATION.cff` file?
 
-[Citation File Format (CFF](https://citation-file-format.github.io/))
+[Citation File Format (CFF)](https://citation-file-format.github.io/)
 [@druskat_citation_2021] (v1.2.0) are plain text files with human- and
 machine-readable citation information for software (and data sets). Code
 developers can include them in their repositories to let others know how to
 correctly cite their software.
 
-This format is becoming popular within the software citation ecosystem. Recently
-[GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
+This format is gaining popularity within the software citation ecosystem. 
+Recently [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
 [Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-) and
 [Zotero](https://citation-file-format.github.io/#/supported-by-zotero-) have
 included full support of this citation format [@druskat_stephan_making_2021].
@@ -55,7 +55,7 @@ knitr::include_graphics("tweet-1.png")
 
 See [Customize your repository/About CITATION
 files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
-for more info.
+for more information.
 
 ## Creating a `CITATION.cff` file for my R package
 
@@ -83,7 +83,7 @@ Congratulations! Now you have a full `CITATION.cff` file for your **R** package.
 
 You can easily customize the `cff` object (a custom class of **cffr**) using the
 coercion system provided in the package, as well as making use of the `keys`
-parameter.
+argument.
 
 We would create a `cff` object using `cff()` (for example purposes only) and we
 would add or modify contents of it.
@@ -105,7 +105,7 @@ cff_schema_keys()
 ```
 
 In this case, we are going to add `url`, `version` and `repository`. We would
-also overwrite the `title` key. We just need to add those parameters to
+also overwrite the `title` key. We just need to add those arguments to
 `cff_modify()`:
 
 ```{r modify}

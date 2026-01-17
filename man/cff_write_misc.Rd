@@ -50,7 +50,7 @@ See \code{vignette("crosswalk", package = "cffr")}.}
   }}
 }
 \value{
-Writes the corresponding file specified on the \code{file} parameter.
+Writes the corresponding file specified on the \code{file} argument.
 }
 \description{
 Export \strong{R} objects representing citations to specific file types:

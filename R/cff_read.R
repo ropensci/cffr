@@ -9,11 +9,11 @@
 #' - BibTeX files (with extension `*.bib`).
 #'
 #' [cff_read()] would try to guess the type of file provided in `path`. However
-#' we provide a series of alias for each specific type of file:
+#' we provide a series of aliases for each specific type of file:
 #' - [cff_read_cff_citation()], that uses [yaml::read_yaml()].
 #' - [cff_read_description()], using [desc::desc()].
 #' - [cff_read_citation()] uses [utils::readCitationFile()].
-#' - [cff_read_bib()]  requires \CRANpkg{bibtex} (>= 0.5.0) and uses
+#' - [cff_read_bib()] requires \CRANpkg{bibtex} (>= 0.5.0) and uses
 #'   [bibtex::read.bib()].
 #'
 #' @export
@@ -39,7 +39,7 @@
 #'
 #' @return
 #'
-#' * `cff_read_cff_citation()` and `cff_read_description()` returns a object
+#' * `cff_read_cff_citation()` and `cff_read_description()` return an object
 #'   with class `cff`.
 #' * `cff_read_citation()` and `cff_read_bib()` returns an object of classes
 #'   [`cff_ref_lst, cff`][cff_ref_lst] according to the `definitions.references`

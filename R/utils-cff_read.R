@@ -326,7 +326,8 @@ get_gh_topics <- function(x) {
       api_url,
       tmpfile,
       quiet = TRUE,
-      headers = c(Authorization = ghtoken)
+      headers = c(Authorization = ghtoken),
+      mode = "wb"
     ),
     warning = function(e) {
       TRUE
@@ -340,7 +341,7 @@ get_gh_topics <- function(x) {
   if (isTRUE(res)) {
     # Regular call
     res <- tryCatch(
-      download.file(api_url, tmpfile, quiet = TRUE),
+      download.file(api_url, tmpfile, quiet = TRUE, mode = "wb"),
       warning = function(e) {
         TRUE
       },

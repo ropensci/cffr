@@ -42,7 +42,7 @@ to Citation File Format schema version
 ```{r summary , echo=FALSE}
 keys <- cff_schema_keys(sorted = TRUE)
 origin <- vector(length = length(keys))
-origin[keys == "cff-version"] <- "parameter on function"
+origin[keys == "cff-version"] <- "argument on function"
 origin[keys == "type"] <- "Fixed value: 'software'"
 origin[keys == "identifiers"] <- "DESCRIPTION/CITATION files"
 origin[keys == "references"] <- "DESCRIPTION/CITATION files"
@@ -114,7 +114,7 @@ cat(pkg$get("Description"))
 
 This key is coerced from the `"Authors"` or `"Authors@R"` field of the
 `DESCRIPTION` file. By default persons with the role `"aut"` or `"cre"` are
-considered, however this can be modified via the `authors_roles` parameter.
+considered, however this can be modified via the `authors_roles` argument.
 
 <details>
 
@@ -145,7 +145,7 @@ cff_obj_alt$authors
 
 ### cff-version
 
-This key can be set via the parameters of the `cff_create()`/`cff_write()`
+This key can be set via the arguments of the `cff_create()`/`cff_write()`
 functions:
 
 <details>
@@ -370,7 +370,7 @@ cat(cff_create(tmp2)$keywords)
 Additionally, if the source code of the package is hosted on GitHub, **cffr**
 can retrieve the topics of your repo via the [GitHub
 API](https://docs.github.com/en/rest) and include those topics as keywords. This
-option is controlled via the `gh_keywords` parameter:
+option is controlled via the `gh_keywords` argument:
 
 <details>
 

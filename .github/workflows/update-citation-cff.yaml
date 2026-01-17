@@ -18,6 +18,11 @@ name: Update CITATION.cff
 permissions:
   contents: write
 
+# This will cancel running jobs once a new run is triggered
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
+
 jobs:
   update-citation-cff:
     runs-on: ubuntu-latest
@@ -57,6 +62,3 @@ jobs:
           git add CITATION.cff
           git commit -m 'Update CITATION.cff' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
-
-
-
