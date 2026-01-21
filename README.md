@@ -73,7 +73,7 @@ file and the `CITATION` file (if present) from your package. Note that
 **cffr** works best if your package passes
 `R CMD check/devtools::check()`.
 
-As per 2026-01-21 there are at least 520 repos on GitHub using **cffr**.
+As per 2026-01-21 there are at least 506 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -135,7 +135,9 @@ test <- cff_create("rmarkdown")
 ```
 
 <details>
+
 <summary>
+
 <code>CITATION.cff</code> for <strong>rmarkdown</strong>
 </summary>
 
@@ -689,6 +691,7 @@ test <- cff_create("rmarkdown")
       doi: 10.32614/CRAN.package.xml2
 
 </details>
+
 <p>
 
 We can validate the result using `cff_validate()`:
@@ -860,14 +863,17 @@ Vocabulary for Scientific Software with Schema.org.”
 Jones, Matthew B, Carl Boettiger, Abby Cabunoc Mayes, Arfon Smith, Peter
 Slaughter, Kyle Niemeyer, Yolanda Gil, et al. 2017. *CodeMeta: An
 Exchange Schema for Software Metadata*. KNB Data Repository.
-<https://doi.org/10.5063/SCHEMA/CODEMETA-2.0>.
+<https://doi.org/10.5063/schema/codemeta-2.0>.
 
 </div>
 
 <div id="ref-smith2021" class="csl-entry">
 
-Smith, Arfon. 2021. “Enhanced Support for Citations on GitHub.”
-<https://github.blog/news-insights/company-news/enhanced-support-citations-github/>.
+Smith, Arfon. 2021. “Enhanced Support for Citations on
+GitHub.”[https://github.blog/news-insights/company-news/enhanced-support-citations-github/
+](
+		https://github.blog/news-insights/company-news/enhanced-support-citations-github/
+	).
 
 </div>
 

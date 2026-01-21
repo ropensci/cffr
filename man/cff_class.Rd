@@ -140,7 +140,8 @@ ref_list
 #>     given-names: Kirill
 #>   year: '2025'
 #>   notes: R package version 2.3.12
-#>   url: https://yaml.r-lib.org
+#>   url: https://CRAN.R-project.org/package=yaml
+#>   doi: 10.32614/CRAN.package.yaml
 
 class(ref_list)
 #> [1] "cff_ref_lst" "cff"
@@ -314,7 +315,8 @@ toBibtex(cit)
 #>   author = \{Jeremy Stephens and Kirill Simonov\},
 #>   year = \{2025\},
 #>   note = \{R package version 2.3.12\},
-#>   url = \{https://yaml.r-lib.org\},
+#>   url = \{https://CRAN.R-project.org/package=yaml\},
+#>   doi = \{10.32614/CRAN.package.yaml\},
 #> \}
 
 # cff_pers, cff_pers_lst
