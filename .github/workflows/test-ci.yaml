@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 5 * * 2,5"
+  - cron: "0 5 * * 2,5"
 
 permissions:
   contents: read
@@ -19,147 +19,146 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v6
+    - uses: actions/checkout@v6
 
-      - uses: r-lib/actions/setup-pandoc@v2
+    - uses: r-lib/actions/setup-pandoc@v2
 
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          use-public-rspm: true
+    - uses: r-lib/actions/setup-r@v2
+      with:
+        use-public-rspm: true
 
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          cache-version: "test_full_ci"
-          extra-packages: |
-            local::.
-            any::devtools
-            any::remotes
-            any::tidymodels
-            any::tidyverse
-            any::ctv
-            any::cranlogs
+    - uses: r-lib/actions/setup-r-dependencies@v2
+      with:
+        cache-version: "test_full_ci"
+        extra-packages: |
+          local::.
+          any::devtools
+          any::remotes
+          any::tidymodels
+          any::tidyverse
+          any::ctv
+          any::cranlogs
 
-      - name: Install packages
-        run: |
-          options(repos = c(CRAN = "https://cloud.r-project.org"))
+    - name: Install packages
+      run: |
+        options(repos = c(CRAN = "https://cloud.r-project.org"))
 
-          library(magrittr)
-          library(dplyr)
-          library(httr2)
+        library(magrittr)
+        library(dplyr)
+        library(httr2)
 
-          # Downloads
-          trending <- request("https://cranlogs.r-pkg.org/trending") %>%
-            req_perform() %>%
-            resp_body_json(simplifyVector = TRUE) %>%
-            select(1) %>%
-            pull(1)
+        # Downloads
+        trending <- request("https://cranlogs.r-pkg.org/trending") %>%
+          req_perform() %>%
+          resp_body_json(simplifyVector = TRUE) %>%
+          select(1) %>%
+          pull(1)
 
-          last_month <- cranlogs::cran_top_downloads("last-month", count = 100) %>%
-            select(package) %>%
-            pull()
+        last_month <- cranlogs::cran_top_downloads("last-month", count = 100) %>%
+          select(package) %>%
+          pull()
 
-          # Views
+        # Views
 
-          allviews <- ctv::available.views()
-          packs <- lapply(seq_len(length(allviews)), function(x) {
-            df <- allviews[[x]]$packagelist
-            tibble::add_column(df, view = allviews[[x]]$name)
-          }) %>%
-            dplyr::bind_rows() %>%
-            as_tibble()
-          packs <- dplyr::bind_rows(packs)
-          core <- dplyr::filter(packs, core == TRUE) %>%
-            pull(1)
+        allviews <- ctv::available.views()
+        packs <- lapply(seq_len(length(allviews)), function(x) {
+          df <- allviews[[x]]$packagelist
+          tibble::add_column(df, view = allviews[[x]]$name)
+        }) %>%
+          dplyr::bind_rows() %>%
+          as_tibble()
+        packs <- dplyr::bind_rows(packs)
+        core <- dplyr::filter(packs, core == TRUE) %>%
+          pull(1)
 
-          # Selected 1500 more packages
-          sel_views <- packs %>%
-            filter(core == FALSE) %>%
-            slice_head(n = 2500) %>%
-            pull(name)
+        # Selected 1500 more packages
+        sel_views <- packs %>%
+          filter(core == FALSE) %>%
+          slice_head(n = 2500) %>%
+          pull(name)
 
-          # rOpenSci packages from r-universe
-          ropensci <- jsonlite::read_json("https://ropensci.r-universe.dev/api/packages") %>%
-            lapply("[[", "Package") %>%
-            unlist()
-          ropenscireviewtools <- jsonlite::read_json("https://ropensci-review-tools.r-universe.dev/api/packages") %>%
-            lapply("[[", "Package") %>%
-            unlist()
+        # rOpenSci packages from r-universe
+        ropensci <- jsonlite::read_json("https://ropensci.r-universe.dev/api/packages") %>%
+          lapply("[[", "Package") %>%
+          unlist()
+        ropenscireviewtools <- jsonlite::read_json("https://ropensci-review-tools.r-universe.dev/api/packages") %>%
+          lapply("[[", "Package") %>%
+          unlist()
 
-          # R-lib packages
-          rlib <- jsonlite::read_json("https://r-lib.r-universe.dev/api/packages") %>%
-            lapply("[[", "Package") %>%
-            unlist()
+        # R-lib packages
+        rlib <- jsonlite::read_json("https://r-lib.r-universe.dev/api/packages") %>%
+          lapply("[[", "Package") %>%
+          unlist()
 
-          # R-forge packages
-          rforge <- jsonlite::read_json("https://r-forge.r-universe.dev/api/packages") %>%
-            lapply("[[", "Package") %>%
-            unlist()
+        # R-forge packages
+        rforge <- jsonlite::read_json("https://r-forge.r-universe.dev/api/packages") %>%
+          lapply("[[", "Package") %>%
+          unlist()
 
-          # R-Studio packages
-          rstudio <- jsonlite::read_json("https://rstudio.r-universe.dev/api/packages") %>%
-            lapply("[[", "Package") %>%
-            unlist()
+        # R-Studio packages
+        rstudio <- jsonlite::read_json("https://rstudio.r-universe.dev/api/packages") %>%
+          lapply("[[", "Package") %>%
+          unlist()
 
-          # rspatial packages
-          rspatial <- jsonlite::read_json("https://r-spatial.r-universe.dev/api/packages") %>%
-            lapply("[[", "Package") %>%
-            unlist()
+        # rspatial packages
+        rspatial <- jsonlite::read_json("https://r-spatial.r-universe.dev/api/packages") %>%
+          lapply("[[", "Package") %>%
+          unlist()
 
-          # My universes packages
-          dieghernan <- jsonlite::read_json("https://dieghernan.r-universe.dev/api/packages") %>%
-            lapply("[[", "Package") %>%
-            unlist()
+        # My universes packages
+        dieghernan <- jsonlite::read_json("https://dieghernan.r-universe.dev/api/packages") %>%
+          lapply("[[", "Package") %>%
+          unlist()
 
-          ropenspain <- jsonlite::read_json("https://ropenspain.r-universe.dev/api/packages") %>%
-            lapply("[[", "Package") %>%
-            unlist()
+        ropenspain <- jsonlite::read_json("https://ropenspain.r-universe.dev/api/packages") %>%
+          lapply("[[", "Package") %>%
+          unlist()
 
-          ropengov <- jsonlite::read_json("https://ropengov.r-universe.dev/api/packages") %>%
-            lapply("[[", "Package") %>%
-            unlist()
+        ropengov <- jsonlite::read_json("https://ropengov.r-universe.dev/api/packages") %>%
+          lapply("[[", "Package") %>%
+          unlist()
 
-          # Gather packages
-          all <- sort(unique(c(
-            trending, last_month,
-            core, sel_views, ropensci, ropenscireviewtools, rlib, rforge, rstudio, rspatial,
-            dieghernan, ropenspain, ropengov
-          )))
+        # Gather packages
+        all <- sort(unique(c(
+          trending, last_month,
+          core, sel_views, ropensci, ropenscireviewtools, rlib, rforge, rstudio, rspatial,
+          dieghernan, ropenspain, ropengov
+        )))
 
-          # Check packages not installed yet
-          instpack <- as.character(installed.packages()[, "Package"])
-          toinstall_init <- setdiff(all, instpack)
+        # Check packages not installed yet
+        instpack <- as.character(installed.packages()[, "Package"])
+        toinstall_init <- setdiff(all, instpack)
 
-          # Install
-          options(repos = c(
-            ropensci = "https://ropensci.r-universe.dev",
-            ropenscireviewtools = "https://ropensci-review-tools.r-universe.dev",
-            RSPM = "https://packagemanager.posit.co/cran/latest",
-            CRAN = "https://cloud.r-project.org"
-          ))
+        # Install
+        options(repos = c(
+          ropensci = "https://ropensci.r-universe.dev",
+          ropenscireviewtools = "https://ropensci-review-tools.r-universe.dev",
+          RSPM = "https://packagemanager.posit.co/cran/latest",
+          CRAN = "https://cloud.r-project.org"
+        ))
 
-          # Check packages available
-          pakav <- as.data.frame(available.packages(repos = getOption("repos")))
-          toinstall <- toinstall_init[toinstall_init %in% pakav$Package]
-          message(
-            "Installing ", length(toinstall), " packages of ",
-            nrow(pakav), " available"
-          )
+        # Check packages available
+        pakav <- as.data.frame(available.packages(repos = getOption("repos")))
+        toinstall <- toinstall_init[toinstall_init %in% pakav$Package]
+        message(
+          "Installing ", length(toinstall), " packages of ",
+          nrow(pakav), " available"
+        )
 
-          install.packages(toinstall)
+        install.packages(toinstall)
 
-        shell: Rscript {0}
+      shell: Rscript {0}
 
-      - name: Test GHA
-        run: |
+    - name: Test GHA
+      run: |
+        
+        # Run the tests
+        source("tests/testthat/test_ci/test-new.R")
 
-          # Run the tests
-          source("tests/testthat/test_ci/test-new.R")
-
-        shell: Rscript {0}
-
-        # Report on success
-      - name: Report success
-        shell: bash
-        run: |
-          # OK :)
-          cat ./tests/testthat/test_ci/results.md >$GITHUB_STEP_SUMMARY
+      shell: Rscript {0}
+      # Report on success
+    - name: Report success
+      shell: bash
+      run: |
+        # OK :)
+        cat ./tests/testthat/test_ci/results.md >$GITHUB_STEP_SUMMARY
