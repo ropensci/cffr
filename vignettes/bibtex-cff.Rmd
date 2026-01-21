@@ -15,7 +15,7 @@ abstract: >-
   [@patashnik1988]. Additionally, the article includes practical examples using 
   real **BibTeX** entries and offers tips for developers interested in 
   implementing this crosswalk across various programming languages.
-link-citations: yes
+link-citations: true
 documentclass: article
 editor_options:
   markdown:

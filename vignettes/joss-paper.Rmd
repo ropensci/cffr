@@ -14,7 +14,7 @@ author:
 date: "`r as.Date('2021-11-08')`"
 output: rmarkdown::html_vignette
 bibliography: REFERENCES.bib
-link-citations: yes
+link-citations: true
 vignette: >
   %\VignetteIndexEntry{cffr: Generate Citation File Format Metadata for R Packages}
   %\VignetteEngine{knitr::rmarkdown}

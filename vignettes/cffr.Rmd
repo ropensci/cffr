@@ -6,7 +6,7 @@ output:
   rmarkdown::html_vignette:
     toc: true
 bibliography: REFERENCES.bib
-link-citations: yes
+link-citations: true
 vignette: >
   %\VignetteIndexEntry{Manipulating Citations with cffr}
   %\VignetteEngine{knitr::rmarkdown}
