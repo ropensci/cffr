@@ -1,6 +1,7 @@
 url: https://docs.ropensci.org/cffr
 
 template:
+  light-switch: true
   opengraph:
     twitter:
       creator: '@dhernangomez'
