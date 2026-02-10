@@ -6,7 +6,8 @@ link-citations: true
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, include = FALSE}
+```{r}
+#| include = FALSE
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -57,7 +58,11 @@ Recently,
 fully supported this citation format [@druskat_stephan_making_2021]. GitHub
 support is of special interest:
 
-```{r echo=FALSE, out.width="400", fig.align='center', fig.alt="Tweet of Nat Friedman about CFF files"}
+```{r}
+#| echo = FALSE,
+#| out.width = "400",
+#| fig.align = "center",
+#| fig.alt = "Tweet of Nat Friedman about CFF files"
 knitr::include_graphics("vignettes/tweet-1.png")
 ```
 
@@ -84,7 +89,10 @@ package metadata.
 the `CITATION` file (if present) from your package. Note that **cffr** works
 best if your package passes `R CMD check/devtools::check()`.
 
-```{r count_cffr, echo=FALSE, results='asis'}
+```{r}
+#| label = "count_cffr",
+#| echo = FALSE,
+#| results = "asis"
 cat("\n")
 today <- Sys.Date()
 # Try get the count of GitHub repos here
@@ -133,20 +141,23 @@ cat("\n")
 
 Install **cffr** from [CRAN](https://CRAN.R-project.org/package=cffr):
 
-```{r, eval=FALSE}
+```{r}
+#| eval = FALSE
 install.packages("cffr")
 ```
 
 You can install the developing version of **cffr** with:
 
-```{r, eval=FALSE}
+```{r}
+#| eval = FALSE
 remotes::install_github("ropensci/cffr")
 ```
 
 Alternatively, you can install **cffr** using the
 [r-universe](https://ropensci.r-universe.dev/cffr):
 
-```{r, eval=FALSE}
+```{r}
+#| eval = FALSE
 # Install cffr in R:
 install.packages("cffr",
   repos = c("https://ropensci.r-universe.dev", "https://cloud.r-project.org")
@@ -159,7 +170,8 @@ By default most often from within your package folder you'll simply run
 `cff_write()`, that creates a `cff` object, write it on a `CITATION.cff` file
 and validates it on a single command:
 
-```{r, eval=FALSE}
+```{r}
+#| eval = FALSE
 library(cffr)
 
 # For in-development packages
@@ -189,7 +201,9 @@ test <- cff_create("rmarkdown")
 
 <summary><code>CITATION.cff</code> for <strong>rmarkdown</strong></summary>
 
-```{r, echo=FALSE, comment=""}
+```{r}
+#| echo = FALSE,
+#| comment = ""
 test
 ```
 
@@ -218,7 +232,8 @@ update your `CITATION.cff` file on the following events:
 -   Each time that you modify your DESCRIPTION or inst/CITATION files.
 -   The action can be run also manually.
 
-```{r, eval=FALSE}
+```{r}
+#| eval = FALSE
 cff_gha_update()
 
 #> Installing update-citation-cff.yaml on './.github/workflows'

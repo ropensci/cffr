@@ -16,7 +16,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r}
+#| include = FALSE
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -39,7 +40,9 @@ to Citation File Format schema version
 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#valid-keys)
 [@druskat_citation_2021].
 
-```{r summary , echo=FALSE}
+```{r}
+#| label = "summary ",
+#| echo = FALSE
 keys <- cff_schema_keys(sorted = TRUE)
 origin <- vector(length = length(keys))
 origin[keys == "cff-version"] <- "argument on function"
@@ -90,7 +93,8 @@ This key is extracted from the `"Description"` field of the `DESCRIPTION` file.
 
 <summary><strong>Example</strong></summary>
 
-```{r abstract}
+```{r}
+#| label = "abstract"
 library(cffr)
 
 # Create cffr for yaml
@@ -120,7 +124,8 @@ considered, however this can be modified via the `authors_roles` argument.
 
 <summary><strong>Example</strong></summary>
 
-```{r authors}
+```{r}
+#| label = "authors"
 # An example DESCRIPTION
 path <- system.file("examples/DESCRIPTION_many_persons", package = "cffr")
 pkg <- desc::desc(path)
@@ -152,7 +157,8 @@ functions:
 
 <summary><strong>Example</strong></summary>
 
-```{r cffversion}
+```{r}
+#| label = "cffversion"
 cff_objv110 <- cff_create("jsonlite", cff_version = "v1.1.0")
 
 cat(cff_objv110$`cff-version`)
@@ -173,7 +179,8 @@ This is the case of packages installed using the
 
 <summary><strong>Example</strong></summary>
 
-```{r commit}
+```{r}
+#| label = "commit"
 # An example DESCRIPTION
 path <- system.file("examples/DESCRIPTION_r_universe", package = "cffr")
 pkg <- desc::desc(path)
@@ -199,7 +206,8 @@ are considered.
 
 <summary><strong>Example</strong></summary>
 
-```{r contact}
+```{r}
+#| label = "contact"
 cff_obj <- cff_create("rmarkdown")
 pkg <- desc::desc(file.path(find.package("rmarkdown"), "DESCRIPTION"))
 
@@ -226,7 +234,8 @@ This key is extracted from the `DESCRIPTION` file following this logic:
 
 <summary><strong>Example</strong></summary>
 
-```{r date-released}
+```{r}
+#| label = "date-released"
 # From an installed package
 
 cff_obj <- cff_create("rmarkdown")
@@ -277,7 +286,8 @@ is on **CRAN**, it would be populated with the doi provided by **CRAN** (e.g.
 
 <summary><strong>Example</strong></summary>
 
-```{r doi}
+```{r}
+#| label = "doi"
 cff_doi <- cff_create("cffr")
 
 cat(cff_doi$doi)
@@ -307,7 +317,8 @@ This key includes all the possible identifiers of the package:
 
 <summary><strong>Example</strong></summary>
 
-```{r identifiers}
+```{r}
+#| label = "identifiers"
 file <- system.file("examples/DESCRIPTION_many_urls", package = "cffr")
 
 pkg <- desc::desc(file)
@@ -339,7 +350,8 @@ X-schema.org-keywords: keyword1, keyword2, keyword3
 
 <summary><strong>Example</strong></summary>
 
-```{r keyword}
+```{r}
+#| label = "keyword"
 # A DESCRIPTION file without keywords
 nokeywords <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 tmp2 <- tempfile("DESCRIPTION")
@@ -376,7 +388,8 @@ option is controlled via the `gh_keywords` argument:
 
 <summary><strong>Example</strong></summary>
 
-```{r ghkeyword}
+```{r}
+#| label = "ghkeyword"
 # Get cff object from jsonvalidate
 
 jsonval <- cff_create("jsonvalidate")
@@ -404,7 +417,8 @@ This key is extracted from the `"License"` field of the `DESCRIPTION` file.
 
 <summary><strong>Example</strong></summary>
 
-```{r license}
+```{r}
+#| label = "license"
 cff_obj <- cff_create("yaml")
 
 cat(cff_obj$license)
@@ -441,7 +455,8 @@ v1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/s
 
 This key is extracted from the `DESCRIPTION` field, specifically as:
 
-```{r eval=FALSE}
+```{r}
+#| eval = FALSE
 msg <- paste0(
   'To cite package "',
   "NAME_OF_THE_PACKAGE",
@@ -453,7 +468,8 @@ msg <- paste0(
 
 <summary><strong>Example</strong></summary>
 
-```{r message}
+```{r}
+#| label = "message"
 cat(cff_create("jsonlite")$message)
 ```
 
@@ -471,7 +487,8 @@ the rest of them as [references](#references).
 
 <summary><strong>Example</strong></summary>
 
-```{r preferred-citation}
+```{r}
+#| label = "preferred-citation"
 cffobj <- cff_create("rmarkdown")
 
 cffobj$`preferred-citation`
@@ -495,7 +512,8 @@ fields using `citation(auto = TRUE)` on each dependency.
 
 <summary><strong>Example</strong></summary>
 
-```{r references}
+```{r}
+#| label = "references"
 cffobj <- cff_create("rmarkdown")
 
 cffobj$references
@@ -529,7 +547,8 @@ the canonical url form of the package (i.e.
 
 <summary><strong>Example</strong></summary>
 
-```{r repository}
+```{r}
+#| label = "repository"
 # Installed package
 
 inst <- cff_create("jsonlite")
@@ -603,7 +622,8 @@ following repositories:
 
 <summary><strong>Example</strong></summary>
 
-```{r repository-code}
+```{r}
+#| label = "repository-code"
 # Installed package on GitHub
 
 cat(cff_create("jsonlite")$`repository-code`)
@@ -631,7 +651,8 @@ cat(cff_create(codeberg)$`repository-code`)
 
 This key is extracted from the `"Description"` field of the `DESCRIPTION` file.
 
-```{r eval=FALSE}
+```{r}
+#| eval = FALSE
 title <- paste0(
   "NAME_OF_THE_PACKAGE",
   ": ",
@@ -643,7 +664,8 @@ title <- paste0(
 
 <summary><strong>Example</strong></summary>
 
-```{r title}
+```{r}
+#| label = "title"
 # Installed package
 
 cat(cff_create("testthat")$title)
@@ -671,7 +693,8 @@ This key is extracted from the `"BugReports"` or `"URL"` fields on the
 
 <summary><strong>Example</strong></summary>
 
-```{r url}
+```{r}
+#| label = "url"
 # Many urls
 manyurls <- system.file("examples/DESCRIPTION_many_urls", package = "cffr")
 
@@ -690,7 +713,8 @@ desc::desc(manyurls)
 
 This key is extracted from the `"Version"` field on the `DESCRIPTION` file.
 
-```{r version}
+```{r}
+#| label = "version"
 # Should be (>= 3.0.0)
 cat(cff_create("testthat")$version)
 ```

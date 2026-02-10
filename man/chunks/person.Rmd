@@ -1,8 +1,10 @@
-```{r include=FALSE}
+```{r}
+#| include = FALSE
 library(cffr)
 ```
 
-```{r comment=""}
+```{r}
+#| comment = ""
 # Don't do
 entity <- "Elephant and Castle"
 as_cff_person(entity)

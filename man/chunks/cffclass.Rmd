@@ -7,7 +7,8 @@ file in **R**.
 Under the hood, a `cff` object is simply a named [`list`] to which we added
 additional methods, most notably [`print`] and [as_cff()].
 
-```{r include=FALSE}
+```{r}
+#| include = FALSE
 library(cffr)
 ```
 

@@ -73,7 +73,7 @@ file and the `CITATION` file (if present) from your package. Note that
 **cffr** works best if your package passes
 `R CMD check/devtools::check()`.
 
-As per 2026-01-21 there are at least 506 repos on GitHub using **cffr**.
+As per 2026-02-10 there are at least 582 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -516,6 +516,27 @@ test <- cff_create("rmarkdown")
       year: '2026'
       doi: 10.32614/CRAN.package.fs
     - type: software
+      title: rsconnect
+      abstract: 'rsconnect: Deploy Docs, Apps, and APIs to ''Posit Connect'', ''shinyapps.io'',
+        and ''RPubs'''
+      notes: Suggests
+      url: https://rstudio.github.io/rsconnect/
+      repository: https://CRAN.R-project.org/package=rsconnect
+      authors:
+      - family-names: Atkins
+        given-names: Aron
+        email: aron@posit.co
+      - family-names: Allen
+        given-names: Toph
+      - family-names: Wickham
+        given-names: Hadley
+      - family-names: McPherson
+        given-names: Jonathan
+      - family-names: Allaire
+        given-names: JJ
+      year: '2026'
+      doi: 10.32614/CRAN.package.rsconnect
+    - type: software
       title: downlit
       abstract: 'downlit: Syntax Highlighting and Automatic Linking'
       notes: Suggests
@@ -863,7 +884,7 @@ Vocabulary for Scientific Software with Schema.org.”
 Jones, Matthew B, Carl Boettiger, Abby Cabunoc Mayes, Arfon Smith, Peter
 Slaughter, Kyle Niemeyer, Yolanda Gil, et al. 2017. *CodeMeta: An
 Exchange Schema for Software Metadata*. KNB Data Repository.
-<https://doi.org/10.5063/schema/codemeta-2.0>.
+<https://doi.org/10.5063/SCHEMA/CODEMETA-2.0>.
 
 </div>
 

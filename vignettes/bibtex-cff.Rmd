@@ -29,7 +29,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r}
+#| include = FALSE
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = ""
@@ -89,7 +90,9 @@ entry can then be used in a document to include references to it. In **R**
 [@R_2021], we can replicate this structure using the `bibentry()` and
 `toBibtex()` functions:
 
-```{r bibentry, comment="#>"}
+```{r}
+#| label = "bibentry",
+#| comment = "#>"
 entry <- bibentry("book",
   key = "einstein1921",
   title = "Relativity: The Special and the General Theory",
@@ -108,7 +111,9 @@ The final results of the entry as a text string would be coerced as[^1]:
 [^1]: By default **R** Pandoc would generate the cite in the Chicago author-date
     format [@rmarkdowncookbook2020]
 
-```{r echo=FALSE, results='asis'}
+```{r}
+#| echo = FALSE,
+#| results = "asis"
 entry
 ```
 
@@ -122,7 +127,9 @@ different formats:
 -   A S3 method `toBibtex.cff()` that converts from `cff` objects to Bibtex
     objects (see `utils::toBibtex()`).
 
-```{r cffbibread, comment="#>"}
+```{r}
+#| label = "cffbibread",
+#| comment = "#>"
 string <- "@book{einstein1921,
     title        = {Relativity: The Special and the General Theory},
     author       = {Einstein, A.},
@@ -255,7 +262,9 @@ The following table summarizes the relationship between **Entries** and
 fields are flagged as **o**. For more detailed information, refer to
 @patashnik1988.
 
-```{r entry_fields1, echo=FALSE}
+```{r}
+#| label = "entry_fields1",
+#| echo = FALSE
 df_table <- table_master[table_master$table == "entry_fields", -1]
 
 nms <- c(
@@ -277,7 +286,9 @@ knitr::kable(t1,
 )
 ```
 
-```{r entry_fields2, echo=FALSE}
+```{r}
+#| label = "entry_fields2",
+#| echo = FALSE
 t2 <- df_table[, c(1, 8:13)]
 nm2 <- nms[c(1, 8:13)]
 knitr::kable(t2,
@@ -312,7 +323,12 @@ the [Guide to Citation File Format schema version
 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#preferred-citation),
 and they may contain the following keys:
 
-```{r refkeys, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+```{r}
+#| label = "refkeys",
+#| echo = FALSE,
+#| message = FALSE,
+#| warning = FALSE,
+#| results = "asis"
 library(cffr)
 
 # Fill with whites
@@ -362,7 +378,10 @@ corresponds to **BibTeX**, and when the field is [underlined]{.underline} (e.g.,
 For converting general **BibTeX** entries to [CFF]{.underline}
 [types]{.underline}, the following crosswalk is proposed:
 
-```{r entry_bib2cff, echo=FALSE, results='asis'}
+```{r}
+#| label = "entry_bib2cff",
+#| echo = FALSE,
+#| results = "asis"
 df_table <- table_master[table_master$table == "entry_bib2cff", c(2:4)]
 df_table[is.na(df_table)] <- ""
 # fix links
@@ -398,7 +417,10 @@ applied from [CFF]{.underline} to **BibTeX**:
 [^5]: See [Appendix B](#appendix_cff_type) for all possible values. Information
     extracted from @druskat2019.
 
-```{r entry_cff2bib, echo=FALSE,results='asis'}
+```{r}
+#| label = "entry_cff2bib",
+#| echo = FALSE,
+#| results = "asis"
 df_table <- table_master[table_master$table == "entry_cff2bib", c(2:4)]
 df_table[is.na(df_table)] <- ""
 # fix links
@@ -418,7 +440,10 @@ There is a significant similarity between the definitions and names of certain
 straightforward in some cases, there are instances where certain keys need to be
 processed depending on the **entry** type.
 
-```{r fields_bib2cff, echo=FALSE,results='asis'}
+```{r}
+#| label = "fields_bib2cff",
+#| echo = FALSE,
+#| results = "asis"
 df_table <- table_master[table_master$table == "fields_bib2cff", c(2:4)]
 df_table[is.na(df_table)] <- ""
 # fix links
@@ -476,7 +501,10 @@ even though they are not part of the core **BibTeX** fields definition.
 
 [^6]: See @biblatexcheatsheet for a preview of the accepted **BibLaTeX** fields.
 
-```{r fields_biblatex2cff, echo=FALSE,results='asis'}
+```{r}
+#| label = "fields_biblatex2cff",
+#| echo = FALSE,
+#| results = "asis"
 df_table <- table_master[table_master$table == "fields_biblatex2cff", c(2:3)]
 df_table[is.na(df_table)] <- ""
 # fix links
@@ -500,7 +528,10 @@ file provided with the **bibtex** package [@patashnik].
 
 The crosswalk of **\@article** does not require any special treatment.
 
-```{r model_article, echo=FALSE, results='asis'}
+```{r}
+#| label = "model_article",
+#| echo = FALSE,
+#| results = "asis"
 df_table <- table_master[table_master$table == "model_article", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
@@ -537,7 +568,8 @@ knitr::kable(df_table,
 
 [CFF entry]{.underline}
 
-```{r echo=FALSE}
+```{r}
+#| echo = FALSE
 bib <- "@article{article-full,
     title        = {The Gnats and Gnus Document Preparation System},
     author       = {Leslie A. Aamport},
@@ -554,7 +586,8 @@ cff_read_bib_text(bib)
 
 From [CFF]{.underline} to **BibTeX**
 
-```{r echo=FALSE}
+```{r}
+#| echo = FALSE
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -575,7 +608,10 @@ to [collection-title]{.underline}, and the **address** field represents the
 [publisher]{.underline}'s [address]{.underline}. By last, the key
 [collection-type]{.underline} would be populated with [book-series]{.underline}.
 
-```{r model_book, echo=FALSE, results='asis'}
+```{r}
+#| label = "model_book",
+#| echo = FALSE,
+#| results = "asis"
 df_table <- table_master[table_master$table == "model_book", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
@@ -617,7 +653,8 @@ propose to treat a **BibLaTeX \@inbook** as a **BibTeX \@incollection.**
 
 [CFF entry]{.underline}
 
-```{r echo=FALSE}
+```{r}
+#| echo = FALSE
 bib <- "@book{book-full,
     title        = {Seminumerical Algorithms},
     author       = {Donald E. Knuth},
@@ -636,7 +673,8 @@ cff_read_bib_text(bib)
 
 From [CFF]{.underline} to **BibTeX**
 
-```{r,  echo=FALSE}
+```{r}
+#| echo = FALSE
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -664,7 +702,8 @@ toBibtex(cff_read_bib_text(bib))
 
 [CFF entry]{.underline}
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 bib <- "@inbook{inbook-full,
     title        = {Fundamental Algorithms},
     author       = {Donald E. Knuth},
@@ -686,7 +725,8 @@ cff_read_bib_text(bib)
 
 From [CFF]{.underline} to **BibTeX**
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -694,7 +734,10 @@ toBibtex(cff_read_bib_text(bib))
 
 In **\@booklet** **address** is mapped to [location]{.underline}.
 
-```{r model_booklet, echo=FALSE, results='asis'}
+```{r}
+#| label = "model_booklet",
+#| echo = FALSE,
+#| results = "asis"
 df_table <- table_master[table_master$table == "model_booklet", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
@@ -729,7 +772,8 @@ knitr::kable(df_table,
 
 [CFF entry]{.underline}
 
-```{r echo=FALSE, }
+```{r }
+#| echo = FALSE
 bib <- "@booklet{booklet-full,
     title        = {The Programming of Computer Art},
     author       = {Jill C. Knvth},
@@ -745,7 +789,8 @@ cff_read_bib_text(bib)
 
 From [CFF]{.underline} to **BibTeX**
 
-```{r echo=FALSE, }
+```{r }
+#| echo = FALSE
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -755,7 +800,10 @@ Note that in this case, **organization** is mapped to [institution]{.underline}.
 Additionally, **series** would be ignored as there is not clear mapping on
 [CFF]{.underline} for this field.
 
-```{r model_inproceedings, echo=FALSE, results='asis'}
+```{r}
+#| label = "model_inproceedings",
+#| echo = FALSE,
+#| results = "asis"
 df_table <- table_master[table_master$table == "model_inproceedings", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
@@ -795,7 +843,8 @@ knitr::kable(df_table,
 
 [CFF entry]{.underline}
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 bib <- "@inproceedings{inproceedings-full,
     title        = {On Notions of Information Transfer in {VLSI} Circuits},
     author       = {Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis},
@@ -816,7 +865,8 @@ cff_read_bib_text(bib)
 
 From [CFF]{.underline} to **BibTeX**
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -830,7 +880,10 @@ generic]{.underline} with a [collection-title]{.underline} key.
 Additionally, **series** and **type** would be ignored as there is not clear
 mapping on [CFF]{.underline} for this field.
 
-```{r model_incollection, echo=FALSE, results='asis'}
+```{r}
+#| label = "model_incollection",
+#| echo = FALSE,
+#| results = "asis"
 df_table <- table_master[table_master$table == "model_incollection", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
@@ -873,7 +926,8 @@ knitr::kable(df_table,
 
 [CFF entry]{.underline}
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 bib <- "@incollection{incollection-full,
     title        = {Semigroups of Recurrences},
     author       = {Daniel D. Lincoll},
@@ -897,7 +951,8 @@ cff_read_bib_text(bib)
 
 From [CFF]{.underline} to **BibTeX**
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -906,7 +961,10 @@ toBibtex(cff_read_bib_text(bib))
 As in the case of [**\@conference** / **\@inproceedings**](#conf_inproc),
 **organization** is mapped to [institution]{.underline}.
 
-```{r model_manual, echo=FALSE, results='asis'}
+```{r}
+#| label = "model_manual",
+#| echo = FALSE,
+#| results = "asis"
 df_table <- table_master[table_master$table == "model_manual", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
@@ -945,7 +1003,8 @@ required on CFF, so it is ignored to avoid validation errors.
 
 [CFF entry]{.underline}
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 bib <- "@manual{manual-full,
   title        = {The Definitive Computer Manual},
     author       = {Larry Manmaker},
@@ -962,7 +1021,8 @@ cff_read_bib_text(bib)
 
 From [CFF]{.underline} to **BibTeX**
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -978,7 +1038,10 @@ pattern](https://regex101.com/r/mBWfbs/1) `(?i)(phd)` it would be recognized as
 
 Additionally, **school** would be mapped to [institution]{.underline}.
 
-```{r model_thesis, echo=FALSE, results='asis'}
+```{r}
+#| label = "model_thesis",
+#| echo = FALSE,
+#| results = "asis"
 df_table <- table_master[table_master$table == "model_thesis", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
@@ -1014,7 +1077,8 @@ knitr::kable(df_table,
 
 [CFF entry]{.underline}
 
-```{r echo=FALSE}
+```{r}
+#| echo = FALSE
 bib <- "@mastersthesis{mastersthesis-full,
     title        = {Mastering Thesis Writing},
     author       = {Edouard Masterly},
@@ -1031,7 +1095,8 @@ cff_read_bib_text(bib)
 
 From [CFF]{.underline} to **BibTeX**
 
-```{r,  echo=FALSE}
+```{r}
+#| echo = FALSE
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -1054,7 +1119,8 @@ toBibtex(cff_read_bib_text(bib))
 
 [CFF entry]{.underline}
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 bib <- "@phdthesis{phdthesis-full,
     title        = {Fighting Fire with Fire: Festooning {F}rench Phrases},
     author       = {F. Phidias Phony-Baloney},
@@ -1071,7 +1137,8 @@ cff_read_bib_text(bib)
 
 From [CFF]{.underline} to **BibTeX**
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -1085,7 +1152,10 @@ Note also that it is mapped to [type: generic]{.underline} as
 option, so the proposed definition should cover both **\@misc** and
 **\@incollection** without problems.
 
-```{r model_misc, echo=FALSE, results='asis'}
+```{r}
+#| label = "model_misc",
+#| echo = FALSE,
+#| results = "asis"
 df_table <- table_master[table_master$table == "model_misc", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
@@ -1119,7 +1189,8 @@ knitr::kable(df_table,
 
 [CFF entry]{.underline}
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 bib <- "@misc{misc-full,
     title        = {Handing out random pamphlets in airports},
     author       = {Joe-Bob Missilany},
@@ -1134,7 +1205,8 @@ cff_read_bib_text(bib)
 
 From [CFF]{.underline} to **BibTeX**
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -1151,7 +1223,10 @@ required on [CFF]{.underline}, we would use *anonymous*[^7] when converting to
     authors?*](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors),
     **(Guide to Citation File Format schema version 1.2.0)**
 
-```{r model_proceedings, echo=FALSE, results='asis'}
+```{r}
+#| label = "model_proceedings",
+#| echo = FALSE,
+#| results = "asis"
 df_table <- table_master[table_master$table == "model_proceedings", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
@@ -1189,7 +1264,8 @@ knitr::kable(df_table,
 
 [*CFF entry*]{.underline}
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 bib <- "@proceedings{proceedings-full,
     title        = {Proc. Fifteenth Annual ACM Symposium on the Theory of Computing},
     year         = 1983,
@@ -1208,7 +1284,8 @@ cff_read_bib_text(bib)
 
 From [CFF]{.underline} to **BibTeX**
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -1216,7 +1293,10 @@ toBibtex(cff_read_bib_text(bib))
 
 The crosswalk of **\@techreport** does not require any special treatment.
 
-```{r model_techreport, echo=FALSE, results='asis'}
+```{r}
+#| label = "model_techreport",
+#| echo = FALSE,
+#| results = "asis"
 df_table <- table_master[table_master$table == "model_techreport", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
@@ -1253,7 +1333,8 @@ knitr::kable(df_table,
 
 [CFF entry]{.underline}
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 bib <- "@techreport{techreport-full,
     title        = {A Sorting Algorithm},
     author       = {Tom Terrific},
@@ -1271,7 +1352,8 @@ cff_read_bib_text(bib)
 
 From [CFF]{.underline} to **BibTeX**
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -1279,7 +1361,10 @@ toBibtex(cff_read_bib_text(bib))
 
 The crosswalk of **\@unpublished** does not require any special treatment.
 
-```{r model_unpublished, echo=FALSE, results='asis'}
+```{r}
+#| label = "model_unpublished",
+#| echo = FALSE,
+#| results = "asis"
 df_table <- table_master[table_master$table == "model_unpublished", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
@@ -1310,7 +1395,8 @@ knitr::kable(df_table,
 
 [CFF entry]{.underline}
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 bib <- "@unpublished{unpublished-minimal,
     title        = {Lower Bounds for Wishful Research Results},
     author       = {Ulrich Underwood and Ned Net and Paul Pot},
@@ -1322,7 +1408,8 @@ cff_read_bib_text(bib)
 
 From [CFF]{.underline} to **BibTeX**
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -1376,7 +1463,8 @@ definitions and field requirements.
 
 [CFF entry]{.underline}
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 bib <- "@inbook{inbook-biblatex,
 	author       = {Yihui Xie and Christophe Dervieux and Emily Riederer},
 	title        = {Bibliographies and citations},
@@ -1395,7 +1483,8 @@ cff_read_bib_text(bib)
 
 From [CFF]{.underline} to **BibTeX**
 
-```{r echo=FALSE,}
+```{r}
+#| echo = FALSE
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -1403,7 +1492,10 @@ toBibtex(cff_read_bib_text(bib))
 
 From @druskat2019 Table 4: Complete list of [CFF]{.underline} reference types.
 
-```{r cff_types, echo=FALSE, results='asis'}
+```{r}
+#| label = "cff_types",
+#| echo = FALSE,
+#| results = "asis"
 df_table <- table_master[table_master$table == "cff_types", c(2:3)]
 df_table[is.na(df_table)] <- ""
 row.names(df_table) <- NULL

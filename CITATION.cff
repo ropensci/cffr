@@ -194,6 +194,10 @@ references:
     given-names: Diego
     email: diego.hernangomezherrero@gmail.com
     orcid: https://orcid.org/0000-0001-8457-4658
+  - family-names: Balamuta
+    given-names: James Joseph
+    email: balamut2@illinois.edu
+    orcid: https://orcid.org/0000-0003-2826-8458
   year: '2026'
   doi: 10.32614/CRAN.package.bibtex
   version: '>= 0.5.0'
