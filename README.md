@@ -135,9 +135,7 @@ test <- cff_create("rmarkdown")
 ```
 
 <details>
-
 <summary>
-
 <code>CITATION.cff</code> for <strong>rmarkdown</strong>
 </summary>
 
@@ -516,27 +514,6 @@ test <- cff_create("rmarkdown")
       year: '2026'
       doi: 10.32614/CRAN.package.fs
     - type: software
-      title: rsconnect
-      abstract: 'rsconnect: Deploy Docs, Apps, and APIs to ''Posit Connect'', ''shinyapps.io'',
-        and ''RPubs'''
-      notes: Suggests
-      url: https://rstudio.github.io/rsconnect/
-      repository: https://CRAN.R-project.org/package=rsconnect
-      authors:
-      - family-names: Atkins
-        given-names: Aron
-        email: aron@posit.co
-      - family-names: Allen
-        given-names: Toph
-      - family-names: Wickham
-        given-names: Hadley
-      - family-names: McPherson
-        given-names: Jonathan
-      - family-names: Allaire
-        given-names: JJ
-      year: '2026'
-      doi: 10.32614/CRAN.package.rsconnect
-    - type: software
       title: downlit
       abstract: 'downlit: Syntax Highlighting and Automatic Linking'
       notes: Suggests
@@ -712,7 +689,6 @@ test <- cff_create("rmarkdown")
       doi: 10.32614/CRAN.package.xml2
 
 </details>
-
 <p>
 
 We can validate the result using `cff_validate()`:
@@ -896,8 +872,8 @@ Exchange Schema for Software Metadata*. KNB Data Repository.
 
 <div id="ref-smith2021" class="csl-entry">
 
-Smith, Arfon. 2021. “Enhanced Support for Citations on
-GitHub.”[https://github.blog/news-insights/company-news/enhanced-support-citations-github/
+Smith, Arfon. 2021. “Enhanced Support for Citations on GitHub.”[
+https://github.blog/news-insights/company-news/enhanced-support-citations-github/
 ](
 		https://github.blog/news-insights/company-news/enhanced-support-citations-github/
 	).
