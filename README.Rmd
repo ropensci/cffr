@@ -7,7 +7,7 @@ link-citations: true
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r}
-#| include = FALSE
+#| include: false
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -59,10 +59,10 @@ fully supported this citation format [@druskat_stephan_making_2021]. GitHub
 support is of special interest:
 
 ```{r}
-#| echo = FALSE,
-#| out.width = "400",
-#| fig.align = "center",
-#| fig.alt = "Tweet of Nat Friedman about CFF files"
+#| echo: false
+#| out-width: '400'
+#| fig-align: center
+#| fig-alt: Tweet of Nat Friedman about CFF files
 knitr::include_graphics("vignettes/tweet-1.png")
 ```
 
@@ -90,9 +90,9 @@ the `CITATION` file (if present) from your package. Note that **cffr** works
 best if your package passes `R CMD check/devtools::check()`.
 
 ```{r}
-#| label = "count_cffr",
-#| echo = FALSE,
-#| results = "asis"
+#| label: count_cffr
+#| echo: false
+#| results: asis
 cat("\n")
 today <- Sys.Date()
 # Try get the count of GitHub repos here
@@ -142,14 +142,14 @@ cat("\n")
 Install **cffr** from [CRAN](https://CRAN.R-project.org/package=cffr):
 
 ```{r}
-#| eval = FALSE
+#| eval: false
 install.packages("cffr")
 ```
 
 You can install the developing version of **cffr** with:
 
 ```{r}
-#| eval = FALSE
+#| eval: false
 remotes::install_github("ropensci/cffr")
 ```
 
@@ -157,7 +157,7 @@ Alternatively, you can install **cffr** using the
 [r-universe](https://ropensci.r-universe.dev/cffr):
 
 ```{r}
-#| eval = FALSE
+#| eval: false
 # Install cffr in R:
 install.packages("cffr",
   repos = c("https://ropensci.r-universe.dev", "https://cloud.r-project.org")
@@ -171,7 +171,7 @@ By default most often from within your package folder you'll simply run
 and validates it on a single command:
 
 ```{r}
-#| eval = FALSE
+#| eval: false
 library(cffr)
 
 # For in-development packages
@@ -202,8 +202,8 @@ test <- cff_create("rmarkdown")
 <summary><code>CITATION.cff</code> for <strong>rmarkdown</strong></summary>
 
 ```{r}
-#| echo = FALSE,
-#| comment = ""
+#| echo: false
+#| comment: ''
 test
 ```
 
@@ -233,7 +233,7 @@ update your `CITATION.cff` file on the following events:
 -   The action can be run also manually.
 
 ```{r}
-#| eval = FALSE
+#| eval: false
 cff_gha_update()
 
 #> Installing update-citation-cff.yaml on './.github/workflows'
@@ -278,6 +278,12 @@ Check the following articles to learn more about **cffr**:
 -   **codemeta** [@codemeta] / **codemetar** [@codemetar2021] provides similar
     solutions for creating `codemeta.json` file, another format for storing and
     sharing software metadata.
+
+## Code of Conduct
+
+Please note that the cffr project is released with a [Contributor Code of
+Conduct](https://docs.ropensci.org/cffr/CODE_OF_CONDUCT.html). By contributing
+to this project, you agree to abide by its terms.
 
 ## Citation
 

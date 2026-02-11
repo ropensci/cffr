@@ -382,7 +382,7 @@
           name: Chapman and Hall/CRC
           address: Boca Raton, Florida
         isbn: '9780367563837'
-        url: https://bookdown.org/yihui/rmarkdown-cookbook
+        url: https://yihui.org/rmarkdown-cookbook/
         section: '4.5'
 
 # Test entry without author

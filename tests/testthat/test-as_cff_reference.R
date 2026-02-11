@@ -498,7 +498,7 @@ test_that("InBook with booktitle", {
     address = "Boca Raton, Florida",
     series = "The {R} Series",
     isbn = "9780367563837",
-    url = "https://bookdown.org/yihui/rmarkdown-cookbook",
+    url = "https://yihui.org/rmarkdown-cookbook/",
     chapter = "4.5"
   )
 
@@ -720,7 +720,7 @@ test_that("Duplicate entries", {
     address = "Boca Raton, Florida",
     series = "The {R} Series",
     isbn = "9780367563837",
-    url = "https://bookdown.org/yihui/rmarkdown-cookbook",
+    url = "https://yihui.org/rmarkdown-cookbook/",
     chapter = "4.5"
   )
 

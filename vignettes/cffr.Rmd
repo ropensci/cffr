@@ -1,7 +1,6 @@
 ---
 title: "Manipulating Citations with cffr"
-description: >
-  Learn how to modify `cff` objects.
+description: Learn how to modify `cff` objects.
 output: 
   rmarkdown::html_vignette:
     toc: true
@@ -14,7 +13,7 @@ vignette: >
 ---
 
 ```{r}
-#| include = FALSE
+#| include: false
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -50,10 +49,10 @@ included full support of this citation format [@druskat_stephan_making_2021].
 GitHub support is of special interest:
 
 ```{r}
-#| echo = FALSE,
-#| out.width = "400",
-#| fig.align = "center",
-#| fig.alt = "GitHub-link"
+#| echo: false
+#| out-width: '400'
+#| fig-align: center
+#| fig-alt: GitHub-link
 knitr::include_graphics("tweet-1.png")
 ```
 
@@ -69,8 +68,8 @@ With **cffr** creating a `CITATION.cff` file is quite straightforward. You just
 need to run `cff_write()`:
 
 ```{r}
-#| label = "setup",
-#| eval = FALSE
+#| label: setup
+#| eval: false
 library(cffr)
 
 cff_write()
@@ -99,7 +98,7 @@ would add or modify contents of it.
 ### Adding new fields
 
 ```{r}
-#| label = "newfields"
+#| label: newfields
 newobject <- cff()
 
 newobject
@@ -110,7 +109,7 @@ The valid keys of the [Citation File Format schema version
 can be displayed with `cff_schema_keys()`:
 
 ```{r}
-#| label = "validkeys"
+#| label: validkeys
 cff_schema_keys()
 ```
 
@@ -119,7 +118,7 @@ also overwrite the `title` key. We just need to add those arguments to
 `cff_modify()`:
 
 ```{r}
-#| label = "modify"
+#| label: modify
 modobject <- cff_modify(newobject,
   url = "https://ropensci.org/",
   version = "0.0.1",
@@ -146,7 +145,7 @@ doing that, we need first to extract the current author of the package and
 append the coerced person:
 
 ```{r}
-#| label = "includeauthor"
+#| label: includeauthor
 # Valid person keys
 
 cff_schema_definitions_person()
@@ -188,7 +187,7 @@ would add two references, one created with `bibentry()` and another with
 `citation()`:
 
 ```{r}
-#| label = "parsingcits"
+#| label: parsingcits
 # Valid reference keys
 
 cff_schema_definitions_refs()
@@ -219,7 +218,7 @@ Now the process is similar to the example with `person`: we just modify our
 `cff` object:
 
 ```{r}
-#| label = "references"
+#| label: references
 finalobject <- cff_modify(newauthorobject, references = refs_cff)
 
 finalobject
@@ -232,7 +231,7 @@ cff_validate(finalobject)
 The results can be written with `cff_write()`:
 
 ```{r}
-#| label = "write"
+#| label: write
 # For example
 tmp <- tempfile(fileext = ".cff")
 
@@ -244,7 +243,7 @@ cat(readLines(tmp), sep = "\n")
 And finally we can read our created `CITATION.cff` file using `cff_read()`:
 
 ```{r}
-#| label = "read"
+#| label: read
 reading <- cff_read(tmp)
 
 reading
@@ -272,7 +271,7 @@ res
 ```
 
 ```{r}
-#| include = FALSE
+#| include: false
 # Clean temps
 unlink(tmp)
 unlink(tmp2)

@@ -73,7 +73,7 @@ file and the `CITATION` file (if present) from your package. Note that
 **cffr** works best if your package passes
 `R CMD check/devtools::check()`.
 
-As per 2026-02-10 there are at least 582 repos on GitHub using **cffr**.
+As per 2026-02-11 there are at least 578 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -788,6 +788,12 @@ Check the following articles to learn more about **cffr**:
   **codemetar** ([Boettiger and Salmon 2021b](#ref-codemetar2021))
   provides similar solutions for creating `codemeta.json` file, another
   format for storing and sharing software metadata.
+
+## Code of Conduct
+
+Please note that the cffr project is released with a [Contributor Code
+of Conduct](https://docs.ropensci.org/cffr/CODE_OF_CONDUCT.html). By
+contributing to this project, you agree to abide by its terms.
 
 ## Citation
 
