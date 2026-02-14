@@ -3,6 +3,5 @@ encoding: "UTF-8"
 exclusions: list(
                   "data-raw",
                   "tests/testthat/test_ci",
-                  "vignettes/cffr.Rmd",
-                  "vignettes/bibtex-cff.Rmd"
+                  "vignettes/bibtex-cff.qmd"
                 )
