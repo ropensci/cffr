@@ -93,7 +93,6 @@ enhance_pref_authors <- function(cffobjend) {
   enhancedauth
 }
 
-
 get_dependencies <- function(
   desc_path,
   instpack = as.character(

@@ -42,7 +42,6 @@ jobs:
         - {os: ubuntu-latest, r: "4.1.0"}
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
     - uses: actions/checkout@v6
@@ -58,9 +57,8 @@ jobs:
     - uses: r-lib/actions/setup-r-dependencies@v2
       with:
         extra-packages: |
+          local::.
           any::rcmdcheck
-          any::testthat
-          any::usethis
         needs: check
 
     - uses: r-lib/actions/check-r-package@v2

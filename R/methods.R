@@ -18,7 +18,6 @@ c.cff <- function(..., recursive = FALSE) {
   as_cff(rval)
 }
 
-
 # Just for pretty printing on extract
 
 # Based in person method

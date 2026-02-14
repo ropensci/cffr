@@ -1,20 +1,21 @@
 ---
-output: github_document
+format: gfm
 bibliography: inst/REFERENCES.bib
 link-citations: true
+default-image-extension: ''
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    fig.path: "man/figures/README-"
+    tidy: "styler"
+    dev: "ragg_png"
+    warning: false
+    message: false
+    out.width: "100%"
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r}
-#| include: false
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
+<!-- README.md is generated from README.qmd. Please edit that file -->
 
 # cffr <a href="https://docs.ropensci.org/cffr/"><img src="man/figures/logo.png" alt="cffr website" align="right" height="139"/></a>
 
@@ -106,7 +107,8 @@ api_url <- paste0(
   "cff+filename:CITATION"
 )
 res <- tryCatch(
-  download.file(api_url,
+  download.file(
+    api_url,
     tmpfile,
     quiet = TRUE,
     headers = c(Authorization = ghtoken)
@@ -121,15 +123,20 @@ res <- tryCatch(
 # If not successful
 if (isTRUE(res)) {
   cat(paste0(
-    "\n", "See [some projects already using **cffr**]",
+    "\n",
+    "See [some projects already using **cffr**]",
     "(https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code)",
     "."
   ))
 } else {
   nreps <- as.integer(jsonlite::read_json(tmpfile)$total_count)
   cat(paste0(
-    "As per ", today, " there are at least ", nreps,
-    " repos on GitHub using **cffr**. ", "[Check them out here]",
+    "As per ",
+    today,
+    " there are at least ",
+    nreps,
+    " repos on GitHub using **cffr**. ",
+    "[Check them out here]",
     "(https://github.com/search?q=cffr%20path%3A**%2FCITATION.",
     "cff&type=code)."
   ))
@@ -159,7 +166,8 @@ Alternatively, you can install **cffr** using the
 ```{r}
 #| eval: false
 # Install cffr in R:
-install.packages("cffr",
+install.packages(
+  "cffr",
   repos = c("https://ropensci.r-universe.dev", "https://cloud.r-project.org")
 )
 ```
@@ -194,22 +202,19 @@ of the **rmarkdown** package:
 library(cffr)
 
 # Example with an installed package
-test <- cff_create("rmarkdown")
+test <- cff_create("knitr")
 ```
 
 <details>
 
-<summary><code>CITATION.cff</code> for <strong>rmarkdown</strong></summary>
+<summary><code>CITATION.cff</code> for <strong>knitr</strong></summary>
 
 ```{r}
 #| echo: false
 #| comment: ''
 test
 ```
-
 </details>
-
-<p>
 
 We can validate the result using `cff_validate()`:
 
@@ -236,8 +241,8 @@ update your `CITATION.cff` file on the following events:
 #| eval: false
 cff_gha_update()
 
-#> Installing update-citation-cff.yaml on './.github/workflows'
-#> Adding .github to .Rbuildignore
+#> i Installing update-citation-cff.yaml on './.github/workflows'
+#> i Adding .github to .Rbuildignore
 ```
 
 See the example workflow file
@@ -315,8 +320,3 @@ files](https://docs.github.com/en/repositories/managing-your-repositorys-setting
 for more info.
 
 ## References
-
-::: {#refs}
-:::
-
-[![footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

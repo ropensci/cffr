@@ -134,7 +134,6 @@ test_that("Rest of cases", {
   expect_snapshot(unlist(res))
 })
 
-
 test_that("tames da beast", {
   # http://tug.ctan.org/info/bibtex/tamethebeast/ttb_en.pdf
 
@@ -159,7 +158,7 @@ test_that("tames da beast", {
   x <- "jean De la Fontaine "
   expect_snapshot(unlist(create_person_from_txt(x)))
 
-  x <- "Jean    de La Fontaine "
+  x <- "Jean de La Fontaine "
   expect_snapshot(unlist(create_person_from_txt(x)))
 
   x <- "jean de la fontaine,"

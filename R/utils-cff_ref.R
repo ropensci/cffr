@@ -180,7 +180,6 @@ add_conference <- function(field_list) {
   field_list
 }
 
-
 #' Adapt cff keys to bibtex entries
 #' @noRd
 add_thesis <- function(cit_list) {

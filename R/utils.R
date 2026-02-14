@@ -35,7 +35,7 @@ clean_str <- function(str) {
 }
 
 #' Drop nulls from list
-#' @source  https://github.com/cboettig/codemeta/blob/master/R/utils.R
+#' @source https://github.com/cboettig/codemeta/blob/master/R/utils.R
 #' @param x The list to be cleaned
 #' @noRd
 drop_null <- function(x) {
@@ -45,7 +45,6 @@ drop_null <- function(x) {
   }
   x[lengths(x) != 0]
 }
-
 
 #' Pretty printing of snapshots
 #' @noRd

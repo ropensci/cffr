@@ -52,7 +52,6 @@ if (requireNamespace("bibtex", quietly = TRUE)) {
   }"
   )
 
-
   cff_read_bib_text(x)
 }
 }

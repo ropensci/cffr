@@ -2,40 +2,39 @@
 title: "BibTeX and CFF"
 subtitle: A potential crosswalk
 bibliography: REFERENCES.bib
-author: Diego Hernangómez
-description: >-
-  This article presents a crosswalk between BibTeX and Citation File Format, as 
+author:
+  - name: Diego Hernangómez
+    orcid: 0000-0001-8457-4658
+    affiliations:
+      - Independent Researcher
+tbl-cap-location: bottom
+description: >
+  This article presents a crosswalk between BibTeX and Citation File Format, as
   it is performed by the cffr package.
-abstract: >-
-  This article introduces a crosswalk between **BibTeX** and the Citation File 
-  Format (CFF) [@druskat_citation_2021], as implemented by the **cffr** package 
-  [@hernangomez2021]. The crosswalk aims to facilitate seamless translation 
-  between these two reference formats. Specifically, it proposes various 
-  crosswalk models tailored to different **BibTeX** entry types 
-  [@patashnik1988]. Additionally, the article includes practical examples using 
-  real **BibTeX** entries and offers tips for developers interested in 
+abstract: >
+  This article introduces a crosswalk between **BibTeX** and the Citation File
+  Format (CFF) [@druskat_citation_2021], as implemented by the **cffr** package
+  [@hernangomez2021]. The crosswalk aims to facilitate seamless translation
+  between these two reference formats. Specifically, it proposes various
+  crosswalk models tailored to different **BibTeX** entry types
+  [@patashnik1988]. Additionally, the article includes practical examples using
+  real **BibTeX** entries and offers tips for developers interested in
   implementing this crosswalk across various programming languages.
 link-citations: true
 documentclass: article
-editor_options:
-  markdown:
-    wrap: 80
-output: 
-  rmarkdown::html_vignette:
-    toc: true
+toc: true
 vignette: >
   %\VignetteIndexEntry{BibTeX and CFF}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: ""
 ---
 
 ```{r}
 #| include: false
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = ""
-)
-
 # Load the table of tables
 
 p2file <- system.file("extdata/crosswalk_tables.csv", package = "cffr")
@@ -93,7 +92,8 @@ entry can then be used in a document to include references to it. In **R**
 ```{r}
 #| label: bibentry
 #| comment: '#>'
-entry <- bibentry("book",
+entry <- bibentry(
+  "book",
   key = "einstein1921",
   title = "Relativity: The Special and the General Theory",
   author = person("A.", "Einstein"),
@@ -111,11 +111,15 @@ The final results of the entry as a text string would be coerced as[^1]:
 [^1]: By default **R** Pandoc would generate the cite in the Chicago author-date
     format [@rmarkdowncookbook2020]
 
+:::: {#refs-example .references .csl-bib-body .hanging-indent data-entry-spacing="0"}
+::: {#ref-einstein1921 .csl-entry}
 ```{r}
 #| echo: false
 #| results: asis
-entry
+print(entry, style = "html")
 ```
+:::
+::::
 
 Additionally, the **cffr** package [@hernangomez2021] incorporates the following
 capabilities that can be used to read and transform **BibTeX** format into
@@ -263,37 +267,50 @@ fields are flagged as **o**. For more detailed information, refer to
 @patashnik1988.
 
 ```{r}
-#| label: entry_fields1
+#| label: tbl-entry_fields1
 #| echo: false
+#| tbl-cap: BibTeX entries
+#| tbl-subcap:
+#|   - "BibTeX: required fields by entry"
+#|   - "BibTeX: required fields by entry (cont.)"
+#|
 df_table <- table_master[table_master$table == "entry_fields", -1]
 
 nms <- c(
-  "**field**", "**\\@article**", "**\\@book**", "**\\@booklet**",
-  "**\\@inbook**", "**\\@incollection**", "**\\@conference, \\@inproceedings**",
-  "**\\@manual**", "**\\@mastersthesis, phdthesis**", "**\\@misc**",
-  "**\\@proceedings**", "**\\@techreport**", "**\\@unpublished**"
+  "field",
+  "\\@article",
+  "\\@book",
+  "\\@booklet",
+  "\\@inbook",
+  "\\@incollection",
+  "\\@conference, \\@inproceedings",
+  "\\@manual",
+  "\\@mastersthesis, phdthesis",
+  "\\@misc",
+  "\\@proceedings",
+  "\\@techreport",
+  "\\@unpublished"
 )
-
 
 df_table[is.na(df_table)] <- ""
 row.names(df_table) <- NULL
 t1 <- df_table[, c(1:7)]
 nm1 <- nms[1:7]
 
-knitr::kable(t1,
-  col.names = nm1, row.names = NA, align = c("l", rep("c", 6)),
-  caption = "**BibTeX**, required fields by entry"
+knitr::kable(
+  t1,
+  col.names = nm1,
+  row.names = NA,
+  align = c("l", rep("c", 6))
 )
-```
 
-```{r}
-#| label: entry_fields2
-#| echo: false
 t2 <- df_table[, c(1, 8:13)]
 nm2 <- nms[c(1, 8:13)]
-knitr::kable(t2,
-  col.names = nm2, row.names = NA, align = c("l", rep("c", 6)),
-  caption = "(cont) **BibTeX**, required fields by entry"
+knitr::kable(
+  t2,
+  col.names = nm2,
+  row.names = NA,
+  align = c("l", rep("c", 6))
 )
 ```
 
@@ -324,11 +341,12 @@ the [Guide to Citation File Format schema version
 and they may contain the following keys:
 
 ```{r}
-#| label: refkeys
+#| label: tbl-refkeys
 #| echo: false
 #| message: false
 #| warning: false
 #| results: asis
+#| tbl-cap: "Valid keys on [CFF]{.underline} `definition-reference` objects"
 library(cffr)
 
 # Fill with whites
@@ -339,9 +357,9 @@ l <- c(init, rep("", 4))
 
 refkeys <- matrix(l, ncol = 5, byrow = TRUE)
 
-knitr::kable(refkeys,
-  row.names = NA,
-  caption = "Valid keys on [CFF]{.underline} `definition-reference` objects"
+knitr::kable(
+  refkeys,
+  row.names = NA
 )
 ```
 
@@ -379,19 +397,21 @@ For converting general **BibTeX** entries to [CFF]{.underline}
 [types]{.underline}, the following crosswalk is proposed:
 
 ```{r}
-#| label: entry_bib2cff
+#| label: tbl-entry_bib2cff
 #| echo: false
 #| results: asis
+#| tbl-cap: "Entry/Type crosswalk: From **BibTeX** to [CFF]{.underline}"
+
 df_table <- table_master[table_master$table == "entry_bib2cff", c(2:4)]
 df_table[is.na(df_table)] <- ""
 # fix links
 df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
 row.names(df_table) <- NULL
 
-knitr::kable(df_table,
-  col.names = c("**BibTeX** Entry", "[**CFF key: type**]{.underline}", "Notes"),
-  row.names = NA,
-  caption = "Entry/Type crosswalk: From **BibTeX** to [CFF]{.underline}"
+knitr::kable(
+  df_table,
+  col.names = c("**BibTeX** Entry", "[CFF key: type]{.underline}", "Notes"),
+  row.names = NA
 )
 ```
 
@@ -418,18 +438,19 @@ applied from [CFF]{.underline} to **BibTeX**:
     extracted from @druskat2019.
 
 ```{r}
-#| label: entry_cff2bib
+#| label: tbl-entry_cff2bib
 #| echo: false
 #| results: asis
+#| tbl-cap: "Entry/Type crosswalk: From [CFF]{.underline} to **BibTeX**"
 df_table <- table_master[table_master$table == "entry_cff2bib", c(2:4)]
 df_table[is.na(df_table)] <- ""
 # fix links
 df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
 row.names(df_table) <- NULL
 
-knitr::kable(df_table,
-  col.names = c("[**CFF key: type**]{.underline}", "**BibTeX** Entry", "Notes"),
-  caption = "Entry/Type crosswalk: From [CFF]{.underline} to **BibTeX**"
+knitr::kable(
+  df_table,
+  col.names = c("[CFF key: type]{.underline}", "**BibTeX** Entry", "Notes")
 )
 ```
 
@@ -441,18 +462,19 @@ straightforward in some cases, there are instances where certain keys need to be
 processed depending on the **entry** type.
 
 ```{r}
-#| label: fields_bib2cff
+#| label: tbl-fields_bib2cff
 #| echo: false
 #| results: asis
+#| tbl-cap: "**BibTeX** - [CFF]{.underline} Field/Key crosswalk"
 df_table <- table_master[table_master$table == "fields_bib2cff", c(2:4)]
 df_table[is.na(df_table)] <- ""
 # fix links
 df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
 row.names(df_table) <- NULL
 
-knitr::kable(df_table,
-  col.names = c("**BibTeX Field**", "[CFF key]{.underline}", "Notes"),
-  caption = "**BibTeX** - [CFF]{.underline} Field/Key crosswalk"
+knitr::kable(
+  df_table,
+  col.names = c("**BibTeX Field**", "[CFF key]{.underline}", "Notes")
 )
 ```
 
@@ -502,18 +524,20 @@ even though they are not part of the core **BibTeX** fields definition.
 [^6]: See @biblatexcheatsheet for a preview of the accepted **BibLaTeX** fields.
 
 ```{r}
-#| label: fields_biblatex2cff
+#| label: tbl-fields_biblatex2cff
 #| echo: false
 #| results: asis
+#| tbl-cap: "**BibLaTeX** - [CFF]{.underline} Field/Key crosswalk"
+
 df_table <- table_master[table_master$table == "fields_biblatex2cff", c(2:3)]
 df_table[is.na(df_table)] <- ""
 # fix links
 df_table$f2 <- gsub("link_to_entry_models", "#entrymodels", df_table$f2)
 row.names(df_table) <- NULL
 
-knitr::kable(df_table,
-  col.names = c("**BibLaTeX Field**", "[CFF key]{.underline}"),
-  caption = "**BibLaTeX** - [CFF]{.underline} Field/Key crosswalk"
+knitr::kable(
+  df_table,
+  col.names = c("**BibLaTeX Field**", "[CFF key]{.underline}")
 )
 ```
 
@@ -529,9 +553,10 @@ file provided with the **bibtex** package [@patashnik].
 The crosswalk of **\@article** does not require any special treatment.
 
 ```{r}
-#| label: model_article
+#| label: tbl-model_article
 #| echo: false
 #| results: asis
+
 df_table <- table_master[table_master$table == "model_article", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
@@ -542,7 +567,8 @@ df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
 df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
 
 row.names(df_table) <- NULL
-knitr::kable(df_table,
+knitr::kable(
+  df_table,
   col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
   caption = "**\\@article** Model"
 )
@@ -609,7 +635,7 @@ to [collection-title]{.underline}, and the **address** field represents the
 [collection-type]{.underline} would be populated with [book-series]{.underline}.
 
 ```{r}
-#| label: model_book
+#| label: tbl-model_book
 #| echo: false
 #| results: asis
 df_table <- table_master[table_master$table == "model_book", c(2:4)]
@@ -622,7 +648,8 @@ df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
 df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
 
 row.names(df_table) <- NULL
-knitr::kable(df_table,
+knitr::kable(
+  df_table,
   col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
   caption = "**\\@book / \\@inbook** Model"
 )
@@ -735,7 +762,7 @@ toBibtex(cff_read_bib_text(bib))
 In **\@booklet** **address** is mapped to [location]{.underline}.
 
 ```{r}
-#| label: model_booklet
+#| label: tbl-model_booklet
 #| echo: false
 #| results: asis
 df_table <- table_master[table_master$table == "model_booklet", c(2:4)]
@@ -748,7 +775,8 @@ df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
 df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
 
 row.names(df_table) <- NULL
-knitr::kable(df_table,
+knitr::kable(
+  df_table,
   col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
   caption = "**\\@booklet** Model"
 )
@@ -801,7 +829,7 @@ Additionally, **series** would be ignored as there is not clear mapping on
 [CFF]{.underline} for this field.
 
 ```{r}
-#| label: model_inproceedings
+#| label: tbl-model_inproceedings
 #| echo: false
 #| results: asis
 df_table <- table_master[table_master$table == "model_inproceedings", c(2:4)]
@@ -814,7 +842,8 @@ df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
 df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
 
 row.names(df_table) <- NULL
-knitr::kable(df_table,
+knitr::kable(
+  df_table,
   col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
   caption = "**\\@conference / \\@inproceedings** Model"
 )
@@ -881,7 +910,7 @@ Additionally, **series** and **type** would be ignored as there is not clear
 mapping on [CFF]{.underline} for this field.
 
 ```{r}
-#| label: model_incollection
+#| label: tbl-model_incollection
 #| echo: false
 #| results: asis
 df_table <- table_master[table_master$table == "model_incollection", c(2:4)]
@@ -894,7 +923,8 @@ df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
 df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
 
 row.names(df_table) <- NULL
-knitr::kable(df_table,
+knitr::kable(
+  df_table,
   col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
   caption = "**\\@incollection** Model"
 )
@@ -962,7 +992,7 @@ As in the case of [**\@conference** / **\@inproceedings**](#conf_inproc),
 **organization** is mapped to [institution]{.underline}.
 
 ```{r}
-#| label: model_manual
+#| label: tbl-model_manual
 #| echo: false
 #| results: asis
 df_table <- table_master[table_master$table == "model_manual", c(2:4)]
@@ -975,7 +1005,8 @@ df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
 df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
 
 row.names(df_table) <- NULL
-knitr::kable(df_table,
+knitr::kable(
+  df_table,
   col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
   caption = "**\\@manual** Model"
 )
@@ -1039,7 +1070,7 @@ pattern](https://regex101.com/r/mBWfbs/1) `(?i)(phd)` it would be recognized as
 Additionally, **school** would be mapped to [institution]{.underline}.
 
 ```{r}
-#| label: model_thesis
+#| label: tbl-model_thesis
 #| echo: false
 #| results: asis
 df_table <- table_master[table_master$table == "model_thesis", c(2:4)]
@@ -1052,7 +1083,8 @@ df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
 df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
 
 row.names(df_table) <- NULL
-knitr::kable(df_table,
+knitr::kable(
+  df_table,
   col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
   caption = "**\\@mastersthesis / \\@phdthesis** Model"
 )
@@ -1153,7 +1185,7 @@ option, so the proposed definition should cover both **\@misc** and
 **\@incollection** without problems.
 
 ```{r}
-#| label: model_misc
+#| label: tbl-model_misc
 #| echo: false
 #| results: asis
 df_table <- table_master[table_master$table == "model_misc", c(2:4)]
@@ -1166,7 +1198,8 @@ df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
 df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
 
 row.names(df_table) <- NULL
-knitr::kable(df_table,
+knitr::kable(
+  df_table,
   col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
   caption = "**\\@misc** Model"
 )
@@ -1224,7 +1257,7 @@ required on [CFF]{.underline}, we would use *anonymous*[^7] when converting to
     **(Guide to Citation File Format schema version 1.2.0)**
 
 ```{r}
-#| label: model_proceedings
+#| label: tbl-model_proceedings
 #| echo: false
 #| results: asis
 df_table <- table_master[table_master$table == "model_proceedings", c(2:4)]
@@ -1237,7 +1270,8 @@ df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
 df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
 
 row.names(df_table) <- NULL
-knitr::kable(df_table,
+knitr::kable(
+  df_table,
   col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
   caption = "**\\@proceedings** Model"
 )
@@ -1294,7 +1328,7 @@ toBibtex(cff_read_bib_text(bib))
 The crosswalk of **\@techreport** does not require any special treatment.
 
 ```{r}
-#| label: model_techreport
+#| label: tbl-model_techreport
 #| echo: false
 #| results: asis
 df_table <- table_master[table_master$table == "model_techreport", c(2:4)]
@@ -1307,7 +1341,8 @@ df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
 df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
 
 row.names(df_table) <- NULL
-knitr::kable(df_table,
+knitr::kable(
+  df_table,
   col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
   caption = "**\\@techreport** Model"
 )
@@ -1362,7 +1397,7 @@ toBibtex(cff_read_bib_text(bib))
 The crosswalk of **\@unpublished** does not require any special treatment.
 
 ```{r}
-#| label: model_unpublished
+#| label: tbl-model_unpublished
 #| echo: false
 #| results: asis
 df_table <- table_master[table_master$table == "model_unpublished", c(2:4)]
@@ -1375,7 +1410,8 @@ df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
 df_table$f3 <- gsub("link_to_book", "#book-inbook", df_table$f3)
 
 row.names(df_table) <- NULL
-knitr::kable(df_table,
+knitr::kable(
+  df_table,
   col.names = c("**BibTeX**", "[CFF]{.underline}", "Notes"),
   caption = "**\\@unpublished** Model"
 )
@@ -1493,16 +1529,17 @@ toBibtex(cff_read_bib_text(bib))
 From @druskat2019 Table 4: Complete list of [CFF]{.underline} reference types.
 
 ```{r}
-#| label: cff_types
+#| label: tbl-cff_types
 #| echo: false
 #| results: asis
+#| tbl-cap: "Complete list of [CFF]{.underline} reference types"
 df_table <- table_master[table_master$table == "cff_types", c(2:3)]
 df_table[is.na(df_table)] <- ""
 row.names(df_table) <- NULL
-knitr::kable(df_table,
+knitr::kable(
+  df_table,
   col.names = c("Reference type string", "Description"),
-  row.names = NA,
-  caption = "Complete list of [CFF]{.underline} reference types."
+  row.names = NA
 )
 ```
 

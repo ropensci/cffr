@@ -106,7 +106,6 @@ installed_package <- as_bibentry("jsonvalidate", what = "all")
 
 installed_package
 
-
 # Use a DESCRIPTION file
 path2 <- system.file("examples/DESCRIPTION_gitlab", package = "cffr")
 desc_file <- as_bibentry(path2)

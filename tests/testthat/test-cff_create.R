@@ -142,7 +142,6 @@ test_that("Add new roles", {
   expect_true(cff_validate(cf2, verbose = FALSE))
 })
 
-
 test_that("Default roles on write", {
   p <- system.file("examples/DESCRIPTION_no_URL", package = "cffr")
 

@@ -35,7 +35,7 @@
 #' This function would install a pre-commit hook using
 #' [usethis::use_git_hook()].
 #'
-#' A pre-commit hook is a script that identifies  simple issues before
+#' A pre-commit hook is a script that identifies simple issues before
 #' submission to code review. This pre-commit hook would warn you if any of the
 #' following conditions are met:
 #' - You included in a commit your `DESCRIPTION` or `inst/CITATION` file, you

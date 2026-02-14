@@ -28,11 +28,9 @@
 #'            "(https://github.com/citation-file-format/",
 #'            "citation-file-format/blob/main/schema-guide.md). "))
 #'
-#'
 #' ```
 #' Each element of the `cff_ref_lst` object would have classes
 #' [`cff_ref, cff`][cff_ref].
-#'
 #'
 #' @details
 #'
@@ -62,7 +60,6 @@
 #'       howpublished = {Handed out at O'Hare}
 #'   }"
 #'   )
-#'
 #'
 #'   cff_read_bib_text(x)
 #' }

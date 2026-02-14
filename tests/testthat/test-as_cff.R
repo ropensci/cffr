@@ -11,7 +11,6 @@ test_that("as.cff still works", {
   expect_snapshot(l2)
 })
 
-
 test_that("as_cff.person", {
   pers <- person(
     "A",

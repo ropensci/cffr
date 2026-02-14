@@ -20,7 +20,6 @@ A \code{bibentry} in format \code{cff}.
 bib <- citation("base")
 bib
 
-
 # To cff
 bib_to_cff <- as_cff(bib)
 bib_to_cff

@@ -93,7 +93,6 @@ new_contact <- append(
   ))
 )
 
-
 cff_create(demo_file, keys = list("contact" = new_contact))
 }
 }

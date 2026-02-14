@@ -8,7 +8,6 @@
 #'            "(https://github.com/citation-file-format/",
 #'            "citation-file-format/blob/main/schema.json)."))
 #'
-#'
 #' ```
 #' @export
 #'
@@ -20,7 +19,6 @@
 #' cat(paste0("[Guide to Citation File Format schema version 1.2.0]",
 #'            "(https://github.com/citation-file-format/",
 #'            "citation-file-format/blob/main/schema-guide.md)."))
-#'
 #'
 #' ```
 #'
@@ -38,7 +36,6 @@
 #' @seealso
 #' [jsonvalidate::json_validate()], that is the function that performs the
 #' validation.
-#'
 #'
 #' @examples
 #' \donttest{

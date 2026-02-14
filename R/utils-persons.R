@@ -158,7 +158,6 @@ bibtex_pers_von_last_first <- function(x) {
   end_list
 }
 
-
 bibtex_pers_first_von_last <- function(x) {
   # Based on Tame the BeaST
   # http://tug.ctan.org/info/bibtex/tamethebeast/ttb_en.pdf

@@ -68,7 +68,6 @@ test_that("preferred-citation-no-vol", {
   expect_snapshot(toBibtex(bib))
 })
 
-
 test_that("preferred-citation-pamphlet", {
   x <- system.file("examples/preferred-citation-pamphlet.cff", package = "cffr")
 

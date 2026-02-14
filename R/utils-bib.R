@@ -215,7 +215,6 @@ make_bibkey <- function(tobibentry) {
   key
 }
 
-
 get_bib_month <- function(x) {
   m <- x$month
 

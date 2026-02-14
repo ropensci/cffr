@@ -31,7 +31,6 @@ test_that("Article", {
   expect_identical(fld1, fld2)
 })
 
-
 test_that("Book", {
   bib <- bibentry(
     "Book",

@@ -48,7 +48,6 @@ test_that("as data frame partial", {
   expect_identical(ncol(the_df), length(unique(names(the_df))))
 })
 
-
 test_that("Convert a citation only", {
   path <- system.file("examples/DESCRIPTION_many_persons", package = "cffr")
   a_cit <- as_bibentry(cff_create(path))

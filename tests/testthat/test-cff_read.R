@@ -19,7 +19,6 @@ test_that("cff_read citation.cff", {
   expect_identical(f1, f2)
 })
 
-
 test_that("cff_read DESCRIPTION", {
   expect_snapshot(cff_read_description("a"), error = TRUE)
 

@@ -1,6 +1,7 @@
 url: https://docs.ropensci.org/cffr
 
 template:
+  bootstrap: 5
   light-switch: true
   opengraph:
     twitter:
@@ -68,6 +69,7 @@ navbar:
     right:
     - search
     - github
+    - lightswitch
   components:
     media:
       text: Media
@@ -80,7 +82,8 @@ navbar:
       - text: '---'
       - text: Blogs
       - text: How To Call Package Citations in R programming
-        href: https://medium.com/analytics-vidhya/how-to-call-package-citations-in-r-programming-6f01f1176301
+        href: |
+          https://medium.com/analytics-vidhya/how-to-call-package-citations-in-r-programming-6f01f1176301
       - text: '---'
       - text: Podcasts
       - text: 'R Weekly Highlights: Issue 2021-W48 Highlights'

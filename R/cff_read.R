@@ -27,7 +27,6 @@
 #' - [utils::readCitationFile()] for **R** citation files.
 #' - [bibtex::read.bib()] for BibTeX files (extension `*.bib`).
 #'
-#'
 #' @param path Path to a file.
 #' @param encoding Encoding to be assumed for `path`. See [readLines()].
 #' @param meta A list of package metadata as obtained by
@@ -49,7 +48,6 @@
 #' cat(paste0(" [Citation File Format schema]",
 #'            "(https://github.com/citation-file-format/",
 #'            "citation-file-format/blob/main/schema-guide.md)."))
-#'
 #'
 #' ```
 #'

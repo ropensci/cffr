@@ -4,7 +4,6 @@ font_add_google("Roboto", "roboto")
 
 showtext_auto()
 
-
 # Subplot
 img <- magick::image_read("data-raw/network.png")
 g <- grid::rasterGrob(img, interpolate = TRUE)

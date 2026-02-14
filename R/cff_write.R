@@ -12,7 +12,6 @@
 #'
 #' @family writing
 #'
-#'
 #' @param outfile The name and path of the `CITATION.cff` to be created.
 #'
 #' @param r_citation Logical `TRUE/FALSE`. On `TRUE` the **R** package citation
@@ -35,7 +34,6 @@
 #'
 #' @export
 #'
-#'
 #' @return A `CITATION.cff` file and an (invisible) `cff` object.
 #'
 #' @seealso
@@ -44,7 +42,6 @@
 #' cat(paste0("[Guide to Citation File Format schema version 1.2.0]",
 #'            "(https://github.com/citation-file-format/",
 #'            "citation-file-format/blob/main/schema-guide.md)."))
-#'
 #'
 #' ```
 #' This function unifies the workflow [cff_create()] + [cff_validate()] +

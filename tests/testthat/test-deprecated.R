@@ -54,7 +54,6 @@ test_that("write_citation", {
   expect_snapshot(cat(readLines(tmp), sep = "\n"))
 })
 
-
 test_that("cff_parse_person", {
   p <- person("A", "person")
   expect_snapshot(pend <- cff_parse_person(p))

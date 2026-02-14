@@ -8,7 +8,6 @@ test_that("Test message on cff", {
   expect_identical(afile, cff())
 })
 
-
 test_that("Walk trough full lifecycle", {
   complete <- system.file("examples/CITATION_complete.cff", package = "cffr")
 

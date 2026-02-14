@@ -27,7 +27,6 @@ test_that("Coerce several persons", {
   expect_snapshot(as_cff_person(p))
 })
 
-
 test_that("Coerce bibtex persons", {
   s <- "Wright, III, Frank Edwin"
 

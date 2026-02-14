@@ -32,7 +32,6 @@
 #'            "(https://github.com/citation-file-format/",
 #'            "citation-file-format/blob/main/schema-guide.md)."))
 #'
-#'
 #' ```
 #' for additional details.
 #'
@@ -41,7 +40,6 @@
 #' x
 #'
 #' cff_validate(x)
-#'
 #'
 #' x_mod <- cff_modify(x,
 #'   contact = as_cff_person("A contact"),

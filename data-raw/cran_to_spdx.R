@@ -24,11 +24,9 @@ cran_packs[20, "cum"]
 sum(cran_packs[1:20, "n"])
 paste0(cran_packs[1:20, ]$LICENSE, collapse = " | ")
 
-
 # Extract all types of LICENSE
 
 lic_string <- as.character(cran_packs$LICENSE)
-
 
 # Split if needed
 split <- unlist(strsplit(lic_string, "\\| | \\+ |\\+"))

@@ -41,7 +41,6 @@
 #'            "(https://github.com/citation-file-format/",
 #'            "citation-file-format/blob/main/schema-guide.md)."))
 #'
-#'
 #' ```
 #'
 #' - [cff_modify()] as the recommended way to modify a `cff` object.
@@ -62,7 +61,6 @@
 #' of the package. The default setting can be controlled via the `authors_roles`
 #' argument. See **Details** on [person()] to get additional insights
 #' on person roles.
-#'
 #'
 #' @examples
 #' \donttest{
@@ -96,7 +94,6 @@
 #'     family = "New Contact"
 #'   ))
 #' )
-#'
 #'
 #' cff_create(demo_file, keys = list("contact" = new_contact))
 #' }

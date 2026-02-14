@@ -25,7 +25,6 @@ test_that("Write", {
   file.remove(paste0(file, ".bk1"))
 })
 
-
 test_that("Write ASCII", {
   bib <- bibentry("Misc", title = "My title", author = "Fran Pérez")
 

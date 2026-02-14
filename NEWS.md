@@ -1,6 +1,7 @@
 # cffr (development version)
 
 -   Minimum **R** version required now is **4.1.0**.
+-   Migrate vignettes to Quarto.
 
 # cffr 1.2.1
 

@@ -9,7 +9,6 @@
 #'            "(https://github.com/citation-file-format/",
 #'            "citation-file-format/blob/main/schema-guide.md)."))
 #'
-#'
 #' ```
 #'
 #' - [cff_schema_keys()] provides the valid high-level keys of the Citation
@@ -29,7 +28,6 @@
 #' cat(paste0("[Guide to Citation File Format schema version 1.2.0]",
 #'            "(https://github.com/citation-file-format/",
 #'            "citation-file-format/blob/main/schema-guide.md)."))
-#'
 #'
 #' ```
 #'

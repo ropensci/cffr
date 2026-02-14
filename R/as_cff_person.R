@@ -10,7 +10,6 @@
 #'            "(https://github.com/citation-file-format/",
 #'            "citation-file-format/blob/main/schema-guide.md)."))
 #'
-#'
 #' ```
 #'
 #' `as_cff_person` is an S3 generic, with methods for:
@@ -48,11 +47,9 @@
 #'            "(https://github.com/citation-file-format/",
 #'            "citation-file-format/blob/main/schema-guide.md). "))
 #'
-#'
 #' ```
 #' Each element of the `cff_pers_lst` object would have classes
 #' [`cff_pers, cff`][cff_pers].
-#'
 #'
 #' @details
 #'
@@ -99,7 +96,6 @@
 #' ```
 #'
 #' See **Examples** for more information.
-#'
 #'
 #' @examples
 #' # Create a person object
@@ -150,7 +146,6 @@
 #'
 #' # Or as person object
 #' as.person(a_cff)
-#'
 #'
 #' # Or you can use BibTeX style as input if you prefer
 #'

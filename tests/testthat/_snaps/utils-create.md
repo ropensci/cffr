@@ -1179,6 +1179,9 @@
       - title: lifecycle
         url: https://lifecycle.r-lib.org/
         repository: https://CRAN.R-project.org/package=lifecycle
+      - title: quarto
+        url: https://quarto-dev.github.io/quarto-r/
+        repository: https://CRAN.R-project.org/package=quarto
       - title: rmarkdown
         url: https://pkgs.rstudio.com/rmarkdown/
         repository: https://CRAN.R-project.org/package=rmarkdown

@@ -23,7 +23,7 @@ that remembers you to update your \code{CITATION.cff} file. This is a wrapper of
 This function would install a pre-commit hook using
 \code{\link[usethis:use_git_hook]{usethis::use_git_hook()}}.
 
-A pre-commit hook is a script that identifies  simple issues before
+A pre-commit hook is a script that identifies simple issues before
 submission to code review. This pre-commit hook would warn you if any of the
 following conditions are met:
 \itemize{

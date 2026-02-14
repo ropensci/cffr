@@ -157,7 +157,6 @@ as.cff <- function(x) {
 
 #' Recursively clean lists
 #'
-#'
 #' @noRd
 rapply_drop_null <- function(x) {
   if (is.list(x) && length(x) > 0) {

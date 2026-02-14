@@ -25,7 +25,6 @@
 #'
 #' Valid arguments are those specified on [cff_schema_keys()]:
 #'
-#'
 #' ```{r, echo=FALSE, results='asis'}
 #' p <- paste0('  - `', cffr::cff_schema_keys(), '`', collapse = "\n")
 #'

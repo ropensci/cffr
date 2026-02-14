@@ -96,7 +96,6 @@ test_that("as_bibentry NULL", {
   unlink(new_dir, recursive = TRUE, force = TRUE)
 })
 
-
 test_that("as_bibentry character", {
   skip_on_cran()
   skip_if_not_installed("rmarkdown")

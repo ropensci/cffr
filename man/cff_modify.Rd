@@ -33,7 +33,6 @@ x
 
 cff_validate(x)
 
-
 x_mod <- cff_modify(x,
   contact = as_cff_person("A contact"),
   message = "This overwrites fields",

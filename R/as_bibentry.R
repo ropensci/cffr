@@ -61,14 +61,12 @@
 #' @family bibtex
 #' @family s3method
 #'
-#'
 #' @details
 #'
 #' A **R** `bibentry` object is the representation of a BibTeX entry. These
 #' objects can be converted to BibTeX markup with [toBibtex()], that creates an
 #' object of class `Bibtex` and can be printed and exported as a valid BibTeX
 #' entry.
-#'
 #'
 #' `as_bibtex()` tries to map the information of the source `x` into a `cff]
 #' object and performs a mapping of the metadata to BibTeX, according to
@@ -111,7 +109,6 @@
 #' installed_package <- as_bibentry("jsonvalidate", what = "all")
 #'
 #' installed_package
-#'
 #'
 #' # Use a DESCRIPTION file
 #' path2 <- system.file("examples/DESCRIPTION_gitlab", package = "cffr")

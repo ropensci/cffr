@@ -27,7 +27,6 @@ test_that("Check is_email", {
   )
 })
 
-
 test_that("Check is_url", {
   # Valid urls
   expect_true(

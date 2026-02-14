@@ -1,27 +1,37 @@
 ---
 title: "cffr: Generate Citation File Format Metadata for R Packages"
 subtitle: "JOSS paper"
-description: >
-  Paper published on The Journal of Open Source Software.
-tags:
+description: Paper published on The Journal of Open Source Software.
+keywords:
   - R
   - cff
   - citation
   - credit
   - metadata
 author:
-  -  Diego Hernangómez^[Independent Researcher, https://orcid.org/0000-0001-8457-4658]
-date: "`r as.Date('2021-11-08')`"
-output: rmarkdown::html_vignette
+  - name: Diego Hernangómez
+    orcid: 0000-0001-8457-4658
+    affiliations:
+      - Independent Researcher
+citation:
+  type: article-journal
+  container-title: Journal of Open Source Software
+  volume: 6
+  issue: 67
+  page: 3900
+  available-date: 2021
+  doi: 10.21105/joss.03900
+  url: https://doi.org/10.21105/joss.03900
+date: 2021-11-08
 bibliography: REFERENCES.bib
 link-citations: true
 vignette: >
   %\VignetteIndexEntry{cffr: Generate Citation File Format Metadata for R Packages}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
 ---
 
-[![DOI](https://joss.theoj.org/papers/10.21105/joss.03900/status.svg)](https://doi.org/10.21105/joss.03900)
+[![](https://joss.theoj.org/papers/10.21105/joss.03900/status.svg)](https://doi.org/10.21105/joss.03900)
 
 ## Summary
 

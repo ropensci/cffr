@@ -1,26 +1,23 @@
 ---
 title: "Manipulating Citations with cffr"
 description: Learn how to modify `cff` objects.
-output: 
-  rmarkdown::html_vignette:
-    toc: true
+toc: true
 bibliography: REFERENCES.bib
 link-citations: true
 vignette: >
   %\VignetteIndexEntry{Manipulating Citations with cffr}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    warning: false
+    message: true
 ---
 
 ```{r}
 #| include: false
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  warning = FALSE,
-  message = TRUE
-)
-
 library(cffr)
 ```
 
@@ -119,7 +116,8 @@ also overwrite the `title` key. We just need to add those arguments to
 
 ```{r}
 #| label: modify
-modobject <- cff_modify(newobject,
+modobject <- cff_modify(
+  newobject,
   url = "https://ropensci.org/",
   version = "0.0.1",
   repository = "https://github.com/ropensci/cffr",
@@ -152,7 +150,8 @@ cff_schema_definitions_person()
 
 # Create the person
 
-chiquito <- person("Gregorio",
+chiquito <- person(
+  "Gregorio",
   "Sánchez Fernández",
   email = "fake@email2.com",
   comment = c(
@@ -168,7 +167,6 @@ chiquito
 # To cff
 chiquito_cff <- as_cff_person(chiquito)
 chiquito_cff
-
 
 # Append to previous authors
 
@@ -195,7 +193,8 @@ cff_schema_definitions_refs()
 # Auto coercion from another R package
 base_r <- citation("base")
 
-bib <- bibentry("Book",
+bib <- bibentry(
+  "Book",
   title = "This is a book",
   author = "Lisa Lee",
   year = 1980,

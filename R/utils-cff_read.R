@@ -367,7 +367,6 @@ get_gh_topics <- function(x) {
   remotetopics
 }
 
-
 get_desc_sha <- function(pkg) {
   sha <- pkg$get("RemoteSha")
 

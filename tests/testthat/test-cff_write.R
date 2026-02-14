@@ -107,7 +107,6 @@ test_that("Add new keys", {
   expect_false(file_exist_abort(tmp))
 })
 
-
 test_that("Append keys", {
   desc_file <-
     system.file("examples/DESCRIPTION_basic", package = "cffr")
