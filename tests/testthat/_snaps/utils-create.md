@@ -1167,6 +1167,8 @@
       - title: jsonvalidate
         url: https://docs.ropensci.org/jsonvalidate/
         repository: https://CRAN.R-project.org/package=jsonvalidate
+      - title: tools
+      - title: utils
       - title: yaml
         url: https://yaml.r-lib.org
         repository: https://CRAN.R-project.org/package=yaml
