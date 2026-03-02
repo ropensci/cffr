@@ -45,15 +45,15 @@ fully supported this citation format [@druskat_stephan_making_2021].
 
 GitHub support is of special interest:
 
-```{r}
-#| echo: false
-#| out-width: '400'
-#| fig-align: center
-#| fig-alt: GitHub-link
-knitr::include_graphics("tweet-1.png")
-```
+<figure>
 
-*--- Nat Friedman (\@natfriedman) July 27, 2021*
+![](tweet-1.png){.quarto-figure .quarto-figure-center fig-align="center"
+width="400"}
+
+```{=html}
+<figcaption class="blockquote-footer">Nat Friedman (@natfriedman) July 27, 2021</figcaption>
+</figure>
+```
 
 See [Customize your repository/About CITATION
 files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
@@ -61,8 +61,8 @@ for more information.
 
 ## Creating a `CITATION.cff` file for my R package
 
-Creating a `CITATION.cff` file with **cffr** is straightforward. You simply
-need to run `cff_write()`:
+Creating a `CITATION.cff` file with **cffr** is straightforward. You simply need
+to run `cff_write()`:
 
 ```{r}
 #| label: setup
@@ -109,8 +109,8 @@ can be displayed with `cff_schema_keys()`:
 cff_schema_keys()
 ```
 
-In this case, we add `url`, `version`, and `repository`. We also overwrite
-the `title` key. We add these arguments to `cff_modify()`:
+In this case, we add `url`, `version`, and `repository`. We also overwrite the
+`title` key. We add these arguments to `cff_modify()`:
 
 ```{r}
 #| label: modify

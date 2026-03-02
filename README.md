@@ -46,12 +46,11 @@ have fully supported this citation format ([Druskat
 interest:
 
 <figure>
-<blockquote class="blockquote">
 
-<img src="vignettes/tweet-1.png" data-fig-align="center" width="400"
-alt="Tweet of Nat Friedman about CFF files" />
+<img src="vignettes/tweet-1.png"
+class="quarto-figure quarto-figure-center" data-fig-align="center"
+width="400" />
 
-</blockquote>
 <figcaption class="blockquote-footer">Nat Friedman (@natfriedman) July 27, 2021</figcaption>
 </figure>
 
