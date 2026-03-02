@@ -58,16 +58,24 @@ Recently,
 fully supported this citation format [@druskat_stephan_making_2021]. GitHub
 support is of special interest:
 
+```{=html}
+<figure>
+<blockquote class="blockquote">
+```
+
 ```{r}
 #| echo: false
 #| out-width: '400'
 #| fig-align: center
-#| fig-alt: Tweet of Nat Friedman about CFF files
 #| fig-cap: Tweet of Nat Friedman about CFF files
 knitr::include_graphics("vignettes/tweet-1.png")
 ```
 
-*--- Nat Friedman (\@natfriedman) July 27, 2021*
+```{=html}
+</blockquote>
+<figcaption class="blockquote-footer">Nat Friedman (@natfriedman) July 27, 2021</figcaption>
+</figure>
+```
 
 See [Enhanced support for citations on
 GitHub](https://github.blog/news-insights/company-news/enhanced-support-citations-github/)

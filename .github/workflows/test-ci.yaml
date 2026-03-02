@@ -30,6 +30,7 @@ jobs:
     - uses: r-lib/actions/setup-r-dependencies@v2
       with:
         cache-version: "test_full_ci"
+        cache: "always"
         extra-packages: |
           local::.
           any::devtools
@@ -151,7 +152,7 @@ jobs:
 
     - name: Test GHA
       run: |
-        
+
         # Run the tests
         source("tests/testthat/test_ci/test-new.R")
 
