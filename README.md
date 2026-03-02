@@ -1,5 +1,3 @@
-
-
 <!-- README.md is generated from README.qmd. Please edit that file -->
 
 # cffr <a href="https://docs.ropensci.org/cffr/"><img src="man/figures/logo.png" alt="cffr website" align="right" height="139"/></a>
@@ -47,8 +45,7 @@ interest:
 
 <figure>
 
-<img src="vignettes/tweet-1.png"
-class="quarto-figure quarto-figure-center" data-fig-align="center"
+<img src="vignettes/tweet-1.png" class="mx-auto d-block" data-fig-align="center"
 width="400" />
 
 <figcaption class="blockquote-footer">Nat Friedman (@natfriedman) July 27, 2021</figcaption>
@@ -86,20 +83,20 @@ here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
 Install **cffr** from [CRAN](https://CRAN.R-project.org/package=cffr):
 
-``` r
+```r
 install.packages("cffr")
 ```
 
 You can install the developing version of **cffr** with:
 
-``` r
+```r
 remotes::install_github("ropensci/cffr")
 ```
 
 Alternatively, you can install **cffr** using the
 [r-universe](https://ropensci.r-universe.dev/cffr):
 
-``` r
+```r
 # Install cffr in R:
 install.packages(
   "cffr",
@@ -113,7 +110,7 @@ Most commonly, from within your package folder, you’ll simply run
 `cff_write()`, which creates a `cff` object, writes it to a
 `CITATION.cff` file, and validates it in a single command:
 
-``` r
+```r
 library(cffr)
 
 # For in-development packages
@@ -133,7 +130,7 @@ This is a basic example which shows you how to create a `cff` object
 (see `?cff` for more info). In this case, we are creating a `cff` object
 from the metadata of the **rmarkdown** package:
 
-``` r
+```r
 library(cffr)
 
 # Example with an installed package
@@ -145,6 +142,7 @@ test <- cff_create("knitr")
 <summary>
 
 <code>CITATION.cff</code> for <strong>knitr</strong>
+
 </summary>
 
     cff-version: 1.2.0
@@ -576,7 +574,7 @@ test <- cff_create("knitr")
 
 We can validate the result using `cff_validate()`:
 
-``` r
+```r
 cff_validate(test)
 #> ══ Validating cff ══════════════════════════════════════════════════════════════
 ```
@@ -598,7 +596,7 @@ events:
 - Each time that you modify your DESCRIPTION or inst/CITATION files.
 - The action can be run also manually.
 
-``` r
+```r
 cff_gha_update()
 
 #> ✔ Installing ./.github/workflows/update-citation-cff.yaml
@@ -661,7 +659,7 @@ for R Packages. Journal of Open Source Software, 6(67), 3900,
 
 A BibTeX entry for LaTeX users is:
 
-``` bibtex
+```bibtex
 @article{hernangomez2021,
     title        = {{cffr}: Generate Citation File Format Metadata for {R} Packages},
     author       = {Diego Hernangómez},
@@ -691,16 +689,16 @@ entry-spacing="0">
 <div id="ref-codemeta" class="csl-entry">
 
 Boettiger, Carl, and Maëlle Salmon. 2021.
-*<span class="nocase">codemeta</span>: A Smaller
-<span class="nocase">codemetar</span> Package*.
+_<span class="nocase">codemeta</span>: A Smaller
+<span class="nocase">codemetar</span> Package_.
 <https://doi.org/10.32614/CRAN.package.codemeta>.
 
 </div>
 
 <div id="ref-codemetar2021" class="csl-entry">
 
-———. 2026. *<span class="nocase">codemetar</span>: Generate ’CodeMeta’
-Metadata for R Packages*.
+———. 2026. _<span class="nocase">codemetar</span>: Generate ’CodeMeta’
+Metadata for R Packages_.
 <https://doi.org/10.32614/CRAN.package.codemetar>.
 
 </div>
@@ -708,7 +706,7 @@ Metadata for R Packages*.
 <div id="ref-handlr" class="csl-entry">
 
 Chamberlain, Scott, and Brenton M. Wiernik. 2025.
-*<span class="nocase">handlr</span>: Convert Among Citation Formats*.
+_<span class="nocase">handlr</span>: Convert Among Citation Formats_.
 <https://doi.org/10.32614/CRAN.package.handlr>.
 
 </div>
@@ -716,7 +714,7 @@ Chamberlain, Scott, and Brenton M. Wiernik. 2025.
 <div id="ref-citation22" class="csl-entry">
 
 Dietrich, Jan Philipp, and Waldir Leoncio. 2025.
-*<span class="nocase">citation</span>: Software Citation Tools*.
+_<span class="nocase">citation</span>: Software Citation Tools_.
 <https://doi.org/10.32614/CRAN.package.citation>.
 
 </div>
@@ -749,8 +747,8 @@ Vocabulary for Scientific Software with Schema.org.”
 <div id="ref-jones2017" class="csl-entry">
 
 Jones, Matthew B, Carl Boettiger, Abby Cabunoc Mayes, Arfon Smith, Peter
-Slaughter, Kyle Niemeyer, Yolanda Gil, et al. 2017. *CodeMeta: An
-Exchange Schema for Software Metadata*. KNB Data Repository.
+Slaughter, Kyle Niemeyer, Yolanda Gil, et al. 2017. _CodeMeta: An
+Exchange Schema for Software Metadata_. KNB Data Repository.
 <https://doi.org/10.5063/SCHEMA/CODEMETA-2.0>.
 
 </div>
@@ -759,9 +757,7 @@ Exchange Schema for Software Metadata*. KNB Data Repository.
 
 Smith, Arfon. 2021. “Enhanced Support for Citations on
 GitHub.”[https://github.blog/news-insights/company-news/enhanced-support-citations-github/
-](
-		https://github.blog/news-insights/company-news/enhanced-support-citations-github/
-	).
+](https://github.blog/news-insights/company-news/enhanced-support-citations-github/).
 
 </div>
 

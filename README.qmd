@@ -60,8 +60,7 @@ support is of special interest:
 
 <figure>
 
-![](vignettes/tweet-1.png){.quarto-figure .quarto-figure-center
-fig-align="center" width="400"}
+![](vignettes/tweet-1.png){.mx-auto .d-block fig-align="center" width="400"}
 
 ```{=html}
 <figcaption class="blockquote-footer">Nat Friedman (@natfriedman) July 27, 2021</figcaption>
