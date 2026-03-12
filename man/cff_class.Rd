@@ -125,7 +125,7 @@ ref_list
 #>   institution:
 #>     name: R Foundation for Statistical Computing
 #>     address: Vienna, Austria
-#>   year: '2025'
+#>   year: '2026'
 #>   url: https://www.R-project.org/
 #> - type: manual
 #>   title: 'yaml: Methods to Convert R Data to YAML and Back'
@@ -136,7 +136,8 @@ ref_list
 #>     given-names: Kirill
 #>   year: '2025'
 #>   notes: R package version 2.3.12
-#>   url: https://yaml.r-lib.org
+#>   url: https://CRAN.R-project.org/package=yaml
+#>   doi: 10.32614/CRAN.package.yaml
 
 class(ref_list)
 #> [1] "cff_ref_lst" "cff"
@@ -151,7 +152,7 @@ ref_list[[1]]
 #> institution:
 #>   name: R Foundation for Statistical Computing
 #>   address: Vienna, Austria
-#> year: '2025'
+#> year: '2026'
 #> url: https://www.R-project.org/
 
 class(ref_list[[1]])
@@ -299,7 +300,7 @@ toBibtex(cit)
 #>   author = \{\{R Core Team\}\},
 #>   organization = \{R Foundation for Statistical Computing\},
 #>   address = \{Vienna, Austria\},
-#>   year = \{2025\},
+#>   year = \{2026\},
 #>   url = \{https://www.R-project.org/\},
 #> \}
 #> 
@@ -308,7 +309,8 @@ toBibtex(cit)
 #>   author = \{Jeremy Stephens and Kirill Simonov\},
 #>   year = \{2025\},
 #>   note = \{R package version 2.3.12\},
-#>   url = \{https://yaml.r-lib.org\},
+#>   url = \{https://CRAN.R-project.org/package=yaml\},
+#>   doi = \{10.32614/CRAN.package.yaml\},
 #> \}
 
 # cff_pers, cff_pers_lst

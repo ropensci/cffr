@@ -109,6 +109,9 @@ toBibtex(entry)
 
 The final results of the entry as a text string would be coerced as[^1]:
 
+[^1]: By default **R** Pandoc would generate the cite in the Chicago author-date
+    format [@rmarkdowncookbook2020]
+
 :::: {#refs-example .references .csl-bib-body .hanging-indent data-entry-spacing="0"}
 ::: {#ref-einstein1921 .csl-entry}
 ```{r}
@@ -365,6 +368,9 @@ These keys are equivalent to the **BibTeX** [fields](#fields), with the
 exception of the key [type]{.underline}. In [CFF]{.underline}, this key defines
 the type of work[^2], making it analogous to the **BibTeX** [entries](#0).
 
+[^2]: See a complete list of possible values of [CFF]{.underline}
+    [type]{.underline} in [Appendix B](#appendix_cff_type).
+
 ## Proposed Crosswalk
 
 The **cffr** package [@hernangomez2021] provides utilities for converting
@@ -372,6 +378,10 @@ The **cffr** package [@hernangomez2021] provides utilities for converting
 [CFF]{.underline} files and vice versa. This section describes how the
 conversion between both formats has been implemented. The crosswalk is partially
 based on @Haines_Ruby_CFF_Library_2021[^3].
+
+[^3]: Note that this software performs only the conversion from
+    [CFF]{.underline} to **BibTeX**, however **cffr** can perform the conversion
+    in both directions.
 
 In the following two sections, I present an overview of the proposed mapping
 between the **Entries** and **Fields** of **BibTeX** and the [CFF]{.underline}
@@ -418,9 +428,15 @@ The previous crosswalk has the following specifications:
 -   **\@mastersthesis** and **\@phdthesis** would be tagged using a combination
     of `type:thesis` and `thesis-type`.
 
+[^4]: Note that **BibLaTeX** [@biblatexpack] handles **\@inbook** differently,
+    see [Appendix A](#appendix_inbook).
+
 Additionally, considering that [CFF]{.underline} allows for a wide range of
 values[^5] for the [type]{.underline} field, the following conversion would be
 applied from [CFF]{.underline} to **BibTeX**:
+
+[^5]: See [Appendix B](#appendix_cff_type) for all possible values. Information
+    extracted from @druskat2019.
 
 ```{r}
 #| label: tbl-entry_cff2bib
@@ -505,6 +521,8 @@ We provide more detail on some of the mappings presented in the table above:
 Additionally, there are other [CFF]{.underline} keys that correspond to
 **BibLaTeX** fields. We propose to include these fields in the crosswalk[^6],
 even though they are not part of the core **BibTeX** fields definition.
+
+[^6]: See @biblatexcheatsheet for a preview of the accepted **BibLaTeX** fields.
 
 ```{r}
 #| label: tbl-fields_biblatex2cff
@@ -1235,6 +1253,10 @@ required on [CFF]{.underline}, we would use *anonymous*[^7] when converting to
 [CFF]{.underline} and omit it on the conversion from [CFF]{.underline} to
 **BibTeX**.
 
+[^7]: As proposed on [*How to deal with unknown individual
+    authors?*](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors),
+    **(Guide to Citation File Format schema version 1.2.0)**
+
 ```{r}
 #| label: tbl-model_proceedings
 #| echo: false
@@ -1523,25 +1545,3 @@ knitr::kable(
 ```
 
 ## References
-
-[^1]: By default **R** Pandoc would generate the cite in the Chicago author-date
-    format [@rmarkdowncookbook2020]
-
-[^2]: See a complete list of possible values of [CFF]{.underline}
-    [type]{.underline} in [Appendix B](#appendix_cff_type).
-
-[^3]: Note that this software performs only the conversion from
-    [CFF]{.underline} to **BibTeX**, however **cffr** can perform the conversion
-    in both directions.
-
-[^4]: Note that **BibLaTeX** [@biblatexpack] handles **\@inbook** differently,
-    see [Appendix A](#appendix_inbook).
-
-[^5]: See [Appendix B](#appendix_cff_type) for all possible values. Information
-    extracted from @druskat2019.
-
-[^6]: See @biblatexcheatsheet for a preview of the accepted **BibLaTeX** fields.
-
-[^7]: As proposed on [*How to deal with unknown individual
-    authors?*](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors),
-    **(Guide to Citation File Format schema version 1.2.0)**
