@@ -77,7 +77,7 @@ file and the `CITATION` file (if present) from your package. Note that
 **cffr** works best if your package passes
 `R CMD check/devtools::check()`.
 
-As per 2026-03-12 there are at least 546 repos on GitHub using **cffr**.
+As per 2026-03-24 there are at least 524 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -175,6 +175,7 @@ test <- cff_create("knitr")
       url: https://yihui.org/knitr/
     repository: https://CRAN.R-project.org/package=knitr
     repository-code: https://github.com/yihui/knitr
+    commit: '1.51'
     url: https://yihui.org/knitr/
     date-released: '2025-12-20'
     contact:
@@ -334,23 +335,6 @@ test <- cff_create("knitr")
       year: '2026'
       doi: 10.32614/CRAN.package.bslib
     - type: software
-      title: DBI
-      abstract: 'DBI: R Database Interface'
-      notes: Suggests
-      url: https://dbi.r-dbi.org
-      repository: https://CRAN.R-project.org/package=DBI
-      authors:
-      - name: R Special Interest Group on Databases (R-SIG-DB)
-      - family-names: Wickham
-        given-names: Hadley
-      - family-names: Müller
-        given-names: Kirill
-        email: kirill@cynkra.com
-        orcid: https://orcid.org/0000-0002-1416-3412
-      year: '2026'
-      doi: 10.32614/CRAN.package.DBI
-      version: '>= 0.4-1'
-    - type: software
       title: digest
       abstract: 'digest: Create Compact Hash Digests of R Objects'
       notes: Suggests
@@ -363,21 +347,6 @@ test <- cff_create("knitr")
         orcid: https://orcid.org/0000-0001-6419-907X
       year: '2026'
       doi: 10.32614/CRAN.package.digest
-    - type: software
-      title: gifski
-      abstract: 'gifski: Highest Quality GIF Encoder'
-      notes: Suggests
-      url: https://r-rust.r-universe.dev/gifski
-      repository: https://CRAN.R-project.org/package=gifski
-      authors:
-      - family-names: Ooms
-        given-names: Jeroen
-        email: jeroenooms@gmail.com
-        orcid: https://orcid.org/0000-0002-4035-0289
-      - name: Kornel Lesiński
-      - name: Authors of the dependency Rust crates
-      year: '2026'
-      doi: 10.32614/CRAN.package.gifski
     - type: software
       title: htmlwidgets
       abstract: 'htmlwidgets: HTML Widgets for R'
@@ -404,19 +373,6 @@ test <- cff_create("knitr")
       doi: 10.32614/CRAN.package.htmlwidgets
       version: '>= 0.7'
     - type: software
-      title: jpeg
-      abstract: 'jpeg: Read and write JPEG images'
-      notes: Suggests
-      url: https://www.rforge.net/jpeg/
-      repository: https://CRAN.R-project.org/package=jpeg
-      authors:
-      - family-names: Urbanek
-        given-names: Simon
-        email: Simon.Urbanek@r-project.org
-        orcid: https://orcid.org/0000-0003-2297-1732
-      year: '2026'
-      doi: 10.32614/CRAN.package.jpeg
-    - type: software
       title: magick
       abstract: 'magick: Advanced Graphics and Image-Processing in R'
       notes: Suggests
@@ -430,37 +386,6 @@ test <- cff_create("knitr")
       year: '2026'
       doi: 10.32614/CRAN.package.magick
     - type: software
-      title: litedown
-      abstract: 'litedown: A Lightweight Version of R Markdown'
-      notes: Suggests
-      url: https://github.com/yihui/litedown
-      repository: https://CRAN.R-project.org/package=litedown
-      authors:
-      - family-names: Xie
-        given-names: Yihui
-        email: xie@yihui.name
-        orcid: https://orcid.org/0000-0003-0645-5666
-      year: '2026'
-      doi: 10.32614/CRAN.package.litedown
-    - type: software
-      title: markdown
-      abstract: 'markdown: Render Markdown with ''commonmark'''
-      notes: Suggests
-      url: https://github.com/rstudio/markdown
-      repository: https://CRAN.R-project.org/package=markdown
-      authors:
-      - family-names: Xie
-        given-names: Yihui
-        email: xie@yihui.name
-        orcid: https://orcid.org/0000-0003-0645-5666
-      - family-names: Allaire
-        given-names: JJ
-      - family-names: Horner
-        given-names: Jeffrey
-      year: '2026'
-      doi: 10.32614/CRAN.package.markdown
-      version: '>= 1.3'
-    - type: software
       title: otel
       abstract: 'otel: OpenTelemetry R API'
       notes: Suggests
@@ -472,30 +397,6 @@ test <- cff_create("knitr")
         email: csardi.gabor@gmail.com
       year: '2026'
       doi: 10.32614/CRAN.package.otel
-    - type: software
-      title: otelsdk
-      abstract: 'otelsdk: R SDK and Exporters for OpenTelemetry'
-      notes: Suggests
-      url: https://otelsdk.r-lib.org
-      repository: https://CRAN.R-project.org/package=otelsdk
-      authors:
-      - family-names: Csárdi
-        given-names: Gábor
-        email: csardi.gabor@gmail.com
-      year: '2026'
-      doi: 10.32614/CRAN.package.otelsdk
-    - type: software
-      title: png
-      abstract: 'png: Read and write PNG images'
-      notes: Suggests
-      url: http://www.rforge.net/png/
-      repository: https://CRAN.R-project.org/package=png
-      authors:
-      - family-names: Urbanek
-        given-names: Simon
-        email: Simon.Urbanek@r-project.org
-      year: '2026'
-      doi: 10.32614/CRAN.package.png
     - type: software
       title: ragg
       abstract: 'ragg: Graphic Devices Based on AGG'
@@ -598,19 +499,6 @@ test <- cff_create("knitr")
       year: '2026'
       doi: 10.32614/CRAN.package.sass
     - type: software
-      title: showtext
-      abstract: 'showtext: Using Fonts More Easily in R Graphs'
-      notes: Suggests
-      url: https://github.com/yixuan/showtext
-      repository: https://CRAN.R-project.org/package=showtext
-      authors:
-      - family-names: Qiu
-        given-names: Yixuan
-      - family-names: details.
-        given-names: authors/contributors of the included software. See file AUTHORS for
-      year: '2026'
-      doi: 10.32614/CRAN.package.showtext
-    - type: software
       title: styler
       abstract: 'styler: Non-Invasive Pretty Printing of R Code'
       notes: Suggests
@@ -683,34 +571,6 @@ test <- cff_create("knitr")
         email: gary@posit.co
       year: '2026'
       doi: 10.32614/CRAN.package.rstudioapi
-    - type: software
-      title: svglite
-      abstract: 'svglite: An ''SVG'' Graphics Device'
-      notes: Suggests
-      url: https://svglite.r-lib.org
-      repository: https://CRAN.R-project.org/package=svglite
-      authors:
-      - family-names: Wickham
-        given-names: Hadley
-        email: hadley@posit.co
-      - family-names: Henry
-        given-names: Lionel
-        email: lionel@posit.co
-      - family-names: Pedersen
-        given-names: Thomas Lin
-        email: thomas.pedersen@posit.co
-        orcid: https://orcid.org/0000-0002-5147-4711
-      - family-names: Luciani
-        given-names: T Jake
-        email: jake@apache.org
-      - family-names: Decorde
-        given-names: Matthieu
-        email: matthieu.decorde@ens-lyon.fr
-      - family-names: Lise
-        given-names: Vaudor
-        email: lise.vaudor@ens-lyon.fr
-      year: '2026'
-      doi: 10.32614/CRAN.package.svglite
 
 </details>
 
@@ -825,8 +685,7 @@ for more info.
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
 <div id="ref-codemeta" class="csl-entry">
 
@@ -839,9 +698,9 @@ Boettiger, Carl, and Maëlle Salmon. 2021.
 
 <div id="ref-codemetar2021" class="csl-entry">
 
-———. 2026. *<span class="nocase">codemetar</span>: Generate ’CodeMeta’
-Metadata for R Packages*.
-<https://doi.org/10.32614/CRAN.package.codemetar>.
+Boettiger, Carl, and Maëlle Salmon. 2026.
+*<span class="nocase">codemetar</span>: Generate ’CodeMeta’ Metadata for
+R Packages*. <https://doi.org/10.32614/CRAN.package.codemetar>.
 
 </div>
 
@@ -863,42 +722,39 @@ Dietrich, Jan Philipp, and Waldir Leoncio. 2025.
 
 <div id="ref-druskat_stephan_making_2021" class="csl-entry">
 
-Druskat, Stephan. 2021. “Making Software Citation Easi(er) - The
-Citation File Format and Its Integrations.”
+Druskat, Stephan. 2021. *Making Software Citation Easi(er) - The
+Citation File Format and Its Integrations*. Version 1.
 <https://doi.org/10.5281/zenodo.5529914>.
 
 </div>
 
 <div id="ref-druskat_citation_2021" class="csl-entry">
 
-Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, Robert Haines,
-James Baker, Spencer Bliven, Egon Willighagen, David Pérez-Suárez, and
-Alexander Konovalov. 2021. “Citation File Format.”
-<https://doi.org/10.5281/zenodo.5171937>.
+Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, et al. 2021.
+*Citation File Format*. <https://doi.org/10.5281/zenodo.5171937>.
 
 </div>
 
 <div id="ref-fenner2021" class="csl-entry">
 
-Fenner, Martin. 2021. “We Need Your Feedback: Aligning the CodeMeta
-Vocabulary for Scientific Software with Schema.org.”
+Fenner, Martin. 2021. *We Need Your Feedback: Aligning the CodeMeta
+Vocabulary for Scientific Software with Schema.org*.
 <https://doi.org/10.5438/a49j-x692>.
 
 </div>
 
 <div id="ref-jones2017" class="csl-entry">
 
-Jones, Matthew B, Carl Boettiger, Abby Cabunoc Mayes, Arfon Smith, Peter
-Slaughter, Kyle Niemeyer, Yolanda Gil, et al. 2017. *CodeMeta: An
-Exchange Schema for Software Metadata*. KNB Data Repository.
-<https://doi.org/10.5063/SCHEMA/CODEMETA-2.0>.
+Jones, Matthew B, Carl Boettiger, Abby Cabunoc Mayes, et al. 2017.
+*CodeMeta: An Exchange Schema for Software Metadata*. KNB Data
+Repository. <https://doi.org/10.5063/SCHEMA/CODEMETA-2.0>.
 
 </div>
 
 <div id="ref-smith2021" class="csl-entry">
 
-Smith, Arfon. 2021. “Enhanced Support for Citations on
-GitHub.”[https://github.blog/news-insights/company-news/enhanced-support-citations-github/
+Smith, Arfon. 2021. *Enhanced Support for Citations on
+GitHub*.[https://github.blog/news-insights/company-news/enhanced-support-citations-github/
 ](
 		https://github.blog/news-insights/company-news/enhanced-support-citations-github/
 	).
