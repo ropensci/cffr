@@ -45,7 +45,7 @@ examples for working with .cff files more generally.
 ## What is a `CITATION.cff` file?
 
 [Citation File Format (CFF)](https://citation-file-format.github.io/)
-[@druskat_citation_2021] (v1.2.0) are plain text files with human- and
+[@druskat_citation_2021] (v1.2.0) files are plain text files with human- and
 machine-readable citation information for software (and datasets). Code
 developers can include them in their repositories to let others know how to
 correctly cite their software.
@@ -109,7 +109,8 @@ res <- tryCatch(
     api_url,
     tmpfile,
     quiet = TRUE,
-    headers = c(Authorization = ghtoken)
+    headers = c(Authorization = ghtoken),
+    mode = "wb"
   ),
   warning = function(e) {
     TRUE
@@ -189,8 +190,8 @@ cff_write()
 #> Congratulations! This .cff file is valid
 ```
 
-However, **cffr** provides also custom print methods and mechanisms that allows
-you to customize the `CITATION.cff` and integrate them in your workflows.
+However, **cffr** also provides custom print methods and mechanisms that allow
+you to customize the `CITATION.cff` and integrate it into your workflows.
 
 This is a basic example which shows you how to create a `cff` object (see `?cff`
 for more info). In this case, we are creating a `cff` object from the metadata
@@ -229,12 +230,12 @@ Check the [docs](https://docs.ropensci.org/cffr/reference/index.html) and
 #### GitHub Actions
 
 The easiest way to keep your `CITATION.cff` file up-to-date is using GitHub
-Actions. Use `cff_gha_update()` function to install a GitHub Action that will
-update your `CITATION.cff` file on the following events:
+Actions. Use the `cff_gha_update()` function to install a GitHub Action that will
+update your `CITATION.cff` file in the following cases:
 
 -   When you publish a new release of the package on your GitHub repo.
 -   Each time that you modify your DESCRIPTION or inst/CITATION files.
--   The action can be run also manually.
+-   The action can also be run manually.
 
 ```{r}
 #| eval: false
@@ -276,7 +277,7 @@ Check the following articles to learn more about **cffr**:
 
 -   **citation** [@citation22] includes a function `r2cff` that creates a
     `CITATION.cff` file (v1.1.0) using the information of your `DESCRIPTION`
-    file. It also provide minimal validity checks.
+    file. It also provides minimal validity checks.
 -   **handlr** [@handlr]: Tool for converting among citation formats, including
     `*.cff` files.
 -   **codemeta** [@codemeta] / **codemetar** [@codemetar2021] provides similar
@@ -319,3 +320,4 @@ files](https://docs.github.com/en/repositories/managing-your-repositorys-setting
 for more info.
 
 ## References
+

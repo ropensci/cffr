@@ -72,7 +72,7 @@ Patashnik](https://en.wikipedia.org/wiki/Oren_Patashnik "Oren Patashnik") and
 [Leslie Lamport](https://en.wikipedia.org/wiki/Leslie_Lamport "Leslie Lamport")
 back in 1985. **BibTeX** can be reused by other software, such as
 [LaTeX](https://en.wikipedia.org/wiki/LaTeX), to add references to scholarly
-works. An example structure of a **BibTeX** entry would be:
+works. An example structure of a **BibTeX** entry is:
 
 ``` bibtex
 @book{einstein1921,
@@ -107,10 +107,7 @@ entry <- bibentry(
 toBibtex(entry)
 ```
 
-The final results of the entry as a text string would be coerced as[^1]:
-
-[^1]: By default **R** Pandoc would generate the cite in the Chicago author-date
-    format [@rmarkdowncookbook2020]
+The final text representation of the entry is shown as[^1]:
 
 :::: {#refs-example .references .csl-bib-body .hanging-indent data-entry-spacing="0"}
 ::: {#ref-einstein1921 .csl-entry}
@@ -123,14 +120,11 @@ print(entry, style = "html")
 ::::
 
 Additionally, the **cffr** package [@hernangomez2021] incorporates the following
-capabilities that can be used to read and transform **BibTeX** format into
-different formats:
+capabilities for reading and transforming **BibTeX** into different formats:
 
 -   `cff_read_bib()` reads \*.bib files.
--   `cff_read_bib_text()` can read **BibTeX** entries that are already stored in
-    a variable.
--   An S3 method `toBibtex.cff()` that converts from `cff` objects to Bibtex
-    objects (see `utils::toBibtex()`).
+-   `cff_read_bib_text()` reads **BibTeX** entries stored in a variable.
+-   An S3 method `toBibtex.cff()` that converts `cff` objects to **BibTeX**
 
 ```{r}
 #| label: cffbibread
@@ -368,9 +362,6 @@ These keys are equivalent to the **BibTeX** [fields](#fields), with the
 exception of the key [type]{.underline}. In [CFF]{.underline}, this key defines
 the type of work[^2], making it analogous to the **BibTeX** [entries](#0).
 
-[^2]: See a complete list of possible values of [CFF]{.underline}
-    [type]{.underline} in [Appendix B](#appendix_cff_type).
-
 ## Proposed Crosswalk
 
 The **cffr** package [@hernangomez2021] provides utilities for converting
@@ -378,10 +369,6 @@ The **cffr** package [@hernangomez2021] provides utilities for converting
 [CFF]{.underline} files and vice versa. This section describes how the
 conversion between both formats has been implemented. The crosswalk is partially
 based on @Haines_Ruby_CFF_Library_2021[^3].
-
-[^3]: Note that this software performs only the conversion from
-    [CFF]{.underline} to **BibTeX**, however **cffr** can perform the conversion
-    in both directions.
 
 In the following two sections, I present an overview of the proposed mapping
 between the **Entries** and **Fields** of **BibTeX** and the [CFF]{.underline}
@@ -425,18 +412,12 @@ The previous crosswalk has the following specifications:
     with a specific title. Since [CFF]{.underline} allows keys `type:book` and
     `collection-type: book`, we may utilize a combination of these fields to tag
     each entry type in [CFF]{.underline} accordingly.
--   **\@mastersthesis** and **\@phdthesis** would be tagged using a combination
+-   **\@mastersthesis** and **\@phdthesis** are tagged using a combination
     of `type:thesis` and `thesis-type`.
 
-[^4]: Note that **BibLaTeX** [@biblatexpack] handles **\@inbook** differently,
-    see [Appendix A](#appendix_inbook).
-
 Additionally, considering that [CFF]{.underline} allows for a wide range of
-values[^5] for the [type]{.underline} field, the following conversion would be
-applied from [CFF]{.underline} to **BibTeX**:
-
-[^5]: See [Appendix B](#appendix_cff_type) for all possible values. Information
-    extracted from @druskat2019.
+values[^5] for the [type]{.underline} field, the following conversion is applied
+from [CFF]{.underline} to **BibTeX**:
 
 ```{r}
 #| label: tbl-entry_cff2bib
@@ -499,21 +480,21 @@ We provide more detail on some of the mappings presented in the table above:
     when converting to **address**.
 
 -   In relation with this complexity mentioned above, **institution,
-    organization** and **school** would be mapped to [institution]{.underline}.
+    organization** and **school** are mapped to [institution]{.underline}.
 
--   **series** would be mapped to [collection-title]{.underline} only on those
-    entries that does not requires **booktitle**. In practice, this means that
-    collection-title would correspond to **booktitle** for **incollection** and
-    **inproceedings**, and in the rest of cases it would correspond to series. A
-    consequence of this is that series information would be lost for
-    incollection and inproceedings, but on those cases is an optional field.
+-   **series** is mapped to [collection-title]{.underline} only on those
+    entries that do not require **booktitle**. In practice, this means that
+    collection-title corresponds to **booktitle** for **incollection** and
+    **inproceedings**, and in the other cases it corresponds to series. As a
+    consequence, series information is lost for incollection and inproceedings,
+    but in those cases it is an optional field.
 
 -   When converting from [CFF]{.underline} to **BibTeX**, we propose to use
     [date-published]{.underline} as a fallback for extracting **month** and
     **year** fields.
 
--   When **pages** is provided as a range separated by `--`, i.e, **pages =
-    {3--5}** would be coerced as [start: 3]{.underline}, [end: 5]{.underline} in
+-   When **pages** is provided as a range separated by `--`, i.e. **pages =
+    {3--5}**, it is coerced as [start: 3]{.underline}, [end: 5]{.underline} in
     [CFF]{.underline}.
 
 #### BibLaTeX
@@ -521,8 +502,6 @@ We provide more detail on some of the mappings presented in the table above:
 Additionally, there are other [CFF]{.underline} keys that correspond to
 **BibLaTeX** fields. We propose to include these fields in the crosswalk[^6],
 even though they are not part of the core **BibTeX** fields definition.
-
-[^6]: See @biblatexcheatsheet for a preview of the accepted **BibLaTeX** fields.
 
 ```{r}
 #| label: tbl-fields_biblatex2cff
@@ -632,8 +611,8 @@ as a **\@book** with the following supplementary fields:
 
 Additionally, note that in [CFF]{.underline}, the **series** field corresponds
 to [collection-title]{.underline}, and the **address** field represents the
-[publisher]{.underline}'s [address]{.underline}. By last, the key
-[collection-type]{.underline} would be populated with [book-series]{.underline}.
+[publisher]{.underline}'s [address]{.underline}. Finally, the key
+[collection-type]{.underline} is populated with [book-series]{.underline}.
 
 ```{r}
 #| label: tbl-model_book
@@ -826,7 +805,7 @@ toBibtex(cff_read_bib_text(bib))
 ### \@conference / \@inproceedings {#conf_inproc}
 
 Note that in this case, **organization** is mapped to [institution]{.underline}.
-Additionally, **series** would be ignored as there is no clear mapping on
+Additionally, **series** is ignored because there is no clear mapping on
 [CFF]{.underline} for this field.
 
 ```{r}
@@ -907,7 +886,7 @@ As **booktitle** is a required field, we propose to map that field to
 [generic]{.underline}. Therefore, an **\@incollection** is a [type:
 generic]{.underline} with a [collection-title]{.underline} key.
 
-Additionally, **series** and **type** would be ignored as there is no clear
+Additionally, **series** and **type** are ignored because there is no clear
 mapping on [CFF]{.underline} for this field.
 
 ```{r}
@@ -1064,11 +1043,11 @@ In terms of fields required by BibTeX, it is identical for both
 **\@mastersthesis** and **\@phdthesis.**
 
 We propose here to identify each type of thesis using the key
-[thesis-type]{.underline} So if [thesis-type]{.underline} contains a [regex
-pattern](https://regex101.com/r/mBWfbs/1) `(?i)(phd)` it would be recognized as
+[thesis-type]{.underline}. If [thesis-type]{.underline} contains a [regex
+pattern](https://regex101.com/r/mBWfbs/1) `(?i)(phd)`, it is recognized as
 **\@phdthesis**.
 
-Additionally, **school** would be mapped to [institution]{.underline}.
+Additionally, **school** is mapped to [institution]{.underline}.
 
 ```{r}
 #| label: tbl-model_thesis
@@ -1248,14 +1227,9 @@ toBibtex(cff_read_bib_text(bib))
 
 The proposed model is consistent with [**\@conference** /
 **\@inproceedings**](#conf_inproc). Note that **\@proceedings** does not
-prescribe an **author** field. On this cases, as [authors]{.underline} is
-required on [CFF]{.underline}, we would use *anonymous*[^7] when converting to
-[CFF]{.underline} and omit it on the conversion from [CFF]{.underline} to
-**BibTeX**.
-
-[^7]: As proposed on [*How to deal with unknown individual
-    authors?*](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors),
-    **(Guide to Citation File Format schema version 1.2.0)**
+prescribe an **author** field. In these cases, as [authors]{.underline} is required on [CFF]{.underline},
+we use *anonymous*[^7] when converting to [CFF]{.underline} and omit it when
+converting from [CFF]{.underline} to **BibTeX**.
 
 ```{r}
 #| label: tbl-model_proceedings
@@ -1545,3 +1519,25 @@ knitr::kable(
 ```
 
 ## References
+
+[^1]: By default **R** Pandoc generates the cite in the Chicago author-date
+    format [@rmarkdowncookbook2020]
+
+[^2]: See a complete list of possible values of [CFF]{.underline}
+    [type]{.underline} in [Appendix B](#appendix_cff_type).
+
+[^3]: Note that this software performs only the conversion from
+    [CFF]{.underline} to **BibTeX**, however **cffr** can perform the conversion
+    in both directions.
+
+[^4]: Note that **BibLaTeX** [@biblatexpack] handles **\@inbook** differently,
+    see [Appendix A](#appendix_inbook).
+
+[^5]: See [Appendix B](#appendix_cff_type) for all possible values. Information
+    extracted from @druskat2019.
+
+[^6]: See @biblatexcheatsheet for a preview of the accepted **BibLaTeX** fields.
+
+[^7]: As proposed on [*How to deal with unknown individual
+    authors?*](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors),
+    **(Guide to Citation File Format schema version 1.2.0)**

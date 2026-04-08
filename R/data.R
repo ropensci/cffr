@@ -5,6 +5,8 @@
 #' [SPDX License List](https://spdx.org/licenses/).
 #'
 #' @family datasets
+#' @docType data
+#' @encoding UTF-8
 #'
 #' @format A data frame with `r nrow(cran_to_spdx)` rows and 2 variables:
 #'

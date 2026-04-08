@@ -20,6 +20,7 @@
 #'
 #' @keywords internal
 #' @export
+#' @encoding UTF-8
 #'
 #' @examples
 #' # Full range of supported characters on R

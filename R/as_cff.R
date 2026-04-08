@@ -17,7 +17,7 @@
 #'
 #' @rdname as_cff
 #'
-#' @returns
+#' @return
 #'
 #' - `as_cff.person()` returns an object with classes
 #'   [`cff_pers_lst, cff`][cff_pers_lst].
@@ -33,23 +33,24 @@
 #' @family s3method
 #'
 #' @details
-#' For `as_cff.bibentry()` / `as_cff.Bibtex()` see
+#' For `as_cff.bibentry()` and `as_cff.Bibtex()`, see
 #' `vignette("bibtex_cff", "cffr")` to understand how the mapping is performed.
 #'
 #' [as_cff_person()] is preferred over `as_cff.person()`, since it can handle
-#' `character` person such as `"Davis, Jr., Sammy"`. For `person` objects both
+#' `character` inputs such as `"Davis, Jr., Sammy"`. For `person` objects both
 #' functions are similar.
 #'
 #' @seealso
 #' - [cff()]: Create a full `cff` object from scratch.
 #' - [cff_modify()]: Modify a `cff` object.
-#' - [cff_create()]: Create a `cff` object of a **R** package.
-#' - [cff_read()]: Create a `cff` object from a external file.
-#' - [as_cff_person()]: Recommended way for creating persons in CFF format.
+#' - [cff_create()]: Create a `cff` object for an **R** package.
+#' - [cff_read()]: Create a `cff` object from an external file.
+#' - [as_cff_person()]: Recommended way to create persons in CFF format.
 #'
 #' Learn more about the \CRANpkg{cffr} class system in [cff_class].
 #'
 #' @export
+#' @encoding UTF-8
 #'
 #' @examples
 #'
@@ -84,6 +85,7 @@ as_cff <- function(x, ...) {
 
 #' @rdname as_cff
 #' @export
+#' @encoding UTF-8
 as_cff.default <- function(x, ...) {
   as_cff(as.list(x), ...)
 }
@@ -91,6 +93,7 @@ as_cff.default <- function(x, ...) {
 
 #' @rdname as_cff
 #' @export
+#' @encoding UTF-8
 as_cff.list <- function(x, ...) {
   # Clean up empty values on top
   clean_up <- vapply(x, is.null, FUN.VALUE = logical(1))
@@ -100,6 +103,7 @@ as_cff.list <- function(x, ...) {
 
 #' @rdname as_cff
 #' @export
+#' @encoding UTF-8
 as_cff.person <- function(x, ...) {
   as_cff_person(x)
 }
@@ -107,6 +111,7 @@ as_cff.person <- function(x, ...) {
 
 #' @rdname as_cff
 #' @export
+#' @encoding UTF-8
 as_cff.bibentry <- function(x, ...) {
   cff_ref <- as_cff_reference(x)
   clean_up <- vapply(cff_ref, is.null, FUN.VALUE = logical(1))
@@ -128,6 +133,7 @@ as_cff.bibentry <- function(x, ...) {
 
 #' @rdname as_cff
 #' @export
+#' @encoding UTF-8
 as_cff.Bibtex <- function(x, ...) {
   tmp <- tempfile(fileext = ".bib")
   writeLines(x, tmp)
@@ -146,6 +152,7 @@ as_cff.Bibtex <- function(x, ...) {
 
 # nolint start
 #' @export
+#' @encoding UTF-8
 #' @rdname as_cff
 #' @usage NULL
 as.cff <- function(x) {

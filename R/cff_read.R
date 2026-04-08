@@ -17,6 +17,7 @@
 #'   [bibtex::read.bib()].
 #'
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_read
 #' @family reading
 #' @seealso
@@ -31,8 +32,8 @@
 #' @param encoding Encoding to be assumed for `path`. See [readLines()].
 #' @param meta A list of package metadata as obtained by
 #'   [utils::packageDescription()] or `NULL` (the default). See **Details**.
-#' @param ... Arguments to be passed to other functions (i.e., to
-#'   [yaml::read_yaml()], [bibtex::read.bib()], etc.).
+#' @param ... Arguments to be passed to other functions, for example to
+#'   [yaml::read_yaml()] or [bibtex::read.bib()].
 #'
 #' @inheritParams cff_create
 #'
@@ -137,6 +138,7 @@ cff_read <- function(path, ...) {
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_read
 cff_read_cff_citation <- function(path, ...) {
   file_exist_abort(path, abort = TRUE)
@@ -146,6 +148,7 @@ cff_read_cff_citation <- function(path, ...) {
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_read
 cff_read_description <- function(
   path,
@@ -194,6 +197,7 @@ cff_read_description <- function(
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_read
 cff_read_citation <- function(path, meta = NULL, ...) {
   file_exist_abort(path, abort = TRUE)
@@ -244,6 +248,7 @@ cff_read_citation <- function(path, meta = NULL, ...) {
 }
 
 #' @export
+#' @encoding UTF-8
 #' @family bibtex
 #' @rdname cff_read
 cff_read_bib <- function(path, encoding = "UTF-8", ...) {

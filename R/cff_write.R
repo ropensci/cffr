@@ -15,7 +15,7 @@
 #' @param outfile The name and path of the `CITATION.cff` to be created.
 #'
 #' @param r_citation Logical `TRUE/FALSE`. When `TRUE`, the **R** package
-#'   citation (i.e., `inst/CITATION`) is created or updated.
+#'   citation (for example, `inst/CITATION`) is created or updated.
 #'   **No backup copy is created**. For more control, use
 #'   [cff_write_citation()].
 #'
@@ -33,6 +33,7 @@
 #' @inheritParams cff_validate
 #'
 #' @export
+#' @encoding UTF-8
 #'
 #' @return A `CITATION.cff` file and an (invisible) `cff` object.
 #'
@@ -62,8 +63,7 @@
 #' For details of `authors_roles` see [cff_create()].
 #'
 #' When creating and writing a `CITATION.cff` for the first time, the function
-#' adds the pattern `"^CITATION\.cff$"` to your `.Rbuildignore` file to avoid
-#' `NOTE`s and `WARNING`s in `R CMD CHECK`.
+#' adds the pattern `"^CITATION\.cff$"` to your `.Rbuildignore` file.
 #'
 cff_write <- function(
   x,

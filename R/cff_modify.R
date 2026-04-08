@@ -10,12 +10,13 @@
 #'
 #' Keys provided in `...` override the corresponding key in `x`.
 #'
-#' @returns
+#' @return
 #'
 #' A [`cff`] object.
 #'
 #' @family core
 #' @export
+#' @encoding UTF-8
 #' @seealso
 #' This function is a wrapper of [utils::modifyList()].
 #'

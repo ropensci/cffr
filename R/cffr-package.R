@@ -7,6 +7,6 @@ NULL
 
 # import stuffs
 #' @importFrom utils download.file as.person read.csv person capture.output
-#' installed.packages packageDescription citation available.packages
-#' modifyList toBibtex bibentry head tail
+#' @importFrom utils installed.packages packageDescription citation
+#' @importFrom utils available.packages modifyList toBibtex bibentry head tail
 NULL

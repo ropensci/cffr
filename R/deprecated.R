@@ -6,6 +6,7 @@
 #' @rdname deprecated_cff_to_bib
 #' @inheritParams as_bibentry
 #' @export
+#' @encoding UTF-8
 #' @keywords internal
 #' @family deprecated
 #'
@@ -36,6 +37,7 @@ cff_extract_to_bibtex <- function(
 
 #' @rdname deprecated_cff_to_bib
 #' @export
+#' @encoding UTF-8
 #' @keywords internal
 cff_to_bibtex <- function(x, what = c("preferred", "references", "all")) {
   if (requireNamespace("lifecycle", quietly = TRUE)) {
@@ -57,6 +59,7 @@ cff_to_bibtex <- function(x, what = c("preferred", "references", "all")) {
 #'
 #' @rdname deprecated_cff_from_bib
 #' @export
+#' @encoding UTF-8
 #' @keywords internal
 #' @family deprecated
 #'
@@ -134,6 +137,7 @@ cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
 #'
 #' @rdname deprecated_write
 #' @export
+#' @encoding UTF-8
 #' @keywords internal
 #' @family deprecated
 #' @inheritParams cff_write_bib
@@ -180,6 +184,7 @@ write_bib <- function(
 
 #' @rdname deprecated_write
 #' @export
+#' @encoding UTF-8
 write_citation <- function(
   x,
   file = "./inst/CITATION",
@@ -206,6 +211,7 @@ write_citation <- function(
 #'
 #' @rdname deprecated_cff_person
 #' @export
+#' @encoding UTF-8
 #' @keywords internal
 #' @family deprecated
 #' @param person It can be either:
@@ -268,6 +274,7 @@ cff_parse_person <- function(person) {
 
 #' @rdname deprecated_cff_person
 #' @export
+#' @encoding UTF-8
 #'
 cff_parse_person_bibtex <- function(person) {
   if (requireNamespace("lifecycle", quietly = TRUE)) {
@@ -288,6 +295,7 @@ cff_parse_person_bibtex <- function(person) {
 #'
 #' @rdname deprecated_cff_bibentry
 #' @export
+#' @encoding UTF-8
 #' @keywords internal
 #' @family deprecated
 #'

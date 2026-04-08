@@ -14,10 +14,10 @@
 
 # cffr 1.2.0
 
--   New argument `r_citation` in `cff_write()`. When it is set to `TRUE` a **R**
-    citation file (`inst/CITATION`) would be generated/updated with the
-    information of the generated `CITATION.cff` file. **No backup copy would be
-    created**, for more control use `cff_write_citation()` (#79).
+-   New argument `r_citation` in `cff_write()`. When it is set to `TRUE`, an **R**
+    citation file (`inst/CITATION`) is generated or updated with the information
+    from the generated `CITATION.cff` file. **No backup copy is created**; for
+    more control use `cff_write_citation()` (#79).
 -   `repository-code` now also recognizes [Codeberg](https://codeberg.org/) as a
     valid repository (#88).
 -   `repository-code` recognizes repositories regardless of casing. It is still
@@ -32,12 +32,12 @@
 -   Now **cffr** adds automatically dois to packages on **CRAN** (e.g.
     <https://doi.org/10.32614/CRAN.package.cffr>):
     -   If the package has a `CITATION` file providing a doi, the `CITATION` doi
-        would be used as the main `CITATION.cff` `doi` and the **CRAN** doi
-        would be added as an `identifier`.
-    -   Otherwise, **CRAN** doi would be used as `doi`.
-    -   When extracting dependencies (e.g `cff_create(dependencies = TRUE)` and
-        the package dependency is on **CRAN**, the **CRAN** doi would be used
-        for the dependency in the `references` key.
+        is used as the main `CITATION.cff` `doi` and the **CRAN** doi is added
+        as an `identifier`.
+    -   Otherwise, the **CRAN** doi is used as `doi`.
+    -   When extracting dependencies (e.g. `cff_create(dependencies = TRUE)`) and
+        the package dependency is on **CRAN**, the **CRAN** doi is used for the
+        dependency in the `references` key.
 -   Extract `commit` from `RemoteSha`.
 -   Update `cran_to_spdx` dataset.
 
@@ -96,12 +96,12 @@ package.
 
 ### API
 
-The API has been completely reviewed to provide more clarity on functions naming
+The API has been completely reviewed to provide more clarity on function naming
 and to facilitate internal maintenance. This change **only** **affects non-core
-functions**. Now each function does fewer things but does it better. The old API
-[has been
+functions**. Now each function does fewer things but does them better. The old
+API [has been
 deprecated](https://lifecycle.r-lib.org/articles/stages.html#deprecated) and it
-would warn when used, providing advice on the replacement function.
+warns when used, providing advice on the replacement function.
 
 #### Deprecation
 
@@ -230,7 +230,7 @@ would warn when used, providing advice on the replacement function.
     [![DOI](https://joss.theoj.org/papers/10.21105/joss.03900/status.svg)](https://doi.org/10.21105/joss.03900)
 -   Include `pages` on `cff_parse_citation()` .
 -   New `gh_keywords` argument on `cff_create()` /`cff_write()`. If `TRUE`, it
-    would include GitHub repo topics as keywords.
+    includes GitHub repo topics as keywords.
 
 # cffr 0.1.0
 

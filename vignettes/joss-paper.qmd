@@ -49,52 +49,50 @@ The cffr package provides utilities to generate and validate these CITATION.cff
 files automatically for R [@R_2021] packages by parsing the DESCRIPTION file and
 the native R citation file. The package also includes utilities and examples for
 parsing components such as persons and additional citations, as well as several
-vignettes which illustrate both the basic usage of the package as well as some
-more technical details about the metadata extraction process.
+vignettes that illustrate both the basic usage of the package and more technical
+details about the metadata extraction process.
 
 ## Statement of need
 
-Citation of research software in research projects is often omitted
-[@salmon2021] . Among many reasons why software is not cited, one is the lack of
-a clear citation information from package developers.
+Citation of research software in research projects is often omitted [@salmon2021].
+One reason software is not cited is the lack of clear citation information from
+package developers.
 
 Some of the main reasons for citing software used on research are:
 
-1.  **Reproducibility**: Software and their versions are important information
-    to include in any research project. It helps peers to understand and
-    reproduce effectively the results of any work. Including versions is also
-    crucial as a way of recording the context of your manuscript when software
-    changes.
+1.  **Reproducibility**: Software and its versions are important information
+    to include in any research project. They help peers understand and
+    reproduce the results of a study effectively. Including versions is also
+    crucial for recording the context of a manuscript when software changes.
 2.  **Developer Credit:** In the context of Free and Open Source Software
     (FOSS), many of the software developers themselves are also researchers.
     Receiving credit for software development should be no different from the
     credit received in other formats, such as books or articles.
 
 CITATION.cff files provide clear citation rules for software. The format is
-easily readable by humans and also can be parsed by appropriate software. The
-adoption of GitHub of this format sends a strong message that research software
-is something worthy of citation, and therefore deserves credit.
+easy to read by humans and can also be parsed by appropriate software. GitHub's
+adoption of this format sends a strong message that research software is worthy
+of citation and therefore deserves credit.
 
 The cffr package allows R software developers to create CITATION.cff files from
-the metadata already included in the package. Additionally, the package also
-includes validation tools via the jsonvalidate package [@jsonvalidate2021], that
-allow developers to assess the validity of the file created using the latest CFF
-schema.json.
+metadata already included in the package. It also includes validation tools via
+the jsonvalidate package [@jsonvalidate2021], which allow developers to assess
+the validity of the file created using the latest CFF schema.json.
 
 ## Acknowledgements
 
 I would like to thank [Carl
 Boettiger](https://ropensci.org/author/carl-boettiger/), [Maëlle
-Salmon](https://ropensci.org/author/ma%C3%ABlle-salmon/) and the [rest of
+Salmon](https://ropensci.org/author/ma%C3%ABlle-salmon/) and the [rest of the
 contributors](https://github.com/ropensci/codemetar/graphs/contributors) of the
 codemetar package [@codemetar2021]. This package was the primary inspiration for
-developing cffr and shares a common goal of increasing awareness on the efforts
+developing cffr and shares a common goal of increasing awareness of the efforts
 of software developers.
 
-I would like also to thank [João Martins](https://zambujo.github.io/) and [Scott
+I would also like to thank [João Martins](https://zambujo.github.io/) and [Scott
 Chamberlain](https://ropensci.org/author/scott-chamberlain/) for thorough
-reviews, that helps improving the package and the documentation as well as
-[Emily Riederer](https://emilyriederer.netlify.app/) for handling the [review
+reviews that helped improve the package and documentation, and [Emily
+Riederer](https://emilyriederer.netlify.app/) for handling the [review
 process](https://github.com/ropensci/software-review/issues/463).
 
 ## Citation

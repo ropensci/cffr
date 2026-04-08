@@ -31,6 +31,7 @@
 #' cff_gha_update()
 #' }
 #' @export
+#' @encoding UTF-8
 #'
 #' @family git
 cff_gha_update <- function(path = ".", overwrite = FALSE) {

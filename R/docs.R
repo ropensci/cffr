@@ -1,4 +1,5 @@
 #' The `cff` class
+#' @encoding UTF-8
 #'
 #' @rdname cff_class
 #' @name cff_class

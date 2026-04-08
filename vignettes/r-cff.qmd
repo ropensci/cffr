@@ -79,7 +79,7 @@ origin[
     )
 ] <- "CITATION file"
 
-origin[origin == FALSE] <- "Ignored by cffr"
+origin[origin == "FALSE"] <- "Ignored by cffr"
 
 df <- data.frame(
   key = paste0("<a href='#", keys, "'>", keys, "</a>"),
@@ -242,7 +242,7 @@ Back to @tbl-summary.
 
 This key is coerced from the `"doi"` field of the
 [preferred-citation](#preferred-citation) object. If not present and the package
-is on **CRAN**, it would be populated with the doi provided by **CRAN** (e.g.
+is on **CRAN**, it is populated with the doi provided by **CRAN** (e.g.
 <https://doi.org/10.32614/CRAN.package.cffr>).
 
 ```{r}
@@ -268,7 +268,7 @@ This key includes all the possible identifiers of the package:
     key of [preferred-citation](#preferred-citation).
 
 -   If the package is on **CRAN** and it has a `CITATION` file providing a doi,
-    the doi provided by **CRAN** would be added as well.
+    the doi provided by **CRAN** is added as well.
 
 ```{r}
 #| label: identifiers
@@ -292,7 +292,7 @@ Back to @tbl-summary.
 This key is extracted from the `DESCRIPTION` file. The keywords should appear in
 the `DESCRIPTION` as:
 
-```
+```         
 ...
 X-schema.org-keywords: keyword1, keyword2, keyword3
 ```
@@ -409,8 +409,8 @@ Back to @tbl-summary.
 ### preferred-citation {#preferred-citation}
 
 This key is extracted from the `CITATION` file. If several references are
-provided, it would select the first citation as the `"preferred-citation"` and
-the rest of them as [references](#references).
+provided, it selects the first citation as the `"preferred-citation"` and the
+rest of them as [references](#references).
 
 ```{r}
 #| label: preferred-citation
@@ -448,7 +448,7 @@ This key is extracted from the `"Repository"` field of the `DESCRIPTION` file.
 Usually, this field is auto-populated when a package is hosted on a repository
 (like **CRAN** or the [r-universe](https://r-universe.dev/search)). For packages
 without this field on the `DESCRIPTION` (which is the typical case for an
-in-development package), **cffr** would try to search the package on any of the
+in-development package), **cffr** tries to search the package on any of the
 default repositories specified on `options("repos")`.
 
 In the case of [Bioconductor](https://bioconductor.org/) packages, those are

@@ -11,7 +11,7 @@
 #'            "#_committing_workflow_hooks)"))
 #'
 #' ```
-#' that reminds you to update your `CITATION.cff` file. This is a wrapper of
+#' that reminds you to update your `CITATION.cff` file. This is a wrapper around
 #' [usethis::use_git_hook()].
 #'
 #' @name cff_git_hook
@@ -19,12 +19,13 @@
 #' @family git
 #'
 #' @export
+#' @encoding UTF-8
 #'
 #' @return Invisible. This function is called for its side effects.
 #'
 #' @seealso
 #'
-#' - [usethis::use_git_hook()], that is the underlying function used by
+#' - [usethis::use_git_hook()], which is the underlying function used by
 #'   `cff_git_hook_install()`.
 #'
 #' - [usethis::use_git()] and related function of \CRANpkg{usethis} for using
@@ -52,7 +53,7 @@
 #'
 #' This typically occurs when you have updated your `DESCRIPTION` or
 #' `inst/CITATION` files, but those changes do not affect your
-#' `CITATION.cff` file (i.e., you are adding new dependencies).
+#' `CITATION.cff` file (for example, you are adding new dependencies).
 #'
 #' In those cases, you can override the check by running
 #' `git commit --no-verify` in the terminal.
@@ -92,6 +93,7 @@ cff_git_hook_install <- function() {
 
 #' @rdname cff_git_hook
 #' @export
+#' @encoding UTF-8
 cff_git_hook_remove <- function() {
   # nocov start
   hookfile <- file.path(".git", "hooks", "pre-commit")

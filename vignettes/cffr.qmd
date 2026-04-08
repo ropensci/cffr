@@ -21,9 +21,9 @@ knitr:
 library(cffr)
 ```
 
-**cffr** is a tool whose target audience are **R** package developers. The main
-goal of **cffr** is to create a `CITATION.cff` file using the metadata
-information of the following files:
+The **cffr** package is designed for R package developers. The main goal of
+**cffr** is to create a `CITATION.cff` file using the metadata information from
+the following files:
 
 -   Your `DESCRIPTION` file.
 -   If available, the citation information located in `inst/CITATION`.
@@ -31,7 +31,7 @@ information of the following files:
 ## What is a `CITATION.cff` file?
 
 [Citation File Format (CFF)](https://citation-file-format.github.io/)
-[@druskat_citation_2021] (v1.2.0) are plain text files with human- and
+[@druskat_citation_2021] (v1.2.0) files are plain text files with human- and
 machine-readable citation information for software (and data sets). Code
 developers can include them in their repositories to let others know how to
 correctly cite their software.
@@ -119,7 +119,7 @@ modobject <- cff_modify(
   url = "https://ropensci.org/",
   version = "0.0.1",
   repository = "https://github.com/ropensci/cffr",
-  # If the field is already present, it would be overridden
+  # If the field is already present, it is overridden
   title = "Modifying a 'cff' object"
 )
 
@@ -177,8 +177,8 @@ newauthorobject
 cff_validate(newauthorobject)
 ```
 
-Now, we may want to add `references` to our data. On the following example, we
-would add two references, one created with `bibentry()` and another with
+Now, we may want to add `references` to our data. In the following example, we
+add two references, one created with `bibentry()` and another with
 `citation()`:
 
 ```{r}
@@ -253,7 +253,7 @@ allkeys <- list(
   "url" = "https://ropensci.org/",
   "version" = "0.0.1",
   "repository" = "https://github.com/ropensci/cffr",
-  # If the field is already present, it would be overridden
+  # If the field is already present, it is overridden
   title = "Modifying a 'cff' object",
   authors = newauthors,
   references = refs_cff

@@ -23,6 +23,7 @@
 #'   <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>
 #'
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_write_misc
 #' @family bibtex
 #' @family writing
@@ -100,6 +101,7 @@ cff_write_bib <- function(
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_write_misc
 #' @name cff_write_citation
 #' @examples

@@ -12,6 +12,7 @@
 #' [cff_read_bib()] for reading `*.bib` files.
 #'
 #' @export
+#' @encoding UTF-8
 #'
 #' @param x A `character` vector with one or more complete BibTeX entries.
 #' @param encoding Encoding to be assumed for `x`. See [readLines()].

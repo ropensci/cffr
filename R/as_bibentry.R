@@ -6,9 +6,9 @@
 #' @description
 #'
 #' This function creates [`bibentry`] objects from different metadata sources
-#' ([`cff`] objects, `DESCRIPTION` files, etc.). The inverse transformation
-#' (`bibentry` object to [`cff_ref_lst`]) can be done with the corresponding
-#' [as_cff.bibentry()] method.
+#' ([`cff`] objects, `DESCRIPTION` files and other sources). The inverse
+#' transformation (`bibentry` object to [`cff_ref_lst`]) can be done with the
+#' corresponding [as_cff.bibentry()] method.
 #'
 #' With [`toBibtex()`][toBibtex.cff()] it is possible to convert [`cff`] objects
 #' to BibTeX markup on the fly, see **Examples**.
@@ -63,7 +63,7 @@
 #'
 #' @details
 #'
-#' A **R** `bibentry` object is the representation of a BibTeX entry. These
+#' An **R** `bibentry` object is the representation of a BibTeX entry. These
 #' objects can be converted to BibTeX markup with [toBibtex()], that creates an
 #' object of class `Bibtex` and can be printed and exported as a valid BibTeX
 #' entry.
@@ -76,6 +76,7 @@
 #' `as_bibentry()` returns a `bibentry` object with one or more entries.
 #'
 #' @export
+#' @encoding UTF-8
 #'
 #' @examples
 #' \donttest{
@@ -123,6 +124,7 @@ as_bibentry <- function(x, ...) {
 
 
 #' @export
+#' @encoding UTF-8
 #' @rdname as_bibentry
 #' @order 2
 as_bibentry.default <- function(x, ...) {
@@ -131,6 +133,7 @@ as_bibentry.default <- function(x, ...) {
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname as_bibentry
 #' @order 3
 as_bibentry.character <- function(
@@ -176,6 +179,7 @@ as_bibentry.character <- function(
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname as_bibentry
 #' @order 4
 as_bibentry.NULL <- function(x, ...) {
@@ -184,6 +188,7 @@ as_bibentry.NULL <- function(x, ...) {
 
 
 #' @export
+#' @encoding UTF-8
 #' @rdname as_bibentry
 #' @order 5
 as_bibentry.list <- function(x, ...) {
@@ -207,6 +212,7 @@ as_bibentry.list <- function(x, ...) {
 
 
 #' @export
+#' @encoding UTF-8
 #' @rdname as_bibentry
 #' @order 6
 as_bibentry.cff <- function(
@@ -256,6 +262,7 @@ as_bibentry.cff <- function(
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname as_bibentry
 #' @order 7
 as_bibentry.cff_ref_lst <- function(x, ...) {
@@ -269,6 +276,7 @@ as_bibentry.cff_ref_lst <- function(x, ...) {
 
 
 #' @export
+#' @encoding UTF-8
 #' @rdname as_bibentry
 #' @order 8
 as_bibentry.cff_ref <- function(x, ...) {

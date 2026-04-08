@@ -10,6 +10,7 @@
 #'
 #' ```
 #' @export
+#' @encoding UTF-8
 #'
 #' @family core
 #'
@@ -34,7 +35,7 @@
 #' @inheritParams cff_write
 #'
 #' @seealso
-#' [jsonvalidate::json_validate()], that is the function that performs the
+#' [jsonvalidate::json_validate()], which is the function that performs the
 #' validation.
 #'
 #' @examples
@@ -58,10 +59,11 @@
 #'
 #' attr(res, "errors")
 #'
-#' # If a CITATION file (note that is not .cff) it throws an error
+#' # If a CITATION file is supplied (note that it is not a .cff file), it
+#' throws an error
 #' try(cff_validate(system.file("CITATION", package = "cffr")))
 cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
-  # If is a cff create the object
+  # If the input is a cff object, create the object
   if (!is_cff(x)) {
     # Check
     abort_if_not_cff(x)
@@ -75,7 +77,7 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
   # Convert to list
   citfile <- as.list(x)
 
-  # This prevent errors with jsonvalidate
+  # This prevents errors with jsonvalidate
   citfile <- rapply(citfile, function(x) as.character(x), how = "replace")
 
   # Convert to json

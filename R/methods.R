@@ -1,4 +1,5 @@
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 print.cff <- function(x, ...) {
@@ -6,6 +7,7 @@ print.cff <- function(x, ...) {
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 c.cff <- function(..., recursive = FALSE) {
@@ -24,6 +26,7 @@ c.cff <- function(..., recursive = FALSE) {
 # https://github.com/wch/r-source/blob/trunk/src/library/utils/R/citation.R
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 `[.cff_ref_lst` <- function(x, i) {
@@ -33,6 +36,7 @@ c.cff <- function(..., recursive = FALSE) {
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 `[.cff_pers_lst` <- function(x, i) {
@@ -44,6 +48,7 @@ c.cff <- function(..., recursive = FALSE) {
 
 # nolint start
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
@@ -91,6 +96,7 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 as.data.frame.cff_pers_lst <- function(
@@ -119,6 +125,7 @@ as.data.frame.cff_pers_lst <- function(
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 as.data.frame.cff_pers <- function(
@@ -149,6 +156,7 @@ as.data.frame.cff_pers <- function(
 
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 as.data.frame.cff_ref_lst <- function(
@@ -184,6 +192,7 @@ as.data.frame.cff_ref_lst <- function(
 
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 as.data.frame.cff_ref <- function(
@@ -209,6 +218,7 @@ as.data.frame.cff_ref <- function(
 # nolint end
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 head.cff <- function(x, n = 6L, ...) {
@@ -216,6 +226,7 @@ head.cff <- function(x, n = 6L, ...) {
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 tail.cff <- function(x, n = 6L, ...) {
@@ -224,6 +235,7 @@ tail.cff <- function(x, n = 6L, ...) {
 
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 as.list.cff <- function(x, ...) {
@@ -242,6 +254,7 @@ as.list.cff <- function(x, ...) {
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 toBibtex.cff <- function(
@@ -253,6 +266,7 @@ toBibtex.cff <- function(
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 toBibtex.cff_ref_lst <- function(object, ...) {
@@ -260,6 +274,7 @@ toBibtex.cff_ref_lst <- function(object, ...) {
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 toBibtex.cff_ref <- function(object, ...) {
@@ -267,6 +282,7 @@ toBibtex.cff_ref <- function(object, ...) {
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 toBibtex.cff_pers_lst <- function(object, ...) {
@@ -274,6 +290,7 @@ toBibtex.cff_pers_lst <- function(object, ...) {
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 toBibtex.cff_pers <- function(object, ...) {
@@ -281,6 +298,7 @@ toBibtex.cff_pers <- function(object, ...) {
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 as.person.cff_pers <- function(x) {
@@ -290,6 +308,7 @@ as.person.cff_pers <- function(x) {
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 as.person.cff_pers_lst <- function(x) {
@@ -313,6 +332,7 @@ as.person.cff_pers_lst <- function(x) {
 #  as.person methods not implemented ----
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 as.person.cff <- function(x) {
@@ -322,6 +342,7 @@ as.person.cff <- function(x) {
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 as.person.cff_ref <- function(x) {
@@ -331,6 +352,7 @@ as.person.cff_ref <- function(x) {
 }
 
 #' @export
+#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 as.person.cff_ref_lst <- function(x) {

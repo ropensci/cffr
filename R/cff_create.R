@@ -13,6 +13,7 @@
 #' @family core
 #'
 #' @export
+#' @encoding UTF-8
 #'
 #' @param x The source used to generate
 #'   the [`cff`] object. It can be:
@@ -82,7 +83,7 @@
 #'
 #' cff_create(demo_file, keys = newkeys)
 #'
-#' # Update a field on a list - i.e., authors, contacts, etc.
+#' # Update a field on a list, for example authors or contacts.
 #' # We are adding a new contact here
 #'
 #' old <- cff_create(demo_file)
