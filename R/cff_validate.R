@@ -60,7 +60,7 @@
 #' attr(res, "errors")
 #'
 #' # If a CITATION file is supplied (note that it is not a .cff file), it
-#' throws an error
+#' # throws an error
 #' try(cff_validate(system.file("CITATION", package = "cffr")))
 cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
   # If the input is a cff object, create the object

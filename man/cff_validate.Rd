@@ -45,7 +45,7 @@ isFALSE(res)
 attr(res, "errors")
 
 # If a CITATION file is supplied (note that it is not a .cff file), it
-throws an error
+# throws an error
 try(cff_validate(system.file("CITATION", package = "cffr")))
 }
 \seealso{

@@ -1,3 +1,5 @@
+# cffr (development version)
+
 # cffr 1.3.0
 
 -   Minimum **R** version required now is **4.1.0**.
@@ -14,10 +16,10 @@
 
 # cffr 1.2.0
 
--   New argument `r_citation` in `cff_write()`. When it is set to `TRUE`, an **R**
-    citation file (`inst/CITATION`) is generated or updated with the information
-    from the generated `CITATION.cff` file. **No backup copy is created**; for
-    more control use `cff_write_citation()` (#79).
+-   New argument `r_citation` in `cff_write()`. When it is set to `TRUE`, an
+    **R** citation file (`inst/CITATION`) is generated or updated with the
+    information from the generated `CITATION.cff` file. **No backup copy is
+    created**; for more control use `cff_write_citation()` (#79).
 -   `repository-code` now also recognizes [Codeberg](https://codeberg.org/) as a
     valid repository (#88).
 -   `repository-code` recognizes repositories regardless of casing. It is still
@@ -35,9 +37,9 @@
         is used as the main `CITATION.cff` `doi` and the **CRAN** doi is added
         as an `identifier`.
     -   Otherwise, the **CRAN** doi is used as `doi`.
-    -   When extracting dependencies (e.g. `cff_create(dependencies = TRUE)`) and
-        the package dependency is on **CRAN**, the **CRAN** doi is used for the
-        dependency in the `references` key.
+    -   When extracting dependencies (e.g. `cff_create(dependencies = TRUE)`)
+        and the package dependency is on **CRAN**, the **CRAN** doi is used for
+        the dependency in the `references` key.
 -   Extract `commit` from `RemoteSha`.
 -   Update `cran_to_spdx` dataset.
 
