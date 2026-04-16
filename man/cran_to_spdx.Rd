@@ -7,16 +7,13 @@
 \title{Mapping between \code{License} fields and SPDX}
 \format{
 A data frame with 86 rows and 2 variables:
-\itemize{
-\item LICENSE: A valid \code{License} string on CRAN.
-\item SPDX. A valid SPDX License Identifier.
+\describe{
+\item{\code{LICENSE}}{A valid \code{License} string on CRAN.}
+\item{\code{SPDX}}{A valid SPDX License Identifier.}
 }
 }
 \source{
 \url{https://spdx.org/licenses/}
-}
-\usage{
-cran_to_spdx
 }
 \description{
 A dataset containing the mapping between the \code{License} strings observed
@@ -33,4 +30,3 @@ head(cran_to_spdx, 20)
 \emph{Writing R Extensions}, \href{https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Licensing}{Licensing section}.
 }
 \concept{datasets}
-\keyword{datasets}

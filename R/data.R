@@ -7,11 +7,15 @@
 #' @family datasets
 #' @docType data
 #' @encoding UTF-8
+#' @name cran_to_spdx
+#' @rdname cran_to_spdx
 #'
-#' @format A data frame with `r nrow(cran_to_spdx)` rows and 2 variables:
-#'
-#'  * `r names(cran_to_spdx)[1]`: A valid `License` string on CRAN.
-#'  * `r names(cran_to_spdx)[2]`. A valid SPDX License Identifier.
+#' @format
+#' A data frame with `r nrow(cran_to_spdx)` rows and 2 variables:
+#' \describe{
+#'   \item{`LICENSE`}{A valid `License` string on CRAN.}
+#'   \item{`SPDX`}{A valid SPDX License Identifier.}
+#' }
 #'
 #' @seealso *Writing R Extensions*,
 #' ```{r, echo=FALSE, results='asis'}
@@ -29,4 +33,4 @@
 #' data("cran_to_spdx")
 #'
 #' head(cran_to_spdx, 20)
-"cran_to_spdx"
+NULL
