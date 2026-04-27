@@ -1,6 +1,6 @@
 ---
 title: "BibTeX and CFF"
-subtitle: A potential crosswalk
+subtitle: A deterministic crosswalk between two non-equivalent citation schemas
 bibliography: REFERENCES.bib
 author:
   - name: Diego Hernangómez
@@ -54,7 +54,7 @@ Please cite this article using this **BibTeX** entry:
 
 ``` bib
 @article{hernangomez2022,
-    title        = {{BibTeX} and {CFF}, a potential crosswalk},
+    title        = {{BibTeX} and {CFF}, A deterministic crosswalk between two non-equivalent citation schemas},
     author       = {Diego Hernangómez},
     year         = 2022,
     journal      = {The {cffr} package},
@@ -66,65 +66,49 @@ Please cite this article using this **BibTeX** entry:
 
 ## BibTeX and R
 
-[**BibTeX**](https://en.wikipedia.org/wiki/BibTeX) is a well-known format for
-storing references created by [Oren
-Patashnik](https://en.wikipedia.org/wiki/Oren_Patashnik "Oren Patashnik") and
-[Leslie Lamport](https://en.wikipedia.org/wiki/Leslie_Lamport "Leslie Lamport")
-back in 1985. **BibTeX** can be reused by other software, such as
-[LaTeX](https://en.wikipedia.org/wiki/LaTeX), to add references to scholarly
-works. An example structure of a **BibTeX** entry is:
+[**BibTeX**](https://en.wikipedia.org/wiki/BibTeX) is a widely used format for
+storing references, originally designed for document-centric workflows by Oren
+Patashnik and Leslie Lamport in 1985. It represents bibliographic entries as
+relatively flat records relying on conventions and free-text fields.
 
-``` bibtex
-@book{einstein1921,
-    title        = {Relativity: The Special and the General Theory},
-    author       = {Einstein, A.},
-    year         = 1920,
-    publisher    = {Henry Holt and Company},
-    address      = {London, United Kingdom},
-    isbn         = 9781587340925
-}
-```
+The Citation File Format (CFF) [@druskat_citation_2021] provides a structured
+and extensible way to represent citation metadata, particularly for software and
+research outputs. It supports explicit typing, nested objects, and richer
+metadata.
 
-In this case, the entry (identified as `einstein1921`) refers to a book. This
-entry can then be used in a document to include references to it. In **R**
-[@R_2021], we can replicate this structure using the `bibentry()` and
-`toBibtex()` functions:
+In modern workflows, both formats often coexist. BibTeX remains dominant in
+academic publishing, while CFF is adopted by platforms such as GitHub and
+Zenodo.
 
-```{r}
-#| label: bibentry
-#| comment: '#>'
-entry <- bibentry(
-  "book",
-  key = "einstein1921",
-  title = "Relativity: The Special and the General Theory",
-  author = person("A.", "Einstein"),
-  year = 1920,
-  publisher = "Henry Holt and Company",
-  address = "London, United Kingdom",
-  isbn = 9781587340925,
-)
+The **cffr** package [@hernangomez2021] provides a deterministic mapping
+(crosswalk) between BibTeX and CFF, enabling practical interoperability.
 
-toBibtex(entry)
-```
+Due to fundamental differences in their data models, this mapping is not
+bijective. Mappings may involve structural transformations, heuristic parsing,
+and controlled information loss.
 
-The final text representation of the entry is shown as[^1]:
+## Conceptual differences between BibTeX and CFF
 
-:::: {#refs-example .references .csl-bib-body .hanging-indent data-entry-spacing="0"}
-::: {#ref-einstein1921 .csl-entry}
-```{r}
-#| echo: false
-#| results: asis
-print(entry, style = "html")
-```
-:::
-::::
+BibTeX represents bibliographic entries as flat records with loosely structured
+fields.
 
-Additionally, the **cffr** package [@hernangomez2021] incorporates the following
-capabilities for reading and transforming **BibTeX** into different formats:
+CFF, in contrast, defines a structured schema with explicit typing, nested
+objects, and support for richer metadata such as contributor roles.
 
--   `cff_read_bib()` reads \*.bib files.
--   `cff_read_bib_text()` reads **BibTeX** entries stored in a variable.
--   An S3 method `toBibtex.cff()` that converts `cff` objects to **BibTeX**
+As a result, direct one-to-one mappings are not always possible. Mappings
+require a combination of direct mappings, structural transformations, and
+heuristic parsing.
+
+## Mapping strategy
+
+The mapping implemented in **cffr** follows a three-step pipeline:
+
+1.  Parse BibTeX entries into an intermediate representation
+2.  Apply mapping rules to transform types and fields
+3.  Serialize the result into CFF (and vice versa)
+
+Mappings are deterministic whenever possible, but some fields require heuristic
+parsing.
 
 ```{r}
 #| label: cffbibread
@@ -146,6 +130,9 @@ cff_format
 # To BibTeX with S3 method
 toBibtex(cff_format)
 ```
+
+The resulting object converts flat BibTeX fields into structured CFF metadata,
+normalizing field names and representations where required.
 
 ## BibTeX Definitions
 
@@ -323,12 +310,12 @@ machine-readable citation information for software and datasets. Within
 `references`, which play a crucial role in citing and referring to related
 works:
 
--   `preferred-citation`: Refers to another work that should be cited instead of
-    the software or dataset itself.
--   `references`: Includes reference(s) to other creative works related to the
-    software or dataset. Similar to a list of references in a scholarly paper,
-    these references may encompass papers describing the abstract concepts of
-    the software or algorithms implemented in the software version.
+- `preferred-citation`: Refers to another work that should be cited instead of
+  the software or dataset itself.
+- `references`: Includes reference(s) to other creative works related to the
+  software or dataset. Similar to a list of references in a scholarly paper,
+  these references may encompass papers describing the abstract concepts of the
+  software or algorithms implemented in the software version.
 
 These two keys are expected to be `definition.reference objects`, as defined in
 the [Guide to Citation File Format schema version
@@ -360,15 +347,94 @@ knitr::kable(
 
 These keys are equivalent to the **BibTeX** [fields](#fields), with the
 exception of the key [type]{.underline}. In [CFF]{.underline}, this key defines
-the type of work[^2], making it analogous to the **BibTeX** [entries](#0).
+the type of work[^1], making it analogous to the **BibTeX** [entries](#0).
+
+[^1]: See a complete list of possible values of [CFF]{.underline}
+    [type]{.underline} in [Appendix B](#appendix_cff_type).
+
+## Mapping tables
+
+The following tables summarize the mapping rules implemented in **cffr**.
+
+Mapping types:
+
+- **direct**: preserved without modification
+- **transform**: structural or naming transformation
+- **split**: one field mapped to multiple fields
+- **heuristic**: requires parsing or inference
+- **unsupported**: dropped during mapping
+- **enrichment**: only exists in CFF
+
+These mappings are not bijective and may introduce normalization effects.
+
+| BibTeX type     | CFF `type` | Mapping type | Notes                            |
+|-----------------|------------|--------------|----------------------------------|
+| `@article`      | `article`  | direct       | —                                |
+| `@book`         | `book`     | direct       | —                                |
+| `@inbook`       | `chapter`  | transform    | Normalized to CFF taxonomy       |
+| `@incollection` | `chapter`  | transform    | Same as `inbook`                 |
+| `@manual`       | `manual`   | direct       | —                                |
+| `@misc`         | `generic`  | heuristic    | Fallback when no better match    |
+| `@phdthesis`    | `thesis`   | transform    | Thesis type not always preserved |
+| `@techreport`   | `report`   | transform    | —                                |
+| other           | `generic`  | heuristic    | Default fallback                 |
+
+: Entry types
+
+| BibTeX field | CFF field          | Mapping type | Notes                               |
+|----------------|----------------|----------------|--------------------------------|
+| `title`      | `title`            | direct       | —                                   |
+| `author`     | `authors`          | transform    | Parsed into structured name objects |
+| `editor`     | `editors`          | transform    | Same parsing logic as authors       |
+| `year`       | `year`             | direct       | —                                   |
+| `month`      | `month`            | heuristic    | Format normalization required       |
+| `journal`    | `journal`          | direct       | —                                   |
+| `booktitle`  | `collection-title` | transform    | Container title                     |
+| `volume`     | `volume`           | direct       | —                                   |
+| `number`     | `issue`            | transform    | Naming normalization                |
+| `pages`      | `start` / `end`    | split        | Parsed from page range              |
+| `doi`        | `doi`              | direct       | —                                   |
+| `url`        | `url`              | direct       | —                                   |
+
+: Core fields
+
+| BibTeX field(s) | CFF field            | Mapping type | Notes                          |
+|-----------------|------------------|-----------------|----------------------------|
+| `publisher`     | `publisher.name`     | transform    | Converted to structured object |
+| `address`       | `publisher.location` | transform    | Combined with publisher        |
+| `institution`   | `institution`        | direct       | Used mainly in reports/thesis  |
+| `school`        | `institution`        | transform    | Thesis normalization           |
+
+: Structural fields
+
+| BibTeX field | CFF field   | Mapping type | Notes                                 |
+|--------------|-------------|--------------|---------------------------------------|
+| `pages`      | `start/end` | heuristic    | Requires parsing, may fail            |
+| `author`     | `authors`   | heuristic    | Name splitting is not always reliable |
+| `month`      | `month`     | heuristic    | Multiple formats possible             |
+| `note`       | `notes`     | heuristic    | Free text                             |
+
+: Parsed fields
+
+| CFF field            | BibTeX equivalent | Mapping type | Notes                |
+|----------------------|-------------------|--------------|----------------------|
+| `preferred-citation` | —                 | enrichment   | CFF-specific concept |
+| `references`         | —                 | enrichment   | Not representable    |
+| `type: software`     | —                 | unsupported  | No BibTeX equivalent |
+| `identifiers`        | partial           | transform    | Only DOI/URL mapped  |
+
+: CFF fields with no BibTeX equivalence
 
 ## Proposed Crosswalk
 
-The **cffr** package [@hernangomez2021] provides utilities for converting
+The **cffr** package [@hernangomez2021] provides utilities for mapping
 **BibTeX** entries (via the **R** base function `bibentry()`) to
-[CFF]{.underline} files and vice versa. This section describes how the
-conversion between both formats has been implemented. The crosswalk is partially
-based on @Haines_Ruby_CFF_Library_2021[^3].
+[CFF]{.underline} files and vice versa. This section describes how the mapping
+between both formats has been implemented. The crosswalk is partially based on
+@Haines_Ruby_CFF_Library_2021[^2].
+
+[^2]: Note that this software performs only the mapping from [CFF]{.underline}
+    to **BibTeX**, however **cffr** can perform the mapping in both directions.
 
 In the following two sections, I present an overview of the proposed mapping
 between the **Entries** and **Fields** of **BibTeX** and the [CFF]{.underline}
@@ -381,15 +447,14 @@ corresponds to **BibTeX**, and when the field is [underlined]{.underline} (e.g.,
 
 ### Entry/Type Crosswalk
 
-For converting general **BibTeX** entries to [CFF]{.underline}
-[types]{.underline}, the following crosswalk is proposed:
+For mapping general **BibTeX** entries to [CFF]{.underline} [types]{.underline},
+the following crosswalk is proposed:
 
 ```{r}
 #| label: tbl-entry_bib2cff
 #| echo: false
 #| results: asis
 #| tbl-cap: "Entry/Type crosswalk: From **BibTeX** to [CFF]{.underline}"
-
 df_table <- table_master[table_master$table == "entry_bib2cff", c(2:4)]
 df_table[is.na(df_table)] <- ""
 # fix links
@@ -405,19 +470,25 @@ knitr::kable(
 
 The previous crosswalk has the following specifications:
 
--   **\@book**, **\@inbook**, and **\@incollection** are closely related in
-    **BibTeX**[^4]. While **\@inbook** and **\@incollection** both reference
-    parts of a **\@book**, the former is used for citing sections, chapters,
-    pages, or other specific parts, whereas the latter is used for citing parts
-    with a specific title. Since [CFF]{.underline} allows keys `type:book` and
-    `collection-type: book`, we may utilize a combination of these fields to tag
-    each entry type in [CFF]{.underline} accordingly.
--   **\@mastersthesis** and **\@phdthesis** are tagged using a combination
-    of `type:thesis` and `thesis-type`.
+- **\@book**, **\@inbook**, and **\@incollection** are closely related in
+  **BibTeX**[^3]. While **\@inbook** and **\@incollection** both reference parts
+  of a **\@book**, the former is used for citing sections, chapters, pages, or
+  other specific parts, whereas the latter is used for citing parts with a
+  specific title. Since [CFF]{.underline} allows keys `type:book` and
+  `collection-type: book`, we may utilize a combination of these fields to tag
+  each entry type in [CFF]{.underline} accordingly.
+- **\@mastersthesis** and **\@phdthesis** are tagged using a combination of
+  `type:thesis` and `thesis-type`.
+
+[^3]: Note that **BibLaTeX** [@biblatexpack] handles **\@inbook** differently,
+    see [Appendix A](#appendix_inbook).
 
 Additionally, considering that [CFF]{.underline} allows for a wide range of
-values[^5] for the [type]{.underline} field, the following conversion is applied
+values[^4] for the [type]{.underline} field, the following mapping is applied
 from [CFF]{.underline} to **BibTeX**:
+
+[^4]: See [Appendix B](#appendix_cff_type) for all possible values. Information
+    extracted from @druskat2019.
 
 ```{r}
 #| label: tbl-entry_cff2bib
@@ -462,53 +533,54 @@ knitr::kable(
 
 We provide more detail on some of the mappings presented in the table above:
 
--   Some fields are not mapped because there is no clear equivalence with
-    [CFF]{.underline} keys (such as **annote**, **crossref**, and **key**).
-    Regarding the **type** field, the [CFF]{.underline} key [type]{.underline}
-    corresponds to the identifier of the work (similar to an entry in
-    **BibTeX**), therefore, **BibTeX type** won't be mapped. These fields are
-    always optional in **BibTeX**.
+- Some fields are not mapped because there is no clear equivalence with
+  [CFF]{.underline} keys (such as **annote**, **crossref**, and **key**).
+  Regarding the **type** field, the [CFF]{.underline} key [type]{.underline}
+  corresponds to the identifier of the work (similar to an entry in **BibTeX**),
+  therefore, **BibTeX type** won't be mapped. These fields are always optional
+  in **BibTeX**.
 
--   For the **address** field, its intended use in **BibTeX** varies depending
-    on the entry type (e.g., for **\@inproceedings**, it denotes the **address**
-    of the **conference**, while for **\@mastersthesis/\@phdthesis**, is the
-    **address** of the **school**, etc.). Mapping between **BibTeX** and
-    [CFF]{.underline} becomes more complex when related to institutions,
-    resulting in varying final mappings in [CFF]{.underline}. When converting
-    from [CFF]{.underline} to **BibTeX**, we propose to follow the same
-    entry-based logic, using the key [location]{.underline} as a fallback value
-    when converting to **address**.
+- For the **address** field, its intended use in **BibTeX** varies depending on
+  the entry type (e.g., for **\@inproceedings**, it denotes the **address** of
+  the **conference**, while for **\@mastersthesis/\@phdthesis**, is the
+  **address** of the **school**, etc.). Mapping between **BibTeX** and
+  [CFF]{.underline} becomes more complex when related to institutions, resulting
+  in varying final mappings in [CFF]{.underline}. When mapping from
+  [CFF]{.underline} to **BibTeX**, we propose to follow the same entry-based
+  logic, using the key [location]{.underline} as a fallback value when mapping
+  to **address**.
 
--   In relation with this complexity mentioned above, **institution,
-    organization** and **school** are mapped to [institution]{.underline}.
+- In relation with this complexity mentioned above, **institution,
+  organization** and **school** are mapped to [institution]{.underline}.
 
--   **series** is mapped to [collection-title]{.underline} only on those
-    entries that do not require **booktitle**. In practice, this means that
-    collection-title corresponds to **booktitle** for **incollection** and
-    **inproceedings**, and in the other cases it corresponds to series. As a
-    consequence, series information is lost for incollection and inproceedings,
-    but in those cases it is an optional field.
+- **series** is mapped to [collection-title]{.underline} only on those entries
+  that do not require **booktitle**. In practice, this means that
+  collection-title corresponds to **booktitle** for **incollection** and
+  **inproceedings**, and in the other cases it corresponds to series. As a
+  consequence, series information is lost for incollection and inproceedings,
+  but in those cases it is an optional field.
 
--   When converting from [CFF]{.underline} to **BibTeX**, we propose to use
-    [date-published]{.underline} as a fallback for extracting **month** and
-    **year** fields.
+- When mapping from [CFF]{.underline} to **BibTeX**, we propose to use
+  [date-published]{.underline} as a fallback for extracting **month** and
+  **year** fields.
 
--   When **pages** is provided as a range separated by `--`, i.e. **pages =
-    {3--5}**, it is coerced as [start: 3]{.underline}, [end: 5]{.underline} in
-    [CFF]{.underline}.
+- When **pages** is provided as a range separated by `--`, i.e. **pages =
+  {3--5}**, it is coerced as [start: 3]{.underline}, [end: 5]{.underline} in
+  [CFF]{.underline}.
 
 #### BibLaTeX
 
 Additionally, there are other [CFF]{.underline} keys that correspond to
-**BibLaTeX** fields. We propose to include these fields in the crosswalk[^6],
+**BibLaTeX** fields. We propose to include these fields in the crosswalk[^5],
 even though they are not part of the core **BibTeX** fields definition.
+
+[^5]: See @biblatexcheatsheet for a preview of the accepted **BibLaTeX** fields.
 
 ```{r}
 #| label: tbl-fields_biblatex2cff
 #| echo: false
 #| results: asis
 #| tbl-cap: "**BibLaTeX** - [CFF]{.underline} Field/Key crosswalk"
-
 df_table <- table_master[table_master$table == "fields_biblatex2cff", c(2:3)]
 df_table[is.na(df_table)] <- ""
 # fix links
@@ -520,6 +592,44 @@ knitr::kable(
   col.names = c("**BibLaTeX Field**", "[CFF key]{.underline}")
 )
 ```
+
+## Limitations
+
+The mapping between BibTeX and CFF has several limitations.
+
+### Non-bijective mapping
+
+Mapping from BibTeX to CFF and back does not guarantee identical output.
+
+### Information loss
+
+- Nested CFF structures are flattened in BibTeX
+- Contributor roles are not preserved
+- CFF-specific types (e.g., software) have no equivalent
+
+### Heuristic parsing
+
+- Author names require parsing
+- Page ranges must be split
+- Month formats vary
+
+### Unsupported fields
+
+Some BibTeX fields (e.g., `howpublished`, `annote`, `key`) are not represented
+in CFF.
+
+### Normalization
+
+Field values may be normalized, resulting in differences in formatting.
+
+## Design decisions
+
+The mapping implemented in **cffr** follows these principles:
+
+- Prefer deterministic mappings when possible
+- Use heuristics only when necessary
+- Normalize fields to align with CFF conventions
+- Favor interoperability over exact round-trip fidelity
 
 ## Entry Models {#entrymodels}
 
@@ -536,7 +646,6 @@ The crosswalk of **\@article** does not require any special treatment.
 #| label: tbl-model_article
 #| echo: false
 #| results: asis
-
 df_table <- table_master[table_master$table == "model_article", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
@@ -1227,9 +1336,13 @@ toBibtex(cff_read_bib_text(bib))
 
 The proposed model is consistent with [**\@conference** /
 **\@inproceedings**](#conf_inproc). Note that **\@proceedings** does not
-prescribe an **author** field. In these cases, as [authors]{.underline} is required on [CFF]{.underline},
-we use *anonymous*[^7] when converting to [CFF]{.underline} and omit it when
-converting from [CFF]{.underline} to **BibTeX**.
+prescribe an **author** field. In these cases, as [authors]{.underline} is
+required on [CFF]{.underline}, we use *anonymous*[^6] when mapping to
+[CFF]{.underline} and omit it when mapping from [CFF]{.underline} to **BibTeX**.
+
+[^6]: As proposed on [*How to deal with unknown individual
+    authors?*](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors),
+    **(Guide to Citation File Format schema version 1.2.0)**
 
 ```{r}
 #| label: tbl-model_proceedings
@@ -1424,24 +1537,36 @@ From [CFF]{.underline} to **BibTeX**
 toBibtex(cff_read_bib_text(bib))
 ```
 
+## Conclusion
+
+This article presents a practical and reproducible crosswalk between BibTeX and
+CFF.
+
+While the formats are not fully equivalent, the mapping implemented in **cffr**
+provides a consistent and transparent transformation between them.
+
+By making mapping rules explicit and documenting limitations, this work supports
+interoperability between legacy bibliographic systems and modern software
+citation practices.
+
 ## Appendix A: **\@inbook** in BibTeX and BibLaTeX {#appendix_inbook .appendix}
 
 The definition of **\@inbook** and **\@incollection** in **BibTeX**
 [@patashnik1988] is as follows:
 
-> -   **\@inbook**: A part of a book, which may be a chapter (or section) and/or
->     a range of pages. Required fields: author or editor, title, chapter and/or
->     pages, publisher, year (...)
+> - **\@inbook**: A part of a book, which may be a chapter (or section) and/or a
+>   range of pages. Required fields: author or editor, title, chapter and/or
+>   pages, publisher, year (...)
 >
-> -   **\@incollection**: A part of a book having its own title. Required
->     fields: author, title, booktitle, publisher, year (...)
+> - **\@incollection**: A part of a book having its own title. Required fields:
+>   author, title, booktitle, publisher, year (...)
 
 Whereas **BibLaTeX** [@biblatexpack] specifies:
 
-> -   **\@inbook:** A part of a book which forms a self-contained unit with its
->     own title. Note that the [profile]{.underline} of this entry type is
->     [different from standard BibTeX]{.underline}, see § 2.3.1. Required
->     fields: author, title, booktitle, year/date (...).
+> - **\@inbook:** A part of a book which forms a self-contained unit with its
+>   own title. Note that the [profile]{.underline} of this entry type is
+>   [different from standard BibTeX]{.underline}, see § 2.3.1. Required fields:
+>   author, title, booktitle, year/date (...).
 
 When considering required fields, an important difference is the **booktitle**
 requirement in **BibLaTeX**. Notably, **BibTeX \@incollection** requires also
@@ -1519,25 +1644,3 @@ knitr::kable(
 ```
 
 ## References
-
-[^1]: By default **R** Pandoc generates the cite in the Chicago author-date
-    format [@rmarkdowncookbook2020]
-
-[^2]: See a complete list of possible values of [CFF]{.underline}
-    [type]{.underline} in [Appendix B](#appendix_cff_type).
-
-[^3]: Note that this software performs only the conversion from
-    [CFF]{.underline} to **BibTeX**, however **cffr** can perform the conversion
-    in both directions.
-
-[^4]: Note that **BibLaTeX** [@biblatexpack] handles **\@inbook** differently,
-    see [Appendix A](#appendix_inbook).
-
-[^5]: See [Appendix B](#appendix_cff_type) for all possible values. Information
-    extracted from @druskat2019.
-
-[^6]: See @biblatexcheatsheet for a preview of the accepted **BibLaTeX** fields.
-
-[^7]: As proposed on [*How to deal with unknown individual
-    authors?*](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors),
-    **(Guide to Citation File Format schema version 1.2.0)**
