@@ -60,7 +60,7 @@ support is of special interest:
 
 <figure>
 
-![](vignettes/tweet-1.png){.mx-auto .d-block fig-align="center" width="400"}
+![GitHub citation support announcement](vignettes/tweet-1.png){.mx-auto .d-block fig-align="center" width="400"}
 
 ```{=html}
 <figcaption class="blockquote-footer">Nat Friedman (@natfriedman) July 27, 2021</figcaption>
@@ -320,4 +320,3 @@ files](https://docs.github.com/en/repositories/managing-your-repositorys-setting
 for more info.
 
 ## References
-

@@ -48,7 +48,8 @@ interest:
 <figure>
 
 <img src="vignettes/tweet-1.png" class="mx-auto d-block"
-data-fig-align="center" width="400" />
+data-fig-align="center" width="400"
+alt="GitHub citation support announcement" />
 
 <figcaption class="blockquote-footer">Nat Friedman (@natfriedman) July 27, 2021</figcaption>
 </figure>
@@ -77,7 +78,7 @@ file and the `CITATION` file (if present) from your package. Note that
 **cffr** works best if your package passes
 `R CMD check/devtools::check()`.
 
-As per 2026-04-16 there are at least 508 repos on GitHub using **cffr**.
+As per 2026-04-27 there are at least 558 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -175,6 +176,7 @@ test <- cff_create("knitr")
       url: https://yihui.org/knitr/
     repository: https://CRAN.R-project.org/package=knitr
     repository-code: https://github.com/yihui/knitr
+    commit: '1.51'
     url: https://yihui.org/knitr/
     date-released: '2025-12-20'
     contact:
@@ -228,9 +230,10 @@ test <- cff_create("knitr")
       authors:
       - name: R Core Team
       institution:
-        name: R Foundation for Statistical Computing
+        name: 'R Foundation for Statistical Computing (ROR: <https://ror.org/05qewa988>)'
         address: Vienna, Austria
       year: '2026'
+      doi: 10.32614/R.manuals
       version: '>= 3.6.0'
     - type: software
       title: evaluate
@@ -272,9 +275,10 @@ test <- cff_create("knitr")
       authors:
       - name: R Core Team
       institution:
-        name: R Foundation for Statistical Computing
+        name: 'R Foundation for Statistical Computing (ROR: <https://ror.org/05qewa988>)'
         address: Vienna, Austria
       year: '2026'
+      doi: 10.32614/R.manuals
     - type: software
       title: tools
       abstract: 'R: A Language and Environment for Statistical Computing'
@@ -282,9 +286,10 @@ test <- cff_create("knitr")
       authors:
       - name: R Core Team
       institution:
-        name: R Foundation for Statistical Computing
+        name: 'R Foundation for Statistical Computing (ROR: <https://ror.org/05qewa988>)'
         address: Vienna, Austria
       year: '2026'
+      doi: 10.32614/R.manuals
     - type: software
       title: xfun
       abstract: 'xfun: Supporting Functions for Packages Maintained by ''Yihui Xie'''
@@ -430,37 +435,6 @@ test <- cff_create("knitr")
       year: '2026'
       doi: 10.32614/CRAN.package.magick
     - type: software
-      title: litedown
-      abstract: 'litedown: A Lightweight Version of R Markdown'
-      notes: Suggests
-      url: https://github.com/yihui/litedown
-      repository: https://CRAN.R-project.org/package=litedown
-      authors:
-      - family-names: Xie
-        given-names: Yihui
-        email: xie@yihui.name
-        orcid: https://orcid.org/0000-0003-0645-5666
-      year: '2026'
-      doi: 10.32614/CRAN.package.litedown
-    - type: software
-      title: markdown
-      abstract: 'markdown: Render Markdown with ''commonmark'''
-      notes: Suggests
-      url: https://github.com/rstudio/markdown
-      repository: https://CRAN.R-project.org/package=markdown
-      authors:
-      - family-names: Xie
-        given-names: Yihui
-        email: xie@yihui.name
-        orcid: https://orcid.org/0000-0003-0645-5666
-      - family-names: Allaire
-        given-names: JJ
-      - family-names: Horner
-        given-names: Jeffrey
-      year: '2026'
-      doi: 10.32614/CRAN.package.markdown
-      version: '>= 1.3'
-    - type: software
       title: otel
       abstract: 'otel: OpenTelemetry R API'
       notes: Suggests
@@ -472,18 +446,6 @@ test <- cff_create("knitr")
         email: csardi.gabor@gmail.com
       year: '2026'
       doi: 10.32614/CRAN.package.otel
-    - type: software
-      title: otelsdk
-      abstract: 'otelsdk: R SDK and Exporters for OpenTelemetry'
-      notes: Suggests
-      url: https://otelsdk.r-lib.org
-      repository: https://CRAN.R-project.org/package=otelsdk
-      authors:
-      - family-names: Csárdi
-        given-names: Gábor
-        email: csardi.gabor@gmail.com
-      year: '2026'
-      doi: 10.32614/CRAN.package.otelsdk
     - type: software
       title: png
       abstract: 'png: Read and write PNG images'
@@ -683,34 +645,6 @@ test <- cff_create("knitr")
         email: gary@posit.co
       year: '2026'
       doi: 10.32614/CRAN.package.rstudioapi
-    - type: software
-      title: svglite
-      abstract: 'svglite: An ''SVG'' Graphics Device'
-      notes: Suggests
-      url: https://svglite.r-lib.org
-      repository: https://CRAN.R-project.org/package=svglite
-      authors:
-      - family-names: Wickham
-        given-names: Hadley
-        email: hadley@posit.co
-      - family-names: Henry
-        given-names: Lionel
-        email: lionel@posit.co
-      - family-names: Pedersen
-        given-names: Thomas Lin
-        email: thomas.pedersen@posit.co
-        orcid: https://orcid.org/0000-0002-5147-4711
-      - family-names: Luciani
-        given-names: T Jake
-        email: jake@apache.org
-      - family-names: Decorde
-        given-names: Matthieu
-        email: matthieu.decorde@ens-lyon.fr
-      - family-names: Lise
-        given-names: Vaudor
-        email: lise.vaudor@ens-lyon.fr
-      year: '2026'
-      doi: 10.32614/CRAN.package.svglite
 
 </details>
 

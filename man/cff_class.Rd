@@ -124,9 +124,10 @@ ref_list
 #>   authors:
 #>   - name: R Core Team
 #>   institution:
-#>     name: R Foundation for Statistical Computing
+#>     name: 'R Foundation for Statistical Computing (ROR: <https://ror.org/05qewa988>)'
 #>     address: Vienna, Austria
 #>   year: '2026'
+#>   doi: 10.32614/R.manuals
 #>   url: https://www.R-project.org/
 #> - type: manual
 #>   title: 'yaml: Methods to Convert R Data to YAML and Back'
@@ -151,9 +152,10 @@ ref_list[[1]]
 #> authors:
 #> - name: R Core Team
 #> institution:
-#>   name: R Foundation for Statistical Computing
+#>   name: 'R Foundation for Statistical Computing (ROR: <https://ror.org/05qewa988>)'
 #>   address: Vienna, Austria
 #> year: '2026'
+#> doi: 10.32614/R.manuals
 #> url: https://www.R-project.org/
 
 class(ref_list[[1]])
@@ -169,7 +171,7 @@ Creating a \code{cff} object does not ensure its validity according to the \href
 #> [1] "cff"
 
 cff_validate(a_cff_object)
-#> == Validating cff ==============================================================
+#> == Validating cff ===================================================================================================
 #> x Oops! This <cff> has the following errors:
 #> * cff.authors: is required
 #> * cff["cff-version"]: is required
@@ -201,7 +203,7 @@ cff_valid
 #> title: My title
 
 cff_validate(cff_valid)
-#> == Validating cff ==============================================================
+#> == Validating cff ===================================================================================================
 #> v Congratulations! This <cff> is valid
 }\if{html}{\out{</div>}}
 }
@@ -302,6 +304,7 @@ toBibtex(cit)
 #>   organization = \{R Foundation for Statistical Computing\},
 #>   address = \{Vienna, Austria\},
 #>   year = \{2026\},
+#>   doi = \{10.32614/R.manuals\},
 #>   url = \{https://www.R-project.org/\},
 #> \}
 #> 

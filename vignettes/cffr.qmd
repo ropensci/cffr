@@ -47,7 +47,7 @@ GitHub support is of special interest:
 
 <figure>
 
-![](tweet-1.png){.quarto-figure .quarto-figure-center fig-align="center"
+![GitHub citation support announcement](tweet-1.png){.quarto-figure .quarto-figure-center fig-align="center"
 width="400"}
 
 ```{=html}
@@ -55,8 +55,7 @@ width="400"}
 </figure>
 ```
 
-See [Customize your repository/About CITATION
-files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
+See [GitHub’s guide to CITATION files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
 for more information.
 
 ## Creating a `CITATION.cff` file for my R package

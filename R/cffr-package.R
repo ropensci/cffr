@@ -5,7 +5,7 @@
 ## usethis namespace: end
 NULL
 
-# import stuffs
+# Import namespace directives
 #' @importFrom utils download.file as.person read.csv person capture.output
 #' @importFrom utils installed.packages packageDescription citation
 #' @importFrom utils available.packages modifyList toBibtex bibentry head tail

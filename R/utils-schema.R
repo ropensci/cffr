@@ -37,11 +37,11 @@
 #' @encoding UTF-8
 #'
 #' @return
-#' A vector of characters with the names of the valid keys to be used on a
-#'  Citation File Format version 1.2.0
+#' A character vector with the names of valid keys for Citation File Format
+#'   version 1.2.0.
 #'
 #' @param sorted Logical `TRUE/FALSE`. Should the keys be arranged
-#'  alphabetically?
+#'   alphabetically?
 #'
 #' @examples
 #'

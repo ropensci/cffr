@@ -1,5 +1,5 @@
 #' Error if it is not a `cff` file or object
-#' @param x file to be evaluated
+#' @param x File to be evaluated.
 #' @noRd
 abort_if_not_cff <- function(x) {
   if (is_cff(x)) {
