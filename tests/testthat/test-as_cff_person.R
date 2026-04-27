@@ -168,7 +168,7 @@ test_that("No valid emails", {
 
 test_that("Can extract comments from format", {
   rvers <- getRversion()
-  skip_if(!grepl("^4.5", rvers), "Snapshot created with R 4.5.*")
+  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
 
   pp <- person(
     given = "John",

@@ -298,7 +298,7 @@ test_that("Parsing wrong urls", {
   skip_on_cran()
 
   rvers <- getRversion()
-  skip_if(!grepl("^4.5", rvers), "Snapshot created with R 4.5.*")
+  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
 
   desc_path <- system.file("examples/DESCRIPTION_wrong_urls", package = "cffr")
 
@@ -370,8 +370,12 @@ test_that("Parsing Bioconductor", {
   expect_length(a_cff$repository, 1)
 
   expect_s3_class(a_cff, "cff")
-  expect_snapshot(a_cff)
   expect_true(cff_validate(a_cff, verbose = FALSE))
+
+  rvers <- getRversion()
+  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+
+  expect_snapshot(a_cff)
 })
 
 test_that("Parsing Posit Package Manager", {

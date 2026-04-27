@@ -14,12 +14,9 @@ description: >
 abstract: >
   This article introduces a crosswalk between **BibTeX** and the Citation File
   Format (CFF) [@druskat_citation_2021], as implemented by the **cffr** package
-  [@hernangomez2021]. The crosswalk aims to facilitate seamless translation
-  between these two reference formats. Specifically, it proposes various
-  crosswalk models tailored to different **BibTeX** entry types
-  [@patashnik1988]. Additionally, the article includes practical examples using
-  real **BibTeX** entries and offers tips for developers interested in
-  implementing this crosswalk across various programming languages.
+  [@hernangomez2021]. Because the two formats differ in structure and 
+  expressiveness, the mapping is not bijective, but it enables practical
+  interoperability.
 link-citations: true
 documentclass: article
 toc: true
@@ -31,7 +28,7 @@ vignette: >
 knitr:
   opts_chunk:
     collapse: true
-    comment: ""
+    comment: "#>"
 ---
 
 ```{r}
@@ -43,10 +40,10 @@ p2file <- system.file("extdata/crosswalk_tables.csv", package = "cffr")
 table_master <- read.csv(p2file)
 ```
 
-## Disclaimer
-
+::: callout-note
 *This article was reviewed and updated in 2024, along with the release of
 **cffr** v1.0.0.*
+:::
 
 ## Citation
 
@@ -67,9 +64,9 @@ Please cite this article using this **BibTeX** entry:
 ## BibTeX and R
 
 [**BibTeX**](https://en.wikipedia.org/wiki/BibTeX) is a widely used format for
-storing references, originally designed for document-centric workflows by Oren
-Patashnik and Leslie Lamport in 1985. It represents bibliographic entries as
-relatively flat records relying on conventions and free-text fields.
+storing references, originally designed for document-centric workflows in 1985.
+It represents bibliographic entries as relatively flat records relying on
+conventions and free-text fields.
 
 The Citation File Format (CFF) [@druskat_citation_2021] provides a structured
 and extensible way to represent citation metadata, particularly for software and
@@ -98,41 +95,6 @@ objects, and support for richer metadata such as contributor roles.
 As a result, direct one-to-one mappings are not always possible. Mappings
 require a combination of direct mappings, structural transformations, and
 heuristic parsing.
-
-## Mapping strategy
-
-The mapping implemented in **cffr** follows a three-step pipeline:
-
-1.  Parse BibTeX entries into an intermediate representation
-2.  Apply mapping rules to transform types and fields
-3.  Serialize the result into CFF (and vice versa)
-
-Mappings are deterministic whenever possible, but some fields require heuristic
-parsing.
-
-```{r}
-#| label: cffbibread
-#| comment: '#>'
-string <- "@book{einstein1921,
-    title        = {Relativity: The Special and the General Theory},
-    author       = {Einstein, A.},
-    year         = 1920,
-    publisher    = {Henry Holt and Company},
-    address      = {London, United Kingdom},
-    isbn         = 9781587340925}"
-
-# To cff
-library(cffr)
-cff_format <- cff_read_bib_text(string)
-
-cff_format
-
-# To BibTeX with S3 method
-toBibtex(cff_format)
-```
-
-The resulting object converts flat BibTeX fields into structured CFF metadata,
-normalizing field names and representations where required.
 
 ## BibTeX Definitions
 
@@ -345,12 +307,44 @@ knitr::kable(
 )
 ```
 
-These keys are equivalent to the **BibTeX** [fields](#fields), with the
+These keys correspond conceptually to **BibTeX** [fields](#fields), with the
 exception of the key [type]{.underline}. In [CFF]{.underline}, this key defines
 the type of work[^1], making it analogous to the **BibTeX** [entries](#0).
 
-[^1]: See a complete list of possible values of [CFF]{.underline}
-    [type]{.underline} in [Appendix B](#appendix_cff_type).
+## Mapping strategy
+
+The mapping implemented in **cffr** follows a three-step pipeline:
+
+1.  Parse BibTeX entries into an intermediate representation
+2.  Apply mapping rules to transform types and fields
+3.  Serialize the result into CFF (and vice versa)
+
+The mapping is deterministic whenever possible, but some fields require
+heuristic parsing.
+
+```{r}
+#| label: cffbibread
+#| comment: '#>'
+string <- "@book{einstein1921,
+    title        = {Relativity: The Special and the General Theory},
+    author       = {Einstein, A.},
+    year         = 1920,
+    publisher    = {Henry Holt and Company},
+    address      = {London, United Kingdom},
+    isbn         = 9781587340925}"
+
+# To cff
+library(cffr)
+cff_format <- cff_read_bib_text(string)
+
+cff_format
+
+# To BibTeX with S3 method
+toBibtex(cff_format)
+```
+
+The resulting object converts flat BibTeX fields into structured CFF metadata,
+normalizing field names and representations where required.
 
 ## Mapping tables
 
@@ -358,72 +352,82 @@ The following tables summarize the mapping rules implemented in **cffr**.
 
 Mapping types:
 
-- **direct**: preserved without modification
-- **transform**: structural or naming transformation
-- **split**: one field mapped to multiple fields
-- **heuristic**: requires parsing or inference
-- **unsupported**: dropped during mapping
-- **enrichment**: only exists in CFF
+- **direct**: preserved without modification.
+- **transform**: structural or naming transformation.
+- **split**: one field mapped to multiple fields.
+- **heuristic**: requires parsing or inference.
+- **unsupported**: dropped during mapping.
+- **enrichment**: only exists in CFF.
 
 These mappings are not bijective and may introduce normalization effects.
 
-| BibTeX type     | CFF `type` | Mapping type | Notes                            |
-|-----------------|------------|--------------|----------------------------------|
-| `@article`      | `article`  | direct       | —                                |
-| `@book`         | `book`     | direct       | —                                |
-| `@inbook`       | `chapter`  | transform    | Normalized to CFF taxonomy       |
-| `@incollection` | `chapter`  | transform    | Same as `inbook`                 |
-| `@manual`       | `manual`   | direct       | —                                |
-| `@misc`         | `generic`  | heuristic    | Fallback when no better match    |
-| `@phdthesis`    | `thesis`   | transform    | Thesis type not always preserved |
-| `@techreport`   | `report`   | transform    | —                                |
-| other           | `generic`  | heuristic    | Default fallback                 |
+::: {#tbl-mapentry}
+| BibTeX type | CFF [type]{.underline} | Mapping type | Notes |
+|:---|:---|:---|:---|
+| **\@article** | [article]{.underline} | direct | \- |
+| **\@book** | [book]{.underline} | direct | \- |
+| **\@inbook** | [chapter]{.underline} | transform | Normalized to CFF taxonomy |
+| **\@incollection** | [chapter]{.underline} | transform | Same as **\@inbook** |
+| **\@manual** | [manual]{.underline} | direct | \- |
+| **\@misc** | [generic]{.underline} | heuristic | Fallback when no better match |
+| **\@phdthesis** | [thesis]{.underline} | transform | The specific thesis subtype (e.g., master’s vs PhD) may be lost when mapping from BibTeX to CFF if the original entry does not include a [type]{.underline} field |
+| **\@techreport** | [report]{.underline} | transform | \- |
+| **other** | [generic]{.underline} | heuristic | Default fallback |
 
 : Entry types
+:::
 
-| BibTeX field | CFF field          | Mapping type | Notes                               |
-|----------------|----------------|----------------|--------------------------------|
-| `title`      | `title`            | direct       | —                                   |
-| `author`     | `authors`          | transform    | Parsed into structured name objects |
-| `editor`     | `editors`          | transform    | Same parsing logic as authors       |
-| `year`       | `year`             | direct       | —                                   |
-| `month`      | `month`            | heuristic    | Format normalization required       |
-| `journal`    | `journal`          | direct       | —                                   |
-| `booktitle`  | `collection-title` | transform    | Container title                     |
-| `volume`     | `volume`           | direct       | —                                   |
-| `number`     | `issue`            | transform    | Naming normalization                |
-| `pages`      | `start` / `end`    | split        | Parsed from page range              |
-| `doi`        | `doi`              | direct       | —                                   |
-| `url`        | `url`              | direct       | —                                   |
+::: {#tbl-mapcore}
+| BibTeX field | CFF field | Mapping type | Notes |
+|:---|:---|:---|:---|
+| **title** | [title]{.underline} | direct | \- |
+| **author** | [authors]{.underline} | transform | Parsed into structured name objects |
+| **editor** | [editors]{.underline} | transform | Same parsing logic as authors |
+| **year** | [year]{.underline} | direct | \- |
+| **month** | [month]{.underline} | heuristic | Format normalization required |
+| **journal** | [journal]{.underline} | direct | \- |
+| **booktitle** | [collection-title]{.underline} | transform | Container title |
+| **volume** | [volume]{.underline} | direct | \- |
+| **number** | [issue]{.underline} | transform | Naming normalization |
+| **pages** | [start]{.underline} / [end]{.underline} | split | Parsed from page range |
+| **doi** | [doi]{.underline} | direct | \- |
+| **url** | [url]{.underline} | direct | \- |
 
 : Core fields
+:::
 
-| BibTeX field(s) | CFF field            | Mapping type | Notes                          |
-|-----------------|------------------|-----------------|----------------------------|
-| `publisher`     | `publisher.name`     | transform    | Converted to structured object |
-| `address`       | `publisher.location` | transform    | Combined with publisher        |
-| `institution`   | `institution`        | direct       | Used mainly in reports/thesis  |
-| `school`        | `institution`        | transform    | Thesis normalization           |
+::: {#tbl-mapstruct}
+| BibTeX field(s) | CFF field | Mapping type | Notes |
+|:---|:---|:---|:---|
+| **publisher** | [publisher.name]{.underline} | transform | Converted to structured object |
+| **address** | [publisher.location]{.underline} | transform | Combined with publisher |
+| **institution** | [institution]{.underline} | direct | Used mainly in reports/thesis |
+| **school** | [institution]{.underline} | transform | Thesis normalization |
 
 : Structural fields
+:::
 
-| BibTeX field | CFF field   | Mapping type | Notes                                 |
-|--------------|-------------|--------------|---------------------------------------|
-| `pages`      | `start/end` | heuristic    | Requires parsing, may fail            |
-| `author`     | `authors`   | heuristic    | Name splitting is not always reliable |
-| `month`      | `month`     | heuristic    | Multiple formats possible             |
-| `note`       | `notes`     | heuristic    | Free text                             |
+::: {#tbl-mapparsed}
+| BibTeX field | CFF field | Mapping type | Notes |
+|:---|:---|:---|:---|
+| **pages** | [start]{.underline}/[end]{.underline} | heuristic | Requires parsing, may fail |
+| **author** | [authors]{.underline} | heuristic | Name splitting is not always reliable |
+| **month** | [month]{.underline} | heuristic | Multiple formats possible |
+| **note** | [notes]{.underline} | heuristic | Free text |
 
 : Parsed fields
+:::
 
-| CFF field            | BibTeX equivalent | Mapping type | Notes                |
-|----------------------|-------------------|--------------|----------------------|
-| `preferred-citation` | —                 | enrichment   | CFF-specific concept |
-| `references`         | —                 | enrichment   | Not representable    |
-| `type: software`     | —                 | unsupported  | No BibTeX equivalent |
-| `identifiers`        | partial           | transform    | Only DOI/URL mapped  |
+::: {#tbl-mapnobib}
+| CFF field | BibTeX equivalent | Mapping type | Notes |
+|:---|:---|:---|:---|
+| [preferred-citation]{.underline} | \- | enrichment | CFF-specific concept |
+| [references]{.underline} | \- | enrichment | Not representable |
+| [type: software]{.underline} | \- | unsupported | No BibTeX equivalent |
+| [identifiers]{.underline} | partial | transform | Only DOI/URL mapped |
 
 : CFF fields with no BibTeX equivalence
+:::
 
 ## Proposed Crosswalk
 
@@ -432,9 +436,6 @@ The **cffr** package [@hernangomez2021] provides utilities for mapping
 [CFF]{.underline} files and vice versa. This section describes how the mapping
 between both formats has been implemented. The crosswalk is partially based on
 @Haines_Ruby_CFF_Library_2021[^2].
-
-[^2]: Note that this software performs only the mapping from [CFF]{.underline}
-    to **BibTeX**, however **cffr** can perform the mapping in both directions.
 
 In the following two sections, I present an overview of the proposed mapping
 between the **Entries** and **Fields** of **BibTeX** and the [CFF]{.underline}
@@ -480,15 +481,9 @@ The previous crosswalk has the following specifications:
 - **\@mastersthesis** and **\@phdthesis** are tagged using a combination of
   `type:thesis` and `thesis-type`.
 
-[^3]: Note that **BibLaTeX** [@biblatexpack] handles **\@inbook** differently,
-    see [Appendix A](#appendix_inbook).
-
 Additionally, considering that [CFF]{.underline} allows for a wide range of
 values[^4] for the [type]{.underline} field, the following mapping is applied
 from [CFF]{.underline} to **BibTeX**:
-
-[^4]: See [Appendix B](#appendix_cff_type) for all possible values. Information
-    extracted from @druskat2019.
 
 ```{r}
 #| label: tbl-entry_cff2bib
@@ -574,8 +569,6 @@ Additionally, there are other [CFF]{.underline} keys that correspond to
 **BibLaTeX** fields. We propose to include these fields in the crosswalk[^5],
 even though they are not part of the core **BibTeX** fields definition.
 
-[^5]: See @biblatexcheatsheet for a preview of the accepted **BibLaTeX** fields.
-
 ```{r}
 #| label: tbl-fields_biblatex2cff
 #| echo: false
@@ -597,21 +590,21 @@ knitr::kable(
 
 The mapping between BibTeX and CFF has several limitations.
 
-### Non-bijective mapping
+### Bijectivity and Round-tripping
 
 Mapping from BibTeX to CFF and back does not guarantee identical output.
 
 ### Information loss
 
-- Nested CFF structures are flattened in BibTeX
-- Contributor roles are not preserved
-- CFF-specific types (e.g., software) have no equivalent
+- Nested CFF structures are flattened in BibTeX.
+- Contributor roles are not preserved.
+- CFF-specific types (e.g., software) have no equivalent.
 
 ### Heuristic parsing
 
-- Author names require parsing
-- Page ranges must be split
-- Month formats vary
+- Author names require parsing.
+- Page ranges must be split.
+- Month formats vary.
 
 ### Unsupported fields
 
@@ -626,10 +619,10 @@ Field values may be normalized, resulting in differences in formatting.
 
 The mapping implemented in **cffr** follows these principles:
 
-- Prefer deterministic mappings when possible
-- Use heuristics only when necessary
-- Normalize fields to align with CFF conventions
-- Favor interoperability over exact round-trip fidelity
+- Prefer deterministic mappings when possible.
+- Use heuristics only when necessary.
+- Normalize fields to align with CFF conventions.
+- Favor interoperability over exact round-trip fidelity.
 
 ## Entry Models {#entrymodels}
 
@@ -663,28 +656,9 @@ knitr::kable(
 )
 ```
 
-**Examples**
-
-**BibTeX entry**
-
-``` bibtex
-@article{article-full,
-    title        = {The Gnats and Gnus Document Preparation System},
-    author       = {Leslie A. Aamport},
-    year         = 1986,
-    month        = jul,
-    journal      = {{G-Animal's} Journal},
-    volume       = 41,
-    number       = 7,
-    pages        = {73+},
-    note         = {This is a full ARTICLE entry}
-}
-```
-
-[CFF entry]{.underline}
+**Round-trip**
 
 ```{r}
-#| echo: false
 bib <- "@article{article-full,
     title        = {The Gnats and Gnus Document Preparation System},
     author       = {Leslie A. Aamport},
@@ -697,12 +671,7 @@ bib <- "@article{article-full,
     note         = {This is a full ARTICLE entry}}"
 
 cff_read_bib_text(bib)
-```
 
-From [CFF]{.underline} to **BibTeX**
-
-```{r}
-#| echo: false
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -748,29 +717,9 @@ There are notable differences in how **BibTeX** and **BibLaTeX** handle the
 **\@inbook** entry (further discussed in the [Appendix A](#appendix_inbook)). We
 propose to treat a **BibLaTeX \@inbook** as a **BibTeX \@incollection.**
 
-**Examples: \@book**
-
-**BibTeX entry**
-
-``` bibtex
-@book{book-full,
-    title        = {Seminumerical Algorithms},
-    author       = {Donald E. Knuth},
-    year         = 1981,
-    month        = 10,
-    publisher    = {Addison-Wesley},
-    address      = {Reading, Massachusetts},
-    series       = {The Art of Computer Programming},
-    volume       = 2,
-    note         = {This is a full BOOK entry},
-    edition      = {Second}
-}
-```
-
-[CFF entry]{.underline}
+**Round-trip: \@book**
 
 ```{r}
-#| echo: false
 bib <- "@book{book-full,
     title        = {Seminumerical Algorithms},
     author       = {Donald E. Knuth},
@@ -785,41 +734,13 @@ bib <- "@book{book-full,
 }"
 
 cff_read_bib_text(bib)
-```
 
-From [CFF]{.underline} to **BibTeX**
-
-```{r}
-#| echo: false
 toBibtex(cff_read_bib_text(bib))
 ```
 
-**Examples: \@inbook**
-
-**BibTeX entry**
-
-``` bibtex
-@inbook{inbook-full,
-    title        = {Fundamental Algorithms},
-    author       = {Donald E. Knuth},
-    year         = 1973,
-    month        = 10,
-    publisher    = {Addison-Wesley},
-    address      = {Reading, Massachusetts},
-    series       = {The Art of Computer Programming},
-    volume       = 1,
-    pages        = {10--119},
-    note         = {This is a full INBOOK entry},
-    edition      = {Second},
-    type         = {Section},
-    chapter      = {1.2}
-}
-```
-
-[CFF entry]{.underline}
+**Round-trip: \@inbook**
 
 ```{r}
-#| echo: false
 bib <- "@inbook{inbook-full,
     title        = {Fundamental Algorithms},
     author       = {Donald E. Knuth},
@@ -837,12 +758,7 @@ bib <- "@inbook{inbook-full,
 }"
 
 cff_read_bib_text(bib)
-```
 
-From [CFF]{.underline} to **BibTeX**
-
-```{r}
-#| echo: false
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -871,26 +787,9 @@ knitr::kable(
 )
 ```
 
-**Examples**
-
-**BibTeX entry**
-
-``` bibtex
-@booklet{booklet-full,
-    title        = {The Programming of Computer Art},
-    author       = {Jill C. Knvth},
-    date         = {1988-03-14},
-    month        = feb,
-    address      = {Stanford, California},
-    note         = {This is a full BOOKLET entry},
-    howpublished = {Vernier Art Center}
-}
-```
-
-[CFF entry]{.underline}
+**Round-trip**
 
 ```{r }
-#| echo: false
 bib <- "@booklet{booklet-full,
     title        = {The Programming of Computer Art},
     author       = {Jill C. Knvth},
@@ -902,12 +801,7 @@ bib <- "@booklet{booklet-full,
 }"
 
 cff_read_bib_text(bib)
-```
 
-From [CFF]{.underline} to **BibTeX**
-
-```{r }
-#| echo: false
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -938,31 +832,9 @@ knitr::kable(
 )
 ```
 
-**Examples**
-
-**BibTeX entry**
-
-``` bibtex
-@inproceedings{inproceedings-full,
-    title        = {On Notions of Information Transfer in {VLSI} Circuits},
-    author       = {Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis},
-    year         = 1983,
-    month        = mar,
-    booktitle    = {Proc. Fifteenth Annual ACM Symposium on the Theory of Computing},
-    publisher    = {Academic Press},
-    address      = {Boston},
-    series       = {All ACM Conferences},
-    number       = 17,
-    pages        = {133--139},
-    editor       = {Wizard V. Oz and Mihalis Yannakakis},
-    organization = {The OX Association for Computing Machinery}
-}
-```
-
-[CFF entry]{.underline}
+**Round-trip**
 
 ```{r}
-#| echo: false
 bib <- "@inproceedings{inproceedings-full,
     title        = {On Notions of Information Transfer in {VLSI} Circuits},
     author       = {Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis},
@@ -979,12 +851,7 @@ bib <- "@inproceedings{inproceedings-full,
 }"
 
 cff_read_bib_text(bib)
-```
 
-From [CFF]{.underline} to **BibTeX**
-
-```{r}
-#| echo: false
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -1019,34 +886,9 @@ knitr::kable(
 )
 ```
 
-**Examples**
-
-**BibTeX entry**
-
-``` bibtex
-@incollection{incollection-full,
-    title        = {Semigroups of Recurrences},
-    author       = {Daniel D. Lincoll},
-    year         = 1977,
-    month        = sep,
-    booktitle    = {High Speed Computer and Algorithm Organization},
-    publisher    = {Academic Press},
-    address      = {New York},
-    series       = {Fast Computers},
-    number       = 23,
-    pages        = {179--183},
-    note         = {This is a full INCOLLECTION entry},
-    editor       = {David J. Lipcoll and D. H. Lawrie and A. H. Sameh},
-    chapter      = 3,
-    type         = {Part},
-    edition      = {Third}
-}
-```
-
-[CFF entry]{.underline}
+**Round-trip**
 
 ```{r}
-#| echo: false
 bib <- "@incollection{incollection-full,
     title        = {Semigroups of Recurrences},
     author       = {Daniel D. Lincoll},
@@ -1066,12 +908,7 @@ bib <- "@incollection{incollection-full,
 }"
 
 cff_read_bib_text(bib)
-```
 
-From [CFF]{.underline} to **BibTeX**
-
-```{r}
-#| echo: false
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -1101,30 +938,12 @@ knitr::kable(
 )
 ```
 
-**Examples**
+**Round-trip**
 
-**BibTeX entry**
-
-Note that **month** can't be coerce to a single integer in the range `1--12` as
-required on CFF, so it is ignored to avoid validation errors.
-
-``` bibtex
-@manual{manual-full,
-  title        = {The Definitive Computer Manual},
-    author       = {Larry Manmaker},
-    year         = 1986,
-    month        = {apr-may},
-    address      = {Silicon Valley},
-    note         = {This is a full MANUAL entry},
-    organization = {Chips-R-Us},
-    edition      = {Silver}
-}
-```
-
-[CFF entry]{.underline}
+Note that **month** cannot be coerced to a single integer in the range `1--12`
+as required on CFF, so it is ignored to avoid validation errors.
 
 ```{r}
-#| echo: false
 bib <- "@manual{manual-full,
   title        = {The Definitive Computer Manual},
     author       = {Larry Manmaker},
@@ -1137,12 +956,7 @@ bib <- "@manual{manual-full,
 }"
 
 cff_read_bib_text(bib)
-```
 
-From [CFF]{.underline} to **BibTeX**
-
-```{r}
-#| echo: false
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -1179,27 +993,9 @@ knitr::kable(
 )
 ```
 
-**Examples: \@mastersthesis**
-
-**BibTeX entry**
-
-``` bibtex
-@mastersthesis{mastersthesis-full,
-    title        = {Mastering Thesis Writing},
-    author       = {Edouard Masterly},
-    year         = 1988,
-    month        = jun,
-    address      = {English Department},
-    note         = {This is a full MASTERSTHESIS entry},
-    school       = {Stanford University},
-    type         = {Master's project}
-}
-```
-
-[CFF entry]{.underline}
+**Round-trip: \@mastersthesis**
 
 ```{r}
-#| echo: false
 bib <- "@mastersthesis{mastersthesis-full,
     title        = {Mastering Thesis Writing},
     author       = {Edouard Masterly},
@@ -1212,36 +1008,13 @@ bib <- "@mastersthesis{mastersthesis-full,
 }"
 
 cff_read_bib_text(bib)
-```
 
-From [CFF]{.underline} to **BibTeX**
-
-```{r}
-#| echo: false
 toBibtex(cff_read_bib_text(bib))
 ```
 
-**Examples: \@phdthesis**
-
-**BibTeX entry**
-
-``` bibtex
-@phdthesis{phdthesis-full,
-    title        = {Fighting Fire with Fire: Festooning {F}rench Phrases},
-    author       = {F. Phidias Phony-Baloney},
-    year         = 1988,
-    month        = jun,
-    address      = {Department of French},
-    note         = {This is a full PHDTHESIS entry},
-    school       = {Fanstord University},
-    type         = {{PhD} Dissertation}
-}
-```
-
-[CFF entry]{.underline}
+**Round-trip: \@phdthesis**
 
 ```{r}
-#| echo: false
 bib <- "@phdthesis{phdthesis-full,
     title        = {Fighting Fire with Fire: Festooning {F}rench Phrases},
     author       = {F. Phidias Phony-Baloney},
@@ -1254,12 +1027,7 @@ bib <- "@phdthesis{phdthesis-full,
 }"
 
 cff_read_bib_text(bib)
-```
 
-From [CFF]{.underline} to **BibTeX**
-
-```{r}
-#| echo: false
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -1294,25 +1062,9 @@ knitr::kable(
 )
 ```
 
-**Examples**
-
-**BibTeX entry**
-
-``` bibtex
-@misc{misc-full,
-    title        = {Handing out random pamphlets in airports},
-    author       = {Joe-Bob Missilany},
-    year         = 1984,
-    month        = oct,
-    note         = {This is a full MISC entry},
-    howpublished = {Handed out at O'Hare}
-}
-```
-
-[CFF entry]{.underline}
+**Round-trip**
 
 ```{r}
-#| echo: false
 bib <- "@misc{misc-full,
     title        = {Handing out random pamphlets in airports},
     author       = {Joe-Bob Missilany},
@@ -1323,12 +1075,7 @@ bib <- "@misc{misc-full,
 }"
 
 cff_read_bib_text(bib)
-```
 
-From [CFF]{.underline} to **BibTeX**
-
-```{r}
-#| echo: false
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -1339,10 +1086,6 @@ The proposed model is consistent with [**\@conference** /
 prescribe an **author** field. In these cases, as [authors]{.underline} is
 required on [CFF]{.underline}, we use *anonymous*[^6] when mapping to
 [CFF]{.underline} and omit it when mapping from [CFF]{.underline} to **BibTeX**.
-
-[^6]: As proposed on [*How to deal with unknown individual
-    authors?*](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors),
-    **(Guide to Citation File Format schema version 1.2.0)**
 
 ```{r}
 #| label: tbl-model_proceedings
@@ -1365,29 +1108,9 @@ knitr::kable(
 )
 ```
 
-**Examples**
-
-**BibTeX entry**
-
-``` bibtex
-@proceedings{proceedings-full,
-    title        = {Proc. Fifteenth Annual ACM Symposium on the Theory of Computing},
-    year         = 1983,
-    month        = mar,
-    publisher    = {Academic Press},
-    address      = {Boston},
-    series       = {All ACM Conferences},
-    number       = 17,
-    note         = {This is a full PROCEEDINGS entry},
-    editor       = {Wizard V. Oz and Mihalis Yannakakis},
-    organization = {The OX Association for Computing Machinery}
-}
-```
-
-[*CFF entry*]{.underline}
+**Round-trip**
 
 ```{r}
-#| echo: false
 bib <- "@proceedings{proceedings-full,
     title        = {Proc. Fifteenth Annual ACM Symposium on the Theory of Computing},
     year         = 1983,
@@ -1402,12 +1125,7 @@ bib <- "@proceedings{proceedings-full,
 }"
 
 cff_read_bib_text(bib)
-```
 
-From [CFF]{.underline} to **BibTeX**
-
-```{r}
-#| echo: false
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -1436,28 +1154,9 @@ knitr::kable(
 )
 ```
 
-**Examples**
-
-**BibTeX entry**
-
-``` bibtex
-@techreport{techreport-full,
-    title        = {A Sorting Algorithm},
-    author       = {Tom Terrific},
-    year         = 1988,
-    month        = oct,
-    address      = {Computer Science Department, Fanstord, California},
-    number       = 7,
-    note         = {This is a full TECHREPORT entry},
-    institution  = {Fanstord University},
-    type         = {Wishful Research Result}
-}
-```
-
-[CFF entry]{.underline}
+**Round-trip**
 
 ```{r}
-#| echo: false
 bib <- "@techreport{techreport-full,
     title        = {A Sorting Algorithm},
     author       = {Tom Terrific},
@@ -1471,12 +1170,7 @@ bib <- "@techreport{techreport-full,
 }"
 
 cff_read_bib_text(bib)
-```
 
-From [CFF]{.underline} to **BibTeX**
-
-```{r}
-#| echo: false
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -1505,22 +1199,9 @@ knitr::kable(
 )
 ```
 
-**Examples**
-
-**BibTeX entry**
-
-``` bibtex
-@unpublished{unpublished-minimal,
-    title        = {Lower Bounds for Wishful Research Results},
-    author       = {Ulrich Underwood and Ned Net and Paul Pot},
-    note         = {Talk at Fanstord University (this is a minimal UNPUBLISHED entry)}
-}
-```
-
-[CFF entry]{.underline}
+**Round-trip**
 
 ```{r}
-#| echo: false
 bib <- "@unpublished{unpublished-minimal,
     title        = {Lower Bounds for Wishful Research Results},
     author       = {Ulrich Underwood and Ned Net and Paul Pot},
@@ -1528,12 +1209,7 @@ bib <- "@unpublished{unpublished-minimal,
 }"
 
 cff_read_bib_text(bib)
-```
 
-From [CFF]{.underline} to **BibTeX**
-
-```{r}
-#| echo: false
 toBibtex(cff_read_bib_text(bib))
 ```
 
@@ -1644,3 +1320,21 @@ knitr::kable(
 ```
 
 ## References
+
+[^1]: See a complete list of possible values of [CFF]{.underline}
+    [type]{.underline} in [Appendix B](#appendix_cff_type).
+
+[^2]: Note that this software performs only the mapping from [CFF]{.underline}
+    to **BibTeX**, however **cffr** can perform the mapping in both directions.
+
+[^3]: Note that **BibLaTeX** [@biblatexpack] handles **\@inbook** differently,
+    see [Appendix A](#appendix_inbook).
+
+[^4]: See [Appendix B](#appendix_cff_type) for all possible values. Information
+    extracted from @druskat2019.
+
+[^5]: See @biblatexcheatsheet for a preview of the accepted **BibLaTeX** fields.
+
+[^6]: As proposed on [*How to deal with unknown individual
+    authors?*](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors),
+    **(Guide to Citation File Format schema version 1.2.0)**
