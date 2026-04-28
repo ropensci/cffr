@@ -34,7 +34,6 @@ knitr:
 
 ```{r}
 #| include: false
-
 library(cffr)
 # Load the table of tables
 
@@ -210,10 +209,10 @@ human‑ and machine‑readable citation metadata for software and datasets.
 
 Two keys play a central role in CFF reference modeling:
 
--   `preferred-citation`: Identifies a work that should be cited instead of the
-    software or dataset itself.
--   `references`: Lists related creative works, analogous to references in a
-    scholarly article.
+- `preferred-citation`: Identifies a work that should be cited instead of the
+  software or dataset itself.
+- `references`: Lists related creative works, analogous to references in a
+  scholarly article.
 
 Both keys expect `definition-reference` objects, as defined in the [CFF schema
 guide](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#preferred-citation).
@@ -292,12 +291,12 @@ specification.
 
 Mapping types include:
 
--   **direct**: preserved without modification.
--   **transform**: renamed or structurally reorganized.
--   **split**: one field mapped to multiple fields.
--   **heuristic**: requires parsing or inference.
--   **unsupported**: omitted due to lack of correspondence.
--   **enrichment**: exists only in CFF.
+- **direct**: preserved without modification.
+- **transform**: renamed or structurally reorganized.
+- **split**: one field mapped to multiple fields.
+- **heuristic**: requires parsing or inference.
+- **unsupported**: omitted due to lack of correspondence.
+- **enrichment**: exists only in CFF.
 
 These mappings are not bijective and may introduce normalization effects.
 
@@ -308,8 +307,8 @@ formatting (e.g., `book`, `edition`) is used for CFF keys.
 :::
 
 ::: {#tbl-mapentry}
-| BibTeX entry | CFF key`type` | Mapping type | Notes |
-|:---|:---|:---|:---|
+| BibTeX entry | CFF key `type` | Mapping type | Notes |
+|:-------------------|:-------------------|:-------------------|:-------------------|
 | **\@article** | `type: article` | direct | \- |
 | **\@book** | `type: book` | direct | \- |
 | **\@inbook** | `type: chapter` | transform | Normalized to CFF taxonomy |
@@ -320,12 +319,12 @@ formatting (e.g., `book`, `edition`) is used for CFF keys.
 | **\@techreport** | `type: report` | transform | \- |
 | **other** | `type: generic` | heuristic | Default fallback |
 
-: BibTex entries and CFF key `type` mapping
+: BibTeX entries and CFF key `type` mapping
 :::
 
 ::: {#tbl-mapcore}
 | BibTeX field  | CFF key            | Mapping type | Notes                               |
-|:--------------|:-------------------|:-------------|:------------------------------------|
+|:------------------|:------------------|:------------------|:------------------------|
 | **title**     | `title`            | direct       | \-                                  |
 | **author**    | `authors`          | transform    | Parsed into structured name objects |
 | **editor**    | `editors`          | transform    | Same parsing logic as authors       |
@@ -344,7 +343,7 @@ formatting (e.g., `book`, `edition`) is used for CFF keys.
 
 ::: {#tbl-mapstruct}
 | BibTeX field    | CFF key              | Mapping type | Notes                          |
-|:----------------|:---------------------|:-------------|:-------------------------------|
+|:------------------|:------------------|:------------------|:----------------------|
 | **publisher**   | `publisher.name`     | transform    | Converted to structured object |
 | **address**     | `publisher.location` | transform    | Combined with `publisher`      |
 | **institution** | `institution`        | direct       | Used mainly in reports/thesis  |
@@ -381,9 +380,26 @@ The **cffr** package provides utilities for mapping BibTeX entries (via
 `bibentry()`) to CFF and back. This section describes how the crosswalk is
 implemented, partially informed by @Haines_Ruby_CFF_Library_2021[^2].
 
+The crosswalk is primarily designed for converting BibTeX to CFF; reverse
+conversion is provided as a best-effort compatibility layer.
+
 After presenting the general mapping between BibTeX **entries** and **fields**
 and CFF keys, the next section introduces [**Entry Models**](#entrymodels) that
 refine these rules for specific BibTeX entry types.
+
+## Transformation Semantics
+
+The crosswalk applies different transformation strategies:
+
+- **Direct mapping**: one-to-one correspondence between a BibTeX field and a CFF
+  key.
+- **Structural transformation**: a single field is expanded into multiple keys,
+  such as **pages** to `start` and `end`.
+- **Heuristic mapping**: equivalence is inferred based on entry type or context.
+- **Lossy mapping**: information is discarded due to lack of an equivalent
+  representation.
+
+Unless stated otherwise, mappings are lossy in at least one direction.
 
 ### Entry/Key `type` Crosswalk
 
@@ -410,18 +426,21 @@ knitr::kable(
 
 The previous mapping has the following specifications:
 
--   **\@book**, **\@inbook**, and **\@incollection** are closely related in
-    BibTeX[^3]. While **\@inbook** and **\@incollection** both reference parts
-    of a **\@book**, the former is used for citing sections, chapters, pages, or
-    other specific parts, whereas the latter is used for citing parts with a
-    specific title. Since CFF allows keys `type: book` and
-    `collection-type: book`, we may utilize a combination of these fields to tag
-    each entry type in CFF accordingly.
--   **\@mastersthesis** and **\@phdthesis** are tagged using a combination of
-    `type: thesis` and `thesis-type` keys.
+- **\@book**, **\@inbook**, and **\@incollection** are closely related in
+  BibTeX[^3]. While **\@inbook** and **\@incollection** both reference parts of
+  a **\@book**, the former is used for citing sections, chapters, pages, or
+  other specific parts, whereas the latter is used for citing parts with a
+  specific title. Since CFF allows keys `type: book` and
+  `collection-type: book`, we may utilize a combination of these fields to tag
+  each entry type in CFF accordingly.
+- **\@mastersthesis** and **\@phdthesis** are tagged using a combination of
+  `type: thesis` and `thesis-type` keys.
 
 Additionally, considering that CFF allows for a wide range of values[^4] for the
 key `type`, the following mapping is applied from CFF to BibTeX:
+
+The reverse mapping prioritizes BibTeX compatibility and normalization over
+exact round-trip preservation.
 
 ```{r}
 #| label: tbl-entry_cff2bib
@@ -466,31 +485,31 @@ knitr::kable(
 
 We provide more detail on some of the mappings presented in the table above:
 
--   Some fields are not mapped because there is no clear equivalence with CFF
-    keys (such as **annote**, **crossref**, and **key**). Regarding the **type**
-    field, the CFF key `type` corresponds to the identifier of the work (similar
-    to an entry in BibTeX), therefore, BibTeX **type** won't be mapped. These
-    fields are always optional in BibTeX.
--   For the **address** field, its intended use in BibTeX varies depending on
-    the entry type (e.g., for **\@inproceedings**, it denotes the **address** of
-    the **conference**, while for **\@mastersthesis/\@phdthesis**, is the
-    **address** of the **school**, etc.). Mapping between BibTeX and CFF becomes
-    more complex when institutional metadata is involved. This results in
-    varying final mappings in CFF. When mapping from CFF to BibTeX, we propose
-    to follow the same entry-based logic, using the key `location` as a fallback
-    value when mapping to **address**.
--   In relation with this complexity mentioned above, **institution,
-    organization** and **school** are mapped to `institution`.
--   **series** is mapped to `collection-title` only on those entries that do not
-    require **booktitle**. In practice, this means that `collection-title`
-    corresponds to **booktitle** for **\@incollection** and **\@inproceedings**,
-    and in the other cases it corresponds to `series`. As a consequence, series
-    information is lost for **\@incollection** and **\@inproceedings**, but in
-    those cases it is an optional field.
--   When mapping from CFF to BibTeX, we propose to use `date-published` as a
-    fallback for extracting **month** and **year** fields.
--   When **pages** is provided as a range separated by `--`, i.e. **pages =
-    {3--5}**, it is coerced as `start: 3`, `end: 5` in CFF.
+- Some fields are not mapped because there is no clear equivalence with CFF keys
+  (such as **annote**, **crossref**, and **key**). Regarding the **type** field,
+  the CFF key `type` corresponds to the identifier of the work (similar to an
+  entry in BibTeX), therefore, BibTeX **type** won't be mapped. These fields are
+  always optional in BibTeX.
+- For the **address** field, its intended use in BibTeX varies depending on the
+  entry type (e.g., for **\@inproceedings**, it denotes the **address** of the
+  **conference**, while for **\@mastersthesis/\@phdthesis**, it is the
+  **address** of the **school**, etc.). Mapping between BibTeX and CFF becomes
+  more complex when institutional metadata is involved. This results in varying
+  final mappings in CFF. When mapping from CFF to BibTeX, we propose to follow
+  the same entry-based logic, using the key `location` as a fallback value when
+  mapping to **address**.
+- In relation with this complexity mentioned above, **institution,
+  organization** and **school** are mapped to `institution`.
+- **series** is mapped to `collection-title` only on those entries that do not
+  require **booktitle**. In practice, this means that `collection-title`
+  corresponds to **booktitle** for **\@incollection** and **\@inproceedings**,
+  and in the other cases it corresponds to `series`. As a consequence, series
+  information is lost for **\@incollection** and **\@inproceedings**, but in
+  those cases it is an optional field.
+- When mapping from CFF to BibTeX, we propose to use `date-published` as a
+  fallback for extracting **month** and **year** fields.
+- When **pages** is provided as a range separated by `--`, i.e. **pages =
+  {3--5}**, it is coerced as `start: 3`, `end: 5` in CFF.
 
 #### BibLaTeX
 
@@ -520,23 +539,23 @@ knitr::kable(
 The BibTeX–CFF crosswalk entails several structural and semantic limitations
 that arise from fundamental differences between the two formats.
 
--   **Bijectivity and round‑tripping**: Converting from BibTeX to CFF and back
-    does not guarantee identical output.
--   **Information loss**: Nested CFF structures, contributor roles, and
-    CFF‑specific types (e.g., software) cannot be fully preserved in BibTeX.
--   **Heuristic parsing**: Names, page ranges, and months may require inference.
--   **Unsupported fields**: Some BibTeX fields (e.g., **howpublished**,
-    **annote**, **key**) have no CFF equivalent.
--   **Normalization**: Field values may be normalized, altering formatting.
+- **Bijectivity and round‑tripping**: Converting from BibTeX to CFF and back
+  does not guarantee identical output.
+- **Information loss**: Nested CFF structures, contributor roles, and
+  CFF‑specific types (e.g., software) cannot be fully preserved in BibTeX.
+- **Heuristic parsing**: Names, page ranges, and months may require inference.
+- **Unsupported fields**: Some BibTeX fields (e.g., **howpublished**,
+  **annote**, **key**) have no CFF equivalent.
+- **Normalization**: Field values may be normalized, altering formatting.
 
 ## Design decisions
 
 The mapping implemented in **cffr** is guided by the following principles:
 
--   Prefer deterministic mappings whenever possible
--   Use heuristics only when unavoidable
--   Normalize metadata to align with CFF conventions
--   Prioritize interoperability over exact round‑trip fidelity
+- Prefer deterministic mappings whenever possible
+- Use heuristics only when unavoidable
+- Normalize metadata to align with CFF conventions
+- Prioritize interoperability over exact round‑trip fidelity
 
 ## Entry Models {#entrymodels}
 
@@ -771,7 +790,8 @@ toBibtex(cff_read_bib_text(bib))
 
 As **booktitle** is a required field, we propose to map that field to
 `collection-title` and the `type` to `generic`. Therefore, an **\@incollection**
-is a `type: generic` in CFF with a `collection-title` key.
+is a `type: generic` in CFF with a `collection-title` key. The `generic` type is
+used as a fallback when no semantically equivalent CFF type exists.
 
 Additionally, **series** and **type** are ignored because there is no clear
 mapping in CFF for this field.
@@ -1138,19 +1158,19 @@ bibliographic systems and modern software‑centric practices.
 The definition of **\@inbook** and **\@incollection** in BibTeX [@patashnik1988]
 is as follows:
 
-> -   **\@inbook**: A part of a book, which may be a chapter (or section) and/or
->     a range of pages. Required fields: author or editor, title, chapter and/or
->     pages, publisher, year (...)
+> - **\@inbook**: A part of a book, which may be a chapter (or section) and/or a
+>   range of pages. Required fields: author or editor, title, chapter and/or
+>   pages, publisher, year (...)
 >
-> -   **\@incollection**: A part of a book having its own title. Required
->     fields: author, title, booktitle, publisher, year (...)
+> - **\@incollection**: A part of a book having its own title. Required fields:
+>   author, title, booktitle, publisher, year (...)
 
 Whereas BibLaTeX [@biblatexpack] specifies:
 
-> -   **\@inbook:** A part of a book which forms a self-contained unit with its
->     own title. Note that the [profile]{.underline} of this entry type is
->     [different from standard BibTeX]{.underline}, see § 2.3.1. Required
->     fields: author, title, booktitle, year/date (...).
+> - **\@inbook:** A part of a book which forms a self-contained unit with its
+>   own title. Note that the [profile]{.underline} of this entry type is
+>   [different from standard BibTeX]{.underline}, see § 2.3.1. Required fields:
+>   author, title, booktitle, year/date (...).
 
 When considering required fields, an important difference is the **booktitle**
 requirement in BibLaTeX. Notably, BibTeX **\@incollection** requires also this
@@ -1185,14 +1205,14 @@ toBibtex(cff_read_bib_text(bib))
 
 ## Appendix B: CFF key: `type` values {#appendix_cff_type .appendix}
 
-From @druskat2019 Table 4: Complete list of CFF reference for key `type`.
+From @druskat2019, Table 4: Complete list of CFF reference types for key `type`.
+Only a subset of these types is actively used in the proposed crosswalk.
 
 ```{r}
 #| label: tbl-cff_types
 #| echo: false
 #| results: asis
 #| tbl-cap: "Complete list of CFF reference types"
-
 df_table <- table_master[table_master$table == "cff_types", c(2:3)]
 df_table[is.na(df_table)] <- ""
 

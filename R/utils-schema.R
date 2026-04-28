@@ -17,7 +17,7 @@
 #'   [SPDX license identifier(s)](https://spdx.org/licenses/) to be used on the
 #'   `CITATION.cff` file.
 #' - [cff_schema_definitions_person()] and [cff_schema_definitions_entity()]
-#'   returns the valid fields to be included when defining a
+#'   return the valid fields to include when defining a
 #'   person or entity.
 #' - [cff_schema_definitions_refs()] provides the valid
 #'   keys to be used on the `preferred-citation` and `references` keys.

@@ -22,7 +22,7 @@ abort_if_not_cff <- function(x) {
   }
 }
 
-#' Error if file doesn't exists
+#' Throw an error if the file does not exist.
 #' @param x A file to be evaluated.
 #' @param abort Logical. Should an error be thrown if file does not exist?
 #' @noRd

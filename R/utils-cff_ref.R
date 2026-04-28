@@ -275,7 +275,7 @@ fallback_dates <- function(cit_list) {
   cit_list
 }
 
-#' BB for doi
+#' Build the DOI field list.
 #' @noRd
 get_bibtex_doi <- function(cit_list) {
   dois <- unlist(cit_list[names(cit_list) == "doi"])
@@ -307,7 +307,7 @@ get_bibtex_doi <- function(cit_list) {
   doi_list
 }
 
-#' BB for month
+#' Build the month field.
 #' @noRd
 get_bibtex_month <- function(cit_list) {
   mnt <- clean_str(cit_list$month)
@@ -335,7 +335,7 @@ get_bibtex_month <- function(cit_list) {
   clean_str(res[1])
 }
 
-#' BB for URL
+#' Build the URL field list.
 #' @noRd
 get_bibtex_url <- function(cit_list) {
   ## Get url: see bug with cff_create("rgeos")
@@ -371,7 +371,7 @@ get_bibtex_url <- function(cit_list) {
   url_list
 }
 
-#' BB for other persons
+#' Build fields for additional people.
 #' @noRd
 get_bibtex_other_pers <- function(field_list) {
   others <- drop_null(field_list[other_persons()])

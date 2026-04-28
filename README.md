@@ -25,7 +25,7 @@ bytes](https://img.shields.io/github/languages/code-size/ropensci/cffr)
 
 **cffr** provides utilities to generate, coerce, modify, and validate
 `CITATION.cff` files automatically for **R** packages, along with tools
-and examples for working with .cff files more generally.
+and examples for working with `*.cff` files more generally.
 
 ## What is a `CITATION.cff` file?
 
@@ -73,12 +73,12 @@ files from R package metadata.
 
 ## The cffr package
 
-**cffr** maximizes data extraction by utilizing both the `DESCRIPTION`
-file and the `CITATION` file (if present) from your package. Note that
+**cffr** maximizes data extraction by using both the `DESCRIPTION` file
+and the `CITATION` file (if present) from your package. Note that
 **cffr** works best if your package passes
 `R CMD check/devtools::check()`.
 
-As per 2026-04-28 there are at least 558 repos on GitHub using **cffr**.
+As per 2026-04-28 there are at least 550 repos on GitHub using **cffr**.
 [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -90,10 +90,10 @@ Install **cffr** from [CRAN](https://CRAN.R-project.org/package=cffr):
 install.packages("cffr")
 ```
 
-You can install the developing version of **cffr** with:
+You can install the development version of **cffr** with:
 
 ``` r
-remotes::install_github("ropensci/cffr")
+pak::pak("ropensci/cffr")
 ```
 
 Alternatively, you can install **cffr** using the
@@ -129,9 +129,9 @@ However, **cffr** also provides custom print methods and mechanisms that
 allow you to customize the `CITATION.cff` and integrate it into your
 workflows.
 
-This is a basic example which shows you how to create a `cff` object
-(see `?cff` for more info). In this case, we are creating a `cff` object
-from the metadata of the **rmarkdown** package:
+This basic example shows how to create a `cff` object (see `?cff` for
+more info). In this case, we are creating a `cff` object from the
+metadata of the **rmarkdown** package:
 
 ``` r
 library(cffr)
@@ -722,9 +722,9 @@ Check the following articles to learn more about **cffr**:
 
 ## Code of Conduct
 
-Please note that the cffr project is released with a [Contributor Code
-of Conduct](https://docs.ropensci.org/cffr/CODE_OF_CONDUCT.html). By
-contributing to this project, you agree to abide by its terms.
+Please note that the **cffr** project is released with a [Contributor
+Code of Conduct](https://docs.ropensci.org/cffr/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
 
 ## Citation
 
@@ -751,7 +751,7 @@ A BibTeX entry for LaTeX users is:
 
 You can also use the [citation provided by
 GitHub](https://github.com/ropensci/cffr), that is generated from the
-information of a `CITATION.cff` created with **cffr**. See [About
+information in a `CITATION.cff` created with **cffr**. See [About
 CITATION
 files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
 for more info.

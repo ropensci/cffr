@@ -21,18 +21,18 @@ knitr:
 library(cffr)
 ```
 
-The **cffr** package is designed for R package developers. The main goal of
-**cffr** is to create a `CITATION.cff` file using the metadata information from
-the following files:
+The **cffr** package is designed for **R** package developers. The main goal of
+**cffr** is to create a `CITATION.cff` file using metadata from the following
+files:
 
--   Your `DESCRIPTION` file.
--   If available, the citation information located in `inst/CITATION`.
+- Your `DESCRIPTION` file.
+- If available, the citation information located in `inst/CITATION`.
 
 ## What is a `CITATION.cff` file?
 
 [Citation File Format (CFF)](https://citation-file-format.github.io/)
 [@druskat_citation_2021] (v1.2.0) files are plain text files with human- and
-machine-readable citation information for software (and data sets). Code
+machine-readable citation information for software (and datasets). Code
 developers can include them in their repositories to let others know how to
 correctly cite their software.
 
@@ -47,20 +47,21 @@ GitHub support is of special interest:
 
 <figure>
 
-![GitHub citation support announcement](tweet-1.png){.quarto-figure .quarto-figure-center fig-align="center"
-width="400"}
+![GitHub citation support announcement](tweet-1.png){.quarto-figure
+.quarto-figure-center fig-align="center" width="400"}
 
 ```{=html}
 <figcaption class="blockquote-footer">Nat Friedman (@natfriedman) July 27, 2021</figcaption>
 </figure>
 ```
 
-See [GitHub’s guide to CITATION files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
+See [GitHub’s guide to CITATION
+files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
 for more information.
 
 ## Creating a `CITATION.cff` file for my R package
 
-Creating a `CITATION.cff` file with **cffr** is straightforward. You simply need
+Creating a `CITATION.cff` file with **cffr** is straightforward. You only need
 to run `cff_write()`:
 
 ```{r}
@@ -75,20 +76,20 @@ cff_write()
 
 Under the hood, `cff_write()` performs the following tasks:
 
--   It extracts the metadata using `cff_create()`.
--   Optionally modifies it with `cff_modify()`.
--   Writes a `CITATION.cff` file.
--   Validates the result using `cff_validate()`.
+- It extracts the metadata using `cff_create()`.
+- Optionally modifies it with `cff_modify()`.
+- Writes a `CITATION.cff` file.
+- Validates the result using `cff_validate()`.
 
 Congratulations! Now you have a full `CITATION.cff` file for your **R** package.
 
 ## Modifying your `CITATION.cff` file
 
-You can easily customize the `cff` object (a custom class of **cffr**) using the
+You can easily customize the `cff` object (a custom **cffr** class) using the
 coercion system provided in the package, as well as the `keys` argument.
 
-We create a `cff` object using `cff()` (for example purposes only) and then add
-or modify its contents.
+We create a `cff` object using `cff()` (for demonstration only) and then add or
+modify its contents.
 
 ### Adding new fields
 
@@ -177,8 +178,7 @@ cff_validate(newauthorobject)
 ```
 
 Now, we may want to add `references` to our data. In the following example, we
-add two references, one created with `bibentry()` and another with
-`citation()`:
+add two references, one created with `bibentry()` and another with `citation()`:
 
 ```{r}
 #| label: parsingcits
@@ -244,7 +244,7 @@ reading <- cff_read(tmp)
 reading
 ```
 
-Note that `cff_write()` also has the `keys` param, so the workflow can be
+Note that `cff_write()` also has the `keys` argument, so the workflow can be
 simplified as:
 
 ```{r}

@@ -1,4 +1,4 @@
-# Functions to convert fields on DESCRIPTION file
+# Functions to convert fields in the DESCRIPTION file.
 
 #' Mapped to Description
 #' @noRd
@@ -14,9 +14,9 @@ get_desc_abstract <- function(pkg) {
   abstract
 }
 
-#' Mapped to persons with roles "aut", "cre"
-#' Feedback needed: is this approach correct?
-#' On CRAN, only first aut is used
+#' Map to people with the roles "aut" and "cre".
+#' Uncertain: this approach may need review.
+#' On CRAN, only the first "aut" is used.
 #' @noRd
 get_desc_authors <- function(pkg, authors_roles = c("aut", "cre")) {
   # This extracts all the persons
@@ -197,8 +197,8 @@ get_desc_title <- function(pkg) {
   title
 }
 
-#' Mapped to URL and BugReports
-#' Additional urls as identifiers
+#' Mapped to `URL` and `BugReports`.
+#' Additional URLs as identifiers.
 #' @noRd
 get_desc_urls <- function(pkg) {
   url <- pkg$get_urls()

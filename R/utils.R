@@ -1,11 +1,11 @@
-# Utils functions used on the package
+# Utility functions used in the package.
 
 #' Clean strings
 #'
 #' @param str A string to be cleaned.
 #' @noRd
 clean_str <- function(str) {
-  # Collapse to single char
+  # Collapse to a single string.
   str <- paste(str, collapse = " ")
   str <- unlist(str)
   if (is.null(str) || is.na(str)) {
@@ -54,7 +54,7 @@ print_snapshot <- function(title = "----", obj) {
   cat("\n---")
 }
 
-#' Search a package on available repos
+#' Search for a package in available repositories.
 #' @param name Name of the package.
 #' @param avail Data frame with available packages. See
 #' [utils::available.packages()].

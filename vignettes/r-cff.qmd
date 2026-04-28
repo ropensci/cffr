@@ -23,20 +23,19 @@ knitr:
 
 ```{r}
 #| include: false
-
 library(cffr)
 ```
 
 The goal of this vignette is to provide an explicit map between the metadata
-fields used by **cffr** and each one of the valid keys of the [Citation File
-Format schema version
+fields used by **cffr** and each valid key in the [Citation File Format schema
+version
 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#valid-keys).
 
 ## Summary {#summary}
 
 We summarize here the fields that **cffr** can coerce and the original source of
-information for each one of them. The details on each key are presented in the
-next section of the document. The assessment of fields is based on the [Guide to
+information for each of them. The details for each key are presented in the next
+section of the document. The assessment of fields is based on the [Guide to
 Citation File Format schema version
 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#valid-keys)
 [@druskat_citation_2021].
@@ -117,7 +116,7 @@ Back to @tbl-summary.
 ### authors
 
 This key is coerced from the `"Authors"` or `"Authors@R"` field of the
-`DESCRIPTION` file. By default persons with the role `"aut"` or `"cre"` are
+`DESCRIPTION` file. By default, persons with the role `"aut"` or `"cre"` are
 considered, however this can be modified via the `authors_roles` argument.
 
 ```{r}
@@ -178,7 +177,7 @@ Back to @tbl-summary.
 ### contact
 
 This key is coerced from the `"Authors"` or `"Authors@R"` field of the
-`DESCRIPTION` file. Only persons with the role `"cre"` (i.e, the maintainer(s))
+`DESCRIPTION` file. Only persons with the role `"cre"` (i.e., the maintainer(s))
 are considered.
 
 ```{r}
@@ -197,11 +196,11 @@ Back to @tbl-summary.
 
 This key is extracted from the `DESCRIPTION` file following this logic:
 
--   `"Date"` field or,
--   If not present, from `"Date/Publication"`. This is present on packages built
-    on **CRAN** and **Bioconductor**. or,
--   If not present, from `"Packaged"`, that is present on packages built by the
-    [r-universe](https://r-universe.dev/search).
+- The `"Date"` field.
+- If not present, `"Date/Publication"`. This field is present in packages built
+  on **CRAN** and **Bioconductor**.
+- If not present, `"Packaged"`, which is present in packages built by the
+  [r-universe](https://r-universe.dev/search).
 
 ```{r}
 #| label: date-released
@@ -242,7 +241,7 @@ Back to @tbl-summary.
 
 This key is coerced from the `"doi"` field of the
 [preferred-citation](#preferred-citation) object. If not present and the package
-is on **CRAN**, it is populated with the doi provided by **CRAN** (e.g.
+is on **CRAN**, it is populated with the DOI provided by **CRAN** (e.g.
 <https://doi.org/10.32614/CRAN.package.cffr>).
 
 ```{r}
@@ -260,15 +259,15 @@ Back to @tbl-summary.
 
 This key includes all the possible identifiers of the package:
 
--   From the `DESCRIPTION` field, it includes all the URLs not included in
-    [url](#url) or [repository-code](#repository-code).
+- From the `DESCRIPTION` field, it includes all the URLs not included in
+  [url](#url) or [repository-code](#repository-code).
 
--   From the `CITATION` file, it includes all the DOIs not included in
-    [doi](#doi) and the identifiers (if any) not included in the `"identifiers"`
-    key of [preferred-citation](#preferred-citation).
+- From the `CITATION` file, it includes all the DOIs not included in [doi](#doi)
+  and the identifiers (if any) not included in the `"identifiers"` key of
+  [preferred-citation](#preferred-citation).
 
--   If the package is on **CRAN** and it has a `CITATION` file providing a doi,
-    the doi provided by **CRAN** is added as well.
+- If the package is on **CRAN** and it has a `CITATION` file providing a doi,
+  the doi provided by **CRAN** is added as well.
 
 ```{r}
 #| label: identifiers
@@ -292,7 +291,7 @@ Back to @tbl-summary.
 This key is extracted from the `DESCRIPTION` file. The keywords should appear in
 the `DESCRIPTION` as:
 
-```         
+```
 ...
 X-schema.org-keywords: keyword1, keyword2, keyword3
 ```
@@ -372,16 +371,16 @@ This key is not extracted from the metadata of the package. See the description
 on the [Guide to CFF schema
 v1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#license-url).
 
-> -   **description**: The URL of the license text under which the software or
->     dataset is licensed (only for non-standard licenses not included in the
->     [SPDX License
->     List](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionslicense-enum)).
+> - **description**: The URL of the license text under which the software or
+>   dataset is licensed (only for non-standard licenses not included in the
+>   [SPDX License
+>   List](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionslicense-enum)).
 >
-> -   **usage**:
+> - **usage**:
 >
->     ``` yaml
->     license-url: "https://obscure-licenses.com?id=1234"
->     ```
+>   ``` yaml
+>   license-url: "https://obscure-licenses.com?id=1234"
+>   ```
 
 Back to @tbl-summary.
 
@@ -428,8 +427,8 @@ Back to @tbl-summary.
 This key is extracted from the `CITATION` file if several references are
 provided. The first citation is considered as the
 [preferred-citation](#preferred-citation) and the rest of them as
-`"references"`. It also extracts the package dependencies and adds those to this
-fields using `citation(auto = TRUE)` on each dependency.
+`"references"`. It also extracts package dependencies and adds them to this
+field using `citation(auto = TRUE)` on each dependency.
 
 ```{r}
 #| label: references
@@ -505,28 +504,28 @@ This key is not extracted from the metadata of the package. See the description
 on the [Guide to CFF schema
 v1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#repository-artifact).
 
-> -   **description**: The URL of the work in a build artifact/binary repository
->     (when the work is software).
+> - **description**: The URL of the work in a build artifact/binary repository
+>   (when the work is software).
 >
-> -   **usage**:
+> - **usage**:
 >
->     ``` yaml
->     repository-artifact: "https://search.maven.org/artifact/org.corpus-tools/cff-maven-plugin/0.4.0/maven-plugin"
->     ```
+>   ``` yaml
+>   repository-artifact: "https://search.maven.org/artifact/org.corpus-tools/cff-maven-plugin/0.4.0/maven-plugin"
+>   ```
 
 Back to @tbl-summary.
 
 ### repository-code {#repository-code}
 
 This key is extracted from the `"BugReports"` or `"URL"` fields on the
-`DESCRIPTION` file. **cffr** tries to identify the url of the source on the
+`DESCRIPTION` file. **cffr** tries to identify the URL of the source on the
 following repositories:
 
--   [GitHub](https://github.com/).
--   [GitLab](https://about.gitlab.com/).
--   [R-Forge](https://r-forge.r-project.org/).
--   [Bitbucket](https://bitbucket.org/).
--   [Codeberg](https://codeberg.org/).
+- [GitHub](https://github.com/).
+- [GitLab](https://about.gitlab.com/).
+- [R-Forge](https://r-forge.r-project.org/).
+- [Bitbucket](https://bitbucket.org/).
+- [Codeberg](https://codeberg.org/).
 
 ```{r}
 #| label: repository-code
@@ -578,7 +577,7 @@ Back to @tbl-summary.
 ### url {#url}
 
 This key is extracted from the `"BugReports"` or `"URL"` fields on the
-`DESCRIPTION` file. It corresponds to the first url that is different to
+`DESCRIPTION` file. It corresponds to the first URL that is different from
 [repository-code](#repository-code).
 
 ```{r}

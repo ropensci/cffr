@@ -23,7 +23,7 @@
 - `repository-code` now also recognizes [Codeberg](https://codeberg.org/) as a
   valid repository (#88).
 - `repository-code` recognizes repositories regardless of casing. It is still
-  advised to use lower caps as a good practice for **R** developers.
+  advised to use lowercase as a good practice for **R** developers.
 
 # cffr 1.1.1
 
@@ -31,7 +31,7 @@
 
 # cffr 1.1.0
 
-- Now **cffr** adds automatically dois to packages on **CRAN** (e.g.
+- **cffr** now automatically adds DOIs to packages on **CRAN** (e.g.
   <https://doi.org/10.32614/CRAN.package.cffr>):
   - If the package has a `CITATION` file providing a doi, the `CITATION` doi is
     used as the main `CITATION.cff` `doi` and the **CRAN** doi is added as an
@@ -51,7 +51,7 @@
 
 # cffr 1.0.0
 
-This is a major release with some notable changes. The change mainly **affects
+This is a major release with some notable changes. The main change **affects
 non-core functions**, hence the natural workflow (`cff_create()` → `cff_write()`
 → `cff_validate()`) shouldn't be affected.
 
@@ -66,15 +66,15 @@ and
 [`definitions.entity`](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsentity)
 objects:
 
-- List of `definitions.reference` (e.g, `references)` has class
-  `cff_ref_lst, cff` and individual elements (e.g `preferred-citation` or each
-  member of `references`) has class `cff_ref, cff`.
-- List of `definitions.person` or `definitions.entity` (e.g. `authors`,
-  `contact`) has class `cff_pers_lst, cff` and individual elements (e.g
-  `publisher` or each member of `authors`) has class `cff_pers, cff`.
+- A list of `definitions.reference` objects (e.g. `references`) has class
+  `cff_ref_lst, cff`, and individual elements (e.g. `preferred-citation` or
+  each member of `references`) have class `cff_ref, cff`.
+- A list of `definitions.person` or `definitions.entity` objects (e.g.
+  `authors`, `contact`) has class `cff_pers_lst, cff`, and individual elements
+  (e.g. `publisher` or each member of `authors`) have class `cff_pers, cff`.
 
 This change allows writing specific [S3
-Methods](https://adv-r.hadley.nz/s3.html) and extend the capabilities of the
+Methods](https://adv-r.hadley.nz/s3.html) and extends the capabilities of the
 package.
 
 - New `as_cff()` S3 generic method (replacing `as.cff()`): This method coerces
@@ -83,12 +83,12 @@ package.
   - `as_cff.bibentry()`, replacing `cff_parse_citation()`.
   - `as_cff.person()`, similar to `as_cff_person()` but only for `person`
     objects. We recommend using `as_cff_person()` since it can coerce also
-    string representing authors in BibTeX markup (`"{von Neumen}, James"`), that
-    can't be captured properly via methods.
+    strings representing authors in BibTeX markup (`"{von Neumen}, James"`),
+    which cannot be captured properly via methods.
 - New `as_bibentry()` method for a variety of classes (`character`, `list`,
   `NULL` and classes defined by **cffr**).
 - New `as_cff_person()` method.
-- The following **base** and **utils** methods supports now `cff` class:
+- The following **base** and **utils** methods now support the `cff` class:
   - `as.data.frame.cff()`.
   - `as.person()`, although **only** for `definitions.person` or
     `definitions.entity` (e.g. `authors`, `contacts`, `editors`, `publisher,`
@@ -190,7 +190,7 @@ warns when used, providing advice on the replacement function.
 
 # cffr 0.2.3
 
-- Fix HTML5 issue as per CRAN request
+- Fix the HTML5 issue as requested by **CRAN**.
 
 # cffr 0.2.2
 
@@ -198,8 +198,8 @@ warns when used, providing advice on the replacement function.
 
 # cffr 0.2.1
 
-- GitHub Action now runs only on `master` or `main`branch.
-- Better handling of references
+- GitHub Action now runs only on the `master` or `main` branch.
+- Better handling of references.
 
 # cffr 0.2.0
 
@@ -226,7 +226,7 @@ warns when used, providing advice on the replacement function.
 
 # cffr 0.1.1
 
-- Accepted on JOSS
+- Accepted by JOSS.
   [![DOI](https://joss.theoj.org/papers/10.21105/joss.03900/status.svg)](https://doi.org/10.21105/joss.03900)
 - Include `pages` on `cff_parse_citation()` .
 - New `gh_keywords` argument on `cff_create()` /`cff_write()`. If `TRUE`, it
@@ -238,7 +238,7 @@ warns when used, providing advice on the replacement function.
 
 # cffr 0.0.2
 
-- **cffr** is part now of rOpenSci.
+- **cffr** is now part of rOpenSci.
 - Update on docs and README.
 - Add fuzzy match on `keys` argument.
 - New dataset: `cran_to_spdx`.

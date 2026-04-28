@@ -20,9 +20,9 @@ c.cff <- function(..., recursive = FALSE) {
   as_cff(rval)
 }
 
-# Just for pretty printing on extract
+# Used for prettier printing when extracting elements.
 
-# Based in person method
+# Based on the `person` method.
 # https://github.com/wch/r-source/blob/trunk/src/library/utils/R/citation.R
 
 #' @export

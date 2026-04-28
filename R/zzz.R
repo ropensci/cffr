@@ -1,6 +1,6 @@
 # nocov start
 
-# Detect repos onLoad
+# Detect repositories on package load.
 .onLoad <- function(libname, pkgname) {
   avail_on_init <- as.data.frame(
     available.packages(

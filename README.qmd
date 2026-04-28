@@ -40,7 +40,7 @@ bytes](https://img.shields.io/github/languages/code-size/ropensci/cffr)
 
 **cffr** provides utilities to generate, coerce, modify, and validate
 `CITATION.cff` files automatically for **R** packages, along with tools and
-examples for working with .cff files more generally.
+examples for working with `*.cff` files more generally.
 
 ## What is a `CITATION.cff` file?
 
@@ -60,7 +60,8 @@ support is of special interest:
 
 <figure>
 
-![GitHub citation support announcement](vignettes/tweet-1.png){.mx-auto .d-block fig-align="center" width="400"}
+![GitHub citation support announcement](vignettes/tweet-1.png){.mx-auto .d-block
+fig-align="center" width="400"}
 
 ```{=html}
 <figcaption class="blockquote-footer">Nat Friedman (@natfriedman) July 27, 2021</figcaption>
@@ -84,9 +85,9 @@ package metadata.
 
 ## The cffr package
 
-**cffr** maximizes data extraction by utilizing both the `DESCRIPTION` file and
-the `CITATION` file (if present) from your package. Note that **cffr** works
-best if your package passes `R CMD check/devtools::check()`.
+**cffr** maximizes data extraction by using both the `DESCRIPTION` file and the
+`CITATION` file (if present) from your package. Note that **cffr** works best if
+your package passes `R CMD check/devtools::check()`.
 
 ```{r}
 #| label: count_cffr
@@ -152,11 +153,11 @@ Install **cffr** from [CRAN](https://CRAN.R-project.org/package=cffr):
 install.packages("cffr")
 ```
 
-You can install the developing version of **cffr** with:
+You can install the development version of **cffr** with:
 
 ```{r}
 #| eval: false
-remotes::install_github("ropensci/cffr")
+pak::pak("ropensci/cffr")
 ```
 
 Alternatively, you can install **cffr** using the
@@ -193,9 +194,9 @@ cff_write()
 However, **cffr** also provides custom print methods and mechanisms that allow
 you to customize the `CITATION.cff` and integrate it into your workflows.
 
-This is a basic example which shows you how to create a `cff` object (see `?cff`
-for more info). In this case, we are creating a `cff` object from the metadata
-of the **rmarkdown** package:
+This basic example shows how to create a `cff` object (see `?cff` for more
+info). In this case, we are creating a `cff` object from the metadata of the
+**rmarkdown** package:
 
 ```{r }
 library(cffr)
@@ -230,12 +231,12 @@ Check the [docs](https://docs.ropensci.org/cffr/reference/index.html) and
 #### GitHub Actions
 
 The easiest way to keep your `CITATION.cff` file up-to-date is using GitHub
-Actions. Use the `cff_gha_update()` function to install a GitHub Action that will
-update your `CITATION.cff` file in the following cases:
+Actions. Use the `cff_gha_update()` function to install a GitHub Action that
+will update your `CITATION.cff` file in the following cases:
 
--   When you publish a new release of the package on your GitHub repo.
--   Each time that you modify your DESCRIPTION or inst/CITATION files.
--   The action can also be run manually.
+- When you publish a new release of the package on your GitHub repo.
+- Each time that you modify your DESCRIPTION or inst/CITATION files.
+- The action can also be run manually.
 
 ```{r}
 #| eval: false
@@ -268,25 +269,25 @@ package installed.
 
 Check the following articles to learn more about **cffr**:
 
--   [cffr: Create a CITATION.cff File for your R
-    Package](https://ropensci.org/blog/2021/11/23/cffr/)
--   [How I Test cffr on (about) 2,000 Packages using GitHub Actions and
-    R-universe](https://ropensci.org/blog/2021/11/23/how-i-test-cffr/)
+- [cffr: Create a CITATION.cff File for your R
+  Package](https://ropensci.org/blog/2021/11/23/cffr/)
+- [How I Test cffr on (about) 2,000 Packages using GitHub Actions and
+  R-universe](https://ropensci.org/blog/2021/11/23/how-i-test-cffr/)
 
 ## Related packages
 
--   **citation** [@citation22] includes a function `r2cff` that creates a
-    `CITATION.cff` file (v1.1.0) using the information of your `DESCRIPTION`
-    file. It also provides minimal validity checks.
--   **handlr** [@handlr]: Tool for converting among citation formats, including
-    `*.cff` files.
--   **codemeta** [@codemeta] / **codemetar** [@codemetar2021] provides similar
-    solutions for creating `codemeta.json` file, another format for storing and
-    sharing software metadata.
+- **citation** [@citation22] includes a function `r2cff` that creates a
+  `CITATION.cff` file (v1.1.0) using the information of your `DESCRIPTION` file.
+  It also provides minimal validity checks.
+- **handlr** [@handlr]: Tool for converting among citation formats, including
+  `*.cff` files.
+- **codemeta** [@codemeta] / **codemetar** [@codemetar2021] provides similar
+  solutions for creating `codemeta.json` file, another format for storing and
+  sharing software metadata.
 
 ## Code of Conduct
 
-Please note that the cffr project is released with a [Contributor Code of
+Please note that the **cffr** project is released with a [Contributor Code of
 Conduct](https://docs.ropensci.org/cffr/CODE_OF_CONDUCT.html). By contributing
 to this project, you agree to abide by its terms.
 
@@ -315,7 +316,7 @@ A BibTeX entry for LaTeX users is:
 
 You can also use the [citation provided by
 GitHub](https://github.com/ropensci/cffr), that is generated from the
-information of a `CITATION.cff` created with **cffr**. See [About CITATION
+information in a `CITATION.cff` created with **cffr**. See [About CITATION
 files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
 for more info.
 
