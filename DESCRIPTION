@@ -35,16 +35,14 @@ Suggests:
     testthat (>= 3.0.0),
     usethis
 VignetteBuilder: 
-    knitr,
     quarto
 Config/Needs/website: devtools
 Config/roxygen2/markdown: TRUE
-Config/roxygen2/version: 7.3.3.9000
+Config/roxygen2/version: 8.0.0
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
 LazyData: true
-Roxygen: list(markdown = TRUE)
 X-schema.org-isPartOf: https://ropensci.org
 X-schema.org-keywords: attribution, citation, credit, citation-files, cff,
     metadata, citation-file-format, cran, r, r-package, ropensci, rstats,

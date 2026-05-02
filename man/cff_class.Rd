@@ -138,8 +138,7 @@ ref_list
 #>     given-names: Kirill
 #>   year: '2025'
 #>   notes: R package version 2.3.12
-#>   url: https://CRAN.R-project.org/package=yaml
-#>   doi: 10.32614/CRAN.package.yaml
+#>   url: https://yaml.r-lib.org
 
 class(ref_list)
 #> [1] "cff_ref_lst" "cff"
@@ -171,7 +170,7 @@ Creating a \code{cff} object does not ensure its validity according to the \href
 #> [1] "cff"
 
 cff_validate(a_cff_object)
-#> == Validating cff ==============================================================================
+#> == Validating cff ==============================================================
 #> x Oops! This <cff> has the following errors:
 #> * cff.authors: is required
 #> * cff["cff-version"]: is required
@@ -203,7 +202,7 @@ cff_valid
 #> title: My title
 
 cff_validate(cff_valid)
-#> == Validating cff ==============================================================================
+#> == Validating cff ==============================================================
 #> v Congratulations! This <cff> is valid
 }\if{html}{\out{</div>}}
 }
@@ -313,8 +312,7 @@ toBibtex(cit)
 #>   author = \{Jeremy Stephens and Kirill Simonov\},
 #>   year = \{2025\},
 #>   note = \{R package version 2.3.12\},
-#>   url = \{https://CRAN.R-project.org/package=yaml\},
-#>   doi = \{10.32614/CRAN.package.yaml\},
+#>   url = \{https://yaml.r-lib.org\},
 #> \}
 
 # cff_pers, cff_pers_lst
