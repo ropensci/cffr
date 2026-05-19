@@ -5,7 +5,7 @@
     Output
       == Validating cff ==============================================================
     Message
-      v Congratulations! This <cff> is valid
+      v Congratulations! This <cff> is valid.
 
 # Validate error CITATION.cff
 

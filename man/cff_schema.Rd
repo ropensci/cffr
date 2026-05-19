@@ -51,7 +51,7 @@ keys to be used on the \code{preferred-citation} and \code{references} keys.
 
 cff_schema_keys(sorted = TRUE)
 
-# Valid Licenses keys
+# Valid license keys.
 head(cff_schema_keys_license(), 20)
 
 cff_schema_definitions_person()

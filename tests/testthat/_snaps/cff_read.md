@@ -4,7 +4,7 @@
       cff_read(c("abcde", "b"))
     Condition
       Error in `cff_read()`:
-      ! Use a single value, `path` has length 2
+      ! Use a single value. `path` has length 2.
 
 ---
 
@@ -12,7 +12,7 @@
       cff_read("abcde")
     Condition
       Error in `file_exist_abort()`:
-      ! 'abcde' doesn't exist. Check the '.' directory
+      ! 'abcde' does not exist. Check the '.' directory.
 
 # cff_read citation.cff
 
@@ -20,7 +20,7 @@
       cff_read_cff_citation("a")
     Condition
       Error in `file_exist_abort()`:
-      ! 'a' doesn't exist. Check the '.' directory
+      ! 'a' does not exist. Check the '.' directory.
 
 # cff_read DESCRIPTION
 
@@ -28,7 +28,7 @@
       cff_read_description("a")
     Condition
       Error in `file_exist_abort()`:
-      ! 'a' doesn't exist. Check the '.' directory
+      ! 'a' does not exist. Check the '.' directory.
 
 # cff_read bib
 
@@ -36,7 +36,7 @@
       cff_read_bib("a")
     Condition
       Error in `file_exist_abort()`:
-      ! 'a' doesn't exist. Check the '.' directory
+      ! 'a' does not exist. Check the '.' directory.
 
 ---
 
@@ -66,14 +66,14 @@
       cff_read_citation("a")
     Condition
       Error in `file_exist_abort()`:
-      ! 'a' doesn't exist. Check the '.' directory
+      ! 'a' does not exist. Check the '.' directory.
 
 ---
 
     Code
       s <- cff_read(f, meta = "aa")
     Message
-      ! `meta` should be "NULL" or a <packageDescription> object not a string. Using `meta = NULL`
+      ! `meta` should be "NULL" or a <packageDescription> object, not a string. Using `meta = NULL`.
 
 # Creating cff from packages encoded in latin1
 

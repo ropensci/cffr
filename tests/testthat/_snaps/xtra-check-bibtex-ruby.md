@@ -3,7 +3,7 @@
     Code
       s <- as_bibentry(x)
     Message
-      x Can't convert to `bibentry()`: 
+      x Cannot convert to `bibentry()`: 
       i A bibentry of bibtype 'Book' has to specify the field: publisher
       ! Returning empty <bibentry>
 

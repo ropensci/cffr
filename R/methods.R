@@ -16,7 +16,7 @@ c.cff <- function(..., recursive = FALSE) {
   rval <- do.call("c", args)
 
   rval <- as.list(rval)
-  # Reclass
+  # Reclass.
   as_cff(rval)
 }
 
@@ -45,14 +45,13 @@ c.cff <- function(..., recursive = FALSE) {
   rval
 }
 
-
 # nolint start
 #' @export
 #' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
 as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
-  # For better dispatching
+  # For better dispatching.
   x <- as_cff(as.list(x))
 
   len <- length(x)
@@ -106,7 +105,7 @@ as.data.frame.cff_pers_lst <- function(
   ...,
   prefix = "person"
 ) {
-  # For better dispatching
+  # For better dispatching.
   x <- as_cff(as.list(x))
 
   len <- length(x)
@@ -135,7 +134,7 @@ as.data.frame.cff_pers <- function(
   ...,
   prefix = NULL
 ) {
-  # For better dispatching
+  # For better dispatching.
   x <- as_cff(as.list(x))
 
   vals <- unlist(x)
@@ -153,7 +152,6 @@ as.data.frame.cff_pers <- function(
 
   as.data.frame(m, row.names = row.names, optional = optional, ...)
 }
-
 
 #' @export
 #' @encoding UTF-8
@@ -190,7 +188,6 @@ as.data.frame.cff_ref_lst <- function(
   as.data.frame(the_df, row.names = row.names, optional = optional, ...)
 }
 
-
 #' @export
 #' @encoding UTF-8
 #' @rdname cff_class
@@ -202,8 +199,8 @@ as.data.frame.cff_ref <- function(
   ...,
   prefix = NULL
 ) {
-  # For better dispatching
-  # cff_ref is similar to cff, so we add only cff class
+  # For better dispatching.
+  # cff_ref is similar to cff, so add only the cff class.
   x <- as_cff(as.list(x))
   class(x) <- "cff"
 
@@ -232,7 +229,6 @@ head.cff <- function(x, n = 6L, ...) {
 tail.cff <- function(x, n = 6L, ...) {
   as_cff(NextMethod())
 }
-
 
 #' @export
 #' @encoding UTF-8
@@ -302,7 +298,7 @@ toBibtex.cff_pers <- function(object, ...) {
 #' @rdname cff_class
 #' @usage NULL
 as.person.cff_pers <- function(x) {
-  # Enlist to dispatch to Next method
+  # Enlist to dispatch to the next method.
   x_l <- list(as.list(x))
   as.person(as_cff(x_l))
 }
@@ -314,10 +310,10 @@ as.person.cff_pers <- function(x) {
 as.person.cff_pers_lst <- function(x) {
   pers <- lapply(x, make_r_person)
 
-  # If not all extracted inform
+  # Inform if not all were extracted.
   if (!all(lengths(pers) > 0)) {
     cli::cli_alert_info(
-      "Can't create {.cls person} for some elements of {.arg x}."
+      "Cannot create {.cls person} for some elements of {.arg x}."
     )
   }
   end <- do.call(c, pers)
@@ -328,8 +324,7 @@ as.person.cff_pers_lst <- function(x) {
   end
 }
 
-
-#  as.person methods not implemented ----
+# as.person methods not implemented ----
 
 #' @export
 #' @encoding UTF-8

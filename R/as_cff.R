@@ -55,7 +55,7 @@
 #'
 #' @examples
 #'
-#' # Convert a list to "cff" object
+#' # Convert a list to a "cff" object
 #' cffobj <- as_cff(list(
 #'   "cff-version" = "1.2.0",
 #'   title = "Manipulating files"
@@ -63,7 +63,7 @@
 #'
 #' class(cffobj)
 #'
-#' # Nice display thanks to yaml package
+#' # Nice display thanks to the yaml package
 #' cffobj
 #'
 #' # bibentry method
@@ -73,7 +73,7 @@
 #'
 #' as_cff(a_cit)
 #'
-#' # Bibtex method
+#' # BibTeX method
 #' a_bib <- toBibtex(a_cit)
 #'
 #' a_bib
@@ -90,7 +90,6 @@ as_cff <- function(x, ...) {
 as_cff.default <- function(x, ...) {
   as_cff(as.list(x), ...)
 }
-
 
 #' @rdname as_cff
 #' @export
@@ -109,7 +108,6 @@ as_cff.person <- function(x, ...) {
   as_cff_person(x)
 }
 
-
 #' @rdname as_cff
 #' @export
 #' @encoding UTF-8
@@ -122,7 +120,7 @@ as_cff.bibentry <- function(x, ...) {
 
   cff_refs <- as_cff(cff_ref, ...)
 
-  # Add clases
+  # Add classes.
   cff_refs_class <- lapply(cff_refs, function(x) {
     class(x) <- c("cff_ref", "cff")
     x
@@ -141,7 +139,7 @@ as_cff.Bibtex <- function(x, ...) {
   abib <- cff_read_bib(tmp)
   cff_refs <- as_cff(abib, ...)
 
-  # Add clases
+  # Add classes.
   cff_refs_class <- lapply(cff_refs, function(x) {
     class(x) <- c("cff_ref", "cff")
     x
@@ -161,7 +159,7 @@ as.cff <- function(x) {
 }
 # nolint end
 
-# Helper----
+# Helper ----
 
 #' Recursively clean lists
 #'
@@ -175,7 +173,6 @@ rapply_drop_null <- function(x) {
     x
   }
 }
-
 
 rapply_class <- function(x) {
   if (is_named(x)) {
@@ -237,7 +234,7 @@ rapply_class <- function(x) {
 # https://adv-r.hadley.nz/s3.html#s3-constructor
 # Constructor
 new_cff <- function(x) {
-  # Clean all strings recursively
+  # Clean all strings recursively.
 
   x <- rapply(
     x,
@@ -253,15 +250,15 @@ new_cff <- function(x) {
   # Remove NULLs
   x <- drop_null(x)
 
-  # Remove duplicated names if named
+  # Remove duplicate names if named.
   if (is_named(x)) {
     x <- x[!duplicated(names(x))]
   }
 
-  # Now apply drop null to nested lists
+  # Apply drop null to nested lists.
   x <- lapply(x, rapply_drop_null)
 
-  # Reclass nested
+  # Reclass nested values.
   guess_x <- guess_cff_part(x)
   if (guess_x == "cff_ref_lst") {
     x2 <- lapply(x, function(j) {

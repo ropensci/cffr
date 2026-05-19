@@ -168,8 +168,8 @@ get_dependencies <- function(
 
     mod$type <- "software"
     mod$version <- ifelse(is.na(n$version_clean), NULL, paste(n$version_clean))
-    # Get url and repo from package DESCRIPTION
-    # urls from citation() vary due to auto = TRUE
+    # Get URL and repository from package DESCRIPTION.
+    # URLs from citation() vary due to auto = TRUE.
     dfile <- system.file("DESCRIPTION", package = n$package)
 
     if (file_exist_abort(dfile)) {

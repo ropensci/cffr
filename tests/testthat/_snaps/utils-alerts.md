@@ -20,7 +20,7 @@
       file_exist_abort(nonexits, abort = TRUE)
     Condition
       Error in `file_exist_abort()`:
-      ! 'aaaaaaaa' doesn't exist. Check the '.' directory
+      ! 'aaaaaaaa' does not exist. Check the '.' directory.
 
 ---
 
@@ -28,7 +28,7 @@
       file_exist_abort(non_with_path, abort = TRUE)
     Condition
       Error in `file_exist_abort()`:
-      ! './R/no/existe' doesn't exist. Check the './R/no' directory
+      ! './R/no/existe' does not exist. Check the './R/no' directory.
 
 # Check match_cff_arg
 

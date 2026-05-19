@@ -29,7 +29,7 @@
 #' @param cff_version The Citation File Format schema version that the
 #'   `CITATION.cff` file adheres to for providing the citation metadata.
 #' @param gh_keywords Logical `TRUE/FALSE`. If the package is hosted on
-#'   GitHub, would you like to add the repo topics as keywords?
+#'   GitHub, would you like to add the repository topics as keywords?
 #' @param dependencies Logical `TRUE/FALSE`. Should the dependencies of your
 #'   package be added to the `references` CFF key?
 #' @param authors_roles Roles to be considered as authors of the package when
@@ -72,7 +72,7 @@
 #' demo_file <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 #' cff_create(demo_file)
 #'
-#' # Add additional keys
+#' # Add additional keys.
 #'
 #' newkeys <- list(
 #'   message = "This overwrites fields",
@@ -106,7 +106,7 @@ cff_create <- function(
   dependencies = TRUE,
   authors_roles = c("aut", "cre")
 ) {
-  # Guess source
+  # Guess source.
   # On missing add getwd()
   if (missing(x)) {
     hint_source <- "indev"
@@ -147,7 +147,7 @@ cff_create <- function(
   desc_path <- result_paths[["desc_path"]]
   cffobjend <- result_paths[["cffobjend"]]
 
-  # Add software dependencies
+  # Add software dependencies.
   if (dependencies) {
     instpack <- as.character(installed.packages()[, "Package"])
     deps <- get_dependencies(desc_path, instpack)
@@ -191,7 +191,7 @@ build_cff_and_paths <- function(
     return(collect_list)
   }
 
-  # Get info from DESCRIPTION
+  # Get information from DESCRIPTION.
   desc_path <- switch(hint_source,
     "indev" = file.path(getwd(), "DESCRIPTION"),
     "description" = x,

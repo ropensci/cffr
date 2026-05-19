@@ -84,7 +84,7 @@ cff_read_bib_text <- function(x, encoding = "UTF-8", ...) {
 
   if (!any(grepl("^@", x))) {
     cli::cli_alert_warning(paste0(
-      "{.arg x} doesn't look as a BibTeX entry. Check the results."
+      "{.arg x} does not look like a BibTeX entry. Check the results."
     ))
   }
   # Write x to a tempfile

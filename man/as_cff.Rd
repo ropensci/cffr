@@ -67,7 +67,7 @@ functions are similar.
 }
 \examples{
 
-# Convert a list to "cff" object
+# Convert a list to a "cff" object
 cffobj <- as_cff(list(
   "cff-version" = "1.2.0",
   title = "Manipulating files"
@@ -75,7 +75,7 @@ cffobj <- as_cff(list(
 
 class(cffobj)
 
-# Nice display thanks to yaml package
+# Nice display thanks to the yaml package
 cffobj
 
 # bibentry method
@@ -85,7 +85,7 @@ a_cit
 
 as_cff(a_cit)
 
-# Bibtex method
+# BibTeX method
 a_bib <- toBibtex(a_cit)
 
 a_bib

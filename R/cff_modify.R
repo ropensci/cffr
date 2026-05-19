@@ -62,7 +62,7 @@ cff_modify <- function(x, ...) {
   }
   new_keys <- list(...)
   if (length(new_keys) == 0) {
-    cli::cli_alert_info("Args {.arg ...} empty. Returning {.arg x}.")
+    cli::cli_alert_info("Arguments {.arg ...} are empty. Returning {.arg x}.")
     return(x)
   }
 
@@ -70,7 +70,7 @@ cff_modify <- function(x, ...) {
 }
 
 modify_cff <- function(x, keys, argname = "...") {
-  # Don't throw message here, these cases are coming from cff_create
+  # Do not show a message here because these cases come from cff_create().
   if (all(argname == "keys", length(keys) == 0)) {
     return(x)
   }
@@ -78,7 +78,7 @@ modify_cff <- function(x, keys, argname = "...") {
   new_keys <- validate_extra_keys(keys, argname)
   new_keys <- fuzzy_keys(new_keys)
   if (anyDuplicated(names(new_keys)) > 0) {
-    cli::cli_alert_warning("Removing duplicated keys.")
+    cli::cli_alert_warning("Removing duplicate keys.")
     new_keys <- new_keys[!duplicated(names(new_keys))]
   }
 
@@ -87,16 +87,15 @@ modify_cff <- function(x, keys, argname = "...") {
   xmod <- x[setdiff(names(x), names(new_keys))]
   xend <- modifyList(xmod, new_keys, keep.null = FALSE)
 
-  # Name order
+  # Name order.
   sorted_nm <- unique(c(init_ord, names(xend)))
 
-  # Relist and add classes
+  # Relist and add classes.
   xend <- as.list(xend[sorted_nm])
   as_cff(xend)
 }
 
-
-# Check names
+# Check names.
 validate_extra_keys <- function(cffobj, argname = "...") {
   has_names <- names(cffobj)
   if (is.null(has_names)) {
@@ -105,14 +104,14 @@ validate_extra_keys <- function(cffobj, argname = "...") {
 
   if (any(has_names == "")) {
     # nolint start
-    # For printing only
+    # For printing only.
     index <- as.character(which(has_names %in% ""))
     # nolint end
 
     cli::cli_alert_warning(
-      "Found {length(index)} not-named argument{?s} in position{?s} {index}."
+      "Found {length(index)} unnamed argument{?s} in position{?s} {index}."
     )
-    cli::cli_alert_info("Removing unnamed arguments")
+    cli::cli_alert_info("Removing unnamed arguments.")
     cffobj <- cffobj[has_names != ""]
   }
   cffobj

@@ -214,7 +214,7 @@ cff_valid
 
 cff_validate(cff_valid)
 #> == Validating cff ==============================================================
-#> v Congratulations! This <cff> is valid
+#> v Congratulations! This <cff> is valid.
 }\if{html}{\out{</div>}}
 }
 

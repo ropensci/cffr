@@ -37,7 +37,7 @@ vignette: >
 ## Summary
 
 The Citation File Format project [@druskat_citation_2021] defines a standardized
-format for providing software or datasets citation metadata in plaintext files
+format for providing citation metadata for software or datasets in plain text files
 that are easy to read by both humans and machines.
 
 This metadata format is being adopted by GitHub as the primary format for its
@@ -48,8 +48,8 @@ have also included support for CITATION.cff files in their GitHub integration.
 The cffr package provides utilities to generate and validate these CITATION.cff
 files automatically for R [@R_2021] packages by parsing the DESCRIPTION file and
 the native R citation file. The package also includes utilities and examples for
-parsing components such as persons and additional citations, as well as several
-vignettes that illustrate both the basic usage of the package and more technical
+parsing components such as persons and additional citations. It also includes
+several vignettes that illustrate both basic package usage and more technical
 details about the metadata extraction process.
 
 ## Statement of need
@@ -58,13 +58,13 @@ Citation of research software in research projects is often omitted
 [@salmon2021]. One reason software is not cited is the lack of clear citation
 information from package developers.
 
-Some of the main reasons for citing software used on research are:
+Some of the main reasons for citing software used in research are:
 
 1.  **Reproducibility**: Software and its versions are important information to
     include in any research project. They help peers understand and reproduce
     the results of a study effectively. Including versions is also crucial for
     recording the context of a manuscript when software changes.
-2.  **Developer Credit:** In the context of Free and Open Source Software
+2.  **Developer credit:** In the context of free and open source software
     (FOSS), many of the software developers themselves are also researchers.
     Receiving credit for software development should be no different from the
     credit received in other formats, such as books or articles.
@@ -91,7 +91,7 @@ of software developers.
 
 I would also like to thank [João Martins](https://zambujo.github.io/) and [Scott
 Chamberlain](https://ropensci.org/author/scott-chamberlain/) for thorough
-reviews that helped improve the package and documentation, and [Emily
+reviews that helped improve the package and documentation and [Emily
 Riederer](https://emilyriederer.netlify.app/) for handling the [review
 process](https://github.com/ropensci/software-review/issues/463).
 

@@ -919,7 +919,7 @@
     Code
       end <- as.person(malf)
     Message
-      i Can't create <person> for some elements of `x`.
+      i Cannot create <person> for some elements of `x`.
 
 ---
 

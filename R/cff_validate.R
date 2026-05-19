@@ -132,7 +132,7 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
 
   if (verbose) {
     cli::cat_rule("Validating cff", col = "cyan", line = 2)
-    cli::cli_alert_success(paste0("Congratulations! ", is_a, " is valid"))
+    cli::cli_alert_success(paste0("Congratulations! ", is_a, " is valid."))
   }
   invisible(result)
 }

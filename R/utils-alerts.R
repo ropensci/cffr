@@ -29,7 +29,7 @@ file_exist_abort <- function(x, abort = FALSE) {
 
   if (all(abort, isFALSE(res))) {
     cli::cli_abort(
-      "{.file {x}} doesn't exist. Check the {.file {dirname(x)}} directory"
+      "{.file {x}} does not exist. Check the {.file {dirname(x)}} directory."
     )
   }
   invisible(res)
@@ -54,7 +54,7 @@ write_lines_msg <- function(lines, file, verbose, append) {
   dir <- dirname(path.expand(file))
   if (!dir.exists(dir)) {
     if (verbose) {
-      cli::cli_alert_info("Creating directory {.path {dir}}")
+      cli::cli_alert_info("Creating directory {.path {dir}}.")
     }
     dir.create(dir, recursive = TRUE)
   }
@@ -67,7 +67,7 @@ write_lines_msg <- function(lines, file, verbose, append) {
     }
 
     if (verbose) {
-      cli::cli_alert_info("Creating a backup of {.file {file}} in {.file {f}}")
+      cli::cli_alert_info("Creating a backup of {.file {file}} in {.file {f}}.")
     }
     file.copy(file, f)
   }
@@ -80,6 +80,6 @@ write_lines_msg <- function(lines, file, verbose, append) {
 
   writeLines(lines, fh)
   if (verbose) {
-    cli::cli_alert_success("Results written to {.file {file}}")
+    cli::cli_alert_success("Results written to {.file {file}}.")
   }
 }

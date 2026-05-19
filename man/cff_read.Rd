@@ -35,7 +35,7 @@ cff_read_bib(path, encoding = "UTF-8", ...)
 \code{CITATION.cff} file adheres to for providing the citation metadata.}
 
 \item{gh_keywords}{Logical \code{TRUE/FALSE}. If the package is hosted on
-GitHub, would you like to add the repo topics as keywords?}
+GitHub, would you like to add the repository topics as keywords?}
 
 \item{authors_roles}{Roles to be considered as authors of the package when
 generating the \code{CITATION.cff} file. See \strong{Details}.}
@@ -88,7 +88,7 @@ some files correctly.
 }
 \examples{
 
-# Create cff object from cff file
+# Create a cff object from a CFF file.
 
 from_cff_file <- cff_read(system.file("examples/CITATION_basic.cff",
   package = "cffr"
@@ -96,14 +96,14 @@ from_cff_file <- cff_read(system.file("examples/CITATION_basic.cff",
 
 head(from_cff_file, 7)
 
-# Create cff object from DESCRIPTION
+# Create a cff object from DESCRIPTION.
 from_desc <- cff_read(system.file("examples/DESCRIPTION_basic",
   package = "cffr"
 ))
 
 from_desc
 
-# Create cff object from BibTex
+# Create a cff object from BibTeX.
 
 if (requireNamespace("bibtex", quietly = TRUE)) {
   from_bib <- cff_read(system.file("examples/example.bib",
@@ -113,7 +113,7 @@ if (requireNamespace("bibtex", quietly = TRUE)) {
   # First item only
   from_bib[[1]]
 }
-# Create cff object from CITATION
+# Create a cff object from CITATION.
 from_citation <- cff_read(system.file("CITATION", package = "cffr"))
 
 # First item only

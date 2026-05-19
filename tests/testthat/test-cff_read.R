@@ -208,7 +208,7 @@ test_that("Corrupt CITATION", {
   writeLines("I am a bad CITATION", tmp)
   expect_message(
     expect_message(anull <- cff_read(tmp), "It was not possible to read"),
-    "Can't"
+    "Cannot read"
   )
   expect_null(anull)
 

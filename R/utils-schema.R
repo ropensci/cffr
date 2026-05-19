@@ -107,7 +107,7 @@ cff_schema_keys <- function(sorted = FALSE) {
 #' @encoding UTF-8
 #' @examples
 #'
-#' # Valid Licenses keys
+#' # Valid license keys.
 #' head(cff_schema_keys_license(), 20)
 cff_schema_keys_license <- function() {
   license <- read.csv(system.file(
@@ -174,7 +174,6 @@ cff_schema_definitions_entity <- function() {
   )
   definitions_entity
 }
-
 
 #' @rdname cff_schema
 #' @export
@@ -258,7 +257,6 @@ cff_schema_definitions_refs <- function() {
   )
   definitions_reference
 }
-
 
 # Helper lists and vectors ----
 

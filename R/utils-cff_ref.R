@@ -1,20 +1,20 @@
-# Utils for as_cff_reference
+# Utilities for as_cff_reference.
 
-#' Extract and map BibTeX entry
+#' Extract and map BibTeX entries
 #' @noRd
 get_bibtex_entry <- function(bib) {
-  # Unclass and manage entry type
-  # Extract type from BibTeX
+  # Unclass and manage entry type.
+  # Extract type from BibTeX.
   init_type <- attr(unclass(bib)[[1]], "bibtype")
   init_type <- clean_str(tolower(init_type))
 
   cit_list <- drop_null(unclass(bib)[[1]])
 
-  # Add fields
+  # Add fields.
   cit_list$bibtex_entry <- init_type
 
-  # Manage type from BibTeX and convert to CFF
-  # This overwrite the BibTeX type field. Not treated by this function
+  # Manage type from BibTeX and convert to CFF.
+  # This overwrites the BibTeX type field. This function does not handle it.
   cit_list$type <- switch(init_type,
     "article" = "article",
     "book" = "book",
@@ -33,9 +33,9 @@ get_bibtex_entry <- function(bib) {
     "generic"
   )
 
-  # Check if it an inbook with booktitle (BibLaTeX style)
+  # Check whether this is an inbook with booktitle (BibLaTeX style).
   if (all(init_type == "inbook", "booktitle" %in% names(cit_list))) {
-    # Make it incollection
+    # Convert it to incollection.
     cit_list$bibtex_entry <- "incollection"
     cit_list$type <- "generic"
   }
@@ -43,10 +43,10 @@ get_bibtex_entry <- function(bib) {
   cit_list
 }
 
-#' Adapt names from R citation()/BibTeX to cff format
+#' Adapt names from R citation()/BibTeX to CFF format
 #' @noRd
 get_bibtex_fields <- function(cit_list) {
-  # to lowercase
+  # Convert to lowercase.
   names(cit_list) <- tolower(names(cit_list))
   nm <- names(cit_list)
   # Standard BibTeX fields:
@@ -54,15 +54,15 @@ get_bibtex_fields <- function(cit_list) {
   # howpublished institution journal key month note number organization pages
   # publisher school series title type year
 
-  # No mapping needed (direct mapping)
+  # No mapping needed (direct mapping).
   # edition journal month publisher title volume year
 
-  # Mapped:
+  # Mapped fields:
   # author booktitle series chapter editor howpublished note number
 
   nm[nm == "author"] <- "authors"
-  # Make collection title
-  # booktitle takes precedence over series
+  # Create collection-title.
+  # booktitle takes precedence over series.
   nm[nm == "booktitle"] <- "collection-title"
   if (!"collection-title" %in% nm) {
     nm[nm == "series"] <- "collection-title"
@@ -83,10 +83,10 @@ get_bibtex_fields <- function(cit_list) {
   nm[nm == "urldate"] <- "date-accessed"
   nm[nm == "pagetotal"] <- "pages"
 
-  # Other BibLaTeX fields that does not require any mapping
+  # Other BibLaTeX fields do not require mapping.
   # abstract, doi, isbn, issn, url, version
 
-  # Keywords may be duplicated, unify
+  # Keywords may be duplicated, so unify them.
   if ("keywords" %in% nm) {
     kwords <- unlist(cit_list["keywords" == nm])
     kwords <- clean_str(paste(kwords, collapse = ", "))
@@ -97,15 +97,15 @@ get_bibtex_fields <- function(cit_list) {
   # Not mapped:
   # annote crossref key organization series type
   #
-  # Fields address, organization, series and type are treated on
-  # main function
-  # key is a special field, treated apart
-  # Fields ignored: annote, crossref
+  # Fields address, organization, series and type are handled in the main
+  # function.
+  # key is a special field, handled separately.
+  # Ignored fields: annote, crossref.
 
   names(cit_list) <- nm
 
-  # Additionally, need to delete keywords if length is less than 2,
-  # errors on validation
+  # Drop keywords when fewer than two values are present to avoid validation
+  # errors.
   if (length(cit_list$keywords) < 2) {
     cit_list$keywords <- NULL
   }
@@ -125,7 +125,7 @@ get_bibtex_fields <- function(cit_list) {
   datacc <- clean_str(cit_list$`date-accessed`)
   cit_list$`date-accessed` <- clean_str(as.Date(datacc, optional = TRUE))
 
-  # Treat pages
+  # Treat pages.
 
   pages <- cit_list$bibtex_pages
   if (!is.null(pages)) {
@@ -139,10 +139,10 @@ get_bibtex_fields <- function(cit_list) {
   cit_list
 }
 
-#' Modify mapping of some org. fields on BibTeX to CFF
+#' Modify mapping of some organization fields from BibTeX to CFF
 #' @noRd
 get_bibtex_inst <- function(field_list) {
-  # Initial values
+  # Initial values.
   bibtex_entry <- field_list$bibtex_entry
   to_replace <- switch(bibtex_entry,
     "mastersthesis" = "school",
@@ -158,11 +158,11 @@ get_bibtex_inst <- function(field_list) {
     return(field_list)
   }
 
-  # Rest of cases remove bibtex institution and rename
+  # In the remaining cases, remove the BibTeX institution and rename.
   nms <- names(field_list)
   field_list <- field_list["institution" != nms]
 
-  # Rename
+  # Rename.
   nms2 <- names(field_list)
   nms2[nms2 == to_replace] <- "institution"
   names(field_list) <- nms2
@@ -179,7 +179,7 @@ add_conference <- function(field_list) {
   field_list
 }
 
-#' Adapt cff keys to bibtex entries
+#' Adapt CFF keys to BibTeX entries
 #' @noRd
 add_thesis <- function(cit_list) {
   bibtex_entry <- cit_list$bibtex_entry
@@ -197,18 +197,18 @@ add_thesis <- function(cit_list) {
 
 add_address <- function(cit_list) {
   loc <- cit_list$location$name
-  # If available
+  # Return early when no location is available.
   if (is.null(loc)) {
     return(cit_list)
   }
 
-  # At this point is in location, see to move
+  # At this point, the value is in location. Check whether it should move.
 
   # Logic order.
   # 1. To conference
   # 2. To institution
   # 3. To publisher
-  # Otherwise leave on location
+  # Otherwise, leave it in location.
 
   nms <- names(cit_list)
   has_conf <- "conference" %in% nms
@@ -234,21 +234,21 @@ add_address <- function(cit_list) {
 }
 
 add_bibtex_coltype <- function(field_list) {
-  # Add collection-type if applicable and rearrange fields
+  # Add collection-type if applicable and rearrange fields.
   nms <- names(field_list)
 
   if (!"collection-title" %in% nms) {
     return(field_list)
   }
 
-  # Made collection-type if we create collection-title
+  # Create collection-type when collection-title is present.
   bibtex_type <- field_list$bibtex_entry
 
-  # Remove `in` at init: inbook, incollection affected
+  # Remove the initial `in` from inbook and incollection.
   coltype <- clean_str(gsub("^in", "", bibtex_type))
   field_list$`collection-type` <- coltype
 
-  # Rearrange to make both collection keys together
+  # Rearrange fields to keep collection keys together.
   nm_first <- nms[seq(1, match("collection-title", nms))]
 
   nms_end <- unique(c(nm_first, "collection-type", nms))
@@ -259,7 +259,7 @@ add_bibtex_coltype <- function(field_list) {
 }
 
 fallback_dates <- function(cit_list) {
-  # Fallback for year and month: use date-published
+  # Fallback for year and month: use date-published.
   if (is.null(cit_list$month) && !is.null(cit_list$`date-published`)) {
     cit_list$month <- format(as.Date(cit_list$`date-published`), "%m")
   }
@@ -279,7 +279,7 @@ fallback_dates <- function(cit_list) {
 get_bibtex_doi <- function(cit_list) {
   dois <- unlist(cit_list[names(cit_list) == "doi"])
 
-  # Check urls as well
+  # Check URLs as well.
   url_for_doi <- unlist(cit_list$url)
   if (all(!is.null(url_for_doi), grepl("doi.org", url_for_doi))) {
     dois <- c(dois, url_for_doi)
@@ -292,10 +292,10 @@ get_bibtex_doi <- function(cit_list) {
 
   dois <- unique(as.character(dois))
 
-  # The first doi goes to doi key
+  # The first DOI goes to the doi key.
   doi <- unlist(dois[1])
 
-  # The rest goes to identifies
+  # The rest go to identifiers.
   identifiers <- lapply(dois[-1], function(x) {
     list(type = "doi", value = clean_str(x))
   })
@@ -315,20 +315,20 @@ get_bibtex_month <- function(cit_list) {
     return(NULL)
   }
 
-  # If number
+  # If number.
   if (grepl("^\\d+$", mnt)) {
-    # Guess if a valid integer is provided and output
+    # Return the value when it is a valid integer.
     mnt_num <- as.numeric(mnt)
     mnt_num <- mnt_num[mnt_num %in% seq(1, 12)]
     return(clean_str(mnt_num))
   }
 
-  # else transform
-  # Get month, everything in lowercase
+  # Otherwise, transform.
+  # Get month in lowercase.
   month <- clean_str(tolower(mnt))
   month <- substr(month, 1, 3)
 
-  # Index on abbreviation
+  # Index on abbreviation.
   low_month <- tolower(month.abb)
   res <- seq(1, 12)[month == low_month]
   clean_str(res[1])
@@ -337,7 +337,7 @@ get_bibtex_month <- function(cit_list) {
 #' Build the URL field list.
 #' @noRd
 get_bibtex_url <- function(cit_list) {
-  ## Get url: see bug with cff_create("rgeos")
+  ## Get URL: see bug with cff_create("rgeos").
   if (is.character(cit_list$url)) {
     allurls <- as.character(cit_list[names(cit_list) == "url"])
     allurls <- unlist(strsplit(allurls, " |,|\\n"))
@@ -346,11 +346,11 @@ get_bibtex_url <- function(cit_list) {
   }
 
   allurls <- allurls[is_url(allurls)]
-  # The first url goes to url key
+  # The first URL goes to the url key.
 
   url <- unlist(allurls[1])
 
-  # The rest goes to identifies
+  # The rest go to identifiers.
   identifiers <- lapply(allurls[-1], function(x) {
     list(type = "url", value = clean_str(x))
   })
@@ -369,7 +369,7 @@ get_bibtex_url <- function(cit_list) {
 get_bibtex_other_pers <- function(field_list) {
   others <- drop_null(field_list[other_persons()])
 
-  # Select subsets
+  # Select subsets.
   all_pers <- other_persons()
   toent <- other_persons_entity()
   toent_pers <- entity_person()
@@ -377,7 +377,7 @@ get_bibtex_other_pers <- function(field_list) {
   toauto_end <- all_pers[!all_pers %in% c(toent, toent_pers)]
   toent_end <- toent[!toent %in% toent_pers]
 
-  # As persons or entities using bibtex
+  # As persons or entities using BibTeX.
   toentity_pers <- others[names(others) %in% toent_pers]
   toentity_pers <- lapply(toentity_pers, function(x) {
     if (inherits(x, "person")) {
@@ -390,11 +390,11 @@ get_bibtex_other_pers <- function(field_list) {
     end
   })
 
-  # Rest
+  # Remaining fields.
 
   rest <- others[!names(others) %in% toent_pers]
 
-  # If any has several persons then paste and collapse
+  # If any field has several persons, paste and collapse them.
   rest <- lapply(others, function(x) {
     if (length(x) > 1) {
       and <- paste(
@@ -409,7 +409,7 @@ get_bibtex_other_pers <- function(field_list) {
     }
   })
 
-  # Entity
+  # Entity.
   toentity <- rest[names(rest) %in% toent_end]
   toentity <- lapply(toentity, function(x) {
     if (inherits(x, "cff")) {
@@ -421,7 +421,7 @@ get_bibtex_other_pers <- function(field_list) {
   toperson <- rest[names(rest) %in% toauto_end]
   toperson <- lapply(toperson, as_cff_person)
 
-  # Bind and reorder
+  # Bind and reorder.
   other_list <- c(toentity, toperson, toentity_pers)
   other_list <- other_list[names(others)]
 

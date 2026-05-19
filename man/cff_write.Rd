@@ -39,7 +39,7 @@ in-development \strong{R} package.
 \code{CITATION.cff} file adheres to for providing the citation metadata.}
 
 \item{gh_keywords}{Logical \code{TRUE/FALSE}. If the package is hosted on
-GitHub, would you like to add the repo topics as keywords?}
+GitHub, would you like to add the repository topics as keywords?}
 
 \item{r_citation}{Logical \code{TRUE/FALSE}. When \code{TRUE}, the \strong{R} package
 citation (for example, \code{inst/CITATION}) is created or updated.

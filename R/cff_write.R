@@ -78,12 +78,12 @@ cff_write <- function(
   authors_roles = c("aut", "cre"),
   encoding = "UTF-8"
 ) {
-  # # On missing use NULL
+  # On missing, use NULL.
   if (missing(x)) {
     x <- getwd()
   }
 
-  # Issue 86 Need to remove first "inst/CITATION"
+  # Issue 86: remove "inst/CITATION" first.
   fpath <- "./inst/CITATION"
   if (r_citation) {
     unlink(fpath)
@@ -98,12 +98,12 @@ cff_write <- function(
     authors_roles = authors_roles
   )
 
-  # Fix string if it is not cff
+  # Fix string if it is not cff.
   if (!is_substring(outfile, ".cff$")) {
     outfile <- paste0(outfile, ".cff")
   }
 
-  # Check if dir exist and if not create
+  # Check if the directory exists, and create it if needed.
   outdir <- dirname(outfile)
 
   if (!dir.exists(outdir)) {
@@ -111,7 +111,7 @@ cff_write <- function(
   }
 
   # See https://github.com/r-universe-org/help/issues/382
-  # Write CITATION with comment
+  # Write CITATION with comment.
   com <- c(
     "# --------------------------------------------",
     "# CITATION file created with {cffr} R package",
@@ -120,7 +120,7 @@ cff_write <- function(
     " "
   )
 
-  # MAX effort to get right the encoding
+  # Make the best effort to get the encoding right.
   com <- enc2utf8(com)
   out_yaml <- enc2utf8(capture.output(print(citat)))
   full_text <- enc2utf8(c(com, out_yaml, ""))
@@ -129,20 +129,20 @@ cff_write <- function(
   writeLines(full_text, fh)
 
   if (verbose) {
-    cli::cli_alert_success("{.file {outfile}} generated")
+    cli::cli_alert_success("{.file {outfile}} generated.")
   }
 
   # Add CITATION.cff to .Rbuildignore
   if (!is_cff(x) && x == getwd() && file_exist_abort(".Rbuildignore")) {
     ignore <- readLines(".Rbuildignore")
 
-    # If not already
+    # If not already present.
     if (!("^CITATION\\.cff$" %in% ignore)) {
       ignore <- c(ignore, "^CITATION\\.cff$")
       ignore <- unique(ignore)
 
       if (verbose) {
-        cli::cli_alert_info("Adding {.val {outfile}} to {.file .Rbuildignore}")
+        cli::cli_alert_info("Adding {.val {outfile}} to {.file .Rbuildignore}.")
       }
       writeLines(ignore, ".Rbuildignore")
     }
@@ -158,18 +158,17 @@ cff_write <- function(
   invisible(citat)
 }
 
-
 auto_r_citation <- function(
   r_citation = TRUE,
   outfile = "CITATION.cff",
   verbose = TRUE
 ) {
-  # Do nothing
+  # Do nothing.
   if (isFALSE(r_citation)) {
     return(invisible(NULL))
   }
 
-  # Else
+  # Otherwise update inst/CITATION.
   if (verbose) {
     cli::cat_rule("Updating inst/CITATION file", col = "cyan", line = 2)
   }

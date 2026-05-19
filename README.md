@@ -23,7 +23,7 @@ bytes](https://img.shields.io/github/languages/code-size/ropensci/cffr)
 
 <!-- badges: end -->
 
-**cffr** provides utilities to generate, coerce, modify, and validate
+**cffr** provides utilities to generate, coerce, modify and validate
 `CITATION.cff` files automatically for **R** packages, along with tools
 and examples for working with `*.cff` files more generally.
 
@@ -32,13 +32,14 @@ and examples for working with `*.cff` files more generally.
 [Citation File Format (CFF)](https://citation-file-format.github.io/)
 ([Druskat et al. 2021](#ref-druskat_citation_2021)) (v1.2.0) files are
 plain text files with human- and machine-readable citation information
-for software (and datasets). Code developers can include them in their
-repositories to let others know how to correctly cite their software.
+for software (and datasets). Software developers can include them in
+their repositories to let others know how to correctly cite their
+software.
 
 This format is gaining popularity within the software citation
 ecosystem. Recently,
 [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
-[Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-),
+[Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-)
 and
 [Zotero](https://citation-file-format.github.io/#/supported-by-zotero-)
 have fully supported this citation format ([Druskat
@@ -65,11 +66,11 @@ GitHub](https://github.blog/news-insights/company-news/enhanced-support-citation
 standardize the exchange of software metadata across repositories and
 organizations. One of the many uses of a `codemeta.json` file (created
 following the standards defined by The CodeMeta Project) is to provide
-citation metadata such as title, authors, publication year, and venue
+citation metadata such as title, authors, publication year and venue
 ([Fenner 2021](#ref-fenner2021)). The packages **codemeta** ([Boettiger
 and Salmon 2021](#ref-codemeta)) and **codemetar** ([Boettiger and
 Salmon 2026](#ref-codemetar2021)) allow for generating `codemeta.json`
-files from R package metadata.
+files from **R** package metadata.
 
 ## The cffr package
 
@@ -78,8 +79,8 @@ and the `CITATION` file (if present) from your package. Note that
 **cffr** works best if your package passes
 `R CMD check/devtools::check()`.
 
-As per 2026-05-10 there are at least 570 repos on GitHub using **cffr**.
-[Check them out
+As per 2026-05-19 there are at least 553 repositories on GitHub using
+**cffr**. [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
 ### Installation
@@ -100,7 +101,7 @@ Alternatively, you can install **cffr** using the
 [r-universe](https://ropensci.r-universe.dev/cffr):
 
 ``` r
-# Install cffr in R:
+# Install cffr in R.
 install.packages(
   "cffr",
   repos = c("https://ropensci.r-universe.dev", "https://cloud.r-project.org")
@@ -109,9 +110,9 @@ install.packages(
 
 ### Example
 
-Most commonly, from within your package folder, you’ll simply run
-`cff_write()`, which creates a `cff` object, writes it to a
-`CITATION.cff` file, and validates it in a single command:
+Most commonly, from within your package folder, you run `cff_write()`,
+which creates a `cff` object, writes it to a `CITATION.cff` file and
+validates it in a single command:
 
 ``` r
 library(cffr)
@@ -119,10 +120,10 @@ library(cffr)
 # For in-development packages
 cff_write()
 #>
-#> CITATION.cff generated
+#> CITATION.cff generated.
 #>
 #> cff_validate results-----
-#> Congratulations! This .cff file is valid
+#> Congratulations! This .cff file is valid.
 ```
 
 However, **cffr** also provides custom print methods and mechanisms that
@@ -130,7 +131,7 @@ allow you to customize the `CITATION.cff` and integrate it into your
 workflows.
 
 This basic example shows how to create a `cff` object (see `?cff` for
-more info). In this case, we are creating a `cff` object from the
+more information). In this case, we are creating a `cff` object from the
 metadata of the **rmarkdown** package:
 
 ``` r
@@ -668,19 +669,20 @@ objects.
 
 #### GitHub Actions
 
-The easiest way to keep your `CITATION.cff` file up-to-date is using
+The easiest way to keep your `CITATION.cff` file up-to-date is to use
 GitHub Actions. Use the `cff_gha_update()` function to install a GitHub
 Action that will update your `CITATION.cff` file in the following cases:
 
-- When you publish a new release of the package on your GitHub repo.
-- Each time that you modify your DESCRIPTION or inst/CITATION files.
+- When you publish a new release of the package on your GitHub
+  repository.
+- Each time you modify your `DESCRIPTION` or `inst/CITATION` files.
 - The action can also be run manually.
 
 ``` r
 cff_gha_update()
 
-#> ✔ Installing ./.github/workflows/update-citation-cff.yaml
-#> ℹ Adding ".github" to .Rbuildignore
+#> ✔ Installing ./.github/workflows/update-citation-cff.yaml.
+#> ℹ Adding ".github" to .Rbuildignore.
 ```
 
 See the example workflow file
@@ -692,12 +694,11 @@ You can also use a [git pre-commit
 hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workflow_hooks):
 
 > The `pre-commit` hook is run first, before you even type in a commit
-> message. It’s used to inspect the snapshot that’s about to be
-> committed, to see if you’ve forgotten something, to make sure tests
-> run, or to examine whatever you need to inspect in the code. Exiting
-> non-zero from this hook aborts the need to inspect in the code.
-> Exiting non-zero from this hook aborts the commit, although you can
-> bypass it with `git commit --no-verify`.
+> message. It is used to inspect the snapshot that is about to be
+> committed, to see if you have forgotten something, to make sure tests
+> run or to examine whatever you need to inspect in the code. Exiting
+> non-zero from this hook aborts the commit, although you can bypass it
+> with `git commit --no-verify`.
 
 A specific pre-commit hook can be installed with
 `cff_git_hook_install()`. If you want to use a pre-commit hook, please
@@ -716,16 +717,16 @@ Check the following articles to learn more about **cffr**:
 
 - **citation** ([Dietrich and Leoncio 2025](#ref-citation22)) includes a
   function `r2cff` that creates a `CITATION.cff` file (v1.1.0) using the
-  information of your `DESCRIPTION` file. It also provides minimal
+  information in your `DESCRIPTION` file. It also provides minimal
   validity checks.
 - **handlr** ([Chamberlain and Wiernik 2025](#ref-handlr)): Tool for
   converting among citation formats, including `*.cff` files.
 - **codemeta** ([Boettiger and Salmon 2021](#ref-codemeta)) /
   **codemetar** ([Boettiger and Salmon 2026](#ref-codemetar2021))
-  provides similar solutions for creating `codemeta.json` file, another
+  provide similar solutions for creating `codemeta.json` files, another
   format for storing and sharing software metadata.
 
-## Code of Conduct
+## Code of conduct
 
 Please note that the **cffr** project is released with a [Contributor
 Code of Conduct](https://docs.ropensci.org/cffr/CODE_OF_CONDUCT.html).
@@ -755,11 +756,11 @@ A BibTeX entry for LaTeX users is:
 ```
 
 You can also use the [citation provided by
-GitHub](https://github.com/ropensci/cffr), that is generated from the
+GitHub](https://github.com/ropensci/cffr), which is generated from the
 information in a `CITATION.cff` created with **cffr**. See [About
 CITATION
 files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
-for more info.
+for more information.
 
 ## References
 

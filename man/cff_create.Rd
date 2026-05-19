@@ -32,7 +32,7 @@ in-development \strong{R} package.
 \code{CITATION.cff} file adheres to for providing the citation metadata.}
 
 \item{gh_keywords}{Logical \code{TRUE/FALSE}. If the package is hosted on
-GitHub, would you like to add the repo topics as keywords?}
+GitHub, would you like to add the repository topics as keywords?}
 
 \item{dependencies}{Logical \code{TRUE/FALSE}. Should the dependencies of your
 package be added to the \code{references} CFF key?}
@@ -70,7 +70,7 @@ cff_create("jsonlite")
 demo_file <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 cff_create(demo_file)
 
-# Add additional keys
+# Add additional keys.
 
 newkeys <- list(
   message = "This overwrites fields",

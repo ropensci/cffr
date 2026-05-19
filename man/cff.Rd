@@ -68,7 +68,7 @@ test
 cff_validate(test)
 }
 
-# Modify with cff_create
+# Modify with cff_create().
 new <- cff_create(test, keys = list(
   "cff_version" = "1.2.0",
   message = "A blank file"

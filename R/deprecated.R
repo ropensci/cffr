@@ -123,7 +123,6 @@ cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
   cff_read_bib_text(x, encoding = encoding, ...)
 }
 
-
 #' Previous API: Write files
 #'
 #' @description
@@ -194,7 +193,6 @@ write_citation <- function(
   cff_write_citation(x, file, append, verbose, ...)
 }
 
-
 #' Previous API: Parse a `person` to [`cff`]
 #'
 #' @description
@@ -231,7 +229,7 @@ write_citation <- function(
 #'
 #' cff_person
 #'
-#' # Back to person object with S3 Method
+#' # Back to person object with S3 method
 #' as.person(cff_person)
 #'
 #' # Parse a string

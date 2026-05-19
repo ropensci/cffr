@@ -3,7 +3,7 @@
     Code
       s <- as_bibentry(a = 1)
     Message
-      x Can't convert to `bibentry()`: 
+      x Cannot convert to `bibentry()`: 
       i argument "bibtype" is missing, with no default
       ! Returning empty <bibentry>
 

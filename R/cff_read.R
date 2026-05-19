@@ -39,9 +39,9 @@
 #'
 #' @return
 #'
-#' * `cff_read_cff_citation()` and `cff_read_description()` return an object
+#' - `cff_read_cff_citation()` and `cff_read_description()` return an object
 #'   with class `cff`.
-#' * `cff_read_citation()` and `cff_read_bib()` return an object of classes
+#' - `cff_read_citation()` and `cff_read_bib()` return an object of classes
 #'   [`cff_ref_lst, cff`][cff_ref_lst] according to the `definitions.references`
 #'   specified in the
 #' ```{r, echo=FALSE, results='asis'}
@@ -76,7 +76,7 @@
 #'
 #' @examples
 #'
-#' # Create cff object from cff file
+#' # Create a cff object from a CFF file.
 #'
 #' from_cff_file <- cff_read(system.file("examples/CITATION_basic.cff",
 #'   package = "cffr"
@@ -84,14 +84,14 @@
 #'
 #' head(from_cff_file, 7)
 #'
-#' # Create cff object from DESCRIPTION
+#' # Create a cff object from DESCRIPTION.
 #' from_desc <- cff_read(system.file("examples/DESCRIPTION_basic",
 #'   package = "cffr"
 #' ))
 #'
 #' from_desc
 #'
-#' # Create cff object from BibTex
+#' # Create a cff object from BibTeX.
 #'
 #' if (requireNamespace("bibtex", quietly = TRUE)) {
 #'   from_bib <- cff_read(system.file("examples/example.bib",
@@ -101,7 +101,7 @@
 #'   # First item only
 #'   from_bib[[1]]
 #' }
-#' # Create cff object from CITATION
+#' # Create a cff object from CITATION.
 #' from_citation <- cff_read(system.file("CITATION", package = "cffr"))
 #'
 #' # First item only
@@ -110,7 +110,7 @@
 cff_read <- function(path, ...) {
   if (length(path) > 1) {
     cli::cli_abort(
-      "Use a single value, {.arg path} has length {.val {length(path)}}"
+      "Use a single value. {.arg path} has length {.val {length(path)}}."
     )
   }
 
@@ -120,7 +120,7 @@ cff_read <- function(path, ...) {
   if (filetype == "dontknow") {
     cli::cli_abort(paste0(
       "Don't recognize the file type of {.file {path}}.",
-      " Use a specific function (e.g. {.fn cffr:cff_read_description}"
+      " Use a specific function, such as {.fn cffr:cff_read_description}."
     ))
   }
 
@@ -129,7 +129,7 @@ cff_read <- function(path, ...) {
     "description" = cff_read_description(path, ...),
     "bib" = cff_read_bib(path, ...),
     "citation" = cff_read_citation(path, ...),
-    cli::cli_abort("Don't know how to read {.val {x}}.")
+    cli::cli_abort("Do not know how to read {.val {x}}.")
   )
 
   endobj
@@ -144,7 +144,7 @@ cff_read_cff_citation <- function(path, ...) {
   cffobj <- yaml::read_yaml(
     path,
     ...,
-    # Read languages always as list (#105)
+    # Always read languages as a list (#105).
     handlers = list(map = function(x) {
       if (length(x$languages) == 1) {
         x$languages <- list(x$languages)
@@ -212,13 +212,13 @@ cff_read_citation <- function(path, meta = NULL, ...) {
 
   if (!any(is.null(meta), inherits(meta, "packageDescription"))) {
     # nolint start
-    # Object for cli only
+    # Object for cli only.
     ex <- packageDescription("cffr")
     # nolint end
 
     cli::cli_alert_warning(paste0(
-      "{.arg meta} should be {.val NULL} or {.obj_type_friendly {ex}}",
-      " not {.obj_type_friendly {meta}}. Using {.arg meta = NULL}"
+      "{.arg meta} should be {.val NULL} or {.obj_type_friendly {ex}},",
+      " not {.obj_type_friendly {meta}}. Using {.arg meta = NULL}."
     ))
     meta <- NULL
   }
@@ -226,11 +226,11 @@ cff_read_citation <- function(path, meta = NULL, ...) {
   new_meta <- clean_package_meta(meta)
   the_cit <- try(utils::readCitationFile(path, meta = new_meta), silent = TRUE)
 
-  # If error then new try
+  # If there is an error, try again.
   if (inherits(the_cit, "try-error")) {
     cli::cli_alert_warning(paste0(
       "It was not possible to read {.file {path}} with the {.arg meta} ",
-      "provided. Trying with {.code packageDescription('base')}"
+      "provided. Trying with {.code packageDescription('base')}."
     ))
     new_meta <- packageDescription("base")
     the_cit <- try(
@@ -239,7 +239,7 @@ cff_read_citation <- function(path, meta = NULL, ...) {
     )
     # nocov start
     if (inherits(the_cit, "try-error")) {
-      cli::cli_alert_danger("Can't read {.file path}, returning {.val NULL}")
+      cli::cli_alert_danger("Cannot read {.file path}. Returning {.val NULL}.")
       return(NULL)
     }
     # nocov end
@@ -259,14 +259,14 @@ cff_read_bib <- function(path, encoding = "UTF-8", ...) {
   # nocov start
   if (!requireNamespace("bibtex", quietly = TRUE)) {
     msg <- paste0(
-      "{.pkg bibtex} package required for using this function: ",
+      "{.pkg bibtex} package required to use this function: ",
       '{.run install.packages("bibtex")}'
     )
     cli::cli_abort(msg)
   }
   # nocov end
 
-  # Read from tempfile
+  # Read from tempfile.
   read_bib <- bibtex::read.bib(file = path, encoding = encoding, ...)
 
   tocff <- as_cff(read_bib)
@@ -274,13 +274,13 @@ cff_read_bib <- function(path, encoding = "UTF-8", ...) {
 }
 
 # Internal safe ----
-#' Internal version of cff_read_citation, safe
+#' Internal safe version of cff_read_citation.
 #' @noRd
 cff_safe_read_citation <- function(desc_path, cit_path) {
   if (!file_exist_abort(cit_path) || !file_exist_abort(desc_path)) {
     return(NULL)
   }
-  # Create meta
+  # Create metadata.
   meta <- desc_to_meta(desc_path)
   meta <- clean_package_meta(meta)
 
@@ -290,7 +290,7 @@ cff_safe_read_citation <- function(desc_path, cit_path) {
     return(NULL)
   }
 
-  # Need to be named here
+  # Need to be named here.
   tocff <- as_cff(the_cit)
   tocff
 }

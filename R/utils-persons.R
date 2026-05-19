@@ -1,27 +1,27 @@
 bibtex_pers_von_last_first_jr <- function(x) {
-  # Protect commas on brackets to avoid error on splitting
+  # Protect commas inside braces to avoid splitting errors.
   protected <- gsub(",(?![^\\}]*(\\{|$))", "@comma@", x, perl = TRUE)
 
   parts_comma <- trimws(unlist(strsplit(protected, ",")))
 
-  # Unprotect
+  # Unprotect.
   parts_comma <- gsub("@comma@", ",", parts_comma, fixed = TRUE)
 
   if (length(parts_comma) == 3) {
     given <- parts_comma[3]
   } else {
-    # Case jean de la fontaine, junior,
+    # Case: jean de la fontaine, junior,
     given <- NULL
   }
 
-  # Junior part
+  # Junior part.
   jr <- parts_comma[2]
 
-  # Now it is the same than in bibtex_person_von_last_first
+  # From here, it is the same as in bibtex_person_von_last_first().
 
-  # Now identify the von part
+  # Identify the von part.
 
-  # Protect spaces between braces before splitting
+  # Protect spaces inside braces before splitting.
   protected <- gsub(
     "\\s(?![^\\}]*(\\{|$))",
     "@blank@",
@@ -31,11 +31,11 @@ bibtex_pers_von_last_first_jr <- function(x) {
 
   parts <- unlist(strsplit(protected, " "))
 
-  # Unprotect
+  # Unprotect.
   parts <- gsub("@blank@", " ", parts, fixed = TRUE)
 
-  # Start building
-  # Assess casing
+  # Start building.
+  # Assess casing.
 
   is_upper <- vapply(parts, FUN.VALUE = logical(1), function(y) {
     case <- substr(y, 1, 1)
@@ -46,14 +46,14 @@ bibtex_pers_von_last_first_jr <- function(x) {
     }
   })
 
-  # Family should be always provided
+  # Family should always be provided.
   family <- parts[length(parts)]
 
   upper <- is_upper[setdiff(names(is_upper), family)]
 
-  # Get more family parts
+  # Get more family parts.
   invert <- rev(upper)
-  # Then need to get sequentally the family
+  # Then get the family sequentially.
   for (i in seq_along(invert)) {
     if (!invert[i]) {
       break
@@ -61,40 +61,40 @@ bibtex_pers_von_last_first_jr <- function(x) {
     family <- c(names(invert[i]), family)
   }
 
-  # The remaining is von
+  # The remaining part is von.
   von <- setdiff(names(is_upper), family)
 
   if (length(von) == 0) {
     von <- NULL
   }
 
-  # Compose final list to be pased to person()
+  # Compose the final list to pass to person().
 
-  # Last clean up
+  # Final cleanup.
   end_list <- list(given = given, von = von, family = family, jr = jr)
 
   end_list
 }
 
 bibtex_pers_von_last_first <- function(x) {
-  # Protect commas on brackets to avoid error on splitting
+  # Protect commas inside braces to avoid splitting errors.
   protected <- gsub(",(?![^\\}]*(\\{|$))", "@comma@", x, perl = TRUE)
 
   parts_comma <- trimws(unlist(strsplit(protected, ",")))
 
-  # Unprotect
+  # Unprotect.
   parts_comma <- gsub("@comma@", ",", parts_comma, fixed = TRUE)
 
   if (length(parts_comma) == 2) {
     given <- parts_comma[2]
   } else {
-    # Case jean de la fontaine,
+    # Case: jean de la fontaine,
     given <- NULL
   }
 
-  # Now identify the von part
+  # Identify the von part.
 
-  # Protect spaces between braces before splitting
+  # Protect spaces inside braces before splitting.
   protected <- gsub(
     "\\s(?![^\\}]*(\\{|$))",
     "@blank@",
@@ -104,11 +104,11 @@ bibtex_pers_von_last_first <- function(x) {
 
   parts <- unlist(strsplit(protected, " "))
 
-  # Unprotect
+  # Unprotect.
   parts <- gsub("@blank@", " ", parts, fixed = TRUE)
 
-  # Start building
-  # Assess casing
+  # Start building.
+  # Assess casing.
 
   is_upper <- vapply(parts, FUN.VALUE = logical(1), function(y) {
     case <- substr(y, 1, 1)
@@ -119,14 +119,14 @@ bibtex_pers_von_last_first <- function(x) {
     }
   })
 
-  # Family should be always provided
+  # Family should always be provided.
   family <- parts[length(parts)]
 
   upper <- is_upper[setdiff(names(is_upper), family)]
 
-  # Get more family parts
+  # Get more family parts.
   invert <- rev(upper)
-  # Then need to get sequentally the family
+  # Then get the family sequentially.
   for (i in seq_along(invert)) {
     if (!invert[i]) {
       break
@@ -134,16 +134,16 @@ bibtex_pers_von_last_first <- function(x) {
     family <- c(names(invert[i]), family)
   }
 
-  # The remaining is von
+  # The remaining part is von.
   von <- setdiff(names(is_upper), family)
 
   if (length(von) == 0) {
     von <- NULL
   }
 
-  # Compose final list to be pased to person()
+  # Compose the final list to pass to person().
 
-  # Last clean up
+  # Final cleanup.
   end_list <- list(given = given, von = von, family = family)
 
   end_list
@@ -152,7 +152,7 @@ bibtex_pers_von_last_first <- function(x) {
 bibtex_pers_first_von_last <- function(x) {
   # Based on Tame the BeaST
   # http://tug.ctan.org/info/bibtex/tamethebeast/ttb_en.pdf
-  # Testing
+  # Tests.
   # string                  -> "First"        "von"         "Last"
   # jean de la fontaine     -> ""             "jean de la"  "fontaine"
   # Jean de la fontaine     -> "Jean"         "de la"       "fontaine"
@@ -163,19 +163,19 @@ bibtex_pers_first_von_last <- function(x) {
   # jean De la Fontaine     -> ""             "jean De la"  "Fontaine"
   # Jean de La Fontaine     -> "Jean"         "de"          "La Fontaine"
 
-  # Protect spaces between braces before splitting
+  # Protect spaces inside braces before splitting.
   x <- gsub("\\s(?![^\\}]*(\\{|$))", "@blank@", x, perl = TRUE)
 
-  # Collapse blanks
+  # Collapse blanks.
   x <- gsub("\\s+", " ", x)
 
   parts <- trimws(unlist(strsplit(x, " ")))
 
-  # Unprotect
+  # Unprotect.
   parts <- gsub("@blank@", " ", parts, fixed = TRUE)
 
-  # Start building
-  # Assess casing
+  # Start building.
+  # Assess casing.
 
   is_upper <- vapply(parts, FUN.VALUE = logical(1), function(y) {
     case <- substr(y, 1, 1)
@@ -186,16 +186,16 @@ bibtex_pers_first_von_last <- function(x) {
     }
   })
 
-  # Family should be always provided
+  # Family should always be provided.
   family <- parts[length(parts)]
 
-  # Get if there is a mix of casings on the remaining parts
+  # Check if there is a mix of casings in the remaining parts.
   upper <- is_upper[setdiff(names(is_upper), family)]
   mix <- (length(unique(upper)) == 1)
 
   if (!all(mix, upper)) {
     invert <- rev(upper)
-    # Then need to get sequentally the family
+    # Then get the family sequentially.
     for (i in seq_along(invert)) {
       if (!invert[i]) {
         break
@@ -204,39 +204,39 @@ bibtex_pers_first_von_last <- function(x) {
     }
   }
 
-  # Clean again
+  # Clean again.
   upper <- is_upper[setdiff(names(is_upper), family)]
 
-  # von part
-  # Detect casing index on remaining parts
+  # von part.
+  # Detect casing index in the remaining parts.
   von_assess <- as.integer(which(!upper))
 
-  # von
-  # if no lenght then no von
+  # von.
+  # If there is no length, there is no von.
   if (length(von_assess) == 0) {
     von <- NULL
   } else {
     von <- names(upper[seq(min(von_assess), max(von_assess))])
   }
 
-  # get remaining part, it should be First
+  # Get the remaining part, which should be First.
   given <- names(upper[setdiff(names(upper), von)])
 
-  # Compose final list to be pased to person()
+  # Compose the final list to pass to person().
 
-  # Last clean up
+  # Final cleanup.
   end_list <- list(given = given, von = von, family = family)
 
   end_list
 }
 
 validate_cff_person_fields <- function(person_cff) {
-  # Entity of person
+  # Entity or person.
 
-  # Guess entity or person
+  # Guess entity or person.
   is_entity <- as.character("name" %in% names(person_cff))
 
-  # Keep only valid tags - Would depend on entity or person
+  # Keep only valid tags depending on entity or person.
   definition <- switch(is_entity,
     "TRUE" = cff_schema_definitions_entity(),
     cff_schema_definitions_person()
@@ -244,7 +244,7 @@ validate_cff_person_fields <- function(person_cff) {
 
   person_cff <- person_cff[names(person_cff) %in% definition]
 
-  # Duplicates removed
+  # Remove duplicates.
   person_cff <- person_cff[!duplicated(names(person_cff))]
 
   person_cff
@@ -254,34 +254,34 @@ split_txt_persons <- function(person) {
   person <- trimws(person)
   person <- paste0(person, collapse = " and ")
 
-  # Remove role on [] as it comes from print.person by default
-  # We don't use it here
+  # Remove role on [] as it comes from print.person() by default.
+  # We do not use it here.
   person <- gsub("\\[[^()]*\\]", "", person)
 
-  # Protect 'and' on brackets {}
-  # Lower
+  # Protect 'and' inside braces.
+  # Lowercase.
   protected <- gsub("(and)(?![^\\}]*(\\{|$))", "@nd@", person, perl = TRUE)
 
-  # upper
+  # Uppercase.
   protected <- gsub("AND(?![^\\}]*(\\{|$))", "@ND@", protected, perl = TRUE)
 
-  # Do the same for 'and' in comments "()" as provided by print.person
-  # Lower
+  # Do the same for 'and' in comments "()" as provided by print.person().
+  # Lowercase.
   protected <- gsub("(and)(?![^\\)]*(\\(|$))", "@nd@", protected, perl = TRUE)
 
-  # upper
+  # Uppercase.
   protected <- gsub("AND(?![^\\)]*(\\(|$))", "@ND@", protected, perl = TRUE)
 
-  # Do the same for 'and' in "<>". These are email, should never happen
-  # Lower
+  # Do the same for 'and' in "<>". These are email, so should never happen.
+  # Lowercase.
   protected <- gsub("(and)(?![^>]*(<|$))", "@nd@", protected, perl = TRUE)
 
-  # upper
+  # Uppercase.
   protected <- gsub("AND(?![^>]*(<|$))", "@ND@", protected, perl = TRUE)
 
   auths <- unlist(strsplit(protected, " and | AND "))
 
-  # Unprotec
+  # Unprotect.
   auths_un <- gsub("@nd@", "and", auths, fixed = TRUE)
   auths_un <- gsub("@ND@", "AND", auths_un, fixed = TRUE)
 
@@ -290,45 +290,45 @@ split_txt_persons <- function(person) {
 
 extract_person_comments <- function(person) {
   # nocov start
-  # Not used in R >= 4.5.0
-  # Ensure person type
+  # Not used in R >= 4.5.0.
+  # Ensure person type.
   person <- as.person(person)
 
-  # Extract from comments
+  # Extract from comments.
   comm_cff <- as.list(person$comment)
   names(comm_cff) <- tolower(names(comm_cff))
   nms_com <- names(comm_cff)
   comment_as_text <- tolower(clean_str(comm_cff))
 
-  # Special case when coerced from text, only can extract orcid and web
+  # Special case when coerced from text: only ORCID and web can be extracted.
   if (
     all(any(length(nms_com) == 0, is.na(nms_com)), length(comment_as_text) > 0)
   ) {
     split_comments <- unlist(strsplit(comment_as_text, ",| |<|>"))
 
-    # Guess that seems to be a web
+    # Guess what looks like a web URL.
     url_comment <- split_comments[is_url(split_comments)]
 
-    # guess orcid
+    # Guess ORCID.
     orcid <- url_comment[grepl("orcid.org/", url_comment)]
 
-    # Case for R > 4.4.1
+    # Case for R > 4.4.1.
     if ("orcid" %in% names(comm_cff)) {
       orcid <- clean_str(comm_cff$orcid)
     }
 
-    # Get the first non-orcid url
+    # Get the first non-ORCID URL.
     web <- url_comment[!grepl("orcid.org/", url_comment)][1]
 
-    # Reset comment list
+    # Reset comment list.
     comm_cff <- list()
 
     comm_cff$orcid <- clean_str(orcid)
     comm_cff$website <- clean_str(web)
   }
 
-  # Add url to orcid if not present
-  # Get leading invalid urls
+  # Add URL to ORCID if not present.
+  # Get leading invalid URLs.
 
   if (!is.null(comm_cff$orcid)) {
     orcid <- gsub("^orcid.org/", "", comm_cff$orcid)
@@ -338,20 +338,20 @@ extract_person_comments <- function(person) {
     comm_cff$orcid <- paste0("https://orcid.org/", orcid)
   }
 
-  # Add website
+  # Add website.
   web <- comm_cff$website
 
   if (!is.null(web)) {
     comm_cff$website <- clean_str(web[is_url(web)])
   }
 
-  # Add also email
-  # Check if several mails (MomTrunc 6.0)
+  # Also add email.
+  # Check if there are several emails (MomTrunc 6.0).
   look_emails <- c(unlist(person$email), comm_cff$email)
   valid_emails <- unlist(lapply(look_emails, is_email))
   email <- look_emails[valid_emails][1]
 
-  # Final list
+  # Final list.
   fin_list <- c(list(email = NULL), comm_cff["email" != names(comm_cff)])
   fin_list$email <- clean_str(email)
 
@@ -360,7 +360,7 @@ extract_person_comments <- function(person) {
 }
 
 extract_person_comments45 <- function(person) {
-  # Detect comments
+  # Detect comments.
   # Last is )?
 
   if (inherits(person, "person")) {
@@ -372,17 +372,17 @@ extract_person_comments45 <- function(person) {
 
   has_comment <- all(last == ")", start_comment > 5)
 
-  # If does not have comment convert to person
+  # If it does not have a comment, convert to person.
   if (!has_comment) {
     p <- as.person(person)
     comm_cff <- list(fake = 123)
   } else {
-    # Split and convert
+    # Split and convert.
     the_person <- substr(person, 1, start_comment - 1)
     p <- as.person(the_person)
 
-    # Comments
-    # Can't get commas in the comment :(
+    # Comments.
+    # Cannot get commas in the comment.
     comm <- strsplit(substr(person, start_comment + 1, nchar(person) - 1), ",")
     comm <- unlist(comm)
     comm_list <- lapply(comm, function(x) {
@@ -401,7 +401,7 @@ extract_person_comments45 <- function(person) {
   }
 
   names(comm_cff) <- tolower(names(comm_cff))
-  # Delete non-named comments
+  # Delete unnamed comments.
   nms_com <- names(comm_cff)
   comm_cff <- comm_cff[nchar(nms_com) > 1]
 
@@ -413,26 +413,26 @@ extract_person_comments45 <- function(person) {
     comm_cff$orcid <- paste0("https://orcid.org/", orcid)
   }
 
-  # Add website
+  # Add website.
   web <- comm_cff$website
 
   if (!is.null(web)) {
     comm_cff$website <- clean_str(web[is_url(web)])
   }
 
-  # Fallback: ROR if website not present
+  # Fallback: ROR if website is not present.
   ror <- comm_cff$ror
   if (all(!is.null(ror), is.null(comm_cff$website))) {
     comm_cff$website <- clean_str(ror[is_url(ror)])
   }
 
-  # Add also email
-  # Check if several mails (MomTrunc 6.0)
+  # Also add email.
+  # Check if there are several emails (MomTrunc 6.0).
   look_emails <- c(unlist(p$email), comm_cff$email)
   valid_emails <- unlist(lapply(look_emails, is_email))
   email <- look_emails[valid_emails][1]
 
-  # Final list
+  # Final list.
   fin_list <- c(list(email = NULL), comm_cff["email" != names(comm_cff)])
   fin_list$email <- clean_str(email)
   fin_list

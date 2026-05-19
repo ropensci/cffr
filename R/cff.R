@@ -49,7 +49,7 @@
 #' cff_validate(test)
 #' }
 #'
-#' # Modify with cff_create
+#' # Modify with cff_create().
 #' new <- cff_create(test, keys = list(
 #'   "cff_version" = "1.2.0",
 #'   message = "A blank file"
@@ -77,19 +77,19 @@ cff <- function(path, ...) {
 
   cffobj <- list(...)
   if (length(cffobj) == 0) {
-    # If nothing is provided use a minimal cff
+    # If nothing is provided, use a minimal cff.
     path <- system.file("examples/CITATION_skeleton.cff", package = "cffr")
 
     return(cff_read_cff_citation(path))
   }
 
-  # Check names
+  # Check names.
 
   cffobj <- validate_extra_keys(cffobj)
   cffobj <- fuzzy_keys(cffobj)
 
   if (anyDuplicated(names(cffobj)) > 0) {
-    cli::cli_alert_warning("Removing duplicated keys.")
+    cli::cli_alert_warning("Removing duplicate keys.")
     cffobj <- cffobj[!duplicated(names(cffobj))]
   }
 

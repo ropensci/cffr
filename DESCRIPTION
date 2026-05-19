@@ -1,5 +1,5 @@
 Package: cffr
-Title: Generate Citation File Format ('cff') Metadata for R Packages
+Title: Generate Citation File Format ('CFF') Metadata for R Packages
 Version: 1.4.0
 Authors@R: c(
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
@@ -9,16 +9,16 @@ Authors@R: c(
     person("Scott", "Chamberlain", role = "rev",
            comment = c(ORCID = "0000-0003-1444-9135"))
   )
-Description: The Citation File Format version 1.2.0
-    <doi:10.5281/zenodo.5171937> is a human and machine readable file
-    format which provides citation metadata for software. This package
+Description: Citation File Format ('CFF') version 1.2.0
+    <doi:10.5281/zenodo.5171937> is a human- and machine-readable file
+    format that provides citation metadata for software. This package
     provides core utilities to generate and validate this metadata.
 License: GPL (>= 3)
 URL: https://docs.ropensci.org/cffr/, https://github.com/ropensci/cffr
 BugReports: https://github.com/ropensci/cffr/issues
-Depends: 
+Depends:
     R (>= 4.1.0)
-Imports: 
+Imports:
     cli (>= 2.0.0),
     desc (>= 1.3.0),
     jsonlite (>= 1.7.2),
@@ -26,7 +26,7 @@ Imports:
     tools,
     utils,
     yaml (>= 2.2.1)
-Suggests: 
+Suggests:
     bibtex (>= 0.5.0),
     knitr,
     lifecycle,
@@ -34,7 +34,7 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0),
     usethis
-VignetteBuilder: 
+VignetteBuilder:
     quarto
 Config/Needs/website: devtools
 Config/roxygen2/markdown: TRUE

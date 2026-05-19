@@ -2,8 +2,8 @@
 title: "From R to CFF"
 subtitle: "Crosswalk"
 description: >
-  A comprehensive description of the internal mappings performed by
-  the cffr package.
+  A comprehensive description of the internal mappings performed by the cffr
+  package.
 author: Diego Hernangómez
 bibliography: REFERENCES.bib
 link-citations: true
@@ -98,11 +98,11 @@ This key is extracted from the `"Description"` field of the `DESCRIPTION` file.
 #| label: abstract
 library(cffr)
 
-# Create cffr for yaml
+# Create cffr for YAML.
 
 cff_obj <- cff_create("rmarkdown")
 
-# Get DESCRIPTION of rmarkdown to check
+# Get DESCRIPTION of rmarkdown to check.
 
 pkg <- desc::desc(file.path(find.package("rmarkdown"), "DESCRIPTION"))
 
@@ -117,7 +117,7 @@ Back to @tbl-summary.
 
 This key is coerced from the `"Authors"` or `"Authors@R"` field of the
 `DESCRIPTION` file. By default, persons with the role `"aut"` or `"cre"` are
-considered, however this can be modified via the `authors_roles` argument.
+considered, but this can be modified via the `authors_roles` argument.
 
 ```{r}
 #| label: authors
@@ -128,11 +128,11 @@ pkg <- desc::desc(path)
 # See persons listed
 pkg$get_authors()
 
-# Default behaviour, use authors and creators (maintainers)
+# Default behavior, use authors and creators (maintainers).
 cff_obj <- cff_create(path)
 cff_obj$authors
 
-# Use now Copyright holders and maintainers
+# Now use copyright holders and maintainers.
 cff_obj_alt <- cff_create(path, authors_roles = c("cre", "cph"))
 cff_obj_alt$authors
 ```
@@ -311,7 +311,7 @@ cat(cffnokeywords$keywords)
 
 pkgnokeywords
 
-# Adding Keywords
+# Adding keywords.
 
 desc::desc_set(
   "X-schema.org-keywords",
@@ -333,14 +333,14 @@ option is controlled via the `gh_keywords` argument:
 
 jsonval <- cff_create("jsonvalidate")
 
-# Keywords are retrieved from the GitHub repo
+# Keywords are retrieved from the GitHub repository.
 
 jsonval
 
 # Check keywords
 jsonval$keywords
 
-# The repo
+# The repository.
 jsonval$`repository-code`
 ```
 
@@ -444,14 +444,14 @@ Back to @tbl-summary.
 This key is extracted from the `"Repository"` field of the `DESCRIPTION` file.
 Usually, this field is auto-populated when a package is hosted on a repository
 (like **CRAN** or the [r-universe](https://r-universe.dev/search)). For packages
-without this field on the `DESCRIPTION` (which is the typical case for an
-in-development package), **cffr** tries to search the package on any of the
-default repositories specified on `options("repos")`.
+without this field in the `DESCRIPTION` (which is the typical case for an
+in-development package), **cffr** tries to find the package in any of the
+default repositories specified in `options("repos")`.
 
 In the case of [Bioconductor](https://bioconductor.org/) packages, those are
 identified if a
 ["biocViews"](https://contributions.bioconductor.org/description.html#biocviews)
-is present on the `DESCRIPTION` file.
+is present in the `DESCRIPTION` file.
 
 If **cffr** detects that the package is available on **CRAN**, it returns the
 canonical URL form of the package (i.e.
@@ -474,21 +474,21 @@ cat(runiv_cff$repository)
 
 desc::desc(runiv)$get("Repository")
 
-# For in development package
+# For an in-development package.
 
 norepo <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
-# No repo
+# No repository.
 norepo_cff <- cff_create(norepo)
 
 cat(norepo_cff[["repository"]])
 
-# Change the name to a known package on CRAN: ggplot2
+# Change the name to a known package on CRAN: ggplot2.
 
 tmp <- tempfile("DESCRIPTION")
 file.copy(norepo, tmp)
 
-# Change name
+# Change name.
 desc::desc_set("Package", "ggplot2", file = tmp)
 
 cat(cff_create(tmp)[["repository"]])
@@ -580,7 +580,7 @@ This key is extracted from the `"BugReports"` or `"URL"` fields on the
 
 ```{r}
 #| label: url
-# Many urls
+# Many URLs.
 manyurls <- system.file("examples/DESCRIPTION_many_urls", package = "cffr")
 
 cat(cff_create(manyurls)$url)

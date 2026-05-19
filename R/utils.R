@@ -15,13 +15,13 @@ clean_str <- function(str) {
   clean <- gsub("^NA$", "", clean)
   clean <- gsub("\\s{2,}", " ", clean)
   clean <- trimws(clean)
-  # Collapse to single char
+  # Collapse to a single character value.
   clean <- paste(clean, collapse = " ")
 
   if (clean == "") {
     return(NULL)
   }
-  # Encoding
+  # Normalize encoding.
   enc <- Encoding(clean)
 
   if (enc != "UTF-8") {
@@ -31,12 +31,12 @@ clean_str <- function(str) {
   clean
 }
 
-#' Drop nulls from list
+#' Drop nulls from a list
 #' @source https://github.com/cboettig/codemeta/blob/master/R/utils.R
 #' @param x A list to be cleaned.
 #' @noRd
 drop_null <- function(x) {
-  # Already been here
+  # Return objects already processed.
   if (inherits(x, "cff")) {
     return(x)
   }
@@ -70,11 +70,11 @@ search_on_repos <- function(
     return(NULL)
   }
 
-  # Try to find in CRAN
+  # Try to find the package in CRAN.
   cran_repo <- clean_str(repos["CRAN"])
 
   if (length(grep(cran_repo, get)) == 1) {
-    # Canonical url to CRAN
+    # Canonical URL to CRAN.
 
     repos <- paste0("https://CRAN.R-project.org/package=", name)
     return(repos)
@@ -85,20 +85,19 @@ search_on_repos <- function(
   repos
 }
 
-
 #' Detect current repositories
 #'
 #' Detect the current repositories of the user. If not set, use CRAN.
 #' @param repos Current repositories setup.
 #' @noRd
 detect_repos <- function(repos = getOption("repos")) {
-  # Not use RSPM
+  # Ignore RSPM.
   repos <- repos[names(repos) != "RSPM"]
   repos <- repos[!grepl("rspm", repos, fixed = TRUE)]
   repos <- repos[!grepl("posit", repos, fixed = TRUE)]
   repos <- repos[!grepl("rstudio", repos, fixed = TRUE)]
 
-  # If not set use 0-Cloud
+  # Use 0-Cloud when CRAN is not set.
   if (!is_url(repos["CRAN"])) {
     repos["CRAN"] <- "https://cloud.r-project.org/"
   }
@@ -106,7 +105,7 @@ detect_repos <- function(repos = getOption("repos")) {
   repos
 }
 
-#' Function for fuzzy matching the names of the keys
+#' Fuzzy match key names
 #'
 #' @description
 #' Proposed by @sckott
@@ -122,10 +121,10 @@ fuzzy_keys <- function(keys) {
     cff_schema_definitions_refs()
   ))
   names <- names(keys)
-  # Check valid keys as is
+  # Check valid keys as is.
   is_valid_key <- names %in% valid_keys
 
-  # If not all are valid try to fuzzy match
+  # Try fuzzy matching when not all keys are valid.
   if (isFALSE(all(is_valid_key))) {
     names_fuzzy <- names[!(is_valid_key)]
 
@@ -138,7 +137,7 @@ fuzzy_keys <- function(keys) {
       fixed = FALSE
     )
 
-    # Modify NULL correspondences
+    # Modify NULL correspondences.
     keys_match <- unlist(lapply(keys_match, function(x) {
       if (length(x) == 0) {
         return("No match, removing.")
@@ -146,7 +145,7 @@ fuzzy_keys <- function(keys) {
       x[1]
     }))
 
-    # Message
+    # Message.
     ll <- paste0("{.dt ", names_fuzzy, "}{.dl ", keys_match, "}")
 
     bullets <- rep("v", length(ll))
@@ -155,7 +154,7 @@ fuzzy_keys <- function(keys) {
     cli::cli_alert_info(paste0("Found misspelled keys. Trying to map:"))
 
     cli::cli_bullets(ll)
-    # Modify names
+    # Modify names.
     names[!is_valid_key] <- keys_match
   }
 
@@ -169,28 +168,27 @@ fuzzy_keys <- function(keys) {
 
 guess_cff_named_part <- function(x) {
   nms <- names(x)
-  # Search for names
+  # Search for names.
   is_person <- any(grepl("^name$|family|given|particle", nms))
   if (is_person) {
     return("cff_pers")
   }
 
-  # VALID full cff file
+  # Valid full CFF file.
   is_full <- any(grepl("cff-version|message", nms))
   if (is_full) {
     return("cff_full")
   }
 
-  # Reference
+  # Reference.
   is_ref <- any(grepl("title|type", nms))
   if (is_ref) {
     return("cff_ref")
   }
 
-  # Else
+  # Otherwise.
   "unclear"
 }
-
 
 guess_cff_part <- function(x) {
   named <- is_named(x)
@@ -198,7 +196,7 @@ guess_cff_part <- function(x) {
     return(guess_cff_named_part(x))
   }
 
-  # Look to first element
+  # Look at the first element.
   guess <- guess_cff_named_part(x[[1]])
 
   fin <- switch(guess,
@@ -209,7 +207,6 @@ guess_cff_part <- function(x) {
 
   fin
 }
-
 
 detect_x_source <- function(x) {
   if (any(missing(x), is.null(x))) {
@@ -258,27 +255,27 @@ file_path_or_null <- function(x) {
 #' @noRd
 clean_package_meta <- function(meta) {
   if (!inherits(meta, "packageDescription")) {
-    # Add encoding
+    # Add encoding.
     meta <- list()
     meta$Encoding <- "UTF-8"
     return(meta)
   }
 
-  # Convert to a desc object
+  # Convert to a desc object.
 
-  # First write to a dcf file
+  # First write to a DCF file.
   tmp <- tempfile("DESCRIPTION")
   meta_unl <- unclass(meta)
   write.dcf(meta_unl, tmp)
   pkg <- desc::desc(tmp)
   pkg$coerce_authors_at_r()
-  # Extract package data
+  # Extract package data.
   meta <- pkg$get(desc::cran_valid_fields)
 
-  # Clean missing and drop empty fields
+  # Clean missing values and drop empty fields.
   meta <- drop_null(lapply(meta, clean_str))
 
-  # Check encoding
+  # Check encoding.
   if (!is.null(meta$Encoding)) {
     meta <- lapply(meta, iconv, from = meta$Encoding, to = "UTF-8")
   } else {
@@ -288,14 +285,13 @@ clean_package_meta <- function(meta) {
   meta
 }
 
-
-# Convert a DESCRIPTION object to meta object using desc package
+# Convert a DESCRIPTION object to a meta object using the desc package.
 desc_to_meta <- function(x) {
   src <- x
   my_meta <- desc::desc(src)
   my_meta$coerce_authors_at_r()
 
-  # As list
+  # Convert to a list.
   my_meta_l <- my_meta$get(desc::cran_valid_fields)
   my_meta_l <- as.list(my_meta_l)
   v_nas <- vapply(my_meta_l, is.na, logical(1))

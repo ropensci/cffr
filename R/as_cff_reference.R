@@ -2,14 +2,14 @@
 #'
 #' @noRd
 as_cff_reference <- function(x) {
-  # Need always to be unnamed bibentry
+  # Always require an unnamed bibentry.
   bib <- unname(x)
   if (anyDuplicated(bib) > 0) {
     cli::cli_alert_info("Removing duplicate {.cls bibentry} objects.")
     bib <- unique(bib)
   }
 
-  # Return always a list
+  # Always return a list.
   the_list <- lapply(bib, make_cff_reference)
   the_list
 }
@@ -18,12 +18,12 @@ make_cff_reference <- function(bib) {
   # Get BibTeX entry ----
   cit_list <- get_bibtex_entry(bib)
 
-  ## If no title (case of some Misc) then return null
+  ## If there is no title (case of some Misc), return null.
   if (!("title" %in% names(cit_list))) {
     entry <- capture.output(print(bib, bibtex = FALSE))
     entry <- as.character(entry)
 
-    cli::cli_alert_warning("Entry {.val {entry}} without title. Skipping")
+    cli::cli_alert_warning("Entry {.val {entry}} has no title. Skipping.")
 
     return(NULL)
   }
@@ -43,8 +43,8 @@ make_cff_reference <- function(bib) {
   field_list <- get_bibtex_inst(field_list)
 
   # Coerce persons ----
-  # Special case: authors
-  # Some keys does not strictly require authors, so we create one for cff
+  # Special case: authors.
+  # Some keys do not strictly require authors, so create one for cff.
   # https://github.com/citation-file-format/citation-file-format/blob/main/
   # (cont) schema-guide.md#how-to-deal-with-unknown-individual-authors
 
@@ -59,7 +59,7 @@ make_cff_reference <- function(bib) {
   ## other persons----
   get_other_persons <- get_bibtex_other_pers(field_list)
 
-  # Keep order here, we would use it later
+  # Keep order here for later use.
   init_ord <- names(field_list)
 
   cit_list <- c(
@@ -67,7 +67,7 @@ make_cff_reference <- function(bib) {
     get_other_persons
   )
 
-  # Building blocks----
+  # Building blocks ----
 
   # Fallback for year and month: use date-published ----
   cit_list <- fallback_dates(cit_list)
@@ -86,7 +86,7 @@ make_cff_reference <- function(bib) {
   cit_list$url <- bb_url$url
 
   ### final identifiers----
-  # Identifies (additional dois and urls)
+  # Identifiers (additional DOIs and URLs).
   if (!is.null(bb_url$identifiers)) {
     cit_list$identifiers <- append(cit_list$identifiers, bb_url$identifiers)
   }
@@ -97,9 +97,9 @@ make_cff_reference <- function(bib) {
   ## Handle location ----
   cit_list <- add_address(cit_list)
 
-  # Last step----
+  # Last step ----
 
-  # Initial order but starting with type, title, authors
+  # Initial order, but starting with type, title and authors.
   final_order <- unique(c(
     "type",
     "title",
@@ -110,7 +110,7 @@ make_cff_reference <- function(bib) {
 
   cit_list <- cit_list[final_order]
 
-  # Remove non-valid names
+  # Remove invalid names.
   validnames <- cff_schema_definitions_refs()
   cit_list <- cit_list[names(cit_list) %in% validnames]
 

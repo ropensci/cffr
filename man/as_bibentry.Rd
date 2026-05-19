@@ -29,11 +29,11 @@ as_bibentry(x, ...)
 \method{as_bibentry}{cff_ref}(x, ...)
 }
 \arguments{
-\item{x}{The source used to generate
-the \code{bibentry} object via \CRANpkg{cffr}. It can be:
+\item{x}{The source used to generate the \code{bibentry} object via
+\CRANpkg{cffr}. It can be:
 \itemize{
-\item A missing value, which retrieves the \code{DESCRIPTION}
-file from your in-development package.
+\item A missing value, which retrieves the \code{DESCRIPTION} file from your
+in-development package.
 \item An existing \code{cff} object created with \code{\link[=cff]{cff()}}, \code{\link[=cff_create]{cff_create()}}, or
 \code{\link[=as_cff]{as_cff()}}.
 \item Path to a CITATION.cff file (\code{"CITATION.cff"}).
@@ -45,11 +45,10 @@ file from your in-development package.
 
 \item{what}{Fields to extract from a full \code{cff} object. The value could be:
 \itemize{
-\item \code{preferred}: This would create a single entry with the main citation
-info of the package (key \code{preferred-citation}).
-\item \code{references}: Extract all the entries of \code{references} key.
-\item \code{all}: A combination of the previous two options. This would extract
-both the \code{preferred-citation} and the \code{references} key.
+\item \code{preferred}: Create a single entry with the main citation information
+of the package (key \code{preferred-citation}).
+\item \code{references}: Extract all entries of the \code{references} key.
+\item \code{all}: Extract both the \code{preferred-citation} and \code{references} keys.
 }
 
 See \code{vignette("r-cff", package = "cffr")}.}
@@ -63,14 +62,14 @@ This function creates \code{\link{bibentry}} objects from different metadata sou
 transformation (\code{bibentry} object to \code{\link{cff_ref_lst}}) can be done with the
 corresponding \code{\link[=as_cff.bibentry]{as_cff.bibentry()}} method.
 
-With \code{\link[=toBibtex.cff]{toBibtex()}} it is possible to convert \code{\link{cff}} objects
-to BibTeX markup on the fly, see \strong{Examples}.
+With \code{\link[=toBibtex.cff]{toBibtex()}} it is possible to convert \code{\link{cff}}
+objects to BibTeX markup on the fly. See \strong{Examples}.
 }
 \details{
 An \strong{R} \code{bibentry} object is the representation of a BibTeX entry. These
-objects can be converted to BibTeX markup with \code{\link[=toBibtex]{toBibtex()}}, that creates an
-object of class \code{Bibtex} and can be printed and exported as a valid BibTeX
-entry.
+objects can be converted to BibTeX markup with \code{\link[=toBibtex]{toBibtex()}}, which creates
+an object of class \code{Bibtex} that can be printed and exported as a valid
+BibTeX entry.
 
 \code{as_bibtex()} tries to map the information of the source \code{x} into a \code{\link{cff}}
 object and performs a mapping of the metadata to BibTeX, according to
@@ -90,10 +89,10 @@ class(bib)
 
 bib
 
-# Print as bibtex
+# Print as BibTeX
 toBibtex(bib)
 
-# Thanks to the S3 Method we can also do
+# Thanks to the S3 method, you can also do
 toBibtex(cff_object)
 
 # Other sources ----

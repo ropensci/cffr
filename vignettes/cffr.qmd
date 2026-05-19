@@ -32,7 +32,7 @@ files:
 
 [Citation File Format (CFF)](https://citation-file-format.github.io/)
 [@druskat_citation_2021] (v1.2.0) files are plain text files with human- and
-machine-readable citation information for software (and datasets). Code
+machine-readable citation information for software (and datasets). Software
 developers can include them in their repositories to let others know how to
 correctly cite their software.
 
@@ -74,7 +74,7 @@ cff_write()
 # You are done!
 ```
 
-Under the hood, `cff_write()` performs the following tasks:
+Under the hood, `cff_write()` performs these tasks:
 
 - It extracts the metadata using `cff_create()`.
 - Optionally modifies it with `cff_modify()`.
@@ -109,7 +109,7 @@ can be displayed with `cff_schema_keys()`:
 cff_schema_keys()
 ```
 
-In this case, we add `url`, `version`, and `repository`. We also overwrite the
+In this case, we add `url`, `version` and `repository`. We also overwrite the
 `title` key. We add these arguments to `cff_modify()`:
 
 ```{r}

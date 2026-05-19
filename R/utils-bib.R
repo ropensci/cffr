@@ -2,7 +2,7 @@ protect_bib_braces <- function(x) {
   paste0("{", x, "}")
 }
 
-# Utils for as_bibentry ----
+# Utils for as_bibentry() ----
 get_bib_howpublised <- function(x) {
   howpublished <- x$medium
 
@@ -18,7 +18,7 @@ get_bib_howpublised <- function(x) {
 get_bib_note <- function(x) {
   note <- x$notes
 
-  # unpublished needs a note
+  # Unpublished entries need a note.
   if (all(is.null(note), tolower(x$type) == "unpublished")) {
     note <- "Extracted with cffr R package"
   }
@@ -40,12 +40,12 @@ guess_bibtype <- function(x) {
     "pamphlet" = "booklet",
     "report" = "techreport",
     "thesis" = "mastersthesis",
-    # We would need to guess
+    # Guess when no direct mapping is available.
     "misc"
   )
 
-  # Try guess Inbook ----
-  # inbook is a book where chapter or pages are present
+  # Try to guess inbook ----
+  # inbook is a book where chapter or pages are present.
   has_chapter <- !is.null(clean_str(x$section))
   has_pages <- !is.null(clean_str(paste(
     unique(c(x$start, x$end)),
@@ -57,17 +57,17 @@ guess_bibtype <- function(x) {
     return(init_guess)
   }
 
-  # Try guess Phdthesis  ----
+  # Try to guess phdthesis ----
   if (init_guess == "mastersthesis") {
     ttype <- clean_str(gsub("[[:punct:]]", "", x$`thesis-type`, perl = TRUE))
-    # phd
+    # phd.
     if (all(!is.null(ttype), grepl("phd", ttype, ignore.case = TRUE))) {
       return("phdthesis")
     }
   }
 
-  # Try guess InCollection  ----
-  # Hint: is misc with collection-title and publisher
+  # Try to guess incollection ----
+  # Hint: it is misc with collection-title and publisher.
   if (init_guess == "misc") {
     if (!is.null(clean_str(x$`collection-title`))) {
       return("incollection")
@@ -99,7 +99,7 @@ get_bib_address <- function(x) {
     collapse = ", "
   ))
 
-  # As a fallback, use also location
+  # As a fallback, also use location.
   if (is.null(address) && !is.null(x$location)) {
     address <- clean_str(x$location$name)
   }
@@ -108,9 +108,9 @@ get_bib_address <- function(x) {
 }
 
 get_bib_booktitle <- function(x, bibtype) {
-  # This map collection title.
-  # If inproceedings, incollection to booktitle
-  # rest of cases to series
+  # Map collection title.
+  # If inproceedings or incollection, map it to booktitle.
+  # In the remaining cases, map it to series.
 
   book_series <- list()
   tag_value <- clean_str(x[["collection-title"]])
@@ -118,7 +118,7 @@ get_bib_booktitle <- function(x, bibtype) {
   if (!bibtype %in% c("incollection", "inproceedings")) {
     book_series$series <- tag_value
   } else {
-    # Only for incollections and inproceedings map booktitle
+    # Map booktitle only for incollection and inproceedings.
     book_series$booktitle <- tag_value
 
     # Fallback to conference name for inproceedings
@@ -130,9 +130,8 @@ get_bib_booktitle <- function(x, bibtype) {
 }
 
 get_bib_inst_org <- function(x, bibtype) {
-  # For inproceedings, proceedings and manual this field
-  # is organization
-  # For thesis it should be school
+  # For inproceedings, proceedings and manual, this field is organization.
+  # For thesis, it should be school.
 
   inst_org <- list()
   # Just name
@@ -146,7 +145,7 @@ get_bib_inst_org <- function(x, bibtype) {
     inst_org$institution <- inst_name
   }
 
-  # Fallback for techreport, search on affiliation first author
+  # Fallback for techreport: search the first author affiliation.
 
   if (bibtype == "techreport" && is.null(inst_org$institution)) {
     inst_org$institution <- clean_str(x$authors[[1]]$affiliation)
@@ -156,38 +155,38 @@ get_bib_inst_org <- function(x, bibtype) {
 }
 
 make_bibkey <- function(tobibentry) {
-  # Be kind and provided a bibentry key
+  # Be kind and provide a bibentry key.
 
   y <- tobibentry$year
 
   # Init etall
   etall <- NULL
 
-  # Also Some entries don't have authors, but editors
-  # Others may have none (misc, pamphlet)
+  # Some entries do not have authors but do have editors.
+  # Others may have none, such as misc or pamphlet.
 
   init_aut <- tobibentry$author
 
-  # Try get editor in null
+  # Try to get the editor if the author is null.
   if (is.null(init_aut)) {
     init_aut <- tobibentry$editor
   }
 
-  # If none then get a key based in title
+  # If none, get a key based on title.
   if (any(is.null(init_aut), length(init_aut) == 0)) {
     r <- tolower(tobibentry$title)
-    # Reduce lenght to 15 max
+    # Reduce length to 15 characters maximum.
     r <- substr(r, 0, 15)
   } else {
-    # First name/surname and et_all if additional authors
-    # Bear in mind institutions has only given
+    # Use the first name or surname and et_all if there are additional authors.
+    # Bear in mind that institutions have only given names.
 
     nauths <- length(init_aut)
     if (nauths > 1) {
       etall <- "_etall"
     }
 
-    # Get info of first author
+    # Get information from the first author.
     unz <- unlist(init_aut[1])
     if ("family" %in% names(unz)) {
       r <- unz["family"]
@@ -198,17 +197,17 @@ make_bibkey <- function(tobibentry) {
     r <- tolower(paste0(r, collapse = ""))
   }
 
-  # Try hard to remove accents
-  # First with iconv
+  # Try hard to remove accents.
+  # First use iconv.
   r <- iconv(r, from = "UTF-8", to = "ASCII//TRANSLIT", sub = "?")
 
-  # Next to latex
+  # Then convert to LaTeX.
   r <- encoded_utf_to_latex(r)
 
-  # Finally keep only a-z letters for key
+  # Finally, keep only a-z letters for the key.
   r <- gsub("[^_a-z]", "", r)
 
-  # Append etall and year
+  # Append etall and year.
   key <- paste0(c(r, etall), collapse = "")
   key <- paste(c(key, y), collapse = ":")
   key
@@ -220,11 +219,11 @@ get_bib_month <- function(x) {
   # Fallback
 
   if (is.null(m) && !is.null(x$`date-published`)) {
-    # Should be YYYY-MM-DD to be valid on cff, so
+    # Should be YYYY-MM-DD to be valid in CFF.
     m <- as.integer(format(as.Date(x$`date-published`), "%m"))
   }
 
-  # Try to get 3 month string
+  # Try to get a three-letter month string.
   m_int <- suppressWarnings(as.integer(m))
   m_letters <- clean_str(tolower(month.abb[m_int]))
 
@@ -243,7 +242,7 @@ get_bib_year <- function(x) {
   # Fallback
 
   if (is.null(year) && !is.null(x$`date-released`)) {
-    # Should be YYYY-MM-DD to be valid on cff, so
+    # Should be YYYY-MM-DD to be valid in CFF.
     year <- substr(x$`date-released`, 1, 4)
   }
 

@@ -1737,7 +1737,7 @@
       v tittle: title
       v tittle: title
       v messange: message
-      ! Removing duplicated keys.
+      ! Removing duplicate keys.
 
 # unnamed
 
@@ -1759,8 +1759,8 @@
       The `path` argument of `cff()` is deprecated as of cffr 1.0.0.
       i Argument ignored.
     Message
-      ! Found 1 not-named argument in position 2.
-      i Removing unnamed arguments
+      ! Found 1 unnamed argument in position 2.
+      i Removing unnamed arguments.
 
 ---
 
@@ -1772,6 +1772,6 @@
       The `path` argument of `cff()` is deprecated as of cffr 1.0.0.
       i Argument ignored.
     Message
-      ! Found 6 not-named arguments in positions 2, 3, 4, 5, 7, and 8.
-      i Removing unnamed arguments
+      ! Found 6 unnamed arguments in positions 2, 3, 4, 5, 7, and 8.
+      i Removing unnamed arguments.
 

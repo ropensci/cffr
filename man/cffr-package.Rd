@@ -4,11 +4,11 @@
 \name{cffr-package}
 \alias{cffr}
 \alias{cffr-package}
-\title{cffr: Generate Citation File Format ('cff') Metadata for R Packages}
+\title{cffr: Generate Citation File Format ('CFF') Metadata for R Packages}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-The Citation File Format version 1.2.0 \doi{10.5281/zenodo.5171937} is a human and machine readable file format which provides citation metadata for software. This package provides core utilities to generate and validate this metadata.
+Citation File Format ('CFF') version 1.2.0 \doi{10.5281/zenodo.5171937} is a human- and machine-readable file format that provides citation metadata for software. This package provides core utilities to generate and validate this metadata.
 }
 \seealso{
 Useful links:

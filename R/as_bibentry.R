@@ -10,8 +10,8 @@
 #' transformation (`bibentry` object to [`cff_ref_lst`]) can be done with the
 #' corresponding [as_cff.bibentry()] method.
 #'
-#' With [`toBibtex()`][toBibtex.cff()] it is possible to convert [`cff`] objects
-#' to BibTeX markup on the fly, see **Examples**.
+#' With [`toBibtex()`][toBibtex.cff()] it is possible to convert [`cff`]
+#' objects to BibTeX markup on the fly. See **Examples**.
 #'
 #' @seealso
 #' [utils::bibentry()] to understand more about the `bibentry` class.
@@ -38,10 +38,10 @@
 #'   *The cffr package, Vignettes*. \doi{10.21105/joss.03900},
 #'   <https://docs.ropensci.org/cffr/articles/bibtex-cff.html>.
 #'
-#' @param x The source used to generate
-#'   the `bibentry` object via \CRANpkg{cffr}. It can be:
-#'   - A missing value, which retrieves the `DESCRIPTION`
-#'     file from your in-development package.
+#' @param x The source used to generate the `bibentry` object via
+#'   \CRANpkg{cffr}. It can be:
+#'   - A missing value, which retrieves the `DESCRIPTION` file from your
+#'     in-development package.
 #'   - An existing `cff` object created with [cff()], [cff_create()], or
 #'     [as_cff()].
 #'   - Path to a CITATION.cff file (`"CITATION.cff"`).
@@ -50,13 +50,12 @@
 #' @param ... Additional arguments to be passed to or from methods.
 #'
 #' @param what Fields to extract from a full `cff` object. The value could be:
-#'   - `preferred`: This would create a single entry with the main citation
-#'      info of the package (key `preferred-citation`).
-#'   - `references`: Extract all the entries of `references` key.
-#'   - `all`: A combination of the previous two options. This would extract
-#'      both the `preferred-citation` and the `references` key.
+#'   - `preferred`: Create a single entry with the main citation information
+#'     of the package (key `preferred-citation`).
+#'   - `references`: Extract all entries of the `references` key.
+#'   - `all`: Extract both the `preferred-citation` and `references` keys.
 #'
-#'  See `vignette("r-cff", package = "cffr")`.
+#' See `vignette("r-cff", package = "cffr")`.
 #'
 #' @family bibtex
 #' @family s3method
@@ -64,9 +63,9 @@
 #' @details
 #'
 #' An **R** `bibentry` object is the representation of a BibTeX entry. These
-#' objects can be converted to BibTeX markup with [toBibtex()], that creates an
-#' object of class `Bibtex` and can be printed and exported as a valid BibTeX
-#' entry.
+#' objects can be converted to BibTeX markup with [toBibtex()], which creates
+#' an object of class `Bibtex` that can be printed and exported as a valid
+#' BibTeX entry.
 #'
 #' `as_bibtex()` tries to map the information of the source `x` into a [`cff`]
 #' object and performs a mapping of the metadata to BibTeX, according to
@@ -92,10 +91,10 @@
 #'
 #' bib
 #'
-#' # Print as bibtex
+#' # Print as BibTeX
 #' toBibtex(bib)
 #'
-#' # Thanks to the S3 Method we can also do
+#' # Thanks to the S3 method, you can also do
 #' toBibtex(cff_object)
 #'
 #' # Other sources ----
@@ -121,7 +120,6 @@
 as_bibentry <- function(x, ...) {
   UseMethod("as_bibentry")
 }
-
 
 #' @export
 #' @encoding UTF-8
@@ -184,7 +182,6 @@ as_bibentry.NULL <- function(x, ...) {
   cff_create()
 }
 
-
 #' @export
 #' @encoding UTF-8
 #' @rdname as_bibentry
@@ -196,18 +193,17 @@ as_bibentry.list <- function(x, ...) {
   # If key missing
   if (inherits(bib, "try-error")) {
     message <- attributes(bib)$condition$message
-    cli::cli_alert_danger(paste("Can't convert to {.fn bibentry}: "))
+    cli::cli_alert_danger(paste("Cannot convert to {.fn bibentry}: "))
     cli::cli_alert_info(message)
     cli::cli_alert_warning("Returning empty {.cls bibentry}")
     return(bibentry())
   }
 
-  # Unlist easy to undo the do.call effect
+  # Unlist to undo the do.call effect.
   bib <- bib[[1]]
 
   bib
 }
-
 
 #' @export
 #' @encoding UTF-8
@@ -270,20 +266,19 @@ as_bibentry.cff_ref_lst <- function(x, ...) {
   ref
 }
 
-
 #' @export
 #' @encoding UTF-8
 #' @rdname as_bibentry
 #' @order 8
 as_bibentry.cff_ref <- function(x, ...) {
-  # Relist to cff for dispatching methods on persons
+  # Relist to cff for dispatching methods on persons.
   x <- as_cff(x)
 
-  # Partially based on ruby parser
+  # Partially based on the Ruby parser.
   # https://github.com/citation-file-format/ruby-cff/blob/main/lib/cff/ >>
   # (cont) formatter/bibtex_formatter.rb
 
-  # Create a initial empty list
+  # Create an initial empty list.
 
   tobibentry <- list()
 
@@ -352,11 +347,11 @@ as_bibentry.cff_ref <- function(x, ...) {
   tobibentry$address <- get_bib_address(x)
 
   # booktitle /series ----
-  # Map cff collection-title
+  # Map cff collection-title.
   tobibentry <- c(tobibentry, get_bib_booktitle(x, tobibentry$bibtype))
 
   # institution/organization/school ----
-  # Map cff institution
+  # Map cff institution.
   tobibentry <- c(tobibentry, get_bib_inst_org(x, tobibentry$bibtype))
 
   # month----
@@ -366,11 +361,11 @@ as_bibentry.cff_ref <- function(x, ...) {
   tobibentry$year <- get_bib_year(x)
 
   # Handle anonymous author----
-  # If anonymous coming from cff and not needed, then not use it
+  # If an anonymous author comes from cff and is not needed, do not use it.
 
   is_anon <- identical(clean_str(x$authors[[1]]$name), "anonymous")
 
-  # If unknown remove from bib types that doesn't require it strictly
+  # If unknown, remove it from BibTeX types that do not strictly require it.
 
   if (
     all(
@@ -385,8 +380,8 @@ as_bibentry.cff_ref <- function(x, ...) {
   tobibentry$key <- make_bibkey(tobibentry)
 
   # Final steps ----
-  ##  Sort ----
-  # based on default by
+  ## Sort ----
+  # Based on the default from
   # https://flamingtempura.github.io/bibtex-tidy/
   tosort <- c(
     "title",

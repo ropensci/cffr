@@ -40,11 +40,10 @@ displayed instead.}
   \describe{
     \item{\code{what}}{Fields to extract from a full \code{cff} object. The value could be:
 \itemize{
-\item \code{preferred}: This would create a single entry with the main citation
-info of the package (key \code{preferred-citation}).
-\item \code{references}: Extract all the entries of \code{references} key.
-\item \code{all}: A combination of the previous two options. This would extract
-both the \code{preferred-citation} and the \code{references} key.
+\item \code{preferred}: Create a single entry with the main citation information
+of the package (key \code{preferred-citation}).
+\item \code{references}: Extract all entries of the \code{references} key.
+\item \code{all}: Extract both the \code{preferred-citation} and \code{references} keys.
 }
 
 See \code{vignette("r-cff", package = "cffr")}.}

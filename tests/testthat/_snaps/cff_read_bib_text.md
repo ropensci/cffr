@@ -11,7 +11,7 @@
     Code
       cff_read_bib_text("a bad line")
     Message
-      ! `x` doesn't look as a BibTeX entry. Check the results.
+      ! `x` does not look like a BibTeX entry. Check the results.
     Condition
       Error:
       ! Invalid bib file
