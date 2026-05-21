@@ -53,10 +53,10 @@ Valid arguments are those specified on \code{\link[=cff_schema_keys]{cff_schema_
 }
 }
 \examples{
-# Blank cff
+# Blank `cff` object.
 cff()
 
-# Use custom params
+# Use custom parameters.
 test <- cff(
   title = "Manipulating files",
   keywords = c("A", "new", "list", "of", "keywords"),
@@ -64,7 +64,7 @@ test <- cff(
 )
 test
 \donttest{
-# Would fail
+# This would fail.
 cff_validate(test)
 }
 
@@ -75,7 +75,7 @@ new <- cff_create(test, keys = list(
 ))
 new
 
-# Would pass
+# This would pass.
 cff_validate(new)
 
 }

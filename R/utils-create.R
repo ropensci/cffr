@@ -1,22 +1,22 @@
 #' Merge the information of a coerced description with a coerced citation
 #' @noRd
 merge_desc_cit <- function(cffobj, citobj) {
-  # If no citobj then return null
+  # Return the existing object if there is no citation object.
 
   if (is.null(citobj)) {
     return(cffobj)
   }
-  # Play with cran DOI
+  # Handle CRAN DOI values.
   cran_doi <- NULL
   has_cran_doi <- FALSE
   if (all(!is.null(cffobj$doi), grepl("CRAN", cffobj$doi, fixed = TRUE))) {
     has_cran_doi <- TRUE
     cran_doi <- cffobj$doi
-    # First the citation object
+    # Let the citation object take precedence.
     cffobj$doi <- NULL
   }
 
-  # Add doi from citation if missing
+  # Add DOI from the citation if it is missing.
   if (is.null(cffobj$doi)) {
     cffobj$doi <- clean_str(citobj[[1]]$doi)
   }
@@ -28,7 +28,7 @@ merge_desc_cit <- function(cffobj, citobj) {
     references = list(citobj[-1])
   )
 
-  # Merge identifiers
+  # Merge identifiers.
   merged_ids <- c(citobj[[1]]$identifiers, cffobjend$identifiers)
 
   if (has_cran_doi) {
@@ -37,7 +37,7 @@ merge_desc_cit <- function(cffobj, citobj) {
   }
   cffobjend$identifiers <- merged_ids
 
-  # Reorder
+  # Reorder keys.
   cffobjfinal <- c(
     cffobjend[!names(cffobjend) %in% c("identifiers", "references")],
     cffobjend["identifiers"],
@@ -46,7 +46,7 @@ merge_desc_cit <- function(cffobj, citobj) {
 
   cffobjfinal <- drop_null(cffobjfinal)
 
-  # Reclass everything
+  # Reclass the full object.
   cffobjfinal <- as_cff(as.list(cffobjfinal))
 
   cffobjfinal
@@ -55,7 +55,7 @@ merge_desc_cit <- function(cffobj, citobj) {
 #' Enhance authors info from preferred-citation using metadata from DESCRIPTION
 #' @noRd
 enhance_pref_authors <- function(cffobjend) {
-  # Create index of authors extracted from DESCRIPTION (First cff level)
+  # Create an index of authors extracted from DESCRIPTION.
   auth_desc <- cffobjend$authors
   key_aut_desc <- lapply(auth_desc, function(x) {
     l <- list(x["family-names"], x["given-names"], x["name"])
@@ -64,7 +64,7 @@ enhance_pref_authors <- function(cffobjend) {
   })
   names(auth_desc) <- unlist(key_aut_desc)
 
-  # Create index of authors from preferred-citation
+  # Create an index of authors from `preferred-citation`.
   auth_pref <- cffobjend$`preferred-citation`$authors
   key_aut_cit <- lapply(auth_pref, function(x) {
     l <- list(x["family-names"], x["given-names"], x["name"])
@@ -73,12 +73,12 @@ enhance_pref_authors <- function(cffobjend) {
   })
   names(auth_pref) <- unlist(key_aut_cit)
 
-  # Add missing keys to authors
+  # Add missing keys to authors.
   enhancedauth <- lapply(names(auth_pref), function(x) {
     newdata <- auth_desc[x]
     olddata <- auth_pref[x]
 
-    # New fields only
+    # Keep new fields only.
     oldkeys <- names(olddata[[1]])
     newkeys <- names(newdata[[1]])
     fieldstoadd <- newdata[[1]][!newkeys %in% oldkeys]
@@ -108,17 +108,17 @@ get_dependencies <- function(
 
   deps <- getdeps$get_deps()
 
-  # Adapt version
+  # Adapt the version.
 
   deps$version_clean <- gsub("*", "", deps$version, fixed = TRUE)
 
-  # Save copy for later
+  # Save a copy for later.
   origdeps <- deps
 
-  # Dedupe rows
+  # Deduplicate rows.
   deps <- unique(deps[, c("package", "version_clean")])
 
-  # Get dependency type and add to scope
+  # Get the dependency type and add it to the scope.
   scope <- vapply(
     deps$package,
     function(x) {
@@ -132,7 +132,7 @@ get_dependencies <- function(
 
   av_deps <- deps[deps$package %in% c("R", instpack), ]
 
-  # Get references from DESCRIPTION of dependencies
+  # Get references from dependency DESCRIPTION files.
   cff_deps <- lapply(seq_len(nrow(av_deps)), function(y) {
     n <- av_deps[y, ]
 
@@ -149,12 +149,10 @@ get_dependencies <- function(
         return(NULL) # nocov
       }
 
-      # Simplified version of the cff obj
-      # Avoid cluttering the output
+      # Simplify the `cff` object to avoid cluttering the output.
       mod$abstract <- mod$title
       mod$title <- n$package
-      # If on CRAN add CRAN DOI
-      # Base packs
+      # Add the CRAN DOI for non-base CRAN packages.
       base_pkgs <- rownames(installed.packages(priority = "base"))
 
       cran_doi <- all(
@@ -180,7 +178,7 @@ get_dependencies <- function(
 
     mod <- drop_null(mod)
 
-    # Get year
+    # Get the year.
     date_rel <- mod[["date-released"]]
 
     if (is.null(date_rel)) {
@@ -192,7 +190,7 @@ get_dependencies <- function(
     mod$year <- year
     mod$notes <- clean_str(n$scope)
 
-    # Re-arrange
+    # Rearrange keys.
     mod <- c(
       mod[c("type", "title", "abstract", "notes", "url", "repository")],
       mod[

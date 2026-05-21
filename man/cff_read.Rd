@@ -57,8 +57,7 @@ specified in the \href{https://github.com/citation-file-format/citation-file-for
 Learn more about the \CRANpkg{cffr} class system in \link{cff_class}.
 }
 \description{
-Read files and convert them to \code{\link{cff}} objects. Files supported
-are:
+Read files and convert them to \code{\link{cff}} objects. Supported files are:
 \itemize{
 \item \code{CITATION.cff} files.
 \item \code{DESCRIPTION} files.
@@ -77,7 +76,7 @@ we provide aliases for each specific file type:
 }
 }
 \details{
-For details of \code{cff_read_description()} see \code{\link[=cff_create]{cff_create()}}.
+For details of \code{cff_read_description()}, see \code{\link[=cff_create]{cff_create()}}.
 \subsection{The \code{meta} object}{
 
 Section 1.9 CITATION files of \emph{Writing R Extensions} (R Core Team 2023)
@@ -88,7 +87,7 @@ some files correctly.
 }
 \examples{
 
-# Create a cff object from a CFF file.
+# Create a `cff` object from a CFF file.
 
 from_cff_file <- cff_read(system.file("examples/CITATION_basic.cff",
   package = "cffr"
@@ -96,27 +95,27 @@ from_cff_file <- cff_read(system.file("examples/CITATION_basic.cff",
 
 head(from_cff_file, 7)
 
-# Create a cff object from DESCRIPTION.
+# Create a `cff` object from DESCRIPTION.
 from_desc <- cff_read(system.file("examples/DESCRIPTION_basic",
   package = "cffr"
 ))
 
 from_desc
 
-# Create a cff object from BibTeX.
+# Create a `cff` object from BibTeX.
 
 if (requireNamespace("bibtex", quietly = TRUE)) {
   from_bib <- cff_read(system.file("examples/example.bib",
     package = "cffr"
   ))
 
-  # First item only
+  # First item only.
   from_bib[[1]]
 }
-# Create a cff object from CITATION.
+# Create a `cff` object from CITATION.
 from_citation <- cff_read(system.file("CITATION", package = "cffr"))
 
-# First item only
+# First item only.
 from_citation[[1]]
 
 }

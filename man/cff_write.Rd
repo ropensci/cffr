@@ -75,7 +75,7 @@ function is basically a wrapper around \code{\link[=cff_create]{cff_create()}} t
 one command.
 }
 \details{
-For details of \code{authors_roles} see \code{\link[=cff_create]{cff_create()}}.
+For details of \code{authors_roles}, see \code{\link[=cff_create]{cff_create()}}.
 
 When creating and writing a \code{CITATION.cff} for the first time, the function
 adds the pattern \code{"^CITATION\\.cff$"} to your \code{.Rbuildignore} file.

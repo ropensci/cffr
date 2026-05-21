@@ -82,7 +82,7 @@ newkeys <- list(
 cff_create(demo_file, keys = newkeys)
 
 # Update a field on a list, for example authors or contacts.
-# We are adding a new contact here
+# We are adding a new contact here.
 
 old <- cff_create(demo_file)
 

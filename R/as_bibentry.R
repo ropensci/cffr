@@ -84,33 +84,33 @@
 #'
 #' cff_object
 #'
-#' # bibentry object
+#' # bibentry object.
 #' bib <- as_bibentry(cff_object)
 #'
 #' class(bib)
 #'
 #' bib
 #'
-#' # Print as BibTeX
+#' # Print as BibTeX.
 #' toBibtex(bib)
 #'
-#' # Thanks to the S3 method, you can also do
+#' # Thanks to the S3 method, you can also do this.
 #' toBibtex(cff_object)
 #'
 #' # Other sources ----
-#' # From a CITATION.cff
+#' # From a CITATION.cff.
 #'
 #' path <- system.file("examples/CITATION_complete.cff", package = "cffr")
 #' cff_file <- as_bibentry(path)
 #'
 #' cff_file
 #'
-#' # For an installed package with options
+#' # For an installed package with options.
 #' installed_package <- as_bibentry("jsonvalidate", what = "all")
 #'
 #' installed_package
 #'
-#' # Use a DESCRIPTION file
+#' # Use a DESCRIPTION file.
 #' path2 <- system.file("examples/DESCRIPTION_gitlab", package = "cffr")
 #' desc_file <- as_bibentry(path2)
 #'
@@ -161,7 +161,7 @@ as_bibentry.character <- function(
     # nolint end
     cli::cli_abort(paste(
       "Don't know how to extract a {.cls bibentry} from {.val {x}}.",
-      "If it is a package run {.run {msg}} first."
+      "If it is a package, run {.run {msg}} first."
     ))
   }
 
@@ -190,7 +190,7 @@ as_bibentry.list <- function(x, ...) {
   ## Convert and catch errors ----
   bib <- try(do.call(bibentry, x), silent = TRUE)
 
-  # If key missing
+  # Return an empty object if a key is missing.
   if (inherits(bib, "try-error")) {
     message <- attributes(bib)$condition$message
     cli::cli_alert_danger(paste("Cannot convert to {.fn bibentry}: "))
@@ -222,17 +222,17 @@ as_bibentry.cff <- function(
   )
 
   obj <- x
-  # Try to generate preferred if not present
+  # Generate a preferred citation if it is not present.
   if (!("preferred-citation" %in% names(obj))) {
     prefcit <- obj
     prefcit$type <- "generic"
     prefcit <- prefcit[names(prefcit) %in% cff_schema_definitions_refs()]
     prefcit <- new_cff(prefcit)
-    # And add to the object
+    # Add it to the object.
     obj$`preferred-citation` <- prefcit
   }
 
-  # Select type to extract
+  # Select the type to extract.
   obj_extract <- switch(what,
     "preferred" = list(obj$`preferred-citation`),
     "references" = obj$references,
@@ -241,13 +241,13 @@ as_bibentry.cff <- function(
 
   if (is.null(obj_extract)) {
     cli::cli_alert_warning(paste0(
-      "In {.arg x} didn't find anything with {.arg what} = {.val {what}}. ",
+      "In {.arg x}, did not find anything with {.arg what} = {.val {what}}. ",
       "Returning empty {.cls bibentry}."
     ))
     return(bibentry())
   }
 
-  # Prepare for dispatching
+  # Prepare for dispatching.
   objend <- as_cff(obj_extract)
 
   as_bibentry(objend)
@@ -259,7 +259,7 @@ as_bibentry.cff <- function(
 #' @order 7
 as_bibentry.cff_ref_lst <- function(x, ...) {
   ref <- lapply(x, function(y) {
-    # Reclass to dispatch method
+    # Reclass to dispatch the method.
     as_bibentry(as_cff(y))
   })
   ref <- do.call(c, ref)

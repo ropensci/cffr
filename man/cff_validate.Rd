@@ -25,30 +25,30 @@ Validate a \code{CITATION.cff} file or a \code{\link{cff}} object using the corr
 }
 \examples{
 \donttest{
-# Full .cff example
+# Full `.cff` example.
 cff_validate(system.file("examples/CITATION_complete.cff", package = "cffr"))
 
-# Validate a cffr object
+# Validate a `cffr` object.
 cffr <- cff_create("jsonlite")
 class(cffr)
 cff_validate(cffr)
 }
 
-# .cff with errors
+# `.cff` with errors.
 err_f <- system.file("examples/CITATION_error.cff", package = "cffr")
-# Can manipulate the errors as data frame
+# You can manipulate the errors as a data frame.
 res <- try(cff_validate(err_f))
 
 isTRUE(res)
 isFALSE(res)
 
-# Detailed results
+# Detailed results.
 df_errors <- attr(res, "errors")
 
 df_errors[, c("field", "message")]
 
-# If a CITATION file is supplied (note that it is not a .cff file), it
-# throws an error
+# If a CITATION file is supplied (note that it is not a `.cff` file), it
+# throws an error.
 try(cff_validate(system.file("CITATION", package = "cffr")))
 }
 \seealso{

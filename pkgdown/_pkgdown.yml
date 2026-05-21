@@ -13,16 +13,16 @@ repo:
 
 home:
   title: cffr | Generate Citation File Format metadata for R packages
-  description: Utilities to generate and validate CFF metadata with R.
+  description: Generate, read and validate Citation File Format metadata for R packages.
 
 reference:
-- title: The whole game
-- subtitle: Main function
+- title: Core workflow
+- subtitle: Main workflow
   desc: >
     The main function of the package and likely the only one you need.
   contents: cff_write
 - subtitle: Other core functions
-  desc: Create, modify and write `cff` objects.
+  desc: Create, modify and validate `cff` objects.
   contents: has_concept("core")
 - subtitle: Citation File Format schema
   desc: >
@@ -37,19 +37,21 @@ reference:
 - subtitle: Coercing objects
   desc: >
     Coerce **R** objects to different classes (`cff`, `person`, `bibentry`)
-    and more.
+    used by the package.
   contents: has_concept("s3method")
 - subtitle: Read and write files
   desc: >
-    Read and write local files in different formats (CFF files, BibTeX, etc.).
+    Read and write CFF, BibTeX and related local files.
   contents:
   - has_concept("reading")
   - has_concept("writing")
 - subtitle: BibTeX helpers
   desc: >
-    Functions that work with BibTeX markup.
+    Convert between BibTeX markup and CFF objects.
   contents: has_concept("bibtex")
 - subtitle: Continuous integration
+  desc: >
+    Keep `CITATION.cff` files synchronized with package metadata.
   contents: has_concept("git")
 - title: Datasets
   contents: has_concept("datasets")

@@ -95,12 +95,12 @@ your package passes `R CMD check/devtools::check()`.
 #| results: asis
 cat("\n")
 today <- Sys.Date()
-# Try to get the count of GitHub repositories here.
+# Try to count GitHub repositories here.
 token <- (Sys.getenv(c("GITHUB_PAT", "GITHUB_TOKEN")))
 token <- token[!token %in% c(NA, NULL, "")][1]
 ghtoken <- paste("token", token)
 tmpfile <- tempfile(fileext = ".json")
-# Get the number of repositories.
+# Get the repository count.
 api_url <- paste0(
   "https://api.github.com/search/code?q=cffr+extension:",
   "cff+filename:CITATION"
@@ -120,7 +120,7 @@ res <- tryCatch(
     TRUE
   }
 )
-# If not successful.
+# If the request is not successful.
 if (isTRUE(res)) {
   cat(paste0(
     "\n",
@@ -165,7 +165,7 @@ Alternatively, you can install **cffr** using the
 
 ```{r}
 #| eval: false
-# Install cffr in R.
+# Install **cffr** in R.
 install.packages(
   "cffr",
   repos = c("https://ropensci.r-universe.dev", "https://cloud.r-project.org")
@@ -174,15 +174,15 @@ install.packages(
 
 ### Example
 
-Most commonly, from within your package folder, you run `cff_write()`,
-which creates a `cff` object, writes it to a `CITATION.cff` file and validates
-it in a single command:
+Most commonly, from within your package folder, you run `cff_write()`. It
+creates a `cff` object, writes it to a `CITATION.cff` file and validates it in
+a single command:
 
 ```{r}
 #| eval: false
 library(cffr)
 
-# For in-development packages
+# For in-development packages.
 cff_write()
 #>
 #> CITATION.cff generated.
@@ -196,12 +196,12 @@ you to customize the `CITATION.cff` and integrate it into your workflows.
 
 This basic example shows how to create a `cff` object (see `?cff` for more
 information). In this case, we are creating a `cff` object from the metadata of
-the **rmarkdown** package:
+the **knitr** package:
 
 ```{r }
 library(cffr)
 
-# Example with an installed package
+# Example with an installed package.
 test <- cff_create("knitr")
 ```
 
@@ -223,14 +223,14 @@ We can validate the result using `cff_validate()`:
 cff_validate(test)
 ```
 
-Check the [docs](https://docs.ropensci.org/cffr/reference/index.html) and
-`vignette("cffr", package = "cffr")` to learn how to work with `cff` objects.
+See the [docs](https://docs.ropensci.org/cffr/reference/index.html) and
+`vignette("cffr", package = "cffr")` for more on working with `cff` objects.
 
-### Keep your `CITATION.cff` file up-to-date
+### Keep your `CITATION.cff` file up to date
 
 #### GitHub Actions
 
-The easiest way to keep your `CITATION.cff` file up-to-date is to use GitHub
+The easiest way to keep your `CITATION.cff` file up to date is to use GitHub
 Actions. Use the `cff_gha_update()` function to install a GitHub Action that
 will update your `CITATION.cff` file in the following cases:
 
@@ -268,10 +268,11 @@ package installed.
 
 Check the following articles to learn more about **cffr**:
 
-- [cffr: Create a CITATION.cff File for your R
-  Package](https://ropensci.org/blog/2021/11/23/cffr/)
-- [How I Test cffr on (about) 2,000 Packages using GitHub Actions and
+- [cffr: Create a CITATION.cff file for your R
+  Package](https://ropensci.org/blog/2021/11/23/cffr/) [@hernangomez_cffr_2021]
+- [How I test cffr on about 2,000 packages using GitHub Actions and
   R-universe](https://ropensci.org/blog/2021/11/23/how-i-test-cffr/)
+  [@hernangomez_test_2021]
 
 ## Related packages
 

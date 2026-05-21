@@ -59,7 +59,7 @@ See [GitHub’s guide to CITATION
 files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
 for more information.
 
-## Creating a `CITATION.cff` file for my R package
+## Creating a `CITATION.cff` file for your R package
 
 Creating a `CITATION.cff` file with **cffr** is straightforward. You only need
 to run `cff_write()`:
@@ -71,12 +71,12 @@ library(cffr)
 
 cff_write()
 
-# You are done!
+# You are done.
 ```
 
 Under the hood, `cff_write()` performs these tasks:
 
-- It extracts the metadata using `cff_create()`.
+- Extracts the metadata using `cff_create()`.
 - Optionally modifies it with `cff_modify()`.
 - Writes a `CITATION.cff` file.
 - Validates the result using `cff_validate()`.
@@ -119,7 +119,7 @@ modobject <- cff_modify(
   url = "https://ropensci.org/",
   version = "0.0.1",
   repository = "https://github.com/ropensci/cffr",
-  # If the field is already present, it is overridden
+  # If the field is already present, it is overridden.
   title = "Modifying a 'cff' object"
 )
 
@@ -141,11 +141,11 @@ to extract the current author of the package and append the coerced person:
 
 ```{r}
 #| label: includeauthor
-# Valid person keys
+# Valid person keys.
 
 cff_schema_definitions_person()
 
-# Create the person
+# Create the person.
 
 chiquito <- person(
   "Gregorio",
@@ -161,11 +161,11 @@ chiquito <- person(
 
 chiquito
 
-# To cff
+# Convert to `cff`.
 chiquito_cff <- as_cff_person(chiquito)
 chiquito_cff
 
-# Append to previous authors
+# Append to previous authors.
 
 newauthors <- c(modobject$authors, chiquito_cff)
 newauthors
@@ -182,11 +182,11 @@ add two references, one created with `bibentry()` and another with `citation()`:
 
 ```{r}
 #| label: parsingcits
-# Valid reference keys
+# Valid reference keys.
 
 cff_schema_definitions_refs()
 
-# Auto coercion from another R package
+# Automatic coercion from another R package.
 base_r <- citation("base")
 
 bib <- bibentry(
@@ -202,7 +202,7 @@ refs <- c(base_r, bib)
 
 refs
 
-# Now to cff
+# Convert to `cff`.
 
 refs_cff <- as_cff(refs)
 
@@ -227,7 +227,7 @@ The results can be written with `cff_write()`:
 
 ```{r}
 #| label: write
-# For example
+# For example.
 tmp <- tempfile(fileext = ".cff")
 
 see_res <- cff_write(finalobject, outfile = tmp)
@@ -235,7 +235,7 @@ see_res <- cff_write(finalobject, outfile = tmp)
 cat(readLines(tmp), sep = "\n")
 ```
 
-And finally we can read our created `CITATION.cff` file using `cff_read()`:
+Finally, we can read the created `CITATION.cff` file using `cff_read()`:
 
 ```{r}
 #| label: read
@@ -252,7 +252,7 @@ allkeys <- list(
   "url" = "https://ropensci.org/",
   "version" = "0.0.1",
   "repository" = "https://github.com/ropensci/cffr",
-  # If the field is already present, it is overridden
+  # If the field is already present, it is overridden.
   title = "Modifying a 'cff' object",
   authors = newauthors,
   references = refs_cff
@@ -267,7 +267,7 @@ res
 
 ```{r}
 #| include: false
-# Clean temps
+# Clean temporary files.
 unlink(tmp)
 unlink(tmp2)
 ```

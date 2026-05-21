@@ -55,7 +55,7 @@
 #'
 #' @examples
 #'
-#' # Convert a list to a "cff" object
+#' # Convert a list to a `cff` object.
 #' cffobj <- as_cff(list(
 #'   "cff-version" = "1.2.0",
 #'   title = "Manipulating files"
@@ -63,17 +63,17 @@
 #'
 #' class(cffobj)
 #'
-#' # Nice display thanks to the yaml package
+#' # Nice display thanks to the yaml package.
 #' cffobj
 #'
-#' # bibentry method
+#' # `bibentry` method.
 #' a_cit <- citation("cffr")[[1]]
 #'
 #' a_cit
 #'
 #' as_cff(a_cit)
 #'
-#' # BibTeX method
+#' # BibTeX method.
 #' a_bib <- toBibtex(a_cit)
 #'
 #' a_bib
@@ -95,7 +95,7 @@ as_cff.default <- function(x, ...) {
 #' @export
 #' @encoding UTF-8
 as_cff.list <- function(x, ...) {
-  # Clean up empty values on top
+  # Clean up empty top-level values.
   clean_up <- vapply(x, is.null, FUN.VALUE = logical(1))
   x_clean <- x[!clean_up]
   new_cff(x_clean)
@@ -196,7 +196,7 @@ rapply_class <- function(x) {
       class(xelement) <- c("cff_pers_lst", "cff")
     }
 
-    # Languages: handle single value
+    # Handle single-value languages.
     if (all(guess == "cff_ref", "languages" %in% names(xelement))) {
       if (length(xelement$languages) < 2) {
         xelement$languages <- list(unlist(
@@ -210,7 +210,7 @@ rapply_class <- function(x) {
       xelement <- lapply(xelement, function(j) {
         j_in <- rapply_class(j)
         class(j_in) <- c("cff_ref", "cff")
-        # Languages: handle single value
+        # Handle single-value languages.
         if ("languages" %in% names(j_in)) {
           if (length(j_in$languages) < 2) {
             j_in$languages <- list(unlist(j_in$languages, use.names = FALSE))
@@ -232,7 +232,7 @@ rapply_class <- function(x) {
 }
 
 # https://adv-r.hadley.nz/s3.html#s3-constructor
-# Constructor
+# Constructor.
 new_cff <- function(x) {
   # Clean all strings recursively.
 
@@ -247,7 +247,7 @@ new_cff <- function(x) {
     how = "list"
   )
 
-  # Remove NULLs
+  # Remove `NULL` values.
   x <- drop_null(x)
 
   # Remove duplicate names if named.

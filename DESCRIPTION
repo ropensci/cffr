@@ -11,8 +11,8 @@ Authors@R: c(
   )
 Description: Citation File Format ('CFF') version 1.2.0
     <doi:10.5281/zenodo.5171937> is a human- and machine-readable file
-    format that provides citation metadata for software. This package
-    provides core utilities to generate and validate this metadata.
+    format for software citation metadata. The package provides core
+    utilities to generate and validate this metadata for R packages.
 License: GPL (>= 3)
 URL: https://docs.ropensci.org/cffr/, https://github.com/ropensci/cffr
 BugReports: https://github.com/ropensci/cffr/issues

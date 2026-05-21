@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Citation File Format ('CFF') version 1.2.0 \doi{10.5281/zenodo.5171937} is a human- and machine-readable file format that provides citation metadata for software. This package provides core utilities to generate and validate this metadata.
+Citation File Format ('CFF') version 1.2.0 \doi{10.5281/zenodo.5171937} is a human- and machine-readable file format for software citation metadata. The package provides core utilities to generate and validate this metadata for R packages.
 }
 \seealso{
 Useful links:

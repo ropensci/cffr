@@ -84,7 +84,7 @@
 #' cff_create(demo_file, keys = newkeys)
 #'
 #' # Update a field on a list, for example authors or contacts.
-#' # We are adding a new contact here
+#' # We are adding a new contact here.
 #'
 #' old <- cff_create(demo_file)
 #'
@@ -107,21 +107,21 @@ cff_create <- function(
   authors_roles = c("aut", "cre")
 ) {
   # Guess source.
-  # On missing add getwd()
+  # Use the working directory when `x` is missing.
   if (missing(x)) {
     hint_source <- "indev"
     x <- getwd()
   } else if (identical(getwd(), x)) {
-    # This case is coming from cff_write
+    # This case comes from `cff_write()`.
     hint_source <- "indev"
   } else {
     hint_source <- detect_x_source(x)
   }
 
-  # Abort in non-valid sources
+  # Abort for invalid sources.
   valid_sources <- c("indev", "cff_obj", "package", "description")
   if (!hint_source %in% valid_sources) {
-    # Abort, prepare message
+    # Prepare the abort message.
     msg_hint <- switch(hint_source,
       "dontknow" = paste0(
         "If it is a package ",
@@ -134,7 +134,7 @@ cff_create <- function(
     cli::cli_abort(paste0("{.arg x} not valid. ", msg_hint))
   }
 
-  # Build cff and return paths if any
+  # Build the CFF object and return paths if any.
   result_paths <- build_cff_and_paths(
     x,
     cff_version,
@@ -155,13 +155,13 @@ cff_create <- function(
     cffobjend$references <- unique(c(cffobjend$references, deps))
   }
 
-  # Additional keys, using internals of cff_modify
+  # Add additional keys using internals from `cff_modify()`.
   cffobjend <- modify_cff(cffobjend, keys, "keys")
 
-  # Order
+  # Order keys.
   cffobjend <- cffobjend[cff_schema_keys()]
 
-  # Enhance authors info
+  # Enhance author information.
   if (!is.null(cffobjend$`preferred-citation`)) {
     cffobjend$`preferred-citation`$authors <- enhance_pref_authors(cffobjend)
   }
@@ -181,9 +181,9 @@ build_cff_and_paths <- function(
 
   # "indev", "cff_obj", "package", "description"
 
-  # Already cff, return it
+  # Return `x` when it is already a `cff` object.
   if (is_cff(x)) {
-    # It is already an object
+    # Ensure it uses the requested CFF version.
     cffobj <- as_cff(as.list(x))
     cffobj["cff-version"] <- cff_version
 

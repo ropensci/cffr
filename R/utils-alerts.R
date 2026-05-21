@@ -6,7 +6,7 @@ abort_if_not_cff <- function(x) {
     return(invisible())
   }
 
-  # x should be character at least
+  # `x` should at least be a character vector.
   if (!inherits(x, "character")) {
     cli::cli_abort(
       "{.var x} is an object of class {.cls {class(x)}}, not {.cls cff}."
@@ -22,7 +22,7 @@ abort_if_not_cff <- function(x) {
 
 #' Throw an error if the file does not exist.
 #' @param x A file to be evaluated.
-#' @param abort Logical. Should an error be thrown if file does not exist?
+#' @param abort Logical. Should an error be thrown if the file does not exist?
 #' @noRd
 file_exist_abort <- function(x, abort = FALSE) {
   res <- file.exists(x)
@@ -50,7 +50,7 @@ match_cff_arg <- function(arg, valid, for_msg, call = environment()) {
 }
 
 write_lines_msg <- function(lines, file, verbose, append) {
-  # Check that the directory exists, if not create
+  # Create the directory if it does not exist.
   dir <- dirname(path.expand(file))
   if (!dir.exists(dir)) {
     if (verbose) {
@@ -59,7 +59,7 @@ write_lines_msg <- function(lines, file, verbose, append) {
     dir.create(dir, recursive = TRUE)
   }
 
-  # If exists creates a backup
+  # Create a backup if the file already exists.
   if (file_exist_abort(file)) {
     for (i in seq(1, 100)) {
       f <- paste0(file, ".bk", i)

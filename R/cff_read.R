@@ -1,8 +1,7 @@
 #' Read an external file as a [`cff`] object
 #'
 #' @description
-#' Read files and convert them to [`cff`] objects. Files supported
-#' are:
+#' Read files and convert them to [`cff`] objects. Supported files are:
 #' - `CITATION.cff` files.
 #' - `DESCRIPTION` files.
 #' - **R** citation files (usually located in `inst/CITATION`).
@@ -65,7 +64,7 @@
 #'
 #' @details
 #'
-#' For details of `cff_read_description()` see [cff_create()].
+#' For details of `cff_read_description()`, see [cff_create()].
 #'
 #' ## The `meta` object
 #'
@@ -76,7 +75,7 @@
 #'
 #' @examples
 #'
-#' # Create a cff object from a CFF file.
+#' # Create a `cff` object from a CFF file.
 #'
 #' from_cff_file <- cff_read(system.file("examples/CITATION_basic.cff",
 #'   package = "cffr"
@@ -84,27 +83,27 @@
 #'
 #' head(from_cff_file, 7)
 #'
-#' # Create a cff object from DESCRIPTION.
+#' # Create a `cff` object from DESCRIPTION.
 #' from_desc <- cff_read(system.file("examples/DESCRIPTION_basic",
 #'   package = "cffr"
 #' ))
 #'
 #' from_desc
 #'
-#' # Create a cff object from BibTeX.
+#' # Create a `cff` object from BibTeX.
 #'
 #' if (requireNamespace("bibtex", quietly = TRUE)) {
 #'   from_bib <- cff_read(system.file("examples/example.bib",
 #'     package = "cffr"
 #'   ))
 #'
-#'   # First item only
+#'   # First item only.
 #'   from_bib[[1]]
 #' }
-#' # Create a cff object from CITATION.
+#' # Create a `cff` object from CITATION.
 #' from_citation <- cff_read(system.file("CITATION", package = "cffr"))
 #'
-#' # First item only
+#' # First item only.
 #' from_citation[[1]]
 #'
 cff_read <- function(path, ...) {
@@ -285,7 +284,7 @@ cff_safe_read_citation <- function(desc_path, cit_path) {
   meta <- clean_package_meta(meta)
 
   the_cit <- try(utils::readCitationFile(cit_path, meta = meta), silent = TRUE)
-  # Try
+  # Try to read the citation.
   if (inherits(the_cit, "try-error")) {
     return(NULL)
   }

@@ -1,13 +1,9 @@
 # cffr 1.4.0
 
-- `cff_validate()`: migrated to the [ajv](https://github.com/ajv-validator/ajv)
-  validation engine via `jsonvalidate::json_validate()`. Error messages are now
-  more informative.
-- The `website` field in `definitions.person` and `definitions.entity` uses ROR
-  as a fallback.
-- `doi`: DOIs in `inst/CITATION` `url` fields are detected, including those
-  matching the pattern `.*dx.doi.org/`.
+- DOIs in `inst/CITATION` `url` fields are detected, including those matching the pattern `.*dx.doi.org/`.
+- The `website` field in `definitions.person` and `definitions.entity` uses ROR as a fallback.
 - `cff_read()` correctly handles a single `languages` value (#105).
+- `cff_validate()` now uses the [ajv](https://github.com/ajv-validator/ajv) validation engine via `jsonvalidate::json_validate()`, which returns more informative error messages.
 
 # cffr 1.3.0
 
@@ -16,12 +12,9 @@
 
 # cffr 1.2.1
 
-- `cff_gha_update()` now runs in `ubuntu-latest` by default to save
-  [GitHub Actions
-  quota](https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions#minute-multipliers)
-  (#90, thanks to \@Pakillo).
 - `as_cff_person()` improves comment detection and parsing across its function
   family.
+- `cff_gha_update()` now runs in `ubuntu-latest` by default to save [GitHub Actions quota](https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions#minute-multipliers) (#90, thanks to \@Pakillo).
 - The mapping of **CRAN** packages to SPDX codes was updated.
 
 # cffr 1.2.0
@@ -32,8 +25,8 @@
   created**. For more control, use `cff_write_citation()` (#79).
 - `repository-code` now also recognizes [Codeberg](https://codeberg.org/) as a
   valid repository (#88).
-- `repository-code` recognizes repositories regardless of casing. It is still
-  advised to use lowercase as a good practice for **R** developers.
+- `repository-code` recognizes repositories regardless of casing. Lowercase is
+  still recommended as a good practice for **R** developers.
 
 # cffr 1.1.1
 
@@ -56,7 +49,7 @@
 # cffr 1.0.1
 
 - `cff_write()` gains a new `encoding` argument to make it work with
-  different encodings, see `iconv()`.
+  different encodings. See `iconv()`.
 - Fixed **NOTEs** caused by empty lines in docs.
 
 # cffr 1.0.0
@@ -117,22 +110,22 @@ now warns when used, providing advice on the replacement function.
 
 #### Deprecation
 
-- `cff_to_bibtex()` and `cff_extract_to_bibtex()`: replaced by `as_bibentry()`
-  S3 generic.
-- `cff_parse_person()` and `cff_parse_person_bibtex()`: replaced by
+- `cff_to_bibtex()` and `cff_extract_to_bibtex()`: replaced by the
+  `as_bibentry()` S3 generic.
+- `cff_parse_person()` and `cff_parse_person_bibtex()`: replaced by the
   `as_cff_person()` S3 generic.
-- `cff_parse_citation()`: replaced by `as_cff()` S3 generic.
+- `cff_parse_citation()`: replaced by the `as_cff()` S3 generic.
 - `cff_from_bibtex()`: replaced by `cff_read_bib()` (for `*.bib` files) and
   `cff_read_bib_text()` (for character strings).
 - `write_bib()` and `write_citation()`: replaced by `cff_write_bib()` and
-  `cff_write_citation()` respectively.
+  `cff_write_citation()`, respectively.
 - Argument `path` in `cff()` is also deprecated, use `cff_read()` instead.
 
 ### New capabilities
 
 - `cff_read()` now handles reading from external files exclusively. It is
   designed to fit all supported file types in a single entry point, along with
-  new specific readers, which are used under the hood by `cff_read()`:
+  new specific readers used under the hood by `cff_read()`:
   - `cff_read_cff_citation()`.
   - `cff_read_description()`.
   - `cff_read_citation()`.
@@ -168,15 +161,14 @@ now warns when used, providing advice on the replacement function.
 - Additional authors of an **R** package can now be included based on roles in
   the `DESCRIPTION` file, via the `authors_roles` argument (#49).
 
-- The message interface now uses [**cli**](https://cli.r-lib.org/)
-  capabilities.
+- The message interface now uses [**cli**](https://cli.r-lib.org/).
 
 - The invisible result of `cff_validate()` now includes the summary of errors
   (if any) as an `attributes()` named `"error"`, as
   `jsonvalidate::json_validate()` does when `verbose = TRUE`:
 
   > Be verbose? If `TRUE`, then an attribute `"errors"` will list validation
-  > failures as a data.frame
+  > failures as a data frame.
 
 - Improved extraction of `date-released`.
 
@@ -190,7 +182,7 @@ now warns when used, providing advice on the replacement function.
 - Fixed typo (#40, thanks to \@dpprdan).
 - Added `cff_from_bibtex()`.
 - Dependency URLs now behave consistently when RSPM is the default repository
-  (i.e. on GitHub Actions or RStudio Cloud).
+  (for example, on GitHub Actions or RStudio Cloud).
 
 # cffr 0.3.0
 

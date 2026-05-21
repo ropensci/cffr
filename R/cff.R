@@ -34,10 +34,10 @@
 #' @export
 #' @encoding UTF-8
 #' @examples
-#' # Blank cff
+#' # Blank `cff` object.
 #' cff()
 #'
-#' # Use custom params
+#' # Use custom parameters.
 #' test <- cff(
 #'   title = "Manipulating files",
 #'   keywords = c("A", "new", "list", "of", "keywords"),
@@ -45,7 +45,7 @@
 #' )
 #' test
 #' \donttest{
-#' # Would fail
+#' # This would fail.
 #' cff_validate(test)
 #' }
 #'
@@ -56,7 +56,7 @@
 #' ))
 #' new
 #'
-#' # Would pass
+#' # This would pass.
 #' cff_validate(new)
 #'
 #' @export
@@ -77,7 +77,7 @@ cff <- function(path, ...) {
 
   cffobj <- list(...)
   if (length(cffobj) == 0) {
-    # If nothing is provided, use a minimal cff.
+    # Use a minimal `cff` object when nothing is provided.
     path <- system.file("examples/CITATION_skeleton.cff", package = "cffr")
 
     return(cff_read_cff_citation(path))

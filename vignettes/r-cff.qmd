@@ -2,7 +2,7 @@
 title: "From R to CFF"
 subtitle: "Crosswalk"
 description: >
-  A comprehensive description of the internal mappings performed by the cffr
+  A comprehensive description of the internal mappings performed by the **cffr**
   package.
 author: Diego Hernangómez
 bibliography: REFERENCES.bib
@@ -33,9 +33,9 @@ version
 
 ## Summary {#summary}
 
-We summarize here the fields that **cffr** can coerce and the original source of
-information for each of them. The details for each key are presented in the next
-section of the document. The assessment of fields is based on the [Guide to
+This section summarizes the fields that **cffr** can coerce and the original
+source of information for each one. The details for each key are presented in
+the next section. The assessment of fields is based on the [Guide to
 Citation File Format schema version
 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#valid-keys)
 [@druskat_citation_2021].
@@ -98,11 +98,11 @@ This key is extracted from the `"Description"` field of the `DESCRIPTION` file.
 #| label: abstract
 library(cffr)
 
-# Create cffr for YAML.
+# Create `cff` for YAML.
 
 cff_obj <- cff_create("rmarkdown")
 
-# Get DESCRIPTION of rmarkdown to check.
+# Get the DESCRIPTION of **rmarkdown** to check.
 
 pkg <- desc::desc(file.path(find.package("rmarkdown"), "DESCRIPTION"))
 
@@ -117,22 +117,22 @@ Back to @tbl-summary.
 
 This key is coerced from the `"Authors"` or `"Authors@R"` field of the
 `DESCRIPTION` file. By default, persons with the role `"aut"` or `"cre"` are
-considered, but this can be modified via the `authors_roles` argument.
+considered, but this can be modified with the `authors_roles` argument.
 
 ```{r}
 #| label: authors
-# An example DESCRIPTION
+# An example DESCRIPTION.
 path <- system.file("examples/DESCRIPTION_many_persons", package = "cffr")
 pkg <- desc::desc(path)
 
-# See persons listed
+# See the listed persons.
 pkg$get_authors()
 
 # Default behavior, use authors and creators (maintainers).
 cff_obj <- cff_create(path)
 cff_obj$authors
 
-# Now use copyright holders and maintainers.
+# Use copyright holders and maintainers.
 cff_obj_alt <- cff_create(path, authors_roles = c("cre", "cph"))
 cff_obj_alt$authors
 ```
@@ -141,7 +141,7 @@ Back to @tbl-summary.
 
 ### cff-version
 
-This key can be set via the arguments of the `cff_create()`/`cff_write()`
+This key can be set with the arguments of the `cff_create()`/`cff_write()`
 functions:
 
 ```{r}
@@ -162,11 +162,11 @@ This is the case of packages installed using the
 
 ```{r}
 #| label: commit
-# An example DESCRIPTION
+# An example DESCRIPTION.
 path <- system.file("examples/DESCRIPTION_r_universe", package = "cffr")
 pkg <- desc::desc(path)
 
-# See RemoteSha
+# See `RemoteSha`.
 pkg$get("RemoteSha")
 
 cff_read(path)
@@ -177,7 +177,7 @@ Back to @tbl-summary.
 ### contact
 
 This key is coerced from the `"Authors"` or `"Authors@R"` field of the
-`DESCRIPTION` file. Only persons with the role `"cre"` (i.e., the maintainer(s))
+`DESCRIPTION` file. Only persons with the role `"cre"` (that is, maintainers)
 are considered.
 
 ```{r}
@@ -204,7 +204,7 @@ This key is extracted from the `DESCRIPTION` file following this logic:
 
 ```{r}
 #| label: date-released
-# From an installed package
+# From an installed package.
 
 cff_obj <- cff_create("rmarkdown")
 pkg <- desc::desc(file.path(find.package("rmarkdown"), "DESCRIPTION"))
@@ -213,22 +213,22 @@ cat(pkg$get("Date/Publication"))
 
 cat(cff_obj$`date-released`)
 
-# A DESCRIPTION file without a Date
+# A DESCRIPTION file without a `Date`.
 nodate <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 tmp <- tempfile("DESCRIPTION")
 
-# Create a temporary file
+# Create a temporary file.
 file.copy(nodate, tmp)
 
 pkgnodate <- desc::desc(tmp)
 cffnodate <- cff_create(tmp)
 
-# Won't appear
+# This will not appear.
 cat(cffnodate$`date-released`)
 
 pkgnodate
 
-# Adding a Date
+# Add a `Date`.
 
 desc::desc_set("Date", "1999-01-01", file = tmp)
 
@@ -323,13 +323,13 @@ cat(cff_create(tmp2)$keywords)
 ```
 
 Additionally, if the source code of the package is hosted on GitHub, **cffr**
-can retrieve the topics of the repository via the [GitHub
+can retrieve the topics of the repository with the [GitHub
 API](https://docs.github.com/en/rest) and include those topics as keywords. This
-option is controlled via the `gh_keywords` argument:
+option is controlled with the `gh_keywords` argument:
 
 ```{r}
 #| label: ghkeyword
-# Get cff object from jsonvalidate
+# Get a `cff` object from **jsonvalidate**.
 
 jsonval <- cff_create("jsonvalidate")
 
@@ -337,7 +337,7 @@ jsonval <- cff_create("jsonvalidate")
 
 jsonval
 
-# Check keywords
+# Check keywords.
 jsonval$keywords
 
 # The repository.
@@ -454,18 +454,18 @@ identified if a
 is present in the `DESCRIPTION` file.
 
 If **cffr** detects that the package is available on **CRAN**, it returns the
-canonical URL form of the package (i.e.
+canonical URL form of the package (that is,
 <https://CRAN.R-project.org/package=jsonlite>).
 
 ```{r}
 #| label: repository
-# Installed package
+# Installed package.
 
 inst <- cff_create("jsonlite")
 
 cat(inst$repository)
 
-# Demo file downloaded from the r-universe
+# Demo file downloaded from the r-universe.
 
 runiv <- system.file("examples/DESCRIPTION_r_universe", package = "cffr")
 runiv_cff <- cff_create(runiv)
@@ -527,7 +527,7 @@ following repositories:
 
 ```{r}
 #| label: repository-code
-# Installed package on GitHub
+# Installed package on GitHub.
 
 cat(cff_create("jsonlite")$`repository-code`)
 
@@ -585,7 +585,7 @@ manyurls <- system.file("examples/DESCRIPTION_many_urls", package = "cffr")
 
 cat(cff_create(manyurls)$url)
 
-# Check
+# Check.
 
 desc::desc(manyurls)
 ```
@@ -599,7 +599,7 @@ This key is extracted from the `"Version"` field on the `DESCRIPTION` file.
 ```{r}
 #| label: version
 #| code-fold: false
-# Should be (>= 3.0.0)
+# Should be (>= 3.0.0).
 cat(cff_create("testthat")$version)
 ```
 

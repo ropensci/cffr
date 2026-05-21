@@ -82,33 +82,33 @@ cff_object <- cff()
 
 cff_object
 
-# bibentry object
+# bibentry object.
 bib <- as_bibentry(cff_object)
 
 class(bib)
 
 bib
 
-# Print as BibTeX
+# Print as BibTeX.
 toBibtex(bib)
 
-# Thanks to the S3 method, you can also do
+# Thanks to the S3 method, you can also do this.
 toBibtex(cff_object)
 
 # Other sources ----
-# From a CITATION.cff
+# From a CITATION.cff.
 
 path <- system.file("examples/CITATION_complete.cff", package = "cffr")
 cff_file <- as_bibentry(path)
 
 cff_file
 
-# For an installed package with options
+# For an installed package with options.
 installed_package <- as_bibentry("jsonvalidate", what = "all")
 
 installed_package
 
-# Use a DESCRIPTION file
+# Use a DESCRIPTION file.
 path2 <- system.file("examples/DESCRIPTION_gitlab", package = "cffr")
 desc_file <- as_bibentry(path2)
 

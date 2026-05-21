@@ -60,7 +60,7 @@
 #' }
 #' @details
 #'
-#' For details of `authors_roles` see [cff_create()].
+#' For details of `authors_roles`, see [cff_create()].
 #'
 #' When creating and writing a `CITATION.cff` for the first time, the function
 #' adds the pattern `"^CITATION\.cff$"` to your `.Rbuildignore` file.
@@ -78,7 +78,7 @@ cff_write <- function(
   authors_roles = c("aut", "cre"),
   encoding = "UTF-8"
 ) {
-  # On missing, use NULL.
+  # Use the working directory when `x` is missing.
   if (missing(x)) {
     x <- getwd()
   }
@@ -103,7 +103,7 @@ cff_write <- function(
     outfile <- paste0(outfile, ".cff")
   }
 
-  # Check if the directory exists, and create it if needed.
+  # Create the directory if it does not exist.
   outdir <- dirname(outfile)
 
   if (!dir.exists(outdir)) {
@@ -132,7 +132,7 @@ cff_write <- function(
     cli::cli_alert_success("{.file {outfile}} generated.")
   }
 
-  # Add CITATION.cff to .Rbuildignore
+  # Add `CITATION.cff` to `.Rbuildignore`.
   if (!is_cff(x) && x == getwd() && file_exist_abort(".Rbuildignore")) {
     ignore <- readLines(".Rbuildignore")
 

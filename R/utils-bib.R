@@ -60,7 +60,7 @@ guess_bibtype <- function(x) {
   # Try to guess phdthesis ----
   if (init_guess == "mastersthesis") {
     ttype <- clean_str(gsub("[[:punct:]]", "", x$`thesis-type`, perl = TRUE))
-    # phd.
+    # PhD.
     if (all(!is.null(ttype), grepl("phd", ttype, ignore.case = TRUE))) {
       return("phdthesis")
     }
@@ -80,7 +80,7 @@ guess_bibtype <- function(x) {
 get_bib_address <- function(x) {
   # BibTeX 'address' is taken from the publisher (book, others) or the
   # conference (inproceedings).
-  # Set logic: conference > institution > publisher
+  # Precedence is conference, institution, then publisher.
   if (!is.null(x$conference)) {
     addr_search <- x$conference
   } else if (!is.null(x$institution)) {
@@ -121,7 +121,7 @@ get_bib_booktitle <- function(x, bibtype) {
     # Map booktitle only for incollection and inproceedings.
     book_series$booktitle <- tag_value
 
-    # Fallback to conference name for inproceedings
+    # Fallback to the conference name for inproceedings.
     if (all(bibtype == "inproceedings", is.null(tag_value))) {
       book_series$booktitle <- clean_str(x$conference$name)
     }
@@ -134,7 +134,7 @@ get_bib_inst_org <- function(x, bibtype) {
   # For thesis, it should be school.
 
   inst_org <- list()
-  # Just name
+  # Use the name only.
   inst_name <- clean_str(x$institution$name)
 
   if (bibtype %in% c("inproceedings", "proceedings", "manual")) {
@@ -159,7 +159,7 @@ make_bibkey <- function(tobibentry) {
 
   y <- tobibentry$year
 
-  # Init etall
+  # Initialize `etall`.
   etall <- NULL
 
   # Some entries do not have authors but do have editors.
@@ -216,7 +216,7 @@ make_bibkey <- function(tobibentry) {
 get_bib_month <- function(x) {
   m <- x$month
 
-  # Fallback
+  # Fallback.
 
   if (is.null(m) && !is.null(x$`date-published`)) {
     # Should be YYYY-MM-DD to be valid in CFF.
@@ -239,7 +239,7 @@ get_bib_month <- function(x) {
 get_bib_year <- function(x) {
   year <- x$year
 
-  # Fallback
+  # Fallback.
 
   if (is.null(year) && !is.null(x$`date-released`)) {
     # Should be YYYY-MM-DD to be valid in CFF.

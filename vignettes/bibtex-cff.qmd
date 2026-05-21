@@ -10,7 +10,7 @@ author:
 tbl-cap-location: bottom
 description: >
   This article presents a crosswalk between BibTeX and the Citation File Format,
-  as implemented by the cffr package.
+  as implemented by the **cffr** package.
 abstract: >
   This article introduces a crosswalk between BibTeX and the Citation File
   Format (CFF) [@druskat_citation_2021], as implemented by the **cffr** package
@@ -95,7 +95,7 @@ fields, optimized for citation rendering in documents. Semantics are largely
 implicit and contextual, depending on entry types and bibliography styles.
 
 CFF, in contrast, defines a structured schema with explicit typing, nested
-objects and support for richer metadata. It is designed not only for producing
+objects and richer metadata support. It is designed not only for producing
 citations, but also for machine‑actionable interoperability across platforms.
 
 These conceptual differences explain why a direct one‑to‑one correspondence
@@ -141,8 +141,8 @@ conceptual definition.
 ### Fields {#fields}
 
 BibTeX entries consist of fields whose relevance and requirement depend on the
-entry type. Some fields are mandatory, others optional and some are ignored by
-standard bibliography styles but may still carry useful information.
+entry type. Some fields are mandatory, some are optional and others are ignored
+by standard bibliography styles but may still carry useful information.
 
 The following table summarizes the relationship between BibTeX **entries** and
 their **required or optional fields**, following @patashnik1988. Required fields
@@ -230,7 +230,7 @@ The following table summarizes the valid keys for CFF `definition-reference`:
 #| tbl-cap: "Valid keys in CFF `definition-reference` objects"
 library(cffr)
 
-# Fill with whites
+# Fill with blanks.
 init <- paste0("`", cff_schema_definitions_refs(), "`")
 
 l <- c(init, rep("", 4))
@@ -272,13 +272,13 @@ string <- "@book{einstein1921,
     address      = {London, United Kingdom},
     isbn         = 9781587340925}"
 
-# To cff
+# Convert to `cff`.
 library(cffr)
 cff_format <- cff_read_bib_text(string)
 
 cff_format
 
-# To BibTeX with S3 method
+# Convert to BibTeX with the S3 method.
 toBibtex(cff_format)
 ```
 

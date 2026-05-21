@@ -26,14 +26,14 @@
       as_bibentry("invented_package")
     Condition
       Error in `as_bibentry()`:
-      ! Don't know how to extract a <bibentry> from "invented_package". If it is a package run `install.packages("invented_package")` first.
+      ! Don't know how to extract a <bibentry> from "invented_package". If it is a package, run `install.packages("invented_package")` first.
 
 # as_bibentry cff
 
     Code
       end <- as_bibentry(a_cff, what = "references")
     Message
-      ! In `x` didn't find anything with `what` = "references". Returning empty <bibentry>.
+      ! In `x`, did not find anything with `what` = "references". Returning empty <bibentry>.
 
 ---
 
