@@ -18,7 +18,7 @@
 #' @param x The source used to generate
 #'   the [`cff`] object. It can be:
 #'   - A missing value, which retrieves the `DESCRIPTION` file from your
-#'     in-development **R** package.
+#'     in-development \R package.
 #'   - An existing [`cff`] object.
 #'   - The name of an installed package (`"jsonlite"`).
 #'   - Path to a `DESCRIPTION` file (`"./DESCRIPTION"`).

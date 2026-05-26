@@ -1,7 +1,7 @@
-#' Coerce **R** objects to [`cff_pers_lst`] objects (`cff` persons)
+#' Coerce \R objects to [`cff_pers_lst`] objects (`cff` persons)
 #'
 #' @description
-#' `as_cff_person()` turns an existing list-like **R** object into a
+#' `as_cff_person()` turns an existing list-like \R object into a
 #' [`cff_pers_lst`] object representing a list of `definitions.person` or
 #' `definitions.entity`, as defined by the
 #' ```{r, echo=FALSE, results='asis'}
@@ -36,7 +36,7 @@
 #'
 #' @family s3method
 #'
-#' @param x Any **R** object.
+#' @param x Any \R object.
 #' @param ... Ignored by this method.
 #'
 #' @return

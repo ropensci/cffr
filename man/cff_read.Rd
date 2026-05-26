@@ -61,7 +61,7 @@ Read files and convert them to \code{\link{cff}} objects. Supported files are:
 \itemize{
 \item \code{CITATION.cff} files.
 \item \code{DESCRIPTION} files.
-\item \strong{R} citation files (usually located in \code{inst/CITATION}).
+\item \R citation files (usually located in \code{inst/CITATION}).
 \item BibTeX files (with extension \verb{*.bib}).
 }
 
@@ -133,7 +133,7 @@ The underlying functions used for reading external files:
 \itemize{
 \item \code{\link[yaml:read_yaml]{yaml::read_yaml()}} for \code{CITATION.cff} files.
 \item \code{\link[desc:desc]{desc::desc()}} for \code{DESCRIPTION} files.
-\item \code{\link[utils:readCitationFile]{utils::readCitationFile()}} for \strong{R} citation files.
+\item \code{\link[utils:readCitationFile]{utils::readCitationFile()}} for \R citation files.
 \item \code{\link[bibtex:read.bib]{bibtex::read.bib()}} for BibTeX files (extension \verb{*.bib}).
 }
 

@@ -62,7 +62,7 @@
 #'
 #' @details
 #'
-#' An **R** `bibentry` object is the representation of a BibTeX entry. These
+#' An \R `bibentry` object is the representation of a BibTeX entry. These
 #' objects can be converted to BibTeX markup with [toBibtex()], which creates
 #' an object of class `Bibtex` that can be printed and exported as a valid
 #' BibTeX entry.

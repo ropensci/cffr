@@ -4,7 +4,7 @@
 \name{cff_write_bib}
 \alias{cff_write_bib}
 \alias{cff_write_citation}
-\title{Export \strong{R} objects to different file types}
+\title{Export \R objects to different file types}
 \usage{
 cff_write_bib(
   x,
@@ -53,10 +53,10 @@ See \code{vignette("r-cff", package = "cffr")}.}
 Writes the corresponding file specified on the \code{file} argument.
 }
 \description{
-Export \strong{R} objects representing citations to specific file formats:
+Export \R objects representing citations to specific file formats:
 \itemize{
 \item \code{\link[=cff_write_bib]{cff_write_bib()}} creates a \code{.bib} file.
-\item \code{\link[=cff_write_citation]{cff_write_citation()}} creates an \strong{R} citation file as described in
+\item \code{\link[=cff_write_citation]{cff_write_citation()}} creates an \R citation file as described in
 Section 1.9 of \emph{Writing R Extensions} (R Core Team 2023).
 }
 }

@@ -66,7 +66,7 @@ With \code{\link[=toBibtex.cff]{toBibtex()}} it is possible to convert \code{\li
 objects to BibTeX markup on the fly. See \strong{Examples}.
 }
 \details{
-An \strong{R} \code{bibentry} object is the representation of a BibTeX entry. These
+An \R \code{bibentry} object is the representation of a BibTeX entry. These
 objects can be converted to BibTeX markup with \code{\link[=toBibtex]{toBibtex()}}, which creates
 an object of class \code{Bibtex} that can be printed and exported as a valid
 BibTeX entry.

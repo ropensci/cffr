@@ -1,7 +1,7 @@
 #' Coerce lists, `person` and `bibentry` objects to [`cff`]
 #'
 #' @description
-#' `as_cff()` turns an existing list-like **R** object into a so-called
+#' `as_cff()` turns an existing list-like \R object into a so-called
 #' [`cff`], a list with class `cff`, with the corresponding
 #' [sub-class][cff_class] if applicable.
 #'
@@ -44,7 +44,7 @@
 #' @seealso
 #' - [cff()]: Create a full `cff` object from scratch.
 #' - [cff_modify()]: Modify a `cff` object.
-#' - [cff_create()]: Create a `cff` object for an **R** package.
+#' - [cff_create()]: Create a `cff` object for an \R package.
 #' - [cff_read()]: Create a `cff` object from an external file.
 #' - [as_cff_person()]: Recommended way to create persons in CFF format.
 #'

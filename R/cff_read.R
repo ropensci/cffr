@@ -4,7 +4,7 @@
 #' Read files and convert them to [`cff`] objects. Supported files are:
 #' - `CITATION.cff` files.
 #' - `DESCRIPTION` files.
-#' - **R** citation files (usually located in `inst/CITATION`).
+#' - \R citation files (usually located in `inst/CITATION`).
 #' - BibTeX files (with extension `*.bib`).
 #'
 #' [cff_read()] attempts to guess the type of file provided in `path`. However,
@@ -24,7 +24,7 @@
 #' The underlying functions used for reading external files:
 #' - [yaml::read_yaml()] for `CITATION.cff` files.
 #' - [desc::desc()] for `DESCRIPTION` files.
-#' - [utils::readCitationFile()] for **R** citation files.
+#' - [utils::readCitationFile()] for \R citation files.
 #' - [bibtex::read.bib()] for BibTeX files (extension `*.bib`).
 #'
 #' @param path Path to a file.

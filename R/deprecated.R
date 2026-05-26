@@ -141,7 +141,7 @@ cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
 #'
 #' @seealso
 #' - [cff_write_bib()] for writing `*.bib` files.
-#' - [cff_write_citation()] for writing **R** `CITATION` files.
+#' - [cff_write_citation()] for writing \R `CITATION` files.
 #'
 #' @examples
 #'

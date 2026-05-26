@@ -6,7 +6,7 @@
 \alias{as_cff_person.default}
 \alias{as_cff_person.person}
 \alias{as_cff_person.character}
-\title{Coerce \strong{R} objects to \code{\link{cff_pers_lst}} objects (\code{cff} persons)}
+\title{Coerce \R objects to \code{\link{cff_pers_lst}} objects (\code{cff} persons)}
 \usage{
 as_cff_person(x, ...)
 
@@ -17,7 +17,7 @@ as_cff_person(x, ...)
 \method{as_cff_person}{character}(x, ...)
 }
 \arguments{
-\item{x}{Any \strong{R} object.}
+\item{x}{Any \R object.}
 
 \item{...}{Ignored by this method.}
 }
@@ -29,7 +29,7 @@ Each element of the \code{cff_pers_lst} object has classes
 \code{\link[=cff_pers]{cff_pers, cff}}.
 }
 \description{
-\code{as_cff_person()} turns an existing list-like \strong{R} object into a
+\code{as_cff_person()} turns an existing list-like \R object into a
 \code{\link{cff_pers_lst}} object representing a list of \code{definitions.person} or
 \code{definitions.entity}, as defined by the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
 

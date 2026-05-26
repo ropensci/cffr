@@ -44,7 +44,7 @@ corresponding subclass.
 Learn more about the \CRANpkg{cffr} class system in \link{cff_class}.
 }
 \description{
-\code{as_cff()} turns an existing list-like \strong{R} object into a so-called
+\code{as_cff()} turns an existing list-like \R object into a so-called
 \code{\link{cff}}, a list with class \code{cff}, with the corresponding
 \link[=cff_class]{sub-class} if applicable.
 
@@ -97,7 +97,7 @@ as_cff(a_cit)
 \itemize{
 \item \code{\link[=cff]{cff()}}: Create a full \code{cff} object from scratch.
 \item \code{\link[=cff_modify]{cff_modify()}}: Modify a \code{cff} object.
-\item \code{\link[=cff_create]{cff_create()}}: Create a \code{cff} object for an \strong{R} package.
+\item \code{\link[=cff_create]{cff_create()}}: Create a \code{cff} object for an \R package.
 \item \code{\link[=cff_read]{cff_read()}}: Create a \code{cff} object from an external file.
 \item \code{\link[=as_cff_person]{as_cff_person()}}: Recommended way to create persons in CFF format.
 }

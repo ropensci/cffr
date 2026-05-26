@@ -55,7 +55,7 @@ cat(readLines(my_temp_bib), sep = "\n")
 \seealso{
 \itemize{
 \item \code{\link[=cff_write_bib]{cff_write_bib()}} for writing \verb{*.bib} files.
-\item \code{\link[=cff_write_citation]{cff_write_citation()}} for writing \strong{R} \code{CITATION} files.
+\item \code{\link[=cff_write_citation]{cff_write_citation()}} for writing \R \code{CITATION} files.
 }
 
 Other deprecated functions:

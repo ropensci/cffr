@@ -14,7 +14,7 @@
 #'
 #' @param outfile The name and path of the `CITATION.cff` to be created.
 #'
-#' @param r_citation Logical `TRUE/FALSE`. When `TRUE`, the **R** package
+#' @param r_citation Logical `TRUE/FALSE`. When `TRUE`, the \R package
 #'   citation (for example, `inst/CITATION`) is created or updated.
 #'   **No backup copy is created**. For more control, use
 #'   [cff_write_citation()].

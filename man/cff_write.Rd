@@ -24,7 +24,7 @@ cff_write(
 the \code{\link{cff}} object. It can be:
 \itemize{
 \item A missing value, which retrieves the \code{DESCRIPTION} file from your
-in-development \strong{R} package.
+in-development \R package.
 \item An existing \code{\link{cff}} object.
 \item The name of an installed package (\code{"jsonlite"}).
 \item Path to a \code{DESCRIPTION} file (\code{"./DESCRIPTION"}).
@@ -41,7 +41,7 @@ in-development \strong{R} package.
 \item{gh_keywords}{Logical \code{TRUE/FALSE}. If the package is hosted on
 GitHub, would you like to add the repository topics as keywords?}
 
-\item{r_citation}{Logical \code{TRUE/FALSE}. When \code{TRUE}, the \strong{R} package
+\item{r_citation}{Logical \code{TRUE/FALSE}. When \code{TRUE}, the \R package
 citation (for example, \code{inst/CITATION}) is created or updated.
 \strong{No backup copy is created}. For more control, use
 \code{\link[=cff_write_citation]{cff_write_citation()}}.}

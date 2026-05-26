@@ -19,7 +19,7 @@ cff_create(
 the \code{\link{cff}} object. It can be:
 \itemize{
 \item A missing value, which retrieves the \code{DESCRIPTION} file from your
-in-development \strong{R} package.
+in-development \R package.
 \item An existing \code{\link{cff}} object.
 \item The name of an installed package (\code{"jsonlite"}).
 \item Path to a \code{DESCRIPTION} file (\code{"./DESCRIPTION"}).

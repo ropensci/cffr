@@ -29,7 +29,7 @@
 #'   `cff_git_hook_install()`.
 #'
 #' - [usethis::use_git()] and related function of \CRANpkg{usethis} for using
-#'   Git with **R** packages.
+#'   Git with \R packages.
 #'
 #' @details
 #'
@@ -58,7 +58,7 @@
 #' In those cases, you can override the check by running
 #' `git commit --no-verify` in the terminal.
 #'
-#' If you are using **RStudio**, you can also run this command from an **R**
+#' If you are using **RStudio**, you can also run this command from an \R
 #' script by selecting that line and sending it to the terminal using:
 #'
 #' - Windows & Linux: `Ctrl+Alt+Enter`.

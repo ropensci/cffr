@@ -47,7 +47,7 @@ This typically occurs when you have updated your \code{DESCRIPTION} or
 In those cases, you can override the check by running
 \verb{git commit --no-verify} in the terminal.
 
-If you are using \strong{RStudio}, you can also run this command from an \strong{R}
+If you are using \strong{RStudio}, you can also run this command from an \R
 script by selecting that line and sending it to the terminal using:
 \itemize{
 \item Windows & Linux: \code{Ctrl+Alt+Enter}.
@@ -70,7 +70,7 @@ cff_git_hook_install()
 \item \code{\link[usethis:use_git_hook]{usethis::use_git_hook()}}, which is the underlying function used by
 \code{cff_git_hook_install()}.
 \item \code{\link[usethis:use_git]{usethis::use_git()}} and related function of \CRANpkg{usethis} for using
-Git with \strong{R} packages.
+Git with \R packages.
 }
 
 Other Git/GitHub helpers provided by \CRANpkg{cffr}:

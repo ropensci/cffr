@@ -1,10 +1,10 @@
-#' Export **R** objects to different file types
+#' Export \R objects to different file types
 #'
 #' @description
 #'
-#' Export **R** objects representing citations to specific file formats:
+#' Export \R objects representing citations to specific file formats:
 #' - [cff_write_bib()] creates a `.bib` file.
-#' - [cff_write_citation()] creates an **R** citation file as described in
+#' - [cff_write_citation()] creates an \R citation file as described in
 #'   Section 1.9 of *Writing R Extensions* (R Core Team 2023).
 #'
 #' @param x A [`bibentry`] or a [`cff`] object.
