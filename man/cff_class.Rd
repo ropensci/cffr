@@ -31,9 +31,8 @@
 \alias{as.person.cff_ref_lst}
 \title{The \code{cff} class}
 \description{
-\href{https://cran.r-project.org/package=cffr}{\strong{cffr}} implements an S3 object with
-\code{\link{class}} \code{cff}, which is used to represent the information of a \code{CITATION.cff}
-file in \strong{R}.
+\CRANpkg{cffr} implements an S3 object with \code{\link{class}} \code{cff}, which represents
+the information in a \code{CITATION.cff} file in \R.
 
 Under the hood, a \code{cff} object is simply a named \code{\link{list}} to which we added
 additional methods, most notably \code{\link{print}} and \code{\link[=as_cff]{as_cff()}}.
@@ -43,7 +42,7 @@ additional methods, most notably \code{\link{print}} and \code{\link[=as_cff]{as
   fifth = "with", sixth = "names", "none" = NULL
 )
 
-# As cff
+# Convert to `cff`.
 a_cff_object <- as_cff(a_named_list)
 
 class(a_cff_object)
@@ -61,30 +60,30 @@ is.list(a_cff_object)
 #> [1] TRUE
 }\if{html}{\out{</div>}}
 
-\code{\link[=as_cff]{as_cff()}} not only converts a \code{list} to \code{cff} but also removes items (known as
-\code{keys} in CFF terminology) that are \code{NULL} or \code{NA}.
-\subsection{Sub-classes}{
+\code{\link[=as_cff]{as_cff()}} not only converts a \code{list} to \code{cff} but also removes items that are
+\code{NULL} or \code{NA}. These items are known as \code{keys} in CFF terminology.
+\subsection{Subclasses}{
 
-\strong{cffr} implements two special sub-classes of \code{cff}, with the aim of
-representing two special types of objects defined in the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{CFF Schema}:
+\strong{cffr} implements two special subclasses of \code{cff}, which represent two special
+types of objects defined in the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}:
 \itemize{
-\item \code{definition.person} and \code{definition.entity}: CFF definitions for sub-lists
-representing persons or entities. In \strong{cffr}, the sub-class \code{cff_pers_lst}
-has been implemented to collect an array of \code{definition.person/entity},
-where each individual person or entity has a sub-class \code{cff_pers}.
-\item Similarly, \code{definition.reference} is the CFF definition for collecting
-references to related works and other articles of software used in the
-development of the main work of the CFF file. This is implemented in
-\strong{cffr} as a sub-class named \code{cff_ref_lst} for arrays of
-\code{definition.reference}, where each element has a sub-class named \code{cff_ref}.
+\item \code{definitions.person} and \code{definitions.entity}: CFF definitions for sublists
+representing persons or entities. In \strong{cffr}, the subclass \code{cff_pers_lst}
+collects an array of \code{definitions.person} or \code{definitions.entity} objects,
+where each individual person or entity has subclass \code{cff_pers}.
+\item Similarly, \code{definitions.reference} is the CFF definition for collecting
+references to related works and other software used in the development of the
+main work of the \code{CITATION.cff} file. In \strong{cffr}, the subclass \code{cff_ref_lst}
+represents arrays of \code{definitions.reference} objects, where each element has
+subclass \code{cff_ref}.
 }
 
-These two sub-classes do not provide full valid \code{cff} objects, but adapt
+These two subclasses do not provide full valid \code{cff} objects, but adapt
 information to the schema required by CFF:
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{# Using the utils::person() function
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{# Use the utils::person() function.
 
-## Array
+## Array.
 two_persons <- as_cff_person(
   c(
     person("A", "person", comment = c(ORCID = "0000-0001-8457-4658")),
@@ -102,7 +101,7 @@ two_persons
 class(two_persons)
 #> [1] "cff_pers_lst" "cff"
 
-# Single element
+# Single element.
 
 two_persons[[1]]
 #> family-names: person
@@ -112,9 +111,9 @@ two_persons[[1]]
 class(two_persons[[1]])
 #> [1] "cff_pers" "cff"
 
-# Array of references
+# Array of references.
 
-cit <- c(citation(), citation("yaml"))
+cit <- c(citation(), citation("jsonlite"))
 
 ref_list <- as_cff(cit)
 
@@ -131,22 +130,20 @@ ref_list
 #>   year: '2026'
 #>   doi: 10.32614/R.manuals
 #>   url: https://www.R-project.org/
-#> - type: manual
-#>   title: 'yaml: Methods to Convert R Data to YAML and Back'
+#> - type: article
+#>   title: 'The jsonlite Package: A Practical and Consistent Mapping Between JSON Data
+#>     and R Objects'
 #>   authors:
-#>   - family-names: Stephens
-#>     given-names: Jeremy
-#>   - family-names: Simonov
-#>     given-names: Kirill
-#>   year: '2025'
-#>   notes: R package version 2.3.12
-#>   url: https://CRAN.R-project.org/package=yaml
-#>   doi: 10.32614/CRAN.package.yaml
+#>   - family-names: Ooms
+#>     given-names: Jeroen
+#>   journal: arXiv:1403.2805 [stat.CO]
+#>   year: '2014'
+#>   url: https://arxiv.org/abs/1403.2805
 
 class(ref_list)
 #> [1] "cff_ref_lst" "cff"
 
-# Single element
+# Single element.
 
 ref_list[[1]]
 #> type: manual
@@ -169,14 +166,14 @@ class(ref_list[[1]])
 
 \subsection{Valid \code{cff} objects}{
 
-Creating a \code{cff} object does not ensure its validity according to the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{CFF Schema}:
+Creating a \code{cff} object does not ensure its validity according to the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}:
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{class(a_cff_object)
 #> [1] "cff"
 
 cff_validate(a_cff_object)
 #> == Validating cff ==============================================================
-#> x Oops! This <cff> has the following errors:
+#> x Validation failed. This <cff> has the following errors:
 #> * cff/: must have required property 'authors'
 #> * cff/: must have required property 'cff-version'
 #> * cff/: must have required property 'message'
@@ -189,8 +186,8 @@ cff_validate(a_cff_object)
 #> * cff/: must NOT have additional properties
 }\if{html}{\out{</div>}}
 
-\code{\link[=cff_validate]{cff_validate()}} gives minimal messages about what's wrong with our \code{cff} and
-(invisibly) returns the result of the validation (\code{TRUE/FALSE}).
+\code{\link[=cff_validate]{cff_validate()}} gives minimal messages about what is wrong with the \code{cff}
+object and invisibly returns the result of the validation (\code{TRUE/FALSE}).
 
 We can use \code{\link[=cff_modify]{cff_modify()}} to add more keys:
 
@@ -202,7 +199,7 @@ We can use \code{\link[=cff_modify]{cff_modify()}} to add more keys:
 )
 
 
-# Remove invalid keys
+# Remove invalid keys.
 cff_valid <- as_cff(cff_valid[names(cff_valid) \%in\% cff_schema_keys()])
 
 cff_valid
@@ -214,7 +211,7 @@ cff_valid
 
 cff_validate(cff_valid)
 #> == Validating cff ==============================================================
-#> v Congratulations! This <cff> is valid.
+#> v This <cff> is valid.
 }\if{html}{\out{</div>}}
 }
 
@@ -299,14 +296,14 @@ Only for \code{cff_pers_lst} and \code{cff_pers} objects:
 
 \subsection{\code{\link[=toBibtex]{toBibtex()}}}{
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{# For cff
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{# For `cff`.
 toBibtex(minimal_cff)
 #> @Misc\{doe,
 #>   title = \{My Research Software\},
 #>   author = \{John Doe\},
 #> \}
 
-# cff_ref, cff_ref_lst
+# For `cff_ref` and `cff_ref_lst`.
 toBibtex(cit)
 #> @Manual\{,
 #>   title = \{R: A Language and Environment for Statistical Computing\},
@@ -318,16 +315,15 @@ toBibtex(cit)
 #>   url = \{https://www.R-project.org/\},
 #> \}
 #> 
-#> @Manual\{,
-#>   title = \{yaml: Methods to Convert R Data to YAML and Back\},
-#>   author = \{Jeremy Stephens and Kirill Simonov\},
-#>   year = \{2025\},
-#>   note = \{R package version 2.3.12\},
-#>   url = \{https://CRAN.R-project.org/package=yaml\},
-#>   doi = \{10.32614/CRAN.package.yaml\},
+#> @Article\{,
+#>   title = \{The jsonlite Package: A Practical and Consistent Mapping Between JSON Data and R Objects\},
+#>   author = \{Jeroen Ooms\},
+#>   journal = \{arXiv:1403.2805 [stat.CO]\},
+#>   year = \{2014\},
+#>   url = \{https://arxiv.org/abs/1403.2805\},
 #> \}
 
-# cff_pers, cff_pers_lst
+# For `cff_pers` and `cff_pers_lst`.
 toBibtex(two_persons)
 #> person, A and \{An entity\}
 }\if{html}{\out{</div>}}
@@ -343,7 +339,7 @@ Chapman and Hall/CRC. \doi{10.1201/9781351201315},
 }
 }
 \seealso{
-Coercing between \strong{R} classes with \strong{S3 Methods}:
+Coerce between \R classes:
 \code{\link[=as_bibentry]{as_bibentry()}},
 \code{\link[=as_cff]{as_cff()}},
 \code{\link[=as_cff_person]{as_cff_person()}}

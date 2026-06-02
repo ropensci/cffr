@@ -1,9 +1,9 @@
 #' Coerce lists, `person` and `bibentry` objects to [`cff`]
 #'
 #' @description
-#' `as_cff()` turns an existing list-like \R object into a so-called
-#' [`cff`], a list with class `cff`, with the corresponding
-#' [sub-class][cff_class] if applicable.
+#' `as_cff()` turns an existing list-like \R object into a [`cff`] object,
+#' a list with class `cff` and the corresponding [subclass][cff_class] when
+#' applicable.
 #'
 #' `as_cff` is an S3 generic, with methods for:
 #' - `person` objects as produced by [utils::person()].
@@ -15,10 +15,7 @@
 #'   list.
 #' @param ... Additional arguments to be passed on to other methods.
 #'
-#' @rdname as_cff
-#'
 #' @return
-#'
 #' - `as_cff.person()` returns an object with classes
 #'   [`cff_pers_lst, cff`][cff_pers_lst].
 #' - `as_cff.bibentry()` and `as_cff.Bibtex()` return an object with classes
@@ -29,8 +26,6 @@
 #'   corresponding subclass.
 #'
 #' Learn more about the \CRANpkg{cffr} class system in [cff_class].
-#'
-#' @family s3method
 #'
 #' @details
 #' For `as_cff.bibentry()` and `as_cff.Bibtex()`, see
@@ -46,15 +41,15 @@
 #' - [cff_modify()]: Modify a `cff` object.
 #' - [cff_create()]: Create a `cff` object for an \R package.
 #' - [cff_read()]: Create a `cff` object from an external file.
-#' - [as_cff_person()]: Recommended way to create persons in CFF format.
+#' - [as_cff_person()]: Recommended way to create CFF person metadata.
 #'
 #' Learn more about the \CRANpkg{cffr} class system in [cff_class].
 #'
+#' @family s3method
 #' @export
 #' @encoding UTF-8
-#'
+#' @rdname as_cff
 #' @examples
-#'
 #' # Convert a list to a `cff` object.
 #' cffobj <- as_cff(list(
 #'   "cff-version" = "1.2.0",
@@ -84,16 +79,16 @@ as_cff <- function(x, ...) {
   UseMethod("as_cff")
 }
 
-#' @rdname as_cff
 #' @export
 #' @encoding UTF-8
+#' @rdname as_cff
 as_cff.default <- function(x, ...) {
   as_cff(as.list(x), ...)
 }
 
-#' @rdname as_cff
 #' @export
 #' @encoding UTF-8
+#' @rdname as_cff
 as_cff.list <- function(x, ...) {
   # Clean up empty top-level values.
   clean_up <- vapply(x, is.null, FUN.VALUE = logical(1))
@@ -101,16 +96,16 @@ as_cff.list <- function(x, ...) {
   new_cff(x_clean)
 }
 
-#' @rdname as_cff
 #' @export
 #' @encoding UTF-8
+#' @rdname as_cff
 as_cff.person <- function(x, ...) {
   as_cff_person(x)
 }
 
-#' @rdname as_cff
 #' @export
 #' @encoding UTF-8
+#' @rdname as_cff
 as_cff.bibentry <- function(x, ...) {
   cff_ref <- as_cff_reference(x)
   clean_up <- vapply(cff_ref, is.null, FUN.VALUE = logical(1))
@@ -130,9 +125,9 @@ as_cff.bibentry <- function(x, ...) {
   cff_refs_class
 }
 
-#' @rdname as_cff
 #' @export
 #' @encoding UTF-8
+#' @rdname as_cff
 as_cff.Bibtex <- function(x, ...) {
   tmp <- tempfile(fileext = ".bib")
   writeLines(x, tmp)

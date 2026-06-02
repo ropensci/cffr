@@ -1,5 +1,5 @@
 ---
-title: "Manipulating Citations with cffr"
+title: "Manipulating citations with cffr"
 description: Learn how to modify `cff` objects.
 toc: true
 bibliography: REFERENCES.bib
@@ -21,9 +21,8 @@ knitr:
 library(cffr)
 ```
 
-The **cffr** package is designed for **R** package developers. The main goal of
-**cffr** is to create a `CITATION.cff` file using metadata from the following
-files:
+**cffr** is designed for **R** package developers. The main goal of **cffr** is
+to create a `CITATION.cff` file using metadata from the following files:
 
 - Your `DESCRIPTION` file.
 - If available, the citation information located in `inst/CITATION`.
@@ -37,7 +36,6 @@ developers can include them in their repositories to let others know how to
 correctly cite their software.
 
 This format is gaining popularity within the software citation ecosystem.
-Recently,
 [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
 [Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-) and
 [Zotero](https://citation-file-format.github.io/#/supported-by-zotero-) have
@@ -71,7 +69,7 @@ library(cffr)
 
 cff_write()
 
-# You are done.
+# Done.
 ```
 
 Under the hood, `cff_write()` performs these tasks:
@@ -81,12 +79,12 @@ Under the hood, `cff_write()` performs these tasks:
 - Writes a `CITATION.cff` file.
 - Validates the result using `cff_validate()`.
 
-Congratulations! Now you have a full `CITATION.cff` file for your **R** package.
+You now have a complete `CITATION.cff` file for your **R** package.
 
 ## Modifying your `CITATION.cff` file
 
-You can easily customize the `cff` object (a custom **cffr** class) using the
-coercion system provided in the package, as well as the `keys` argument.
+You can customize the `cff` object (a custom **cffr** class) using the coercion
+system provided in the package, as well as the `keys` argument.
 
 We create a `cff` object using `cff()` (for demonstration only) and then add or
 modify its contents.
@@ -186,7 +184,7 @@ add two references, one created with `bibentry()` and another with `citation()`:
 
 cff_schema_definitions_refs()
 
-# Automatic coercion from another R package.
+# Automatic coercion from another **R** package.
 base_r <- citation("base")
 
 bib <- bibentry(

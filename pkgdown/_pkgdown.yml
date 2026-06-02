@@ -13,35 +13,38 @@ repo:
 
 home:
   title: cffr | Generate Citation File Format metadata for R packages
-  description: Generate, read and validate Citation File Format metadata for R packages.
+  description: >
+    Generate, read, write and validate Citation File Format metadata for
+    R packages.
 
 reference:
 - title: Core workflow
 - subtitle: Main workflow
   desc: >
-    The main function of the package and likely the only one you need.
+    Create, write and validate a `CITATION.cff` file in one command.
   contents: cff_write
 - subtitle: Other core functions
   desc: Create, modify and validate `cff` objects.
   contents: has_concept("core")
 - subtitle: Citation File Format schema
   desc: >
-    Lists of valid keys and fields as defined by the CFF `schema.json`
+    Inspect valid keys and fields from the Citation File Format schema
     **(v1.2.0)**.
   contents: has_concept("schemas")
-- subtitle: Documentation
+- subtitle: Class system
   desc: >
-    Learn more about the `cff` class system and S3 methods implemented.
+    Learn about the `cff` class system and S3 methods implemented by
+    **cffr**.
   contents: cff_class
 - title: Additional features
-- subtitle: Coercing objects
+- subtitle: Coerce objects
   desc: >
-    Coerce **R** objects to different classes (`cff`, `person`, `bibentry`)
+    Coerce **R** objects to different classes (`cff`, `person` and `bibentry`)
     used by the package.
   contents: has_concept("s3method")
 - subtitle: Read and write files
   desc: >
-    Read and write CFF, BibTeX and related local files.
+    Read and write `CITATION.cff`, BibTeX and R citation files.
   contents:
   - has_concept("reading")
   - has_concept("writing")
@@ -49,12 +52,16 @@ reference:
   desc: >
     Convert between BibTeX markup and CFF objects.
   contents: has_concept("bibtex")
-- subtitle: Continuous integration
+- subtitle: Git and GitHub helpers
   desc: >
-    Keep `CITATION.cff` files synchronized with package metadata.
+    Keep `CITATION.cff` synchronized with package metadata.
   contents: has_concept("git")
 - title: Datasets
+  desc: >
+    Package datasets used for metadata mapping.
   contents: has_concept("datasets")
+- title: Deprecated functions
+  contents: has_concept("deprecated")
 - title: About the package
   contents: cffr-package
 

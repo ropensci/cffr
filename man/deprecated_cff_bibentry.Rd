@@ -14,14 +14,14 @@ cff_parse_citation(bib)
 A \code{bibentry} in format \code{\link{cff}}.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use \code{\link[=as_cff.bibentry]{as_cff.bibentry()}} method
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use the \code{\link[=as_cff.bibentry]{as_cff.bibentry()}}
+method instead.
 }
 \examples{
-
 bib <- citation("base")
 bib
 
-# To cff
+# To cff.
 bib_to_cff <- as_cff(bib)
 bib_to_cff
 
@@ -29,7 +29,7 @@ bib_to_cff
 \seealso{
 \code{\link[=as_cff.bibentry]{as_cff.bibentry()}}
 
-Other deprecated functions:
+Deprecated functions:
 \code{\link[=cff_extract_to_bibtex]{cff_extract_to_bibtex()}},
 \code{\link[=cff_from_bibtex]{cff_from_bibtex()}},
 \code{\link[=cff_parse_person]{cff_parse_person()}},

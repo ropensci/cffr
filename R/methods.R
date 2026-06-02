@@ -54,14 +54,11 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
   # For better dispatching.
   x <- as_cff(as.list(x))
 
-  len <- length(x)
-  key_len <- seq_len(len)
   ref_n <- names(x)
 
-  df_l <- lapply(key_len, function(y) {
+  df_l <- lapply(seq_along(x), function(y) {
     el <- x[[y]]
-    nm <- ref_n[y]
-    nm <- gsub("-", "_", nm, fixed = TRUE)
+    nm <- cff_df_name(ref_n[y])
 
     if (nm == "preferred_citation") {
       return(as.data.frame(el, prefix = nm))
@@ -89,9 +86,7 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
     df
   })
 
-  the_df <- do.call(cbind, df_l)
-
-  as.data.frame(the_df, row.names = row.names, optional = optional, ...)
+  cff_df_bind(df_l, row.names = row.names, optional = optional, ...)
 }
 
 #' @export
@@ -105,22 +100,7 @@ as.data.frame.cff_pers_lst <- function(
   ...,
   prefix = "person"
 ) {
-  # For better dispatching.
-  x <- as_cff(as.list(x))
-
-  len <- length(x)
-  key_len <- seq_len(len)
-
-  df_l <- lapply(key_len, function(y) {
-    prefix <- paste0(prefix, ".", sprintf("%02d", y - 1))
-    el <- x[[y]]
-    df <- as.data.frame(el, prefix = prefix)
-    df
-  })
-
-  the_df <- do.call(cbind, df_l)
-
-  as.data.frame(the_df, row.names = row.names, optional = optional, ...)
+  cff_df_indexed(x, prefix, row.names, optional, ...)
 }
 
 #' @export
@@ -138,14 +118,11 @@ as.data.frame.cff_pers <- function(
   x <- as_cff(as.list(x))
 
   vals <- unlist(x)
-  nm <- names(vals)
-  nm <- gsub("-", "_", nm, fixed = TRUE)
+  nm <- cff_df_name(names(vals))
   amat <- matrix(vals, nrow = 1, ncol = length(vals))
   m <- as.data.frame(amat)
 
-  if (!is.null(clean_str(prefix))) {
-    nm <- paste0(prefix, ".", nm)
-  }
+  nm <- cff_df_prefix(nm, prefix)
 
   names(m) <- nm
   m
@@ -164,28 +141,15 @@ as.data.frame.cff_ref_lst <- function(
   ...,
   prefix = "references"
 ) {
-  # For better dispatching
-  x <- as_cff(as.list(x))
-
-  len <- length(x)
-  key_len <- seq_len(len)
-
-  df_l <- lapply(key_len, function(y) {
-    prefix <- paste0(prefix, ".", sprintf("%02d", y - 1))
-    el <- x[[y]]
-    df <- as.data.frame(
-      el,
-      row.names = row.names,
-      optional = optional,
-      ...,
-      prefix = prefix
-    )
-    df
-  })
-
-  the_df <- do.call(cbind, df_l)
-
-  as.data.frame(the_df, row.names = row.names, optional = optional, ...)
+  cff_df_indexed(
+    x,
+    prefix,
+    row.names,
+    optional,
+    ...,
+    element_args = list(row.names = row.names, optional = optional),
+    element_dots = TRUE
+  )
 }
 
 #' @export
@@ -211,6 +175,56 @@ as.data.frame.cff_ref <- function(
   }
 
   the_df
+}
+
+cff_df_indexed <- function(
+  x,
+  prefix,
+  row.names,
+  optional,
+  ...,
+  element_args = list(),
+  element_dots = FALSE
+) {
+  # For better dispatching.
+  x <- as_cff(as.list(x))
+  dots <- list(...)
+
+  df_l <- lapply(seq_along(x), function(y) {
+    element_prefix <- cff_df_index_prefix(prefix, y)
+    args <- c(list(x[[y]], prefix = element_prefix), element_args)
+    if (element_dots) {
+      args <- c(args, dots)
+    }
+    do.call(as.data.frame, args)
+  })
+
+  args <- c(
+    list(df_l = df_l, row.names = row.names, optional = optional),
+    dots
+  )
+  do.call(cff_df_bind, args)
+}
+
+cff_df_bind <- function(df_l, row.names = NULL, optional = FALSE, ...) {
+  the_df <- do.call(cbind, df_l)
+  as.data.frame(the_df, row.names = row.names, optional = optional, ...)
+}
+
+cff_df_index_prefix <- function(prefix, index) {
+  paste0(prefix, ".", sprintf("%02d", index - 1))
+}
+
+cff_df_prefix <- function(nm, prefix) {
+  if (!is.null(clean_str(prefix))) {
+    return(paste0(prefix, ".", nm))
+  }
+
+  nm
+}
+
+cff_df_name <- function(nm) {
+  gsub("-", "_", nm, fixed = TRUE)
 }
 # nolint end
 

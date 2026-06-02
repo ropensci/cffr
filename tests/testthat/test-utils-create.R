@@ -33,6 +33,9 @@ test_that("Check dependencies", {
   })
 
   class(selected) <- "cff"
+
+  rvers <- getRversion()
+  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
   expect_snapshot(print(selected))
 })
 
@@ -58,4 +61,40 @@ test_that("Merge DESCRIPTION wrong url with CITATION_dx", {
     paste0("https://dx.doi.org/", merged$doi),
     merged[["preferred-citation"]]$url
   )
+})
+
+test_that("Utils coverage", {
+  deps <- data.frame(
+    package = c("foo", "foo", "bar"),
+    version = c("*", "1.0", "2.0"),
+    type = c("Imports", "Suggests", "Depends")
+  )
+  rows <- cff_dependency_rows(deps)
+
+  expect_equal(rows$package, c("foo", "foo", "bar"))
+  expect_equal(rows$version_clean, c("", "1.0", "2.0"))
+  expect_equal(rows$scope, c("Imports", "Imports", "Depends"))
+
+  mod <- list(`date-released` = "1995-02-01")
+  expect_identical(cff_dependency_year(mod), "1995")
+
+  mod2 <- list(`date-released` = "1904/12/30")
+  expect_identical(cff_dependency_year(mod2), "1904")
+
+  avail <- data.frame(Package = c("foo", "stats"))
+  testthat::local_mocked_bindings(
+    get_avail_on_init = function() avail,
+    .package = "cffr"
+  )
+  expect_true(is_cran_dependency("foo"))
+  expect_false(is_cran_dependency("stats"))
+  expect_false(is_cran_dependency("bar"))
+
+  ordered <- drop_null(cff_dependency_order(list(
+    year = "2025",
+    repository = "https://example.org/repo",
+    title = "foo",
+    type = "software"
+  )))
+  expect_equal(names(ordered), c("type", "title", "repository", "year"))
 })

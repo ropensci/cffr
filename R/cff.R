@@ -3,23 +3,17 @@
 #' A class and utility methods for reading, creating and holding CFF
 #' information. See [cff_class] to learn more about `cff` objects.
 #'
-#' @rdname cff
-#' @name cff
-#' @return
-#'
-#' A [`cff`] object. Under the hood, a `cff` object is a regular [`list`]
-#' object with a special [`print`][print.cff()] method.
-#'
-#' @family core
-#'
 #' @param path `r lifecycle::badge("deprecated")` `path` is no longer supported,
 #'   use [cff_read_cff_citation()] instead.
 #' @param ... Named arguments to be used for creating a [`cff`] object. If no
 #'   arguments are supplied (the default behavior), a minimal valid `cff`
 #'   object is created.
 #'
-#' @details
+#' @return
+#' A [`cff`] object. Under the hood, a `cff` object is a regular [`list`]
+#' object with a special [`print`][print.cff()] method.
 #'
+#' @details
 #' `cff()` converts `_` in the argument name to `-`. For example,
 #' `cff_version = "1.2.0"` is converted to `cff-version = "1.2.0"`.
 #'
@@ -31,8 +25,12 @@
 #' cat(p)
 #'
 #' ```
+#'
+#' @family core
 #' @export
 #' @encoding UTF-8
+#' @rdname cff
+#' @name cff
 #' @examples
 #' # Blank `cff` object.
 #' cff()

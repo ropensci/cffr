@@ -15,18 +15,6 @@
 #' - [cff_read_bib()], which requires \CRANpkg{bibtex} (>= 0.5.0) and uses
 #'   [bibtex::read.bib()].
 #'
-#' @export
-#' @encoding UTF-8
-#' @rdname cff_read
-#' @family reading
-#' @seealso
-#'
-#' The underlying functions used for reading external files:
-#' - [yaml::read_yaml()] for `CITATION.cff` files.
-#' - [desc::desc()] for `DESCRIPTION` files.
-#' - [utils::readCitationFile()] for \R citation files.
-#' - [bibtex::read.bib()] for BibTeX files (extension `*.bib`).
-#'
 #' @param path Path to a file.
 #' @param encoding Encoding to be assumed for `path`. See [readLines()].
 #' @param meta A list of package metadata as obtained by
@@ -37,11 +25,10 @@
 #' @inheritParams cff_create
 #'
 #' @return
-#'
 #' - `cff_read_cff_citation()` and `cff_read_description()` return an object
 #'   with class `cff`.
 #' - `cff_read_citation()` and `cff_read_bib()` return an object of classes
-#'   [`cff_ref_lst, cff`][cff_ref_lst] according to the `definitions.references`
+#'   [`cff_ref_lst, cff`][cff_ref_lst] according to the `definitions.reference`
 #'   specified in the
 #' ```{r, echo=FALSE, results='asis'}
 #'
@@ -53,8 +40,17 @@
 #'
 #' Learn more about the \CRANpkg{cffr} class system in [cff_class].
 #'
-#' @references
+#' @details
+#' For details of `cff_read_description()`, see [cff_create()].
 #'
+#' ## The `meta` object
+#'
+#' Section 1.9 CITATION files of *Writing R Extensions* (R Core Team 2023)
+#' specifies how to create dynamic `CITATION` files using a `meta` object.
+#' Therefore, the `meta` argument in [cff_read_citation()] may be needed to
+#' read some files correctly.
+#'
+#' @references
 #' - R Core Team (2023). _Writing R Extensions_.
 #'   <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>
 #'
@@ -62,21 +58,19 @@
 #'   *The cffr package, Vignettes*. \doi{10.21105/joss.03900},
 #'   <https://docs.ropensci.org/cffr/articles/bibtex-cff.html>.
 #'
-#' @details
+#' @seealso
+#' The underlying functions used for reading external files:
+#' - [yaml::read_yaml()] for `CITATION.cff` files.
+#' - [desc::desc()] for `DESCRIPTION` files.
+#' - [utils::readCitationFile()] for \R citation files.
+#' - [bibtex::read.bib()] for BibTeX files (extension `*.bib`).
 #'
-#' For details of `cff_read_description()`, see [cff_create()].
-#'
-#' ## The `meta` object
-#'
-#' Section 1.9 CITATION files of *Writing R Extensions* (R Core Team 2023)
-#' specifies how to create dynamic `CITATION` files using `meta` object, hence
-#' the `meta` argument in [cff_read_citation()] may be needed for reading
-#' some files correctly.
-#'
+#' @family reading
+#' @export
+#' @encoding UTF-8
+#' @rdname cff_read
 #' @examples
-#'
-#' # Create a `cff` object from a CFF file.
-#'
+#' # Create a `cff` object from a `CITATION.cff` file.
 #' from_cff_file <- cff_read(system.file("examples/CITATION_basic.cff",
 #'   package = "cffr"
 #' ))
@@ -91,7 +85,6 @@
 #' from_desc
 #'
 #' # Create a `cff` object from BibTeX.
-#'
 #' if (requireNamespace("bibtex", quietly = TRUE)) {
 #'   from_bib <- cff_read(system.file("examples/example.bib",
 #'     package = "cffr"
@@ -118,7 +111,7 @@ cff_read <- function(path, ...) {
 
   if (filetype == "dontknow") {
     cli::cli_abort(paste0(
-      "Don't recognize the file type of {.file {path}}.",
+      "Cannot recognize the file type of {.file {path}}.",
       " Use a specific function, such as {.fn cffr:cff_read_description}."
     ))
   }
@@ -128,7 +121,7 @@ cff_read <- function(path, ...) {
     "description" = cff_read_description(path, ...),
     "bib" = cff_read_bib(path, ...),
     "citation" = cff_read_citation(path, ...),
-    cli::cli_abort("Do not know how to read {.val {x}}.")
+    cli::cli_abort("Cannot read {.val {x}}.")
   )
 
   endobj
@@ -197,7 +190,7 @@ cff_read_description <- function(
 
   if (gh_keywords) {
     ghtopics <- get_gh_topics(field_list)
-    field_list$keywords <- unique(c(field_list$keywords, ghtopics))
+    field_list$keywords <- desc_gh_keywords(field_list$keywords, ghtopics)
   }
 
   new_cff(field_list)
@@ -216,8 +209,8 @@ cff_read_citation <- function(path, meta = NULL, ...) {
     # nolint end
 
     cli::cli_alert_warning(paste0(
-      "{.arg meta} should be {.val NULL} or {.obj_type_friendly {ex}},",
-      " not {.obj_type_friendly {meta}}. Using {.arg meta = NULL}."
+      "{.arg meta} should be {.val NULL} or {.obj_type_friendly {ex}}, ",
+      "not {.obj_type_friendly {meta}}. Using {.arg meta = NULL}."
     ))
     meta <- NULL
   }
@@ -228,8 +221,8 @@ cff_read_citation <- function(path, meta = NULL, ...) {
   # If there is an error, try again.
   if (inherits(the_cit, "try-error")) {
     cli::cli_alert_warning(paste0(
-      "It was not possible to read {.file {path}} with the {.arg meta} ",
-      "provided. Trying with {.code packageDescription('base')}."
+      "Could not read {.file {path}} with the provided {.arg meta}. ",
+      "Trying with {.code packageDescription('base')}."
     ))
     new_meta <- packageDescription("base")
     the_cit <- try(
@@ -238,7 +231,9 @@ cff_read_citation <- function(path, meta = NULL, ...) {
     )
     # nocov start
     if (inherits(the_cit, "try-error")) {
-      cli::cli_alert_danger("Cannot read {.file path}. Returning {.val NULL}.")
+      cli::cli_alert_danger(
+        "Cannot read {.file {path}}. Returning {.val NULL}."
+      )
       return(NULL)
     }
     # nocov end
@@ -250,8 +245,8 @@ cff_read_citation <- function(path, meta = NULL, ...) {
 
 #' @export
 #' @encoding UTF-8
-#' @family bibtex
 #' @rdname cff_read
+#' @family bibtex
 cff_read_bib <- function(path, encoding = "UTF-8", ...) {
   file_exist_abort(path, abort = TRUE)
 

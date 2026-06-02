@@ -57,21 +57,11 @@ merge_desc_cit <- function(cffobj, citobj) {
 enhance_pref_authors <- function(cffobjend) {
   # Create an index of authors extracted from DESCRIPTION.
   auth_desc <- cffobjend$authors
-  key_aut_desc <- lapply(auth_desc, function(x) {
-    l <- list(x["family-names"], x["given-names"], x["name"])
-    l <- unlist(drop_null(l))
-    tolower(paste0(l, collapse = ""))
-  })
-  names(auth_desc) <- unlist(key_aut_desc)
+  names(auth_desc) <- cff_author_keys(auth_desc)
 
   # Create an index of authors from `preferred-citation`.
   auth_pref <- cffobjend$`preferred-citation`$authors
-  key_aut_cit <- lapply(auth_pref, function(x) {
-    l <- list(x["family-names"], x["given-names"], x["name"])
-    l <- unlist(drop_null(l))
-    tolower(paste0(l, collapse = ""))
-  })
-  names(auth_pref) <- unlist(key_aut_cit)
+  names(auth_pref) <- cff_author_keys(auth_pref)
 
   # Add missing keys to authors.
   enhancedauth <- lapply(names(auth_pref), function(x) {
@@ -91,6 +81,20 @@ enhance_pref_authors <- function(cffobjend) {
   enhancedauth
 }
 
+cff_author_keys <- function(authors) {
+  unlist(lapply(authors, cff_author_key))
+}
+
+cff_author_key <- function(author) {
+  key_parts <- list(
+    author["family-names"],
+    author["given-names"],
+    author["name"]
+  )
+  key_parts <- unlist(drop_null(key_parts))
+  tolower(paste0(key_parts, collapse = ""))
+}
+
 get_dependencies <- function(
   desc_path,
   instpack = as.character(installed.packages()[, "Package"])
@@ -106,100 +110,13 @@ get_dependencies <- function(
 
   getdeps <- desc::desc(desc_path)
 
-  deps <- getdeps$get_deps()
-
-  # Adapt the version.
-
-  deps$version_clean <- gsub("*", "", deps$version, fixed = TRUE)
-
-  # Save a copy for later.
-  origdeps <- deps
-
-  # Deduplicate rows.
-  deps <- unique(deps[, c("package", "version_clean")])
-
-  # Get the dependency type and add it to the scope.
-  scope <- vapply(
-    deps$package,
-    function(x) {
-      y <- origdeps[origdeps$package == x, "type"]
-
-      y[1]
-    },
-    FUN.VALUE = character(1)
-  )
-  deps$scope <- scope
+  deps <- cff_dependency_rows(getdeps$get_deps())
 
   av_deps <- deps[deps$package %in% c("R", instpack), ]
 
   # Get references from dependency DESCRIPTION files.
   cff_deps <- lapply(seq_len(nrow(av_deps)), function(y) {
-    n <- av_deps[y, ]
-
-    if (n$package == "R") {
-      mod <- as_cff(citation())[[1]]
-      mod$year <- format(Sys.Date(), "%Y")
-    } else {
-      mod <- try(
-        as_cff(citation(n$package, auto = TRUE)[1])[[1]],
-        silent = TRUE
-      )
-
-      if (inherits(mod, "try-error")) {
-        return(NULL) # nocov
-      }
-
-      # Simplify the `cff` object to avoid cluttering the output.
-      mod$abstract <- mod$title
-      mod$title <- n$package
-      # Add the CRAN DOI for non-base CRAN packages.
-      base_pkgs <- rownames(installed.packages(priority = "base"))
-
-      cran_doi <- all(
-        n$package %in% avail_on_init$Package,
-        !n$package %in% base_pkgs
-      )
-      if (cran_doi) {
-        mod$doi <- paste0("10.32614/CRAN.package.", n$package)
-      }
-    }
-
-    mod$type <- "software"
-    mod$version <- ifelse(is.na(n$version_clean), NULL, paste(n$version_clean))
-    # Get URL and repository from package DESCRIPTION.
-    # URLs from citation() vary due to auto = TRUE.
-    dfile <- system.file("DESCRIPTION", package = n$package)
-
-    if (file_exist_abort(dfile)) {
-      pkg <- desc::desc(dfile)
-      mod$url <- get_desc_urls(pkg)$url
-      mod$repository <- get_desc_repository(pkg)
-    }
-
-    mod <- drop_null(mod)
-
-    # Get the year.
-    date_rel <- mod[["date-released"]]
-
-    if (is.null(date_rel)) {
-      year <- format(Sys.Date(), "%Y")
-    } else {
-      year <- format(as.Date(date_rel), "%Y")
-    }
-
-    mod$year <- year
-    mod$notes <- clean_str(n$scope)
-
-    # Rearrange keys.
-    mod <- c(
-      mod[c("type", "title", "abstract", "notes", "url", "repository")],
-      mod[
-        !names(mod) %in%
-          c("type", "title", "abstract", "notes", "url", "repository")
-      ]
-    )
-
-    mod <- as_cff(mod)
+    cff_dependency_reference(av_deps[y, ])
   })
 
   cff_deps <- drop_null(cff_deps)
@@ -209,4 +126,102 @@ get_dependencies <- function(
   class(cff_deps) <- "cff"
 
   cff_deps
+}
+
+cff_dependency_rows <- function(deps) {
+  deps$version_clean <- gsub("*", "", deps$version, fixed = TRUE)
+
+  origdeps <- deps
+  deps <- unique(deps[, c("package", "version_clean")])
+  deps$scope <- vapply(
+    deps$package,
+    function(x) origdeps[origdeps$package == x, "type"][1],
+    FUN.VALUE = character(1)
+  )
+
+  deps
+}
+
+cff_dependency_reference <- function(dep) {
+  mod <- cff_dependency_citation(dep$package)
+
+  if (is.null(mod)) {
+    return(NULL) # nocov
+  }
+
+  mod$type <- "software"
+  mod$version <- ifelse(
+    is.na(dep$version_clean),
+    NULL,
+    paste(dep$version_clean)
+  )
+  mod <- cff_dependency_desc_fields(mod, dep$package)
+  mod <- drop_null(mod)
+  mod$year <- cff_dependency_year(mod)
+  mod$notes <- clean_str(dep$scope)
+
+  as_cff(cff_dependency_order(mod))
+}
+
+cff_dependency_citation <- function(package) {
+  if (package == "R") {
+    mod <- as_cff(citation())[[1]]
+    mod$year <- format(Sys.Date(), "%Y")
+    return(mod)
+  }
+
+  mod <- try(
+    as_cff(citation(package, auto = TRUE)[1])[[1]],
+    silent = TRUE
+  )
+
+  if (inherits(mod, "try-error")) {
+    return(NULL) # nocov
+  }
+
+  # Simplify the `cff` object to avoid cluttering the output.
+  mod$abstract <- mod$title
+  mod$title <- package
+
+  if (is_cran_dependency(package)) {
+    mod$doi <- paste0("10.32614/CRAN.package.", package)
+  }
+
+  mod
+}
+
+is_cran_dependency <- function(package) {
+  avail <- get_avail_on_init()
+  base_packages <- rownames(installed.packages(priority = "base"))
+
+  all(package %in% avail$Package, !package %in% base_packages)
+}
+
+cff_dependency_desc_fields <- function(mod, package) {
+  # Get URL and repository from package DESCRIPTION.
+  # URLs from citation() vary due to auto = TRUE.
+  dfile <- system.file("DESCRIPTION", package = package)
+
+  if (file_exist_abort(dfile)) {
+    pkg <- desc::desc(dfile)
+    mod$url <- get_desc_urls(pkg)$url
+    mod$repository <- get_desc_repository(pkg)
+  }
+
+  mod
+}
+
+cff_dependency_year <- function(mod) {
+  date_rel <- mod[["date-released"]]
+
+  if (is.null(date_rel)) {
+    return(format(Sys.Date(), "%Y"))
+  }
+
+  format(as.Date(date_rel), "%Y")
+}
+
+cff_dependency_order <- function(mod) {
+  first_keys <- c("type", "title", "abstract", "notes", "url", "repository")
+  c(mod[first_keys], mod[!names(mod) %in% first_keys])
 }

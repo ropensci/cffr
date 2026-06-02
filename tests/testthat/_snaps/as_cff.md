@@ -66,7 +66,7 @@
     Code
       noadd <- cff(chocolate = "New York", version = 5)
     Message
-      i Found misspelled keys. Trying to map:
+      i Found misspelled keys. Trying to map them:
       x chocolate: No match, removing.
 
 # Reading full cff

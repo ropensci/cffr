@@ -21,10 +21,10 @@ cff_parse_person_bibtex(person)
 A person in format \code{cff}.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use \code{\link[=as_cff_person]{as_cff_person()}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use \code{\link[=as_cff_person]{as_cff_person()}} instead.
 }
 \examples{
-# Create a person object
+# Create a person object.
 a_person <- person(
   given = "First", family = "Author",
   role = c("aut", "cre"),
@@ -40,22 +40,22 @@ cff_person <- as_cff_person(a_person)
 
 cff_person
 
-# Back to person object with S3 method
+# Back to person object with S3 method.
 as.person(cff_person)
 
-# Parse a string
+# Parse a string.
 a_str <- paste0(
   "Julio Iglesias <fake@email.com> ",
   "(<https://orcid.org/0000-0001-8457-4658>)"
 )
 as_cff_person(a_str)
 
-# Several persons
+# Several persons.
 persons <- c(person("Clark", "Kent"), person("Lois", "Lane"))
 
 as_cff_person(persons)
 
-# Or you can use BibTeX style if you prefer
+# Or use BibTeX style.
 
 x <- "Frank Sinatra and Dean Martin and Davis, Jr., Sammy and Joey Bishop"
 
@@ -66,7 +66,7 @@ as_cff_person("Herbert von Karajan")
 \seealso{
 \code{\link[=as_cff_person]{as_cff_person()}}
 
-Other deprecated functions:
+Deprecated functions:
 \code{\link[=cff_extract_to_bibtex]{cff_extract_to_bibtex()}},
 \code{\link[=cff_from_bibtex]{cff_from_bibtex()}},
 \code{\link[=cff_parse_citation]{cff_parse_citation()}},

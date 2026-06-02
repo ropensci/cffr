@@ -1,10 +1,6 @@
 #' Create [`bibentry`] objects from several sources
 #'
-#' @rdname as_bibentry
-#' @name as_bibentry
-#' @order 1
 #' @description
-#'
 #' This function creates [`bibentry`] objects from different metadata sources
 #' ([`cff`] objects, `DESCRIPTION` files and other sources). The inverse
 #' transformation (`bibentry` object to [`cff_ref_lst`]) can be done with the
@@ -13,18 +9,37 @@
 #' With [`toBibtex()`][toBibtex.cff()] it is possible to convert [`cff`]
 #' objects to BibTeX markup on the fly. See **Examples**.
 #'
-#' @seealso
-#' [utils::bibentry()] to understand more about the `bibentry` class.
+#' @param x The source used to generate the `bibentry` object via
+#'   \CRANpkg{cffr}. It can be:
+#'   - A missing value, which retrieves the `DESCRIPTION` file from your
+#'     in-development package.
+#'   - An existing `cff` object created with [cff()], [cff_create()], or
+#'     [as_cff()].
+#'   - Path to a `CITATION.cff` file (`"CITATION.cff"`).
+#'   - The name of an installed package (`"jsonlite"`).
+#'   - Path to a `DESCRIPTION` file (`"DESCRIPTION"`).
+#' @param ... Additional arguments to be passed to or from methods.
 #'
-#' - `vignette("r-cff", package = "cffr")` provides details on how the
-#'   metadata of a package is mapped to produce a `cff` object.
+#' @param what Fields to extract from a full `cff` object. The value could be:
+#'   - `preferred`: Create a single entry with the main citation information
+#'     of the package (key `preferred-citation`).
+#'   - `references`: Extract all entries of the `references` key.
+#'   - `all`: Extract both the `preferred-citation` and `references` keys.
 #'
-#' - `vignette("bibtex-cff", package = "cffr")` provides detailed information
-#'   about the internal mapping performed between `cff` objects and BibTeX
-#'   markup (both `cff` to BibTeX and BibTeX to `cff`).
+#' See `vignette("r-cff", package = "cffr")`.
 #'
-#' Other related functions:
-#' - [utils::toBibtex()].
+#' @details
+#' An \R `bibentry` object is the representation of a BibTeX entry. These
+#' objects can be converted to BibTeX markup with [toBibtex()], which creates
+#' an object of class `Bibtex` that can be printed and exported as a valid
+#' BibTeX entry.
+#'
+#' `as_bibentry()` tries to map the information of the source `x` into a [`cff`]
+#' object and performs a mapping of the metadata to BibTeX, according to
+#' `vignette("bibtex-cff", package = "cffr")`.
+#'
+#' @return
+#' `as_bibentry()` returns a `bibentry` object with one or more entries.
 #'
 #' @references
 #' - Patashnik, Oren. "BIBTEXTING" February 1988.
@@ -38,45 +53,26 @@
 #'   *The cffr package, Vignettes*. \doi{10.21105/joss.03900},
 #'   <https://docs.ropensci.org/cffr/articles/bibtex-cff.html>.
 #'
-#' @param x The source used to generate the `bibentry` object via
-#'   \CRANpkg{cffr}. It can be:
-#'   - A missing value, which retrieves the `DESCRIPTION` file from your
-#'     in-development package.
-#'   - An existing `cff` object created with [cff()], [cff_create()], or
-#'     [as_cff()].
-#'   - Path to a CITATION.cff file (`"CITATION.cff"`).
-#'   - The name of an installed package (`"jsonlite"`).
-#'   - Path to a DESCRIPTION file (`"DESCRIPTION"`).
-#' @param ... Additional arguments to be passed to or from methods.
+#' @seealso
+#' [utils::bibentry()] to understand more about the `bibentry` class.
 #'
-#' @param what Fields to extract from a full `cff` object. The value could be:
-#'   - `preferred`: Create a single entry with the main citation information
-#'     of the package (key `preferred-citation`).
-#'   - `references`: Extract all entries of the `references` key.
-#'   - `all`: Extract both the `preferred-citation` and `references` keys.
+#' - `vignette("r-cff", package = "cffr")` provides details on how the
+#'   metadata of a package is mapped to produce a `cff` object.
 #'
-#' See `vignette("r-cff", package = "cffr")`.
+#' - `vignette("bibtex-cff", package = "cffr")` provides detailed information
+#'   about the internal mapping performed between `cff` objects and BibTeX
+#'   markup, both `cff` to BibTeX and BibTeX to `cff`.
+#'
+#' Other related functions:
+#' - [utils::toBibtex()].
 #'
 #' @family bibtex
 #' @family s3method
-#'
-#' @details
-#'
-#' An \R `bibentry` object is the representation of a BibTeX entry. These
-#' objects can be converted to BibTeX markup with [toBibtex()], which creates
-#' an object of class `Bibtex` that can be printed and exported as a valid
-#' BibTeX entry.
-#'
-#' `as_bibtex()` tries to map the information of the source `x` into a [`cff`]
-#' object and performs a mapping of the metadata to BibTeX, according to
-#' `vignette("bibtex-cff", package = "cffr")`.
-#'
-#' @return
-#' `as_bibentry()` returns a `bibentry` object with one or more entries.
-#'
 #' @export
 #' @encoding UTF-8
-#'
+#' @rdname as_bibentry
+#' @name as_bibentry
+#' @order 1
 #' @examples
 #' \donttest{
 #' # From a cff object ----
@@ -84,7 +80,7 @@
 #'
 #' cff_object
 #'
-#' # bibentry object.
+#' # A bibentry object.
 #' bib <- as_bibentry(cff_object)
 #'
 #' class(bib)
@@ -160,7 +156,7 @@ as_bibentry.character <- function(
     msg <- paste0('install.packages("', x, '")')
     # nolint end
     cli::cli_abort(paste(
-      "Don't know how to extract a {.cls bibentry} from {.val {x}}.",
+      "Cannot extract a {.cls bibentry} from {.val {x}}.",
       "If it is a package, run {.run {msg}} first."
     ))
   }
@@ -193,9 +189,9 @@ as_bibentry.list <- function(x, ...) {
   # Return an empty object if a key is missing.
   if (inherits(bib, "try-error")) {
     message <- attributes(bib)$condition$message
-    cli::cli_alert_danger(paste("Cannot convert to {.fn bibentry}: "))
+    cli::cli_alert_danger("Cannot convert to {.fn bibentry}.")
     cli::cli_alert_info(message)
-    cli::cli_alert_warning("Returning empty {.cls bibentry}")
+    cli::cli_alert_warning("Returning an empty {.cls bibentry}.")
     return(bibentry())
   }
 
@@ -242,7 +238,7 @@ as_bibentry.cff <- function(
   if (is.null(obj_extract)) {
     cli::cli_alert_warning(paste0(
       "In {.arg x}, did not find anything with {.arg what} = {.val {what}}. ",
-      "Returning empty {.cls bibentry}."
+      "Returning an empty {.cls bibentry}."
     ))
     return(bibentry())
   }

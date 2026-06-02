@@ -69,13 +69,13 @@ Mapping is performed as follows:
 For entities, the entire \code{character} is mapped to \code{name}.
 It is recommended to "protect" entity names with \code{{}}:
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{# Don't do
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{# Do not use unprotected entity names.
 entity <- "Elephant and Castle"
 as_cff_person(entity)
 - name: Elephant
 - name: Castle
 
-# Do
+# Protect entity names with braces.
 entity_protect <- "\{Elephant and Castle\}"
 as_cff_person(entity_protect)
 - name: Elephant and Castle
@@ -159,10 +159,9 @@ See \strong{Examples} for more information.
 }
 \seealso{
 Examples in \code{vignette("cffr", package = "cffr")} and \code{\link[utils:person]{utils::person()}}.
-
 Learn more about the \code{cff_pers_lst} and \code{cff_pers} classes in \link{cff_class}.
 
-Coercing between \strong{R} classes with \strong{S3 Methods}:
+Coerce between \R classes:
 \code{\link[=as_bibentry]{as_bibentry()}},
 \code{\link[=as_cff]{as_cff()}},
 \code{\link{cff_class}}

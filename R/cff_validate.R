@@ -9,12 +9,21 @@
 #'            "citation-file-format/blob/main/schema.json)."))
 #'
 #' ```
-#' @export
-#' @encoding UTF-8
 #'
-#' @family core
+#' @param x A full `cff` object created with [cff_create()] or the path to a
+#'   `CITATION.cff` file to be validated. A `*.cff` file is read with
+#'   [cff_read_cff_citation()].
+#' @inheritParams cff_write
+#'
+#' @return
+#' A message indicating the result of the validation and an invisible value
+#' `TRUE/FALSE`. On error, the result has an attribute `"errors"` containing
+#' the error summary. See **Examples** and [attr()].
 #'
 #' @seealso
+#' [jsonvalidate::json_validate()], which is the function that performs the
+#' validation.
+#'
 #' ```{r, echo=FALSE, results='asis'}
 #'
 #' cat(paste0("[Guide to Citation File Format schema version 1.2.0]",
@@ -23,21 +32,9 @@
 #'
 #' ```
 #'
-#' @return
-#'
-#' A message indicating the result of the validation and an invisible value
-#' `TRUE/FALSE`. On error, the result has an attribute `"errors"`
-#' containing the error summary (see **Examples** and [attr()]).
-#'
-#' @param x This is expected to be either a full `cff` object created
-#'   with [cff_create()] or the path to a `CITATION.cff` file to be validated.
-#'   In the case of a `*.cff` file it would read with [cff_read_cff_citation()].
-#' @inheritParams cff_write
-#'
-#' @seealso
-#' [jsonvalidate::json_validate()], which is the function that performs the
-#' validation.
-#'
+#' @family core
+#' @export
+#' @encoding UTF-8
 #' @examples
 #' \donttest{
 #' # Full `.cff` example.
@@ -114,7 +111,7 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
         collapse = ""
       )
       cli::cli_alert_danger(paste0(
-        "Oops! ",
+        "Validation failed. ",
         is_a,
         " has the following errors:\n",
         ll
@@ -132,7 +129,7 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
 
   if (verbose) {
     cli::cat_rule("Validating cff", col = "cyan", line = 2)
-    cli::cli_alert_success(paste0("Congratulations! ", is_a, " is valid."))
+    cli::cli_alert_success(paste0(is_a, " is valid."))
   }
   invisible(result)
 }

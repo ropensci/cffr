@@ -1,14 +1,8 @@
 #' Mapping between `License` fields and SPDX
 #'
 #' A dataset containing the mapping between the `License` strings observed
-#' on CRAN packages and its (approximate) match on the
+#' on CRAN packages and their approximate match on the
 #' [SPDX License List](https://spdx.org/licenses/).
-#'
-#' @family datasets
-#' @docType data
-#' @encoding UTF-8
-#' @name cran_to_spdx
-#' @rdname cran_to_spdx
 #'
 #' @format
 #' A data frame with `r nrow(cran_to_spdx)` rows and 2 variables:
@@ -28,8 +22,12 @@
 #'
 #' @source <https://spdx.org/licenses/>
 #'
+#' @family datasets
+#' @docType data
+#' @encoding UTF-8
+#' @name cran_to_spdx
+#' @rdname cran_to_spdx
 #' @examples
-#'
 #' data("cran_to_spdx")
 #'
 #' head(cran_to_spdx, 20)

@@ -71,7 +71,7 @@ get_desc_date_released <- function(pkg) {
       return(NULL)
     }
     if (!is.character(x)) {
-      return(NULL)
+      return(NULL) # nocov
     }
     substr(x, 1, 10)
   })
@@ -157,29 +157,29 @@ get_desc_repository <- function(pkg) {
   name <- pkg$get("Package")
   repo <- clean_str(pkg$get("Repository"))
 
-  # Repository is a URL.
   if (is_url(repo)) {
     return(repo)
   }
 
-  # Check if Bioconductor.
-  # biocViews is required in Bioconductor packages.
-  # http://contributions.bioconductor.org/description.html#biocviews
-  if (!is.null(clean_str(pkg$get("biocViews")))) {
+  if (is_bioconductor_desc(pkg)) {
     return("https://bioconductor.org/")
   }
 
-  # Repository is CRAN.
-  # Canonical URL to CRAN.
   if (is_substring(repo, "^CRAN$")) {
-    return(paste0("https://CRAN.R-project.org/package=", name))
+    return(cran_package_url(name))
   }
 
-  # Otherwise, search installed repositories.
+  search_on_repos(name)
+}
 
-  repourl <- search_on_repos(name)
+is_bioconductor_desc <- function(pkg) {
+  # biocViews is required in Bioconductor packages.
+  # http://contributions.bioconductor.org/description.html#biocviews
+  !is.null(clean_str(pkg$get("biocViews")))
+}
 
-  repourl
+cran_package_url <- function(name) {
+  paste0("https://CRAN.R-project.org/package=", name)
 }
 
 #' Mapped to Package and Title
@@ -196,28 +196,53 @@ get_desc_title <- function(pkg) {
 #' @noRd
 get_desc_urls <- function(pkg) {
   url <- pkg$get_urls()
-
-  # Get issue URL.
-  issues <- tryCatch(pkg$get_field("BugReports")[1], error = function(cond) {
-    pkg$get_urls()
-  })
-
-  # Clean if GitLab.
-  issues <- gsub("/-/issues$", "", issues)
-  # Clean if GitHub and codeberg.org.
-  issues <- gsub("/issues$", "", issues)
-
-  # Join issues and URLs.
-  allurls <- unique(c(issues, url))
-  allurls <- allurls[is_url(allurls)]
+  allurls <- desc_all_urls(pkg, url)
 
   # If there are no URLs, return as null.
   if (length(allurls) == 0) {
-    url_list <- list(url = NULL)
-    return(url_list)
+    return(list(url = NULL))
   }
-  # Try to find a repository URL.
-  domains <- paste0(
+
+  # Extract repository URL.
+  repo_line <- desc_repository_url_index(allurls)
+  repository_code <- clean_str(allurls[repo_line][1])
+
+  if (!is.na(repo_line)) {
+    remaining <- allurls[-repo_line]
+  } else {
+    remaining <- allurls
+  }
+
+  url_data <- desc_primary_url(remaining, repository_code)
+
+  list(
+    repo = clean_str(repository_code),
+    url = url_data$url,
+    identifiers = desc_url_identifiers(url_data$remaining)
+  )
+}
+
+desc_all_urls <- function(pkg, url = pkg$get_urls()) {
+  issues <- tryCatch(pkg$get_field("BugReports")[1], error = function(cond) {
+    pkg$get_urls()
+  })
+  issues <- desc_clean_issue_url(issues)
+
+  allurls <- unique(c(issues, url))
+  allurls[is_url(allurls)]
+}
+
+desc_clean_issue_url <- function(issues) {
+  issues <- gsub("/-/issues$", "", issues)
+  gsub("/issues$", "", issues)
+}
+
+desc_repository_url_index <- function(urls) {
+  grep(desc_repository_domains(), urls, ignore.case = TRUE)[1]
+}
+
+desc_repository_domains <- function() {
+  paste0(
     c(
       "github.com",
       "www.github.com",
@@ -228,43 +253,29 @@ get_desc_urls <- function(pkg) {
     ),
     collapse = "|"
   )
+}
 
-  # Extract repository URL.
-  repo_line <- grep(domains, allurls, ignore.case = TRUE)[1]
-
-  repository_code <- clean_str(allurls[repo_line][1])
-
-  if (!is.na(repo_line)) {
-    remaining <- allurls[-repo_line]
-  } else {
-    remaining <- allurls
-  }
-
+desc_primary_url <- function(remaining, repository_code) {
   # The second URL is considered for URL arbitrarily.
   if (isTRUE(length(remaining) > 0)) {
-    url_end <- remaining[1]
-    remaining <- remaining[-1]
-  } else {
-    url_end <- repository_code
-  }
-  url_end <- clean_str(url_end)
-
-  # If there are more, move them to identifiers.
-
-  if (isTRUE(length(remaining) > 0)) {
-    identifiers <- lapply(remaining, function(x) {
-      list(type = "url", value = clean_str(x))
-    })
-  } else {
-    identifiers <- NULL
+    return(list(url = clean_str(remaining[1]), remaining = remaining[-1]))
   }
 
-  url_list <- list(
-    repo = clean_str(repository_code),
-    url = clean_str(url_end),
-    identifiers = identifiers
-  )
-  url_list
+  list(url = clean_str(repository_code), remaining = remaining)
+}
+
+desc_url_identifiers <- function(urls) {
+  if (!isTRUE(length(urls) > 0)) {
+    return(NULL)
+  }
+
+  lapply(urls, function(x) {
+    list(type = "url", value = clean_str(x))
+  })
+}
+
+desc_gh_keywords <- function(desc_keywords, gh_topics) {
+  unique(c(desc_keywords, gh_topics))
 }
 
 #' Mapped to Version
@@ -287,13 +298,26 @@ get_gh_topics <- function(x) {
   }
 
   # Get topics from the repository.
-  api_url <- paste0(
-    "https://api.github.com/repos",
-    "/",
-    gsub("^http[a-z]://github.com/", "", x["repository-code"])
-  )
+  api_url <- gh_topics_api_url(x)
+  topics <- fetch_gh_topics(api_url)
 
-  tmpfile <- tempfile(fileext = ".json")
+  if (is.null(topics)) {
+    return(NULL)
+  }
+
+  remotetopics <- lapply(topics, clean_str)
+  remotetopics <- unique(unlist(remotetopics))
+
+  # If there are no topics, return NULL.
+  if (length(remotetopics) == 0) {
+    return(NULL)
+  }
+
+  remotetopics
+}
+
+fetch_gh_topics <- function(api_url, tmpfile = tempfile(fileext = ".json")) {
+  # nocov start
 
   # Check whether GH_TOKEN is set in Renviron.
   # Tests can quickly reach the GitHub API limit without authentication.
@@ -303,8 +327,6 @@ get_gh_topics <- function(x) {
   token <- token[!token %in% c(NA, NULL, "")][1]
 
   ghtoken <- paste("token", token)
-
-  # nocov start
 
   # Try with GITHUB_TOKEN.
   res <- tryCatch(
@@ -337,20 +359,20 @@ get_gh_topics <- function(x) {
     )
   }
 
-  # nocov end
   if (isTRUE(res)) {
     return(NULL)
   }
 
-  remotetopics <- lapply(jsonlite::read_json(tmpfile)$topics, clean_str)
-  remotetopics <- unique(unlist(remotetopics))
+  jsonlite::read_json(tmpfile)$topics
+  # nocov end
+}
 
-  # If there are no topics, return NULL.
-  if (is.null(remotetopics)) {
-    return(NULL)
-  }
-
-  remotetopics
+gh_topics_api_url <- function(x) {
+  paste0(
+    "https://api.github.com/repos",
+    "/",
+    gsub("^http[a-z]://github.com/", "", x["repository-code"])
+  )
 }
 
 get_desc_sha <- function(pkg) {

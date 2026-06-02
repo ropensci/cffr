@@ -5,11 +5,11 @@ library(cffr)
 
 ```{r}
 #| comment: ''
-# Don't do
+# Do not use unprotected entity names.
 entity <- "Elephant and Castle"
 as_cff_person(entity)
 
-# Do
+# Protect entity names with braces.
 entity_protect <- "{Elephant and Castle}"
 as_cff_person(entity_protect)
 ```

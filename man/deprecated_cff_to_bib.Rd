@@ -18,9 +18,9 @@ cff_to_bibtex(x, what = c("preferred", "references", "all"))
 in-development package.
 \item An existing \code{cff} object created with \code{\link[=cff]{cff()}}, \code{\link[=cff_create]{cff_create()}}, or
 \code{\link[=as_cff]{as_cff()}}.
-\item Path to a CITATION.cff file (\code{"CITATION.cff"}).
+\item Path to a \code{CITATION.cff} file (\code{"CITATION.cff"}).
 \item The name of an installed package (\code{"jsonlite"}).
-\item Path to a DESCRIPTION file (\code{"DESCRIPTION"}).
+\item Path to a \code{DESCRIPTION} file (\code{"DESCRIPTION"}).
 }}
 
 \item{what}{Fields to extract from a full \code{cff} object. The value could be:
@@ -41,17 +41,17 @@ See \code{\link[=as_bibentry]{as_bibentry()}}.
 }
 \examples{
 \donttest{
-# From a cff object
+# From a cff object.
 cff_object <- cff()
 
 cff_object
 
-# bibentry object
+# A bibentry object.
 bib <- as_bibentry(cff_object)
 }
 }
 \seealso{
-Other deprecated functions:
+Deprecated functions:
 \code{\link[=cff_from_bibtex]{cff_from_bibtex()}},
 \code{\link[=cff_parse_citation]{cff_parse_citation()}},
 \code{\link[=cff_parse_person]{cff_parse_person()}},

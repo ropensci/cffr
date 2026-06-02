@@ -1,19 +1,11 @@
 #' Create a [`cff`] object from several sources
 #'
 #' @description
-#'
 #' Create a full and possibly valid [`cff`] object from a given source. This
-#' object can be written to a `*.cff` file with [cff_write()],
-#' see **Examples**.
+#' object can be written to a `CITATION.cff` file with [cff_write()]. See
+#' **Examples**.
 #'
 #' Most of the heavy lifting of \CRANpkg{cffr} is done by this function.
-#'
-#' @return A [`cff`] object.
-#'
-#' @family core
-#'
-#' @export
-#' @encoding UTF-8
 #'
 #' @param x The source used to generate
 #'   the [`cff`] object. It can be:
@@ -29,11 +21,23 @@
 #' @param cff_version The Citation File Format schema version that the
 #'   `CITATION.cff` file adheres to for providing the citation metadata.
 #' @param gh_keywords Logical `TRUE/FALSE`. If the package is hosted on
-#'   GitHub, would you like to add the repository topics as keywords?
+#'   GitHub, should the repository topics be added as keywords?
 #' @param dependencies Logical `TRUE/FALSE`. Should the dependencies of your
 #'   package be added to the `references` CFF key?
 #' @param authors_roles Roles to be considered as authors of the package when
 #'   generating the `CITATION.cff` file. See **Details**.
+#'
+#' @return A [`cff`] object.
+#'
+#' @details
+#' If `x` is a path to a `DESCRIPTION` file, or if `inst/CITATION` is not
+#' present in your package, \CRANpkg{cffr} auto-generates a
+#' `preferred-citation` key using the information provided in that file.
+#'
+#' By default, only persons whose role in the `DESCRIPTION` file of the package
+#' is author (`"aut"`) or maintainer (`"cre"`) are considered package authors.
+#' The default setting can be controlled via the `authors_roles` argument. See
+#' **Details** on [person()] for additional information about person roles.
 #'
 #' @seealso
 #' ```{r, echo=FALSE, results='asis'}
@@ -45,30 +49,21 @@
 #' ```
 #'
 #' - [cff_modify()] as the recommended way to modify a `cff` object.
-#' - [cff_write()] for creating a CFF file.
-#' - `vignette("cffr", package = "cffr")` shows an introduction on how
-#'   manipulate [`cff`] objects.
+#' - [cff_write()] for creating a `CITATION.cff` file.
+#' - `vignette("cffr", package = "cffr")` shows an introduction to
+#'   manipulating [`cff`] objects.
 #' - `vignette("r-cff", package = "cffr")` provides details on how the
-#'  metadata of a package is mapped to produce a `cff` object.
+#'   metadata of a package is mapped to produce a `cff` object.
 #'
-#' @details
-#'
-#' If `x` is a path to a `DESCRIPTION` file or if `inst/CITATION` is not present
-#' on your package, \CRANpkg{cffr} would auto-generate a `preferred-citation`
-#' key using the information provided on that file.
-#'
-#' By default, only persons whose role in the `DESCRIPTION` file of the package
-#' is author (`"aut"`) or maintainer (`"cre"`) are considered to be authors
-#' of the package. The default setting can be controlled via the `authors_roles`
-#' argument. See **Details** on [person()] to get additional insights
-#' on person roles.
-#'
+#' @family core
+#' @export
+#' @encoding UTF-8
 #' @examples
 #' \donttest{
-#' # Installed package
+#' # Installed package.
 #' cff_create("jsonlite")
 #'
-#' # Demo file
+#' # Demo file.
 #' demo_file <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 #' cff_create(demo_file)
 #'
@@ -109,30 +104,11 @@ cff_create <- function(
   # Guess source.
   # Use the working directory when `x` is missing.
   if (missing(x)) {
-    hint_source <- "indev"
     x <- getwd()
-  } else if (identical(getwd(), x)) {
-    # This case comes from `cff_write()`.
-    hint_source <- "indev"
-  } else {
-    hint_source <- detect_x_source(x)
   }
+  hint_source <- cff_source_hint(x)
 
-  # Abort for invalid sources.
-  valid_sources <- c("indev", "cff_obj", "package", "description")
-  if (!hint_source %in% valid_sources) {
-    # Prepare the abort message.
-    msg_hint <- switch(hint_source,
-      "dontknow" = paste0(
-        "If it is a package ",
-        "you may need to install it with ",
-        "{.fn install.packages}."
-      ),
-      "bib" = "Maybe try with {.fn cff_read}."
-    )
-
-    cli::cli_abort(paste0("{.arg x} not valid. ", msg_hint))
-  }
+  abort_invalid_cff_source(hint_source)
 
   # Build the CFF object and return paths if any.
   result_paths <- build_cff_and_paths(
@@ -179,8 +155,6 @@ build_cff_and_paths <- function(
 ) {
   collect_list <- list(desc_path = NULL, cffobjend = NULL)
 
-  # "indev", "cff_obj", "package", "description"
-
   # Return `x` when it is already a `cff` object.
   if (is_cff(x)) {
     # Ensure it uses the requested CFF version.
@@ -192,11 +166,7 @@ build_cff_and_paths <- function(
   }
 
   # Get information from DESCRIPTION.
-  desc_path <- switch(hint_source,
-    "indev" = file.path(getwd(), "DESCRIPTION"),
-    "description" = x,
-    "package" = system.file("DESCRIPTION", package = x)
-  )
+  desc_path <- cff_description_path(x, hint_source)
 
   if (is.null(file_path_or_null(desc_path))) {
     cli::cli_abort("No {.file DESCRIPTION} file found with {.arg x}.")
@@ -209,20 +179,7 @@ build_cff_and_paths <- function(
     authors_roles = authors_roles
   )
 
-  # Just for description case
-  try_get_citation <- function(x) {
-    cit1 <- file.path(dirname(x), "inst/CITATION")
-    cit2 <- file.path(dirname(x), "CITATION")
-
-    c(file_path_or_null(cit1), file_path_or_null(cit2))[1]
-  }
-
-  cit_path <- switch(hint_source,
-    "indev" = file.path(getwd(), "inst/CITATION"),
-    "description" = try_get_citation(x),
-    "package" = system.file("CITATION", package = x)
-  )
-
+  cit_path <- cff_citation_path(x, hint_source)
   cit_path <- file_path_or_null(cit_path[1])
 
   if (!is.null(cit_path)) {
@@ -236,4 +193,54 @@ build_cff_and_paths <- function(
   collect_list$cffobjend <- cffobj
 
   collect_list
+}
+
+cff_source_hint <- function(x) {
+  # The working directory case comes from `cff_write()` and in-development use.
+  if (identical(getwd(), x)) {
+    return("indev")
+  }
+
+  detect_x_source(x)
+}
+
+abort_invalid_cff_source <- function(hint_source) {
+  valid_sources <- c("indev", "cff_obj", "package", "description")
+  if (hint_source %in% valid_sources) {
+    return(invisible(NULL))
+  }
+
+  msg_hint <- switch(hint_source,
+    "dontknow" = paste0(
+      "If it is a package ",
+      "you may need to install it with ",
+      "{.fn install.packages}."
+    ),
+    "bib" = "Maybe try with {.fn cff_read}."
+  )
+
+  cli::cli_abort(paste0("{.arg x} is not valid. ", msg_hint))
+}
+
+cff_description_path <- function(x, hint_source) {
+  switch(hint_source,
+    "indev" = file.path(getwd(), "DESCRIPTION"),
+    "description" = x,
+    "package" = system.file("DESCRIPTION", package = x)
+  )
+}
+
+cff_citation_path <- function(x, hint_source) {
+  switch(hint_source,
+    "indev" = file.path(getwd(), "inst/CITATION"),
+    "description" = cff_citation_from_description(x),
+    "package" = system.file("CITATION", package = x)
+  )
+}
+
+cff_citation_from_description <- function(x) {
+  cit1 <- file.path(dirname(x), "inst/CITATION")
+  cit2 <- file.path(dirname(x), "CITATION")
+
+  c(file_path_or_null(cit1), file_path_or_null(cit2))[1]
 }

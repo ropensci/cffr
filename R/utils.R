@@ -51,6 +51,12 @@ print_snapshot <- function(title = "----", obj) {
   cat("\n---")
 }
 
+# nocov start
+get_avail_on_init <- function() {
+  avail_on_init
+}
+# nocov end
+
 #' Search for a package in available repositories.
 #' @param name Name of the package.
 #' @param avail Data frame with available packages. See
@@ -59,7 +65,7 @@ print_snapshot <- function(title = "----", obj) {
 #' @noRd
 search_on_repos <- function(
   name,
-  avail = avail_on_init,
+  avail = get_avail_on_init(),
   repos = detect_repos()
 ) {
   get <- avail[name == avail$Package, "Repository"]
@@ -151,7 +157,7 @@ fuzzy_keys <- function(keys) {
     bullets <- rep("v", length(ll))
     bullets[keys_match == "No match, removing."] <- "x"
     names(ll) <- bullets
-    cli::cli_alert_info(paste0("Found misspelled keys. Trying to map:"))
+    cli::cli_alert_info("Found misspelled keys. Trying to map them:")
 
     cli::cli_bullets(ll)
     # Modify names.
@@ -174,7 +180,7 @@ guess_cff_named_part <- function(x) {
     return("cff_pers")
   }
 
-  # Valid full CFF file.
+  # Valid full `CITATION.cff` file.
   is_full <- any(grepl("cff-version|message", nms))
   if (is_full) {
     return("cff_full")

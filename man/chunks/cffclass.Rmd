@@ -1,7 +1,3 @@
-[**cffr**](https://cran.r-project.org/package=cffr) implements an S3 object with
-[`class`] `cff`, which is used to represent the information of a `CITATION.cff`
-file in **R**.
-
 Under the hood, a `cff` object is simply a named [`list`] to which we added
 additional methods, most notably [`print`] and [as_cff()].
 
@@ -16,7 +12,7 @@ a_named_list <- list(
   fifth = "with", sixth = "names", "none" = NULL
 )
 
-# As cff
+# Convert to `cff`.
 a_cff_object <- as_cff(a_named_list)
 
 class(a_cff_object)
@@ -26,33 +22,33 @@ a_cff_object
 is.list(a_cff_object)
 ```
 
-[as_cff()] not only converts a `list` to `cff` but also removes items (known as
-`keys` in CFF terminology) that are `NULL` or `NA`.
+[as_cff()] not only converts a `list` to `cff` but also removes items that are
+`NULL` or `NA`. These items are known as `keys` in CFF terminology.
 
-### Sub-classes
+### Subclasses
 
-**cffr** implements two special sub-classes of `cff`, with the aim of
-representing two special types of objects defined in the [CFF
-Schema](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md):
+**cffr** implements two special subclasses of `cff`, which represent two special
+types of objects defined in the [Citation File Format
+schema](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md):
 
--   `definition.person` and `definition.entity`: CFF definitions for sub-lists
-    representing persons or entities. In **cffr**, the sub-class `cff_pers_lst`
-    has been implemented to collect an array of `definition.person/entity`,
-    where each individual person or entity has a sub-class `cff_pers`.
+- `definitions.person` and `definitions.entity`: CFF definitions for sublists
+  representing persons or entities. In **cffr**, the subclass `cff_pers_lst`
+  collects an array of `definitions.person` or `definitions.entity` objects,
+  where each individual person or entity has subclass `cff_pers`.
 
--   Similarly, `definition.reference` is the CFF definition for collecting
-    references to related works and other articles of software used in the
-    development of the main work of the CFF file. This is implemented in
-    **cffr** as a sub-class named `cff_ref_lst` for arrays of
-    `definition.reference`, where each element has a sub-class named `cff_ref`.
+- Similarly, `definitions.reference` is the CFF definition for collecting
+  references to related works and other software used in the development of the
+  main work of the `CITATION.cff` file. In **cffr**, the subclass `cff_ref_lst`
+  represents arrays of `definitions.reference` objects, where each element has
+  subclass `cff_ref`.
 
-These two sub-classes do not provide full valid `cff` objects, but adapt
+These two subclasses do not provide full valid `cff` objects, but adapt
 information to the schema required by CFF:
 
 ```{r}
-# Using the utils::person() function
+# Use the utils::person() function.
 
-## Array
+## Array.
 two_persons <- as_cff_person(
   c(
     person("A", "person", comment = c(ORCID = "0000-0001-8457-4658")),
@@ -64,15 +60,15 @@ two_persons
 
 class(two_persons)
 
-# Single element
+# Single element.
 
 two_persons[[1]]
 
 class(two_persons[[1]])
 
-# Array of references
+# Array of references.
 
-cit <- c(citation(), citation("yaml"))
+cit <- c(citation(), citation("jsonlite"))
 
 ref_list <- as_cff(cit)
 
@@ -80,7 +76,7 @@ ref_list
 
 class(ref_list)
 
-# Single element
+# Single element.
 
 ref_list[[1]]
 
@@ -89,8 +85,9 @@ class(ref_list[[1]])
 
 ## Valid `cff` objects
 
-Creating a `cff` object does not ensure its validity according to the [CFF
-Schema](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md):
+Creating a `cff` object does not ensure its validity according to the [Citation
+File Format
+schema](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md):
 
 ```{r}
 class(a_cff_object)
@@ -98,8 +95,8 @@ class(a_cff_object)
 cff_validate(a_cff_object)
 ```
 
-[cff_validate()] gives minimal messages about what's wrong with our `cff` and
-(invisibly) returns the result of the validation (`TRUE/FALSE`).
+[cff_validate()] gives minimal messages about what is wrong with the `cff`
+object and invisibly returns the result of the validation (`TRUE/FALSE`).
 
 We can use [cff_modify()] to add more keys:
 
@@ -112,7 +109,7 @@ cff_valid <- cff_modify(a_cff_object,
 )
 
 
-# Remove invalid keys
+# Remove invalid keys.
 cff_valid <- as_cff(cff_valid[names(cff_valid) %in% cff_schema_keys()])
 
 cff_valid
@@ -164,12 +161,12 @@ as.person(two_persons)
 ### [toBibtex()]
 
 ```{r}
-# For cff
+# For `cff`.
 toBibtex(minimal_cff)
 
-# cff_ref, cff_ref_lst
+# For `cff_ref` and `cff_ref_lst`.
 toBibtex(cit)
 
-# cff_pers, cff_pers_lst
+# For `cff_pers` and `cff_pers_lst`.
 toBibtex(two_persons)
 ```

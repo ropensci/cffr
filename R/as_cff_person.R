@@ -23,19 +23,6 @@
 #' The inverse transformation (`cff_pers_lst` to `person`) can be done with the
 #' methods [as.person.cff_pers()] and [as.person.cff_pers_lst()].
 #'
-#' @seealso
-#' Examples in `vignette("cffr", package = "cffr")` and [utils::person()].
-#'
-#' Learn more about the `cff_pers_lst` and `cff_pers` classes in [cff_class].
-#'
-#' @export
-#' @encoding UTF-8
-#' @rdname as_cff_person
-#' @name as_cff_person
-#' @order 1
-#'
-#' @family s3method
-#'
 #' @param x Any \R object.
 #' @param ... Ignored by this method.
 #'
@@ -54,7 +41,6 @@
 #' [`cff_pers, cff`][cff_pers].
 #'
 #' @details
-#'
 #' `as_cff_person()` recognizes whether the input should be converted using the
 #' CFF reference for `definitions.person` or `definitions.entity`.
 #'
@@ -98,6 +84,16 @@
 #'
 #' See **Examples** for more information.
 #'
+#' @seealso
+#' Examples in `vignette("cffr", package = "cffr")` and [utils::person()].
+#' Learn more about the `cff_pers_lst` and `cff_pers` classes in [cff_class].
+#'
+#' @family s3method
+#' @export
+#' @encoding UTF-8
+#' @rdname as_cff_person
+#' @name as_cff_person
+#' @order 1
 #' @examples
 #' # Create a person object.
 #' a_person <- person(

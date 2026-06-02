@@ -48,11 +48,10 @@ cff_validate(x_mod)
 
 }
 \seealso{
-This function is a wrapper of \code{\link[utils:modifyList]{utils::modifyList()}}.
+This function is a wrapper of \code{\link[utils:modifyList]{utils::modifyList()}}. See \code{\link[=cff]{cff()}} for
+creating \code{\link{cff}} objects from scratch.
 
-See \code{\link[=cff]{cff()}} for creating \code{\link{cff}} objects from scratch.
-
-Other core functions of \CRANpkg{cffr}:
+Core \CRANpkg{cffr} workflow:
 \code{\link[=cff]{cff()}},
 \code{\link[=cff_create]{cff_create()}},
 \code{\link[=cff_validate]{cff_validate()}}

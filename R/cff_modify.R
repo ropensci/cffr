@@ -6,23 +6,11 @@
 #' @param ... Named arguments used to modify `x`. See also the `...`
 #'   argument in [cff()].
 #'
-#' @details
-#'
-#' Keys provided in `...` override the corresponding key in `x`.
-#'
 #' @return
-#'
 #' A [`cff`] object.
 #'
-#' @family core
-#' @export
-#' @encoding UTF-8
-#' @seealso
-#' This function is a wrapper of [utils::modifyList()].
-#'
-#' See [cff()] for creating [`cff`] objects from scratch.
-#'
 #' @details
+#' Keys provided in `...` override the corresponding key in `x`.
 #'
 #' You can add additional keys not detected by [cff_create()] using
 #' the `keys` argument. A list of valid keys can be retrieved with
@@ -36,6 +24,13 @@
 #' ```
 #' for additional details.
 #'
+#' @seealso
+#' This function is a wrapper of [utils::modifyList()]. See [cff()] for
+#' creating [`cff`] objects from scratch.
+#'
+#' @family core
+#' @export
+#' @encoding UTF-8
 #' @examples
 #' x <- cff()
 #' x
@@ -62,7 +57,7 @@ cff_modify <- function(x, ...) {
   }
   new_keys <- list(...)
   if (length(new_keys) == 0) {
-    cli::cli_alert_info("Arguments {.arg ...} are empty. Returning {.arg x}.")
+    cli::cli_alert_info("No {.arg ...} arguments supplied. Returning {.arg x}.")
     return(x)
   }
 

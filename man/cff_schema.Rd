@@ -48,16 +48,11 @@ keys to be used on the \code{preferred-citation} and \code{references} keys.
 }
 }
 \examples{
-
 cff_schema_keys(sorted = TRUE)
-
 # Valid license keys.
 head(cff_schema_keys_license(), 20)
-
 cff_schema_definitions_person()
-
 cff_schema_definitions_entity()
-
 cff_schema_definitions_refs()
 }
 \concept{schemas}

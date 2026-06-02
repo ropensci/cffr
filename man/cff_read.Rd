@@ -35,7 +35,7 @@ cff_read_bib(path, encoding = "UTF-8", ...)
 \code{CITATION.cff} file adheres to for providing the citation metadata.}
 
 \item{gh_keywords}{Logical \code{TRUE/FALSE}. If the package is hosted on
-GitHub, would you like to add the repository topics as keywords?}
+GitHub, should the repository topics be added as keywords?}
 
 \item{authors_roles}{Roles to be considered as authors of the package when
 generating the \code{CITATION.cff} file. See \strong{Details}.}
@@ -50,7 +50,7 @@ generating the \code{CITATION.cff} file. See \strong{Details}.}
 \item \code{cff_read_cff_citation()} and \code{cff_read_description()} return an object
 with class \code{cff}.
 \item \code{cff_read_citation()} and \code{cff_read_bib()} return an object of classes
-\code{\link[=cff_ref_lst]{cff_ref_lst, cff}} according to the \code{definitions.references}
+\code{\link[=cff_ref_lst]{cff_ref_lst, cff}} according to the \code{definitions.reference}
 specified in the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
 }
 
@@ -80,15 +80,13 @@ For details of \code{cff_read_description()}, see \code{\link[=cff_create]{cff_c
 \subsection{The \code{meta} object}{
 
 Section 1.9 CITATION files of \emph{Writing R Extensions} (R Core Team 2023)
-specifies how to create dynamic \code{CITATION} files using \code{meta} object, hence
-the \code{meta} argument in \code{\link[=cff_read_citation]{cff_read_citation()}} may be needed for reading
-some files correctly.
+specifies how to create dynamic \code{CITATION} files using a \code{meta} object.
+Therefore, the \code{meta} argument in \code{\link[=cff_read_citation]{cff_read_citation()}} may be needed to
+read some files correctly.
 }
 }
 \examples{
-
-# Create a `cff` object from a CFF file.
-
+# Create a `cff` object from a `CITATION.cff` file.
 from_cff_file <- cff_read(system.file("examples/CITATION_basic.cff",
   package = "cffr"
 ))
@@ -103,7 +101,6 @@ from_desc <- cff_read(system.file("examples/DESCRIPTION_basic",
 from_desc
 
 # Create a `cff` object from BibTeX.
-
 if (requireNamespace("bibtex", quietly = TRUE)) {
   from_bib <- cff_read(system.file("examples/example.bib",
     package = "cffr"
@@ -137,10 +134,10 @@ The underlying functions used for reading external files:
 \item \code{\link[bibtex:read.bib]{bibtex::read.bib()}} for BibTeX files (extension \verb{*.bib}).
 }
 
-Other functions for reading external files:
+Read external citation metadata:
 \code{\link[=cff_read_bib_text]{cff_read_bib_text()}}
 
-Other functions for working with BibTeX format:
+Work with BibTeX metadata:
 \code{\link[=as_bibentry]{as_bibentry()}},
 \code{\link[=cff_read_bib_text]{cff_read_bib_text()}},
 \code{\link[=cff_write_bib]{cff_write_bib()}},

@@ -292,18 +292,7 @@ get_bibtex_doi <- function(cit_list) {
 
   dois <- unique(as.character(dois))
 
-  # The first DOI goes to the doi key.
-  doi <- unlist(dois[1])
-
-  # The rest go to identifiers.
-  identifiers <- lapply(dois[-1], function(x) {
-    list(type = "doi", value = clean_str(x))
-  })
-  if (length(identifiers) == 0) {
-    identifiers <- NULL
-  }
-  doi_list <- list(doi = clean_str(doi), identifiers = identifiers)
-  doi_list
+  cff_identifier_fields(dois, key = "doi", type = "doi")
 }
 
 #' Build the month field.
@@ -346,22 +335,25 @@ get_bibtex_url <- function(cit_list) {
   }
 
   allurls <- allurls[is_url(allurls)]
-  # The first URL goes to the url key.
+  cff_identifier_fields(allurls, key = "url", type = "url")
+}
 
-  url <- unlist(allurls[1])
-
-  # The rest go to identifiers.
-  identifiers <- lapply(allurls[-1], function(x) {
-    list(type = "url", value = clean_str(x))
+cff_identifier_fields <- function(values, key, type) {
+  main_value <- unlist(values[1])
+  identifiers <- lapply(values[-1], function(x) {
+    list(type = type, value = clean_str(x))
   })
 
   if (length(identifiers) == 0) {
     identifiers <- NULL
   }
 
-  url_list <- list(url = clean_str(url), identifiers = identifiers)
-
-  url_list
+  c(
+    stats::setNames(list(clean_str(main_value)), key),
+    list(
+      identifiers = identifiers
+    )
+  )
 }
 
 #' Build fields for additional people.

@@ -8,7 +8,7 @@
 encoded_utf_to_latex(x)
 }
 \arguments{
-\item{x}{A string, possibly encoded in UTF-8 encoding system.}
+\item{x}{A string, possibly encoded in UTF-8.}
 }
 \value{
 A string with the corresponding transformations.
@@ -21,7 +21,7 @@ This is a variation of \code{\link[tools:encoded_text_to_latex]{tools::encoded_t
 additional replacements for better compatibility.
 }
 \examples{
-# Full range of supported characters on R
+# Full range of supported characters in R.
 library(tools)
 
 range <- 1:511
@@ -31,12 +31,12 @@ ascii_table <- data.frame(
   utf8 = intToUtf8(range, multiple = TRUE)
 )
 
-# Add latex using base approach
+# Add LaTeX using the base approach.
 ascii_table$latex_base <- encoded_text_to_latex(ascii_table$utf8,
   encoding = "UTF-8"
 )
 
-# With cffr
+# With cffr.
 ascii_table$latex_cffr <- encoded_utf_to_latex(ascii_table$utf8)
 
 ascii_table
@@ -44,7 +44,7 @@ ascii_table
 \seealso{
 \code{\link[tools:encoded_text_to_latex]{tools::encoded_text_to_latex()}}
 
-Other functions for working with BibTeX format:
+Work with BibTeX metadata:
 \code{\link[=as_bibentry]{as_bibentry()}},
 \code{\link[=cff_read]{cff_read()}},
 \code{\link[=cff_read_bib_text]{cff_read_bib_text()}},

@@ -68,7 +68,6 @@ For security reasons, if the file already exists, the function creates
 a backup copy in the same directory.
 }
 \examples{
-
 bib <- bibentry("Misc",
   title = "My title",
   author = "Fran Pérez"
@@ -83,17 +82,15 @@ cat(readLines(my_temp_bib), sep = "\n")
 cff_write_bib(bib, file = my_temp_bib, ascii = TRUE, append = TRUE)
 
 cat(readLines(my_temp_bib), sep = "\n")
-
-# Create a CITATION file
-
-# Use a system file
+# Create a CITATION file.
+# Use a system file.
 f <- system.file("examples/preferred-citation-book.cff", package = "cffr")
 a_cff <- cff_read(f)
 
 out <- file.path(tempdir(), "CITATION")
 cff_write_citation(a_cff, file = out)
 
-# Check by reading, use meta object
+# Check by reading with a meta object.
 meta <- packageDescription("cffr")
 meta$Encoding <- "UTF-8"
 
@@ -114,13 +111,13 @@ following packages:
 \item \CRANpkg{rbibutils}
 }
 
-Other functions for working with BibTeX format:
+Work with BibTeX metadata:
 \code{\link[=as_bibentry]{as_bibentry()}},
 \code{\link[=cff_read]{cff_read()}},
 \code{\link[=cff_read_bib_text]{cff_read_bib_text()}},
 \code{\link[=encoded_utf_to_latex]{encoded_utf_to_latex()}}
 
-Other functions for creating external files:
+Write citation metadata files:
 \code{\link[=cff_write]{cff_write()}}
 }
 \concept{bibtex}

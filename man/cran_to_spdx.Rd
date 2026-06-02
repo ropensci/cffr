@@ -17,11 +17,10 @@ A data frame with 86 rows and 2 variables:
 }
 \description{
 A dataset containing the mapping between the \code{License} strings observed
-on CRAN packages and its (approximate) match on the
+on CRAN packages and their approximate match on the
 \href{https://spdx.org/licenses/}{SPDX License List}.
 }
 \examples{
-
 data("cran_to_spdx")
 
 head(cran_to_spdx, 20)

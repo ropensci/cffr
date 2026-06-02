@@ -1,7 +1,6 @@
 #' Export \R objects to different file types
 #'
 #' @description
-#'
 #' Export \R objects representing citations to specific file formats:
 #' - [cff_write_bib()] creates a `.bib` file.
 #' - [cff_write_citation()] creates an \R citation file as described in
@@ -17,27 +16,19 @@
 #' @inheritDotParams as_bibentry.cff_ref
 #' @inheritDotParams as_bibentry.cff_ref_lst
 #'
-#' @references
-#'
-#' - R Core Team (2023). _Writing R Extensions_.
-#'   <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>
-#'
-#' @export
-#' @encoding UTF-8
-#' @rdname cff_write_misc
-#' @family bibtex
-#' @family writing
-#'
 #' @return
 #' Writes the corresponding file specified on the `file` argument.
 #'
 #' @details
-#'
 #' When `x` is a `cff` object, it is converted to BibTeX using
 #' [toBibtex.cff()].
 #'
 #' For security reasons, if the file already exists, the function creates
 #' a backup copy in the same directory.
+#'
+#' @references
+#' - R Core Team (2023). _Writing R Extensions_.
+#'   <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>
 #'
 #' @seealso
 #' `vignette("bibtex-cff", package = "cffr")`, [knitr::write_bib()] and the
@@ -46,8 +37,12 @@
 #' - \CRANpkg{RefManageR}
 #' - \CRANpkg{rbibutils}
 #'
+#' @family bibtex
+#' @family writing
+#' @export
+#' @encoding UTF-8
+#' @rdname cff_write_misc
 #' @examples
-#'
 #' bib <- bibentry("Misc",
 #'   title = "My title",
 #'   author = "Fran Pérez"
@@ -70,21 +65,12 @@ cff_write_bib <- function(
   ascii = FALSE,
   ...
 ) {
-  if (inherits(x, "cff")) {
-    x <- as_bibentry(x, ...)
-  }
-
-  if (!inherits(x, "bibentry")) {
-    cli::cli_abort(paste0(
-      "{.arg x} should be a {.cls bibentry} object, not a ",
-      "{.cls {class(x)}} object."
-    ))
-  }
+  x <- cff_coerce_bibentry(x, ...)
 
   btex <- toBibtex(x)
 
   if (ascii) {
-    # Base encoding as per file()
+    # Use base encoding as in `file()`.
     btex <- encoded_utf_to_latex(btex)
     class(btex) <- "Bibtex"
   } else {
@@ -103,17 +89,15 @@ cff_write_bib <- function(
 #' @rdname cff_write_misc
 #' @name cff_write_citation
 #' @examples
-#'
-#' # Create a CITATION file
-#'
-#' # Use a system file
+#' # Create a CITATION file.
+#' # Use a system file.
 #' f <- system.file("examples/preferred-citation-book.cff", package = "cffr")
 #' a_cff <- cff_read(f)
 #'
 #' out <- file.path(tempdir(), "CITATION")
 #' cff_write_citation(a_cff, file = out)
 #'
-#' # Check by reading, use meta object
+#' # Check by reading with a meta object.
 #' meta <- packageDescription("cffr")
 #' meta$Encoding <- "UTF-8"
 #'
@@ -125,19 +109,30 @@ cff_write_citation <- function(
   verbose = TRUE,
   ...
 ) {
-  if (inherits(x, "cff")) {
-    x <- as_bibentry(x, ...)
-  }
-
-  if (!inherits(x, "bibentry")) {
-    cli::cli_abort(paste0(
-      "{.arg x} should be a {.cls bibentry} object, not a ",
-      "{.cls {class(x)}} object."
-    ))
-  }
+  x <- cff_coerce_bibentry(x, ...)
 
   bentr <- format(x, style = "R")
   bentr <- c("", bentr)
   write_lines_msg(bentr, file, verbose, append)
   invisible(NULL)
+}
+
+cff_coerce_bibentry <- function(x, ...) {
+  error_call <- parent.frame()
+
+  if (inherits(x, "cff")) {
+    x <- as_bibentry(x, ...)
+  }
+
+  if (!inherits(x, "bibentry")) {
+    cli::cli_abort(
+      paste0(
+        "{.arg x} should be a {.cls bibentry} object, not a ",
+        "{.cls {class(x)}} object."
+      ),
+      call = error_call
+    )
+  }
+
+  x
 }

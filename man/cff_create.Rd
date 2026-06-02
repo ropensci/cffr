@@ -32,7 +32,7 @@ in-development \R package.
 \code{CITATION.cff} file adheres to for providing the citation metadata.}
 
 \item{gh_keywords}{Logical \code{TRUE/FALSE}. If the package is hosted on
-GitHub, would you like to add the repository topics as keywords?}
+GitHub, should the repository topics be added as keywords?}
 
 \item{dependencies}{Logical \code{TRUE/FALSE}. Should the dependencies of your
 package be added to the \code{references} CFF key?}
@@ -45,28 +45,27 @@ A \code{\link{cff}} object.
 }
 \description{
 Create a full and possibly valid \code{\link{cff}} object from a given source. This
-object can be written to a \verb{*.cff} file with \code{\link[=cff_write]{cff_write()}},
-see \strong{Examples}.
+object can be written to a \code{CITATION.cff} file with \code{\link[=cff_write]{cff_write()}}. See
+\strong{Examples}.
 
 Most of the heavy lifting of \CRANpkg{cffr} is done by this function.
 }
 \details{
-If \code{x} is a path to a \code{DESCRIPTION} file or if \code{inst/CITATION} is not present
-on your package, \CRANpkg{cffr} would auto-generate a \code{preferred-citation}
-key using the information provided on that file.
+If \code{x} is a path to a \code{DESCRIPTION} file, or if \code{inst/CITATION} is not
+present in your package, \CRANpkg{cffr} auto-generates a
+\code{preferred-citation} key using the information provided in that file.
 
 By default, only persons whose role in the \code{DESCRIPTION} file of the package
-is author (\code{"aut"}) or maintainer (\code{"cre"}) are considered to be authors
-of the package. The default setting can be controlled via the \code{authors_roles}
-argument. See \strong{Details} on \code{\link[=person]{person()}} to get additional insights
-on person roles.
+is author (\code{"aut"}) or maintainer (\code{"cre"}) are considered package authors.
+The default setting can be controlled via the \code{authors_roles} argument. See
+\strong{Details} on \code{\link[=person]{person()}} for additional information about person roles.
 }
 \examples{
 \donttest{
-# Installed package
+# Installed package.
 cff_create("jsonlite")
 
-# Demo file
+# Demo file.
 demo_file <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 cff_create(demo_file)
 
@@ -101,14 +100,14 @@ cff_create(demo_file, keys = list("contact" = new_contact))
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
 \itemize{
 \item \code{\link[=cff_modify]{cff_modify()}} as the recommended way to modify a \code{cff} object.
-\item \code{\link[=cff_write]{cff_write()}} for creating a CFF file.
-\item \code{vignette("cffr", package = "cffr")} shows an introduction on how
-manipulate \code{\link{cff}} objects.
+\item \code{\link[=cff_write]{cff_write()}} for creating a \code{CITATION.cff} file.
+\item \code{vignette("cffr", package = "cffr")} shows an introduction to
+manipulating \code{\link{cff}} objects.
 \item \code{vignette("r-cff", package = "cffr")} provides details on how the
 metadata of a package is mapped to produce a \code{cff} object.
 }
 
-Other core functions of \CRANpkg{cffr}:
+Core \CRANpkg{cffr} workflow:
 \code{\link[=cff]{cff()}},
 \code{\link[=cff_modify]{cff_modify()}},
 \code{\link[=cff_validate]{cff_validate()}}

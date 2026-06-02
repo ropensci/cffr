@@ -42,7 +42,7 @@ be triggered even if you have attempted to update your \code{CITATION.cff} file.
 
 This typically occurs when you have updated your \code{DESCRIPTION} or
 \code{inst/CITATION} files, but those changes do not affect your
-\code{CITATION.cff} file (for example, you are adding new dependencies).
+\code{CITATION.cff} file, for example, when you add new dependencies.
 
 In those cases, you can override the check by running
 \verb{git commit --no-verify} in the terminal.
@@ -69,11 +69,11 @@ cff_git_hook_install()
 \itemize{
 \item \code{\link[usethis:use_git_hook]{usethis::use_git_hook()}}, which is the underlying function used by
 \code{cff_git_hook_install()}.
-\item \code{\link[usethis:use_git]{usethis::use_git()}} and related function of \CRANpkg{usethis} for using
+\item \code{\link[usethis:use_git]{usethis::use_git()}} and related functions of \CRANpkg{usethis} for using
 Git with \R packages.
 }
 
-Other Git/GitHub helpers provided by \CRANpkg{cffr}:
+Keep \file{CITATION.cff} up to date:
 \code{\link[=cff_gha_update]{cff_gha_update()}}
 }
 \concept{git}

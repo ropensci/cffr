@@ -14,10 +14,11 @@ cff_gha_update(path = ".", overwrite = FALSE)
 overwritten?}
 }
 \value{
-Invisible, this function is called by its side effects.
+Invisible. This function is called for its side effects.
 }
 \description{
-This function installs a \href{https://github.com/features/actions}{GitHub Action} on your repository. The action
+This function installs a \href{https://github.com/features/actions}{GitHub Action}
+on your repository. The action
 updates your \code{CITATION.cff} when any of these events occur:
 \itemize{
 \item You publish a new release of the package.
@@ -26,7 +27,7 @@ updates your \code{CITATION.cff} when any of these events occur:
 }
 }
 \details{
-Triggers on your action can be modified, see \href{https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows}{Events that trigger workflows}.
+Triggers on your action can be modified. See \href{https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows}{Events that trigger workflows}.
 }
 \examples{
 \dontrun{
@@ -34,7 +35,7 @@ cff_gha_update()
 }
 }
 \seealso{
-Other Git/GitHub helpers provided by \CRANpkg{cffr}:
+Keep \file{CITATION.cff} up to date:
 \code{\link{cff_git_hook}}
 }
 \concept{git}

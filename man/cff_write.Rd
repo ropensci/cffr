@@ -39,7 +39,7 @@ in-development \R package.
 \code{CITATION.cff} file adheres to for providing the citation metadata.}
 
 \item{gh_keywords}{Logical \code{TRUE/FALSE}. If the package is hosted on
-GitHub, would you like to add the repository topics as keywords?}
+GitHub, should the repository topics be added as keywords?}
 
 \item{r_citation}{Logical \code{TRUE/FALSE}. When \code{TRUE}, the \R package
 citation (for example, \code{inst/CITATION}) is created or updated.
@@ -67,17 +67,16 @@ A \code{CITATION.cff} file and an (invisible) \code{cff} object.
 }
 \description{
 \strong{This is the core function of the package and likely to be the only one
-you would need when developing a package}.
+you need when developing a package}.
 
-This function writes out a \code{CITATION.cff} file for a given package. This
-function is basically a wrapper around \code{\link[=cff_create]{cff_create()}} to both create the
-\code{\link{cff}} object and write it out to a YAML-formatted file in
-one command.
+This function writes a \code{CITATION.cff} file for a given package. It wraps
+\code{\link[=cff_create]{cff_create()}} to create the \code{\link{cff}} object and write it to a YAML-formatted
+file in one command.
 }
 \details{
 For details of \code{authors_roles}, see \code{\link[=cff_create]{cff_create()}}.
 
-When creating and writing a \code{CITATION.cff} for the first time, the function
+When creating and writing a \code{CITATION.cff} for the first time, this function
 adds the pattern \code{"^CITATION\\.cff$"} to your \code{.Rbuildignore} file.
 }
 \examples{
@@ -96,7 +95,7 @@ file.remove(tmpfile)
 This function unifies the workflow \code{\link[=cff_create]{cff_create()}} + \code{\link[=cff_validate]{cff_validate()}} +
 write a file.
 
-Other functions for creating external files:
+Write citation metadata files:
 \code{\link[=cff_write_bib]{cff_write_bib()}}
 }
 \concept{writing}
