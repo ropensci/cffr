@@ -1,3 +1,5 @@
+# cffr (development version)
+
 # cffr 1.4.0
 
 - DOIs in `inst/CITATION` `url` fields are detected, including those matching the pattern `.*dx.doi.org/`.
