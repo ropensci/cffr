@@ -17,7 +17,7 @@ cff_from_bibtex(x, encoding = "UTF-8", ...)
 
 \item{encoding}{Encoding to be assumed for \code{x}. See \code{\link[=readLines]{readLines()}}.}
 
-\item{...}{Other arguments passed to \code{\link[bibtex:read.bib]{bibtex::read.bib()}}.}
+\item{...}{Arguments passed to \code{\link[=cff_read_bib]{cff_read_bib()}}.}
 }
 \value{
 See \code{\link[=cff_read_bib]{cff_read_bib()}} for reading \verb{*.bib} files and \code{\link[=cff_read_bib_text]{cff_read_bib_text()}}
@@ -50,14 +50,14 @@ if (requireNamespace("bibtex", quietly = TRUE)) {
 
   cff_read_bib_text(x)
 
-  # From a file
+  # From a file.
 
   x2 <- system.file("examples/example.bib", package = "cffr")
   cff_read_bib(x2)
 }
 }
 \seealso{
-Other deprecated functions:
+Deprecated functions:
 \code{\link[=cff_extract_to_bibtex]{cff_extract_to_bibtex()}},
 \code{\link[=cff_parse_citation]{cff_parse_citation()}},
 \code{\link[=cff_parse_person]{cff_parse_person()}},

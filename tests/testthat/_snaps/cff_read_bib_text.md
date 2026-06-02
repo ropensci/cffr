@@ -47,5 +47,5 @@
       fromfile <- cff_read_bib_text(tmpbib)
     Message
       ! `x` seems to be a ".bib" file, not a BibTeX entry.
-      i Reading `x` with `cffr:cff_read_bib()`
+      i Reading `x` with `cffr:cff_read_bib()`.
 

@@ -1708,7 +1708,7 @@
     Code
       cff(tittle = "a", cff_version = "ar", version = "200", messange = "Fix my keys")
     Message
-      i Found misspelled keys. Trying to map:
+      i Found misspelled keys. Trying to map them:
       v tittle: title
       v messange: message
     Output
@@ -1723,7 +1723,7 @@
       cffobj <- cff(tittle = "a", cff_version = "1.2.0", version = "200", messange = "aa",
         anthor = list(list(`family-names` = "a", `given-names` = "b")))
     Message
-      i Found misspelled keys. Trying to map:
+      i Found misspelled keys. Trying to map them:
       v tittle: title
       v messange: message
       v anthor: authors
@@ -1733,7 +1733,7 @@
     Code
       ss <- cff(tittle = "a", tittle = "ar", version = "200", messange = "Fix my keys")
     Message
-      i Found misspelled keys. Trying to map:
+      i Found misspelled keys. Trying to map them:
       v tittle: title
       v tittle: title
       v messange: message

@@ -29,14 +29,13 @@ displayed instead.}
 \item{ascii}{Logical. Should entries be written using ASCII characters only?}
 }
 \value{
-Write a file.
+Writes a file.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use \code{\link[=cff_write_bib]{cff_write_bib()}} or
 \code{\link[=cff_write_citation]{cff_write_citation()}} instead.
 }
 \examples{
-
 bib <- bibentry("Misc",
   title = "My title",
   author = "Fran Pérez"
@@ -58,7 +57,7 @@ cat(readLines(my_temp_bib), sep = "\n")
 \item \code{\link[=cff_write_citation]{cff_write_citation()}} for writing \R \code{CITATION} files.
 }
 
-Other deprecated functions:
+Deprecated functions:
 \code{\link[=cff_extract_to_bibtex]{cff_extract_to_bibtex()}},
 \code{\link[=cff_from_bibtex]{cff_from_bibtex()}},
 \code{\link[=cff_parse_citation]{cff_parse_citation()}},

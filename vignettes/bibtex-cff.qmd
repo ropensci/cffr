@@ -43,8 +43,7 @@ table_master <- read.csv(p2file)
 ```
 
 ::: callout-important
-Generative AI tools were used to assist in producing some of the material in
-this article.
+Generative AI tools were used to assist with parts of this article.
 :::
 
 ## Citation
@@ -80,11 +79,10 @@ In modern research workflows, both formats frequently coexist. BibTeX remains
 dominant in academic publishing pipelines, while CFF is increasingly adopted by
 infrastructure platforms such as GitHub and Zenodo.
 
-The **cffr** package [@hernangomez2021] provides a deterministic mapping
-(crosswalk) between BibTeX and CFF, enabling practical interoperability. Due to
-fundamental differences in their data models, this mapping is not bijective and
-may involve structural transformations, heuristic parsing and controlled
-information loss.
+**cffr** [@hernangomez2021] provides a deterministic mapping (crosswalk) between
+BibTeX and CFF, enabling practical interoperability. Due to fundamental
+differences in their data models, this mapping is not bijective and may involve
+structural transformations, heuristic parsing and controlled information loss.
 
 ## Conceptual differences between BibTeX and CFF
 
@@ -214,12 +212,13 @@ Two keys play a central role in CFF reference modeling:
 - `references`: Lists related creative works, analogous to references in a
   scholarly article.
 
-Both keys expect `definition-reference` objects, as defined in the [CFF schema
+Both keys expect `definitions.reference` objects, as defined in the [CFF schema
 guide](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#preferred-citation).
 These objects support explicit typing, metadata nesting and structured
 identifiers, in contrast to BibTeX’s flat field model.
 
-The following table summarizes the valid keys for CFF `definition-reference`:
+The following table summarizes the valid keys for CFF `definitions.reference`
+objects:
 
 ```{r}
 #| label: tbl-refkeys
@@ -227,7 +226,7 @@ The following table summarizes the valid keys for CFF `definition-reference`:
 #| message: false
 #| warning: false
 #| results: asis
-#| tbl-cap: "Valid keys in CFF `definition-reference` objects"
+#| tbl-cap: "Valid keys in CFF `definitions.reference` objects"
 library(cffr)
 
 # Fill with blanks.
@@ -257,8 +256,8 @@ The mapping implemented in **cffr** follows a three‑step pipeline:
 3.  Serialize the result into CFF (and vice versa).
 
 Whenever possible, mappings are deterministic. However, some fields require
-heuristic parsing, particularly when normalizing names, dates or page ranges.
-As a result, semantic round‑trip reversibility is not guaranteed, even when the
+heuristic parsing, particularly when normalizing names, dates or page ranges. As
+a result, semantic round‑trip reversibility is not guaranteed, even when the
 conversion process itself is reproducible.
 
 ```{r}
@@ -375,9 +374,9 @@ formatting (e.g., `book`, `edition`) is used for CFF keys.
 
 ## Proposed crosswalk
 
-The **cffr** package provides utilities for mapping BibTeX entries (via
-`bibentry()`) to CFF and back. This section describes how the crosswalk is
-implemented, partially informed by @Haines_Ruby_CFF_Library_2021[^2].
+**cffr** provides utilities for mapping BibTeX entries (via `bibentry()`) to CFF
+and back. This section describes how the crosswalk is implemented, partially
+informed by @Haines_Ruby_CFF_Library_2021[^2].
 
 The crosswalk is primarily defined for BibTeX to CFF conversion. Reverse mapping
 is a best-effort approximation and may be lossy.
@@ -433,11 +432,11 @@ The previous mapping has the following specifications:
 
 - **\@book**, **\@inbook** and **\@incollection** are closely related in
   BibTeX[^3]. While **\@inbook** and **\@incollection** both reference parts of
-  a **\@book**, the former is used for citing sections, chapters, pages or
-  other specific parts, whereas the latter is used for citing parts with a
-  specific title. Since CFF allows keys `type: book` and
-  `collection-type: book`, we may utilize a combination of these fields to tag
-  each entry type in CFF accordingly.
+  a **\@book**, the former is used for citing sections, chapters, pages or other
+  specific parts, whereas the latter is used for citing parts with a specific
+  title. Since CFF allows keys `type: book` and `collection-type: book`, we may
+  utilize a combination of these fields to tag each entry type in CFF
+  accordingly.
 - **\@mastersthesis** and **\@phdthesis** are tagged using a combination of
   `type: thesis` and `thesis-type` keys.
 
@@ -503,8 +502,8 @@ We provide more detail on some of the mappings presented in the table above:
   final mappings in CFF. When mapping from CFF to BibTeX, we propose to follow
   the same entry-based logic, using the key `location` as a fallback value when
   mapping to **address**.
-- Because of the complexity mentioned above, **institution,
-  organization** and **school** are mapped to `institution`.
+- Because of the complexity mentioned above, **institution, organization** and
+  **school** are mapped to `institution`.
 - **series** is mapped to `collection-title` only on those entries that do not
   require **booktitle**. In practice, this means that `collection-title`
   corresponds to **booktitle** (for **\@incollection** and **\@inproceedings**),
@@ -624,18 +623,18 @@ toBibtex(cff_read_bib_text(bib))
 
 ### \@book / \@inbook {#book-inbook}
 
-In terms of the fields required in BibTeX, the primary difference between
-**\@book** and **\@inbook** is that **\@inbook** requires a **chapter** or
-**page** field, while **\@book** does not even allow these fields as optional.
-Therefore, we propose that an **\@inbook** entry in CFF be treated as a
-**\@book** with the following supplementary fields:
+In terms of fields required in BibTeX, the primary difference between **\@book**
+and **\@inbook** is that **\@inbook** requires a **chapter** or **page** field,
+while **\@book** does not even allow these fields as optional. Therefore, we
+propose that an **\@inbook** entry in CFF be treated as a **\@book** with the
+following supplementary fields:
 
 1.  `section`: To denote the specific **chapter** within the book.
 2.  `start`/`end`: To indicate the range of **pages** covered by the section.
 
-Additionally, note that in CFF, the **series** field corresponds to
-`collection-title` and the **address** field represents the `publisher`'s
-`address`. Finally, the key `collection-type` is populated with `book-series`.
+In CFF, the **series** field corresponds to `collection-title` and the
+**address** field represents the `publisher`'s `address`. Finally, the key
+`collection-type` is populated with `book-series`.
 
 ```{r}
 #| label: tbl-model_book
@@ -752,9 +751,8 @@ toBibtex(cff_read_bib_text(bib))
 
 ### \@conference / \@inproceedings {#conf_inproc}
 
-Note that in this case, **organization** is mapped to `institution`.
-Additionally, **series** is ignored because there is no clear mapping in CFF for
-this field.
+In this case, **organization** is mapped to `institution`. **series** is ignored
+because there is no clear mapping in CFF for this field.
 
 ```{r}
 #| label: tbl-model_inproceedings
@@ -808,7 +806,7 @@ is a `type: generic` in CFF with a `collection-title` key. The `generic` type is
 used as a fallback when no semantically equivalent CFF type exists.
 
 Additionally, **series** and **type** are ignored because there is no clear
-mapping in CFF for this field.
+mapping in CFF for these fields.
 
 ```{r}
 #| label: tbl-model_incollection
@@ -977,7 +975,7 @@ toBibtex(cff_read_bib_text(bib))
 
 ### \@misc
 
-The crosswalk of **\@misc** does not require any special treatment. This
+The crosswalk for **\@misc** does not require any special treatment. This
 **entry** does not require any **field**.
 
 Note also that it is mapped to `type: generic` as [**\@incollection**](#incol),
@@ -1074,7 +1072,7 @@ toBibtex(cff_read_bib_text(bib))
 
 ### \@techreport
 
-The crosswalk of **\@techreport** does not require any special treatment.
+The crosswalk for **\@techreport** does not require any special treatment.
 
 ```{r}
 #| label: tbl-model_techreport
@@ -1119,7 +1117,7 @@ toBibtex(cff_read_bib_text(bib))
 
 ### \@unpublished
 
-The crosswalk of **\@unpublished** does not require any special treatment.
+The crosswalk for **\@unpublished** does not require any special treatment.
 
 ```{r}
 #| label: tbl-model_unpublished
@@ -1192,8 +1190,8 @@ field. Moreover, both BibTeX **\@incollection** and BibLaTeX **\@inbook**
 emphasize its reference to *"a part of a book (...) with its own title"*.
 
 In this document, the proposed crosswalk ensures full compatibility with BibTeX.
-Hence, we propose to consider a BibLaTeX **\@inbook** entry as equivalent to a
-BibTeX **\@incollection**, given the congruence in their definitions and field
+Therefore, we propose to consider a BibLaTeX **\@inbook** entry as equivalent to
+a BibTeX **\@incollection**, given the congruence in their definitions and field
 requirements.
 
 **Round-trip**

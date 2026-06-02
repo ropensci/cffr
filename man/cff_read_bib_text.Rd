@@ -16,8 +16,7 @@ cff_read_bib_text(x, encoding = "UTF-8", ...)
 }
 \value{
 An object of classes \code{\link[=cff_ref_lst]{cff_ref_lst, cff}} according to the
-\code{definitions.references} specified in
-the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
+\code{definitions.reference} specified in the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
 Each element of the \code{cff_ref_lst} object has classes
 \code{\link[=cff_ref]{cff_ref, cff}}.
 }
@@ -59,13 +58,13 @@ if (requireNamespace("bibtex", quietly = TRUE)) {
 \seealso{
 \code{\link[=cff_read_bib]{cff_read_bib()}} for reading \verb{*.bib} files.
 
-Other functions for working with BibTeX format:
+Work with BibTeX metadata:
 \code{\link[=as_bibentry]{as_bibentry()}},
 \code{\link[=cff_read]{cff_read()}},
 \code{\link[=cff_write_bib]{cff_write_bib()}},
 \code{\link[=encoded_utf_to_latex]{encoded_utf_to_latex()}}
 
-Other functions for reading external files:
+Read external citation metadata:
 \code{\link[=cff_read]{cff_read()}}
 }
 \concept{bibtex}

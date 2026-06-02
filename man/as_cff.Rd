@@ -44,9 +44,9 @@ corresponding subclass.
 Learn more about the \CRANpkg{cffr} class system in \link{cff_class}.
 }
 \description{
-\code{as_cff()} turns an existing list-like \R object into a so-called
-\code{\link{cff}}, a list with class \code{cff}, with the corresponding
-\link[=cff_class]{sub-class} if applicable.
+\code{as_cff()} turns an existing list-like \R object into a \code{\link{cff}} object,
+a list with class \code{cff} and the corresponding \link[=cff_class]{subclass} when
+applicable.
 
 \code{as_cff} is an S3 generic, with methods for:
 \itemize{
@@ -66,7 +66,6 @@ performed.
 functions are similar.
 }
 \examples{
-
 # Convert a list to a `cff` object.
 cffobj <- as_cff(list(
   "cff-version" = "1.2.0",
@@ -99,12 +98,12 @@ as_cff(a_cit)
 \item \code{\link[=cff_modify]{cff_modify()}}: Modify a \code{cff} object.
 \item \code{\link[=cff_create]{cff_create()}}: Create a \code{cff} object for an \R package.
 \item \code{\link[=cff_read]{cff_read()}}: Create a \code{cff} object from an external file.
-\item \code{\link[=as_cff_person]{as_cff_person()}}: Recommended way to create persons in CFF format.
+\item \code{\link[=as_cff_person]{as_cff_person()}}: Recommended way to create CFF person metadata.
 }
 
 Learn more about the \CRANpkg{cffr} class system in \link{cff_class}.
 
-Coercing between \strong{R} classes with \strong{S3 Methods}:
+Coerce between \R classes:
 \code{\link[=as_bibentry]{as_bibentry()}},
 \code{\link[=as_cff_person]{as_cff_person()}},
 \code{\link{cff_class}}

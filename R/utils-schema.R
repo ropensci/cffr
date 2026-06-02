@@ -1,6 +1,5 @@
 #' Schema utils
 #'
-#' @name cff_schema
 #' @description
 #' Helper functions with the valid values of different fields, according to the
 #' ```{r, echo=FALSE, results='asis'}
@@ -22,6 +21,13 @@
 #' - [cff_schema_definitions_refs()] provides the valid
 #'   keys to be used on the `preferred-citation` and `references` keys.
 #'
+#' @param sorted Logical `TRUE/FALSE`. Should the keys be arranged
+#'   alphabetically?
+#'
+#' @return
+#' A character vector with the names of valid keys for Citation File Format
+#' version 1.2.0.
+#'
 #' @source
 #' ```{r, echo=FALSE, results='asis'}
 #'
@@ -32,23 +38,14 @@
 #' ```
 #'
 #' @family schemas
-#'
 #' @export
 #' @encoding UTF-8
-#'
-#' @return
-#' A character vector with the names of valid keys for Citation File Format
-#'   version 1.2.0.
-#'
-#' @param sorted Logical `TRUE/FALSE`. Should the keys be arranged
-#'   alphabetically?
-#'
+#' @name cff_schema
 #' @examples
-#'
 #' cff_schema_keys(sorted = TRUE)
 cff_schema_keys <- function(sorted = FALSE) {
   if (sorted) {
-    # Alphabetically
+    # Sort alphabetically.
     schema_keys <- c(
       "abstract",
       "authors",
@@ -73,7 +70,7 @@ cff_schema_keys <- function(sorted = FALSE) {
       "version"
     )
   } else {
-    # Arranged arbitrarily
+    # Keep the preferred schema order.
     schema_keys <- c(
       "cff-version",
       "message",
@@ -102,11 +99,10 @@ cff_schema_keys <- function(sorted = FALSE) {
   schema_keys
 }
 
-#' @rdname cff_schema
 #' @export
 #' @encoding UTF-8
+#' @rdname cff_schema
 #' @examples
-#'
 #' # Valid license keys.
 #' head(cff_schema_keys_license(), 20)
 cff_schema_keys_license <- function() {
@@ -119,11 +115,10 @@ cff_schema_keys_license <- function() {
   license
 }
 
-#' @rdname cff_schema
 #' @export
 #' @encoding UTF-8
+#' @rdname cff_schema
 #' @examples
-#'
 #' cff_schema_definitions_person()
 cff_schema_definitions_person <- function() {
   definitions_person <- c(
@@ -148,11 +143,10 @@ cff_schema_definitions_person <- function() {
   definitions_person
 }
 
-#' @rdname cff_schema
 #' @export
 #' @encoding UTF-8
+#' @rdname cff_schema
 #' @examples
-#'
 #' cff_schema_definitions_entity()
 cff_schema_definitions_entity <- function() {
   definitions_entity <- c(
@@ -175,11 +169,10 @@ cff_schema_definitions_entity <- function() {
   definitions_entity
 }
 
-#' @rdname cff_schema
 #' @export
 #' @encoding UTF-8
+#' @rdname cff_schema
 #' @examples
-#'
 #' cff_schema_definitions_refs()
 cff_schema_definitions_refs <- function() {
   definitions_reference <- c(

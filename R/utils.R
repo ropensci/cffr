@@ -151,7 +151,7 @@ fuzzy_keys <- function(keys) {
     bullets <- rep("v", length(ll))
     bullets[keys_match == "No match, removing."] <- "x"
     names(ll) <- bullets
-    cli::cli_alert_info(paste0("Found misspelled keys. Trying to map:"))
+    cli::cli_alert_info("Found misspelled keys. Trying to map them:")
 
     cli::cli_bullets(ll)
     # Modify names.
@@ -174,7 +174,7 @@ guess_cff_named_part <- function(x) {
     return("cff_pers")
   }
 
-  # Valid full CFF file.
+  # Valid full `CITATION.cff` file.
   is_full <- any(grepl("cff-version|message", nms))
   if (is_full) {
     return("cff_full")

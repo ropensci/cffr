@@ -80,7 +80,7 @@ cff_validate(new)
 
 }
 \seealso{
-Other core functions of \CRANpkg{cffr}:
+Core \CRANpkg{cffr} workflow:
 \code{\link[=cff_create]{cff_create()}},
 \code{\link[=cff_modify]{cff_modify()}},
 \code{\link[=cff_validate]{cff_validate()}}

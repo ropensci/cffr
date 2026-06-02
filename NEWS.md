@@ -1,11 +1,18 @@
 # cffr (development version)
 
+- Internal code and documentation were reviewed and refactored with AI
+  assistance to improve maintainability, consistency and user-facing messages.
+
 # cffr 1.4.0
 
-- DOIs in `inst/CITATION` `url` fields are detected, including those matching the pattern `.*dx.doi.org/`.
-- The `website` field in `definitions.person` and `definitions.entity` uses ROR as a fallback.
+- DOIs in `inst/CITATION` `url` fields are detected, including those matching
+  the pattern `.*dx.doi.org/`.
+- The `website` field in `definitions.person` and `definitions.entity` uses ROR
+  as a fallback.
 - `cff_read()` correctly handles a single `languages` value (#105).
-- `cff_validate()` now uses the [ajv](https://github.com/ajv-validator/ajv) validation engine via `jsonvalidate::json_validate()`, which returns more informative error messages.
+- `cff_validate()` now uses the [ajv](https://github.com/ajv-validator/ajv)
+  validation engine via `jsonvalidate::json_validate()`, which returns more
+  informative error messages.
 
 # cffr 1.3.0
 
@@ -16,13 +23,16 @@
 
 - `as_cff_person()` improves comment detection and parsing across its function
   family.
-- `cff_gha_update()` now runs in `ubuntu-latest` by default to save [GitHub Actions quota](https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions#minute-multipliers) (#90, thanks to \@Pakillo).
+- `cff_gha_update()` now runs in `ubuntu-latest` by default to save [GitHub
+  Actions
+  quota](https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions#minute-multipliers)
+  (#90, thanks to \@Pakillo).
 - The mapping of **CRAN** packages to SPDX codes was updated.
 
 # cffr 1.2.0
 
-- `cff_write()` gains a new `r_citation` argument. When it is set to `TRUE`,
-  an **R** citation file (`inst/CITATION`) is generated or updated with the
+- `cff_write()` gains a new `r_citation` argument. When it is set to `TRUE`, an
+  **R** citation file (`inst/CITATION`) is generated or updated with the
   information from the generated `CITATION.cff` file. **No backup copy is
   created**. For more control, use `cff_write_citation()` (#79).
 - `repository-code` now also recognizes [Codeberg](https://codeberg.org/) as a
@@ -50,8 +60,8 @@
 
 # cffr 1.0.1
 
-- `cff_write()` gains a new `encoding` argument to make it work with
-  different encodings. See `iconv()`.
+- `cff_write()` gains a new `encoding` argument to make it work with different
+  encodings. See `iconv()`.
 - Fixed **NOTEs** caused by empty lines in docs.
 
 # cffr 1.0.0
@@ -107,8 +117,8 @@ The API has been completely revised to provide more clarity on function naming
 and to facilitate internal maintenance. This change **only** **affects non-core
 functions**. Each function now does fewer things but does them better. The old
 API [has been
-deprecated](https://lifecycle.r-lib.org/articles/stages.html#deprecated) and
-now warns when used, providing advice on the replacement function.
+deprecated](https://lifecycle.r-lib.org/articles/stages.html#deprecated) and now
+warns when used, providing advice on the replacement function.
 
 #### Deprecation
 
@@ -139,8 +149,8 @@ now warns when used, providing advice on the replacement function.
 
 - The minimum required **R** version is now **4.0.0**.
 - The BibTeX crosswalk was updated (see
-  `vignette("bibtex-cff", package = "cffr")`), with corresponding changes in
-  the mapping performed by `as_bibtex()` and `cff_parse_citation()`:
+  `vignette("bibtex-cff", package = "cffr")`), with corresponding changes in the
+  mapping performed by `as_bibtex()` and `cff_parse_citation()`:
   - **\@inbook** and **\@book** gain a new value in CFF when **series** is
     provided: `collection-type: book-series`.
   - **cffr** can now handle BibLaTeX **\@inbook**, which differs significantly
@@ -155,8 +165,8 @@ now warns when used, providing advice on the replacement function.
 
 ## New features
 
-- `write_citation()` is a new function that can generate an `inst/CITATION`
-  file from a `cff` object (#51).
+- `write_citation()` is a new function that can generate an `inst/CITATION` file
+  from a `cff` object (#51).
 
 ## Enhancements
 
@@ -191,8 +201,8 @@ now warns when used, providing advice on the replacement function.
 - `preferred-citation` is only produced when a `CITATION` **R** file has been
   provided with the package (#37).
 - Improved email handling for authors.
-- Added `cff_read()`. This functionality was already implemented in `cff()`,
-  but the new function provides clarity.
+- Added `cff_read()`. This functionality was already implemented in `cff()`, but
+  the new function provides clarity.
 
 # cffr 0.2.3
 
@@ -209,16 +219,16 @@ now warns when used, providing advice on the replacement function.
 
 # cffr 0.2.0
 
-- **cffr** now also extracts information about package dependencies and adds
-  the main citation of the dependencies to the `references` field, using
+- **cffr** now also extracts information about package dependencies and adds the
+  main citation of the dependencies to the `references` field, using
   `citation(auto = TRUE)`.
   - Added the `dependencies` argument to `cff_create()` and `cff_write()`.
 - Other improvements to `cff_parse_citation()` include:
-  - `cff_parse_citation()` extracts more information about authors, based on
-    the fields provided in the `DESCRIPTION` file.
+  - `cff_parse_citation()` extracts more information about authors, based on the
+    fields provided in the `DESCRIPTION` file.
   - `cff_parse_citation()` does a better job extracting information from
-    `bibentry()`/BibTeX and mapping it to `preferred-citation/references`
-    fields of CFF.
+    `bibentry()`/BibTeX and mapping it to `preferred-citation/references` fields
+    of CFF.
 - Added new functions for working with git pre-commit hooks
   [![Experimental](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental):
   - `cff_git_hook_install()`.

@@ -5,7 +5,7 @@
     Output
       == Validating cff ==============================================================
     Message
-      v Congratulations! This <cff> is valid.
+      v This <cff> is valid.
 
 # Validate error CITATION.cff
 
@@ -14,7 +14,7 @@
     Output
       == Validating cff ==============================================================
     Message
-      x Oops! This <cff> has the following errors:
+      x Validation failed. This <cff> has the following errors:
       * cff/: must NOT have additional properties
       * cff/authors/0: must NOT have additional properties
       * cff/authors/0/orcid: must match pattern "https://orcid\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]{1}"

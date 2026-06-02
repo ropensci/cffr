@@ -36,9 +36,9 @@ as_bibentry(x, ...)
 in-development package.
 \item An existing \code{cff} object created with \code{\link[=cff]{cff()}}, \code{\link[=cff_create]{cff_create()}}, or
 \code{\link[=as_cff]{as_cff()}}.
-\item Path to a CITATION.cff file (\code{"CITATION.cff"}).
+\item Path to a \code{CITATION.cff} file (\code{"CITATION.cff"}).
 \item The name of an installed package (\code{"jsonlite"}).
-\item Path to a DESCRIPTION file (\code{"DESCRIPTION"}).
+\item Path to a \code{DESCRIPTION} file (\code{"DESCRIPTION"}).
 }}
 
 \item{...}{Additional arguments to be passed to or from methods.}
@@ -71,7 +71,7 @@ objects can be converted to BibTeX markup with \code{\link[=toBibtex]{toBibtex()
 an object of class \code{Bibtex} that can be printed and exported as a valid
 BibTeX entry.
 
-\code{as_bibtex()} tries to map the information of the source \code{x} into a \code{\link{cff}}
+\code{as_bibentry()} tries to map the information of the source \code{x} into a \code{\link{cff}}
 object and performs a mapping of the metadata to BibTeX, according to
 \code{vignette("bibtex-cff", package = "cffr")}.
 }
@@ -82,7 +82,7 @@ cff_object <- cff()
 
 cff_object
 
-# bibentry object.
+# A bibentry object.
 bib <- as_bibentry(cff_object)
 
 class(bib)
@@ -135,7 +135,7 @@ toBibtex(desc_file)
 metadata of a package is mapped to produce a \code{cff} object.
 \item \code{vignette("bibtex-cff", package = "cffr")} provides detailed information
 about the internal mapping performed between \code{cff} objects and BibTeX
-markup (both \code{cff} to BibTeX and BibTeX to \code{cff}).
+markup, both \code{cff} to BibTeX and BibTeX to \code{cff}.
 }
 
 Other related functions:
@@ -143,13 +143,13 @@ Other related functions:
 \item \code{\link[utils:toBibtex]{utils::toBibtex()}}.
 }
 
-Other functions for working with BibTeX format:
+Work with BibTeX metadata:
 \code{\link[=cff_read]{cff_read()}},
 \code{\link[=cff_read_bib_text]{cff_read_bib_text()}},
 \code{\link[=cff_write_bib]{cff_write_bib()}},
 \code{\link[=encoded_utf_to_latex]{encoded_utf_to_latex()}}
 
-Coercing between \strong{R} classes with \strong{S3 Methods}:
+Coerce between \R classes:
 \code{\link[=as_cff]{as_cff()}},
 \code{\link[=as_cff_person]{as_cff_person()}},
 \code{\link{cff_class}}

@@ -3,7 +3,7 @@ test_that("Test errors on cff_read", {
   expect_snapshot(cff_read("abcde"), error = TRUE)
 
   f <- system.file("schema/schema.json", package = "cffr")
-  expect_error(cff_read(f), "Don't recognize the file type of")
+  expect_error(cff_read(f), "Cannot recognize the file type of")
 })
 
 test_that("cff_read citation.cff", {
@@ -207,7 +207,7 @@ test_that("Corrupt CITATION", {
   tmp <- tempfile("CITATION")
   writeLines("I am a bad CITATION", tmp)
   expect_message(
-    expect_message(anull <- cff_read(tmp), "It was not possible to read"),
+    expect_message(anull <- cff_read(tmp), "Could not read"),
     "Cannot read"
   )
   expect_null(anull)

@@ -1,9 +1,8 @@
 #' Install a \CRANpkg{cffr} GitHub Action
 #'
 #' @description
-#'
-#' This function installs a [GitHub
-#' Action](https://github.com/features/actions) on your repository. The action
+#' This function installs a [GitHub Action](https://github.com/features/actions)
+#' on your repository. The action
 #' updates your `CITATION.cff` when any of these events occur:
 #' - You publish a new release of the package.
 #' - Your `DESCRIPTION` or `inst/CITATION` file is modified.
@@ -13,11 +12,10 @@
 #' @param overwrite Logical. If the action already exists, should it be
 #'   overwritten?
 #'
-#' @return Invisible, this function is called by its side effects.
+#' @return Invisible. This function is called for its side effects.
 #'
 #' @details
-#'
-#' Triggers on your action can be modified, see
+#' Triggers on your action can be modified. See
 #' ```{r, echo=FALSE, results='asis'}
 #'
 #' cat(paste0(" [Events that trigger workflows]",
@@ -26,14 +24,13 @@
 #'
 #' ```
 #'
+#' @family git
+#' @export
+#' @encoding UTF-8
 #' @examples
 #' \dontrun{
 #' cff_gha_update()
 #' }
-#' @export
-#' @encoding UTF-8
-#'
-#' @family git
 cff_gha_update <- function(path = ".", overwrite = FALSE) {
   destdir <- file.path(path, ".github", "workflows")
   checkdir <- dir.exists(destdir)

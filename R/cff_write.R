@@ -1,41 +1,34 @@
 #' Write a `CITATION.cff` file
 #'
 #' @description
-#'
 #' **This is the core function of the package and likely to be the only one
-#' you would need when developing a package**.
+#' you need when developing a package**.
 #'
-#' This function writes out a `CITATION.cff` file for a given package. This
-#' function is basically a wrapper around [cff_create()] to both create the
-#' [`cff`] object and write it out to a YAML-formatted file in
-#' one command.
-#'
-#' @family writing
+#' This function writes a `CITATION.cff` file for a given package. It wraps
+#' [cff_create()] to create the [`cff`] object and write it to a YAML-formatted
+#' file in one command.
 #'
 #' @param outfile The name and path of the `CITATION.cff` to be created.
-#'
 #' @param r_citation Logical `TRUE/FALSE`. When `TRUE`, the \R package
 #'   citation (for example, `inst/CITATION`) is created or updated.
 #'   **No backup copy is created**. For more control, use
 #'   [cff_write_citation()].
-#'
 #' @param verbose Logical `TRUE/FALSE`. When `TRUE`, the function displays
 #'   informative messages.
-#'
 #' @param validate Logical `TRUE/FALSE`. Should the new file be validated
 #'   using `cff_validate()`?
-#'
 #' @param encoding The name of the encoding to be assumed. Default is `"UTF-8"`,
 #'   but it can be any other value as accepted by [iconv()], such as
 #'   `"ASCII//TRANSLIT"`.
-#'
 #' @inheritParams cff_create
-#' @inheritParams cff_validate
-#'
-#' @export
-#' @encoding UTF-8
 #'
 #' @return A `CITATION.cff` file and an (invisible) `cff` object.
+#'
+#' @details
+#' For details of `authors_roles`, see [cff_create()].
+#'
+#' When creating and writing a `CITATION.cff` for the first time, this function
+#' adds the pattern `"^CITATION\.cff$"` to your `.Rbuildignore` file.
 #'
 #' @seealso
 #' ```{r, echo=FALSE, results='asis'}
@@ -48,6 +41,9 @@
 #' This function unifies the workflow [cff_create()] + [cff_validate()] +
 #' write a file.
 #'
+#' @family writing
+#' @export
+#' @encoding UTF-8
 #' @examples
 #' \donttest{
 #' tmpfile <- tempfile(fileext = ".cff")
@@ -58,13 +54,6 @@
 #' # Force clean-up
 #' file.remove(tmpfile)
 #' }
-#' @details
-#'
-#' For details of `authors_roles`, see [cff_create()].
-#'
-#' When creating and writing a `CITATION.cff` for the first time, the function
-#' adds the pattern `"^CITATION\.cff$"` to your `.Rbuildignore` file.
-#'
 cff_write <- function(
   x,
   outfile = "CITATION.cff",
@@ -98,7 +87,7 @@ cff_write <- function(
     authors_roles = authors_roles
   )
 
-  # Fix string if it is not cff.
+  # Ensure the output file uses a `.cff` extension.
   if (!is_substring(outfile, ".cff$")) {
     outfile <- paste0(outfile, ".cff")
   }
@@ -152,7 +141,7 @@ cff_write <- function(
     cff_validate(outfile, verbose)
   }
 
-  # Issue #79
+  # Update `inst/CITATION` when requested.
   auto_r_citation(r_citation = r_citation, outfile = outfile, verbose = verbose)
 
   invisible(citat)

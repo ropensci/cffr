@@ -1,7 +1,6 @@
 #' Use a git pre-commit hook `r lifecycle::badge("experimental")`
 #'
 #' @description
-#'
 #' Install a
 #'
 #' ```{r, echo=FALSE, results='asis'}
@@ -14,25 +13,9 @@
 #' that reminds you to update your `CITATION.cff` file. This is a wrapper around
 #' [usethis::use_git_hook()].
 #'
-#' @name cff_git_hook
-#'
-#' @family git
-#'
-#' @export
-#' @encoding UTF-8
-#'
 #' @return Invisible. This function is called for its side effects.
 #'
-#' @seealso
-#'
-#' - [usethis::use_git_hook()], which is the underlying function used by
-#'   `cff_git_hook_install()`.
-#'
-#' - [usethis::use_git()] and related function of \CRANpkg{usethis} for using
-#'   Git with \R packages.
-#'
 #' @details
-#'
 #' This function installs a pre-commit hook using
 #' [usethis::use_git_hook()].
 #'
@@ -53,7 +36,7 @@
 #'
 #' This typically occurs when you have updated your `DESCRIPTION` or
 #' `inst/CITATION` files, but those changes do not affect your
-#' `CITATION.cff` file (for example, you are adding new dependencies).
+#' `CITATION.cff` file, for example, when you add new dependencies.
 #'
 #' In those cases, you can override the check by running
 #' `git commit --no-verify` in the terminal.
@@ -68,6 +51,16 @@
 #'
 #' You can remove the pre-commit hook using `cff_git_hook_remove()`.
 #'
+#' @seealso
+#' - [usethis::use_git_hook()], which is the underlying function used by
+#'   `cff_git_hook_install()`.
+#' - [usethis::use_git()] and related functions of \CRANpkg{usethis} for using
+#'   Git with \R packages.
+#'
+#' @family git
+#' @export
+#' @encoding UTF-8
+#' @name cff_git_hook
 #' @examples
 #' \dontrun{
 #' cff_git_hook_install()
@@ -98,7 +91,7 @@ cff_git_hook_remove <- function() {
 
   if (file_exist_abort(hookfile)) {
     cli::cli_alert_info(
-      "Removing git pre-commit hook (was on {.path {hookfile}})"
+      "Removing git pre-commit hook from {.path {hookfile}}."
     )
     unlink(hookfile, force = TRUE)
   }

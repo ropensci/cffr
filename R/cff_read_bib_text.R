@@ -4,25 +4,13 @@
 #' Convert a `character` string representing a BibTeX entry into a
 #' [`cff_ref_lst`] object.
 #'
-#' @family bibtex
-#' @family reading
-#'
-#' @seealso
-#'
-#' [cff_read_bib()] for reading `*.bib` files.
-#'
-#' @export
-#' @encoding UTF-8
-#'
 #' @param x A `character` vector with one or more complete BibTeX entries.
 #' @param encoding Encoding to be assumed for `x`. See [readLines()].
 #' @param ... Arguments passed to [cff_read_bib()].
 #'
 #' @return
-#'
 #' An object of classes [`cff_ref_lst, cff`][cff_ref_lst] according to the
-#' `definitions.references` specified in
-#' the
+#' `definitions.reference` specified in the
 #' ```{r, echo=FALSE, results='asis'}
 #'
 #' cat(paste0(" [Citation File Format schema]",
@@ -34,13 +22,19 @@
 #' [`cff_ref, cff`][cff_ref].
 #'
 #' @details
-#'
 #' This function writes `x` to a temporary `*.bib` file and reads it using
 #' [cff_read_bib()].
 #'
 #' This function requires \CRANpkg{bibtex} (>= 0.5.0) and uses
 #' [bibtex::read.bib()] for parsing.
 #'
+#' @seealso
+#' [cff_read_bib()] for reading `*.bib` files.
+#'
+#' @family bibtex
+#' @family reading
+#' @export
+#' @encoding UTF-8
 #' @examples
 #' if (requireNamespace("bibtex", quietly = TRUE)) {
 #'   x <- c(
@@ -65,7 +59,7 @@
 #'   cff_read_bib_text(x)
 #' }
 cff_read_bib_text <- function(x, encoding = "UTF-8", ...) {
-  # Validations
+  # Validate input.
   if (!inherits(x, "character")) {
     cli::cli_abort(paste0(
       "{.arg x} should be a {.cls character}, not a ",
@@ -74,20 +68,20 @@ cff_read_bib_text <- function(x, encoding = "UTF-8", ...) {
   }
 
   if (any(grepl("\\.bib$", x, ignore.case = TRUE))) {
-    cli::cli_alert_warning(paste0(
+    cli::cli_alert_warning(
       "{.arg x} seems to be a {.val .bib} file, not a BibTeX entry."
-    ))
-    cli::cli_alert_info("Reading {.arg x} with {.fn cffr:cff_read_bib}")
+    )
+    cli::cli_alert_info("Reading {.arg x} with {.fn cffr:cff_read_bib}.")
     the_cff <- cff_read_bib(x, encoding = encoding, ...)
     return(the_cff)
   }
 
   if (!any(grepl("^@", x))) {
-    cli::cli_alert_warning(paste0(
+    cli::cli_alert_warning(
       "{.arg x} does not look like a BibTeX entry. Check the results."
-    ))
+    )
   }
-  # Write x to a tempfile
+  # Write `x` to a temporary file.
   file <- tempfile(fileext = ".bib")
   writeLines(x, file)
   the_cff <- cff_read_bib(file, encoding = encoding, ...)

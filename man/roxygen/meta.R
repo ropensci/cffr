@@ -1,12 +1,13 @@
 list(
   rd_family_title = list(
-    core = "Other core functions of \\CRANpkg{cffr}:",
-    reading = "Other functions for reading external files:",
-    writing = "Other functions for creating external files:",
-    bibtex = "Other functions for working with BibTeX format:",
-    schemas = "Other CFF schemas:",
-    git = "Other Git/GitHub helpers provided by \\CRANpkg{cffr}:",
-    deprecated = "Other deprecated functions:",
-    s3method = "Coercing between \\strong{R} classes with \\strong{S3 Methods}:"
+    core = "Core \\CRANpkg{cffr} workflow:",
+    reading = "Read external citation metadata:",
+    writing = "Write citation metadata files:",
+    bibtex = "Work with BibTeX metadata:",
+    schemas = "Inspect Citation File Format schemas:",
+    git = "Keep \\file{CITATION.cff} up to date:",
+    datasets = "\\CRANpkg{cffr} datasets:",
+    deprecated = "Deprecated functions:",
+    s3method = "Coerce between \\R classes:"
   )
 )

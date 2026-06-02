@@ -41,7 +41,7 @@ match_cff_arg <- function(arg, valid, for_msg, call = environment()) {
 
   if (!arg %in% valid) {
     cli::cli_abort(
-      "{.arg {for_msg}} should be {.or  {.val {valid}}}, not {.val {arg}}.",
+      "{.arg {for_msg}} should be {.or {.val {valid}}}, not {.val {arg}}.",
       call = call
     )
   }
@@ -75,7 +75,7 @@ write_lines_msg <- function(lines, file, verbose, append) {
   fh <- file(file, encoding = "UTF-8", open = ifelse(append, "a+", "w+"))
   on.exit(if (isOpen(fh)) close(fh))
   if (verbose) {
-    cli::cli_alert_info("Writing {length(lines[lines != ''])} entr{?y/ies} ...")
+    cli::cli_alert_info("Writing {length(lines[lines != ''])} entr{?y/ies}.")
   }
 
   writeLines(lines, fh)

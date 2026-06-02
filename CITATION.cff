@@ -8,14 +8,15 @@ message: 'To cite package "cffr" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'cffr: Generate Citation File Format (''CFF'') Metadata for R Packages'
-version: 1.4.0
+version: 1.4.0.9000
 doi: 10.21105/joss.03900
 identifiers:
 - type: doi
   value: 10.32614/CRAN.package.cffr
 abstract: Citation File Format ('CFF') version 1.2.0 <https://doi.org/10.5281/zenodo.5171937>
   is a human- and machine-readable file format for software citation metadata. The
-  package provides core utilities to generate and validate this metadata for R packages.
+  package provides core utilities to generate, read, write and validate this metadata
+  for R packages.
 authors:
 - family-names: Hernangómez
   given-names: Diego

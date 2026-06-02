@@ -34,9 +34,9 @@ version
 ## Summary {#summary}
 
 This section summarizes the fields that **cffr** can coerce and the original
-source of information for each one. The details for each key are presented in
-the next section. The assessment of fields is based on the [Guide to
-Citation File Format schema version
+source of information for each one. Details for each key are presented in the
+next section. The assessment of fields is based on the [Guide to Citation File
+Format schema version
 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#valid-keys)
 [@druskat_citation_2021].
 
@@ -46,7 +46,7 @@ Citation File Format schema version
 #| tbl-cap: "cffr and R packages: Conversion table"
 keys <- cff_schema_keys(sorted = TRUE)
 origin <- vector(length = length(keys))
-origin[keys == "cff-version"] <- "argument on function"
+origin[keys == "cff-version"] <- "function argument"
 origin[keys == "type"] <- "Fixed value: 'software'"
 origin[keys == "identifiers"] <- "DESCRIPTION/CITATION files"
 origin[keys == "references"] <- "DESCRIPTION/CITATION files"
@@ -98,7 +98,7 @@ This key is extracted from the `"Description"` field of the `DESCRIPTION` file.
 #| label: abstract
 library(cffr)
 
-# Create `cff` for YAML.
+# Create a `cff` object for YAML.
 
 cff_obj <- cff_create("rmarkdown")
 
@@ -128,7 +128,7 @@ pkg <- desc::desc(path)
 # See the listed persons.
 pkg$get_authors()
 
-# Default behavior, use authors and creators (maintainers).
+# Default behavior: use authors and creators (maintainers).
 cff_obj <- cff_create(path)
 cff_obj$authors
 
@@ -300,13 +300,13 @@ X-schema.org-keywords: keyword1, keyword2, keyword3
 nokeywords <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 tmp2 <- tempfile("DESCRIPTION")
 
-# Create a temporary file
+# Create a temporary file.
 file.copy(nokeywords, tmp2)
 
 pkgnokeywords <- desc::desc(tmp2)
 cffnokeywords <- cff_create(tmp2)
 
-# Won't appear
+# This will not appear.
 cat(cffnokeywords$keywords)
 
 pkgnokeywords
@@ -442,10 +442,10 @@ Back to @tbl-summary.
 ### repository
 
 This key is extracted from the `"Repository"` field of the `DESCRIPTION` file.
-Usually, this field is auto-populated when a package is hosted on a repository
-(like **CRAN** or the [r-universe](https://r-universe.dev/search)). For packages
-without this field in the `DESCRIPTION` (which is the typical case for an
-in-development package), **cffr** tries to find the package in any of the
+Usually, this field is automatically populated when a package is hosted on a
+repository (like **CRAN** or the [r-universe](https://r-universe.dev/search)).
+For packages without this field in the `DESCRIPTION` (which is the typical case
+for an in-development package), **cffr** tries to find the package in any of the
 default repositories specified in `options("repos")`.
 
 In the case of [Bioconductor](https://bioconductor.org/) packages, those are
@@ -557,7 +557,7 @@ title <- paste0("NAME_OF_THE_PACKAGE", ": ", "TITLE_OF_THE_PACKAGE")
 
 ```{r}
 #| label: title
-# Installed package
+# Installed package.
 
 cat(cff_create("testthat")$title)
 ```

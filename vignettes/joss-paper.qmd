@@ -1,7 +1,7 @@
 ---
 title: "cffr: Generate Citation File Format Metadata for R Packages"
 subtitle: "JOSS paper"
-description: Paper published on The Journal of Open Source Software.
+description: Paper published in the Journal of Open Source Software.
 keywords:
   - R
   - cff
@@ -36,21 +36,21 @@ vignette: >
 
 ## Summary
 
-The Citation File Format project [@druskat_citation_2021] defines a
-standardized format for providing citation metadata for software or datasets in
-plain text files that are easy for both humans and machines to read.
+The Citation File Format project [@druskat_citation_2021] defines a standardized
+format for providing citation metadata for software or datasets in plain text
+files that are easy for both humans and machines to read.
 
 This metadata format is being adopted by GitHub as the primary format for its
 built-in citation support [@github_about_citation]. Other leading archives for
 scientific software, including Zenodo and Zotero [@druskat_stephan_making_2021],
-have also included support for CITATION.cff files in their GitHub integration.
+have also included support for `CITATION.cff` files in their GitHub integration.
 
-The **cffr** package provides utilities to generate and validate these
-CITATION.cff files automatically for R [@R_2021] packages by parsing the
-DESCRIPTION file and the native R citation file. The package also includes
-utilities and examples for parsing components such as persons and additional
-citations, plus several vignettes that illustrate basic package usage and
-technical details about the metadata extraction process.
+**cffr** provides utilities to generate and validate these `CITATION.cff` files
+automatically for **R** [@R_2021] packages by parsing the `DESCRIPTION` file and
+the native **R** citation file. The package also includes utilities and examples
+for parsing components such as persons and additional citations, plus several
+vignettes that illustrate basic package usage and technical details about the
+metadata extraction process.
 
 ## Statement of need
 
@@ -69,15 +69,15 @@ Some of the main reasons for citing software used in research are:
     Receiving credit for software development should be no different from the
     credit received in other formats, such as books or articles.
 
-CITATION.cff files provide clear citation rules for software. The format is easy
-to read by humans and can also be parsed by appropriate software. GitHub's
+`CITATION.cff` files provide clear citation rules for software. The format is
+easy to read by humans and can also be parsed by appropriate software. GitHub's
 adoption of this format sends a strong message that research software is worthy
 of citation and therefore deserves credit.
 
-The **cffr** package allows R software developers to create CITATION.cff files
-from metadata already included in the package. It also includes validation tools
-from the **jsonvalidate** package [@jsonvalidate2021], which allow developers to
-assess the validity of the file created using the latest CFF schema.json.
+**cffr** allows **R** software developers to create `CITATION.cff` files from
+metadata already included in the package. It also includes validation tools from
+the **jsonvalidate** package [@jsonvalidate2021], which allow developers to
+assess the validity of the file created using the latest CFF schema.
 
 ## Acknowledgements
 
@@ -85,9 +85,9 @@ I would like to thank [Carl
 Boettiger](https://ropensci.org/author/carl-boettiger/), [Maëlle
 Salmon](https://ropensci.org/author/ma%C3%ABlle-salmon/) and the [rest of the
 contributors](https://github.com/ropensci/codemetar/graphs/contributors) of the
-**codemetar** package [@codemetar2021]. This package was the primary
-inspiration for developing **cffr** and shares a common goal of increasing
-awareness of the efforts of software developers.
+**codemetar** package [@codemetar2021]. This package was the primary inspiration
+for developing **cffr** and shares a common goal of increasing awareness of the
+efforts of software developers.
 
 I would also like to thank [João Martins](https://zambujo.github.io/) and [Scott
 Chamberlain](https://ropensci.org/author/scott-chamberlain/) for thorough

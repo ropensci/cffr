@@ -37,7 +37,7 @@ their repositories to let others know how to correctly cite their
 software.
 
 This format is gaining popularity within the software citation
-ecosystem. Recently,
+ecosystem.
 [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
 [Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-)
 and
@@ -79,7 +79,7 @@ and the `CITATION` file (if present) from your package. Note that
 **cffr** works best if your package passes
 `R CMD check/devtools::check()`.
 
-As per 2026-05-26 there are at least 559 repositories on GitHub using
+As per 2026-06-02 there are at least 546 repositories on GitHub using
 **cffr**. [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -122,8 +122,8 @@ cff_write()
 #>
 #> CITATION.cff generated.
 #>
-#> cff_validate results-----
-#> Congratulations! This .cff file is valid.
+#> ══ Validating cff ══════════════════════════════════════════════════════════════
+#> This .cff file is valid.
 ```
 
 However, **cffr** also provides custom print methods and mechanisms that
@@ -441,6 +441,37 @@ test <- cff_create("knitr")
       year: '2026'
       doi: 10.32614/CRAN.package.magick
     - type: software
+      title: litedown
+      abstract: 'litedown: A Lightweight Version of R Markdown'
+      notes: Suggests
+      url: https://github.com/yihui/litedown
+      repository: https://CRAN.R-project.org/package=litedown
+      authors:
+      - family-names: Xie
+        given-names: Yihui
+        email: xie@yihui.name
+        orcid: https://orcid.org/0000-0003-0645-5666
+      year: '2026'
+      doi: 10.32614/CRAN.package.litedown
+    - type: software
+      title: markdown
+      abstract: 'markdown: Render Markdown with ''commonmark'''
+      notes: Suggests
+      url: https://github.com/rstudio/markdown
+      repository: https://CRAN.R-project.org/package=markdown
+      authors:
+      - family-names: Xie
+        given-names: Yihui
+        email: xie@yihui.name
+        orcid: https://orcid.org/0000-0003-0645-5666
+      - family-names: Allaire
+        given-names: JJ
+      - family-names: Horner
+        given-names: Jeffrey
+      year: '2026'
+      doi: 10.32614/CRAN.package.markdown
+      version: '>= 1.3'
+    - type: software
       title: otel
       abstract: 'otel: OpenTelemetry R API'
       notes: Suggests
@@ -661,17 +692,18 @@ cff_validate(test)
 #> ══ Validating cff ══════════════════════════════════════════════════════════════
 ```
 
-See the [docs](https://docs.ropensci.org/cffr/reference/index.html) and
-`vignette("cffr", package = "cffr")` for more on working with `cff`
-objects.
+See the [reference
+documentation](https://docs.ropensci.org/cffr/reference/index.html) and
+`vignette("cffr", package = "cffr")` to learn more about working with
+`cff` objects.
 
 ### Keep your `CITATION.cff` file up to date
 
 #### GitHub Actions
 
 The easiest way to keep your `CITATION.cff` file up to date is to use
-GitHub Actions. Use the `cff_gha_update()` function to install a GitHub
-Action that will update your `CITATION.cff` file in the following cases:
+**GitHub Actions**. Use `cff_gha_update()` to install a GitHub Action
+that updates your `CITATION.cff` file in the following cases:
 
 - When you publish a new release of the package on your GitHub
   repository.
@@ -709,7 +741,7 @@ make sure you have the **testthat** package installed.
 Check the following articles to learn more about **cffr**:
 
 - [cffr: Create a CITATION.cff file for your R
-  Package](https://ropensci.org/blog/2021/11/23/cffr/) ([Hernangómez
+  package](https://ropensci.org/blog/2021/11/23/cffr/) ([Hernangómez
   2021a](#ref-hernangomez_cffr_2021))
 - [How I test cffr on about 2,000 packages using GitHub Actions and
   R-universe](https://ropensci.org/blog/2021/11/23/how-i-test-cffr/)
@@ -721,7 +753,7 @@ Check the following articles to learn more about **cffr**:
   function `r2cff` that creates a `CITATION.cff` file (v1.1.0) using the
   information in your `DESCRIPTION` file. It also provides minimal
   validity checks.
-- **handlr** ([Chamberlain and Wiernik 2025](#ref-handlr)): Tool for
+- **handlr** ([Chamberlain and Wiernik 2025](#ref-handlr)) is a tool for
   converting among citation formats, including `*.cff` files.
 - **codemeta** ([Boettiger and Salmon 2021](#ref-codemeta)) /
   **codemetar** ([Boettiger and Salmon 2026](#ref-codemetar2021))
