@@ -33,6 +33,9 @@ test_that("Check dependencies", {
   })
 
   class(selected) <- "cff"
+
+  rvers <- getRversion()
+  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
   expect_snapshot(print(selected))
 })
 

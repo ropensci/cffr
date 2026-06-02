@@ -260,6 +260,9 @@ test_that("Parsing Gitlab", {
   expect_length(a_cff$url, 1)
   expect_length(a_cff$identifiers, 0)
   expect_s3_class(a_cff, "cff")
+
+  rvers <- getRversion()
+  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
   expect_snapshot(a_cff)
   expect_true(cff_validate(a_cff, verbose = FALSE))
 })
@@ -329,6 +332,9 @@ test_that("Parsing two maintainers", {
   expect_length(a_cff$contact, 2)
 
   expect_s3_class(a_cff, "cff")
+
+  rvers <- getRversion()
+  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
   expect_snapshot(a_cff)
   expect_true(cff_validate(a_cff, verbose = FALSE))
 })
@@ -385,12 +391,16 @@ test_that("Parsing Posit Package Manager", {
     keys = list(references = NULL)
   )
 
+  expect_s3_class(a_cff, "cff")
+
+  rvers <- getRversion()
+  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
   expect_length(a_cff$repository, 1)
   expect_identical(
     a_cff$repository,
     "https://CRAN.R-project.org/package=resmush"
   )
-  expect_s3_class(a_cff, "cff")
+
   expect_snapshot(a_cff)
   expect_true(cff_validate(a_cff, verbose = FALSE))
 })
