@@ -59,3 +59,12 @@ test_that("Merge DESCRIPTION wrong url with CITATION_dx", {
     merged[["preferred-citation"]]$url
   )
 })
+
+test_that("Utils coverage", {
+  skip_on_cran()
+  mod <- list(`date-released` = "1995-02-01")
+  expect_identical(cff_dependency_year(mod), "1995")
+
+  mod2 <- list(`date-released` = "1904/12/30")
+  expect_identical(cff_dependency_year(mod2), "1904")
+})

@@ -71,7 +71,7 @@ get_desc_date_released <- function(pkg) {
       return(NULL)
     }
     if (!is.character(x)) {
-      return(NULL)
+      return(NULL) # nocov
     }
     substr(x, 1, 10)
   })
@@ -354,7 +354,7 @@ get_gh_topics <- function(x) {
 
   # If there are no topics, return NULL.
   if (is.null(remotetopics)) {
-    return(NULL)
+    return(NULL) # nocov
   }
 
   remotetopics
