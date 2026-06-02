@@ -2,6 +2,8 @@
 
 - Internal code and documentation were reviewed and refactored with AI
   assistance to improve maintainability, consistency and user-facing messages.
+- Tests were improved with AI assistance to reduce dependence on external
+  services and make internal fixtures more robust.
 
 # cffr 1.4.0
 

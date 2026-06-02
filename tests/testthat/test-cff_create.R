@@ -399,14 +399,32 @@ test_that("Search package on CRAN", {
   basic_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
   tmp <- tempfile("DESCRIPTION_basic")
-  # Create a temporary file
   file.copy(basic_path, tmp)
 
   newfile <- desc::desc_set("Package", "ggplot2", file = tmp)
+  avail <- data.frame(
+    Package = "ggplot2",
+    Repository = "https://cloud.r-project.org/src/contrib"
+  )
+  repos <- c(CRAN = "https://cloud.r-project.org/")
+  testthat::local_mocked_bindings(
+    get_avail_on_init = function() avail,
+    detect_repos = function() repos,
+    .package = "cffr"
+  )
+
+  expect_equal(clean_str(newfile$get("Package")), "ggplot2")
+  expect_equal(
+    get_desc_repository(newfile),
+    "https://CRAN.R-project.org/package=ggplot2"
+  )
+  expect_equal(
+    get_desc_doi(newfile),
+    "10.32614/CRAN.package.ggplot2"
+  )
 
   a_cff <- cff_create(tmp, gh_keywords = FALSE)
   expect_length(a_cff$repository, 1)
-  expect_equal(clean_str(newfile$get("Package")), "ggplot2")
   expect_equal(a_cff$repository, "https://CRAN.R-project.org/package=ggplot2")
 
   expect_s3_class(a_cff, "cff")
@@ -415,46 +433,29 @@ test_that("Search package on CRAN", {
 })
 
 
-test_that("Search package on r-universe", {
-  skip_on_cran()
-  skip_if_offline()
-
-  basic_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
-
-  tmp <- tempfile("DESCRIPTION_basic")
-  # Create a temporary file
-  file.copy(basic_path, tmp)
-
-  # Get packages from my r-universe
-  dhh <- "tidyterra"
-
-  newpack <- desc::desc(tmp)
-
-  oldtitle <- clean_str(newpack$get("Package"))
-
-  newtitle <- desc::desc_set("Package", dhh, file = tmp)
-
-  expect_false(oldtitle == clean_str(newtitle$get("Package")))
-
-  # Configure to search on r-universe
+test_that("Search package on r-universe with repository fixtures", {
   newrepos <- c(
     dieghernan = "https://dieghernan.r-universe.dev",
     CRAN = "https://cloud.r-project.org"
   )
-
-  runiverse <- as.data.frame(available.packages(repos = newrepos))
-
-  expect_equal(
-    search_on_repos(dhh, runiverse),
-    "https://dieghernan.r-universe.dev/"
+  runiverse <- data.frame(
+    Package = c("tidyterra", "ggplot2"),
+    Repository = c(
+      "https://dieghernan.r-universe.dev/src/contrib",
+      "https://cloud.r-project.org/src/contrib"
+    )
   )
 
-  # Search now ggplot2, should be canonical url
+  expect_equal(
+    search_on_repos("tidyterra", runiverse, newrepos),
+    "https://dieghernan.r-universe.dev/"
+  )
 
   expect_equal(
     search_on_repos("ggplot2", runiverse, newrepos),
     "https://CRAN.R-project.org/package=ggplot2"
   )
+  expect_null(search_on_repos("not-here", runiverse, newrepos))
 })
 
 
@@ -501,62 +502,9 @@ test_that("Validate keywords", {
 
 
 test_that("Coerce keywords from GH", {
-  skip_on_cran()
-  skip_if_offline()
-  skip_if(
-    nchar(Sys.getenv("GITHUB_TOKEN")) == 0,
-    "No GITHUB_TOKEN environment variable found"
+  expect_null(desc_gh_keywords(NULL, NULL))
+  expect_equal(
+    desc_gh_keywords("keyword1", c("keyword1", "keyword2")),
+    c("keyword1", "keyword2")
   )
-
-  desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
-
-  tmp <- tempfile("DESCRIPTION_keyword_gh")
-
-  copy <- file.copy(desc_path, tmp)
-
-  cffobj <- cff_create(tmp)
-  expect_null(cffobj$keywords)
-
-  expect_true(cff_validate(cffobj, verbose = FALSE))
-
-  # A site with no topics
-  silent <- desc::desc_set(
-    "BugReports",
-    "https://github.com/dieghernan/cfftest/issues",
-    file = tmp
-  )
-
-  cffobjnokeys <- cff_create(tmp)
-  expect_true(cff_validate(cffobjnokeys, verbose = FALSE))
-  expect_null(cffobjnokeys$keywords)
-
-  # Add keywords from url
-  silent <- desc::desc_set(
-    "URL",
-    "https://github.com/ropensci/cffr",
-    file = tmp
-  )
-
-  silent <- desc::desc_set(
-    "BugReports",
-    "https://github.com/ropensci/cffr/issues",
-    file = tmp
-  )
-
-  cffobj1 <- cff_create(tmp)
-  expect_true(cff_validate(cffobj1, verbose = FALSE))
-
-  skip_if(is.null(cffobj1$keywords), "keywords not gathered")
-
-  expect_false(is.null(cffobj1$keywords))
-
-  # Concatenate keywords of both sources
-
-  # Add keywords
-  silent <- desc::desc_set("X-schema.org-keywords", "keyword1", file = tmp)
-
-  cffobj2 <- cff_create(tmp)
-  expect_true(cff_validate(cffobj2, verbose = FALSE))
-
-  expect_true(length(cffobj2$keywords) > length(cffobj1$keywords))
 })

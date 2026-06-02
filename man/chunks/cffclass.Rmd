@@ -68,7 +68,7 @@ class(two_persons[[1]])
 
 # Array of references.
 
-cit <- c(citation(), citation("yaml"))
+cit <- c(citation(), citation("jsonlite"))
 
 ref_list <- as_cff(cit)
 

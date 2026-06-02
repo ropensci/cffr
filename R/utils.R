@@ -51,6 +51,12 @@ print_snapshot <- function(title = "----", obj) {
   cat("\n---")
 }
 
+# nocov start
+get_avail_on_init <- function() {
+  avail_on_init
+}
+# nocov end
+
 #' Search for a package in available repositories.
 #' @param name Name of the package.
 #' @param avail Data frame with available packages. See
@@ -59,7 +65,7 @@ print_snapshot <- function(title = "----", obj) {
 #' @noRd
 search_on_repos <- function(
   name,
-  avail = avail_on_init,
+  avail = get_avail_on_init(),
   repos = detect_repos()
 ) {
   get <- avail[name == avail$Package, "Repository"]

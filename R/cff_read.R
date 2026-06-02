@@ -190,7 +190,7 @@ cff_read_description <- function(
 
   if (gh_keywords) {
     ghtopics <- get_gh_topics(field_list)
-    field_list$keywords <- unique(c(field_list$keywords, ghtopics))
+    field_list$keywords <- desc_gh_keywords(field_list$keywords, ghtopics)
   }
 
   new_cff(field_list)

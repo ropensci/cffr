@@ -191,8 +191,10 @@ cff_dependency_citation <- function(package) {
 }
 
 is_cran_dependency <- function(package) {
-  base_pkgs <- rownames(installed.packages(priority = "base"))
-  all(package %in% avail_on_init$Package, !package %in% base_pkgs)
+  avail <- get_avail_on_init()
+  base_packages <- rownames(installed.packages(priority = "base"))
+
+  all(package %in% avail$Package, !package %in% base_packages)
 }
 
 cff_dependency_desc_fields <- function(mod, package) {

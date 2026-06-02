@@ -113,7 +113,7 @@ class(two_persons[[1]])
 
 # Array of references.
 
-cit <- c(citation(), citation("yaml"))
+cit <- c(citation(), citation("jsonlite"))
 
 ref_list <- as_cff(cit)
 
@@ -130,17 +130,15 @@ ref_list
 #>   year: '2026'
 #>   doi: 10.32614/R.manuals
 #>   url: https://www.R-project.org/
-#> - type: manual
-#>   title: 'yaml: Methods to Convert R Data to YAML and Back'
+#> - type: article
+#>   title: 'The jsonlite Package: A Practical and Consistent Mapping Between JSON Data
+#>     and R Objects'
 #>   authors:
-#>   - family-names: Stephens
-#>     given-names: Jeremy
-#>   - family-names: Simonov
-#>     given-names: Kirill
-#>   year: '2025'
-#>   notes: R package version 2.3.12
-#>   url: https://CRAN.R-project.org/package=yaml
-#>   doi: 10.32614/CRAN.package.yaml
+#>   - family-names: Ooms
+#>     given-names: Jeroen
+#>   journal: arXiv:1403.2805 [stat.CO]
+#>   year: '2014'
+#>   url: https://arxiv.org/abs/1403.2805
 
 class(ref_list)
 #> [1] "cff_ref_lst" "cff"
@@ -317,13 +315,12 @@ toBibtex(cit)
 #>   url = \{https://www.R-project.org/\},
 #> \}
 #> 
-#> @Manual\{,
-#>   title = \{yaml: Methods to Convert R Data to YAML and Back\},
-#>   author = \{Jeremy Stephens and Kirill Simonov\},
-#>   year = \{2025\},
-#>   note = \{R package version 2.3.12\},
-#>   url = \{https://CRAN.R-project.org/package=yaml\},
-#>   doi = \{10.32614/CRAN.package.yaml\},
+#> @Article\{,
+#>   title = \{The jsonlite Package: A Practical and Consistent Mapping Between JSON Data and R Objects\},
+#>   author = \{Jeroen Ooms\},
+#>   journal = \{arXiv:1403.2805 [stat.CO]\},
+#>   year = \{2014\},
+#>   url = \{https://arxiv.org/abs/1403.2805\},
 #> \}
 
 # For `cff_pers` and `cff_pers_lst`.

@@ -274,6 +274,10 @@ desc_url_identifiers <- function(urls) {
   })
 }
 
+desc_gh_keywords <- function(desc_keywords, gh_topics) {
+  unique(c(desc_keywords, gh_topics))
+}
+
 #' Mapped to Version
 #' @noRd
 get_desc_version <- function(pkg) {
@@ -294,13 +298,26 @@ get_gh_topics <- function(x) {
   }
 
   # Get topics from the repository.
-  api_url <- paste0(
-    "https://api.github.com/repos",
-    "/",
-    gsub("^http[a-z]://github.com/", "", x["repository-code"])
-  )
+  api_url <- gh_topics_api_url(x)
+  topics <- fetch_gh_topics(api_url)
 
-  tmpfile <- tempfile(fileext = ".json")
+  if (is.null(topics)) {
+    return(NULL)
+  }
+
+  remotetopics <- lapply(topics, clean_str)
+  remotetopics <- unique(unlist(remotetopics))
+
+  # If there are no topics, return NULL.
+  if (length(remotetopics) == 0) {
+    return(NULL)
+  }
+
+  remotetopics
+}
+
+fetch_gh_topics <- function(api_url, tmpfile = tempfile(fileext = ".json")) {
+  # nocov start
 
   # Check whether GH_TOKEN is set in Renviron.
   # Tests can quickly reach the GitHub API limit without authentication.
@@ -310,8 +327,6 @@ get_gh_topics <- function(x) {
   token <- token[!token %in% c(NA, NULL, "")][1]
 
   ghtoken <- paste("token", token)
-
-  # nocov start
 
   # Try with GITHUB_TOKEN.
   res <- tryCatch(
@@ -344,20 +359,20 @@ get_gh_topics <- function(x) {
     )
   }
 
-  # nocov end
   if (isTRUE(res)) {
     return(NULL)
   }
 
-  remotetopics <- lapply(jsonlite::read_json(tmpfile)$topics, clean_str)
-  remotetopics <- unique(unlist(remotetopics))
+  jsonlite::read_json(tmpfile)$topics
+  # nocov end
+}
 
-  # If there are no topics, return NULL.
-  if (is.null(remotetopics)) {
-    return(NULL) # nocov
-  }
-
-  remotetopics
+gh_topics_api_url <- function(x) {
+  paste0(
+    "https://api.github.com/repos",
+    "/",
+    gsub("^http[a-z]://github.com/", "", x["repository-code"])
+  )
 }
 
 get_desc_sha <- function(pkg) {

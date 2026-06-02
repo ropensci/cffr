@@ -53,20 +53,180 @@ test_that("cff_read DESCRIPTION", {
 
   expect_identical(f1_1, f2_1)
 
-  skip_on_cran()
-  # With gh keywords
-  f <- system.file(
-    "examples/DESCRIPTION_posit_package_manager",
-    package = "cffr"
+  field_list <- list(
+    "repository-code" = "https://github.com/ropensci/cffr"
   )
-  fno <- cff_read_description(f, gh_keywords = FALSE)
-  f2 <- cff_read_description(f, gh_keywords = TRUE)
+  expect_equal(
+    gh_topics_api_url(field_list),
+    "https://api.github.com/repos/ropensci/cffr"
+  )
+})
 
-  # In some instances keywords are not retrieved
-  skip_if(is.null(f2$keywords), "keywords not gathered")
+test_that("DESCRIPTION URL helpers are deterministic", {
+  issues <- c(
+    "https://github.com/ropensci/cffr/issues",
+    "https://gitlab.com/org/pkg/-/issues"
+  )
+  expect_equal(
+    desc_clean_issue_url(issues),
+    c("https://github.com/ropensci/cffr", "https://gitlab.com/org/pkg")
+  )
 
-  expect_false(is.null(f2$keywords))
-  expect_gt(length(f2$keywords), length(fno$keywords))
+  urls <- c(
+    "https://pkgdown.example.org",
+    "https://codeberg.org/org/pkg",
+    "https://docs.example.org"
+  )
+  expect_equal(desc_repository_url_index(urls), 2)
+
+  primary <- desc_primary_url(urls[-2], "https://codeberg.org/org/pkg")
+  expect_equal(primary$url, "https://pkgdown.example.org")
+  expect_equal(primary$remaining, "https://docs.example.org")
+
+  fallback <- desc_primary_url(character(0), "https://github.com/org/pkg")
+  expect_equal(fallback$url, "https://github.com/org/pkg")
+  expect_equal(fallback$remaining, character(0))
+
+  identifiers <- desc_url_identifiers(
+    c("https://a.example", "https://b.example")
+  )
+  expect_equal(
+    identifiers,
+    list(
+      list(type = "url", value = "https://a.example"),
+      list(type = "url", value = "https://b.example")
+    )
+  )
+  expect_null(desc_url_identifiers(character(0)))
+  expect_equal(
+    desc_gh_keywords(c("r", "metadata"), c("metadata", "citation")),
+    c("r", "metadata", "citation")
+  )
+})
+
+test_that("DESCRIPTION repository helpers accept fixtures", {
+  basic_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
+
+  tmp <- tempfile("DESCRIPTION_basic")
+  file.copy(basic_path, tmp)
+
+  pkg <- desc::desc_set("Package", "fixturepkg", file = tmp)
+  avail <- data.frame(
+    Package = "fixturepkg",
+    Repository = "https://cloud.r-project.org/src/contrib"
+  )
+  repos <- c(CRAN = "https://cloud.r-project.org/")
+  testthat::local_mocked_bindings(
+    get_avail_on_init = function() avail,
+    detect_repos = function() repos,
+    .package = "cffr"
+  )
+
+  expect_equal(
+    cran_package_url("fixturepkg"),
+    "https://CRAN.R-project.org/package=fixturepkg"
+  )
+  expect_equal(
+    get_desc_repository(pkg),
+    "https://CRAN.R-project.org/package=fixturepkg"
+  )
+  expect_equal(
+    get_desc_doi(pkg),
+    "10.32614/CRAN.package.fixturepkg"
+  )
+})
+
+test_that("DESCRIPTION DOI returns NULL outside known repositories", {
+  basic_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
+
+  tmp <- tempfile("DESCRIPTION_basic")
+  file.copy(basic_path, tmp)
+
+  pkg <- desc::desc_set("Package", "fixturepkg", file = tmp)
+  empty_avail <- data.frame(
+    Package = character(0),
+    Repository = character(0)
+  )
+  testthat::local_mocked_bindings(
+    get_avail_on_init = function() empty_avail,
+    detect_repos = function() c(CRAN = "https://cloud.r-project.org/"),
+    .package = "cffr"
+  )
+
+  expect_null(get_desc_doi(pkg))
+})
+
+test_that("GitHub topics API URL is built without network calls", {
+  x <- c("repository-code" = "https://github.com/ropensci/cffr")
+  expect_equal(
+    gh_topics_api_url(x),
+    "https://api.github.com/repos/ropensci/cffr"
+  )
+
+  testthat::local_mocked_bindings(
+    fetch_gh_topics = function(api_url) {
+      expect_equal(api_url, "https://api.github.com/repos/ropensci/cffr")
+      c("r", "citation", "r")
+    },
+    .package = "cffr"
+  )
+
+  expect_equal(get_gh_topics(x), c("r", "citation"))
+})
+
+test_that("GitHub topics returns NULL when API has no topics", {
+  x <- c("repository-code" = "https://github.com/ropensci/cffr")
+
+  testthat::local_mocked_bindings(
+    fetch_gh_topics = function(...) {
+      list()
+    },
+    .package = "cffr"
+  )
+
+  expect_null(get_gh_topics(x))
+})
+
+test_that("GitHub topics returns NULL outside GitHub repositories", {
+  x <- c("repository-code" = "https://gitlab.com/ropensci/cffr")
+
+  testthat::local_mocked_bindings(
+    fetch_gh_topics = function(...) {
+      stop("fetch_gh_topics() should not be called")
+    },
+    .package = "cffr"
+  )
+
+  expect_null(get_gh_topics(x))
+})
+
+test_that("GitHub topics returns NULL when the API request fails", {
+  x <- c("repository-code" = "https://github.com/ropensci/cffr")
+
+  testthat::local_mocked_bindings(
+    fetch_gh_topics = function(...) {
+      NULL
+    },
+    .package = "cffr"
+  )
+
+  expect_null(get_gh_topics(x))
+})
+
+test_that("GitHub topics are cleaned before being used as keywords", {
+  x <- c("repository-code" = "https://github.com/ropensci/cffr")
+
+  testthat::local_mocked_bindings(
+    fetch_gh_topics = function(...) {
+      c(" R ", "", "citation", "R")
+    },
+    .package = "cffr"
+  )
+
+  expect_equal(
+    get_gh_topics(x),
+    c("R", "citation")
+  )
 })
 
 
