@@ -1,3 +1,5 @@
+
+
 <!-- README.md is generated from README.qmd. Please edit that file -->
 
 # cffr <a href="https://docs.ropensci.org/cffr/"><img src="man/figures/logo.png" alt="cffr website" align="right" height="139"/></a>
@@ -9,7 +11,8 @@
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/cffr?color=blue)](https://cran.r-project.org/package=cffr)
 [![R-CMD-check](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml)
 [![codecov](https://codecov.io/gh/ropensci/cffr/branch/main/graph/badge.svg?token=YRO3XL8RWK)](https://app.codecov.io/gh/ropensci/cffr)
-[![Coverage Status](https://coveralls.io/repos/github/ropensci/cffr/badge.svg?branch=main)](https://coveralls.io/github/ropensci/cffr?branch=main)
+[![Coverage
+Status](https://coveralls.io/repos/github/ropensci/cffr/badge.svg?branch=main)](https://coveralls.io/github/ropensci/cffr?branch=main)
 [![r-universe](https://ropensci.r-universe.dev/badges/cffr)](https://ropensci.r-universe.dev/cffr)
 [![CITATION-cff](https://github.com/ropensci/cffr/actions/workflows/cff-validator.yaml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/cff-validator.yaml)
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.03900/status.svg)](https://doi.org/10.21105/joss.03900)
@@ -78,7 +81,7 @@ and the `CITATION` file (if present) from your package. Note that
 **cffr** works best if your package passes
 `R CMD check/devtools::check()`.
 
-As per 2026-06-02 there are at least 546 repositories on GitHub using
+As per 2026-06-03 there are at least 568 repositories on GitHub using
 **cffr**. [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -86,20 +89,20 @@ here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
 Install **cffr** from [CRAN](https://CRAN.R-project.org/package=cffr):
 
-```r
+``` r
 install.packages("cffr")
 ```
 
 You can install the development version of **cffr** with:
 
-```r
+``` r
 pak::pak("ropensci/cffr")
 ```
 
 Alternatively, you can install **cffr** using the
 [r-universe](https://ropensci.r-universe.dev/cffr):
 
-```r
+``` r
 # Install **cffr** in R.
 install.packages(
   "cffr",
@@ -113,7 +116,7 @@ Most commonly, from within your package folder, you run `cff_write()`.
 It creates a `cff` object, writes it to a `CITATION.cff` file and
 validates it in a single command:
 
-```r
+``` r
 library(cffr)
 
 # For in-development packages.
@@ -133,7 +136,7 @@ This basic example shows how to create a `cff` object (see `?cff` for
 more information). In this case, we are creating a `cff` object from the
 metadata of the **knitr** package:
 
-```r
+``` r
 library(cffr)
 
 # Example with an installed package.
@@ -145,7 +148,6 @@ test <- cff_create("knitr")
 <summary>
 
 <code>CITATION.cff</code> for <strong>knitr</strong>
-
 </summary>
 
     cff-version: 1.2.0
@@ -177,6 +179,7 @@ test <- cff_create("knitr")
       url: https://yihui.org/knitr/
     repository: https://CRAN.R-project.org/package=knitr
     repository-code: https://github.com/yihui/knitr
+    commit: '1.51'
     url: https://yihui.org/knitr/
     date-released: '2025-12-20'
     contact:
@@ -345,23 +348,6 @@ test <- cff_create("knitr")
       year: '2026'
       doi: 10.32614/CRAN.package.bslib
     - type: software
-      title: DBI
-      abstract: 'DBI: R Database Interface'
-      notes: Suggests
-      url: https://dbi.r-dbi.org
-      repository: https://CRAN.R-project.org/package=DBI
-      authors:
-      - name: R Special Interest Group on Databases (R-SIG-DB)
-      - family-names: Wickham
-        given-names: Hadley
-      - family-names: Müller
-        given-names: Kirill
-        email: kirill@cynkra.com
-        orcid: https://orcid.org/0000-0002-1416-3412
-      year: '2026'
-      doi: 10.32614/CRAN.package.DBI
-      version: '>= 0.4-1'
-    - type: software
       title: digest
       abstract: 'digest: Create Compact Hash Digests of R Objects'
       notes: Suggests
@@ -374,21 +360,6 @@ test <- cff_create("knitr")
         orcid: https://orcid.org/0000-0001-6419-907X
       year: '2026'
       doi: 10.32614/CRAN.package.digest
-    - type: software
-      title: gifski
-      abstract: 'gifski: Highest Quality GIF Encoder'
-      notes: Suggests
-      url: https://r-rust.r-universe.dev/gifski
-      repository: https://CRAN.R-project.org/package=gifski
-      authors:
-      - family-names: Ooms
-        given-names: Jeroen
-        email: jeroenooms@gmail.com
-        orcid: https://orcid.org/0000-0002-4035-0289
-      - name: Kornel Lesiński
-      - name: Authors of the dependency Rust crates
-      year: '2026'
-      doi: 10.32614/CRAN.package.gifski
     - type: software
       title: htmlwidgets
       abstract: 'htmlwidgets: HTML Widgets for R'
@@ -415,19 +386,6 @@ test <- cff_create("knitr")
       doi: 10.32614/CRAN.package.htmlwidgets
       version: '>= 0.7'
     - type: software
-      title: jpeg
-      abstract: 'jpeg: Read and write JPEG images'
-      notes: Suggests
-      url: https://www.rforge.net/jpeg/
-      repository: https://CRAN.R-project.org/package=jpeg
-      authors:
-      - family-names: Urbanek
-        given-names: Simon
-        email: Simon.Urbanek@r-project.org
-        orcid: https://orcid.org/0000-0003-2297-1732
-      year: '2026'
-      doi: 10.32614/CRAN.package.jpeg
-    - type: software
       title: magick
       abstract: 'magick: Advanced Graphics and Image-Processing in R'
       notes: Suggests
@@ -441,37 +399,6 @@ test <- cff_create("knitr")
       year: '2026'
       doi: 10.32614/CRAN.package.magick
     - type: software
-      title: litedown
-      abstract: 'litedown: A Lightweight Version of R Markdown'
-      notes: Suggests
-      url: https://github.com/yihui/litedown
-      repository: https://CRAN.R-project.org/package=litedown
-      authors:
-      - family-names: Xie
-        given-names: Yihui
-        email: xie@yihui.name
-        orcid: https://orcid.org/0000-0003-0645-5666
-      year: '2026'
-      doi: 10.32614/CRAN.package.litedown
-    - type: software
-      title: markdown
-      abstract: 'markdown: Render Markdown with ''commonmark'''
-      notes: Suggests
-      url: https://github.com/rstudio/markdown
-      repository: https://CRAN.R-project.org/package=markdown
-      authors:
-      - family-names: Xie
-        given-names: Yihui
-        email: xie@yihui.name
-        orcid: https://orcid.org/0000-0003-0645-5666
-      - family-names: Allaire
-        given-names: JJ
-      - family-names: Horner
-        given-names: Jeffrey
-      year: '2026'
-      doi: 10.32614/CRAN.package.markdown
-      version: '>= 1.3'
-    - type: software
       title: otel
       abstract: 'otel: OpenTelemetry R API'
       notes: Suggests
@@ -483,19 +410,6 @@ test <- cff_create("knitr")
         email: csardi.gabor@gmail.com
       year: '2026'
       doi: 10.32614/CRAN.package.otel
-    - type: software
-      title: png
-      abstract: 'png: Read and write PNG images'
-      notes: Suggests
-      url: https://www.rforge.net/png/
-      repository: https://CRAN.R-project.org/package=png
-      authors:
-      - family-names: Urbanek
-        given-names: Simon
-        email: Simon.Urbanek@r-project.org
-        orcid: https://orcid.org/0000-0003-2297-1732
-      year: '2026'
-      doi: 10.32614/CRAN.package.png
     - type: software
       title: ragg
       abstract: 'ragg: Graphic Devices Based on AGG'
@@ -598,18 +512,6 @@ test <- cff_create("knitr")
       year: '2026'
       doi: 10.32614/CRAN.package.sass
     - type: software
-      title: showtext
-      abstract: 'showtext: Using Fonts More Easily in R Graphs'
-      notes: Suggests
-      url: https://github.com/yixuan/showtext
-      repository: https://CRAN.R-project.org/package=showtext
-      authors:
-      - family-names: Qiu
-        given-names: Yixuan
-        email: yixuan.qiu@cos.name
-      year: '2026'
-      doi: 10.32614/CRAN.package.showtext
-    - type: software
       title: styler
       abstract: 'styler: Non-Invasive Pretty Printing of R Code'
       notes: Suggests
@@ -687,7 +589,7 @@ test <- cff_create("knitr")
 
 We can validate the result using `cff_validate()`:
 
-```r
+``` r
 cff_validate(test)
 #> ══ Validating cff ══════════════════════════════════════════════════════════════
 ```
@@ -710,7 +612,7 @@ that updates your `CITATION.cff` file in the following cases:
 - Each time you modify your `DESCRIPTION` or `inst/CITATION` files.
 - The action can also be run manually.
 
-```r
+``` r
 cff_gha_update()
 
 #> ✔ Installing ./.github/workflows/update-citation-cff.yaml.
@@ -774,7 +676,7 @@ for R Packages. Journal of Open Source Software, 6(67), 3900,
 
 A BibTeX entry for LaTeX users is:
 
-```bibtex
+``` bibtex
 @article{hernangomez2021,
     title        = {{cffr}: Generate Citation File Format Metadata for {R} Packages},
     author       = {Diego Hernangómez},
@@ -803,8 +705,8 @@ for more information.
 <div id="ref-codemeta" class="csl-entry">
 
 Boettiger, Carl, and Maëlle Salmon. 2021.
-_<span class="nocase">codemeta</span>: A Smaller
-<span class="nocase">codemetar</span> Package_.
+*<span class="nocase">codemeta</span>: A Smaller
+<span class="nocase">codemetar</span> Package*.
 <https://doi.org/10.32614/CRAN.package.codemeta>.
 
 </div>
@@ -812,15 +714,15 @@ _<span class="nocase">codemeta</span>: A Smaller
 <div id="ref-codemetar2021" class="csl-entry">
 
 Boettiger, Carl, and Maëlle Salmon. 2026.
-_<span class="nocase">codemetar</span>: Generate ’CodeMeta’ Metadata for
-R Packages_. <https://doi.org/10.32614/CRAN.package.codemetar>.
+*<span class="nocase">codemetar</span>: Generate ’CodeMeta’ Metadata for
+R Packages*. <https://doi.org/10.32614/CRAN.package.codemetar>.
 
 </div>
 
 <div id="ref-handlr" class="csl-entry">
 
 Chamberlain, Scott, and Brenton M. Wiernik. 2025.
-_<span class="nocase">handlr</span>: Convert Among Citation Formats_.
+*<span class="nocase">handlr</span>: Convert Among Citation Formats*.
 <https://doi.org/10.32614/CRAN.package.handlr>.
 
 </div>
@@ -828,15 +730,15 @@ _<span class="nocase">handlr</span>: Convert Among Citation Formats_.
 <div id="ref-citation22" class="csl-entry">
 
 Dietrich, Jan Philipp, and Waldir Leoncio. 2025.
-_<span class="nocase">citation</span>: Software Citation Tools_.
+*<span class="nocase">citation</span>: Software Citation Tools*.
 <https://doi.org/10.32614/CRAN.package.citation>.
 
 </div>
 
 <div id="ref-druskat_stephan_making_2021" class="csl-entry">
 
-Druskat, Stephan. 2021. _Making Software Citation Easi(er) - The
-Citation File Format and Its Integrations_. Version 1.
+Druskat, Stephan. 2021. *Making Software Citation Easi(er) - The
+Citation File Format and Its Integrations*. Version 1.
 <https://doi.org/10.5281/zenodo.5529914>.
 
 </div>
@@ -844,31 +746,31 @@ Citation File Format and Its Integrations_. Version 1.
 <div id="ref-druskat_citation_2021" class="csl-entry">
 
 Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, et al. 2021.
-_Citation File Format_. <https://doi.org/10.5281/zenodo.5171937>.
+*Citation File Format*. <https://doi.org/10.5281/zenodo.5171937>.
 
 </div>
 
 <div id="ref-fenner2021" class="csl-entry">
 
-Fenner, Martin. 2021. _We Need Your Feedback: Aligning the CodeMeta
-Vocabulary for Scientific Software with Schema.org_.
+Fenner, Martin. 2021. *We Need Your Feedback: Aligning the CodeMeta
+Vocabulary for Scientific Software with Schema.org*.
 <https://doi.org/10.5438/a49j-x692>.
 
 </div>
 
 <div id="ref-hernangomez_cffr_2021" class="csl-entry">
 
-Hernangómez, Diego. 2021a. _<span class="nocase">cffr</span>: Create a
-<span class="nocase">CITATION.cff</span> File for Your R Package_.
+Hernangómez, Diego. 2021a. *<span class="nocase">cffr</span>: Create a
+<span class="nocase">CITATION.cff</span> File for Your R Package*.
 rOpenSci. <https://doi.org/10.59350/p37gh-f4s56>.
 
 </div>
 
 <div id="ref-hernangomez_test_2021" class="csl-entry">
 
-Hernangómez, Diego. 2021b. _How i Test <span class="nocase">cffr</span>
+Hernangómez, Diego. 2021b. *How i Test <span class="nocase">cffr</span>
 on about 2,000 Packages Using GitHub Actions and
-<span class="nocase">R-universe</span>_. rOpenSci.
+<span class="nocase">R-universe</span>*. rOpenSci.
 <https://doi.org/10.59350/8bpby-4aw08>.
 
 </div>
@@ -876,16 +778,18 @@ on about 2,000 Packages Using GitHub Actions and
 <div id="ref-jones2017" class="csl-entry">
 
 Jones, Matthew B, Carl Boettiger, Abby Cabunoc Mayes, et al. 2017.
-_CodeMeta: An Exchange Schema for Software Metadata_. KNB Data
+*CodeMeta: An Exchange Schema for Software Metadata*. KNB Data
 Repository. <https://doi.org/10.5063/SCHEMA/CODEMETA-2.0>.
 
 </div>
 
 <div id="ref-smith2021" class="csl-entry">
 
-Smith, Arfon. 2021. _Enhanced Support for Citations on
-GitHub_.[https://github.blog/news-insights/company-news/enhanced-support-citations-github/
-](https://github.blog/news-insights/company-news/enhanced-support-citations-github/).
+Smith, Arfon. 2021. *Enhanced Support for Citations on
+GitHub*.[https://github.blog/news-insights/company-news/enhanced-support-citations-github/
+](
+		https://github.blog/news-insights/company-news/enhanced-support-citations-github/
+	).
 
 </div>
 
