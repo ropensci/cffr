@@ -26,6 +26,7 @@ knitr:
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/cffr?color=blue)](https://cran.r-project.org/package=cffr)
 [![R-CMD-check](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml)
 [![codecov](https://codecov.io/gh/ropensci/cffr/branch/main/graph/badge.svg?token=YRO3XL8RWK)](https://app.codecov.io/gh/ropensci/cffr)
+[![Coverage Status](https://coveralls.io/repos/github/ropensci/cffr/badge.svg?branch=main)](https://coveralls.io/github/ropensci/cffr?branch=main)
 [![r-universe](https://ropensci.r-universe.dev/badges/cffr)](https://ropensci.r-universe.dev/cffr)
 [![CITATION-cff](https://github.com/ropensci/cffr/actions/workflows/cff-validator.yaml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/cff-validator.yaml)
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.03900/status.svg)](https://doi.org/10.21105/joss.03900)

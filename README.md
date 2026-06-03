@@ -1,5 +1,3 @@
-
-
 <!-- README.md is generated from README.qmd. Please edit that file -->
 
 # cffr <a href="https://docs.ropensci.org/cffr/"><img src="man/figures/logo.png" alt="cffr website" align="right" height="139"/></a>
@@ -11,6 +9,7 @@
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/cffr?color=blue)](https://cran.r-project.org/package=cffr)
 [![R-CMD-check](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml)
 [![codecov](https://codecov.io/gh/ropensci/cffr/branch/main/graph/badge.svg?token=YRO3XL8RWK)](https://app.codecov.io/gh/ropensci/cffr)
+[![Coverage Status](https://coveralls.io/repos/github/ropensci/cffr/badge.svg?branch=main)](https://coveralls.io/github/ropensci/cffr?branch=main)
 [![r-universe](https://ropensci.r-universe.dev/badges/cffr)](https://ropensci.r-universe.dev/cffr)
 [![CITATION-cff](https://github.com/ropensci/cffr/actions/workflows/cff-validator.yaml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/cff-validator.yaml)
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.03900/status.svg)](https://doi.org/10.21105/joss.03900)
@@ -87,20 +86,20 @@ here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
 Install **cffr** from [CRAN](https://CRAN.R-project.org/package=cffr):
 
-``` r
+```r
 install.packages("cffr")
 ```
 
 You can install the development version of **cffr** with:
 
-``` r
+```r
 pak::pak("ropensci/cffr")
 ```
 
 Alternatively, you can install **cffr** using the
 [r-universe](https://ropensci.r-universe.dev/cffr):
 
-``` r
+```r
 # Install **cffr** in R.
 install.packages(
   "cffr",
@@ -114,7 +113,7 @@ Most commonly, from within your package folder, you run `cff_write()`.
 It creates a `cff` object, writes it to a `CITATION.cff` file and
 validates it in a single command:
 
-``` r
+```r
 library(cffr)
 
 # For in-development packages.
@@ -134,7 +133,7 @@ This basic example shows how to create a `cff` object (see `?cff` for
 more information). In this case, we are creating a `cff` object from the
 metadata of the **knitr** package:
 
-``` r
+```r
 library(cffr)
 
 # Example with an installed package.
@@ -146,6 +145,7 @@ test <- cff_create("knitr")
 <summary>
 
 <code>CITATION.cff</code> for <strong>knitr</strong>
+
 </summary>
 
     cff-version: 1.2.0
@@ -687,7 +687,7 @@ test <- cff_create("knitr")
 
 We can validate the result using `cff_validate()`:
 
-``` r
+```r
 cff_validate(test)
 #> ══ Validating cff ══════════════════════════════════════════════════════════════
 ```
@@ -710,7 +710,7 @@ that updates your `CITATION.cff` file in the following cases:
 - Each time you modify your `DESCRIPTION` or `inst/CITATION` files.
 - The action can also be run manually.
 
-``` r
+```r
 cff_gha_update()
 
 #> ✔ Installing ./.github/workflows/update-citation-cff.yaml.
@@ -774,7 +774,7 @@ for R Packages. Journal of Open Source Software, 6(67), 3900,
 
 A BibTeX entry for LaTeX users is:
 
-``` bibtex
+```bibtex
 @article{hernangomez2021,
     title        = {{cffr}: Generate Citation File Format Metadata for {R} Packages},
     author       = {Diego Hernangómez},
@@ -803,8 +803,8 @@ for more information.
 <div id="ref-codemeta" class="csl-entry">
 
 Boettiger, Carl, and Maëlle Salmon. 2021.
-*<span class="nocase">codemeta</span>: A Smaller
-<span class="nocase">codemetar</span> Package*.
+_<span class="nocase">codemeta</span>: A Smaller
+<span class="nocase">codemetar</span> Package_.
 <https://doi.org/10.32614/CRAN.package.codemeta>.
 
 </div>
@@ -812,15 +812,15 @@ Boettiger, Carl, and Maëlle Salmon. 2021.
 <div id="ref-codemetar2021" class="csl-entry">
 
 Boettiger, Carl, and Maëlle Salmon. 2026.
-*<span class="nocase">codemetar</span>: Generate ’CodeMeta’ Metadata for
-R Packages*. <https://doi.org/10.32614/CRAN.package.codemetar>.
+_<span class="nocase">codemetar</span>: Generate ’CodeMeta’ Metadata for
+R Packages_. <https://doi.org/10.32614/CRAN.package.codemetar>.
 
 </div>
 
 <div id="ref-handlr" class="csl-entry">
 
 Chamberlain, Scott, and Brenton M. Wiernik. 2025.
-*<span class="nocase">handlr</span>: Convert Among Citation Formats*.
+_<span class="nocase">handlr</span>: Convert Among Citation Formats_.
 <https://doi.org/10.32614/CRAN.package.handlr>.
 
 </div>
@@ -828,15 +828,15 @@ Chamberlain, Scott, and Brenton M. Wiernik. 2025.
 <div id="ref-citation22" class="csl-entry">
 
 Dietrich, Jan Philipp, and Waldir Leoncio. 2025.
-*<span class="nocase">citation</span>: Software Citation Tools*.
+_<span class="nocase">citation</span>: Software Citation Tools_.
 <https://doi.org/10.32614/CRAN.package.citation>.
 
 </div>
 
 <div id="ref-druskat_stephan_making_2021" class="csl-entry">
 
-Druskat, Stephan. 2021. *Making Software Citation Easi(er) - The
-Citation File Format and Its Integrations*. Version 1.
+Druskat, Stephan. 2021. _Making Software Citation Easi(er) - The
+Citation File Format and Its Integrations_. Version 1.
 <https://doi.org/10.5281/zenodo.5529914>.
 
 </div>
@@ -844,31 +844,31 @@ Citation File Format and Its Integrations*. Version 1.
 <div id="ref-druskat_citation_2021" class="csl-entry">
 
 Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, et al. 2021.
-*Citation File Format*. <https://doi.org/10.5281/zenodo.5171937>.
+_Citation File Format_. <https://doi.org/10.5281/zenodo.5171937>.
 
 </div>
 
 <div id="ref-fenner2021" class="csl-entry">
 
-Fenner, Martin. 2021. *We Need Your Feedback: Aligning the CodeMeta
-Vocabulary for Scientific Software with Schema.org*.
+Fenner, Martin. 2021. _We Need Your Feedback: Aligning the CodeMeta
+Vocabulary for Scientific Software with Schema.org_.
 <https://doi.org/10.5438/a49j-x692>.
 
 </div>
 
 <div id="ref-hernangomez_cffr_2021" class="csl-entry">
 
-Hernangómez, Diego. 2021a. *<span class="nocase">cffr</span>: Create a
-<span class="nocase">CITATION.cff</span> File for Your R Package*.
+Hernangómez, Diego. 2021a. _<span class="nocase">cffr</span>: Create a
+<span class="nocase">CITATION.cff</span> File for Your R Package_.
 rOpenSci. <https://doi.org/10.59350/p37gh-f4s56>.
 
 </div>
 
 <div id="ref-hernangomez_test_2021" class="csl-entry">
 
-Hernangómez, Diego. 2021b. *How i Test <span class="nocase">cffr</span>
+Hernangómez, Diego. 2021b. _How i Test <span class="nocase">cffr</span>
 on about 2,000 Packages Using GitHub Actions and
-<span class="nocase">R-universe</span>*. rOpenSci.
+<span class="nocase">R-universe</span>_. rOpenSci.
 <https://doi.org/10.59350/8bpby-4aw08>.
 
 </div>
@@ -876,18 +876,16 @@ on about 2,000 Packages Using GitHub Actions and
 <div id="ref-jones2017" class="csl-entry">
 
 Jones, Matthew B, Carl Boettiger, Abby Cabunoc Mayes, et al. 2017.
-*CodeMeta: An Exchange Schema for Software Metadata*. KNB Data
+_CodeMeta: An Exchange Schema for Software Metadata_. KNB Data
 Repository. <https://doi.org/10.5063/SCHEMA/CODEMETA-2.0>.
 
 </div>
 
 <div id="ref-smith2021" class="csl-entry">
 
-Smith, Arfon. 2021. *Enhanced Support for Citations on
-GitHub*.[https://github.blog/news-insights/company-news/enhanced-support-citations-github/
-](
-		https://github.blog/news-insights/company-news/enhanced-support-citations-github/
-	).
+Smith, Arfon. 2021. _Enhanced Support for Citations on
+GitHub_.[https://github.blog/news-insights/company-news/enhanced-support-citations-github/
+](https://github.blog/news-insights/company-news/enhanced-support-citations-github/).
 
 </div>
 
