@@ -283,7 +283,7 @@ test_that("cff_read CITATION_basic", {
   path <- system.file("examples/CITATION_basic", package = "cffr")
   a_cff <- cff_read(path, my_meta)
   expect_s3_class(a_cff, c("cff_ref_lst", "cff"), exact = TRUE)
-  expect_equal(length(a_cff), 2)
+  expect_length(a_cff, 2)
 })
 
 test_that("cff_read CITATION with no encoding", {
@@ -303,7 +303,7 @@ test_that("cff_read CITATION_auto", {
 
   a_cff <- cff_read(cit_path, my_meta)
 
-  expect_equal(length(a_cff), 3)
+  expect_length(a_cff, 3)
 })
 
 test_that("cff_read CITATION_rmarkdown", {
@@ -313,7 +313,7 @@ test_that("cff_read CITATION_rmarkdown", {
   my_meta <- desc_to_meta(desc_path)
   a_cff <- cff_read(cit_path, my_meta)
 
-  expect_equal(length(a_cff), 3)
+  expect_length(a_cff, 3)
 })
 
 test_that("cff_read_safe CITATION_basic", {
@@ -322,7 +322,7 @@ test_that("cff_read_safe CITATION_basic", {
   a_cff <- cff_safe_read_citation(desc_path, cit_path)
 
   expect_s3_class(a_cff, c("cff_ref_lst", "cff"), exact = TRUE)
-  expect_equal(length(a_cff), 2)
+  expect_length(a_cff, 2)
 })
 
 test_that("cff_read_safe CITATION with no encoding", {
@@ -332,7 +332,7 @@ test_that("cff_read_safe CITATION with no encoding", {
   a_cff <- cff_safe_read_citation(desc_path, cit_path)
 
   expect_s3_class(a_cff, c("cff_ref_lst", "cff"), exact = TRUE)
-  expect_equal(length(a_cff), 2)
+  expect_length(a_cff, 2)
 })
 
 test_that("cff_read_safe CITATION_auto", {
@@ -342,7 +342,7 @@ test_that("cff_read_safe CITATION_auto", {
   a_cff <- cff_safe_read_citation(desc_path, cit_path)
 
   expect_s3_class(a_cff, c("cff_ref_lst", "cff"), exact = TRUE)
-  expect_equal(length(a_cff), 3)
+  expect_length(a_cff, 3)
 })
 
 test_that("cff_read_safe CITATION_rmarkdown", {
@@ -352,7 +352,7 @@ test_that("cff_read_safe CITATION_rmarkdown", {
   a_cff <- cff_safe_read_citation(desc_path, cit_path)
 
   expect_s3_class(a_cff, c("cff_ref_lst", "cff"), exact = TRUE)
-  expect_equal(length(a_cff), 3)
+  expect_length(a_cff, 3)
 })
 
 

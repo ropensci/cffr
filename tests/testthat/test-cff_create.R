@@ -227,7 +227,7 @@ test_that("No date coerced in DESCRIPTION without it", {
 
   a_cff <- cff_create(desc_path, keys = list(references = NULL))
 
-  expect_true(is.null(a_cff$`date-released`))
+  expect_null(a_cff$`date-released`)
 
   expect_s3_class(a_cff, "cff")
   expect_true(cff_validate(a_cff, verbose = FALSE))

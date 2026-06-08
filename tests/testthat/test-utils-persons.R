@@ -6,7 +6,7 @@ test_that("Test first von last", {
   x <- "AA BB"
 
   res <- create_person_from_txt(x)
-  expect_true(is.list(res))
+  expect_type(res, "list")
 
   expect_snapshot(unlist(res))
 
@@ -70,7 +70,7 @@ test_that("Test von Last, First", {
   x <- "bb CC, AA"
 
   res <- create_person_from_txt(x)
-  expect_true(is.list(res))
+  expect_type(res, "list")
 
   expect_snapshot(unlist(res))
 
@@ -105,7 +105,7 @@ test_that("Test von Last, Jr,  First", {
   x <- "bb CC,XX, AA"
 
   res <- create_person_from_txt(x)
-  expect_true(is.list(res))
+  expect_type(res, "list")
 
   expect_snapshot(unlist(res))
 
@@ -128,7 +128,7 @@ test_that("Rest of cases", {
   x <- "David, and, Jr, another, Sammy"
 
   res <- create_person_from_txt(x)
-  expect_true(is.list(res))
+  expect_type(res, "list")
   expect_length(res, 1)
 
   expect_snapshot(unlist(res))

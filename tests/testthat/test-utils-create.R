@@ -96,5 +96,5 @@ test_that("Utils coverage", {
     title = "foo",
     type = "software"
   )))
-  expect_equal(names(ordered), c("type", "title", "repository", "year"))
+  expect_named(ordered, c("type", "title", "repository", "year"))
 })

@@ -11,9 +11,9 @@ test_that("as data frame complete", {
 
   # lengths
   allf <- unlist(the_cff, recursive = TRUE, use.names = FALSE)
-  expect_identical(length(allf), ncol(the_df))
+  expect_length(allf, ncol(the_df))
 
-  expect_identical(ncol(the_df), length(unique(names(the_df))))
+  expect_length(unique(names(the_df)), ncol(the_df))
 
   # As vector
   df_as_v <- as.character(as.vector(the_df[1, ]))
@@ -34,8 +34,8 @@ test_that("as data frame partial", {
   expect_equal(nrow(the_df), 1)
   # lengths
   allf <- unlist(subcff, recursive = TRUE, use.names = FALSE)
-  expect_identical(length(allf), ncol(the_df))
-  expect_identical(ncol(the_df), length(unique(names(the_df))))
+  expect_length(allf, ncol(the_df))
+  expect_length(unique(names(the_df)), ncol(the_df))
 
   # To df references only
   subcff <- the_cff$references[[1]]
@@ -44,8 +44,8 @@ test_that("as data frame partial", {
   expect_equal(nrow(the_df), 1)
   # lengths
   allf <- unlist(subcff, recursive = TRUE, use.names = FALSE)
-  expect_identical(length(allf), ncol(the_df))
-  expect_identical(ncol(the_df), length(unique(names(the_df))))
+  expect_length(allf, ncol(the_df))
+  expect_length(unique(names(the_df)), ncol(the_df))
 })
 
 test_that("Convert a citation only", {
@@ -62,9 +62,9 @@ test_that("Convert a citation only", {
 
   # lengths
   allf <- unlist(the_cff, recursive = TRUE, use.names = FALSE)
-  expect_identical(length(allf), ncol(the_df))
+  expect_length(allf, ncol(the_df))
 
-  expect_identical(ncol(the_df), length(unique(names(the_df))))
+  expect_length(unique(names(the_df)), ncol(the_df))
 
   # As vector
   df_as_v <- as.character(as.vector(the_df[1, ]))
@@ -89,9 +89,9 @@ test_that("Convert authors only", {
 
   # lengths
   allf <- unlist(the_cff, recursive = TRUE, use.names = FALSE)
-  expect_identical(length(allf), ncol(the_df))
+  expect_length(allf, ncol(the_df))
 
-  expect_identical(ncol(the_df), length(unique(names(the_df))))
+  expect_length(unique(names(the_df)), ncol(the_df))
 
   # As vector
   df_as_v <- as.character(as.vector(the_df[1, ]))
@@ -113,9 +113,9 @@ test_that("Convert list of authors", {
 
   # lengths
   allf <- unlist(the_cff, recursive = TRUE, use.names = FALSE)
-  expect_identical(length(allf), ncol(the_df))
+  expect_length(allf, ncol(the_df))
 
-  expect_identical(ncol(the_df), length(unique(names(the_df))))
+  expect_length(unique(names(the_df)), ncol(the_df))
 
   # As vector
   df_as_v <- as.character(as.vector(the_df[1, ]))
