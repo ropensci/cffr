@@ -1,5 +1,6 @@
 [lint]
 ignore = ["implicit_assignment", "duplicated_arguments"]
+exclude = ["tests/testthat/test_ci/*"]
 extend-select = ["TESTTHAT"]
 check-roxygen = true
 fix-roxygen = true
