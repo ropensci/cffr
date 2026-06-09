@@ -18,7 +18,7 @@ clean_str <- function(str) {
   # Collapse to a single character value.
   clean <- paste(clean, collapse = " ")
 
-  if (clean == "") {
+  if (!nzchar(clean)) {
     return(NULL)
   }
   # Normalize encoding.

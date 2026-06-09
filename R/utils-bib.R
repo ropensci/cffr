@@ -68,10 +68,8 @@ guess_bibtype <- function(x) {
 
   # Try to guess incollection ----
   # Hint: it is misc with collection-title and publisher.
-  if (init_guess == "misc") {
-    if (!is.null(clean_str(x$`collection-title`))) {
-      return("incollection")
-    }
+  if ((init_guess == "misc") && (!is.null(clean_str(x$`collection-title`)))) {
+    return("incollection")
   }
 
   init_guess

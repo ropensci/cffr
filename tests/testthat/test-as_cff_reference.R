@@ -462,7 +462,7 @@ test_that("Unpublished", {
     note = "Unpublished manuscript, UCLA",
     # Optional
     year = "1977",
-    month = "aug",
+    month = "aug"
   )
 
   bib_cff <- as_cff(bib)
@@ -536,7 +536,7 @@ test_that("Test entry without author", {
     venue = "Leuven, Belgium",
     month = "apr",
     year = 2006,
-    isbn = "1-59593-322-02",
+    isbn = "1-59593-322-02"
   )
 
   bib_cff <- as_cff(bib)
@@ -564,7 +564,7 @@ test_that("Test entry without author but has a key", {
     venue = "Leuven, Belgium",
     month = "apr",
     year = 2006,
-    isbn = "1-59593-322-02",
+    isbn = "1-59593-322-02"
   )
 
   bib_cff <- as_cff(bib)
@@ -592,7 +592,7 @@ test_that("Test entry without author and key", {
     venue = "Leuven, Belgium",
     month = "apr",
     year = 2006,
-    isbn = "1-59593-322-02",
+    isbn = "1-59593-322-02"
   )
 
   bib_cff <- as_cff(bib)

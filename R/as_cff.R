@@ -192,13 +192,14 @@ rapply_class <- function(x) {
     }
 
     # Handle single-value languages.
-    if (all(guess == "cff_ref", "languages" %in% names(xelement))) {
-      if (length(xelement$languages) < 2) {
-        xelement$languages <- list(unlist(
-          xelement$languages,
-          use.names = FALSE
-        ))
-      }
+    if (
+      (all(guess == "cff_ref", "languages" %in% names(xelement))) &&
+        (length(xelement$languages) < 2)
+    ) {
+      xelement$languages <- list(unlist(
+        xelement$languages,
+        use.names = FALSE
+      ))
     }
 
     if (guess == "cff_ref_lst") {
@@ -206,10 +207,8 @@ rapply_class <- function(x) {
         j_in <- rapply_class(j)
         class(j_in) <- c("cff_ref", "cff")
         # Handle single-value languages.
-        if ("languages" %in% names(j_in)) {
-          if (length(j_in$languages) < 2) {
-            j_in$languages <- list(unlist(j_in$languages, use.names = FALSE))
-          }
+        if (("languages" %in% names(j_in)) && (length(j_in$languages) < 2)) {
+          j_in$languages <- list(unlist(j_in$languages, use.names = FALSE))
         }
         j_in
       })

@@ -92,7 +92,7 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
   if (!result) {
     get_errors <- attr(result, "errors")
     field <- get_errors$instancePath
-    field[field == ""] <- "/"
+    field[!nzchar(field)] <- "/"
     field <- paste0("cff", field)
     get_errors$field <- field
     msg <- get_errors$message

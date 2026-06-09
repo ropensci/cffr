@@ -97,7 +97,7 @@ validate_extra_keys <- function(cffobj, argname = "...") {
     cli::cli_abort("Elements in {.arg {argname}} should be named.")
   }
 
-  if (any(has_names == "")) {
+  if (!all(nzchar(has_names))) {
     # nolint start
     # For printing only.
     index <- as.character(which(has_names %in% ""))
@@ -107,7 +107,7 @@ validate_extra_keys <- function(cffobj, argname = "...") {
       "Found {length(index)} unnamed argument{?s} in position{?s} {index}."
     )
     cli::cli_alert_info("Removing unnamed arguments.")
-    cffobj <- cffobj[has_names != ""]
+    cffobj <- cffobj[nzchar(has_names)]
   }
   cffobj
 }
