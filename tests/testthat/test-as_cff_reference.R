@@ -719,6 +719,7 @@ test_that("Duplicate entries", {
 })
 
 test_that("Identifiers and dois", {
+  # jarl-ignore-start duplicated_arguments: Testing edge case.
   bib <- bibentry(
     bibtype = "Manual",
     title = "A Language and Environment for Statistical Computing",
@@ -734,6 +735,7 @@ test_that("Identifiers and dois", {
     doi = "10.5281/zenodo.5366602",
     identifiers = "a,b"
   )
+  # jarl-ignore-end duplicated_arguments
 
   bib_cff <- as_cff(bib)
   sin <- bib_cff[[1]]

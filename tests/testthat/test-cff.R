@@ -75,6 +75,7 @@ test_that("Fuzzy matching of keys on cff", {
 })
 
 test_that("duplicated", {
+  # jarl-ignore-start duplicated_arguments: Testing edge case.
   expect_snapshot(
     ss <- cff(
       tittle = "a",
@@ -83,6 +84,7 @@ test_that("duplicated", {
       messange = "Fix my keys"
     )
   )
+  # jarl-ignore-end duplicated_arguments
 
   expect_s3_class(ss, "cff")
   expect_length(ss, 3)

@@ -1,7 +1,7 @@
 [lint]
-ignore = ["implicit_assignment", "duplicated_arguments"]
+ignore = ["implicit_assignment"]
 exclude = ["tests/testthat/test_ci/*"]
-extend-select = ["TESTTHAT", "DPLYR", "unnecessary_nesting", "nzchar", "quotes"]
+extend-select = ["TESTTHAT", "DPLYR", "unnecessary_nesting", "nzchar", "quotes", "fixed_regex"]
 check-roxygen = true
 fix-roxygen = true
 

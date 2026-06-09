@@ -34,6 +34,8 @@ knitr:
 
 ```{r}
 #| include: false
+# jarl-ignore-file fixed_regex: Not production code.
+
 library(cffr)
 # Load the table of tables.
 
