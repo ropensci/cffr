@@ -32,7 +32,8 @@ A character vector with the names of valid keys for Citation File Format
 version 1.2.0.
 }
 \description{
-Helper functions with the valid values of different fields, according to the
+Helper functions with the valid values of different keys and definition
+fields, according to the
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema version 1.2.0}.
 \itemize{
 \item \code{\link[=cff_schema_keys]{cff_schema_keys()}} provides the valid high-level keys of the Citation

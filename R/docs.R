@@ -14,9 +14,9 @@
 #'   <https://adv-r.hadley.nz/s3.html>.
 #'
 #' @family s3method
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @name cff_class
 #' @aliases cff_ref cff_ref_lst cff_pers cff_pers_lst
 #' @keywords internal
+#' @encoding UTF-8
 NULL

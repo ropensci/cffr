@@ -6,10 +6,10 @@
 #' transformation (`bibentry` object to [`cff_ref_lst`]) can be done with the
 #' corresponding [as_cff.bibentry()] method.
 #'
-#' With [`toBibtex()`][toBibtex.cff()] it is possible to convert [`cff`]
+#' With [`toBibtex()`][toBibtex.cff()], you can convert [`cff`]
 #' objects to BibTeX markup on the fly. See **Examples**.
 #'
-#' @param x The source used to generate the `bibentry` object via
+#' @param x The source used to generate the `bibentry` object with
 #'   \CRANpkg{cffr}. It can be:
 #'   - A missing value, which retrieves the `DESCRIPTION` file from your
 #'     in-development package.
@@ -18,15 +18,18 @@
 #'   - Path to a `CITATION.cff` file (`"CITATION.cff"`).
 #'   - The name of an installed package (`"jsonlite"`).
 #'   - Path to a `DESCRIPTION` file (`"DESCRIPTION"`).
-#' @param ... Additional arguments to be passed to or from methods.
+#' @param ... Additional arguments passed to or from methods.
 #'
-#' @param what Fields to extract from a full `cff` object. The value could be:
+#' @param what Fields to extract from a full `cff` object. It can be:
 #'   - `preferred`: Create a single entry with the main citation information
 #'     of the package (key `preferred-citation`).
 #'   - `references`: Extract all entries of the `references` key.
 #'   - `all`: Extract both the `preferred-citation` and `references` keys.
 #'
 #' See `vignette("r-cff", package = "cffr")`.
+#'
+#' @return
+#' `as_bibentry()` returns a `bibentry` object with one or more entries.
 #'
 #' @details
 #' An \R `bibentry` object is the representation of a BibTeX entry. These
@@ -37,9 +40,6 @@
 #' `as_bibentry()` tries to map the information of the source `x` into a [`cff`]
 #' object and performs a mapping of the metadata to BibTeX, according to
 #' `vignette("bibtex-cff", package = "cffr")`.
-#'
-#' @return
-#' `as_bibentry()` returns a `bibentry` object with one or more entries.
 #'
 #' @references
 #' - Patashnik, Oren. "BIBTEXTING" February 1988.
@@ -68,14 +68,14 @@
 #'
 #' @family bibtex
 #' @family s3method
-#' @export
-#' @encoding UTF-8
 #' @rdname as_bibentry
 #' @name as_bibentry
 #' @order 1
+#' @export
+#' @encoding UTF-8
 #' @examples
 #' \donttest{
-#' # From a cff object ----
+#' # From a `cff` object ----
 #' cff_object <- cff()
 #'
 #' cff_object
@@ -117,19 +117,19 @@ as_bibentry <- function(x, ...) {
   UseMethod("as_bibentry")
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname as_bibentry
 #' @order 2
+#' @export
+#' @encoding UTF-8
 as_bibentry.default <- function(x, ...) {
   dot_list <- list(...)
   as_bibentry(dot_list)
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname as_bibentry
 #' @order 3
+#' @export
+#' @encoding UTF-8
 as_bibentry.character <- function(
   x,
   ...,
@@ -170,18 +170,18 @@ as_bibentry.character <- function(
   as_bibentry(x, what = what)
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname as_bibentry
 #' @order 4
+#' @export
+#' @encoding UTF-8
 as_bibentry.NULL <- function(x, ...) {
   cff_create()
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname as_bibentry
 #' @order 5
+#' @export
+#' @encoding UTF-8
 as_bibentry.list <- function(x, ...) {
   ## Convert and catch errors ----
   bib <- try(do.call(bibentry, x), silent = TRUE)
@@ -201,10 +201,10 @@ as_bibentry.list <- function(x, ...) {
   bib
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname as_bibentry
 #' @order 6
+#' @export
+#' @encoding UTF-8
 as_bibentry.cff <- function(
   x,
   ...,
@@ -249,10 +249,10 @@ as_bibentry.cff <- function(
   as_bibentry(objend)
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname as_bibentry
 #' @order 7
+#' @export
+#' @encoding UTF-8
 as_bibentry.cff_ref_lst <- function(x, ...) {
   ref <- lapply(x, function(y) {
     # Reclass to dispatch the method.
@@ -262,10 +262,10 @@ as_bibentry.cff_ref_lst <- function(x, ...) {
   ref
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname as_bibentry
 #' @order 8
+#' @export
+#' @encoding UTF-8
 as_bibentry.cff_ref <- function(x, ...) {
   # Relist to cff for dispatching methods on persons.
   x <- as_cff(x)

@@ -19,7 +19,7 @@
 #' @param encoding Encoding to be assumed for `path`. See [readLines()].
 #' @param meta A list of package metadata as obtained by
 #'   [utils::packageDescription()] or `NULL` (the default). See **Details**.
-#' @param ... Arguments to be passed to other functions, for example to
+#' @param ... Arguments passed to other functions, for example to
 #'   [yaml::read_yaml()] or [bibtex::read.bib()].
 #'
 #' @inheritParams cff_create
@@ -66,9 +66,9 @@
 #' - [bibtex::read.bib()] for BibTeX files (extension `*.bib`).
 #'
 #' @family reading
+#' @rdname cff_read
 #' @export
 #' @encoding UTF-8
-#' @rdname cff_read
 #' @examples
 #' # Create a `cff` object from a `CITATION.cff` file.
 #' from_cff_file <- cff_read(system.file("examples/CITATION_basic.cff",
@@ -127,9 +127,9 @@ cff_read <- function(path, ...) {
   endobj
 }
 
+#' @rdname cff_read
 #' @export
 #' @encoding UTF-8
-#' @rdname cff_read
 cff_read_cff_citation <- function(path, ...) {
   file_exist_abort(path, abort = TRUE)
 
@@ -147,9 +147,9 @@ cff_read_cff_citation <- function(path, ...) {
   new_cff(cffobj)
 }
 
+#' @rdname cff_read
 #' @export
 #' @encoding UTF-8
-#' @rdname cff_read
 cff_read_description <- function(
   path,
   cff_version = "1.2.0",
@@ -196,9 +196,9 @@ cff_read_description <- function(
   new_cff(field_list)
 }
 
+#' @rdname cff_read
 #' @export
 #' @encoding UTF-8
-#' @rdname cff_read
 cff_read_citation <- function(path, meta = NULL, ...) {
   file_exist_abort(path, abort = TRUE)
 
@@ -222,7 +222,7 @@ cff_read_citation <- function(path, meta = NULL, ...) {
   if (inherits(the_cit, "try-error")) {
     cli::cli_alert_warning(paste0(
       "Could not read {.file {path}} with the provided {.arg meta}. ",
-      "Trying with {.code packageDescription('base')}."
+      "Trying {.code packageDescription('base')}."
     ))
     new_meta <- packageDescription("base")
     the_cit <- try(
@@ -232,7 +232,7 @@ cff_read_citation <- function(path, meta = NULL, ...) {
     # nocov start
     if (inherits(the_cit, "try-error")) {
       cli::cli_alert_danger(
-        "Cannot read {.file {path}}. Returning {.val NULL}."
+        "Cannot read {.file {path}}, returning {.val NULL}."
       )
       return(NULL)
     }
@@ -243,10 +243,10 @@ cff_read_citation <- function(path, meta = NULL, ...) {
   tocff
 }
 
+#' @family bibtex
+#' @rdname cff_read
 #' @export
 #' @encoding UTF-8
-#' @rdname cff_read
-#' @family bibtex
 cff_read_bib <- function(path, encoding = "UTF-8", ...) {
   file_exist_abort(path, abort = TRUE)
 

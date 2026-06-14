@@ -15,8 +15,7 @@ cff_create(
 )
 }
 \arguments{
-\item{x}{The source used to generate
-the \code{\link{cff}} object. It can be:
+\item{x}{The source used to generate the \code{\link{cff}} object. It can be:
 \itemize{
 \item A missing value, which retrieves the \code{DESCRIPTION} file from your
 in-development \R package.
@@ -25,7 +24,7 @@ in-development \R package.
 \item Path to a \code{DESCRIPTION} file (\code{"./DESCRIPTION"}).
 }}
 
-\item{keys}{List of additional keys to add to the \code{\link{cff}} object. See
+\item{keys}{A list of additional keys to add to the \code{\link{cff}} object. See
 \code{\link[=cff_modify]{cff_modify()}}.}
 
 \item{cff_version}{The Citation File Format schema version that the
@@ -57,7 +56,7 @@ present in your package, \CRANpkg{cffr} auto-generates a
 
 By default, only persons whose role in the \code{DESCRIPTION} file of the package
 is author (\code{"aut"}) or maintainer (\code{"cre"}) are considered package authors.
-The default setting can be controlled via the \code{authors_roles} argument. See
+The default setting can be controlled with the \code{authors_roles} argument. See
 \strong{Details} on \code{\link[=person]{person()}} for additional information about person roles.
 }
 \examples{
@@ -72,7 +71,7 @@ cff_create(demo_file)
 # Add additional keys.
 
 newkeys <- list(
-  message = "This overwrites fields",
+  message = "This overwrites keys",
   abstract = "New abstract",
   keywords = c("A", "new", "list", "of", "keywords"),
   authors = as_cff_person("New author")
@@ -80,8 +79,8 @@ newkeys <- list(
 
 cff_create(demo_file, keys = newkeys)
 
-# Update a field on a list, for example authors or contacts.
-# We are adding a new contact here.
+# Update a key in a list, for example authors or contacts.
+# Add a new contact.
 
 old <- cff_create(demo_file)
 

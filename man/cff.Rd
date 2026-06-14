@@ -20,7 +20,7 @@ A \code{\link{cff}} object. Under the hood, a \code{cff} object is a regular \co
 object with a special \code{\link[=print.cff]{print}} method.
 }
 \description{
-A class and utility methods for reading, creating and holding CFF
+A class and utility methods for reading, creating and storing CFF
 information. See \link{cff_class} to learn more about \code{cff} objects.
 }
 \details{
@@ -77,7 +77,6 @@ new
 
 # This would pass.
 cff_validate(new)
-
 }
 \seealso{
 Core \CRANpkg{cffr} workflow:

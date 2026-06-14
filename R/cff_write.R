@@ -5,8 +5,8 @@
 #' you need when developing a package**.
 #'
 #' This function writes a `CITATION.cff` file for a given package. It wraps
-#' [cff_create()] to create the [`cff`] object and write it to a YAML-formatted
-#' file in one command.
+#' [cff_create()] to create the [`cff`] object, then writes it to a
+#' YAML-formatted file in one command.
 #'
 #' @param outfile The name and path of the `CITATION.cff` to be created.
 #' @param r_citation Logical `TRUE/FALSE`. When `TRUE`, the \R package
@@ -22,7 +22,7 @@
 #'   `"ASCII//TRANSLIT"`.
 #' @inheritParams cff_create
 #'
-#' @return A `CITATION.cff` file and an (invisible) `cff` object.
+#' @return A `CITATION.cff` file and an invisible `cff` object.
 #'
 #' @details
 #' For details of `authors_roles`, see [cff_create()].
@@ -38,8 +38,8 @@
 #'            "citation-file-format/blob/main/schema-guide.md)."))
 #'
 #' ```
-#' This function unifies the workflow [cff_create()] + [cff_validate()] +
-#' write a file.
+#' This function unifies the [cff_create()] and [cff_validate()] workflow for
+#' writing a file.
 #'
 #' @family writing
 #' @export
@@ -51,7 +51,7 @@
 #'
 #' cff_obj
 #'
-#' # Force clean-up
+#' # Force cleanup.
 #' file.remove(tmpfile)
 #' }
 cff_write <- function(
@@ -100,12 +100,12 @@ cff_write <- function(
   }
 
   # See https://github.com/r-universe-org/help/issues/382
-  # Write CITATION with comment.
+  # Write `CITATION.cff` with a header comment.
   com <- c(
-    "# --------------------------------------------",
-    "# CITATION file created with {cffr} R package",
+    "# ------------------------------------------------",
+    "# CITATION.cff file created with {cffr} R package",
     "# See also: https://docs.ropensci.org/cffr/",
-    "# --------------------------------------------",
+    "# ------------------------------------------------",
     " "
   )
 
@@ -157,9 +157,9 @@ auto_r_citation <- function(
     return(invisible(NULL))
   }
 
-  # Otherwise update inst/CITATION.
+  # Otherwise update `inst/CITATION`.
   if (verbose) {
-    cli::cat_rule("Updating inst/CITATION file", col = "cyan", line = 2)
+    cli::cat_rule("Updating {.file inst/CITATION}", col = "cyan", line = 2)
   }
   cffobj <- cff_read(outfile)
   fpath <- "./inst/CITATION"

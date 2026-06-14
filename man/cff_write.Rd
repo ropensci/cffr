@@ -20,8 +20,7 @@ cff_write(
 )
 }
 \arguments{
-\item{x}{The source used to generate
-the \code{\link{cff}} object. It can be:
+\item{x}{The source used to generate the \code{\link{cff}} object. It can be:
 \itemize{
 \item A missing value, which retrieves the \code{DESCRIPTION} file from your
 in-development \R package.
@@ -32,7 +31,7 @@ in-development \R package.
 
 \item{outfile}{The name and path of the \code{CITATION.cff} to be created.}
 
-\item{keys}{List of additional keys to add to the \code{\link{cff}} object. See
+\item{keys}{A list of additional keys to add to the \code{\link{cff}} object. See
 \code{\link[=cff_modify]{cff_modify()}}.}
 
 \item{cff_version}{The Citation File Format schema version that the
@@ -63,15 +62,15 @@ but it can be any other value as accepted by \code{\link[=iconv]{iconv()}}, such
 \code{"ASCII//TRANSLIT"}.}
 }
 \value{
-A \code{CITATION.cff} file and an (invisible) \code{cff} object.
+A \code{CITATION.cff} file and an invisible \code{cff} object.
 }
 \description{
 \strong{This is the core function of the package and likely to be the only one
 you need when developing a package}.
 
 This function writes a \code{CITATION.cff} file for a given package. It wraps
-\code{\link[=cff_create]{cff_create()}} to create the \code{\link{cff}} object and write it to a YAML-formatted
-file in one command.
+\code{\link[=cff_create]{cff_create()}} to create the \code{\link{cff}} object, then writes it to a
+YAML-formatted file in one command.
 }
 \details{
 For details of \code{authors_roles}, see \code{\link[=cff_create]{cff_create()}}.
@@ -86,14 +85,14 @@ cff_obj <- cff_write("jsonlite", outfile = tmpfile)
 
 cff_obj
 
-# Force clean-up
+# Force cleanup.
 file.remove(tmpfile)
 }
 }
 \seealso{
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
-This function unifies the workflow \code{\link[=cff_create]{cff_create()}} + \code{\link[=cff_validate]{cff_validate()}} +
-write a file.
+This function unifies the \code{\link[=cff_create]{cff_create()}} and \code{\link[=cff_validate]{cff_validate()}} workflow for
+writing a file.
 
 Write citation metadata files:
 \code{\link[=cff_write_bib]{cff_write_bib()}}

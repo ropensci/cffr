@@ -7,16 +7,14 @@
 #'
 #' Most of the heavy lifting of \CRANpkg{cffr} is done by this function.
 #'
-#' @param x The source used to generate
-#'   the [`cff`] object. It can be:
+#' @param x The source used to generate the [`cff`] object. It can be:
 #'   - A missing value, which retrieves the `DESCRIPTION` file from your
 #'     in-development \R package.
 #'   - An existing [`cff`] object.
 #'   - The name of an installed package (`"jsonlite"`).
 #'   - Path to a `DESCRIPTION` file (`"./DESCRIPTION"`).
 #'
-#' @param keys
-#'   List of additional keys to add to the [`cff`] object. See
+#' @param keys A list of additional keys to add to the [`cff`] object. See
 #'   [cff_modify()].
 #' @param cff_version The Citation File Format schema version that the
 #'   `CITATION.cff` file adheres to for providing the citation metadata.
@@ -36,7 +34,7 @@
 #'
 #' By default, only persons whose role in the `DESCRIPTION` file of the package
 #' is author (`"aut"`) or maintainer (`"cre"`) are considered package authors.
-#' The default setting can be controlled via the `authors_roles` argument. See
+#' The default setting can be controlled with the `authors_roles` argument. See
 #' **Details** on [person()] for additional information about person roles.
 #'
 #' @seealso
@@ -70,7 +68,7 @@
 #' # Add additional keys.
 #'
 #' newkeys <- list(
-#'   message = "This overwrites fields",
+#'   message = "This overwrites keys",
 #'   abstract = "New abstract",
 #'   keywords = c("A", "new", "list", "of", "keywords"),
 #'   authors = as_cff_person("New author")
@@ -78,8 +76,8 @@
 #'
 #' cff_create(demo_file, keys = newkeys)
 #'
-#' # Update a field on a list, for example authors or contacts.
-#' # We are adding a new contact here.
+#' # Update a key in a list, for example authors or contacts.
+#' # Add a new contact.
 #'
 #' old <- cff_create(demo_file)
 #'
@@ -216,7 +214,7 @@ abort_invalid_cff_source <- function(hint_source) {
       "you may need to install it with ",
       "{.fn install.packages}."
     ),
-    "bib" = "Maybe try with {.fn cff_read}."
+    "bib" = "Try {.fn cff_read}."
   )
 
   cli::cli_abort(paste0("{.arg x} is not valid. ", msg_hint))

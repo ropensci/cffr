@@ -29,7 +29,7 @@ as_bibentry(x, ...)
 \method{as_bibentry}{cff_ref}(x, ...)
 }
 \arguments{
-\item{x}{The source used to generate the \code{bibentry} object via
+\item{x}{The source used to generate the \code{bibentry} object with
 \CRANpkg{cffr}. It can be:
 \itemize{
 \item A missing value, which retrieves the \code{DESCRIPTION} file from your
@@ -41,9 +41,9 @@ in-development package.
 \item Path to a \code{DESCRIPTION} file (\code{"DESCRIPTION"}).
 }}
 
-\item{...}{Additional arguments to be passed to or from methods.}
+\item{...}{Additional arguments passed to or from methods.}
 
-\item{what}{Fields to extract from a full \code{cff} object. The value could be:
+\item{what}{Fields to extract from a full \code{cff} object. It can be:
 \itemize{
 \item \code{preferred}: Create a single entry with the main citation information
 of the package (key \code{preferred-citation}).
@@ -62,7 +62,7 @@ This function creates \code{\link{bibentry}} objects from different metadata sou
 transformation (\code{bibentry} object to \code{\link{cff_ref_lst}}) can be done with the
 corresponding \code{\link[=as_cff.bibentry]{as_cff.bibentry()}} method.
 
-With \code{\link[=toBibtex.cff]{toBibtex()}} it is possible to convert \code{\link{cff}}
+With \code{\link[=toBibtex.cff]{toBibtex()}}, you can convert \code{\link{cff}}
 objects to BibTeX markup on the fly. See \strong{Examples}.
 }
 \details{
@@ -77,7 +77,7 @@ object and performs a mapping of the metadata to BibTeX, according to
 }
 \examples{
 \donttest{
-# From a cff object ----
+# From a `cff` object ----
 cff_object <- cff()
 
 cff_object

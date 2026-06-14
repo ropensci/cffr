@@ -36,7 +36,7 @@ cff_validate(x)
 
 x_mod <- cff_modify(x,
   contact = as_cff_person("A contact"),
-  message = "This overwrites fields",
+  message = "This overwrites keys",
   title = "New Title",
   abstract = "New abstract",
   doi = "10.21105/joss.03900"

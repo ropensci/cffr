@@ -2,7 +2,7 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "cffr",
-  "description": "Citation File Format ('CFF') version 1.2.0 <doi:10.5281/zenodo.5171937> is a human- and machine-readable file format for software citation metadata. The package provides core utilities to generate, read, write and validate this metadata for R packages.",
+  "description": "Citation File Format ('CFF') version 1.2.0 <doi:10.5281/zenodo.5171937> is a human- and machine-readable file format for software citation metadata. The package provides core utilities to generate, read, write and validate Citation File Format metadata for R packages.",
   "name": "cffr: Generate Citation File Format ('CFF') Metadata for R Packages",
   "relatedLink": ["https://docs.ropensci.org/cffr/", "https://CRAN.R-project.org/package=cffr"],
   "codeRepository": "https://github.com/ropensci/cffr",
@@ -222,7 +222,7 @@
   },
   "isPartOf": "https://ropensci.org",
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata", "citation-file-format", "cran", "r", "r-package", "ropensci", "rstats", "r-cran"],
-  "fileSize": "1000.505KB",
+  "fileSize": "999.947KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -311,5 +311,10 @@
   "releaseNotes": "https://github.com/ropensci/cffr/blob/main/NEWS.md",
   "readme": "https://github.com/ropensci/cffr/blob/main/README.md",
   "contIntegration": ["https://github.com/ropensci/cffr/actions/workflows/check-full.yaml", "https://app.codecov.io/gh/ropensci/cffr", "https://coveralls.io/github/ropensci/cffr?branch=main", "https://github.com/ropensci/cffr/actions/workflows/cff-validator.yaml"],
-  "developmentStatus": ["https://www.repostatus.org/#active", "https://lifecycle.r-lib.org/articles/stages.html#experimental"]
+  "developmentStatus": ["https://www.repostatus.org/#active", "https://lifecycle.r-lib.org/articles/stages.html#experimental"],
+  "review": {
+    "@type": "Review",
+    "url": "https://github.com/ropensci/software-review/issues/463",
+    "provider": "https://ropensci.org"
+  }
 }

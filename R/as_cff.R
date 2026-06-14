@@ -13,7 +13,7 @@
 #'
 #' @param x A `person`, `bibentry` or other object that could be coerced to a
 #'   list.
-#' @param ... Additional arguments to be passed on to other methods.
+#' @param ... Additional arguments passed on to other methods.
 #'
 #' @return
 #' - `as_cff.person()` returns an object with classes
@@ -32,7 +32,7 @@
 #' `vignette("bibtex-cff", package = "cffr")` to understand how the mapping is
 #' performed.
 #'
-#' [as_cff_person()] is preferred over `as_cff.person()`, since it can handle
+#' [as_cff_person()] is preferred over `as_cff.person()` because it can handle
 #' `character` inputs such as `"Davis, Jr., Sammy"`. For `person` objects both
 #' functions are similar.
 #'
@@ -46,9 +46,9 @@
 #' Learn more about the \CRANpkg{cffr} class system in [cff_class].
 #'
 #' @family s3method
+#' @rdname as_cff
 #' @export
 #' @encoding UTF-8
-#' @rdname as_cff
 #' @examples
 #' # Convert a list to a `cff` object.
 #' cffobj <- as_cff(list(
@@ -79,16 +79,16 @@ as_cff <- function(x, ...) {
   UseMethod("as_cff")
 }
 
+#' @rdname as_cff
 #' @export
 #' @encoding UTF-8
-#' @rdname as_cff
 as_cff.default <- function(x, ...) {
   as_cff(as.list(x), ...)
 }
 
+#' @rdname as_cff
 #' @export
 #' @encoding UTF-8
-#' @rdname as_cff
 as_cff.list <- function(x, ...) {
   # Clean up empty top-level values.
   clean_up <- vapply(x, is.null, FUN.VALUE = logical(1))
@@ -96,16 +96,16 @@ as_cff.list <- function(x, ...) {
   new_cff(x_clean)
 }
 
+#' @rdname as_cff
 #' @export
 #' @encoding UTF-8
-#' @rdname as_cff
 as_cff.person <- function(x, ...) {
   as_cff_person(x)
 }
 
+#' @rdname as_cff
 #' @export
 #' @encoding UTF-8
-#' @rdname as_cff
 as_cff.bibentry <- function(x, ...) {
   cff_ref <- as_cff_reference(x)
   clean_up <- vapply(cff_ref, is.null, FUN.VALUE = logical(1))
@@ -125,9 +125,9 @@ as_cff.bibentry <- function(x, ...) {
   cff_refs_class
 }
 
+#' @rdname as_cff
 #' @export
 #' @encoding UTF-8
-#' @rdname as_cff
 as_cff.Bibtex <- function(x, ...) {
   tmp <- tempfile(fileext = ".bib")
   writeLines(x, tmp)
@@ -145,10 +145,10 @@ as_cff.Bibtex <- function(x, ...) {
 }
 
 # nolint start
-#' @export
-#' @encoding UTF-8
 #' @rdname as_cff
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 as.cff <- function(x) {
   as_cff(x)
 }

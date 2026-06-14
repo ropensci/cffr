@@ -272,7 +272,7 @@ test_that("cff_read citation messages", {
   # Now try with a file that needs meta
   f <- system.file("examples/CITATION_auto", package = "cffr")
 
-  expect_message(s <- cff_read(f), "Trying with")
+  expect_message(s <- cff_read(f), "with the provided")
   expect_s3_class(s, c("cff_ref_lst", "cff"), exact = TRUE)
 })
 

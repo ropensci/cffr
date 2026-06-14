@@ -1,5 +1,5 @@
-Under the hood, a `cff` object is simply a named [`list`] to which we added
-additional methods, most notably [`print`] and [as_cff()].
+Under the hood, a `cff` object is a named [`list`] with additional methods,
+most notably [`print`] and [as_cff()].
 
 ```{r}
 #| include: false
@@ -22,8 +22,8 @@ a_cff_object
 is.list(a_cff_object)
 ```
 
-[as_cff()] not only converts a `list` to `cff` but also removes items that are
-`NULL` or `NA`. These items are known as `keys` in CFF terminology.
+[as_cff()] converts a `list` to `cff` and removes items that are `NULL` or
+`NA`. These items are known as `keys` in CFF terminology.
 
 ### Subclasses
 
@@ -36,7 +36,7 @@ schema](https://github.com/citation-file-format/citation-file-format/blob/main/s
   collects an array of `definitions.person` or `definitions.entity` objects,
   where each individual person or entity has subclass `cff_pers`.
 
-- Similarly, `definitions.reference` is the CFF definition for collecting
+- `definitions.reference` is the CFF definition for collecting
   references to related works and other software used in the development of the
   main work of the `CITATION.cff` file. In **cffr**, the subclass `cff_ref_lst`
   represents arrays of `definitions.reference` objects, where each element has
@@ -46,7 +46,7 @@ These two subclasses do not provide full valid `cff` objects, but adapt
 information to the schema required by CFF:
 
 ```{r}
-# Use the utils::person() function.
+# Use `utils::person()`.
 
 ## Array.
 two_persons <- as_cff_person(
@@ -108,7 +108,6 @@ cff_valid <- cff_modify(a_cff_object,
   title = "My title"
 )
 
-
 # Remove invalid keys.
 cff_valid <- as_cff(cff_valid[names(cff_valid) %in% cff_schema_keys()])
 
@@ -119,8 +118,8 @@ cff_validate(cff_valid)
 
 ## Base methods provided by **cffr**
 
-**cffr** version 1.0.0 provides additional S3 methods for common coercion
-functions of the **base** and **utils** packages.
+**cffr** provides additional S3 methods for common coercion functions from the
+**base** and **utils** packages.
 
 ### [as.data.frame()]
 

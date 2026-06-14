@@ -6,7 +6,7 @@
 \alias{as_cff_person.default}
 \alias{as_cff_person.person}
 \alias{as_cff_person.character}
-\title{Coerce \R objects to \code{\link{cff_pers_lst}} objects (\code{cff} persons)}
+\title{Coerce \R objects to \code{\link{cff_pers_lst}} objects}
 \usage{
 as_cff_person(x, ...)
 
@@ -43,7 +43,7 @@ as the output of \code{\link[=format]{format()}} for \code{person} objects (see
 \item Default: Other inputs are first coerced with \code{\link[=as.character]{as.character()}}.
 }
 
-The inverse transformation (\code{cff_pers_lst} to \code{person}) can be done with the
+The inverse transformation (\code{cff_pers_lst} to \code{person}) can be done with
 methods \code{\link[=as.person.cff_pers]{as.person.cff_pers()}} and \code{\link[=as.person.cff_pers_lst]{as.person.cff_pers_lst()}}.
 }
 \details{
@@ -60,16 +60,16 @@ Section 11 of "Tame the BeaST" (Markey, 2007) (see also Decoret, 2007):
 
 Mapping is performed as follows:
 \itemize{
-\item \code{First} is mapped to the CFF field \code{given-names}.
-\item \code{von} is mapped to the CFF field \code{name-particle}.
-\item \code{Last} is mapped to the CFF field \code{family-names}.
-\item \code{Jr} is mapped to the CFF field \code{name-suffix}.
+\item \code{First} is mapped to the CFF key \code{given-names}.
+\item \code{von} is mapped to the CFF key \code{name-particle}.
+\item \code{Last} is mapped to the CFF key \code{family-names}.
+\item \code{Jr} is mapped to the CFF key \code{name-suffix}.
 }
 
 For entities, the entire \code{character} is mapped to \code{name}.
 It is recommended to "protect" entity names with \code{{}}:
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{# Do not use unprotected entity names.
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{# Avoid unprotected entity names.
 entity <- "Elephant and Castle"
 as_cff_person(entity)
 - name: Elephant

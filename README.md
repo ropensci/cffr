@@ -26,8 +26,8 @@ bytes](https://img.shields.io/github/languages/code-size/ropensci/cffr)
 <!-- badges: end -->
 
 **cffr** provides utilities to generate, coerce, modify and validate
-`CITATION.cff` files automatically for **R** packages, along with tools
-and examples for working with `*.cff` files more generally.
+`CITATION.cff` files automatically for **R** packages. It also includes
+tools and examples for working with `*.cff` files more generally.
 
 ## What is a `CITATION.cff` file?
 
@@ -44,7 +44,7 @@ ecosystem.
 [Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-)
 and
 [Zotero](https://citation-file-format.github.io/#/supported-by-zotero-)
-have fully supported this citation format ([Druskat
+support this citation format ([Druskat
 2021](#ref-druskat_stephan_making_2021)). GitHub support is of special
 interest:
 
@@ -71,8 +71,8 @@ following the standards defined by The CodeMeta Project) is to provide
 citation metadata such as title, authors, publication year and venue
 ([Fenner 2021](#ref-fenner2021)). The packages **codemeta** ([Boettiger
 and Salmon 2021](#ref-codemeta)) and **codemetar** ([Boettiger and
-Salmon 2026](#ref-codemetar2021)) allow for generating `codemeta.json`
-files from **R** package metadata.
+Salmon 2026](#ref-codemetar2021)) can generate `codemeta.json` files
+from **R** package metadata.
 
 ## The cffr package
 
@@ -81,7 +81,7 @@ and the `CITATION` file (if present) from your package. Note that
 **cffr** works best if your package passes
 `R CMD check/devtools::check()`.
 
-As per 2026-06-09 there are at least 562 repositories on GitHub using
+As per 2026-06-14 there are at least 494 repositories on GitHub using
 **cffr**. [Check them out
 here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -99,7 +99,7 @@ You can install the development version of **cffr** with:
 pak::pak("ropensci/cffr")
 ```
 
-Alternatively, you can install **cffr** using the
+Alternatively, you can install **cffr** from
 [r-universe](https://ropensci.r-universe.dev/cffr):
 
 ``` r
@@ -128,13 +128,13 @@ cff_write()
 #> This .cff file is valid.
 ```
 
-However, **cffr** also provides custom print methods and mechanisms that
-allow you to customize the `CITATION.cff` and integrate it into your
+**cffr** also provides custom print methods and helper functions for
+customizing `CITATION.cff` files and integrating them into your
 workflows.
 
 This basic example shows how to create a `cff` object (see `?cff` for
-more information). In this case, we are creating a `cff` object from the
-metadata of the **knitr** package:
+more information). Here, we create a `cff` object from the metadata of
+the **knitr** package:
 
 ``` r
 library(cffr)
@@ -707,8 +707,7 @@ The easiest way to keep your `CITATION.cff` file up to date is to use
 **GitHub Actions**. Use `cff_gha_update()` to install a GitHub Action
 that updates your `CITATION.cff` file in the following cases:
 
-- When you publish a new release of the package on your GitHub
-  repository.
+- When you publish a new release of the package on GitHub.
 - Each time you modify your `DESCRIPTION` or `inst/CITATION` files.
 - The action can also be run manually.
 
@@ -746,7 +745,7 @@ Check the following articles to learn more about **cffr**:
   package](https://ropensci.org/blog/2021/11/23/cffr/) ([Hernangómez
   2021a](#ref-hernangomez_cffr_2021))
 - [How I test cffr on about 2,000 packages using GitHub Actions and
-  R-universe](https://ropensci.org/blog/2021/11/23/how-i-test-cffr/)
+  r-universe](https://ropensci.org/blog/2021/11/23/how-i-test-cffr/)
   ([Hernangómez 2021b](#ref-hernangomez_test_2021))
 
 ## Related packages
@@ -759,7 +758,7 @@ Check the following articles to learn more about **cffr**:
   converting among citation formats, including `*.cff` files.
 - **codemeta** ([Boettiger and Salmon 2021](#ref-codemeta)) /
   **codemetar** ([Boettiger and Salmon 2026](#ref-codemetar2021))
-  provide similar solutions for creating `codemeta.json` files, another
+  provide similar tools for creating `codemeta.json` files, another
   format for storing and sharing software metadata.
 
 ## Code of conduct
@@ -793,7 +792,7 @@ A BibTeX entry for LaTeX users is:
 
 You can also use the [citation provided by
 GitHub](https://github.com/ropensci/cffr), which is generated from the
-information in a `CITATION.cff` created with **cffr**. See [About
+information in a `CITATION.cff` file created with **cffr**. See [About
 CITATION
 files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
 for more information.

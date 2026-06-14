@@ -16,8 +16,8 @@
 #' @inheritParams cff_write
 #'
 #' @return
-#' A message indicating the result of the validation and an invisible value
-#' `TRUE/FALSE`. On error, the result has an attribute `"errors"` containing
+#' A message indicating the result of the validation and an invisible
+#' `TRUE/FALSE` value. On error, the result has an `"errors"` attribute with
 #' the error summary. See **Examples** and [attr()].
 #'
 #' @seealso
@@ -40,7 +40,7 @@
 #' # Full `.cff` example.
 #' cff_validate(system.file("examples/CITATION_complete.cff", package = "cffr"))
 #'
-#' # Validate a `cffr` object.
+#' # Validate a `cff` object.
 #' cffr <- cff_create("jsonlite")
 #' class(cffr)
 #' cff_validate(cffr)
@@ -59,8 +59,7 @@
 #'
 #' df_errors[, c("field", "message")]
 #'
-#' # If a CITATION file is supplied (note that it is not a `.cff` file), it
-#' # throws an error.
+#' # An R citation file is not a `.cff` file, so it throws an error.
 #' try(cff_validate(system.file("CITATION", package = "cffr")))
 cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
   # Read the file if the input is not a `cff` object.

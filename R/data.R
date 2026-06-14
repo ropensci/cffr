@@ -11,6 +11,8 @@
 #'   \item{`SPDX`}{A valid SPDX License Identifier.}
 #' }
 #'
+#' @source <https://spdx.org/licenses/>
+#'
 #' @seealso *Writing R Extensions*,
 #' ```{r, echo=FALSE, results='asis'}
 #'
@@ -20,13 +22,11 @@
 #'
 #' ```
 #'
-#' @source <https://spdx.org/licenses/>
-#'
 #' @family datasets
+#' @rdname cran_to_spdx
+#' @name cran_to_spdx
 #' @docType data
 #' @encoding UTF-8
-#' @name cran_to_spdx
-#' @rdname cran_to_spdx
 #' @examples
 #' data("cran_to_spdx")
 #'

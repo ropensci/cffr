@@ -39,7 +39,7 @@
 #'
 #' x_mod <- cff_modify(x,
 #'   contact = as_cff_person("A contact"),
-#'   message = "This overwrites fields",
+#'   message = "This overwrites keys",
 #'   title = "New Title",
 #'   abstract = "New abstract",
 #'   doi = "10.21105/joss.03900"
@@ -57,7 +57,7 @@ cff_modify <- function(x, ...) {
   }
   new_keys <- list(...)
   if (length(new_keys) == 0) {
-    cli::cli_alert_info("No {.arg ...} arguments supplied. Returning {.arg x}.")
+    cli::cli_alert_info("No {.arg ...} arguments supplied, returning {.arg x}.")
     return(x)
   }
 

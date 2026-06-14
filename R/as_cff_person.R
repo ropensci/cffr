@@ -1,4 +1,4 @@
-#' Coerce \R objects to [`cff_pers_lst`] objects (`cff` persons)
+#' Coerce \R objects to [`cff_pers_lst`] objects
 #'
 #' @description
 #' `as_cff_person()` turns an existing list-like \R object into a
@@ -20,7 +20,7 @@
 #'   [`format.person()`][person()]).
 #' - Default: Other inputs are first coerced with [as.character()].
 #'
-#' The inverse transformation (`cff_pers_lst` to `person`) can be done with the
+#' The inverse transformation (`cff_pers_lst` to `person`) can be done with
 #' methods [as.person.cff_pers()] and [as.person.cff_pers_lst()].
 #'
 #' @param x Any \R object.
@@ -52,10 +52,10 @@
 #' - `von Last, Jr, First`.
 #'
 #' Mapping is performed as follows:
-#' - `First` is mapped to the CFF field `given-names`.
-#' - `von` is mapped to the CFF field `name-particle`.
-#' - `Last` is mapped to the CFF field `family-names`.
-#' - `Jr` is mapped to the CFF field `name-suffix`.
+#' - `First` is mapped to the CFF key `given-names`.
+#' - `von` is mapped to the CFF key `name-particle`.
+#' - `Last` is mapped to the CFF key `family-names`.
+#' - `Jr` is mapped to the CFF key `name-suffix`.
 #'
 #' For entities, the entire `character` is mapped to `name`.
 #' It is recommended to "protect" entity names with `{}`:
@@ -89,11 +89,11 @@
 #' Learn more about the `cff_pers_lst` and `cff_pers` classes in [cff_class].
 #'
 #' @family s3method
-#' @export
-#' @encoding UTF-8
 #' @rdname as_cff_person
 #' @name as_cff_person
 #' @order 1
+#' @export
+#' @encoding UTF-8
 #' @examples
 #' # Create a person object.
 #' a_person <- person(
@@ -157,10 +157,10 @@ as_cff_person <- function(x, ...) {
   UseMethod("as_cff_person")
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname as_cff_person
 #' @order 2
+#' @export
+#' @encoding UTF-8
 as_cff_person.default <- function(x, ...) {
   # Check whether this is protected.
   if (!inherits(x, "Bibtex")) {
@@ -175,10 +175,10 @@ as_cff_person.default <- function(x, ...) {
   as_cff_person(x_char)
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname as_cff_person
 #' @order 3
+#' @export
+#' @encoding UTF-8
 as_cff_person.person <- function(x, ...) {
   the_obj <- lapply(x, create_person_from_r)
 
@@ -189,10 +189,10 @@ as_cff_person.person <- function(x, ...) {
   the_obj
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname as_cff_person
 #' @order 4
+#' @export
+#' @encoding UTF-8
 as_cff_person.character <- function(x, ...) {
   # It may already be protected.
   if (any(grepl("{", x, fixed = TRUE))) {
@@ -268,7 +268,7 @@ create_person_from_r <- function(person) {
   # Add comments.
   pers_cff <- c(pers_cff, comm_cff)
 
-  # Validate fields.
+  # Validate keys.
   pers_cff <- validate_cff_person_fields(pers_cff)
   pers_cff
 }
@@ -378,7 +378,7 @@ create_person_from_txt <- function(as_bib_text) {
   # Add comments.
   pers_cff <- c(pers_cff, comm_cff)
 
-  # Validate fields.
+  # Validate keys.
   pers_cff <- validate_cff_person_fields(pers_cff)
   pers_cff
 }

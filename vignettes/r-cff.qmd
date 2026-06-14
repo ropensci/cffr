@@ -27,15 +27,15 @@ library(cffr)
 ```
 
 The goal of this vignette is to provide an explicit map between the metadata
-fields used by **cffr** and each valid key in the [Citation File Format schema
+sources used by **cffr** and each valid key in the [Citation File Format schema
 version
 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#valid-keys).
 
 ## Summary {#summary}
 
-This section summarizes the fields that **cffr** can coerce and the original
+This section summarizes the keys that **cffr** can coerce and the original
 source of information for each one. Details for each key are presented in the
-next section. The assessment of fields is based on the [Guide to Citation File
+next section. The assessment is based on the [Guide to Citation File
 Format schema version
 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#valid-keys)
 [@druskat_citation_2021].
@@ -48,8 +48,8 @@ keys <- cff_schema_keys(sorted = TRUE)
 origin <- vector(length = length(keys))
 origin[keys == "cff-version"] <- "function argument"
 origin[keys == "type"] <- "Fixed value: 'software'"
-origin[keys == "identifiers"] <- "DESCRIPTION/CITATION files"
-origin[keys == "references"] <- "DESCRIPTION/CITATION files"
+origin[keys == "identifiers"] <- "DESCRIPTION and inst/CITATION"
+origin[keys == "references"] <- "DESCRIPTION and inst/CITATION"
 
 origin[
   keys %in%
@@ -76,7 +76,7 @@ origin[
       "doi",
       "preferred-citation"
     )
-] <- "CITATION file"
+] <- "inst/CITATION"
 
 origin[origin == "FALSE"] <- "Ignored by cffr"
 
@@ -384,7 +384,7 @@ Back to @tbl-summary.
 
 ### message
 
-This key is extracted from the `DESCRIPTION` field, specifically as:
+This key is generated from the package metadata with this template:
 
 ```{r}
 #| eval: false
@@ -405,7 +405,7 @@ Back to @tbl-summary.
 
 ### preferred-citation {#preferred-citation}
 
-This key is extracted from the `CITATION` file. If several references are
+This key is extracted from `inst/CITATION`. If several references are
 provided, it selects the first citation as the `"preferred-citation"` and the
 rest of them as [references](#references).
 
@@ -422,7 +422,7 @@ Back to @tbl-summary.
 
 ### references {#references}
 
-This key is extracted from the `CITATION` file if several references are
+This key is extracted from `inst/CITATION` if several references are
 provided. The first citation is considered as the
 [preferred-citation](#preferred-citation) and the rest of them as
 `"references"`. It also extracts package dependencies and adds them to this
@@ -515,7 +515,7 @@ Back to @tbl-summary.
 
 ### repository-code {#repository-code}
 
-This key is extracted from the `"BugReports"` or `"URL"` fields on the
+This key is extracted from the `"BugReports"` or `"URL"` fields in the
 `DESCRIPTION` file. **cffr** tries to identify the URL of the source on the
 following repositories:
 
@@ -574,7 +574,7 @@ Back to @tbl-summary.
 
 ### url {#url}
 
-This key is extracted from the `"BugReports"` or `"URL"` fields on the
+This key is extracted from the `"BugReports"` or `"URL"` fields in the
 `DESCRIPTION` file. It corresponds to the first URL that is different from
 [repository-code](#repository-code).
 
@@ -594,7 +594,7 @@ Back to @tbl-summary.
 
 ### version
 
-This key is extracted from the `"Version"` field on the `DESCRIPTION` file.
+This key is extracted from the `"Version"` field in the `DESCRIPTION` file.
 
 ```{r}
 #| label: version

@@ -13,7 +13,7 @@
   as a fallback.
 - `cff_read()` correctly handles a single `languages` value (#105).
 - `cff_validate()` now uses the [ajv](https://github.com/ajv-validator/ajv)
-  validation engine via `jsonvalidate::json_validate()`, which returns more
+  validation engine through `jsonvalidate::json_validate()`, which returns more
   informative error messages.
 
 # cffr 1.3.0
@@ -101,11 +101,12 @@ package.
   - `as_cff.person()`, similar to `as_cff_person()` but only for `person`
     objects. We recommend using `as_cff_person()` since it can also coerce
     strings representing authors in BibTeX markup (`"{von Neumen}, James"`),
-    which cannot be captured properly via methods.
+    which cannot be captured properly through methods.
 - `as_bibentry()` is a new method for a variety of classes (`character`, `list`,
   `NULL` and classes defined by **cffr**).
 - `as_cff_person()` is a new method.
-- The following **base** and **utils** methods now support the `cff` class:
+- The following **base** and **utils** package methods now support the `cff`
+  class:
   - `as.data.frame.cff()`.
   - `as.person()`, although **only** for `definitions.person` or
     `definitions.entity` (e.g. `authors`, `contacts`, `editors`, `publisher`,
@@ -173,7 +174,7 @@ warns when used, providing advice on the replacement function.
 ## Enhancements
 
 - Additional authors of an **R** package can now be included based on roles in
-  the `DESCRIPTION` file, via the `authors_roles` argument (#49).
+  the `DESCRIPTION` file, through the `authors_roles` argument (#49).
 
 - The message interface now uses [**cli**](https://cli.r-lib.org/).
 
@@ -200,8 +201,8 @@ warns when used, providing advice on the replacement function.
 
 # cffr 0.3.0
 
-- `preferred-citation` is only produced when a `CITATION` **R** file has been
-  provided with the package (#37).
+- `preferred-citation` is only produced when `inst/CITATION` has been provided
+  with the package (#37).
 - Improved email handling for authors.
 - Added `cff_read()`. This functionality was already implemented in `cff()`, but
   the new function provides clarity.
@@ -222,15 +223,15 @@ warns when used, providing advice on the replacement function.
 # cffr 0.2.0
 
 - **cffr** now also extracts information about package dependencies and adds the
-  main citation of the dependencies to the `references` field, using
+  main citation of the dependencies to the `references` key, using
   `citation(auto = TRUE)`.
   - Added the `dependencies` argument to `cff_create()` and `cff_write()`.
 - Other improvements to `cff_parse_citation()` include:
   - `cff_parse_citation()` extracts more information about authors, based on the
     fields provided in the `DESCRIPTION` file.
   - `cff_parse_citation()` does a better job extracting information from
-    `bibentry()`/BibTeX and mapping it to `preferred-citation/references` fields
-    of CFF.
+    `bibentry()`/BibTeX and mapping it to the `preferred-citation` and
+    `references` CFF keys.
 - Added new functions for working with git pre-commit hooks
   [![Experimental](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental):
   - `cff_git_hook_install()`.

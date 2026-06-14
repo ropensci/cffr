@@ -12,9 +12,9 @@ repo:
   branch: main
 
 home:
-  title: cffr | Generate Citation File Format metadata for R packages
+  title: cffr | Generate Citation File Format (CFF) metadata for R packages
   description: >
-    Generate, read, write and validate Citation File Format metadata for
+    Generate, read, write and validate Citation File Format (CFF) metadata for
     R packages.
 
 reference:
@@ -28,8 +28,7 @@ reference:
   contents: has_concept("core")
 - subtitle: Citation File Format schema
   desc: >
-    Inspect valid keys and fields from the Citation File Format schema
-    **(v1.2.0)**.
+    Inspect valid keys from the Citation File Format schema **(v1.2.0)**.
   contents: has_concept("schemas")
 - subtitle: Class system
   desc: >
@@ -39,7 +38,7 @@ reference:
 - title: Additional features
 - subtitle: Coerce objects
   desc: >
-    Coerce **R** objects to different classes (`cff`, `person` and `bibentry`)
+    Coerce R objects to different classes (`cff`, `person` and `bibentry`)
     used by the package.
   contents: has_concept("s3method")
 - subtitle: Read and write files
@@ -50,7 +49,7 @@ reference:
   - has_concept("writing")
 - subtitle: BibTeX helpers
   desc: >
-    Convert between BibTeX markup and CFF objects.
+    Convert between BibTeX markup and `cff` objects.
   contents: has_concept("bibtex")
 - subtitle: Git and GitHub helpers
   desc: >

@@ -32,8 +32,8 @@ clean_str <- function(str) {
 }
 
 #' Drop nulls from a list
-#' @source https://github.com/cboettig/codemeta/blob/master/R/utils.R
 #' @param x A list to be cleaned.
+#' @source https://github.com/cboettig/codemeta/blob/master/R/utils.R
 #' @noRd
 drop_null <- function(x) {
   # Return objects already processed.
@@ -157,7 +157,7 @@ fuzzy_keys <- function(keys) {
     bullets <- rep("v", length(ll))
     bullets[keys_match == "No match, removing."] <- "x"
     names(ll) <- bullets
-    cli::cli_alert_info("Found misspelled keys. Trying to map them:")
+    cli::cli_alert_info("Found misspelled keys, trying to map them:")
 
     cli::cli_bullets(ll)
     # Modify names.

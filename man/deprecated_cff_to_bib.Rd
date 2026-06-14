@@ -11,7 +11,7 @@ cff_extract_to_bibtex(x, what = c("preferred", "references", "all"))
 cff_to_bibtex(x, what = c("preferred", "references", "all"))
 }
 \arguments{
-\item{x}{The source used to generate the \code{bibentry} object via
+\item{x}{The source used to generate the \code{bibentry} object with
 \CRANpkg{cffr}. It can be:
 \itemize{
 \item A missing value, which retrieves the \code{DESCRIPTION} file from your
@@ -23,7 +23,7 @@ in-development package.
 \item Path to a \code{DESCRIPTION} file (\code{"DESCRIPTION"}).
 }}
 
-\item{what}{Fields to extract from a full \code{cff} object. The value could be:
+\item{what}{Fields to extract from a full \code{cff} object. It can be:
 \itemize{
 \item \code{preferred}: Create a single entry with the main citation information
 of the package (key \code{preferred-citation}).
@@ -41,7 +41,7 @@ See \code{\link[=as_bibentry]{as_bibentry()}}.
 }
 \examples{
 \donttest{
-# From a cff object.
+# From a `cff` object.
 cff_object <- cff()
 
 cff_object

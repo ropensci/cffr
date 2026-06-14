@@ -1,15 +1,15 @@
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 print.cff <- function(x, ...) {
   cat(yaml::as.yaml(x))
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 c.cff <- function(..., recursive = FALSE) {
   args <- list(...)
   args <- lapply(args, unclass)
@@ -25,20 +25,20 @@ c.cff <- function(..., recursive = FALSE) {
 # Based on the `person` method.
 # https://github.com/wch/r-source/blob/trunk/src/library/utils/R/citation.R
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 `[.cff_ref_lst` <- function(x, i) {
   rval <- unclass(x)[i]
   class(rval) <- class(x[[i]])
   rval
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 `[.cff_pers_lst` <- function(x, i) {
   rval <- unclass(x)[i]
   class(rval) <- class(x[[i]])
@@ -46,10 +46,10 @@ c.cff <- function(..., recursive = FALSE) {
 }
 
 # nolint start
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
   # For better dispatching.
   x <- as_cff(as.list(x))
@@ -89,10 +89,10 @@ as.data.frame.cff <- function(x, row.names = NULL, optional = FALSE, ...) {
   cff_df_bind(df_l, row.names = row.names, optional = optional, ...)
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 as.data.frame.cff_pers_lst <- function(
   x,
   row.names = NULL,
@@ -103,10 +103,10 @@ as.data.frame.cff_pers_lst <- function(
   cff_df_indexed(x, prefix, row.names, optional, ...)
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 as.data.frame.cff_pers <- function(
   x,
   row.names = NULL,
@@ -130,10 +130,10 @@ as.data.frame.cff_pers <- function(
   as.data.frame(m, row.names = row.names, optional = optional, ...)
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 as.data.frame.cff_ref_lst <- function(
   x,
   row.names = NULL,
@@ -152,10 +152,10 @@ as.data.frame.cff_ref_lst <- function(
   )
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 as.data.frame.cff_ref <- function(
   x,
   row.names = NULL,
@@ -228,26 +228,26 @@ cff_df_name <- function(nm) {
 }
 # nolint end
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 head.cff <- function(x, n = 6L, ...) {
   as_cff(NextMethod())
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 tail.cff <- function(x, n = 6L, ...) {
   as_cff(NextMethod())
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 as.list.cff <- function(x, ...) {
   xl <- rapply(
     x,
@@ -263,10 +263,10 @@ as.list.cff <- function(x, ...) {
   as.list(xl)
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 toBibtex.cff <- function(
   object,
   ...,
@@ -275,52 +275,52 @@ toBibtex.cff <- function(
   toBibtex(as_bibentry(object, what = what), ...)
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 toBibtex.cff_ref_lst <- function(object, ...) {
   toBibtex(as_bibentry(object), ...)
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 toBibtex.cff_ref <- function(object, ...) {
   toBibtex(as_bibentry(object), ...)
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 toBibtex.cff_pers_lst <- function(object, ...) {
   toBibtex(as.person(object), ...)
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 toBibtex.cff_pers <- function(object, ...) {
   toBibtex(as.person(object), ...)
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 as.person.cff_pers <- function(x) {
   # Enlist to dispatch to the next method.
   x_l <- list(as.list(x))
   as.person(as_cff(x_l))
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 as.person.cff_pers_lst <- function(x) {
   pers <- lapply(x, make_r_person)
 
@@ -340,30 +340,30 @@ as.person.cff_pers_lst <- function(x) {
 
 # as.person methods not implemented ----
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 as.person.cff <- function(x) {
   cli::cli_abort(
     "({.pkg cffr}) {.fn as.person.cff} method not implemented yet."
   )
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 as.person.cff_ref <- function(x) {
   cli::cli_abort(
     "({.pkg cffr}) {.fn as.person.cff_ref} method not implemented yet."
   )
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_class
 #' @usage NULL
+#' @export
+#' @encoding UTF-8
 as.person.cff_ref_lst <- function(x) {
   cli::cli_abort(
     "({.pkg cffr}) {.fn as.person.cff_ref_lst} method not implemented yet."

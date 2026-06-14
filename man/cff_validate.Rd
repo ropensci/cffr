@@ -16,8 +16,8 @@ cff_validate(x = "CITATION.cff", verbose = TRUE)
 informative messages.}
 }
 \value{
-A message indicating the result of the validation and an invisible value
-\code{TRUE/FALSE}. On error, the result has an attribute \code{"errors"} containing
+A message indicating the result of the validation and an invisible
+\code{TRUE/FALSE} value. On error, the result has an \code{"errors"} attribute with
 the error summary. See \strong{Examples} and \code{\link[=attr]{attr()}}.
 }
 \description{
@@ -28,7 +28,7 @@ Validate a \code{CITATION.cff} file or a \code{\link{cff}} object using the corr
 # Full `.cff` example.
 cff_validate(system.file("examples/CITATION_complete.cff", package = "cffr"))
 
-# Validate a `cffr` object.
+# Validate a `cff` object.
 cffr <- cff_create("jsonlite")
 class(cffr)
 cff_validate(cffr)
@@ -47,8 +47,7 @@ df_errors <- attr(res, "errors")
 
 df_errors[, c("field", "message")]
 
-# If a CITATION file is supplied (note that it is not a `.cff` file), it
-# throws an error.
+# An R citation file is not a `.cff` file, so it throws an error.
 try(cff_validate(system.file("CITATION", package = "cffr")))
 }
 \seealso{

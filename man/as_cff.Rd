@@ -27,7 +27,7 @@ as_cff(x, ...)
 \item{x}{A \code{person}, \code{bibentry} or other object that could be coerced to a
 list.}
 
-\item{...}{Additional arguments to be passed on to other methods.}
+\item{...}{Additional arguments passed on to other methods.}
 }
 \value{
 \itemize{
@@ -61,7 +61,7 @@ For \code{as_cff.bibentry()} and \code{as_cff.Bibtex()}, see
 \code{vignette("bibtex-cff", package = "cffr")} to understand how the mapping is
 performed.
 
-\code{\link[=as_cff_person]{as_cff_person()}} is preferred over \code{as_cff.person()}, since it can handle
+\code{\link[=as_cff_person]{as_cff_person()}} is preferred over \code{as_cff.person()} because it can handle
 \code{character} inputs such as \code{"Davis, Jr., Sammy"}. For \code{person} objects both
 functions are similar.
 }

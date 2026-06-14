@@ -8,13 +8,13 @@
 #' @return See [as_bibentry()].
 #'
 #' @family deprecated
-#' @export
-#' @encoding UTF-8
 #' @rdname deprecated_cff_to_bib
 #' @keywords internal
+#' @export
+#' @encoding UTF-8
 #' @examples
 #' \donttest{
-#' # From a cff object.
+#' # From a `cff` object.
 #' cff_object <- cff()
 #'
 #' cff_object
@@ -37,9 +37,9 @@ cff_extract_to_bibtex <- function(
 }
 
 #' @rdname deprecated_cff_to_bib
+#' @keywords internal
 #' @export
 #' @encoding UTF-8
-#' @keywords internal
 cff_to_bibtex <- function(x, what = c("preferred", "references", "all")) {
   if (requireNamespace("lifecycle", quietly = TRUE)) {
     lifecycle::deprecate_warn(
@@ -68,10 +68,10 @@ cff_to_bibtex <- function(x, what = c("preferred", "references", "all")) {
 #' for reading a `character` object representing a BibTeX entry.
 #'
 #' @family deprecated
-#' @export
-#' @encoding UTF-8
 #' @rdname deprecated_cff_from_bib
 #' @keywords internal
+#' @export
+#' @encoding UTF-8
 #' @examples
 #' if (requireNamespace("bibtex", quietly = TRUE)) {
 #'   x <- c(
@@ -135,10 +135,10 @@ cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
 #' - [cff_write_citation()] for writing \R `CITATION` files.
 #'
 #' @family deprecated
-#' @export
-#' @encoding UTF-8
 #' @rdname deprecated_write
 #' @keywords internal
+#' @export
+#' @encoding UTF-8
 #' @examples
 #' bib <- bibentry("Misc",
 #'   title = "My title",
@@ -202,10 +202,10 @@ write_citation <- function(
 #' @seealso [as_cff_person()]
 #'
 #' @family deprecated
-#' @export
-#' @encoding UTF-8
 #' @rdname deprecated_cff_person
 #' @keywords internal
+#' @export
+#' @encoding UTF-8
 #' @examples
 #' # Create a person object.
 #' a_person <- person(
@@ -279,10 +279,10 @@ cff_parse_person_bibtex <- function(person) {
 #' @seealso [as_cff.bibentry()]
 #'
 #' @family deprecated
-#' @export
-#' @encoding UTF-8
 #' @rdname deprecated_cff_bibentry
 #' @keywords internal
+#' @export
+#' @encoding UTF-8
 #' @examples
 #' bib <- citation("base")
 #' bib

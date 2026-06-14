@@ -5,8 +5,6 @@
 #'
 #' @param x A string, possibly encoded in UTF-8.
 #'
-#' @importFrom tools encoded_text_to_latex
-#'
 #' @return A string with the corresponding transformations.
 #'
 #' @details
@@ -17,9 +15,9 @@
 #'
 #' @family bibtex
 #' @keywords internal
+#' @importFrom tools encoded_text_to_latex
 #' @export
 #' @encoding UTF-8
-#'
 #' @examples
 #' # Full range of supported characters in R.
 #' library(tools)

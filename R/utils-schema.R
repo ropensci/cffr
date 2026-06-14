@@ -1,7 +1,8 @@
 #' Schema utils
 #'
 #' @description
-#' Helper functions with the valid values of different fields, according to the
+#' Helper functions with the valid values of different keys and definition
+#' fields, according to the
 #' ```{r, echo=FALSE, results='asis'}
 #'
 #' cat(paste0("\n", "[Citation File Format schema version 1.2.0]",
@@ -38,9 +39,9 @@
 #' ```
 #'
 #' @family schemas
+#' @name cff_schema
 #' @export
 #' @encoding UTF-8
-#' @name cff_schema
 #' @examples
 #' cff_schema_keys(sorted = TRUE)
 cff_schema_keys <- function(sorted = FALSE) {
@@ -99,9 +100,9 @@ cff_schema_keys <- function(sorted = FALSE) {
   schema_keys
 }
 
+#' @rdname cff_schema
 #' @export
 #' @encoding UTF-8
-#' @rdname cff_schema
 #' @examples
 #' # Valid license keys.
 #' head(cff_schema_keys_license(), 20)
@@ -115,9 +116,9 @@ cff_schema_keys_license <- function() {
   license
 }
 
+#' @rdname cff_schema
 #' @export
 #' @encoding UTF-8
-#' @rdname cff_schema
 #' @examples
 #' cff_schema_definitions_person()
 cff_schema_definitions_person <- function() {
@@ -143,9 +144,9 @@ cff_schema_definitions_person <- function() {
   definitions_person
 }
 
+#' @rdname cff_schema
 #' @export
 #' @encoding UTF-8
-#' @rdname cff_schema
 #' @examples
 #' cff_schema_definitions_entity()
 cff_schema_definitions_entity <- function() {
@@ -169,9 +170,9 @@ cff_schema_definitions_entity <- function() {
   definitions_entity
 }
 
+#' @rdname cff_schema
 #' @export
 #' @encoding UTF-8
-#' @rdname cff_schema
 #' @examples
 #' cff_schema_definitions_refs()
 cff_schema_definitions_refs <- function() {

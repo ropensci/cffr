@@ -58,9 +58,9 @@
 #'   Git with \R packages.
 #'
 #' @family git
+#' @name cff_git_hook
 #' @export
 #' @encoding UTF-8
-#' @name cff_git_hook
 #' @examples
 #' \dontrun{
 #' cff_git_hook_install()

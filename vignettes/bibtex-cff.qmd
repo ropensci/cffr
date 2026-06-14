@@ -95,11 +95,11 @@ fields, optimized for citation rendering in documents. Semantics are largely
 implicit and contextual, depending on entry types and bibliography styles.
 
 CFF, in contrast, defines a structured schema with explicit typing, nested
-objects and richer metadata support. It is designed not only for producing
-citations, but also for machine‑actionable interoperability across platforms.
+objects and richer metadata support. It is designed for producing citations and
+for machine‑actionable interoperability across platforms.
 
 These conceptual differences explain why a direct one‑to‑one correspondence
-between BibTeX and CFF is not possible. Any crosswalk must therefore rely on
+between BibTeX and CFF is not possible. Any crosswalk must rely on
 explicit design decisions that balance fidelity, usability and schema
 constraints.
 
@@ -376,7 +376,7 @@ formatting (e.g., `book`, `edition`) is used for CFF keys.
 
 ## Proposed crosswalk
 
-**cffr** provides utilities for mapping BibTeX entries (via `bibentry()`) to CFF
+**cffr** provides utilities for mapping BibTeX entries (with `bibentry()`) to CFF
 and back. This section describes how the crosswalk is implemented, partially
 informed by @Haines_Ruby_CFF_Library_2021[^2].
 
@@ -436,14 +436,14 @@ The previous mapping has the following specifications:
   BibTeX[^3]. While **\@inbook** and **\@incollection** both reference parts of
   a **\@book**, the former is used for citing sections, chapters, pages or other
   specific parts, whereas the latter is used for citing parts with a specific
-  title. Since CFF allows keys `type: book` and `collection-type: book`, we may
-  utilize a combination of these fields to tag each entry type in CFF
+  title. Since CFF allows keys `type: book` and `collection-type: book`, we can
+  use a combination of these fields to tag each entry type in CFF
   accordingly.
 - **\@mastersthesis** and **\@phdthesis** are tagged using a combination of
   `type: thesis` and `thesis-type` keys.
 
-Additionally, considering that CFF allows for a wide range of values[^4] for the
-key `type`, the following mapping is applied from CFF to BibTeX:
+Because CFF allows a wide range of values[^4] for the key `type`, the following
+mapping is applied from CFF to BibTeX:
 
 The reverse mapping prioritizes BibTeX compatibility and normalization over
 exact round-trip preservation.
@@ -467,10 +467,9 @@ knitr::kable(
 
 ### Fields/key crosswalk
 
-There is a significant similarity between the definitions and names of certain
-BibTeX fields and CFF keys. While the equivalence is straightforward in some
-cases, there are instances where certain keys need to be processed depending on
-the **entry** type.
+Some BibTeX fields and CFF keys have similar names and definitions. The
+equivalence is straightforward in some cases, but some keys need to be processed
+depending on the **entry** type.
 
 ```{r}
 #| label: tbl-fields_bib2cff
@@ -493,8 +492,8 @@ We provide more detail on some of the mappings presented in the table above:
 
 - Some fields are not mapped because there is no clear equivalence with CFF keys
   (such as **annote**, **crossref** and **key**). Regarding the **type** field,
-  the CFF key `type` corresponds to the identifier of the work (similar to an
-  entry in BibTeX), therefore, BibTeX **type** is not mapped. These fields are
+  the CFF key `type` corresponds to the identifier of the work, similar to an
+  entry in BibTeX. Therefore, BibTeX **type** is not mapped. These fields are
   always optional in BibTeX.
 - For the **address** field, its intended use in BibTeX varies depending on the
   entry type (e.g., for **\@inproceedings**, it denotes the **address** of the
@@ -519,9 +518,9 @@ We provide more detail on some of the mappings presented in the table above:
 
 #### BibLaTeX
 
-Additionally, there are other CFF keys that correspond to BibLaTeX fields. We
-propose to include these fields in the crosswalk[^5], even though they are not
-part of the core BibTeX fields definition.
+Other CFF keys correspond to BibLaTeX fields. We include these fields in the
+crosswalk[^5], even though they are not part of the core BibTeX field
+definition.
 
 ```{r}
 #| label: tbl-fields_biblatex2cff
@@ -1187,7 +1186,7 @@ Whereas BibLaTeX [@biblatexpack] specifies:
 >   author, title, booktitle, year/date (...).
 
 When considering required fields, an important difference is the **booktitle**
-requirement in BibLaTeX. Notably, BibTeX **\@incollection** requires also this
+requirement in BibLaTeX. Notably, BibTeX **\@incollection** also requires this
 field. Moreover, both BibTeX **\@incollection** and BibLaTeX **\@inbook**
 emphasize its reference to *"a part of a book (...) with its own title"*.
 
@@ -1244,8 +1243,8 @@ knitr::kable(
 [^1]: See a complete list of possible values of CFF `type` in [Appendix
     B](#appendix_cff_type)
 
-[^2]: Note that this software performs only the mapping from CFF to BibTeX,
-    however **cffr** can perform the mapping in both directions.
+[^2]: This software performs only the mapping from CFF to BibTeX, but **cffr**
+    can perform the mapping in both directions.
 
 [^3]: Note that BibLaTeX [@biblatexpack] handles **\@inbook** differently, see
     [Appendix A](#appendix_inbook).

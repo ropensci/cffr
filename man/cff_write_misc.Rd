@@ -38,7 +38,7 @@ displayed instead.}
 \item{...}{
   Arguments passed on to \code{\link{as_bibentry.cff}}, \code{\link{as_bibentry.cff_ref}}, \code{\link{as_bibentry.cff_ref_lst}}
   \describe{
-    \item{\code{what}}{Fields to extract from a full \code{cff} object. The value could be:
+    \item{\code{what}}{Fields to extract from a full \code{cff} object. It can be:
 \itemize{
 \item \code{preferred}: Create a single entry with the main citation information
 of the package (key \code{preferred-citation}).
@@ -50,7 +50,7 @@ See \code{vignette("r-cff", package = "cffr")}.}
   }}
 }
 \value{
-Writes the corresponding file specified on the \code{file} argument.
+Writes the corresponding file specified by the \code{file} argument.
 }
 \description{
 Export \R objects representing citations to specific file formats:
@@ -82,7 +82,7 @@ cat(readLines(my_temp_bib), sep = "\n")
 cff_write_bib(bib, file = my_temp_bib, ascii = TRUE, append = TRUE)
 
 cat(readLines(my_temp_bib), sep = "\n")
-# Create a CITATION file.
+# Create an R citation file.
 # Use a system file.
 f <- system.file("examples/preferred-citation-book.cff", package = "cffr")
 a_cff <- cff_read(f)

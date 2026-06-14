@@ -28,7 +28,7 @@ cff_read_bib(path, encoding = "UTF-8", ...)
 \arguments{
 \item{path}{Path to a file.}
 
-\item{...}{Arguments to be passed to other functions, for example to
+\item{...}{Arguments passed to other functions, for example to
 \code{\link[yaml:read_yaml]{yaml::read_yaml()}} or \code{\link[bibtex:read.bib]{bibtex::read.bib()}}.}
 
 \item{cff_version}{The Citation File Format schema version that the

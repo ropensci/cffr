@@ -40,17 +40,17 @@ The Citation File Format project [@druskat_citation_2021] defines a standardized
 format for providing citation metadata for software or datasets in plain text
 files that are easy for both humans and machines to read.
 
-This metadata format is being adopted by GitHub as the primary format for its
+Citation File Format is being adopted by GitHub as the primary format for its
 built-in citation support [@github_about_citation]. Other leading archives for
 scientific software, including Zenodo and Zotero [@druskat_stephan_making_2021],
 have also included support for `CITATION.cff` files in their GitHub integration.
 
-**cffr** provides utilities to generate and validate these `CITATION.cff` files
+**cffr** provides utilities to generate and validate `CITATION.cff` files
 automatically for **R** [@R_2021] packages by parsing the `DESCRIPTION` file and
-the native **R** citation file. The package also includes utilities and examples
-for parsing components such as persons and additional citations, plus several
-vignettes that illustrate basic package usage and technical details about the
-metadata extraction process.
+`inst/CITATION`. The package also includes utilities and examples for parsing
+components such as persons and additional citations, plus vignettes that
+illustrate basic package usage and technical details about the metadata
+extraction process.
 
 ## Statement of need
 
@@ -74,7 +74,7 @@ easy to read by humans and can also be parsed by appropriate software. GitHub's
 adoption of this format sends a strong message that research software is worthy
 of citation and therefore deserves credit.
 
-**cffr** allows **R** software developers to create `CITATION.cff` files from
+**cffr** allows **R** package developers to create `CITATION.cff` files from
 metadata already included in the package. It also includes validation tools from
 the **jsonvalidate** package [@jsonvalidate2021], which allow developers to
 assess the validity of the file created using the latest CFF schema.

@@ -17,7 +17,7 @@
 #' @inheritDotParams as_bibentry.cff_ref_lst
 #'
 #' @return
-#' Writes the corresponding file specified on the `file` argument.
+#' Writes the corresponding file specified by the `file` argument.
 #'
 #' @details
 #' When `x` is a `cff` object, it is converted to BibTeX using
@@ -39,9 +39,9 @@
 #'
 #' @family bibtex
 #' @family writing
+#' @rdname cff_write_misc
 #' @export
 #' @encoding UTF-8
-#' @rdname cff_write_misc
 #' @examples
 #' bib <- bibentry("Misc",
 #'   title = "My title",
@@ -84,12 +84,12 @@ cff_write_bib <- function(
   invisible(NULL)
 }
 
-#' @export
-#' @encoding UTF-8
 #' @rdname cff_write_misc
 #' @name cff_write_citation
+#' @export
+#' @encoding UTF-8
 #' @examples
-#' # Create a CITATION file.
+#' # Create an R citation file.
 #' # Use a system file.
 #' f <- system.file("examples/preferred-citation-book.cff", package = "cffr")
 #' a_cff <- cff_read(f)

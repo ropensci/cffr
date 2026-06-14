@@ -1,6 +1,6 @@
 #' Create [`cff`] objects from direct inputs
 #'
-#' A class and utility methods for reading, creating and holding CFF
+#' A class and utility methods for reading, creating and storing CFF
 #' information. See [cff_class] to learn more about `cff` objects.
 #'
 #' @param path `r lifecycle::badge("deprecated")` `path` is no longer supported,
@@ -27,10 +27,10 @@
 #' ```
 #'
 #' @family core
-#' @export
-#' @encoding UTF-8
 #' @rdname cff
 #' @name cff
+#' @export
+#' @encoding UTF-8
 #' @examples
 #' # Blank `cff` object.
 #' cff()
@@ -56,8 +56,6 @@
 #'
 #' # This would pass.
 #' cff_validate(new)
-#'
-#' @export
 cff <- function(path, ...) {
   if (!missing(path)) {
     src <- detect_x_source(path)
