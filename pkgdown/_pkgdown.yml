@@ -18,51 +18,54 @@ home:
     packages.
 
 reference:
-- title: Core workflow
-- subtitle: Main workflow
-  desc: >
-    Create, write and validate a `CITATION.cff` file in one command.
-  contents: cff_write
-- subtitle: Other core functions
-  desc: Create, modify and validate `cff` objects.
-  contents: has_concept("core")
-- subtitle: Citation File Format schema
-  desc: >
-    Inspect valid keys from the Citation File Format schema (v1.2.0).
-  contents: has_concept("schemas")
-- subtitle: Class system
-  desc: >
-    Learn about the `cff` class system and S3 methods implemented by
-    **cffr**.
-  contents: cff_class
-- title: Additional features
-- subtitle: Coerce objects
-  desc: >
-    Coerce R objects to the `cff`, `person` and `bibentry` classes used by the
-    package.
-  contents: has_concept("s3method")
-- subtitle: Read and write files
-  desc: >
-    Read and write `CITATION.cff`, BibTeX and R citation files.
-  contents:
+- title: Create and maintain CITATION.cff files
+  desc: Main workflow for R package authors.
+- contents:
+  - cff_write
+  - cff_create
+  - cff
+  - cff_validate
+  - cff_modify
+
+- title: Read and write citation metadata
+- subtitle: Read metadata
+- contents:
   - has_concept("reading")
+- subtitle: Write metadata
+- contents:
   - has_concept("writing")
+
+- title: Convert between CFF, R and BibTeX
+- subtitle: Coercion helpers
+- contents:
+  - has_concept("s3method")
 - subtitle: BibTeX helpers
-  desc: >
-    Convert between BibTeX markup and `cff` objects.
-  contents: has_concept("bibtex")
-- subtitle: Git and GitHub helpers
-  desc: >
-    Keep `CITATION.cff` synchronized with package metadata.
-  contents: has_concept("git")
-- title: Datasets
-  desc: >
-    Package datasets used for metadata mapping.
-  contents: has_concept("datasets")
-- title: Deprecated functions
-  contents: has_concept("deprecated")
-- title: About the package
-  contents: cffr-package
+- contents:
+  - has_concept("bibtex")
+
+- title: Inspect CFF schema values
+- contents:
+  - has_concept("schemas")
+
+- title: Automation
+  desc: Helpers for keeping `CITATION.cff` synchronized with package metadata.
+- contents:
+  - has_concept("git")
+
+- title: Data
+- contents:
+  - has_concept("datasets")
+
+- title: Package internals and lifecycle
+- subtitle: Class system
+- contents:
+  - cff_class
+- subtitle: Deprecated functions
+- contents:
+  - has_concept("deprecated", internal = TRUE)
+- subtitle: Package overview
+- contents:
+  - cffr-package
 
 navbar:
   structure:
@@ -71,30 +74,11 @@ navbar:
     - reference
     - articles
     - tutorials
-    - media
     - news
     right:
     - search
     - github
     - lightswitch
-  components:
-    media:
-      text: Media
-      menu:
-      - text: rOpenSci
-      - text: 'cffr: Create a CITATION.cff file for your R package'
-        href: https://ropensci.org/blog/2021/11/23/cffr/
-      - text: How I test cffr on (about) 2,000 packages
-        href: https://ropensci.org/blog/2021/11/23/how-i-test-cffr/
-      - text: '---'
-      - text: Blogs
-      - text: How to call package citations in R programming
-        href: |
-          https://medium.com/analytics-vidhya/how-to-call-package-citations-in-r-programming-6f01f1176301
-      - text: '---'
-      - text: Podcasts
-      - text: 'R Weekly Highlights: Issue 2021-W48 Highlights'
-        href: https://share.fireside.fm/episode/87RSVeFz+4R-j8_xW
 
 authors:
   Diego Hernangómez:
@@ -105,12 +89,37 @@ authors:
     href: https://scottchamberlain.info/
 
 articles:
-- title: JOSS paper
-  navbar: JOSS paper
+- title: Guides
   contents:
-  - joss-paper
+  - cffr
 - title: Crosswalks
   navbar: Crosswalks
+  desc: Technical mappings between R, CFF and BibTeX metadata.
   contents:
   - r-cff
   - bibtex-cff
+- title: Publications
+  navbar: Publications
+  contents:
+  - joss-paper
+- title: Around cffr
+  navbar: Media
+  desc: Blog posts, podcasts and external material about cffr.
+  contents:
+  - ropensci-cffr
+  - ropensci-testing-cffr
+  - rweekly-podcast
+
+external-articles:
+- name: ropensci-cffr
+  title: "cffr: Create a CITATION.cff file for your R package"
+  description: rOpenSci blog post introducing cffr.
+  href: https://ropensci.org/blog/2021/11/23/cffr/
+- name: ropensci-testing-cffr
+  title: How I test cffr on (about) 2,000 packages
+  description: rOpenSci blog post about cffr reverse dependency testing.
+  href: https://ropensci.org/blog/2021/11/23/how-i-test-cffr/
+- name: rweekly-podcast
+  title: "R Weekly Highlights: Issue 2021-W48 Highlights"
+  description: Podcast episode covering cffr.
+  href: https://share.fireside.fm/episode/87RSVeFz+4R-j8_xW
