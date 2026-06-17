@@ -42,16 +42,16 @@
 #' `vignette("bibtex-cff", package = "cffr")`.
 #'
 #' @references
-#' - Patashnik, Oren. "BIBTEXTING" February 1988.
-#'   <https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf>.
+#' Patashnik, Oren. "BIBTEXTING" February 1988.
+#' <https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf>.
 #'
-#' - Haines, R., & The Ruby Citation File Format Developers. (2021).
-#'   *Ruby CFF Library (Version 0.9.0)* (Computer software).
-#'   \doi{10.5281/zenodo.1184077}.
+#' Haines, R., & The Ruby Citation File Format Developers. (2021).
+#' *Ruby CFF Library (Version 0.9.0)* (Computer software).
+#' \doi{10.5281/zenodo.1184077}.
 #'
-#' - Hernangomez D (2022). "BibTeX and CFF, a potential crosswalk."
-#'   *The cffr package, Vignettes*. \doi{10.21105/joss.03900},
-#'   <https://docs.ropensci.org/cffr/articles/bibtex-cff.html>.
+#' Hernangomez D (2022). "BibTeX and CFF, a potential crosswalk."
+#' *The cffr package, Vignettes*. \doi{10.21105/joss.03900},
+# <https://docs.ropensci.org/cffr/articles/bibtex-cff.html>.
 #'
 #' @seealso
 #' [utils::bibentry()] to understand more about the `bibentry` class.

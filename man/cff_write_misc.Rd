@@ -97,10 +97,8 @@ meta$Encoding <- "UTF-8"
 utils::readCitationFile(out, meta)
 }
 \references{
-\itemize{
-\item R Core Team (2023). \emph{Writing R Extensions}.
+R Core Team (2023). \emph{Writing R Extensions}.
 \url{https://cran.r-project.org/doc/manuals/r-release/R-exts.html}
-}
 }
 \seealso{
 \code{vignette("bibtex-cff", package = "cffr")}, \code{\link[knitr:write_bib]{knitr::write_bib()}} and the

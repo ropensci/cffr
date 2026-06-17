@@ -117,13 +117,12 @@ from_citation[[1]]
 
 }
 \references{
-\itemize{
-\item R Core Team (2023). \emph{Writing R Extensions}.
+R Core Team (2023). \emph{Writing R Extensions}.
 \url{https://cran.r-project.org/doc/manuals/r-release/R-exts.html}
-\item Hernangomez D (2022). "BibTeX and CFF, a potential crosswalk."
+
+Hernangomez D (2022). "BibTeX and CFF, a potential crosswalk."
 \emph{The cffr package, Vignettes}. \doi{10.21105/joss.03900},
 \url{https://docs.ropensci.org/cffr/articles/bibtex-cff.html}.
-}
 }
 \seealso{
 The underlying functions used for reading external files:

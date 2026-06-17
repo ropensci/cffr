@@ -51,12 +51,12 @@
 #' read some files correctly.
 #'
 #' @references
-#' - R Core Team (2023). _Writing R Extensions_.
-#'   <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>
+#' R Core Team (2023). _Writing R Extensions_.
+#' <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>
 #'
-#' - Hernangomez D (2022). "BibTeX and CFF, a potential crosswalk."
-#'   *The cffr package, Vignettes*. \doi{10.21105/joss.03900},
-#'   <https://docs.ropensci.org/cffr/articles/bibtex-cff.html>.
+#' Hernangomez D (2022). "BibTeX and CFF, a potential crosswalk."
+#' *The cffr package, Vignettes*. \doi{10.21105/joss.03900},
+#' <https://docs.ropensci.org/cffr/articles/bibtex-cff.html>.
 #'
 #' @seealso
 #' The underlying functions used for reading external files:

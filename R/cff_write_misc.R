@@ -27,8 +27,8 @@
 #' a backup copy in the same directory.
 #'
 #' @references
-#' - R Core Team (2023). _Writing R Extensions_.
-#'   <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>
+#' R Core Team (2023). _Writing R Extensions_.
+#' <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>
 #'
 #' @seealso
 #' `vignette("bibtex-cff", package = "cffr")`, [knitr::write_bib()] and the

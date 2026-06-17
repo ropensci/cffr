@@ -67,14 +67,14 @@
 #' email and ORCID are also extracted.
 #'
 #' @references
-#' - Patashnik, Oren. "BIBTEXTING" February 1988.
-#'   <https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf>.
+#' Patashnik, Oren. "BIBTEXTING" February 1988.
+#' <https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf>.
 #'
-#' - Markey, Nicolas. "Tame the BeaST"
-#'   *The B to X of BibTeX, Version 1.4* (October 2007).
-#'   <https://osl.ugr.es/CTAN/info/bibtex/tamethebeast/ttb_en.pdf>.
+#' Markey, Nicolas. "Tame the BeaST"
+#' *The B to X of BibTeX, Version 1.4* (October 2007).
+#' <https://osl.ugr.es/CTAN/info/bibtex/tamethebeast/ttb_en.pdf>.
 #'
-#' - Decoret X (2007). "A summary of BibTeX."
+#' Decoret X (2007). "A summary of BibTeX."
 #' ```{r, echo=FALSE, results='asis'}
 #'
 #' cat(paste0("<https://maverick.inria.fr/~Xavier.Decoret/resources/xdkbibtex/",

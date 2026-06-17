@@ -331,11 +331,9 @@ toBibtex(two_persons)
 }
 }
 \references{
-\itemize{
-\item Wickham H (2019). "S3." In \emph{Advanced R}, 2nd edition.
+Wickham H (2019). "S3." In \emph{Advanced R}, 2nd edition.
 Chapman and Hall/CRC. \doi{10.1201/9781351201315},
 \url{https://adv-r.hadley.nz/s3.html}.
-}
 }
 \seealso{
 Coerce between \R classes:

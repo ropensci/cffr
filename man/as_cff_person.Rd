@@ -146,14 +146,14 @@ as_cff_person("Herbert von Karajan")
 toBibtex(as_cff_person("Herbert von Karajan"))
 }
 \references{
-\itemize{
-\item Patashnik, Oren. "BIBTEXTING" February 1988.
+Patashnik, Oren. "BIBTEXTING" February 1988.
 \url{https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf}.
-\item Markey, Nicolas. "Tame the BeaST"
+
+Markey, Nicolas. "Tame the BeaST"
 \emph{The B to X of BibTeX, Version 1.4} (October 2007).
 \url{https://osl.ugr.es/CTAN/info/bibtex/tamethebeast/ttb_en.pdf}.
-\item Decoret X (2007). "A summary of BibTeX."\url{https://maverick.inria.fr/~Xavier.Decoret/resources/xdkbibtex/bibtex_summary.html#names}
-}
+
+Decoret X (2007). "A summary of BibTeX."\url{https://maverick.inria.fr/~Xavier.Decoret/resources/xdkbibtex/bibtex_summary.html#names}
 
 See \strong{Examples} for more information.
 }

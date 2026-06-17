@@ -10,6 +10,15 @@
 
 Citation File Format ('CFF') version 1.2.0 \doi{10.5281/zenodo.5171937} is a human- and machine-readable file format for software citation metadata. Core utilities generate, read, write and validate Citation File Format metadata for R packages.
 }
+\references{
+Hernangómez D (2021). "cffr: Generate Citation File Format Metadata for R
+Packages." \emph{Journal of Open Source Software}, \strong{6}(67), 3900.
+\doi{10.21105/joss.03900}.
+
+Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, et al. 2021.
+"Citation File Format." \doi{10.5281/zenodo.5171937}.
+\url{https://github.com/citation-file-format/citation-file-format}.
+}
 \seealso{
 Useful links:
 \itemize{
