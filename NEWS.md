@@ -1,4 +1,4 @@
-# cffr (development version)
+# cffr 1.4.1
 
 - Internal code and documentation were reviewed and refactored with AI
   assistance to improve maintainability, consistency and user-facing messages.

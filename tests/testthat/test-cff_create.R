@@ -380,6 +380,8 @@ test_that("Parsing Bioconductor", {
 })
 
 test_that("Parsing Posit Package Manager", {
+  skip_on_cran()
+
   desc_path <- system.file(
     "examples/DESCRIPTION_posit_package_manager",
     package = "cffr"
