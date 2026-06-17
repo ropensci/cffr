@@ -74,7 +74,7 @@ cff_git_hook_install <- function() {
     usethis::use_git_hook("pre-commit", readLines(con = bash_file))
   } else {
     cli::cli_alert_danger(paste0(
-      "Please install {.pkg usethis} to use the pre-commit hook: ",
+      "Install {.pkg usethis} to use the pre-commit hook: ",
       '{.run install.packages("usethis")}'
     ))
   }

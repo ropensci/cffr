@@ -5,14 +5,14 @@
     Message
       i Creating directory './.github/workflows'.
       v Installing './.github/workflows/update-citation-cff.yaml'.
-      i Adding ".github" to '.Rbuildignore'.
+      i Adding '.github' to '.Rbuildignore'.
 
 ---
 
     Code
       cff_gha_update()
     Message
-      ! File './.github/workflows/update-citation-cff.yaml' already installed. Use `overwrite = TRUE` to overwrite it.
+      ! File './.github/workflows/update-citation-cff.yaml' is already installed. Use `overwrite = TRUE` to overwrite it.
 
 ---
 

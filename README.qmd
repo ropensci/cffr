@@ -26,7 +26,8 @@ knitr:
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/cffr?color=blue)](https://cran.r-project.org/package=cffr)
 [![R-CMD-check](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml)
 [![codecov](https://codecov.io/gh/ropensci/cffr/branch/main/graph/badge.svg?token=YRO3XL8RWK)](https://app.codecov.io/gh/ropensci/cffr)
-[![Coverage Status](https://coveralls.io/repos/github/ropensci/cffr/badge.svg?branch=main)](https://coveralls.io/github/ropensci/cffr?branch=main)
+[![Coverage
+Status](https://coveralls.io/repos/github/ropensci/cffr/badge.svg?branch=main)](https://coveralls.io/github/ropensci/cffr?branch=main)
 [![r-universe](https://ropensci.r-universe.dev/badges/cffr)](https://ropensci.r-universe.dev/cffr)
 [![CITATION-cff](https://github.com/ropensci/cffr/actions/workflows/cff-validator.yaml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/cff-validator.yaml)
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.03900/status.svg)](https://doi.org/10.21105/joss.03900)
@@ -40,8 +41,8 @@ bytes](https://img.shields.io/github/languages/code-size/ropensci/cffr)
 <!-- badges: end -->
 
 **cffr** provides utilities to generate, coerce, modify and validate
-`CITATION.cff` files automatically for **R** packages. It also includes tools
-and examples for working with `*.cff` files more generally.
+`CITATION.cff` files for **R** packages. It also includes tools and examples for
+working with `*.cff` files more generally.
 
 ## What is a `CITATION.cff` file?
 
@@ -51,7 +52,7 @@ machine-readable citation information for software (and datasets). Software
 developers can include them in their repositories to let others know how to
 correctly cite their software.
 
-This format is gaining popularity within the software citation ecosystem.
+This format is increasingly used in the software citation ecosystem.
 [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
 [Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-) and
 [Zotero](https://citation-file-format.github.io/#/supported-by-zotero-) support
@@ -131,12 +132,12 @@ if (isTRUE(res)) {
 } else {
   nreps <- as.integer(jsonlite::read_json(tmpfile)$total_count)
   cat(paste0(
-    "As per ",
+    "As of ",
     today,
     " there are at least ",
     nreps,
     " repositories on GitHub using **cffr**. ",
-    "[Check them out here]",
+    "[Browse the search results]",
     "(https://github.com/search?q=cffr%20path%3A**%2FCITATION.",
     "cff&type=code)."
   ))
@@ -174,7 +175,7 @@ install.packages(
 
 ### Example
 
-Most commonly, from within your package folder, you run `cff_write()`. It
+Most commonly, from within your package directory, you run `cff_write()`. It
 creates a `cff` object, writes it to a `CITATION.cff` file and validates it in a
 single command:
 
@@ -187,16 +188,16 @@ cff_write()
 #>
 #> CITATION.cff generated.
 #>
-#> ══ Validating cff ══════════════════════════════════════════════════════════════
-#> This .cff file is valid.
+#> ══ Validating CFF ══════════════════════════════════════════════════════════════
+#> ✔ CITATION.cff is valid.
 ```
 
-**cffr** also provides custom print methods and helper functions for
-customizing `CITATION.cff` files and integrating them into your workflows.
+**cffr** also provides custom print methods and helper functions for customizing
+`CITATION.cff` files and integrating them into your workflows.
 
 This basic example shows how to create a `cff` object (see `?cff` for more
-information). Here, we create a `cff` object from the metadata of the
-**knitr** package:
+information). Here, we create a `cff` object from the metadata of the **knitr**
+package:
 
 ```{r }
 library(cffr)
@@ -223,9 +224,8 @@ We can validate the result using `cff_validate()`:
 cff_validate(test)
 ```
 
-See the
-[reference documentation](https://docs.ropensci.org/cffr/reference/index.html)
-and
+See the [reference
+documentation](https://docs.ropensci.org/cffr/reference/index.html) and
 `vignette("cffr", package = "cffr")` to learn more about working with `cff`
 objects.
 
@@ -234,8 +234,8 @@ objects.
 #### GitHub Actions
 
 The easiest way to keep your `CITATION.cff` file up to date is to use **GitHub
-Actions**. Use `cff_gha_update()` to install a GitHub Action that updates your
-`CITATION.cff` file in the following cases:
+Actions**. Use `cff_gha_update()` to install a GitHub Actions workflow that
+updates your `CITATION.cff` file in the following cases:
 
 - When you publish a new release of the package on GitHub.
 - Each time you modify your `DESCRIPTION` or `inst/CITATION` files.
@@ -246,7 +246,7 @@ Actions**. Use `cff_gha_update()` to install a GitHub Action that updates your
 cff_gha_update()
 
 #> ✔ Installing ./.github/workflows/update-citation-cff.yaml.
-#> ℹ Adding ".github" to .Rbuildignore.
+#> ℹ Adding .github to .Rbuildignore.
 ```
 
 See the example workflow file
@@ -290,7 +290,7 @@ Check the following articles to learn more about **cffr**:
 
 ## Code of conduct
 
-Please note that the **cffr** project is released with a [Contributor Code of
+The **cffr** project is released with a [Contributor Code of
 Conduct](https://docs.ropensci.org/cffr/CODE_OF_CONDUCT.html). By contributing
 to this project, you agree to abide by its terms.
 

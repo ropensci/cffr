@@ -36,7 +36,7 @@
       match_cff_arg("a", "b", "...")
     Condition
       Error in `match_cff_arg()`:
-      ! `...` should be "b", not "a".
+      ! `...` must be "b", not "a".
 
 ---
 
@@ -44,7 +44,7 @@
       match_cff_arg("a", c("b", "c", "d"), "what")
     Condition
       Error in `match_cff_arg()`:
-      ! `what` should be "b", "c", or "d", not "a".
+      ! `what` must be "b", "c", or "d", not "a".
 
 ---
 
@@ -52,5 +52,5 @@
       my_fun()
     Condition
       Error in `my_fun()`:
-      ! `aa` should be "A", "B", "C", "D", or "E", not "a".
+      ! `aa` must be "A", "B", "C", "D", or "E", not "a".
 

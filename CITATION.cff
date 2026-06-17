@@ -14,9 +14,9 @@ identifiers:
 - type: doi
   value: 10.32614/CRAN.package.cffr
 abstract: Citation File Format ('CFF') version 1.2.0 <https://doi.org/10.5281/zenodo.5171937>
-  is a human- and machine-readable file format for software citation metadata. The
-  package provides core utilities to generate, read, write and validate Citation File
-  Format metadata for R packages.
+  is a human- and machine-readable file format for software citation metadata. Core
+  utilities generate, read, write and validate Citation File Format metadata for R
+  packages.
 authors:
 - family-names: Hernangómez
   given-names: Diego

@@ -1,17 +1,17 @@
-#' Coerce lists, `person` and `bibentry` objects to [`cff`]
+#' Coerce lists and citation objects to [`cff`]
 #'
 #' @description
 #' `as_cff()` turns an existing list-like \R object into a [`cff`] object,
 #' a list with class `cff` and the corresponding [subclass][cff_class] when
 #' applicable.
 #'
-#' `as_cff` is an S3 generic, with methods for:
+#' `as_cff()` is an S3 generic, with methods for:
 #' - `person` objects as produced by [utils::person()].
 #' - `bibentry` objects as produced by [utils::bibentry()].
 #' - `Bibtex` objects as produced by [toBibtex()].
 #' - Default: Other inputs are first coerced with [as.list()].
 #'
-#' @param x A `person`, `bibentry` or other object that could be coerced to a
+#' @param x A `person`, `bibentry` or other object that can be coerced to a
 #'   list.
 #' @param ... Additional arguments passed on to other methods.
 #'
@@ -34,7 +34,7 @@
 #'
 #' [as_cff_person()] is preferred over `as_cff.person()` because it can handle
 #' `character` inputs such as `"Davis, Jr., Sammy"`. For `person` objects both
-#' functions are similar.
+#' functions behave similarly.
 #'
 #' @seealso
 #' - [cff()]: Create a full `cff` object from scratch.

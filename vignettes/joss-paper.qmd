@@ -45,12 +45,11 @@ built-in citation support [@github_about_citation]. Other leading archives for
 scientific software, including Zenodo and Zotero [@druskat_stephan_making_2021],
 have also included support for `CITATION.cff` files in their GitHub integration.
 
-**cffr** provides utilities to generate and validate `CITATION.cff` files
-automatically for **R** [@R_2021] packages by parsing the `DESCRIPTION` file and
-`inst/CITATION`. The package also includes utilities and examples for parsing
-components such as persons and additional citations, plus vignettes that
-illustrate basic package usage and technical details about the metadata
-extraction process.
+**cffr** provides utilities to generate and validate `CITATION.cff` files for
+**R** [@R_2021] packages by parsing the `DESCRIPTION` file and `inst/CITATION`.
+The package also includes utilities and examples for parsing components such as
+persons and additional citations, plus vignettes that illustrate basic package
+usage and technical details about the metadata extraction process.
 
 ## Statement of need
 
@@ -77,7 +76,7 @@ of citation and therefore deserves credit.
 **cffr** allows **R** package developers to create `CITATION.cff` files from
 metadata already included in the package. It also includes validation tools from
 the **jsonvalidate** package [@jsonvalidate2021], which allow developers to
-assess the validity of the file created using the latest CFF schema.
+assess the validity of the file against the Citation File Format schema.
 
 ## Acknowledgements
 

@@ -34,8 +34,8 @@
 \CRANpkg{cffr} implements an S3 object with \code{\link{class}} \code{cff}, which represents
 the information in a \code{CITATION.cff} file in \R.
 
-Under the hood, a \code{cff} object is a named \code{\link{list}} with additional methods,
-most notably \code{\link{print}} and \code{\link[=as_cff]{as_cff()}}.
+Under the hood, a \code{cff} object is a named \code{\link{list}} with additional methods, most
+notably \code{\link{print}} and \code{\link[=as_cff]{as_cff()}}.
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{a_named_list <- list(
   first = "I", second = "am", third = "a", fourth = "list",
@@ -60,8 +60,8 @@ is.list(a_cff_object)
 #> [1] TRUE
 }\if{html}{\out{</div>}}
 
-\code{\link[=as_cff]{as_cff()}} converts a \code{list} to \code{cff} and removes items that are \code{NULL} or
-\code{NA}. These items are known as \code{keys} in CFF terminology.
+\code{\link[=as_cff]{as_cff()}} converts a \code{list} to \code{cff} and removes items that are \code{NULL} or \code{NA}.
+These items are known as \code{keys} in CFF terminology.
 \subsection{Subclasses}{
 
 \strong{cffr} implements two special subclasses of \code{cff}, which represent two special
@@ -71,11 +71,11 @@ types of objects defined in the \href{https://github.com/citation-file-format/ci
 representing persons or entities. In \strong{cffr}, the subclass \code{cff_pers_lst}
 collects an array of \code{definitions.person} or \code{definitions.entity} objects,
 where each individual person or entity has subclass \code{cff_pers}.
-\item \code{definitions.reference} is the CFF definition for collecting
-references to related works and other software used in the development of the
-main work of the \code{CITATION.cff} file. In \strong{cffr}, the subclass \code{cff_ref_lst}
-represents arrays of \code{definitions.reference} objects, where each element has
-subclass \code{cff_ref}.
+\item \code{definitions.reference} is the CFF definition for collecting references to
+related works and other software used in the development of the main work of
+the \code{CITATION.cff} file. In \strong{cffr}, the subclass \code{cff_ref_lst} represents
+arrays of \code{definitions.reference} objects, where each element has subclass
+\code{cff_ref}.
 }
 
 These two subclasses do not provide full valid \code{cff} objects, but adapt
@@ -166,14 +166,14 @@ class(ref_list[[1]])
 
 \subsection{Valid \code{cff} objects}{
 
-Creating a \code{cff} object does not ensure its validity according to the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}:
+Creating a \code{cff} object does not ensure its validity against the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}:
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{class(a_cff_object)
 #> [1] "cff"
 
 cff_validate(a_cff_object)
-#> == Validating cff ==============================================================
-#> x Validation failed. This <cff> has the following errors:
+#> == Validating CFF ==============================================================
+#> x Validation failed. This <cff> object has the following errors:
 #> * cff/: must have required property 'authors'
 #> * cff/: must have required property 'cff-version'
 #> * cff/: must have required property 'message'
@@ -187,7 +187,7 @@ cff_validate(a_cff_object)
 }\if{html}{\out{</div>}}
 
 \code{\link[=cff_validate]{cff_validate()}} gives minimal messages about what is wrong with the \code{cff}
-object and invisibly returns the result of the validation (\code{TRUE/FALSE}).
+object and invisibly returns the validation result (\code{TRUE/FALSE}).
 
 We can use \code{\link[=cff_modify]{cff_modify()}} to add more keys:
 
@@ -209,15 +209,15 @@ cff_valid
 #> title: My title
 
 cff_validate(cff_valid)
-#> == Validating cff ==============================================================
-#> v This <cff> is valid.
+#> == Validating CFF ==============================================================
+#> v This <cff> object is valid.
 }\if{html}{\out{</div>}}
 }
 
 \subsection{Base methods provided by \strong{cffr}}{
 
 \strong{cffr} provides additional S3 methods for common coercion functions from the
-\strong{base} and \strong{utils} packages.
+base and utils packages.
 \subsection{\code{\link[=as.data.frame]{as.data.frame()}}}{
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{minimal_cff <- cff()

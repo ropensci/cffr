@@ -21,8 +21,8 @@ knitr:
 library(cffr)
 ```
 
-**cffr** is designed for **R** package developers. The main goal of **cffr** is
-to create a `CITATION.cff` file using metadata from the following files:
+**cffr** is designed for **R** package developers. Its main goal is to create a
+`CITATION.cff` file using metadata from the following files:
 
 - Your `DESCRIPTION` file.
 - Citation information from `inst/CITATION`, when available.
@@ -35,7 +35,7 @@ machine-readable citation information for software (and datasets). Software
 developers can include them in their repositories to let others know how to
 correctly cite their software.
 
-This format is gaining popularity within the software citation ecosystem.
+This format is increasingly used in the software citation ecosystem.
 [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
 [Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-) and
 [Zotero](https://citation-file-format.github.io/#/supported-by-zotero-) support
@@ -83,11 +83,11 @@ You now have a complete `CITATION.cff` file for your **R** package.
 
 ## Modifying your `CITATION.cff` file
 
-You can customize a `cff` object (a custom **cffr** S3 class) using the
-coercion system provided in the package and the `keys` argument.
+You can customize a `cff` object (a custom **cffr** S3 class) using the coercion
+system provided in the package and the `keys` argument.
 
-For demonstration, we create a `cff` object using `cff()` and then add or
-modify its contents.
+For demonstration, we create a `cff` object using `cff()` and then add or modify
+its contents.
 
 ### Adding new keys
 
@@ -98,7 +98,7 @@ newobject <- cff()
 newobject
 ```
 
-The valid keys of the [Citation File Format schema version
+The valid keys from the [Citation File Format schema version
 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md)
 can be displayed with `cff_schema_keys()`:
 
@@ -131,7 +131,7 @@ cff_validate(modobject)
 ### Persons and references
 
 **cffr** provides two functions that convert `person` and `bibentry` objects
-(see `?person` and `?bibentry`) according to the [Citation File Format
+(see `?person` and `?bibentry`) to objects that follow the [Citation File Format
 schema](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md).
 
 Following the previous example, we first add a new author. To do that, we need
@@ -207,8 +207,7 @@ refs_cff <- as_cff(refs)
 refs_cff
 ```
 
-The process is similar to the example with `person`: we modify our
-`cff` object:
+The process is similar to the example with `person`: we modify our `cff` object:
 
 ```{r}
 #| label: references
@@ -225,7 +224,7 @@ The result can be written with `cff_write()`:
 
 ```{r}
 #| label: write
-# For example.
+# Create a temporary output file.
 tmp <- tempfile(fileext = ".cff")
 
 see_res <- cff_write(finalobject, outfile = tmp)

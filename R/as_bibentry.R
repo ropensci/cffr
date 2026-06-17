@@ -1,13 +1,13 @@
-#' Create [`bibentry`] objects from several sources
+#' Create [`bibentry`] objects from multiple sources
 #'
 #' @description
-#' This function creates [`bibentry`] objects from different metadata sources
+#' This function creates [`bibentry`] objects from multiple metadata sources
 #' ([`cff`] objects, `DESCRIPTION` files and other sources). The inverse
 #' transformation (`bibentry` object to [`cff_ref_lst`]) can be done with the
 #' corresponding [as_cff.bibentry()] method.
 #'
-#' With [`toBibtex()`][toBibtex.cff()], you can convert [`cff`]
-#' objects to BibTeX markup on the fly. See **Examples**.
+#' With [`toBibtex()`][toBibtex.cff()], you can convert [`cff`] objects to
+#' BibTeX markup on the fly. See **Examples**.
 #'
 #' @param x The source used to generate the `bibentry` object with
 #'   \CRANpkg{cffr}. It can be:
@@ -15,9 +15,9 @@
 #'     in-development package.
 #'   - An existing `cff` object created with [cff()], [cff_create()], or
 #'     [as_cff()].
-#'   - Path to a `CITATION.cff` file (`"CITATION.cff"`).
+#'   - A path to a `CITATION.cff` file (`"CITATION.cff"`).
 #'   - The name of an installed package (`"jsonlite"`).
-#'   - Path to a `DESCRIPTION` file (`"DESCRIPTION"`).
+#'   - A path to a `DESCRIPTION` file (`"DESCRIPTION"`).
 #' @param ... Additional arguments passed to or from methods.
 #'
 #' @param what Fields to extract from a full `cff` object. It can be:
@@ -59,8 +59,8 @@
 #' - `vignette("r-cff", package = "cffr")` provides details on how the
 #'   metadata of a package is mapped to produce a `cff` object.
 #'
-#' - `vignette("bibtex-cff", package = "cffr")` provides detailed information
-#'   about the internal mapping performed between `cff` objects and BibTeX
+#' - `vignette("bibtex-cff", package = "cffr")` provides details about the
+#'   internal mapping performed between `cff` objects and BibTeX
 #'   markup, both `cff` to BibTeX and BibTeX to `cff`.
 #'
 #' Other related functions:
@@ -189,7 +189,7 @@ as_bibentry.list <- function(x, ...) {
   # Return an empty object if a key is missing.
   if (inherits(bib, "try-error")) {
     message <- attributes(bib)$condition$message
-    cli::cli_alert_danger("Cannot convert to {.fn bibentry}.")
+    cli::cli_alert_danger("Cannot convert to {.fn utils::bibentry}.")
     cli::cli_alert_info(message)
     cli::cli_alert_warning("Returning an empty {.cls bibentry}.")
     return(bibentry())

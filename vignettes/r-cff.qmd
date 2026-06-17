@@ -2,8 +2,7 @@
 title: "From R to CFF"
 subtitle: "Crosswalk"
 description: >
-  A comprehensive description of the internal mappings performed by the **cffr**
-  package.
+  A comprehensive description of the internal mappings performed by **cffr**.
 author: Diego Hernangómez
 bibliography: REFERENCES.bib
 link-citations: true
@@ -26,17 +25,16 @@ knitr:
 library(cffr)
 ```
 
-The goal of this vignette is to provide an explicit map between the metadata
-sources used by **cffr** and each valid key in the [Citation File Format schema
-version
+This vignette provides an explicit map between the metadata sources used by
+**cffr** and each valid key in the [Citation File Format schema version
 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#valid-keys).
 
 ## Summary {#summary}
 
-This section summarizes the keys that **cffr** can coerce and the original
-source of information for each one. Details for each key are presented in the
-next section. The assessment is based on the [Guide to Citation File
-Format schema version
+This section summarizes the keys that **cffr** can coerce and the source of
+information for each one. Details for each key are presented in the next
+section. The assessment is based on the [Guide to Citation File Format schema
+version
 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#valid-keys)
 [@druskat_citation_2021].
 
@@ -194,7 +192,7 @@ Back to @tbl-summary.
 
 ### date-released
 
-This key is extracted from the `DESCRIPTION` file following this logic:
+This key is extracted from the `DESCRIPTION` file using this logic:
 
 - The `"Date"` field.
 - If not present, `"Date/Publication"`. This field is present in packages built
@@ -204,7 +202,7 @@ This key is extracted from the `DESCRIPTION` file following this logic:
 
 ```{r}
 #| label: date-released
-# From an installed package.
+# Use an installed package.
 
 cff_obj <- cff_create("rmarkdown")
 pkg <- desc::desc(file.path(find.package("rmarkdown"), "DESCRIPTION"))
@@ -223,7 +221,7 @@ file.copy(nodate, tmp)
 pkgnodate <- desc::desc(tmp)
 cffnodate <- cff_create(tmp)
 
-# This will not appear.
+# No value is returned.
 cat(cffnodate$`date-released`)
 
 pkgnodate
@@ -306,12 +304,12 @@ file.copy(nokeywords, tmp2)
 pkgnokeywords <- desc::desc(tmp2)
 cffnokeywords <- cff_create(tmp2)
 
-# This will not appear.
+# No value is returned.
 cat(cffnokeywords$keywords)
 
 pkgnokeywords
 
-# Adding keywords.
+# Add keywords.
 
 desc::desc_set(
   "X-schema.org-keywords",
@@ -365,8 +363,8 @@ Back to @tbl-summary.
 
 ### license-url
 
-This key is not extracted from the metadata of the package. See the description
-on the [Guide to CFF schema
+This key is not extracted from package metadata. See its description in the
+[Guide to CFF schema
 v1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#license-url).
 
 > - **description**: The URL of the license text under which the software or
@@ -405,9 +403,9 @@ Back to @tbl-summary.
 
 ### preferred-citation {#preferred-citation}
 
-This key is extracted from `inst/CITATION`. If several references are
-provided, it selects the first citation as the `"preferred-citation"` and the
-rest of them as [references](#references).
+This key is extracted from `inst/CITATION`. If multiple references are provided,
+it selects the first citation as the `"preferred-citation"` and the rest of them
+as [references](#references).
 
 ```{r}
 #| label: preferred-citation
@@ -422,8 +420,8 @@ Back to @tbl-summary.
 
 ### references {#references}
 
-This key is extracted from `inst/CITATION` if several references are
-provided. The first citation is considered as the
+This key is extracted from `inst/CITATION` if multiple references are provided.
+The first citation is considered as the
 [preferred-citation](#preferred-citation) and the rest of them as
 `"references"`. It also extracts package dependencies and adds them to this
 field using `citation(auto = TRUE)` on each dependency.
@@ -459,7 +457,7 @@ canonical URL form of the package (that is,
 
 ```{r}
 #| label: repository
-# Installed package.
+# Use an installed package.
 
 inst <- cff_create("jsonlite")
 
@@ -478,7 +476,7 @@ desc::desc(runiv)$get("Repository")
 
 norepo <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
-# No repository.
+# No repository is available.
 norepo_cff <- cff_create(norepo)
 
 cat(norepo_cff[["repository"]])
@@ -488,7 +486,7 @@ cat(norepo_cff[["repository"]])
 tmp <- tempfile("DESCRIPTION")
 file.copy(norepo, tmp)
 
-# Change name.
+# Change the package name.
 desc::desc_set("Package", "ggplot2", file = tmp)
 
 cat(cff_create(tmp)[["repository"]])
@@ -498,8 +496,8 @@ Back to @tbl-summary.
 
 ### repository-artifact
 
-This key is not extracted from the metadata of the package. See the description
-on the [Guide to CFF schema
+This key is not extracted from package metadata. See its description in the
+[Guide to CFF schema
 v1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#repository-artifact).
 
 > - **description**: The URL of the work in a build artifact/binary repository
@@ -557,7 +555,7 @@ title <- paste0("NAME_OF_THE_PACKAGE", ": ", "TITLE_OF_THE_PACKAGE")
 
 ```{r}
 #| label: title
-# Installed package.
+# Use an installed package.
 
 cat(cff_create("testthat")$title)
 ```
@@ -585,7 +583,7 @@ manyurls <- system.file("examples/DESCRIPTION_many_urls", package = "cffr")
 
 cat(cff_create(manyurls)$url)
 
-# Check.
+# Check the source metadata.
 
 desc::desc(manyurls)
 ```

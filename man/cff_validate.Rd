@@ -16,7 +16,7 @@ cff_validate(x = "CITATION.cff", verbose = TRUE)
 informative messages.}
 }
 \value{
-A message indicating the result of the validation and an invisible
+A message indicating the validation result and an invisible
 \code{TRUE/FALSE} value. On error, the result has an \code{"errors"} attribute with
 the error summary. See \strong{Examples} and \code{\link[=attr]{attr()}}.
 }

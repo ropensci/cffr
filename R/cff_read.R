@@ -15,7 +15,7 @@
 #' - [cff_read_bib()], which requires \CRANpkg{bibtex} (>= 0.5.0) and uses
 #'   [bibtex::read.bib()].
 #'
-#' @param path Path to a file.
+#' @param path A path to a file.
 #' @param encoding Encoding to be assumed for `path`. See [readLines()].
 #' @param meta A list of package metadata as obtained by
 #'   [utils::packageDescription()] or `NULL` (the default). See **Details**.
@@ -112,7 +112,7 @@ cff_read <- function(path, ...) {
   if (filetype == "dontknow") {
     cli::cli_abort(paste0(
       "Cannot recognize the file type of {.file {path}}.",
-      " Use a specific function, such as {.fn cffr:cff_read_description}."
+      " Use a specific function, such as {.fn cffr::cff_read_description}."
     ))
   }
 
@@ -121,7 +121,7 @@ cff_read <- function(path, ...) {
     "description" = cff_read_description(path, ...),
     "bib" = cff_read_bib(path, ...),
     "citation" = cff_read_citation(path, ...),
-    cli::cli_abort("Cannot read {.val {x}}.")
+    cli::cli_abort("Cannot read {.file {path}}.")
   )
 
   endobj
@@ -209,7 +209,7 @@ cff_read_citation <- function(path, meta = NULL, ...) {
     # nolint end
 
     cli::cli_alert_warning(paste0(
-      "{.arg meta} should be {.val NULL} or {.obj_type_friendly {ex}}, ",
+      "{.arg meta} must be {.val NULL} or {.obj_type_friendly {ex}}, ",
       "not {.obj_type_friendly {meta}}. Using {.arg meta = NULL}."
     ))
     meta <- NULL
@@ -253,7 +253,7 @@ cff_read_bib <- function(path, encoding = "UTF-8", ...) {
   # nocov start
   if (!requireNamespace("bibtex", quietly = TRUE)) {
     msg <- paste0(
-      "{.pkg bibtex} package required to use this function: ",
+      "Package {.pkg bibtex} is required to use this function: ",
       '{.run install.packages("bibtex")}'
     )
     cli::cli_abort(msg)

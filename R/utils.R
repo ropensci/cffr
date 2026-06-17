@@ -60,7 +60,7 @@ get_avail_on_init <- function() {
 #' Search for a package in available repositories.
 #' @param name Name of the package.
 #' @param avail Data frame with available packages. See
-#' [utils::available.packages()].
+#'   [utils::available.packages()].
 #' @param repos Vector of repositories.
 #' @noRd
 search_on_repos <- function(
@@ -152,7 +152,7 @@ fuzzy_keys <- function(keys) {
     }))
 
     # Message.
-    ll <- paste0("{.dt ", names_fuzzy, "}{.dl ", keys_match, "}")
+    ll <- paste0("{.dt ", names_fuzzy, "}{.dd ", keys_match, "}")
 
     bullets <- rep("v", length(ll))
     bullets[keys_match == "No match, removing."] <- "x"

@@ -129,7 +129,7 @@ get_bib_booktitle <- function(x, bibtype) {
 
 get_bib_inst_org <- function(x, bibtype) {
   # For inproceedings, proceedings and manual, this field is organization.
-  # For thesis, it should be school.
+  # For thesis entries, use school.
 
   inst_org <- list()
   # Use the name only.
@@ -217,7 +217,7 @@ get_bib_month <- function(x) {
   # Fallback.
 
   if (is.null(m) && !is.null(x$`date-published`)) {
-    # Should be YYYY-MM-DD to be valid in CFF.
+    # Use YYYY-MM-DD to be valid in CFF.
     m <- as.integer(format(as.Date(x$`date-published`), "%m"))
   }
 
@@ -240,7 +240,7 @@ get_bib_year <- function(x) {
   # Fallback.
 
   if (is.null(year) && !is.null(x$`date-released`)) {
-    # Should be YYYY-MM-DD to be valid in CFF.
+    # Use YYYY-MM-DD to be valid in CFF.
     year <- substr(x$`date-released`, 1, 4)
   }
 

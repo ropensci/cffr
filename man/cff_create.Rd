@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{cff_create}
 \alias{cff_create}
-\title{Create a \code{\link{cff}} object from several sources}
+\title{Create a \code{\link{cff}} object from multiple sources}
 \usage{
 cff_create(
   x,
@@ -21,7 +21,7 @@ cff_create(
 in-development \R package.
 \item An existing \code{\link{cff}} object.
 \item The name of an installed package (\code{"jsonlite"}).
-\item Path to a \code{DESCRIPTION} file (\code{"./DESCRIPTION"}).
+\item A path to a \code{DESCRIPTION} file (\code{"./DESCRIPTION"}).
 }}
 
 \item{keys}{A list of additional keys to add to the \code{\link{cff}} object. See
@@ -31,10 +31,10 @@ in-development \R package.
 \code{CITATION.cff} file adheres to for providing the citation metadata.}
 
 \item{gh_keywords}{Logical \code{TRUE/FALSE}. If the package is hosted on
-GitHub, should the repository topics be added as keywords?}
+GitHub, whether to add the repository topics as keywords.}
 
-\item{dependencies}{Logical \code{TRUE/FALSE}. Should the dependencies of your
-package be added to the \code{references} CFF key?}
+\item{dependencies}{Logical \code{TRUE/FALSE}. Whether to add your package
+dependencies to the \code{references} CFF key.}
 
 \item{authors_roles}{Roles to be considered as authors of the package when
 generating the \code{CITATION.cff} file. See \strong{Details}.}
@@ -43,7 +43,7 @@ generating the \code{CITATION.cff} file. See \strong{Details}.}
 A \code{\link{cff}} object.
 }
 \description{
-Create a full and possibly valid \code{\link{cff}} object from a given source. This
+Create a full, possibly valid \code{\link{cff}} object from a given source. This
 object can be written to a \code{CITATION.cff} file with \code{\link[=cff_write]{cff_write()}}. See
 \strong{Examples}.
 

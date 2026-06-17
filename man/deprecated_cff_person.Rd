@@ -13,15 +13,16 @@ cff_parse_person_bibtex(person)
 \arguments{
 \item{person}{It can be either:
 \itemize{
-\item A \code{person} or list of \code{person} object created with \code{\link[utils:person]{utils::person()}}.
+\item A \code{person} object or list of \code{person} objects created with
+\code{\link[utils:person]{utils::person()}}.
 \item A \code{character} object or vector representing a person or persons.
 }}
 }
 \value{
-A person in format \code{cff}.
+A person in \code{cff} format.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use \code{\link[=as_cff_person]{as_cff_person()}} instead.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use \code{\link[=as_cff_person]{as_cff_person()}} instead.
 }
 \examples{
 # Create a person object.

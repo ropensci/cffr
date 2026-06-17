@@ -1,8 +1,8 @@
-#' Schema utils
+#' Inspect CFF schema values
 #'
 #' @description
-#' Helper functions with the valid values of different keys and definition
-#' fields, according to the
+#' Helper functions with valid values for different keys and definition fields,
+#' according to the
 #' ```{r, echo=FALSE, results='asis'}
 #'
 #' cat(paste0("\n", "[Citation File Format schema version 1.2.0]",
@@ -13,17 +13,17 @@
 #'
 #' - [cff_schema_keys()] provides the valid high-level keys of the Citation
 #'   File Format.
-#' - [cff_schema_keys_license()] provides the valid
+#' - [cff_schema_keys_license()] provides valid
 #'   [SPDX license identifier(s)](https://spdx.org/licenses/) to be used on the
 #'   `CITATION.cff` file.
 #' - [cff_schema_definitions_person()] and [cff_schema_definitions_entity()]
 #'   return the valid fields to include when defining a
 #'   person or entity.
 #' - [cff_schema_definitions_refs()] provides the valid
-#'   keys to be used on the `preferred-citation` and `references` keys.
+#'   keys to use in the `preferred-citation` and `references` keys.
 #'
-#' @param sorted Logical `TRUE/FALSE`. Should the keys be arranged
-#'   alphabetically?
+#' @param sorted Logical `TRUE/FALSE`. Whether to arrange the keys
+#'   alphabetically.
 #'
 #' @return
 #' A character vector with the names of valid keys for Citation File Format
@@ -254,7 +254,7 @@ cff_schema_definitions_refs <- function() {
 
 # Helper lists and vectors ----
 
-#' Vector other persons
+#' Vector of other persons
 #' @noRd
 other_persons <- function() {
   pers_ent <- c(
@@ -271,7 +271,7 @@ other_persons <- function() {
   pers_ent
 }
 
-#' Vector other persons to be coerced as entities
+#' Vector of other persons to be coerced as entities
 #' @noRd
 other_persons_entity <- function() {
   entities <- c(

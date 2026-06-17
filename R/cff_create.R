@@ -1,7 +1,7 @@
-#' Create a [`cff`] object from several sources
+#' Create a [`cff`] object from multiple sources
 #'
 #' @description
-#' Create a full and possibly valid [`cff`] object from a given source. This
+#' Create a full, possibly valid [`cff`] object from a given source. This
 #' object can be written to a `CITATION.cff` file with [cff_write()]. See
 #' **Examples**.
 #'
@@ -12,16 +12,16 @@
 #'     in-development \R package.
 #'   - An existing [`cff`] object.
 #'   - The name of an installed package (`"jsonlite"`).
-#'   - Path to a `DESCRIPTION` file (`"./DESCRIPTION"`).
+#'   - A path to a `DESCRIPTION` file (`"./DESCRIPTION"`).
 #'
 #' @param keys A list of additional keys to add to the [`cff`] object. See
 #'   [cff_modify()].
 #' @param cff_version The Citation File Format schema version that the
 #'   `CITATION.cff` file adheres to for providing the citation metadata.
 #' @param gh_keywords Logical `TRUE/FALSE`. If the package is hosted on
-#'   GitHub, should the repository topics be added as keywords?
-#' @param dependencies Logical `TRUE/FALSE`. Should the dependencies of your
-#'   package be added to the `references` CFF key?
+#'   GitHub, whether to add the repository topics as keywords.
+#' @param dependencies Logical `TRUE/FALSE`. Whether to add your package
+#'   dependencies to the `references` CFF key.
 #' @param authors_roles Roles to be considered as authors of the package when
 #'   generating the `CITATION.cff` file. See **Details**.
 #'
@@ -167,7 +167,7 @@ build_cff_and_paths <- function(
   desc_path <- cff_description_path(x, hint_source)
 
   if (is.null(file_path_or_null(desc_path))) {
-    cli::cli_abort("No {.file DESCRIPTION} file found with {.arg x}.")
+    cli::cli_abort("No {.file DESCRIPTION} file found for {.arg x}.")
   }
 
   cffobj <- cff_read_description(
@@ -210,7 +210,7 @@ abort_invalid_cff_source <- function(hint_source) {
 
   msg_hint <- switch(hint_source,
     "dontknow" = paste0(
-      "If it is a package ",
+      "If it is a package, ",
       "you may need to install it with ",
       "{.fn install.packages}."
     ),

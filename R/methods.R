@@ -346,7 +346,7 @@ as.person.cff_pers_lst <- function(x) {
 #' @encoding UTF-8
 as.person.cff <- function(x) {
   cli::cli_abort(
-    "({.pkg cffr}) {.fn as.person.cff} method not implemented yet."
+    "The {.fn as.person.cff} method is not implemented yet."
   )
 }
 
@@ -356,7 +356,7 @@ as.person.cff <- function(x) {
 #' @encoding UTF-8
 as.person.cff_ref <- function(x) {
   cli::cli_abort(
-    "({.pkg cffr}) {.fn as.person.cff_ref} method not implemented yet."
+    "The {.fn as.person.cff_ref} method is not implemented yet."
   )
 }
 
@@ -366,6 +366,6 @@ as.person.cff_ref <- function(x) {
 #' @encoding UTF-8
 as.person.cff_ref_lst <- function(x) {
   cli::cli_abort(
-    "({.pkg cffr}) {.fn as.person.cff_ref_lst} method not implemented yet."
+    "The {.fn as.person.cff_ref_lst} method is not implemented yet."
   )
 }

@@ -1,7 +1,7 @@
-#' Previous API: Create BibTeX entries from several sources
+#' Previous API: Create BibTeX entries from multiple sources
 #'
 #' @description
-#' `r lifecycle::badge('deprecated')` Please use [as_bibentry()] instead.
+#' `r lifecycle::badge('deprecated')` Use [as_bibentry()] instead.
 #'
 #' @inheritParams as_bibentry
 #'
@@ -54,11 +54,11 @@ cff_to_bibtex <- function(x, what = c("preferred", "references", "all")) {
 #' Previous API: Create a [`cff`] object from BibTeX entries
 #'
 #' @description
-#' `r lifecycle::badge('deprecated')` Please use either [cff_read_bib()] or
-#' [cff_read_bib_text()] instead.
+#' `r lifecycle::badge('deprecated')` Use either [cff_read_bib()] or
+#' [cff_read_bib_text()].
 #'
 #' @param x The source used to generate the
-#'   [`cff`] object. Must be a `character` object indicating either:
+#'   [`cff`] object. It must be a `character` object indicating either:
 #'   - The path to a BibTeX file.
 #'   - A vector of characters with a complete BibTeX string. See **Examples**.
 #' @inheritParams cff_read_bib_text
@@ -123,8 +123,8 @@ cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
 #' Previous API: Write files
 #'
 #' @description
-#' `r lifecycle::badge('deprecated')` Please use [cff_write_bib()] or
-#' [cff_write_citation()] instead.
+#' `r lifecycle::badge('deprecated')` Use [cff_write_bib()] or
+#' [cff_write_citation()].
 #'
 #' @inheritParams cff_write_bib
 #'
@@ -191,13 +191,14 @@ write_citation <- function(
 #' Previous API: Parse a `person` to [`cff`]
 #'
 #' @description
-#' `r lifecycle::badge('deprecated')` Please use [as_cff_person()] instead.
+#' `r lifecycle::badge('deprecated')` Use [as_cff_person()] instead.
 #'
 #' @param person It can be either:
-#'   - A `person` or list of `person` object created with [utils::person()].
+#'   - A `person` object or list of `person` objects created with
+#'     [utils::person()].
 #'   - A `character` object or vector representing a person or persons.
 #'
-#' @return A person in format `cff`.
+#' @return A person in `cff` format.
 #'
 #' @seealso [as_cff_person()]
 #'
@@ -267,14 +268,14 @@ cff_parse_person_bibtex <- function(person) {
   as_cff_person(person)
 }
 
-#' Previous API: Parse a `bibentry` to `cff`
+#' Previous API: Parse a `bibentry` object to `cff`
 #'
 #' @description
-#' `r lifecycle::badge('deprecated')` Please use the [as_cff.bibentry()]
+#' `r lifecycle::badge('deprecated')` Use the [as_cff.bibentry()]
 #' method instead.
 #'
 #' @param bib A `bibentry` object.
-#' @return A `bibentry` in format [`cff`].
+#' @return A `bibentry` object in [`cff`] format.
 #'
 #' @seealso [as_cff.bibentry()]
 #'

@@ -3,22 +3,23 @@
 \encoding{UTF-8}
 \name{cff_gha_update}
 \alias{cff_gha_update}
-\title{Install a \CRANpkg{cffr} GitHub Action}
+\title{Install a \CRANpkg{cffr} GitHub Actions workflow}
 \usage{
 cff_gha_update(path = ".", overwrite = FALSE)
 }
 \arguments{
 \item{path}{Project root directory.}
 
-\item{overwrite}{Logical. If the action already exists, should it be
-overwritten?}
+\item{overwrite}{Logical. If the workflow already exists, whether to
+overwrite it.}
 }
 \value{
 Invisible. This function is called for its side effects.
 }
 \description{
-This function installs a \href{https://github.com/features/actions}{GitHub Action}
-on your repository. The action
+This function installs a
+\href{https://github.com/features/actions}{GitHub Actions} workflow in your
+repository. The workflow
 updates your \code{CITATION.cff} when any of these events occur:
 \itemize{
 \item You publish a new release of the package.

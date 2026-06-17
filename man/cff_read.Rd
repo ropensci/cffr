@@ -26,7 +26,7 @@ cff_read_citation(path, meta = NULL, ...)
 cff_read_bib(path, encoding = "UTF-8", ...)
 }
 \arguments{
-\item{path}{Path to a file.}
+\item{path}{A path to a file.}
 
 \item{...}{Arguments passed to other functions, for example to
 \code{\link[yaml:read_yaml]{yaml::read_yaml()}} or \code{\link[bibtex:read.bib]{bibtex::read.bib()}}.}
@@ -35,7 +35,7 @@ cff_read_bib(path, encoding = "UTF-8", ...)
 \code{CITATION.cff} file adheres to for providing the citation metadata.}
 
 \item{gh_keywords}{Logical \code{TRUE/FALSE}. If the package is hosted on
-GitHub, should the repository topics be added as keywords?}
+GitHub, whether to add the repository topics as keywords.}
 
 \item{authors_roles}{Roles to be considered as authors of the package when
 generating the \code{CITATION.cff} file. See \strong{Details}.}

@@ -4,7 +4,7 @@
 \name{cff_write_bib}
 \alias{cff_write_bib}
 \alias{cff_write_citation}
-\title{Export \R objects to different file types}
+\title{Export \R objects to multiple file types}
 \usage{
 cff_write_bib(
   x,
@@ -29,11 +29,11 @@ cff_write_citation(
 \item{file}{Name of the file to be created. If \code{NULL}, the lines are
 displayed instead.}
 
-\item{append}{Logical. Should entries be appended to an existing file?}
+\item{append}{Logical. Whether to append entries to an existing file.}
 
 \item{verbose}{Logical. Display informative messages.}
 
-\item{ascii}{Logical. Should entries be written using ASCII characters only?}
+\item{ascii}{Logical. Whether to write entries using ASCII characters only.}
 
 \item{...}{
   Arguments passed on to \code{\link{as_bibentry.cff}}, \code{\link{as_bibentry.cff_ref}}, \code{\link{as_bibentry.cff_ref_lst}}
@@ -107,8 +107,8 @@ utils::readCitationFile(out, meta)
 following packages:
 \itemize{
 \item \CRANpkg{bibtex}.
-\item \CRANpkg{RefManageR}
-\item \CRANpkg{rbibutils}
+\item \CRANpkg{RefManageR}.
+\item \CRANpkg{rbibutils}.
 }
 
 Work with BibTeX metadata:

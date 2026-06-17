@@ -17,7 +17,7 @@ argument in \code{\link[=cff]{cff()}}.}
 A \code{\link{cff}} object.
 }
 \description{
-Add new keys or modify existing ones in a \code{\link{cff}} object.
+Add new keys to a \code{\link{cff}} object or modify existing ones.
 }
 \details{
 Keys provided in \code{...} override the corresponding key in \code{x}.

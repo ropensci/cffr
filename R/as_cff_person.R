@@ -20,7 +20,7 @@
 #'   [`format.person()`][person()]).
 #' - Default: Other inputs are first coerced with [as.character()].
 #'
-#' The inverse transformation (`cff_pers_lst` to `person`) can be done with
+#' The inverse transformation (`cff_pers_lst` to `person`) can be done with the
 #' methods [as.person.cff_pers()] and [as.person.cff_pers_lst()].
 #'
 #' @param x Any \R object.
@@ -41,7 +41,7 @@
 #' [`cff_pers, cff`][cff_pers].
 #'
 #' @details
-#' `as_cff_person()` recognizes whether the input should be converted using the
+#' `as_cff_person()` recognizes whether the input should be converted with the
 #' CFF reference for `definitions.person` or `definitions.entity`.
 #'
 #' `as_cff_person()` uses a custom algorithm that parses names as explained in
@@ -58,7 +58,7 @@
 #' - `Jr` is mapped to the CFF key `name-suffix`.
 #'
 #' For entities, the entire `character` is mapped to `name`.
-#' It is recommended to "protect" entity names with `{}`:
+#' We recommend "protecting" entity names with `{}`:
 #'
 #' ```{r child = "man/chunks/person.Rmd"}
 #' ```
@@ -311,7 +311,7 @@ create_person_from_txt <- function(as_bib_text) {
     comm_cff <- list()
   }
 
-  # Clean several spaces (issue with quint package).
+  # Collapse repeated spaces (issue with quint package).
   person_only <- gsub("\\s{2,}", " ", person_only)
 
   # Special case for Bioconductor.

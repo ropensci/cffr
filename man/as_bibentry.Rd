@@ -10,7 +10,7 @@
 \alias{as_bibentry.cff}
 \alias{as_bibentry.cff_ref_lst}
 \alias{as_bibentry.cff_ref}
-\title{Create \code{\link{bibentry}} objects from several sources}
+\title{Create \code{\link{bibentry}} objects from multiple sources}
 \usage{
 as_bibentry(x, ...)
 
@@ -36,9 +36,9 @@ as_bibentry(x, ...)
 in-development package.
 \item An existing \code{cff} object created with \code{\link[=cff]{cff()}}, \code{\link[=cff_create]{cff_create()}}, or
 \code{\link[=as_cff]{as_cff()}}.
-\item Path to a \code{CITATION.cff} file (\code{"CITATION.cff"}).
+\item A path to a \code{CITATION.cff} file (\code{"CITATION.cff"}).
 \item The name of an installed package (\code{"jsonlite"}).
-\item Path to a \code{DESCRIPTION} file (\code{"DESCRIPTION"}).
+\item A path to a \code{DESCRIPTION} file (\code{"DESCRIPTION"}).
 }}
 
 \item{...}{Additional arguments passed to or from methods.}
@@ -57,13 +57,13 @@ See \code{vignette("r-cff", package = "cffr")}.}
 \code{as_bibentry()} returns a \code{bibentry} object with one or more entries.
 }
 \description{
-This function creates \code{\link{bibentry}} objects from different metadata sources
+This function creates \code{\link{bibentry}} objects from multiple metadata sources
 (\code{\link{cff}} objects, \code{DESCRIPTION} files and other sources). The inverse
 transformation (\code{bibentry} object to \code{\link{cff_ref_lst}}) can be done with the
 corresponding \code{\link[=as_cff.bibentry]{as_cff.bibentry()}} method.
 
-With \code{\link[=toBibtex.cff]{toBibtex()}}, you can convert \code{\link{cff}}
-objects to BibTeX markup on the fly. See \strong{Examples}.
+With \code{\link[=toBibtex.cff]{toBibtex()}}, you can convert \code{\link{cff}} objects to
+BibTeX markup on the fly. See \strong{Examples}.
 }
 \details{
 An \R \code{bibentry} object is the representation of a BibTeX entry. These
@@ -133,8 +133,8 @@ toBibtex(desc_file)
 \itemize{
 \item \code{vignette("r-cff", package = "cffr")} provides details on how the
 metadata of a package is mapped to produce a \code{cff} object.
-\item \code{vignette("bibtex-cff", package = "cffr")} provides detailed information
-about the internal mapping performed between \code{cff} objects and BibTeX
+\item \code{vignette("bibtex-cff", package = "cffr")} provides details about the
+internal mapping performed between \code{cff} objects and BibTeX
 markup, both \code{cff} to BibTeX and BibTeX to \code{cff}.
 }
 

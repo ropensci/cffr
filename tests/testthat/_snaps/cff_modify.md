@@ -4,7 +4,7 @@
       cff_modify(a_list, abstract = "An abstract")
     Condition
       Error in `cff_modify()`:
-      ! `x` should be a <cff> object, not <list>.
+      ! `x` must be a <cff> object, not <list>.
 
 ---
 
@@ -26,7 +26,7 @@
       cff_modify(a_cff, "a", "b")
     Condition
       Error in `validate_extra_keys()`:
-      ! Elements in `...` should be named.
+      ! Elements in `...` must be named.
 
 ---
 

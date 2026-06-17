@@ -14,8 +14,8 @@ repo:
 home:
   title: cffr | Generate Citation File Format (CFF) metadata for R packages
   description: >
-    Generate, read, write and validate Citation File Format (CFF) metadata for
-    R packages.
+    Generate, read, write and validate Citation File Format metadata for R
+    packages.
 
 reference:
 - title: Core workflow
@@ -28,7 +28,7 @@ reference:
   contents: has_concept("core")
 - subtitle: Citation File Format schema
   desc: >
-    Inspect valid keys from the Citation File Format schema **(v1.2.0)**.
+    Inspect valid keys from the Citation File Format schema (v1.2.0).
   contents: has_concept("schemas")
 - subtitle: Class system
   desc: >
@@ -38,8 +38,8 @@ reference:
 - title: Additional features
 - subtitle: Coerce objects
   desc: >
-    Coerce R objects to different classes (`cff`, `person` and `bibentry`)
-    used by the package.
+    Coerce R objects to the `cff`, `person` and `bibentry` classes used by the
+    package.
   contents: has_concept("s3method")
 - subtitle: Read and write files
   desc: >

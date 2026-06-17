@@ -4,7 +4,7 @@ list(
     reading = "Read external citation metadata:",
     writing = "Write citation metadata files:",
     bibtex = "Work with BibTeX metadata:",
-    schemas = "Inspect Citation File Format schemas:",
+    schemas = "Inspect Citation File Format schema:",
     git = "Keep \\file{CITATION.cff} up to date:",
     datasets = "\\CRANpkg{cffr} datasets:",
     deprecated = "Deprecated functions:",

@@ -26,8 +26,8 @@ bytes](https://img.shields.io/github/languages/code-size/ropensci/cffr)
 <!-- badges: end -->
 
 **cffr** provides utilities to generate, coerce, modify and validate
-`CITATION.cff` files automatically for **R** packages. It also includes
-tools and examples for working with `*.cff` files more generally.
+`CITATION.cff` files for **R** packages. It also includes tools and
+examples for working with `*.cff` files more generally.
 
 ## What is a `CITATION.cff` file?
 
@@ -38,8 +38,7 @@ for software (and datasets). Software developers can include them in
 their repositories to let others know how to correctly cite their
 software.
 
-This format is gaining popularity within the software citation
-ecosystem.
+This format is increasingly used in the software citation ecosystem.
 [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
 [Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-)
 and
@@ -81,9 +80,9 @@ and the `CITATION` file (if present) from your package. Note that
 **cffr** works best if your package passes
 `R CMD check/devtools::check()`.
 
-As per 2026-06-14 there are at least 494 repositories on GitHub using
-**cffr**. [Check them out
-here](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
+As of 2026-06-17 there are at least 514 repositories on GitHub using
+**cffr**. [Browse the search
+results](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
 ### Installation
 
@@ -112,9 +111,9 @@ install.packages(
 
 ### Example
 
-Most commonly, from within your package folder, you run `cff_write()`.
-It creates a `cff` object, writes it to a `CITATION.cff` file and
-validates it in a single command:
+Most commonly, from within your package directory, you run
+`cff_write()`. It creates a `cff` object, writes it to a `CITATION.cff`
+file and validates it in a single command:
 
 ``` r
 library(cffr)
@@ -124,8 +123,8 @@ cff_write()
 #>
 #> CITATION.cff generated.
 #>
-#> ══ Validating cff ══════════════════════════════════════════════════════════════
-#> This .cff file is valid.
+#> ══ Validating CFF ══════════════════════════════════════════════════════════════
+#> ✔ CITATION.cff is valid.
 ```
 
 **cffr** also provides custom print methods and helper functions for
@@ -691,7 +690,7 @@ We can validate the result using `cff_validate()`:
 
 ``` r
 cff_validate(test)
-#> ══ Validating cff ══════════════════════════════════════════════════════════════
+#> ══ Validating CFF ══════════════════════════════════════════════════════════════
 ```
 
 See the [reference
@@ -704,8 +703,8 @@ documentation](https://docs.ropensci.org/cffr/reference/index.html) and
 #### GitHub Actions
 
 The easiest way to keep your `CITATION.cff` file up to date is to use
-**GitHub Actions**. Use `cff_gha_update()` to install a GitHub Action
-that updates your `CITATION.cff` file in the following cases:
+**GitHub Actions**. Use `cff_gha_update()` to install a GitHub Actions
+workflow that updates your `CITATION.cff` file in the following cases:
 
 - When you publish a new release of the package on GitHub.
 - Each time you modify your `DESCRIPTION` or `inst/CITATION` files.
@@ -715,7 +714,7 @@ that updates your `CITATION.cff` file in the following cases:
 cff_gha_update()
 
 #> ✔ Installing ./.github/workflows/update-citation-cff.yaml.
-#> ℹ Adding ".github" to .Rbuildignore.
+#> ℹ Adding .github to .Rbuildignore.
 ```
 
 See the example workflow file
@@ -763,9 +762,9 @@ Check the following articles to learn more about **cffr**:
 
 ## Code of conduct
 
-Please note that the **cffr** project is released with a [Contributor
-Code of Conduct](https://docs.ropensci.org/cffr/CODE_OF_CONDUCT.html).
-By contributing to this project, you agree to abide by its terms.
+The **cffr** project is released with a [Contributor Code of
+Conduct](https://docs.ropensci.org/cffr/CODE_OF_CONDUCT.html). By
+contributing to this project, you agree to abide by its terms.
 
 ## Citation
 

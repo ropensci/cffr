@@ -73,7 +73,7 @@
     Code
       s <- cff_read(f, meta = "aa")
     Message
-      ! `meta` should be "NULL" or a <packageDescription> object, not a string. Using `meta = NULL`.
+      ! `meta` must be "NULL" or a <packageDescription> object, not a string. Using `meta = NULL`.
 
 # Creating cff from packages encoded in latin1
 

@@ -3,18 +3,18 @@
     Code
       ok <- cff_validate(fcff)
     Output
-      == Validating cff ==============================================================
+      == Validating CFF ==============================================================
     Message
-      v This <cff> is valid.
+      v This <cff> object is valid.
 
 # Validate error CITATION.cff
 
     Code
       tab <- cff_validate(ferr)
     Output
-      == Validating cff ==============================================================
+      == Validating CFF ==============================================================
     Message
-      x Validation failed. This <cff> has the following errors:
+      x Validation failed. This <cff> object has the following errors:
       * cff/: must NOT have additional properties
       * cff/authors/0: must NOT have additional properties
       * cff/authors/0/orcid: must match pattern "https://orcid\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]{1}"

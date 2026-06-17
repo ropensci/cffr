@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{cff_parse_citation}
 \alias{cff_parse_citation}
-\title{Previous API: Parse a \code{bibentry} to \code{cff}}
+\title{Previous API: Parse a \code{bibentry} object to \code{cff}}
 \usage{
 cff_parse_citation(bib)
 }
@@ -11,10 +11,10 @@ cff_parse_citation(bib)
 \item{bib}{A \code{bibentry} object.}
 }
 \value{
-A \code{bibentry} in format \code{\link{cff}}.
+A \code{bibentry} object in \code{\link{cff}} format.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use the \code{\link[=as_cff.bibentry]{as_cff.bibentry()}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use the \code{\link[=as_cff.bibentry]{as_cff.bibentry()}}
 method instead.
 }
 \examples{

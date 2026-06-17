@@ -16,7 +16,7 @@
 #' @inheritParams cff_write
 #'
 #' @return
-#' A message indicating the result of the validation and an invisible
+#' A message indicating the validation result and an invisible
 #' `TRUE/FALSE` value. On error, the result has an `"errors"` attribute with
 #' the error summary. See **Examples** and [attr()].
 #'
@@ -70,7 +70,7 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
     # nolint end
     x <- cff_read_cff_citation(x)
   } else {
-    is_a <- "This {.cls cff}"
+    is_a <- "This {.cls cff} object"
   }
 
   # Convert to a list.
@@ -100,11 +100,11 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
     msg <- gsub("}", "}}", msg, fixed = TRUE)
 
     if (verbose) {
-      cli::cat_rule("Validating cff", col = "cyan", line = 2)
+      cli::cat_rule("Validating CFF", col = "cyan", line = 2)
       ll <- paste0(
         "* {.dt {.strong ",
         get_errors$field,
-        "}}{.dl ",
+        "}}{.dd ",
         msg,
         "}\n",
         collapse = ""
@@ -127,7 +127,7 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
   }
 
   if (verbose) {
-    cli::cat_rule("Validating cff", col = "cyan", line = 2)
+    cli::cat_rule("Validating CFF", col = "cyan", line = 2)
     cli::cli_alert_success(paste0(is_a, " is valid."))
   }
   invisible(result)

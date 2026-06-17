@@ -386,7 +386,7 @@ get_bibtex_other_pers <- function(field_list) {
 
   rest <- others[!names(others) %in% toent_pers]
 
-  # If any field has several persons, paste and collapse them.
+  # If any field has multiple persons, paste and collapse them.
   rest <- lapply(others, function(x) {
     if (length(x) > 1) {
       and <- paste(

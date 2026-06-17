@@ -348,7 +348,7 @@ finalize_person_comments <- function(person, comm_cff, fallback_ror = FALSE) {
     comm_cff$website <- clean_str(ror[is_url(ror)])
   }
 
-  # Check whether there are several emails (MomTrunc 6.0).
+  # Check whether there are multiple emails (MomTrunc 6.0).
   look_emails <- c(unlist(person$email), comm_cff$email)
   valid_emails <- unlist(lapply(look_emails, is_email))
   email <- look_emails[valid_emails][1]

@@ -1,4 +1,5 @@
 #' Error if it is not a `cff` file or object
+#'
 #' @param x File to be evaluated.
 #' @noRd
 abort_if_not_cff <- function(x) {
@@ -9,20 +10,21 @@ abort_if_not_cff <- function(x) {
   # `x` should at least be a character vector.
   if (!inherits(x, "character")) {
     cli::cli_abort(
-      "{.var x} is an object of class {.cls {class(x)}}, not {.cls cff}."
+      "{.arg x} is an object of class {.cls {class(x)}}, not {.cls cff}."
     )
   }
 
   guess <- detect_x_source(x)
 
   if (guess != "cff_citation") {
-    cli::cli_abort("{.var x} is not a {.file *.cff} file.")
+    cli::cli_abort("{.arg x} is not a {.file *.cff} file.")
   }
 }
 
-#' Throw an error if the file does not exist.
+#' Throw an error if a file does not exist
+#'
 #' @param x A file to be evaluated.
-#' @param abort Logical. Should an error be thrown if the file does not exist?
+#' @param abort Logical. Whether to throw an error if the file does not exist.
 #' @noRd
 file_exist_abort <- function(x, abort = FALSE) {
   res <- file.exists(x)
@@ -41,7 +43,7 @@ match_cff_arg <- function(arg, valid, for_msg, call = environment()) {
 
   if (!arg %in% valid) {
     cli::cli_abort(
-      "{.arg {for_msg}} should be {.or {.val {valid}}}, not {.val {arg}}.",
+      "{.arg {for_msg}} must be {.or {.val {valid}}}, not {.val {arg}}.",
       call = call
     )
   }

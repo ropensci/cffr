@@ -4,7 +4,7 @@
       cff_read_bib_text(a_cff)
     Condition
       Error in `cff_read_bib_text()`:
-      ! `x` should be a <character>, not a <cff>.
+      ! `x` must be a <character>, not a <cff>.
 
 ---
 
@@ -46,6 +46,6 @@
     Code
       fromfile <- cff_read_bib_text(tmpbib)
     Message
-      ! `x` seems to be a ".bib" file, not a BibTeX entry.
-      i Reading `x` with `cffr:cff_read_bib()`.
+      ! `x` seems to be a '*.bib' file, not a BibTeX entry.
+      i Reading `x` with `cffr::cff_read_bib()`.
 

@@ -26,7 +26,7 @@ cff_write(
 in-development \R package.
 \item An existing \code{\link{cff}} object.
 \item The name of an installed package (\code{"jsonlite"}).
-\item Path to a \code{DESCRIPTION} file (\code{"./DESCRIPTION"}).
+\item A path to a \code{DESCRIPTION} file (\code{"./DESCRIPTION"}).
 }}
 
 \item{outfile}{The name and path of the \code{CITATION.cff} to be created.}
@@ -38,18 +38,18 @@ in-development \R package.
 \code{CITATION.cff} file adheres to for providing the citation metadata.}
 
 \item{gh_keywords}{Logical \code{TRUE/FALSE}. If the package is hosted on
-GitHub, should the repository topics be added as keywords?}
+GitHub, whether to add the repository topics as keywords.}
 
 \item{r_citation}{Logical \code{TRUE/FALSE}. When \code{TRUE}, the \R package
 citation (for example, \code{inst/CITATION}) is created or updated.
 \strong{No backup copy is created}. For more control, use
 \code{\link[=cff_write_citation]{cff_write_citation()}}.}
 
-\item{dependencies}{Logical \code{TRUE/FALSE}. Should the dependencies of your
-package be added to the \code{references} CFF key?}
+\item{dependencies}{Logical \code{TRUE/FALSE}. Whether to add your package
+dependencies to the \code{references} CFF key.}
 
-\item{validate}{Logical \code{TRUE/FALSE}. Should the new file be validated
-using \code{cff_validate()}?}
+\item{validate}{Logical \code{TRUE/FALSE}. Whether to validate the new file with
+\code{\link[=cff_validate]{cff_validate()}}.}
 
 \item{verbose}{Logical \code{TRUE/FALSE}. When \code{TRUE}, the function displays
 informative messages.}

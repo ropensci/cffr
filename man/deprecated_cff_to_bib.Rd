@@ -4,7 +4,7 @@
 \name{cff_extract_to_bibtex}
 \alias{cff_extract_to_bibtex}
 \alias{cff_to_bibtex}
-\title{Previous API: Create BibTeX entries from several sources}
+\title{Previous API: Create BibTeX entries from multiple sources}
 \usage{
 cff_extract_to_bibtex(x, what = c("preferred", "references", "all"))
 
@@ -18,9 +18,9 @@ cff_to_bibtex(x, what = c("preferred", "references", "all"))
 in-development package.
 \item An existing \code{cff} object created with \code{\link[=cff]{cff()}}, \code{\link[=cff_create]{cff_create()}}, or
 \code{\link[=as_cff]{as_cff()}}.
-\item Path to a \code{CITATION.cff} file (\code{"CITATION.cff"}).
+\item A path to a \code{CITATION.cff} file (\code{"CITATION.cff"}).
 \item The name of an installed package (\code{"jsonlite"}).
-\item Path to a \code{DESCRIPTION} file (\code{"DESCRIPTION"}).
+\item A path to a \code{DESCRIPTION} file (\code{"DESCRIPTION"}).
 }}
 
 \item{what}{Fields to extract from a full \code{cff} object. It can be:
@@ -37,7 +37,7 @@ See \code{vignette("r-cff", package = "cffr")}.}
 See \code{\link[=as_bibentry]{as_bibentry()}}.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use \code{\link[=as_bibentry]{as_bibentry()}} instead.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use \code{\link[=as_bibentry]{as_bibentry()}} instead.
 }
 \examples{
 \donttest{

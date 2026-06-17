@@ -1,6 +1,6 @@
 #' Modify a [`cff`] object
 #'
-#' Add new keys or modify existing ones in a [`cff`] object.
+#' Add new keys to a [`cff`] object or modify existing ones.
 #'
 #' @param x A [`cff`] object.
 #' @param ... Named arguments used to modify `x`. See also the `...`
@@ -52,7 +52,7 @@
 cff_modify <- function(x, ...) {
   if (!inherits(x, "cff")) {
     cli::cli_abort(
-      "{.arg x} should be a {.cls cff} object, not {.cls {class(x)}}."
+      "{.arg x} must be a {.cls cff} object, not {.cls {class(x)}}."
     )
   }
   new_keys <- list(...)
@@ -94,7 +94,7 @@ modify_cff <- function(x, keys, argname = "...") {
 validate_extra_keys <- function(cffobj, argname = "...") {
   has_names <- names(cffobj)
   if (is.null(has_names)) {
-    cli::cli_abort("Elements in {.arg {argname}} should be named.")
+    cli::cli_abort("Elements in {.arg {argname}} must be named.")
   }
 
   if (!all(nzchar(has_names))) {

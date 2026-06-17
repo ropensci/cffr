@@ -217,7 +217,7 @@ warns when used, providing advice on the replacement function.
 
 # cffr 0.2.1
 
-- The GitHub Action now runs only on the `master` or `main` branch.
+- The GitHub Actions workflow now runs only on the `master` or `main` branch.
 - References are handled better.
 
 # cffr 0.2.0

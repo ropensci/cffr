@@ -22,18 +22,18 @@ write_citation(
 \item{file}{Name of the file to be created. If \code{NULL}, the lines are
 displayed instead.}
 
-\item{append}{Logical. Should entries be appended to an existing file?}
+\item{append}{Logical. Whether to append entries to an existing file.}
 
 \item{verbose}{Logical. Display informative messages.}
 
-\item{ascii}{Logical. Should entries be written using ASCII characters only?}
+\item{ascii}{Logical. Whether to write entries using ASCII characters only.}
 }
 \value{
 Writes a file.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Please use \code{\link[=cff_write_bib]{cff_write_bib()}} or
-\code{\link[=cff_write_citation]{cff_write_citation()}} instead.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use \code{\link[=cff_write_bib]{cff_write_bib()}} or
+\code{\link[=cff_write_citation]{cff_write_citation()}}.
 }
 \examples{
 bib <- bibentry("Misc",

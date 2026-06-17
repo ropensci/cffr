@@ -50,7 +50,7 @@ Generative AI tools were used to assist with parts of this article.
 
 ## Citation
 
-Please cite this article using this BibTeX entry:
+Cite this article with this BibTeX entry:
 
 ``` bib
 @article{hernangomez2022,
@@ -68,7 +68,7 @@ Please cite this article using this BibTeX entry:
 
 [BibTeX](https://en.wikipedia.org/wiki/BibTeX) is a widely used format for
 storing bibliographic references, originally designed in 1985 for
-document‑centric workflows. It represents citations as relatively flat records
+document-centric workflows. It represents citations as relatively flat records
 with loosely constrained fields, relying on convention rather than an explicit
 schema.
 
@@ -96,12 +96,11 @@ implicit and contextual, depending on entry types and bibliography styles.
 
 CFF, in contrast, defines a structured schema with explicit typing, nested
 objects and richer metadata support. It is designed for producing citations and
-for machine‑actionable interoperability across platforms.
+for machine-actionable interoperability across platforms.
 
-These conceptual differences explain why a direct one‑to‑one correspondence
-between BibTeX and CFF is not possible. Any crosswalk must rely on
-explicit design decisions that balance fidelity, usability and schema
-constraints.
+These conceptual differences explain why a direct one-to-one correspondence
+between BibTeX and CFF is not possible. Any crosswalk must rely on explicit
+design decisions that balance fidelity, usability and schema constraints.
 
 ## BibTeX definitions
 
@@ -200,12 +199,12 @@ Only a subset of fields is required for any given entry. Fields such as
 **title**, **author** and **year** appear across most entry types, whereas
 others are optional or never mandatory. This strict coupling between entry types
 and fields is a defining feature of BibTeX and a key source of friction when
-interoperating with schema‑driven formats such as CFF.
+interoperating with schema-driven formats such as CFF.
 
 ## Citation File Format
 
-Citation File Format (CFF) consists of plain‑text, YAML‑based files that encode
-human‑ and machine‑readable citation metadata for software and datasets.
+Citation File Format (CFF) consists of plain-text, YAML-based files that encode
+human- and machine-readable citation metadata for software and datasets.
 
 Two keys play a central role in CFF reference modeling:
 
@@ -251,7 +250,7 @@ BibTeX [**entry**](#entries) type rather than a **field**[^1].
 
 ## Mapping strategy
 
-The mapping implemented in **cffr** follows a three‑step pipeline:
+The mapping implemented in **cffr** follows a three-step pipeline:
 
 1.  Parse BibTeX entries into an intermediate representation.
 2.  Apply deterministic mapping rules to transform entry types and fields.
@@ -315,7 +314,7 @@ formatting (e.g., `book`, `edition`) is used for CFF keys.
 | **\@incollection** | `type: chapter` | transform | Same as **\@inbook** |
 | **\@manual** | `type: manual` | direct | \- |
 | **\@misc** | `type: generic` | heuristic | `generic` is used as a fallback when no more specific CFF type applies. |
-| **\@phdthesis** | `type: thesis` | transform | The specific thesis subtype (e.g., master’s vs PhD) may be lost when mapping from BibTeX to CFF |
+| **\@phdthesis** | `type: thesis` | transform | The specific thesis subtype (e.g., master's vs PhD) may be lost when mapping from BibTeX to CFF. |
 | **\@techreport** | `type: report` | transform | \- |
 | **other** | `type: generic` | heuristic | Default fallback |
 
@@ -376,8 +375,8 @@ formatting (e.g., `book`, `edition`) is used for CFF keys.
 
 ## Proposed crosswalk
 
-**cffr** provides utilities for mapping BibTeX entries (with `bibentry()`) to CFF
-and back. This section describes how the crosswalk is implemented, partially
+**cffr** provides utilities for mapping BibTeX entries (with `bibentry()`) to
+CFF and back. This section describes how the crosswalk is implemented, partially
 informed by @Haines_Ruby_CFF_Library_2021[^2].
 
 The crosswalk is primarily defined for BibTeX to CFF conversion. Reverse mapping
@@ -419,13 +418,13 @@ is proposed:
 #| tbl-cap: "Entry/Type crosswalk: From BibTeX to CFF"
 df_table <- table_master[table_master$table == "entry_bib2cff", c(2:4)]
 df_table[is.na(df_table)] <- ""
-# fix links
+# Fix links.
 df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
 row.names(df_table) <- NULL
 
 knitr::kable(
   df_table,
-  col.names = c("BibTeX Entry", "CFF key: `type`", "Notes"),
+  col.names = c("BibTeX entry", "CFF key: `type`", "Notes"),
   row.names = NA
 )
 ```
@@ -437,8 +436,7 @@ The previous mapping has the following specifications:
   a **\@book**, the former is used for citing sections, chapters, pages or other
   specific parts, whereas the latter is used for citing parts with a specific
   title. Since CFF allows keys `type: book` and `collection-type: book`, we can
-  use a combination of these fields to tag each entry type in CFF
-  accordingly.
+  use a combination of these fields to tag each entry type in CFF accordingly.
 - **\@mastersthesis** and **\@phdthesis** are tagged using a combination of
   `type: thesis` and `thesis-type` keys.
 
@@ -455,13 +453,13 @@ exact round-trip preservation.
 #| tbl-cap: "Entry/Key `type` crosswalk: From CFF to BibTeX"
 df_table <- table_master[table_master$table == "entry_cff2bib", c(2:4)]
 df_table[is.na(df_table)] <- ""
-# fix links
+# Fix links.
 df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
 row.names(df_table) <- NULL
 
 knitr::kable(
   df_table,
-  col.names = c("CFF key `type`", "BibTeX Entry", "Notes")
+  col.names = c("CFF key `type`", "BibTeX entry", "Notes")
 )
 ```
 
@@ -478,7 +476,7 @@ depending on the **entry** type.
 #| tbl-cap: "BibTeX - CFF key crosswalk"
 df_table <- table_master[table_master$table == "fields_bib2cff", c(2:4)]
 df_table[is.na(df_table)] <- ""
-# fix links
+# Fix links.
 df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
 row.names(df_table) <- NULL
 
@@ -526,10 +524,10 @@ definition.
 #| label: tbl-fields_biblatex2cff
 #| echo: false
 #| results: asis
-#| tbl-cap: "BibLaTeX - CFF Field/Key crosswalk"
+#| tbl-cap: "BibLaTeX - CFF field/key crosswalk"
 df_table <- table_master[table_master$table == "fields_biblatex2cff", c(2:3)]
 df_table[is.na(df_table)] <- ""
-# fix links
+# Fix links.
 df_table$f2 <- gsub("link_to_entry_models", "#entrymodels", df_table$f2)
 row.names(df_table) <- NULL
 
@@ -541,8 +539,8 @@ knitr::kable(
 
 ## Limitations
 
-The proposed crosswalk is subject to several structural limitations arising from
-differences between BibTeX and CFF schemas:
+The proposed crosswalk is subject to multiple structural limitations arising
+from differences between BibTeX and CFF schemas:
 
 - **Lossy mappings**: Some BibTeX fields (e.g., **crossref**, **annote**,
   **key**) have no equivalent in CFF and are omitted during conversion.
@@ -573,14 +571,14 @@ The mapping implemented in **cffr** is guided by the following principles:
 
 ## Entry models {#entrymodels}
 
-This section documents entry‑specific mapping behavior, expanding the general
+This section documents entry-specific mapping behavior, expanding the general
 crosswalk into concrete and testable models. Examples are adapted from the
 [xampl.bib](https://tug.org/texmf-docs/bibtex/xampl.bib) distributed with BibTeX
 [@patashnik].
 
 ### \@article {#article}
 
-The crosswalk of **\@article** does not require any special treatment.
+The crosswalk for **\@article** does not require any special treatment.
 
 ```{r}
 #| label: tbl-model_article
@@ -599,7 +597,7 @@ row.names(df_table) <- NULL
 knitr::kable(
   df_table,
   col.names = c("BibTeX", "CFF", "Notes"),
-  caption = "**\\@article** Model"
+  caption = "**\\@article** model"
 )
 ```
 
@@ -644,7 +642,7 @@ In CFF, the **series** field corresponds to `collection-title` and the
 df_table <- table_master[table_master$table == "model_book", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
-# fix links
+# Fix links.
 df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
 df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
 df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
@@ -654,7 +652,7 @@ row.names(df_table) <- NULL
 knitr::kable(
   df_table,
   col.names = c("BibTeX", "CFF", "Notes"),
-  caption = "**\\@book / \\@inbook** Model"
+  caption = "**\\@book / \\@inbook** model"
 )
 ```
 
@@ -718,7 +716,7 @@ In **\@booklet** **address** is mapped to `location`.
 df_table <- table_master[table_master$table == "model_booklet", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
-# fix links
+# Fix links.
 df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
 df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
 df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
@@ -728,7 +726,7 @@ row.names(df_table) <- NULL
 knitr::kable(
   df_table,
   col.names = c("BibTeX", "CFF", "Notes"),
-  caption = "**\\@booklet** Model"
+  caption = "**\\@booklet** model"
 )
 ```
 
@@ -762,7 +760,7 @@ because there is no clear mapping in CFF for this field.
 df_table <- table_master[table_master$table == "model_inproceedings", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
-# fix links
+# Fix links.
 df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
 df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
 df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
@@ -772,7 +770,7 @@ row.names(df_table) <- NULL
 knitr::kable(
   df_table,
   col.names = c("BibTeX", "CFF", "Notes"),
-  caption = "**\\@conference / \\@inproceedings** Model"
+  caption = "**\\@conference / \\@inproceedings** model"
 )
 ```
 
@@ -816,7 +814,7 @@ mapping in CFF for these fields.
 df_table <- table_master[table_master$table == "model_incollection", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
-# fix links
+# Fix links.
 df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
 df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
 df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
@@ -826,7 +824,7 @@ row.names(df_table) <- NULL
 knitr::kable(
   df_table,
   col.names = c("BibTeX", "CFF", "Notes"),
-  caption = "**\\@incollection** Model"
+  caption = "**\\@incollection** model"
 )
 ```
 
@@ -858,8 +856,8 @@ toBibtex(cff_read_bib_text(bib))
 
 ### \@manual
 
-As in the case of [**\@conference** / **\@inproceedings**](#conf_inproc),
-**organization** is mapped to `institution`.
+As with [**\@conference** / **\@inproceedings**](#conf_inproc), **organization**
+is mapped to `institution`.
 
 ```{r}
 #| label: tbl-model_manual
@@ -868,7 +866,7 @@ As in the case of [**\@conference** / **\@inproceedings**](#conf_inproc),
 df_table <- table_master[table_master$table == "model_manual", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
-# fix links
+# Fix links.
 df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
 df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
 df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
@@ -878,7 +876,7 @@ row.names(df_table) <- NULL
 knitr::kable(
   df_table,
   col.names = c("BibTeX", "CFF", "Notes"),
-  caption = "**\\@manual** Model"
+  caption = "**\\@manual** model"
 )
 ```
 
@@ -922,7 +920,7 @@ Additionally, **school** is mapped to `institution`.
 df_table <- table_master[table_master$table == "model_thesis", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
-# fix links
+# Fix links.
 df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
 df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
 df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
@@ -932,7 +930,7 @@ row.names(df_table) <- NULL
 knitr::kable(
   df_table,
   col.names = c("BibTeX", "CFF", "Notes"),
-  caption = "**\\@mastersthesis / \\@phdthesis** Model"
+  caption = "**\\@mastersthesis / \\@phdthesis** model"
 )
 ```
 
@@ -990,7 +988,7 @@ should cover both **\@misc** and **\@incollection** without problems.
 df_table <- table_master[table_master$table == "model_misc", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
-# fix links
+# Fix links.
 df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
 df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
 df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
@@ -1000,7 +998,7 @@ row.names(df_table) <- NULL
 knitr::kable(
   df_table,
   col.names = c("BibTeX", "CFF", "Notes"),
-  caption = "**\\@misc** Model"
+  caption = "**\\@misc** model"
 )
 ```
 
@@ -1036,7 +1034,7 @@ BibTeX.
 df_table <- table_master[table_master$table == "model_proceedings", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
-# fix links
+# Fix links.
 df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
 df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
 df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
@@ -1046,7 +1044,7 @@ row.names(df_table) <- NULL
 knitr::kable(
   df_table,
   col.names = c("BibTeX", "CFF", "Notes"),
-  caption = "**\\@proceedings** Model"
+  caption = "**\\@proceedings** model"
 )
 ```
 
@@ -1082,7 +1080,7 @@ The crosswalk for **\@techreport** does not require any special treatment.
 df_table <- table_master[table_master$table == "model_techreport", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
-# fix links
+# Fix links.
 df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
 df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
 df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
@@ -1092,7 +1090,7 @@ row.names(df_table) <- NULL
 knitr::kable(
   df_table,
   col.names = c("BibTeX", "CFF", "Notes"),
-  caption = "**\\@techreport** Model"
+  caption = "**\\@techreport** model"
 )
 ```
 
@@ -1127,7 +1125,7 @@ The crosswalk for **\@unpublished** does not require any special treatment.
 df_table <- table_master[table_master$table == "model_unpublished", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
-# fix links
+# Fix links.
 df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
 df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
 df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
@@ -1137,7 +1135,7 @@ row.names(df_table) <- NULL
 knitr::kable(
   df_table,
   col.names = c("BibTeX", "CFF", "Notes"),
-  caption = "**\\@unpublished** Model"
+  caption = "**\\@unpublished** model"
 )
 ```
 
@@ -1164,7 +1162,7 @@ Although the formats are not fully equivalent, the deterministic mapping
 implemented in **cffr** enables consistent transformations across heterogeneous
 citation ecosystems. By making design decisions explicit and documenting
 limitations, this work supports interoperable citation workflows bridging legacy
-bibliographic systems and modern software‑centric practices.
+bibliographic systems and modern software-centric practices.
 
 ## Appendix A: **\@inbook** in BibTeX and BibLaTeX {#appendix_inbook .appendix}
 
@@ -1190,7 +1188,7 @@ requirement in BibLaTeX. Notably, BibTeX **\@incollection** also requires this
 field. Moreover, both BibTeX **\@incollection** and BibLaTeX **\@inbook**
 emphasize its reference to *"a part of a book (...) with its own title"*.
 
-In this document, the proposed crosswalk ensures full compatibility with BibTeX.
+In this article, the proposed crosswalk ensures full compatibility with BibTeX.
 Therefore, we propose to consider a BibLaTeX **\@inbook** entry as equivalent to
 a BibTeX **\@incollection**, given the congruence in their definitions and field
 requirements.
@@ -1218,7 +1216,7 @@ toBibtex(cff_read_bib_text(bib))
 
 ## Appendix B: CFF key: `type` values {#appendix_cff_type .appendix}
 
-From @druskat2019, Table 4: Complete list of CFF reference types for key `type`.
+From @druskat2019, Table 4: complete list of CFF reference types for key `type`.
 Only a subset of these types is actively used in the proposed crosswalk.
 
 ```{r}
@@ -1256,4 +1254,4 @@ knitr::kable(
 
 [^6]: As proposed on [*How to deal with unknown individual
     authors?*](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors),
-    **(Guide to Citation File Format schema version 1.2.0)**
+    **(Guide to Citation File Format schema version 1.2.0)**.

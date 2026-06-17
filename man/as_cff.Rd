@@ -9,7 +9,7 @@
 \alias{as_cff.bibentry}
 \alias{as_cff.Bibtex}
 \alias{as.cff}
-\title{Coerce lists, \code{person} and \code{bibentry} objects to \code{\link{cff}}}
+\title{Coerce lists and citation objects to \code{\link{cff}}}
 \usage{
 as_cff(x, ...)
 
@@ -24,7 +24,7 @@ as_cff(x, ...)
 \method{as_cff}{Bibtex}(x, ...)
 }
 \arguments{
-\item{x}{A \code{person}, \code{bibentry} or other object that could be coerced to a
+\item{x}{A \code{person}, \code{bibentry} or other object that can be coerced to a
 list.}
 
 \item{...}{Additional arguments passed on to other methods.}
@@ -48,7 +48,7 @@ Learn more about the \CRANpkg{cffr} class system in \link{cff_class}.
 a list with class \code{cff} and the corresponding \link[=cff_class]{subclass} when
 applicable.
 
-\code{as_cff} is an S3 generic, with methods for:
+\code{as_cff()} is an S3 generic, with methods for:
 \itemize{
 \item \code{person} objects as produced by \code{\link[utils:person]{utils::person()}}.
 \item \code{bibentry} objects as produced by \code{\link[utils:bibentry]{utils::bibentry()}}.
@@ -63,7 +63,7 @@ performed.
 
 \code{\link[=as_cff_person]{as_cff_person()}} is preferred over \code{as_cff.person()} because it can handle
 \code{character} inputs such as \code{"Davis, Jr., Sammy"}. For \code{person} objects both
-functions are similar.
+functions behave similarly.
 }
 \examples{
 # Convert a list to a `cff` object.

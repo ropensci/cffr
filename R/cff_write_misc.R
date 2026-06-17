@@ -1,4 +1,4 @@
-#' Export \R objects to different file types
+#' Export \R objects to multiple file types
 #'
 #' @description
 #' Export \R objects representing citations to specific file formats:
@@ -9,9 +9,9 @@
 #' @param x A [`bibentry`] or a [`cff`] object.
 #' @param file Name of the file to be created. If `NULL`, the lines are
 #'   displayed instead.
-#' @param append Logical. Should entries be appended to an existing file?
+#' @param append Logical. Whether to append entries to an existing file.
 #' @param verbose Logical. Display informative messages.
-#' @param ascii Logical. Should entries be written using ASCII characters only?
+#' @param ascii Logical. Whether to write entries using ASCII characters only.
 #' @inheritDotParams as_bibentry.cff what
 #' @inheritDotParams as_bibentry.cff_ref
 #' @inheritDotParams as_bibentry.cff_ref_lst
@@ -34,8 +34,8 @@
 #' `vignette("bibtex-cff", package = "cffr")`, [knitr::write_bib()] and the
 #' following packages:
 #' - \CRANpkg{bibtex}.
-#' - \CRANpkg{RefManageR}
-#' - \CRANpkg{rbibutils}
+#' - \CRANpkg{RefManageR}.
+#' - \CRANpkg{rbibutils}.
 #'
 #' @family bibtex
 #' @family writing
@@ -127,7 +127,7 @@ cff_coerce_bibentry <- function(x, ...) {
   if (!inherits(x, "bibentry")) {
     cli::cli_abort(
       paste0(
-        "{.arg x} should be a {.cls bibentry} object, not a ",
+        "{.arg x} must be a {.cls bibentry} object, not a ",
         "{.cls {class(x)}} object."
       ),
       call = error_call

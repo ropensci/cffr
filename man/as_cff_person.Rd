@@ -43,11 +43,11 @@ as the output of \code{\link[=format]{format()}} for \code{person} objects (see
 \item Default: Other inputs are first coerced with \code{\link[=as.character]{as.character()}}.
 }
 
-The inverse transformation (\code{cff_pers_lst} to \code{person}) can be done with
+The inverse transformation (\code{cff_pers_lst} to \code{person}) can be done with the
 methods \code{\link[=as.person.cff_pers]{as.person.cff_pers()}} and \code{\link[=as.person.cff_pers_lst]{as.person.cff_pers_lst()}}.
 }
 \details{
-\code{as_cff_person()} recognizes whether the input should be converted using the
+\code{as_cff_person()} recognizes whether the input should be converted with the
 CFF reference for \code{definitions.person} or \code{definitions.entity}.
 
 \code{as_cff_person()} uses a custom algorithm that parses names as explained in
@@ -67,7 +67,7 @@ Mapping is performed as follows:
 }
 
 For entities, the entire \code{character} is mapped to \code{name}.
-It is recommended to "protect" entity names with \code{{}}:
+We recommend "protecting" entity names with \code{{}}:
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{# Avoid unprotected entity names.
 entity <- "Elephant and Castle"

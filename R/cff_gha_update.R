@@ -1,16 +1,17 @@
-#' Install a \CRANpkg{cffr} GitHub Action
+#' Install a \CRANpkg{cffr} GitHub Actions workflow
 #'
 #' @description
-#' This function installs a [GitHub Action](https://github.com/features/actions)
-#' on your repository. The action
+#' This function installs a
+#' [GitHub Actions](https://github.com/features/actions) workflow in your
+#' repository. The workflow
 #' updates your `CITATION.cff` when any of these events occur:
 #' - You publish a new release of the package.
 #' - Your `DESCRIPTION` or `inst/CITATION` file is modified.
 #' - The action can be run manually.
 #'
 #' @param path Project root directory.
-#' @param overwrite Logical. If the action already exists, should it be
-#'   overwritten?
+#' @param overwrite Logical. If the workflow already exists, whether to
+#'   overwrite it.
 #'
 #' @return Invisible. This function is called for its side effects.
 #'
@@ -52,7 +53,7 @@ cff_gha_update <- function(path = ".", overwrite = FALSE) {
     )
   } else {
     cli::cli_alert_warning(paste0(
-      "File {.file {newfile}} already installed. ",
+      "File {.file {newfile}} is already installed. ",
       "Use {.arg overwrite = TRUE} to overwrite it."
     ))
   }
@@ -64,7 +65,7 @@ cff_gha_update <- function(path = ".", overwrite = FALSE) {
     if (!("^\\.github$" %in% ignore)) {
       ignore <- c(ignore, "^\\.github$")
       ignore <- unique(ignore)
-      cli::cli_alert_info("Adding {.val .github} to {.file .Rbuildignore}.")
+      cli::cli_alert_info("Adding {.path .github} to {.file .Rbuildignore}.")
       writeLines(ignore, ".Rbuildignore")
     }
   }
