@@ -67,11 +67,8 @@ get_desc_date_released <- function(pkg) {
   # Work with vector.
   alldates <- unname(c(date1, date2, date3))
   clean_dates <- lapply(alldates, function(x) {
-    if (is.na(x) || is.null(x)) {
+    if (is.na(x) || is.null(x) || !is.character(x)) {
       return(NULL)
-    }
-    if (!is.character(x)) {
-      return(NULL) # nocov
     }
     substr(x, 1, 10)
   })
@@ -317,8 +314,6 @@ get_gh_topics <- function(x) {
 }
 
 fetch_gh_topics <- function(api_url, tmpfile = tempfile(fileext = ".json")) {
-  # nocov start
-
   # Check whether GH_TOKEN is set in Renviron.
   # Tests can quickly reach the GitHub API limit without authentication.
   # Authenticate to increase the limit.
@@ -341,7 +336,7 @@ fetch_gh_topics <- function(api_url, tmpfile = tempfile(fileext = ".json")) {
       TRUE
     },
     error = function(e) {
-      TRUE
+      TRUE # nocov
     }
   )
 
@@ -354,7 +349,7 @@ fetch_gh_topics <- function(api_url, tmpfile = tempfile(fileext = ".json")) {
         TRUE
       },
       error = function(e) {
-        TRUE
+        TRUE # nocov
       }
     )
   }
@@ -364,7 +359,6 @@ fetch_gh_topics <- function(api_url, tmpfile = tempfile(fileext = ".json")) {
   }
 
   jsonlite::read_json(tmpfile)$topics
-  # nocov end
 }
 
 gh_topics_api_url <- function(x) {

@@ -97,4 +97,9 @@ test_that("Utils coverage", {
     type = "software"
   )))
   expect_named(ordered, c("type", "title", "repository", "year"))
+
+  dep <- list(package = "aaaa")
+  expect_null(cff_dependency_reference(dep))
+  expect_null(get_dependencies(1))
+  expect_null(get_dependencies(tempfile()))
 })

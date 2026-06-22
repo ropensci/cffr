@@ -99,14 +99,12 @@ get_dependencies <- function(
   desc_path,
   instpack = as.character(installed.packages()[, "Package"])
 ) {
-  # nocov start
   if (!is.character(desc_path)) {
     return(NULL)
   }
   if (!file_exist_abort(desc_path)) {
     return(NULL)
   }
-  # nocov end
 
   getdeps <- desc::desc(desc_path)
 
@@ -146,7 +144,7 @@ cff_dependency_reference <- function(dep) {
   mod <- cff_dependency_citation(dep$package)
 
   if (is.null(mod)) {
-    return(NULL) # nocov
+    return(NULL)
   }
 
   mod$type <- "software"

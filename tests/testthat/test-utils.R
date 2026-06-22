@@ -37,3 +37,8 @@ test_that("Use right repo", {
   final <- detect_repos(repos)
   expect_identical(final, c(CRAN = "https://cloud.r-project.org/"))
 })
+
+test_that("Avail on init", {
+  avail_top2 <- avail_on_init[c(1, 2), 1]
+  expect_identical(avail_top2, get_avail_on_init()[c(1, 2), 1])
+})
