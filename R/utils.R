@@ -52,7 +52,7 @@ print_snapshot <- function(title = "----", obj) {
 }
 
 get_avail_on_init <- function() {
-  avail_on_init
+  avail_on_init # nocov
 }
 
 #' Search for a package in available repositories.
@@ -203,7 +203,8 @@ guess_cff_part <- function(x) {
   # Look at the first element.
   guess <- guess_cff_named_part(x[[1]])
 
-  fin <- switch(guess,
+  fin <- switch(
+    guess,
     "cff_pers" = "cff_pers_lst",
     "cff_ref" = "cff_ref_lst",
     "unclear"
