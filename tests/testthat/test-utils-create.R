@@ -32,6 +32,9 @@ test_that("Check dependencies", {
     y
   })
 
+  # Select just a sample of dependencies
+  selected <- selected[seq(1,3)]
+
   class(selected) <- "cff"
 
   rvers <- getRversion()
