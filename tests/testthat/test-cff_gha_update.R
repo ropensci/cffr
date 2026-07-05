@@ -1,40 +1,34 @@
-test_that("Test in mock package", {
+test_that("cff_gha_update installs a workflow in the requested package", {
   skip_on_cran()
-  current_dir <- getwd()
 
-  name <- paste0("mock-pack", runif(1) * 10)
-  new_dir <- file.path(tempdir(), name)
-
-  dir.create(new_dir, recursive = TRUE)
-
-  expect_true(dir.exists(new_dir))
-
-  setwd(new_dir)
+  new_dir <- withr::local_tempdir(pattern = "mock-pack-")
 
   # Move files
   file.copy(
     system.file("examples/DESCRIPTION_many_urls", package = "cffr"),
-    to = "DESCRIPTION"
+    to = file.path(new_dir, "DESCRIPTION")
   )
 
   # Create Rbuildignore
-  file.create(".Rbuildignore", showWarnings = FALSE)
-  expect_true(file_exist_abort(".Rbuildignore"))
+  rbuildignore <- file.path(new_dir, ".Rbuildignore")
+  file.create(rbuildignore, showWarnings = FALSE)
+  expect_true(file_exist_abort(rbuildignore))
 
   # Add action
-  expect_snapshot(cff_gha_update())
+  expect_message(cff_gha_update(path = new_dir), "Creating directory")
 
-  expect_snapshot(cff_gha_update())
-  expect_snapshot(cff_gha_update(overwrite = TRUE))
+  expect_message(cff_gha_update(path = new_dir), "already exists")
+  expect_message(
+    cff_gha_update(path = new_dir, overwrite = TRUE),
+    "Workflow installed"
+  )
 
   expect_true(file_exist_abort(file.path(
+    new_dir,
     ".github",
     "workflows",
     "update-citation-cff.yaml"
   )))
 
-  # Revert to initial wd
-  setwd(current_dir)
-
-  unlink(new_dir, recursive = TRUE, force = TRUE)
+  expect_true("^\\.github$" %in% readLines(rbuildignore))
 })

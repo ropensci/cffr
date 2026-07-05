@@ -30,13 +30,13 @@ make_cff_reference <- function(bib) {
 
   # Get BibTeX fields ----
   field_list <- get_bibtex_fields(cit_list)
-  # VGAM: title is a vector
+  # In VGAM, the title is a vector.
   field_list$title <- clean_str(field_list$title)
 
   ## Handle collection types ----
   field_list <- add_bibtex_coltype(field_list)
 
-  ## Add conference
+  ## Add conference ----
   field_list <- add_conference(field_list)
 
   # Create BibTeX to CFF institution logic ----
@@ -52,11 +52,11 @@ make_cff_reference <- function(bib) {
     field_list$authors <- person(family = "anonymous")
   }
 
-  ## authors ----
+  ## Authors ----
   get_all_authors <- as_cff_person(field_list$authors)
   field_list$authors <- unique(get_all_authors)
 
-  ## other persons----
+  ## Other persons ----
   get_other_persons <- get_bibtex_other_pers(field_list)
 
   # Keep order here for later use.
@@ -72,20 +72,20 @@ make_cff_reference <- function(bib) {
   # Fallback for year and month: use date-published ----
   cit_list <- fallback_dates(cit_list)
 
-  ## doi----
+  ## DOI ----
   bb_doi <- get_bibtex_doi(cit_list)
   cit_list$doi <- bb_doi$doi
 
-  ### identifiers ----
+  ### Identifiers ----
   if (!is.null(bb_doi$identifiers)) {
     cit_list$identifiers <- bb_doi$identifiers
   }
 
-  ## url----
+  ## URL ----
   bb_url <- get_bibtex_url(cit_list)
   cit_list$url <- bb_url$url
 
-  ### final identifiers----
+  ### Final identifiers ----
   # Identifiers (additional DOIs and URLs).
   if (!is.null(bb_url$identifiers)) {
     cit_list$identifiers <- append(cit_list$identifiers, bb_url$identifiers)

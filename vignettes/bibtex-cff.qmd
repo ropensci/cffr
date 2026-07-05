@@ -300,9 +300,9 @@ Mapping types include:
 These mappings are not bijective and may introduce normalization effects.
 
 ::: callout-note
-For clarity throughout this document, **bold** formatting (e.g., **\@book**,
-**edition**) is used for BibTeX entries and fields, whereas inline code
-formatting (e.g., `book`, `edition`) is used for CFF keys.
+For clarity throughout this document, **bold** formatting (for example,
+**\@book** and **edition**) is used for BibTeX entries and fields, whereas
+inline code formatting (for example, `book` and `edition`) is used for CFF keys.
 :::
 
 ::: {#tbl-mapentry}
@@ -494,12 +494,12 @@ We provide more detail on some of the mappings presented in the table above:
   entry in BibTeX. Therefore, BibTeX **type** is not mapped. These fields are
   always optional in BibTeX.
 - For the **address** field, its intended use in BibTeX varies depending on the
-  entry type (e.g., for **\@inproceedings**, it denotes the **address** of the
+  entry type. For **\@inproceedings**, it denotes the **address** of the
   **conference**, while for **\@mastersthesis/\@phdthesis**, it is the
-  **address** of the **school**, etc.). Mapping between BibTeX and CFF becomes
-  more complex when institutional metadata is involved. This results in varying
-  final mappings in CFF. When mapping from CFF to BibTeX, we propose to follow
-  the same entry-based logic, using the key `location` as a fallback value when
+  **address** of the **school**. Mapping between BibTeX and CFF becomes more
+  complex when institutional metadata is involved. This results in varying final
+  mappings in CFF. When mapping from CFF to BibTeX, we propose to follow the
+  same entry-based logic, using the key `location` as a fallback value when
   mapping to **address**.
 - Because of the complexity mentioned above, **institution, organization** and
   **school** are mapped to `institution`.
@@ -511,7 +511,7 @@ We provide more detail on some of the mappings presented in the table above:
   but in those cases it is an optional field.
 - When mapping from CFF to BibTeX, we propose to use `date-published` as a
   fallback for extracting **month** and **year** fields.
-- When **pages** is provided as a range separated by `--`, i.e. **pages =
+- When **pages** is provided as a range separated by `--`, that is, **pages =
   {3--5}**, it is coerced as `start: 3`, `end: 5` in CFF.
 
 #### BibLaTeX
@@ -542,16 +542,16 @@ knitr::kable(
 The proposed crosswalk is subject to multiple structural limitations arising
 from differences between BibTeX and CFF schemas:
 
-- **Lossy mappings**: Some BibTeX fields (e.g., **crossref**, **annote**,
-  **key**) have no equivalent in CFF and are omitted during conversion.
-- **Ambiguous semantics**: Certain fields (e.g., **address**, **series**) have
-  context-dependent meanings in BibTeX, requiring heuristic mapping to CFF keys
-  such as `institution`, `location` or `collection-title`.
-- **Type collapsing**: Multiple BibTeX entry types (e.g., **\@misc**,
-  **\@incollection**) are mapped to a single CFF type (`generic`), which acts as
+- **Lossy mappings**: Some BibTeX fields, including **crossref**, **annote** and
+  **key**, have no equivalent in CFF and are omitted during conversion.
+- **Ambiguous semantics**: Certain fields such as **address** and **series**
+  have context-dependent meanings in BibTeX, requiring heuristic mapping to CFF
+  keys such as `institution`, `location` or `collection-title`.
+- **Type collapsing**: Multiple BibTeX entry types, including **\@misc** and
+  **\@incollection**, are mapped to a single CFF type (`generic`), which acts as
   a fallback when no more specific type is available.
 - **Structural transformations**: Some fields require transformation rather than
-  direct mapping (e.g., **pages** → `start`/`end`), altering the representation
+  direct mapping, such as **pages** → `start`/`end`, altering the representation
   of the original data.
 - **Non-reversibility**: Due to the above factors, round-trip conversion (BibTeX
   → CFF → BibTeX) is not guaranteed to preserve the original structure or

@@ -31,10 +31,9 @@ This vignette provides an explicit map between the metadata sources used by
 
 ## Summary {#summary}
 
-This section summarizes the keys that **cffr** can coerce and the source of
-information for each one. Details for each key are presented in the next
-section. The assessment is based on the [Guide to Citation File Format schema
-version
+This section summarizes the keys that **cffr** can populate and the metadata
+source for each one. Details for each key are presented in the next section. The
+assessment is based on the [Guide to Citation File Format schema version
 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#valid-keys)
 [@druskat_citation_2021].
 
@@ -139,8 +138,7 @@ Back to @tbl-summary.
 
 ### cff-version
 
-This key can be set with the arguments of the `cff_create()`/`cff_write()`
-functions:
+Set this key with the `cff_version` argument of `cff_create()` or `cff_write()`:
 
 ```{r}
 #| label: cffversion
@@ -154,9 +152,9 @@ Back to @tbl-summary.
 ### commit
 
 This key is extracted from the `"RemoteSha"` field of the `DESCRIPTION` file.
-This is the case of packages installed using the
-[r-universe](https://r-universe.dev/search) or packages such as **remotes** or
-**pak**.
+This field is present in packages installed from
+[r-universe](https://r-universe.dev/search) or with packages such as **remotes**
+and **pak**.
 
 ```{r}
 #| label: commit
@@ -194,10 +192,10 @@ Back to @tbl-summary.
 
 This key is extracted from the `DESCRIPTION` file using this logic:
 
-- The `"Date"` field.
-- If not present, `"Date/Publication"`. This field is present in packages built
-  on **CRAN** and **Bioconductor**.
-- If not present, `"Packaged"`, which is present in packages built by the
+- `"Date"`, when present.
+- Otherwise, `"Date/Publication"`. This field is present in packages built on
+  **CRAN** and **Bioconductor**.
+- Otherwise, `"Packaged"`, which is present in packages built by
   [r-universe](https://r-universe.dev/search).
 
 ```{r}
@@ -239,7 +237,7 @@ Back to @tbl-summary.
 
 This key is coerced from the `"doi"` field of the
 [preferred-citation](#preferred-citation) object. If not present and the package
-is on **CRAN**, it is populated with the DOI provided by **CRAN** (e.g.
+is on **CRAN**, it is populated with the DOI provided by **CRAN** (for example,
 <https://doi.org/10.32614/CRAN.package.cffr>).
 
 ```{r}
@@ -255,7 +253,7 @@ Back to @tbl-summary.
 
 ### identifiers
 
-This key includes all the possible identifiers of the package:
+This key contains the available package identifiers:
 
 - From the `DESCRIPTION` field, it includes all the URLs not included in
   [url](#url) or [repository-code](#repository-code).
@@ -320,10 +318,10 @@ desc::desc_set(
 cat(cff_create(tmp2)$keywords)
 ```
 
-Additionally, if the source code of the package is hosted on GitHub, **cffr**
-can retrieve the topics of the repository with the [GitHub
-API](https://docs.github.com/en/rest) and include those topics as keywords. This
-option is controlled with the `gh_keywords` argument:
+If the package source code is hosted on GitHub, **cffr** can also retrieve the
+topics of the repository with the [GitHub API](https://docs.github.com/en/rest)
+and include those topics as keywords. This option is controlled with the
+`gh_keywords` argument:
 
 ```{r}
 #| label: ghkeyword
@@ -404,8 +402,8 @@ Back to @tbl-summary.
 ### preferred-citation {#preferred-citation}
 
 This key is extracted from `inst/CITATION`. If multiple references are provided,
-it selects the first citation as the `"preferred-citation"` and the rest of them
-as [references](#references).
+it selects the first citation as `"preferred-citation"` and uses the remaining
+citations as [references](#references).
 
 ```{r}
 #| label: preferred-citation
@@ -421,10 +419,10 @@ Back to @tbl-summary.
 ### references {#references}
 
 This key is extracted from `inst/CITATION` if multiple references are provided.
-The first citation is considered as the
-[preferred-citation](#preferred-citation) and the rest of them as
-`"references"`. It also extracts package dependencies and adds them to this
-field using `citation(auto = TRUE)` on each dependency.
+The first citation becomes the [preferred citation](#preferred-citation) and the
+remaining citations become `"references"`. **cffr** can also extract package
+dependencies and add them to this field by calling `citation(auto = TRUE)` for
+each dependency.
 
 ```{r}
 #| label: references
@@ -440,16 +438,15 @@ Back to @tbl-summary.
 ### repository
 
 This key is extracted from the `"Repository"` field of the `DESCRIPTION` file.
-Usually, this field is automatically populated when a package is hosted on a
-repository (like **CRAN** or the [r-universe](https://r-universe.dev/search)).
-For packages without this field in the `DESCRIPTION` (which is the typical case
-for an in-development package), **cffr** tries to find the package in any of the
-default repositories specified in `options("repos")`.
+This field is usually populated when a package is hosted in a repository such as
+**CRAN** or [r-universe](https://r-universe.dev/search). For packages without
+this field in the `DESCRIPTION` (which is the typical case for an in-development
+package), **cffr** tries to find the package in any of the default repositories
+specified in `options("repos")`.
 
-In the case of [Bioconductor](https://bioconductor.org/) packages, those are
-identified if a
-["biocViews"](https://contributions.bioconductor.org/description.html#biocviews)
-is present in the `DESCRIPTION` file.
+[Bioconductor](https://bioconductor.org/) packages are identified when the
+[`"biocViews"`](https://contributions.bioconductor.org/description.html#biocviews)
+field is present in the `DESCRIPTION` file.
 
 If **cffr** detects that the package is available on **CRAN**, it returns the
 canonical URL form of the package (that is,
@@ -545,7 +542,8 @@ Back to @tbl-summary.
 
 ### title
 
-This key is extracted from the `"Description"` field of the `DESCRIPTION` file.
+This key combines the `"Package"` and `"Title"` fields of the `DESCRIPTION`
+file.
 
 ```{r}
 #| eval: false
@@ -564,8 +562,8 @@ Back to @tbl-summary.
 
 ### type
 
-Fixed value equal to `"software"`. The other possible value is `"dataset"`. See
-the description on the [Guide to CFF schema
+This key has the fixed value `"software"`. The other valid value is `"dataset"`.
+See the [Guide to CFF schema
 v1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#type).
 
 Back to @tbl-summary.

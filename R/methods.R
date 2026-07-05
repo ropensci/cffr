@@ -199,10 +199,7 @@ cff_df_indexed <- function(
     do.call(as.data.frame, args)
   })
 
-  args <- c(
-    list(df_l = df_l, row.names = row.names, optional = optional),
-    dots
-  )
+  args <- c(list(df_l = df_l, row.names = row.names, optional = optional), dots)
   do.call(cff_df_bind, args)
 }
 
@@ -338,16 +335,14 @@ as.person.cff_pers_lst <- function(x) {
   end
 }
 
-# as.person methods not implemented ----
+# Unimplemented `as.person()` methods ----
 
 #' @rdname cff_class
 #' @usage NULL
 #' @export
 #' @encoding UTF-8
 as.person.cff <- function(x) {
-  cli::cli_abort(
-    "The {.fn as.person.cff} method is not implemented yet."
-  )
+  cli::cli_abort("The {.fn as.person.cff} method is not implemented yet.")
 }
 
 #' @rdname cff_class
@@ -355,9 +350,7 @@ as.person.cff <- function(x) {
 #' @export
 #' @encoding UTF-8
 as.person.cff_ref <- function(x) {
-  cli::cli_abort(
-    "The {.fn as.person.cff_ref} method is not implemented yet."
-  )
+  cli::cli_abort("The {.fn as.person.cff_ref} method is not implemented yet.")
 }
 
 #' @rdname cff_class

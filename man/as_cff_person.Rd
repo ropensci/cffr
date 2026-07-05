@@ -24,23 +24,25 @@ as_cff_person(x, ...)
 \value{
 \code{as_cff_person()} returns an object of classes
 \code{\link[=cff_pers_lst]{cff_pers_lst, cff}} according to the \code{definitions.person}
-or \code{definitions.entity} specified in the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
+or \code{definitions.entity} specified in the following guide:
+\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema guide}.
 Each element of the \code{cff_pers_lst} object has classes
 \code{\link[=cff_pers]{cff_pers, cff}}.
 }
 \description{
 \code{as_cff_person()} turns an existing list-like \R object into a
 \code{\link{cff_pers_lst}} object representing a list of \code{definitions.person} or
-\code{definitions.entity}, as defined by the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
+\code{definitions.entity}, as defined in the following guide:
+\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema guide}.
 
 \code{as_cff_person()} is an S3 generic, with methods for:
 \itemize{
-\item \code{person}: Objects created with \code{\link[=person]{person()}}.
+\item \code{person}: Objects created with \code{\link[utils:person]{utils::person()}}.
 \item \code{character}: Strings with the definition for one or more authors, using
-the standard BibTeX notation (see Markey, 2007) and related formats, such
-as the output of \code{\link[=format]{format()}} for \code{person} objects (see
-\code{\link[=person]{format.person()}}).
-\item Default: Other inputs are first coerced with \code{\link[=as.character]{as.character()}}.
+the standard BibTeX notation (see Markey, 2009) and related formats, such
+as the output of \code{\link[base:format]{base::format()}} for \code{person} objects (see
+\code{\link[utils:person]{format.person()}}).
+\item Default: Other inputs are first coerced with \code{\link[base:as.character]{base::as.character()}}.
 }
 
 The inverse transformation (\code{cff_pers_lst} to \code{person}) can be done with the
@@ -51,7 +53,7 @@ methods \code{\link[=as.person.cff_pers]{as.person.cff_pers()}} and \code{\link[
 CFF reference for \code{definitions.person} or \code{definitions.entity}.
 
 \code{as_cff_person()} uses a custom algorithm that parses names as explained in
-Section 11 of "Tame the BeaST" (Markey, 2007) (see also Decoret, 2007):
+Section 11 of "Tame the BeaST" (Markey, 2009) (see also Decoret, 2007):
 \itemize{
 \item \verb{First von Last}.
 \item \verb{von Last, First}.
@@ -146,24 +148,21 @@ as_cff_person("Herbert von Karajan")
 toBibtex(as_cff_person("Herbert von Karajan"))
 }
 \references{
-Patashnik, Oren. "BIBTEXTING" February 1988.
+Patashnik O (1988). "BIBTEXing."
 \url{https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf}.
 
-Markey, Nicolas. "Tame the BeaST"
-\emph{The B to X of BibTeX, Version 1.4} (October 2007).
+Markey N (2009). \emph{Tame the BeaST: The B to X of BibTeX}.
 \url{https://osl.ugr.es/CTAN/info/bibtex/tamethebeast/ttb_en.pdf}.
 
-Decoret X (2007). "A summary of BibTeX."\url{https://maverick.inria.fr/~Xavier.Decoret/resources/xdkbibtex/bibtex_summary.html#names}
-
-See \strong{Examples} for more information.
+Decoret X (2007). "A summary of BibTeX." \url{https://maverick.inria.fr/~Xavier.Decoret/resources/xdkbibtex/bibtex_summary.html#names}.
 }
 \seealso{
 Examples in \code{vignette("cffr", package = "cffr")} and \code{\link[utils:person]{utils::person()}}.
 Learn more about the \code{cff_pers_lst} and \code{cff_pers} classes in \link{cff_class}.
 
-Coerce between \R classes:
+Convert between \R classes:
 \code{\link[=as_bibentry]{as_bibentry()}},
 \code{\link[=as_cff]{as_cff()}},
 \code{\link{cff_class}}
 }
-\concept{s3method}
+\concept{conversions}

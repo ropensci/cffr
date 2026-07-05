@@ -31,8 +31,8 @@
 \alias{as.person.cff_ref_lst}
 \title{The \code{cff} class}
 \description{
-\CRANpkg{cffr} implements an S3 object with \code{\link{class}} \code{cff}, which represents
-the information in a \code{CITATION.cff} file in \R.
+\CRANpkg{cffr} implements an S3 object with \code{\link[base:class]{base::class()}} \code{cff}, which
+represents the information in a \code{CITATION.cff} file in \R.
 
 Under the hood, a \code{cff} object is a named \code{\link{list}} with additional methods, most
 notably \code{\link{print}} and \code{\link[=as_cff]{as_cff()}}.
@@ -60,26 +60,27 @@ is.list(a_cff_object)
 #> [1] TRUE
 }\if{html}{\out{</div>}}
 
-\code{\link[=as_cff]{as_cff()}} converts a \code{list} to \code{cff} and removes items that are \code{NULL} or \code{NA}.
-These items are known as \code{keys} in CFF terminology.
+\code{\link[=as_cff]{as_cff()}} converts a \code{list} to \code{cff} and removes elements that are \code{NULL} or
+\code{NA}. Named elements are known as keys in CFF terminology.
 \subsection{Subclasses}{
 
-\strong{cffr} implements two special subclasses of \code{cff}, which represent two special
+\CRANpkg{cffr} implements two special subclasses of \code{cff}, which represent two
 types of objects defined in the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}:
 \itemize{
 \item \code{definitions.person} and \code{definitions.entity}: CFF definitions for sublists
-representing persons or entities. In \strong{cffr}, the subclass \code{cff_pers_lst}
-collects an array of \code{definitions.person} or \code{definitions.entity} objects,
-where each individual person or entity has subclass \code{cff_pers}.
-\item \code{definitions.reference} is the CFF definition for collecting references to
+representing persons or entities. In \CRANpkg{cffr}, the subclass
+\code{cff_pers_lst} collects an array of \code{definitions.person} or
+\code{definitions.entity} objects, where each individual person or entity has
+subclass \code{cff_pers}.
+\item \code{definitions.reference}: The CFF definition for collecting references to
 related works and other software used in the development of the main work of
-the \code{CITATION.cff} file. In \strong{cffr}, the subclass \code{cff_ref_lst} represents
-arrays of \code{definitions.reference} objects, where each element has subclass
-\code{cff_ref}.
+the \code{CITATION.cff} file. In \CRANpkg{cffr}, the subclass \code{cff_ref_lst}
+represents arrays of \code{definitions.reference} objects, where each element has
+subclass \code{cff_ref}.
 }
 
-These two subclasses do not provide full valid \code{cff} objects, but adapt
-information to the schema required by CFF:
+These subclasses are not complete, valid \code{cff} objects. They adapt information
+to the structures required by the CFF schema:
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{# Use `utils::person()`.
 
@@ -186,8 +187,8 @@ cff_validate(a_cff_object)
 #> * cff/: must NOT have additional properties
 }\if{html}{\out{</div>}}
 
-\code{\link[=cff_validate]{cff_validate()}} gives minimal messages about what is wrong with the \code{cff}
-object and invisibly returns the validation result (\code{TRUE/FALSE}).
+\code{\link[=cff_validate]{cff_validate()}} reports validation problems and invisibly returns \code{TRUE} or
+\code{FALSE}.
 
 We can use \code{\link[=cff_modify]{cff_modify()}} to add more keys:
 
@@ -214,10 +215,10 @@ cff_validate(cff_valid)
 }\if{html}{\out{</div>}}
 }
 
-\subsection{Base methods provided by \strong{cffr}}{
+\subsection{Base methods provided by \CRANpkg{cffr}}{
 
-\strong{cffr} provides additional S3 methods for common coercion functions from the
-base and utils packages.
+\CRANpkg{cffr} provides additional S3 methods for common coercion functions from
+the base and utils namespaces.
 \subsection{\code{\link[=as.data.frame]{as.data.frame()}}}{
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{minimal_cff <- cff()
@@ -332,14 +333,15 @@ toBibtex(two_persons)
 }
 \references{
 Wickham H (2019). "S3." In \emph{Advanced R}, 2nd edition.
-Chapman and Hall/CRC. \doi{10.1201/9781351201315},
+Chapman and Hall/CRC.
+\doi{10.1201/9781351201315}.
 \url{https://adv-r.hadley.nz/s3.html}.
 }
 \seealso{
-Coerce between \R classes:
+Convert between \R classes:
 \code{\link[=as_bibentry]{as_bibentry()}},
 \code{\link[=as_cff]{as_cff()}},
 \code{\link[=as_cff_person]{as_cff_person()}}
 }
-\concept{s3method}
+\concept{conversions}
 \keyword{internal}

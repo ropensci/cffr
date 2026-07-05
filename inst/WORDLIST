@@ -1,10 +1,11 @@
 Acknowledgements
 Arfon
-BIBTEXTING
+BIBTEXing
 BeaST
 BibLaTeX
 BibTeX’s
 Bitbucket
+Bliven
 Boettiger
 CFF
 CMD
@@ -20,11 +21,12 @@ FOSS
 Fenner
 GitLab
 Haines
-Hernangomez
 Integrations
+JH
 JOSS
 Jurriaan
 KNB
+Konovalov
 Leoncio
 Lifecycle
 Lossy
@@ -33,9 +35,9 @@ Mayes
 Maëlle
 NOTEs
 ORCID
-Oren
 Patashnik
 Philipp
+Pérez
 README
 ROR
 RSPM
@@ -43,9 +45,11 @@ RStudio
 Riederer
 SPDX
 Spaaks
+Suárez
 Waldir
 Wickham
 Wiernik
+Willighagen
 Zenodo
 Zotero
 ajv
@@ -53,7 +57,6 @@ al
 annote
 bibtex
 bijective
-biocViews
 booktitle
 callout
 centric
@@ -80,7 +83,7 @@ rOpenSci
 representable
 schemas
 subtype
-testthat
+usethis
 xampl
 zenodo
 ’CodeMeta’

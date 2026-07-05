@@ -68,16 +68,9 @@ test_that("as_bibentry default", {
 
 test_that("as_bibentry NULL", {
   skip_on_cran()
-  current_dir <- getwd()
 
-  name <- paste0("mock-pack", runif(1) * 10)
-  new_dir <- file.path(tempdir(), name)
-
-  dir.create(new_dir, recursive = TRUE)
-
-  expect_true(dir.exists(new_dir))
-
-  setwd(new_dir)
+  new_dir <- withr::local_tempdir(pattern = "mock-pack-")
+  withr::local_dir(new_dir)
 
   # Move files
   file.copy(
@@ -88,12 +81,7 @@ test_that("as_bibentry NULL", {
   # Get bibentry
   a_bib <- as_bibentry()
 
-  # Revert to initial wd
-  setwd(current_dir)
-
   expect_snapshot(toBibtex(a_bib))
-
-  unlink(new_dir, recursive = TRUE, force = TRUE)
 })
 
 test_that("as_bibentry character", {

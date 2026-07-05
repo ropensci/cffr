@@ -4,7 +4,7 @@
 \name{cff_parse_person}
 \alias{cff_parse_person}
 \alias{cff_parse_person_bibtex}
-\title{Previous API: Parse a \code{person} to \code{\link{cff}}}
+\title{Previous API: parse a \code{person} to \code{\link{cff}}}
 \usage{
 cff_parse_person(person)
 
@@ -19,7 +19,7 @@ cff_parse_person_bibtex(person)
 }}
 }
 \value{
-A person in \code{cff} format.
+A \code{\link{cff_pers_lst}} object.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use \code{\link[=as_cff_person]{as_cff_person()}} instead.
@@ -65,7 +65,7 @@ as_cff_person(x)
 as_cff_person("Herbert von Karajan")
 }
 \seealso{
-\code{\link[=as_cff_person]{as_cff_person()}}
+\code{\link[=as_cff_person]{as_cff_person()}}.
 
 Deprecated functions:
 \code{\link[=cff_extract_to_bibtex]{cff_extract_to_bibtex()}},

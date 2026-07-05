@@ -1,3 +1,7 @@
+# cffr (development version)
+
+- `cff_gha_update()` now uses `path` when updating `.Rbuildignore`.
+
 # cffr 1.4.1
 
 - Internal code and documentation were reviewed and refactored with AI
@@ -48,13 +52,14 @@
 
 # cffr 1.1.0
 
-- **cffr** now automatically adds DOIs to packages on **CRAN** (e.g.
+- **cffr** now automatically adds DOIs to packages on **CRAN** (for example,
   <https://doi.org/10.32614/CRAN.package.cffr>):
   - If the package has a `CITATION` file providing a DOI, the `CITATION` DOI is
     used as the main `CITATION.cff` `doi` and the **CRAN** DOI is added as an
     `identifier`.
   - Otherwise, the **CRAN** DOI is used as `doi`.
-  - When extracting dependencies (e.g. `cff_create(dependencies = TRUE)`) and
+  - When extracting dependencies (for example,
+    `cff_create(dependencies = TRUE)`) and
     the package dependency is on **CRAN**, the **CRAN** DOI is used for the
     dependency in the `references` key.
 - `commit` is extracted from `RemoteSha`.
@@ -83,18 +88,18 @@ and
 [`definitions.entity`](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#definitionsentity)
 objects:
 
-- A list of `definitions.reference` objects (e.g. `references`) has class
-  `cff_ref_lst, cff` and individual elements (e.g. `preferred-citation` or each
-  member of `references`) have class `cff_ref, cff`.
-- A list of `definitions.person` or `definitions.entity` objects (e.g.
-  `authors`, `contact`) has class `cff_pers_lst, cff` and individual elements
-  (e.g. `publisher` or each member of `authors`) have class `cff_pers, cff`.
+- A list of `definitions.reference` objects, such as `references`, has class
+  `cff_ref_lst, cff`. Individual elements, such as `preferred-citation` or each
+  member of `references`, have class `cff_ref, cff`.
+- A list of `definitions.person` or `definitions.entity` objects, such as
+  `authors` or `contact`, has class `cff_pers_lst, cff`. Individual elements,
+  such as `publisher` or each member of `authors`, have class `cff_pers, cff`.
 
 This change allows writing specific [S3
 methods](https://adv-r.hadley.nz/s3.html) and extends the capabilities of the
 package.
 
-- `as_cff()` is a new S3 generic method that replaces `as.cff()` and coerces
+- `as_cff()` is a new S3 generic that replaces `as.cff()` and coerces
   **R** objects to `cff` class format. Current methods provided are:
   - `as_cff.Bibtex()`.
   - `as_cff.bibentry()`, replacing `cff_parse_citation()`.
@@ -109,8 +114,8 @@ package.
   class:
   - `as.data.frame.cff()`.
   - `as.person()`, although **only** for `definitions.person` or
-    `definitions.entity` (e.g. `authors`, `contacts`, `editors`, `publisher`,
-    etc.).
+    `definitions.entity`, such as `authors`, `contacts`, `editors` or
+    `publisher`.
   - `head.cff()`, `tail.cff()`.
   - `toBibtex.cff()`.
 

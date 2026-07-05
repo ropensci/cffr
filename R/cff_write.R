@@ -1,46 +1,48 @@
 #' Write a `CITATION.cff` file
 #'
 #' @description
-#' **This is the core function of the package and likely to be the only one
-#' you need when developing a package**.
+#' `cff_write()` is the primary workflow for package development.
 #'
 #' This function writes a `CITATION.cff` file for a given package. It wraps
 #' [cff_create()] to create the [`cff`] object, then writes it to a
 #' YAML-formatted file in one command.
 #'
 #' @param outfile The name and path of the `CITATION.cff` to be created.
-#' @param r_citation Logical `TRUE/FALSE`. When `TRUE`, the \R package
-#'   citation (for example, `inst/CITATION`) is created or updated.
-#'   **No backup copy is created**. For more control, use
+#'   Relative paths are resolved from the current working directory,
+#'   independently of the source specified in `x`.
+#' @param r_citation A logical value. If `TRUE`, the \R package
+#'   citation (`inst/CITATION`) is created or updated relative to the current
+#'   working directory. **No backup copy is created**. For more control, use
 #'   [cff_write_citation()].
-#' @param verbose Logical `TRUE/FALSE`. When `TRUE`, the function displays
+#' @param verbose A logical value. If `TRUE`, the function displays
 #'   informative messages.
-#' @param validate Logical `TRUE/FALSE`. Whether to validate the new file with
+#' @param validate A logical value. If `TRUE`, validate the new file with
 #'   [cff_validate()].
 #' @param encoding The name of the encoding to be assumed. Default is `"UTF-8"`,
-#'   but it can be any other value as accepted by [iconv()], such as
+#'   but it can be any other value accepted by [base::iconv()], such as
 #'   `"ASCII//TRANSLIT"`.
 #' @inheritParams cff_create
 #'
-#' @return A `CITATION.cff` file and an invisible `cff` object.
+#' @return
+#' Invisibly returns the generated [`cff`] object. This function is called
+#' primarily for its side effect of writing a `CITATION.cff` file.
 #'
 #' @details
 #' For details of `authors_roles`, see [cff_create()].
 #'
-#' When creating and writing a `CITATION.cff` for the first time, this function
-#' adds the pattern `"^CITATION\.cff$"` to your `.Rbuildignore` file.
+#' The `x` argument identifies the metadata source. It does not determine the
+#' output directory. This allows you to create a `CITATION.cff` from a package
+#' or file located outside the current working directory.
+#'
+#' When creating and writing a `CITATION.cff` for a package in the current
+#' working directory, this function adds the pattern `"^CITATION\.cff$"` to
+#' the local `.Rbuildignore` file.
 #'
 #' @seealso
-#' ```{r, echo=FALSE, results='asis'}
-#'
-#' cat(paste0("[Guide to Citation File Format schema version 1.2.0]",
-#'            "(https://github.com/citation-file-format/",
-#'            "citation-file-format/blob/main/schema-guide.md)."))
-#'
+#' ```{r child = "man/chunks/schema-guide.Rmd"}
 #' ```
-#' This function unifies the [cff_create()] and [cff_validate()] workflow for
-#' writing a file.
 #'
+#' @family core
 #' @family writing
 #' @export
 #' @encoding UTF-8
@@ -167,9 +169,7 @@ cff_update_rbuildignore <- function(x, outfile, verbose) {
   ignore <- unique(c(ignore, "^CITATION\\.cff$"))
 
   if (verbose) {
-    cli::cli_alert_info(
-      "Adding {.file {outfile}} to {.file .Rbuildignore}."
-    )
+    cli::cli_alert_info("Adding {.file {outfile}} to {.file .Rbuildignore}.")
   }
   writeLines(ignore, ".Rbuildignore")
 

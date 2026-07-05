@@ -5,7 +5,7 @@ toc: true
 bibliography: REFERENCES.bib
 link-citations: true
 vignette: >
-  %\VignetteIndexEntry{Manipulating Citations with cffr}
+  %\VignetteIndexEntry{Manipulating citations with cffr}
   %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
 knitr:
@@ -29,11 +29,11 @@ library(cffr)
 
 ## What is a `CITATION.cff` file?
 
-[Citation File Format (CFF)](https://citation-file-format.github.io/)
-[@druskat_citation_2021] (v1.2.0) files are plain text files with human- and
-machine-readable citation information for software (and datasets). Software
-developers can include them in their repositories to let others know how to
-correctly cite their software.
+A `CITATION.cff` file follows the [Citation File Format
+(CFF)](https://citation-file-format.github.io/) [@druskat_citation_2021]
+(v1.2.0). It contains human- and machine-readable citation metadata for software
+and datasets. Developers can include it in a repository to explain how to cite
+their software.
 
 This format is increasingly used in the software citation ecosystem.
 [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
@@ -83,8 +83,8 @@ You now have a complete `CITATION.cff` file for your **R** package.
 
 ## Modifying your `CITATION.cff` file
 
-You can customize a `cff` object (a custom **cffr** S3 class) using the coercion
-system provided in the package and the `keys` argument.
+You can customize a `cff` object using `cff_modify()`, the package's coercion
+methods and the `keys` argument.
 
 For demonstration, we create a `cff` object using `cff()` and then add or modify
 its contents.
@@ -130,12 +130,12 @@ cff_validate(modobject)
 
 ### Persons and references
 
-**cffr** provides two functions that convert `person` and `bibentry` objects
-(see `?person` and `?bibentry`) to objects that follow the [Citation File Format
+`as_cff_person()` converts `person` objects and `as_cff()` converts `bibentry`
+objects to metadata that follows the [Citation File Format
 schema](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md).
 
 Following the previous example, we first add a new author. To do that, we need
-to extract the current author of the package and append the coerced person:
+to extract the current package authors and append the converted person:
 
 ```{r}
 #| label: includeauthor
@@ -175,8 +175,8 @@ newauthorobject
 cff_validate(newauthorobject)
 ```
 
-Next, we add `references` to our data. In the following example, we add two
-references, one created with `bibentry()` and another with `citation()`:
+Next, we add `references` to the `cff` object. This example adds two references,
+one created with `bibentry()` and another with `citation()`:
 
 ```{r}
 #| label: parsingcits
@@ -207,7 +207,7 @@ refs_cff <- as_cff(refs)
 refs_cff
 ```
 
-The process is similar to the example with `person`: we modify our `cff` object:
+As with the `person` example, we modify the `cff` object:
 
 ```{r}
 #| label: references
@@ -218,7 +218,7 @@ finalobject
 cff_validate(finalobject)
 ```
 
-### Create your modified `CITATION.cff` file
+### Write the modified `CITATION.cff` file
 
 The result can be written with `cff_write()`:
 
@@ -242,7 +242,7 @@ reading
 ```
 
 Note that `cff_write()` also has the `keys` argument, so the workflow can be
-simplified as:
+simplified to:
 
 ```{r}
 allkeys <- list(

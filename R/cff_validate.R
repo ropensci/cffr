@@ -16,20 +16,16 @@
 #' @inheritParams cff_write
 #'
 #' @return
-#' A message indicating the validation result and an invisible
-#' `TRUE/FALSE` value. On error, the result has an `"errors"` attribute with
-#' the error summary. See **Examples** and [attr()].
+#' Invisibly returns a logical value indicating the validation result. On
+#' error, the result has an `"errors"` attribute with the error summary. If
+#' `verbose` is `TRUE`, the function also displays the result. See **Examples**
+#' and [base::attr()].
 #'
 #' @seealso
 #' [jsonvalidate::json_validate()], which is the function that performs the
 #' validation.
 #'
-#' ```{r, echo=FALSE, results='asis'}
-#'
-#' cat(paste0("[Guide to Citation File Format schema version 1.2.0]",
-#'            "(https://github.com/citation-file-format/",
-#'            "citation-file-format/blob/main/schema-guide.md)."))
-#'
+#' ```{r child = "man/chunks/schema-guide.Rmd"}
 #' ```
 #'
 #' @family core

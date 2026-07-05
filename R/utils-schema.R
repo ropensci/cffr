@@ -1,14 +1,9 @@
 #' Inspect CFF schema values
 #'
 #' @description
-#' Helper functions with valid values for different keys and definition fields,
-#' according to the
-#' ```{r, echo=FALSE, results='asis'}
-#'
-#' cat(paste0("\n", "[Citation File Format schema version 1.2.0]",
-#'            "(https://github.com/citation-file-format/",
-#'            "citation-file-format/blob/main/schema-guide.md)."))
-#'
+#' Helper functions with valid values for different keys and definition fields.
+#' See the following guide:
+#' ```{r child = "man/chunks/schema-guide.Rmd"}
 #' ```
 #'
 #' - [cff_schema_keys()] provides the valid high-level keys of the Citation
@@ -22,20 +17,14 @@
 #' - [cff_schema_definitions_refs()] provides the valid
 #'   keys to use in the `preferred-citation` and `references` keys.
 #'
-#' @param sorted Logical `TRUE/FALSE`. Whether to arrange the keys
-#'   alphabetically.
+#' @param sorted A logical value. If `TRUE`, arrange the keys alphabetically.
 #'
 #' @return
 #' A character vector with the names of valid keys for Citation File Format
 #' version 1.2.0.
 #'
 #' @source
-#' ```{r, echo=FALSE, results='asis'}
-#'
-#' cat(paste0("[Guide to Citation File Format schema version 1.2.0]",
-#'            "(https://github.com/citation-file-format/",
-#'            "citation-file-format/blob/main/schema-guide.md)."))
-#'
+#' ```{r child = "man/chunks/schema-guide.Rmd"}
 #' ```
 #'
 #' @family schemas
@@ -271,7 +260,7 @@ other_persons <- function() {
   pers_ent
 }
 
-#' Vector of other persons to be coerced as entities
+#' Vector of other persons converted to entities
 #' @noRd
 other_persons_entity <- function() {
   entities <- c(

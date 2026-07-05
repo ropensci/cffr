@@ -35,7 +35,7 @@ test_that("Read lines", {
   expect_snapshot(list)
 
   # Create a Bibtex file with that lines
-  tmpbib <- tempfile(fileext = ".bib")
+  tmpbib <- withr::local_tempfile(fileext = ".bib")
   writeLines(x, tmpbib)
 
   expect_snapshot(fromfile <- cff_read_bib_text(tmpbib))

@@ -200,7 +200,7 @@ test_that("Language round-trip", {
   expect_identical(cff_lang[["references"]][[2]]$languages, c("en", "es", "fr"))
 
   # Write
-  tmp <- tempfile(fileext = ".cff")
+  tmp <- withr::local_tempfile(fileext = ".cff")
   cff_write(cff_lang, tmp)
 
   # And re-check
@@ -212,6 +212,4 @@ test_that("Language round-trip", {
   expect_identical(cff_lang[["references"]][[1]]$languages, list("en"))
 
   expect_identical(cff_lang[["references"]][[2]]$languages, c("en", "es", "fr"))
-
-  unlink(tmp)
 })

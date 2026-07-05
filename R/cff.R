@@ -10,7 +10,7 @@
 #'   object is created.
 #'
 #' @return
-#' A [`cff`] object. Under the hood, a `cff` object is a regular [`list`]
+#' A [`cff`] object. Under the hood, a `cff` object is a regular [base::list()]
 #' object with a special [`print`][print.cff()] method.
 #'
 #' @details

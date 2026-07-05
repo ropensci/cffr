@@ -29,11 +29,12 @@ cff_write_citation(
 \item{file}{Name of the file to be created. If \code{NULL}, the lines are
 displayed instead.}
 
-\item{append}{Logical. Whether to append entries to an existing file.}
+\item{append}{A logical value. If \code{TRUE}, append entries to an existing file.}
 
-\item{verbose}{Logical. Display informative messages.}
+\item{verbose}{A logical value. If \code{TRUE}, display informative messages.}
 
-\item{ascii}{Logical. Whether to write entries using ASCII characters only.}
+\item{ascii}{A logical value. If \code{TRUE}, write entries using ASCII
+characters only.}
 
 \item{...}{
   Arguments passed on to \code{\link{as_bibentry.cff}}, \code{\link{as_bibentry.cff_ref}}, \code{\link{as_bibentry.cff_ref_lst}}
@@ -50,14 +51,15 @@ See \code{vignette("r-cff", package = "cffr")}.}
   }}
 }
 \value{
-Writes the corresponding file specified by the \code{file} argument.
+Invisibly returns \code{NULL}. This function is called for its side effect of
+writing a file or displaying its contents.
 }
 \description{
 Export \R objects representing citations to specific file formats:
 \itemize{
 \item \code{\link[=cff_write_bib]{cff_write_bib()}} creates a \code{.bib} file.
 \item \code{\link[=cff_write_citation]{cff_write_citation()}} creates an \R citation file as described in
-Section 1.9 of \emph{Writing R Extensions} (R Core Team 2023).
+Section 1.9 of \emph{Writing R Extensions} (R Core Team 2026).
 }
 }
 \details{
@@ -97,8 +99,8 @@ meta$Encoding <- "UTF-8"
 utils::readCitationFile(out, meta)
 }
 \references{
-R Core Team (2023). \emph{Writing R Extensions}.
-\url{https://cran.r-project.org/doc/manuals/r-release/R-exts.html}
+R Core Team (2026). \emph{Writing R Extensions}.
+\url{https://cran.r-project.org/doc/manuals/r-release/R-exts.html}.
 }
 \seealso{
 \code{vignette("bibtex-cff", package = "cffr")}, \code{\link[knitr:write_bib]{knitr::write_bib()}} and the

@@ -2,7 +2,7 @@ test_that("Write basic", {
   desc_file <- system.file("examples/DESCRIPTION_basic", package = "cffr")
   desc_file <- cff_create(desc_file)
   expect_s3_class(desc_file, "cff")
-  tmp <- file.path(tempdir(), "basic.cff")
+  tmp <- file.path(withr::local_tempdir(), "basic.cff")
   expect_message(cff_write(desc_file, outfile = tmp, validate = FALSE))
   expect_silent(cff_write(desc_file, outfile = tmp, verbose = FALSE))
   expect_true(file_exist_abort(tmp))
@@ -10,34 +10,29 @@ test_that("Write basic", {
   # Validate from file
   expect_true(cff_validate(tmp, verbose = FALSE))
   expect_snapshot_file(tmp)
-
-  file.remove(tmp)
-  expect_false(file_exist_abort(tmp))
 })
 
 test_that("Write to a non-existing folder", {
   desc_file <- system.file("examples/DESCRIPTION_basic", package = "cffr")
   desc_file <- cff_create(desc_file)
   expect_s3_class(desc_file, "cff")
-  tmp <- file.path(tempdir(), "/test_new_folder/recursive/new_folder.cff")
+  root <- withr::local_tempdir(pattern = "cff-write-")
+  tmp <- file.path(root, "recursive", "new_folder.cff")
   cff_write(desc_file, outfile = tmp, validate = FALSE, verbose = FALSE)
 
-  expect_true(dir.exists(file.path(tempdir(), "test_new_folder", "recursive")))
+  expect_true(dir.exists(file.path(root, "recursive")))
   expect_true(file_exist_abort(tmp))
 
   # Validate from file
   expect_true(cff_validate(tmp, verbose = FALSE))
   expect_snapshot_file(tmp)
-
-  file.remove(tmp)
-  expect_false(file_exist_abort(tmp))
 })
 
 test_that("Write no encoding", {
   desc_file <- system.file("examples/DESCRIPTION_no_encoding", package = "cffr")
   desc_file <- cff_create(desc_file)
   expect_s3_class(desc_file, "cff")
-  tmp <- file.path(tempdir(), "noencoding.cff")
+  tmp <- file.path(withr::local_tempdir(), "noencoding.cff")
   cff_write(desc_file, outfile = tmp, validate = FALSE, verbose = FALSE)
 
   expect_true(file_exist_abort(tmp))
@@ -45,16 +40,13 @@ test_that("Write no encoding", {
   # Validate from file
   expect_true(cff_validate(tmp, verbose = FALSE))
   expect_snapshot_file(tmp)
-
-  file.remove(tmp)
-  expect_false(file_exist_abort(tmp))
 })
 
 test_that("Add new keys", {
   desc_file <- system.file("examples/DESCRIPTION_basic", package = "cffr")
   desc_file <- cff_create(desc_file)
   expect_s3_class(desc_file, "cff")
-  tmp <- file.path(tempdir(), "newkeys.cff")
+  tmp <- file.path(withr::local_tempdir(), "newkeys.cff")
 
   # Add additional keys
   newkeys <- list(
@@ -86,9 +78,6 @@ test_that("Add new keys", {
   # Validate from file
   expect_true(cff_validate(tmp, verbose = FALSE))
   expect_snapshot_file(tmp)
-
-  file.remove(tmp)
-  expect_false(file_exist_abort(tmp))
 })
 
 test_that("Append keys", {
@@ -114,7 +103,7 @@ test_that("Append keys", {
     ))
   )
 
-  tmp <- file.path(tempdir(), "appendkeys.cff")
+  tmp <- file.path(withr::local_tempdir(), "appendkeys.cff")
   s <- cff_write(
     desc_file,
     outfile = tmp,
@@ -126,45 +115,36 @@ test_that("Append keys", {
 
   expect_true(cff_validate(tmp, verbose = FALSE))
   expect_snapshot_file(tmp)
-
-  file.remove(tmp)
-  expect_false(file_exist_abort(tmp))
 })
 
 test_that("Fix extension of the file", {
   cffobj <- cff()
   cffobj <- cff_modify(cffobj, authors = as_cff_person("Diego Pérez"))
-  tmp <- file.path(tempdir(), "fix_extension")
+  tmp <- file.path(withr::local_tempdir(), "fix_extension")
   expect_silent(cff_write(cffobj, tmp, verbose = FALSE))
 
   expect_false(file_exist_abort(tmp))
   expect_true(file_exist_abort(paste0(tmp, ".cff")))
   expect_true(cff_validate(paste0(tmp, ".cff"), verbose = FALSE))
   expect_snapshot_file(paste0(tmp, ".cff"))
-
-  file.remove(paste0(tmp, ".cff"))
-  expect_false(file_exist_abort(paste0(tmp, ".cff")))
 })
 
 test_that("test encoding utf8", {
   cffobj <- cff()
   cffobj <- cff_modify(cffobj, authors = as_cff_person("Diego Pérez"))
-  tmp <- file.path(tempdir(), "utf8.cff")
+  tmp <- file.path(withr::local_tempdir(), "utf8.cff")
   expect_silent(cff_write(cffobj, tmp, verbose = FALSE))
 
   expect_true(file_exist_abort(tmp))
   expect_true(cff_validate(tmp, verbose = FALSE))
   expect_snapshot_file(tmp)
-
-  file.remove(tmp)
-  expect_false(file_exist_abort(tmp))
 })
 
 test_that("test encoding others", {
   skip_on_os("mac")
   cffobj <- cff()
   cffobj <- cff_modify(cffobj, authors = as_cff_person("Diego Pérez"))
-  tmp <- file.path(tempdir(), "asci_trans.cff")
+  tmp <- file.path(withr::local_tempdir(), "asci_trans.cff")
   expect_silent(cff_write(
     cffobj,
     tmp,
@@ -175,33 +155,15 @@ test_that("test encoding others", {
   expect_true(file_exist_abort(tmp))
   expect_true(cff_validate(tmp, verbose = FALSE))
   expect_snapshot_file(tmp)
-
-  file.remove(tmp)
-  expect_false(file_exist_abort(tmp))
 })
 
 test_that("Update .Rbuildignore", {
-  old_rbuildignore <- if (file.exists(".Rbuildignore")) {
-    readLines(".Rbuildignore")
-  } else {
-    NULL
-  }
-
-  on.exit(
-    {
-      if (is.null(old_rbuildignore)) {
-        unlink(".Rbuildignore")
-      } else {
-        writeLines(old_rbuildignore, ".Rbuildignore")
-      }
-    },
-    add = TRUE
-  )
+  new_dir <- withr::local_tempdir(pattern = "rbuildignore-")
+  withr::local_dir(new_dir)
 
   outfile <- "CITATION.cff"
   current_dir <- getwd()
 
-  unlink(".Rbuildignore")
   expect_silent(cff_update_rbuildignore(cff(), outfile, verbose = TRUE))
   expect_false(file.exists(".Rbuildignore"))
 
@@ -230,16 +192,9 @@ test_that("Update .Rbuildignore", {
 
 test_that("Test in mock package", {
   skip_on_cran()
-  current_dir <- getwd()
 
-  name <- paste0("mock-pack", runif(1) * 10)
-  new_dir <- file.path(tempdir(), name)
-
-  dir.create(new_dir, recursive = TRUE)
-
-  expect_true(dir.exists(new_dir))
-
-  setwd(new_dir)
+  new_dir <- withr::local_tempdir(pattern = "mock-pack-")
+  withr::local_dir(new_dir)
 
   # Move files
   file.copy(
@@ -312,13 +267,13 @@ test_that("Test in mock package", {
   expect_message(
     expect_message(
       expect_message(cff_gha_update(), "Creating directory"),
-      "Installing"
+      "Workflow installed"
     ),
     "Adding"
   )
 
-  expect_message(cff_gha_update(), "already installed")
-  expect_message(cff_gha_update(overwrite = TRUE), "Installing")
+  expect_message(cff_gha_update(), "already exists")
+  expect_message(cff_gha_update(overwrite = TRUE), "Workflow installed")
 
   expect_true(file_exist_abort(file.path(
     ".github",
@@ -344,11 +299,6 @@ test_that("Test in mock package", {
     "./inst/CITATION",
     meta = list(Encoding = "UTF-8")
   )
-
-  # Revert to initial wd
-  setwd(current_dir)
-
-  unlink(new_dir, recursive = TRUE, force = TRUE)
 
   rvers <- getRversion()
   skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")

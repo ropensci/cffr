@@ -8,7 +8,7 @@ message: 'To cite package "cffr" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'cffr: Generate Citation File Format (''CFF'') Metadata for R Packages'
-version: 1.4.1
+version: 1.4.1.9000
 doi: 10.21105/joss.03900
 identifiers:
 - type: doi
@@ -359,4 +359,29 @@ references:
     orcid: https://orcid.org/0000-0002-7840-692X
   year: '2026'
   doi: 10.32614/CRAN.package.usethis
+- type: software
+  title: withr
+  abstract: 'withr: Run Code ''With'' Temporarily Modified Global State'
+  notes: Suggests
+  url: https://withr.r-lib.org
+  repository: https://CRAN.R-project.org/package=withr
+  authors:
+  - family-names: Hester
+    given-names: Jim
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@posit.co
+  - family-names: Müller
+    given-names: Kirill
+    email: krlmlr+r@mailbox.org
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevinushey@gmail.com
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  - family-names: Chang
+    given-names: Winston
+  year: '2026'
+  doi: 10.32614/CRAN.package.withr
 

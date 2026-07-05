@@ -14,19 +14,12 @@
 #'
 #' You can add additional keys not detected by [cff_create()] using
 #' the `keys` argument. A list of valid keys can be retrieved with
-#' [cff_schema_keys()]. For details, refer to
-#' ```{r, echo=FALSE, results='asis'}
-#'
-#' cat(paste0("\n", "[Guide to Citation File Format schema version 1.2.0]",
-#'            "(https://github.com/citation-file-format/",
-#'            "citation-file-format/blob/main/schema-guide.md)."))
-#'
+#' [cff_schema_keys()]. See the following guide for additional details:
+#' ```{r child = "man/chunks/schema-guide.Rmd"}
 #' ```
-#' for additional details.
 #'
 #' @seealso
-#' This function is a wrapper of [utils::modifyList()]. See [cff()] for
-#' creating [`cff`] objects from scratch.
+#' This function is a wrapper of [utils::modifyList()].
 #'
 #' @family core
 #' @export
@@ -57,7 +50,7 @@ cff_modify <- function(x, ...) {
   }
   new_keys <- list(...)
   if (length(new_keys) == 0) {
-    cli::cli_alert_info("No {.arg ...} arguments supplied, returning {.arg x}.")
+    cli::cli_alert_info("No {.arg ...} arguments supplied. Returning {.arg x}.")
     return(x)
   }
 

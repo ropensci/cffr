@@ -1266,4 +1266,7 @@
       - title: usethis
         url: https://usethis.r-lib.org
         repository: https://CRAN.R-project.org/package=usethis
+      - title: withr
+        url: https://withr.r-lib.org
+        repository: https://CRAN.R-project.org/package=withr
 

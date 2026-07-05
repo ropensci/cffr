@@ -4,7 +4,7 @@
 \name{write_bib}
 \alias{write_bib}
 \alias{write_citation}
-\title{Previous API: Write files}
+\title{Previous API: write files}
 \usage{
 write_bib(x, file = tempfile(), append = FALSE, verbose = TRUE, ascii = FALSE)
 
@@ -22,11 +22,12 @@ write_citation(
 \item{file}{Name of the file to be created. If \code{NULL}, the lines are
 displayed instead.}
 
-\item{append}{Logical. Whether to append entries to an existing file.}
+\item{append}{A logical value. If \code{TRUE}, append entries to an existing file.}
 
-\item{verbose}{Logical. Display informative messages.}
+\item{verbose}{A logical value. If \code{TRUE}, display informative messages.}
 
-\item{ascii}{Logical. Whether to write entries using ASCII characters only.}
+\item{ascii}{A logical value. If \code{TRUE}, write entries using ASCII
+characters only.}
 }
 \value{
 Writes a file.

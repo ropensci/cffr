@@ -4,7 +4,7 @@
 \name{cff_extract_to_bibtex}
 \alias{cff_extract_to_bibtex}
 \alias{cff_to_bibtex}
-\title{Previous API: Create BibTeX entries from multiple sources}
+\title{Previous API: create BibTeX entries from multiple sources}
 \usage{
 cff_extract_to_bibtex(x, what = c("preferred", "references", "all"))
 
@@ -16,7 +16,7 @@ cff_to_bibtex(x, what = c("preferred", "references", "all"))
 \itemize{
 \item A missing value, which retrieves the \code{DESCRIPTION} file from your
 in-development package.
-\item An existing \code{cff} object created with \code{\link[=cff]{cff()}}, \code{\link[=cff_create]{cff_create()}}, or
+\item An existing \code{cff} object created with \code{\link[=cff]{cff()}}, \code{\link[=cff_create]{cff_create()}} or
 \code{\link[=as_cff]{as_cff()}}.
 \item A path to a \code{CITATION.cff} file (\code{"CITATION.cff"}).
 \item The name of an installed package (\code{"jsonlite"}).

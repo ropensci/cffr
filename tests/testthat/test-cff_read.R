@@ -53,9 +53,7 @@ test_that("cff_read DESCRIPTION", {
 
   expect_identical(f1_1, f2_1)
 
-  field_list <- list(
-    "repository-code" = "https://github.com/ropensci/cffr"
-  )
+  field_list <- list("repository-code" = "https://github.com/ropensci/cffr")
   expect_equal(
     gh_topics_api_url(field_list),
     "https://api.github.com/repos/ropensci/cffr"
@@ -87,9 +85,10 @@ test_that("DESCRIPTION URL helpers are deterministic", {
   expect_equal(fallback$url, "https://github.com/org/pkg")
   expect_equal(fallback$remaining, character(0))
 
-  identifiers <- desc_url_identifiers(
-    c("https://a.example", "https://b.example")
-  )
+  identifiers <- desc_url_identifiers(c(
+    "https://a.example",
+    "https://b.example"
+  ))
   expect_equal(
     identifiers,
     list(
@@ -107,7 +106,7 @@ test_that("DESCRIPTION URL helpers are deterministic", {
 test_that("DESCRIPTION repository helpers accept fixtures", {
   basic_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
-  tmp <- tempfile("DESCRIPTION_basic")
+  tmp <- withr::local_tempfile(pattern = "DESCRIPTION_basic")
   file.copy(basic_path, tmp)
 
   pkg <- desc::desc_set("Package", "fixturepkg", file = tmp)
@@ -130,23 +129,17 @@ test_that("DESCRIPTION repository helpers accept fixtures", {
     get_desc_repository(pkg),
     "https://CRAN.R-project.org/package=fixturepkg"
   )
-  expect_equal(
-    get_desc_doi(pkg),
-    "10.32614/CRAN.package.fixturepkg"
-  )
+  expect_equal(get_desc_doi(pkg), "10.32614/CRAN.package.fixturepkg")
 })
 
 test_that("DESCRIPTION DOI returns NULL outside known repositories", {
   basic_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
-  tmp <- tempfile("DESCRIPTION_basic")
+  tmp <- withr::local_tempfile(pattern = "DESCRIPTION_basic")
   file.copy(basic_path, tmp)
 
   pkg <- desc::desc_set("Package", "fixturepkg", file = tmp)
-  empty_avail <- data.frame(
-    Package = character(0),
-    Repository = character(0)
-  )
+  empty_avail <- data.frame(Package = character(0), Repository = character(0))
   testthat::local_mocked_bindings(
     get_avail_on_init = function() empty_avail,
     detect_repos = function() c(CRAN = "https://cloud.r-project.org/"),
@@ -223,10 +216,7 @@ test_that("GitHub topics are cleaned before being used as keywords", {
     .package = "cffr"
   )
 
-  expect_equal(
-    get_gh_topics(x),
-    c("R", "citation")
-  )
+  expect_equal(get_gh_topics(x), c("R", "citation"))
 })
 
 
@@ -364,7 +354,7 @@ test_that("cff_read_safe CITATION NULL", {
 })
 
 test_that("Corrupt CITATION", {
-  tmp <- tempfile("CITATION")
+  tmp <- withr::local_tempfile(pattern = "CITATION")
   writeLines("I am a bad CITATION", tmp)
   expect_message(
     expect_message(anull <- cff_read(tmp), "Could not read"),

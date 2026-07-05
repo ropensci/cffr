@@ -12,13 +12,14 @@ cff_validate(x = "CITATION.cff", verbose = TRUE)
 \code{CITATION.cff} file to be validated. A \verb{*.cff} file is read with
 \code{\link[=cff_read_cff_citation]{cff_read_cff_citation()}}.}
 
-\item{verbose}{Logical \code{TRUE/FALSE}. When \code{TRUE}, the function displays
+\item{verbose}{A logical value. If \code{TRUE}, the function displays
 informative messages.}
 }
 \value{
-A message indicating the validation result and an invisible
-\code{TRUE/FALSE} value. On error, the result has an \code{"errors"} attribute with
-the error summary. See \strong{Examples} and \code{\link[=attr]{attr()}}.
+Invisibly returns a logical value indicating the validation result. On
+error, the result has an \code{"errors"} attribute with the error summary. If
+\code{verbose} is \code{TRUE}, the function also displays the result. See \strong{Examples}
+and \code{\link[base:attr]{base::attr()}}.
 }
 \description{
 Validate a \code{CITATION.cff} file or a \code{\link{cff}} object using the corresponding \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema.json}{validation schema}.
@@ -53,11 +54,13 @@ try(cff_validate(system.file("CITATION", package = "cffr")))
 \seealso{
 \code{\link[jsonvalidate:json_validate]{jsonvalidate::json_validate()}}, which is the function that performs the
 validation.
-\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
+
+\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema guide}.
 
 Core \CRANpkg{cffr} workflow:
 \code{\link[=cff]{cff()}},
 \code{\link[=cff_create]{cff_create()}},
-\code{\link[=cff_modify]{cff_modify()}}
+\code{\link[=cff_modify]{cff_modify()}},
+\code{\link[=cff_write]{cff_write()}}
 }
 \concept{core}

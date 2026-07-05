@@ -29,13 +29,11 @@ test_that("Check file_exist_abort", {
   non_with_path <- "./R/no/existe"
   expect_snapshot(file_exist_abort(non_with_path, abort = TRUE), error = TRUE)
 
-  tmp <- tempfile()
+  tmp <- withr::local_tempfile()
 
   writeLines("a", tmp)
   expect_true(file_exist_abort(tmp))
   expect_true(file_exist_abort(tmp, abort = TRUE))
-
-  unlink(tmp)
 })
 
 test_that("Check match_cff_arg", {

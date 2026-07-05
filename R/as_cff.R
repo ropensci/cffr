@@ -8,8 +8,8 @@
 #' `as_cff()` is an S3 generic, with methods for:
 #' - `person` objects as produced by [utils::person()].
 #' - `bibentry` objects as produced by [utils::bibentry()].
-#' - `Bibtex` objects as produced by [toBibtex()].
-#' - Default: Other inputs are first coerced with [as.list()].
+#' - `Bibtex` objects as produced by [utils::toBibtex()].
+#' - Default: Other inputs are first coerced with [base::as.list()].
 #'
 #' @param x A `person`, `bibentry` or other object that can be coerced to a
 #'   list.
@@ -37,15 +37,12 @@
 #' functions behave similarly.
 #'
 #' @seealso
-#' - [cff()]: Create a full `cff` object from scratch.
-#' - [cff_modify()]: Modify a `cff` object.
-#' - [cff_create()]: Create a `cff` object for an \R package.
-#' - [cff_read()]: Create a `cff` object from an external file.
-#' - [as_cff_person()]: Recommended way to create CFF person metadata.
+#' - [cff()] creates a full `cff` object from scratch.
+#' - [cff_modify()] modifies a `cff` object.
+#' - [cff_create()] creates a `cff` object for an \R package.
+#' - [cff_read()] creates a `cff` object from an external file.
 #'
-#' Learn more about the \CRANpkg{cffr} class system in [cff_class].
-#'
-#' @family s3method
+#' @family conversions
 #' @rdname as_cff
 #' @export
 #' @encoding UTF-8
@@ -58,7 +55,7 @@
 #'
 #' class(cffobj)
 #'
-#' # Nice display thanks to the yaml package.
+#' # Display the YAML representation.
 #' cffobj
 #'
 #' # `bibentry` method.
@@ -196,10 +193,7 @@ rapply_class <- function(x) {
       (all(guess == "cff_ref", "languages" %in% names(xelement))) &&
         (length(xelement$languages) < 2)
     ) {
-      xelement$languages <- list(unlist(
-        xelement$languages,
-        use.names = FALSE
-      ))
+      xelement$languages <- list(unlist(xelement$languages, use.names = FALSE))
     }
 
     if (guess == "cff_ref_lst") {

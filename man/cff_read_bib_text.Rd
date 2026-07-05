@@ -10,19 +10,20 @@ cff_read_bib_text(x, encoding = "UTF-8", ...)
 \arguments{
 \item{x}{A \code{character} vector with one or more complete BibTeX entries.}
 
-\item{encoding}{Encoding to be assumed for \code{x}. See \code{\link[=readLines]{readLines()}}.}
+\item{encoding}{Encoding to be assumed for \code{x}. See \code{\link[base:readLines]{base::readLines()}}.}
 
 \item{...}{Arguments passed to \code{\link[=cff_read_bib]{cff_read_bib()}}.}
 }
 \value{
 An object of classes \code{\link[=cff_ref_lst]{cff_ref_lst, cff}} according to the
-\code{definitions.reference} specified in the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
+\code{definitions.reference} specified in the following guide:
+\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema guide}.
 Each element of the \code{cff_ref_lst} object has classes
 \code{\link[=cff_ref]{cff_ref, cff}}.
 }
 \description{
-Convert a \code{character} string representing a BibTeX entry into a
-\code{\link{cff_ref_lst}} object.
+Convert one or more complete BibTeX entries supplied as a \code{character} vector
+into a \code{\link{cff_ref_lst}} object.
 }
 \details{
 This function writes \code{x} to a temporary \verb{*.bib} file and reads it using

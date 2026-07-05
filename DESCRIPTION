@@ -1,6 +1,6 @@
 Package: cffr
 Title: Generate Citation File Format ('CFF') Metadata for R Packages
-Version: 1.4.1
+Version: 1.4.1.9000
 Authors@R: c(
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658")),
@@ -33,7 +33,8 @@ Suggests:
     quarto,
     rmarkdown,
     testthat (>= 3.0.0),
-    usethis
+    usethis,
+    withr
 VignetteBuilder:
     quarto
 Config/Needs/website: devtools

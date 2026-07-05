@@ -3,22 +3,17 @@
 #' @description
 #' `as_cff_person()` turns an existing list-like \R object into a
 #' [`cff_pers_lst`] object representing a list of `definitions.person` or
-#' `definitions.entity`, as defined by the
-#' ```{r, echo=FALSE, results='asis'}
-#'
-#' cat(paste0(" [Citation File Format schema]",
-#'            "(https://github.com/citation-file-format/",
-#'            "citation-file-format/blob/main/schema-guide.md)."))
-#'
+#' `definitions.entity`, as defined in the following guide:
+#' ```{r child = "man/chunks/schema-guide.Rmd"}
 #' ```
 #'
 #' `as_cff_person()` is an S3 generic, with methods for:
-#' - `person`: Objects created with [person()].
+#' - `person`: Objects created with [utils::person()].
 #' - `character`: Strings with the definition for one or more authors, using
-#'   the standard BibTeX notation (see Markey, 2007) and related formats, such
-#'   as the output of [format()] for `person` objects (see
-#'   [`format.person()`][person()]).
-#' - Default: Other inputs are first coerced with [as.character()].
+#'   the standard BibTeX notation (see Markey, 2009) and related formats, such
+#'   as the output of [base::format()] for `person` objects (see
+#'   [`format.person()`][utils::person()]).
+#' - Default: Other inputs are first coerced with [base::as.character()].
 #'
 #' The inverse transformation (`cff_pers_lst` to `person`) can be done with the
 #' methods [as.person.cff_pers()] and [as.person.cff_pers_lst()].
@@ -29,13 +24,8 @@
 #' @return
 #' `as_cff_person()` returns an object of classes
 #' [`cff_pers_lst, cff`][cff_pers_lst] according to the `definitions.person`
-#' or `definitions.entity` specified in the
-#' ```{r, echo=FALSE, results='asis'}
-#'
-#' cat(paste0(" [Citation File Format schema]",
-#'            "(https://github.com/citation-file-format/",
-#'            "citation-file-format/blob/main/schema-guide.md)."))
-#'
+#' or `definitions.entity` specified in the following guide:
+#' ```{r child = "man/chunks/schema-guide.Rmd"}
 #' ```
 #' Each element of the `cff_pers_lst` object has classes
 #' [`cff_pers, cff`][cff_pers].
@@ -45,7 +35,7 @@
 #' CFF reference for `definitions.person` or `definitions.entity`.
 #'
 #' `as_cff_person()` uses a custom algorithm that parses names as explained in
-#' Section 11 of "Tame the BeaST" (Markey, 2007) (see also Decoret, 2007):
+#' Section 11 of "Tame the BeaST" (Markey, 2009) (see also Decoret, 2007):
 #'
 #' - `First von Last`.
 #' - `von Last, First`.
@@ -67,28 +57,23 @@
 #' email and ORCID are also extracted.
 #'
 #' @references
-#' Patashnik, Oren. "BIBTEXTING" February 1988.
+#' Patashnik O (1988). "BIBTEXing."
 #' <https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf>.
 #'
-#' Markey, Nicolas. "Tame the BeaST"
-#' *The B to X of BibTeX, Version 1.4* (October 2007).
+#' Markey N (2009). *Tame the BeaST: The B to X of BibTeX*.
 #' <https://osl.ugr.es/CTAN/info/bibtex/tamethebeast/ttb_en.pdf>.
 #'
 #' Decoret X (2007). "A summary of BibTeX."
 #' ```{r, echo=FALSE, results='asis'}
-#'
-#' cat(paste0("<https://maverick.inria.fr/~Xavier.Decoret/resources/xdkbibtex/",
-#'            "bibtex_summary.html#names>"))
-#'
+#' cat(paste0(" <https://maverick.inria.fr/~Xavier.Decoret/resources/",
+#'   "xdkbibtex/bibtex_summary.html#names>."))
 #' ```
-#'
-#' See **Examples** for more information.
 #'
 #' @seealso
 #' Examples in `vignette("cffr", package = "cffr")` and [utils::person()].
 #' Learn more about the `cff_pers_lst` and `cff_pers` classes in [cff_class].
 #'
-#' @family s3method
+#' @family conversions
 #' @rdname as_cff_person
 #' @name as_cff_person
 #' @order 1

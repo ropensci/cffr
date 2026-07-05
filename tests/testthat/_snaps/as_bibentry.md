@@ -3,7 +3,7 @@
     Code
       s <- as_bibentry(a = 1)
     Message
-      x Cannot convert to `utils::bibentry()`.
+      x Cannot convert `x` to a <bibentry> with `utils::bibentry()`.
       i argument "bibtype" is missing, with no default
       ! Returning an empty <bibentry>.
 
@@ -26,14 +26,14 @@
       as_bibentry("invented_package")
     Condition
       Error in `as_bibentry()`:
-      ! Cannot extract a <bibentry> from "invented_package". If it is a package, run `install.packages("invented_package")` first.
+      ! Cannot extract a <bibentry> from "invented_package". If invented_package is a package, run `install.packages("invented_package")` first.
 
 # as_bibentry cff
 
     Code
       end <- as_bibentry(a_cff, what = "references")
     Message
-      ! In `x`, did not find anything with `what` = "references". Returning an empty <bibentry>.
+      ! No entries in `x` matched `what` = "references". Returning an empty <bibentry>.
 
 ---
 

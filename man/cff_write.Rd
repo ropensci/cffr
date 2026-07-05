@@ -29,44 +29,46 @@ in-development \R package.
 \item A path to a \code{DESCRIPTION} file (\code{"./DESCRIPTION"}).
 }}
 
-\item{outfile}{The name and path of the \code{CITATION.cff} to be created.}
+\item{outfile}{The name and path of the \code{CITATION.cff} to be created.
+Relative paths are resolved from the current working directory,
+independently of the source specified in \code{x}.}
 
 \item{keys}{A list of additional keys to add to the \code{\link{cff}} object. See
 \code{\link[=cff_modify]{cff_modify()}}.}
 
-\item{cff_version}{The Citation File Format schema version that the
-\code{CITATION.cff} file adheres to for providing the citation metadata.}
+\item{cff_version}{The Citation File Format schema version used for the
+generated metadata.}
 
-\item{gh_keywords}{Logical \code{TRUE/FALSE}. If the package is hosted on
-GitHub, whether to add the repository topics as keywords.}
+\item{gh_keywords}{A logical value. If \code{TRUE} and the package is hosted on
+GitHub, add the repository topics as keywords.}
 
-\item{r_citation}{Logical \code{TRUE/FALSE}. When \code{TRUE}, the \R package
-citation (for example, \code{inst/CITATION}) is created or updated.
-\strong{No backup copy is created}. For more control, use
+\item{r_citation}{A logical value. If \code{TRUE}, the \R package
+citation (\code{inst/CITATION}) is created or updated relative to the current
+working directory. \strong{No backup copy is created}. For more control, use
 \code{\link[=cff_write_citation]{cff_write_citation()}}.}
 
-\item{dependencies}{Logical \code{TRUE/FALSE}. Whether to add your package
-dependencies to the \code{references} CFF key.}
+\item{dependencies}{A logical value. If \code{TRUE}, add the package dependencies
+to the \code{references} CFF key.}
 
-\item{validate}{Logical \code{TRUE/FALSE}. Whether to validate the new file with
+\item{validate}{A logical value. If \code{TRUE}, validate the new file with
 \code{\link[=cff_validate]{cff_validate()}}.}
 
-\item{verbose}{Logical \code{TRUE/FALSE}. When \code{TRUE}, the function displays
+\item{verbose}{A logical value. If \code{TRUE}, the function displays
 informative messages.}
 
 \item{authors_roles}{Roles to be considered as authors of the package when
 generating the \code{CITATION.cff} file. See \strong{Details}.}
 
 \item{encoding}{The name of the encoding to be assumed. Default is \code{"UTF-8"},
-but it can be any other value as accepted by \code{\link[=iconv]{iconv()}}, such as
+but it can be any other value accepted by \code{\link[base:iconv]{base::iconv()}}, such as
 \code{"ASCII//TRANSLIT"}.}
 }
 \value{
-A \code{CITATION.cff} file and an invisible \code{cff} object.
+Invisibly returns the generated \code{\link{cff}} object. This function is called
+primarily for its side effect of writing a \code{CITATION.cff} file.
 }
 \description{
-\strong{This is the core function of the package and likely to be the only one
-you need when developing a package}.
+\code{cff_write()} is the primary workflow for package development.
 
 This function writes a \code{CITATION.cff} file for a given package. It wraps
 \code{\link[=cff_create]{cff_create()}} to create the \code{\link{cff}} object, then writes it to a
@@ -75,8 +77,13 @@ YAML-formatted file in one command.
 \details{
 For details of \code{authors_roles}, see \code{\link[=cff_create]{cff_create()}}.
 
-When creating and writing a \code{CITATION.cff} for the first time, this function
-adds the pattern \code{"^CITATION\\.cff$"} to your \code{.Rbuildignore} file.
+The \code{x} argument identifies the metadata source. It does not determine the
+output directory. This allows you to create a \code{CITATION.cff} from a package
+or file located outside the current working directory.
+
+When creating and writing a \code{CITATION.cff} for a package in the current
+working directory, this function adds the pattern \code{"^CITATION\\.cff$"} to
+the local \code{.Rbuildignore} file.
 }
 \examples{
 \donttest{
@@ -90,11 +97,16 @@ file.remove(tmpfile)
 }
 }
 \seealso{
-\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
-This function unifies the \code{\link[=cff_create]{cff_create()}} and \code{\link[=cff_validate]{cff_validate()}} workflow for
-writing a file.
+\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema guide}.
+
+Core \CRANpkg{cffr} workflow:
+\code{\link[=cff]{cff()}},
+\code{\link[=cff_create]{cff_create()}},
+\code{\link[=cff_modify]{cff_modify()}},
+\code{\link[=cff_validate]{cff_validate()}}
 
 Write citation metadata files:
 \code{\link[=cff_write_bib]{cff_write_bib()}}
 }
+\concept{core}
 \concept{writing}

@@ -5,7 +5,7 @@
 \alias{cff_git_hook}
 \alias{cff_git_hook_install}
 \alias{cff_git_hook_remove}
-\title{Use a git pre-commit hook \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}}
+\title{Use a Git pre-commit hook \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}}
 \usage{
 cff_git_hook_install()
 
@@ -29,7 +29,7 @@ submission to code review. This pre-commit hook warns you if any of the
 following conditions are met:
 \itemize{
 \item You included your \code{DESCRIPTION} or \code{inst/CITATION} file in a commit but
-did not include your \code{CITATION.cff}, and the \code{CITATION.cff} file is
+did not include your \code{CITATION.cff} and the \code{CITATION.cff} file is
 "older" than your \code{DESCRIPTION} or \code{inst/CITATION} file.
 \item You updated your \code{CITATION.cff} but did not include it in
 your commit.
@@ -55,7 +55,7 @@ script by selecting that line and sending it to the terminal using:
 }
 }
 
-\section{Removing the git pre-commit hook}{
+\section{Removing the Git pre-commit hook}{
 You can remove the pre-commit hook using \code{cff_git_hook_remove()}.
 }
 

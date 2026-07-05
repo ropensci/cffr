@@ -16,7 +16,7 @@
 #'   [bibtex::read.bib()].
 #'
 #' @param path A path to a file.
-#' @param encoding Encoding to be assumed for `path`. See [readLines()].
+#' @param encoding Encoding to be assumed for `path`. See [base::readLines()].
 #' @param meta A list of package metadata as obtained by
 #'   [utils::packageDescription()] or `NULL` (the default). See **Details**.
 #' @param ... Arguments passed to other functions, for example to
@@ -29,13 +29,8 @@
 #'   with class `cff`.
 #' - `cff_read_citation()` and `cff_read_bib()` return an object of classes
 #'   [`cff_ref_lst, cff`][cff_ref_lst] according to the `definitions.reference`
-#'   specified in the
-#' ```{r, echo=FALSE, results='asis'}
-#'
-#' cat(paste0(" [Citation File Format schema]",
-#'            "(https://github.com/citation-file-format/",
-#'            "citation-file-format/blob/main/schema-guide.md)."))
-#'
+#'   specified in the following guide:
+#' ```{r child = "man/chunks/schema-guide.Rmd"}
 #' ```
 #'
 #' Learn more about the \CRANpkg{cffr} class system in [cff_class].
@@ -45,17 +40,17 @@
 #'
 #' ## The `meta` object
 #'
-#' Section 1.9 CITATION files of *Writing R Extensions* (R Core Team 2023)
+#' Section 1.9 CITATION files of *Writing R Extensions* (R Core Team 2026)
 #' specifies how to create dynamic `CITATION` files using a `meta` object.
 #' Therefore, the `meta` argument in [cff_read_citation()] may be needed to
 #' read some files correctly.
 #'
 #' @references
-#' R Core Team (2023). _Writing R Extensions_.
-#' <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>
+#' R Core Team (2026). *Writing R Extensions*.
+#' <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>.
 #'
-#' Hernangomez D (2022). "BibTeX and CFF, a potential crosswalk."
-#' *The cffr package, Vignettes*. \doi{10.21105/joss.03900},
+#' Hernangómez D (2022). "BibTeX and CFF, a potential crosswalk."
+#' \CRANpkg{cffr} vignette.
 #' <https://docs.ropensci.org/cffr/articles/bibtex-cff.html>.
 #'
 #' @seealso
@@ -102,7 +97,7 @@
 cff_read <- function(path, ...) {
   if (length(path) > 1) {
     cli::cli_abort(
-      "Use a single value. {.arg path} has length {.val {length(path)}}."
+      "{.arg path} must have length {.val {1}}, not {.val {length(path)}}."
     )
   }
 
@@ -209,8 +204,8 @@ cff_read_citation <- function(path, meta = NULL, ...) {
     # nolint end
 
     cli::cli_alert_warning(paste0(
-      "{.arg meta} must be {.val NULL} or {.obj_type_friendly {ex}}, ",
-      "not {.obj_type_friendly {meta}}. Using {.arg meta = NULL}."
+      "{.arg meta} must be {.code NULL} or {.obj_type_friendly {ex}}, ",
+      "not {.obj_type_friendly {meta}}. Using {.code meta = NULL}."
     ))
     meta <- NULL
   }
@@ -222,7 +217,7 @@ cff_read_citation <- function(path, meta = NULL, ...) {
   if (inherits(the_cit, "try-error")) {
     cli::cli_alert_warning(paste0(
       "Could not read {.file {path}} with the provided {.arg meta}. ",
-      "Trying {.code packageDescription('base')}."
+      'Trying {.code utils::packageDescription("base")}.'
     ))
     new_meta <- packageDescription("base")
     the_cit <- try(
@@ -232,7 +227,7 @@ cff_read_citation <- function(path, meta = NULL, ...) {
     # nocov start
     if (inherits(the_cit, "try-error")) {
       cli::cli_alert_danger(
-        "Cannot read {.file {path}}, returning {.val NULL}."
+        "Cannot read {.file {path}}. Returning {.code NULL}."
       )
       return(NULL)
     }
@@ -253,8 +248,8 @@ cff_read_bib <- function(path, encoding = "UTF-8", ...) {
   # nocov start
   if (!requireNamespace("bibtex", quietly = TRUE)) {
     msg <- paste0(
-      "Package {.pkg bibtex} is required to use this function: ",
-      '{.run install.packages("bibtex")}'
+      "The {.pkg bibtex} package is required. Install it with ",
+      '{.run install.packages("bibtex")}.'
     )
     cli::cli_abort(msg)
   }

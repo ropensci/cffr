@@ -36,13 +36,13 @@ ascii_table$latex_base <- encoded_text_to_latex(ascii_table$utf8,
   encoding = "UTF-8"
 )
 
-# With cffr.
+# With the package-specific approach.
 ascii_table$latex_cffr <- encoded_utf_to_latex(ascii_table$utf8)
 
 ascii_table
 }
 \seealso{
-\code{\link[tools:encoded_text_to_latex]{tools::encoded_text_to_latex()}}
+\code{\link[tools:encoded_text_to_latex]{tools::encoded_text_to_latex()}}.
 
 Work with BibTeX metadata:
 \code{\link[=as_bibentry]{as_bibentry()}},

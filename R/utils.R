@@ -155,7 +155,7 @@ fuzzy_keys <- function(keys) {
     bullets <- rep("v", length(ll))
     bullets[keys_match == "No match, removing."] <- "x"
     names(ll) <- bullets
-    cli::cli_alert_info("Found misspelled keys, trying to map them:")
+    cli::cli_alert_info("Found misspelled keys. Trying to map them:")
 
     cli::cli_bullets(ll)
     # Modify names.
@@ -289,7 +289,7 @@ clean_package_meta <- function(meta) {
   meta
 }
 
-# Convert a DESCRIPTION object to a meta object using the desc package.
+# Convert a `DESCRIPTION` object to a metadata object with `desc`.
 desc_to_meta <- function(x) {
   src <- x
   my_meta <- desc::desc(src)

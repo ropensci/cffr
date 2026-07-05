@@ -46,7 +46,7 @@ bibtex_pers_von_last_first <- function(x) {
 }
 
 bibtex_pers_first_von_last <- function(x) {
-  # Based on Tame the BeaST
+  # Based on *Tame the BeaST*.
   # http://tug.ctan.org/info/bibtex/tamethebeast/ttb_en.pdf
   # Tests.
   # string                  -> "First"        "von"         "Last"
@@ -207,25 +207,25 @@ split_txt_persons <- function(person) {
   person <- trimws(person)
   person <- paste0(person, collapse = " and ")
 
-  # Remove role on [] as it comes from print.person() by default.
+  # Remove the role in `[]` added by `print.person()` by default.
   # We do not use it here.
   person <- gsub("\\[[^()]*\\]", "", person)
 
-  # Protect 'and' inside braces.
+  # Protect "and" inside braces.
   # Lowercase.
   protected <- gsub("(and)(?![^\\}]*(\\{|$))", "@nd@", person, perl = TRUE)
 
   # Uppercase.
   protected <- gsub("AND(?![^\\}]*(\\{|$))", "@ND@", protected, perl = TRUE)
 
-  # Do the same for 'and' in comments "()" as provided by print.person().
+  # Protect "and" inside comments in `()`, as produced by `print.person()`.
   # Lowercase.
   protected <- gsub("(and)(?![^\\)]*(\\(|$))", "@nd@", protected, perl = TRUE)
 
   # Uppercase.
   protected <- gsub("AND(?![^\\)]*(\\(|$))", "@ND@", protected, perl = TRUE)
 
-  # Do the same for 'and' in "<>". These are email, so should never happen.
+  # Protect "and" inside `<>`. These values are emails, so this is unlikely.
   # Lowercase.
   protected <- gsub("(and)(?![^>]*(<|$))", "@nd@", protected, perl = TRUE)
 
@@ -286,13 +286,13 @@ extract_person_comments <- function(person) {
 
 extract_person_comments45 <- function(person) {
   # Detect comments.
-  # Last is )?
+  # Check whether the final character is `)`.
 
   if (inherits(person, "person")) {
     person <- format(person)
   }
   last <- substr(person, nchar(person), nchar(person))
-  # Has another )?
+  # Check for another `)`.
   start_comment <- min(regexpr("(", person, fixed = TRUE))
 
   has_comment <- all(last == ")", start_comment > 5)

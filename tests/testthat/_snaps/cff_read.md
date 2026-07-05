@@ -4,7 +4,7 @@
       cff_read(c("abcde", "b"))
     Condition
       Error in `cff_read()`:
-      ! Use a single value. `path` has length 2.
+      ! `path` must have length 1, not 2.
 
 ---
 
@@ -73,7 +73,7 @@
     Code
       s <- cff_read(f, meta = "aa")
     Message
-      ! `meta` must be "NULL" or a <packageDescription> object, not a string. Using `meta = NULL`.
+      ! `meta` must be `NULL` or a <packageDescription> object, not a string. Using `meta = NULL`.
 
 # Creating cff from packages encoded in latin1
 

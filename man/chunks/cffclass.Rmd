@@ -22,28 +22,29 @@ a_cff_object
 is.list(a_cff_object)
 ```
 
-[as_cff()] converts a `list` to `cff` and removes items that are `NULL` or `NA`.
-These items are known as `keys` in CFF terminology.
+[as_cff()] converts a `list` to `cff` and removes elements that are `NULL` or
+`NA`. Named elements are known as keys in CFF terminology.
 
 ### Subclasses
 
-**cffr** implements two special subclasses of `cff`, which represent two special
+\CRANpkg{cffr} implements two special subclasses of `cff`, which represent two
 types of objects defined in the [Citation File Format
 schema](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md):
 
 - `definitions.person` and `definitions.entity`: CFF definitions for sublists
-  representing persons or entities. In **cffr**, the subclass `cff_pers_lst`
-  collects an array of `definitions.person` or `definitions.entity` objects,
-  where each individual person or entity has subclass `cff_pers`.
+  representing persons or entities. In \CRANpkg{cffr}, the subclass
+  `cff_pers_lst` collects an array of `definitions.person` or
+  `definitions.entity` objects, where each individual person or entity has
+  subclass `cff_pers`.
 
-- `definitions.reference` is the CFF definition for collecting references to
+- `definitions.reference`: The CFF definition for collecting references to
   related works and other software used in the development of the main work of
-  the `CITATION.cff` file. In **cffr**, the subclass `cff_ref_lst` represents
-  arrays of `definitions.reference` objects, where each element has subclass
-  `cff_ref`.
+  the `CITATION.cff` file. In \CRANpkg{cffr}, the subclass `cff_ref_lst`
+  represents arrays of `definitions.reference` objects, where each element has
+  subclass `cff_ref`.
 
-These two subclasses do not provide full valid `cff` objects, but adapt
-information to the schema required by CFF:
+These subclasses are not complete, valid `cff` objects. They adapt information
+to the structures required by the CFF schema:
 
 ```{r}
 # Use `utils::person()`.
@@ -95,8 +96,8 @@ class(a_cff_object)
 cff_validate(a_cff_object)
 ```
 
-[cff_validate()] gives minimal messages about what is wrong with the `cff`
-object and invisibly returns the validation result (`TRUE/FALSE`).
+[cff_validate()] reports validation problems and invisibly returns `TRUE` or
+`FALSE`.
 
 We can use [cff_modify()] to add more keys:
 
@@ -116,10 +117,10 @@ cff_valid
 cff_validate(cff_valid)
 ```
 
-## Base methods provided by **cffr**
+## Base methods provided by \CRANpkg{cffr}
 
-**cffr** provides additional S3 methods for common coercion functions from the
-base and utils packages.
+\CRANpkg{cffr} provides additional S3 methods for common coercion functions from
+the base and utils namespaces.
 
 ### [as.data.frame()]
 

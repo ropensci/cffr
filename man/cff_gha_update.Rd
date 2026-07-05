@@ -10,8 +10,7 @@ cff_gha_update(path = ".", overwrite = FALSE)
 \arguments{
 \item{path}{Project root directory.}
 
-\item{overwrite}{Logical. If the workflow already exists, whether to
-overwrite it.}
+\item{overwrite}{A logical value. If \code{TRUE}, overwrite an existing workflow.}
 }
 \value{
 Invisible. This function is called for its side effects.

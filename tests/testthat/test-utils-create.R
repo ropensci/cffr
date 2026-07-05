@@ -101,5 +101,5 @@ test_that("Utils coverage", {
   dep <- list(package = "aaaa")
   expect_null(cff_dependency_reference(dep))
   expect_null(get_dependencies(1))
-  expect_null(get_dependencies(tempfile()))
+  expect_null(get_dependencies(withr::local_tempfile()))
 })

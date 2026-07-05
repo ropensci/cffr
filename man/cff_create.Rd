@@ -27,14 +27,14 @@ in-development \R package.
 \item{keys}{A list of additional keys to add to the \code{\link{cff}} object. See
 \code{\link[=cff_modify]{cff_modify()}}.}
 
-\item{cff_version}{The Citation File Format schema version that the
-\code{CITATION.cff} file adheres to for providing the citation metadata.}
+\item{cff_version}{The Citation File Format schema version used for the
+generated metadata.}
 
-\item{gh_keywords}{Logical \code{TRUE/FALSE}. If the package is hosted on
-GitHub, whether to add the repository topics as keywords.}
+\item{gh_keywords}{A logical value. If \code{TRUE} and the package is hosted on
+GitHub, add the repository topics as keywords.}
 
-\item{dependencies}{Logical \code{TRUE/FALSE}. Whether to add your package
-dependencies to the \code{references} CFF key.}
+\item{dependencies}{A logical value. If \code{TRUE}, add the package dependencies
+to the \code{references} CFF key.}
 
 \item{authors_roles}{Roles to be considered as authors of the package when
 generating the \code{CITATION.cff} file. See \strong{Details}.}
@@ -47,17 +47,19 @@ Create a full, possibly valid \code{\link{cff}} object from a given source. This
 object can be written to a \code{CITATION.cff} file with \code{\link[=cff_write]{cff_write()}}. See
 \strong{Examples}.
 
-Most of the heavy lifting of \CRANpkg{cffr} is done by this function.
+This function performs most metadata extraction and conversion in
+\CRANpkg{cffr}.
 }
 \details{
-If \code{x} is a path to a \code{DESCRIPTION} file, or if \code{inst/CITATION} is not
+If \code{x} is a path to a \code{DESCRIPTION} file or if \code{inst/CITATION} is not
 present in your package, \CRANpkg{cffr} auto-generates a
 \code{preferred-citation} key using the information provided in that file.
 
 By default, only persons whose role in the \code{DESCRIPTION} file of the package
 is author (\code{"aut"}) or maintainer (\code{"cre"}) are considered package authors.
 The default setting can be controlled with the \code{authors_roles} argument. See
-\strong{Details} on \code{\link[=person]{person()}} for additional information about person roles.
+\strong{Details} on \code{\link[utils:person]{utils::person()}} for additional information about person
+roles.
 }
 \examples{
 \donttest{
@@ -96,10 +98,8 @@ cff_create(demo_file, keys = list("contact" = new_contact))
 }
 }
 \seealso{
-\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
+\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema guide}.
 \itemize{
-\item \code{\link[=cff_modify]{cff_modify()}} as the recommended way to modify a \code{cff} object.
-\item \code{\link[=cff_write]{cff_write()}} for creating a \code{CITATION.cff} file.
 \item \code{vignette("cffr", package = "cffr")} shows an introduction to
 manipulating \code{\link{cff}} objects.
 \item \code{vignette("r-cff", package = "cffr")} provides details on how the
@@ -109,6 +109,7 @@ metadata of a package is mapped to produce a \code{cff} object.
 Core \CRANpkg{cffr} workflow:
 \code{\link[=cff]{cff()}},
 \code{\link[=cff_modify]{cff_modify()}},
-\code{\link[=cff_validate]{cff_validate()}}
+\code{\link[=cff_validate]{cff_validate()}},
+\code{\link[=cff_write]{cff_write()}}
 }
 \concept{core}

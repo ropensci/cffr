@@ -25,18 +25,18 @@ bytes](https://img.shields.io/github/languages/code-size/ropensci/cffr)
 
 <!-- badges: end -->
 
-**cffr** provides utilities to generate, coerce, modify and validate
-`CITATION.cff` files for **R** packages. It also includes tools and
-examples for working with `*.cff` files more generally.
+**cffr** provides utilities to generate, read, write, modify and
+validate Citation File Format metadata for **R** packages. It also
+includes tools and examples for working with `*.cff` files more
+generally.
 
 ## What is a `CITATION.cff` file?
 
-[Citation File Format (CFF)](https://citation-file-format.github.io/)
-([Druskat et al. 2021](#ref-druskat_citation_2021)) (v1.2.0) files are
-plain text files with human- and machine-readable citation information
-for software (and datasets). Software developers can include them in
-their repositories to let others know how to correctly cite their
-software.
+A `CITATION.cff` file follows the [Citation File Format
+(CFF)](https://citation-file-format.github.io/) ([Druskat et al.
+2021](#ref-druskat_citation_2021)) (v1.2.0). It contains human- and
+machine-readable citation metadata for software and datasets. Developers
+can include it in a repository to explain how to cite their software.
 
 This format is increasingly used in the software citation ecosystem.
 [GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
@@ -73,14 +73,13 @@ and Salmon 2021](#ref-codemeta)) and **codemetar** ([Boettiger and
 Salmon 2026](#ref-codemetar2021)) can generate `codemeta.json` files
 from **R** package metadata.
 
-## The cffr package
+## The **cffr** package
 
 **cffr** maximizes data extraction by using both the `DESCRIPTION` file
-and the `CITATION` file (if present) from your package. Note that
-**cffr** works best if your package passes
-`R CMD check/devtools::check()`.
+and the `CITATION` file, if present, from your package. **cffr** works
+best if your package passes `R CMD check` or `devtools::check()`.
 
-As of 2026-06-22 there are at least 537 repositories on GitHub using
+As of 2026-07-05 there are at least 486 repositories on GitHub using
 **cffr**. [Browse the search
 results](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -178,7 +177,6 @@ test <- cff_create("knitr")
       url: https://yihui.org/knitr/
     repository: https://CRAN.R-project.org/package=knitr
     repository-code: https://github.com/yihui/knitr
-    commit: '1.51'
     url: https://yihui.org/knitr/
     date-released: '2025-12-20'
     contact:
@@ -347,6 +345,23 @@ test <- cff_create("knitr")
       year: '2026'
       doi: 10.32614/CRAN.package.bslib
     - type: software
+      title: DBI
+      abstract: 'DBI: R Database Interface'
+      notes: Suggests
+      url: https://dbi.r-dbi.org
+      repository: https://CRAN.R-project.org/package=DBI
+      authors:
+      - name: R Special Interest Group on Databases (R-SIG-DB)
+      - family-names: Wickham
+        given-names: Hadley
+      - family-names: Müller
+        given-names: Kirill
+        email: kirill@cynkra.com
+        orcid: https://orcid.org/0000-0002-1416-3412
+      year: '2026'
+      doi: 10.32614/CRAN.package.DBI
+      version: '>= 0.4-1'
+    - type: software
       title: digest
       abstract: 'digest: Create Compact Hash Digests of R Objects'
       notes: Suggests
@@ -359,6 +374,21 @@ test <- cff_create("knitr")
         orcid: https://orcid.org/0000-0001-6419-907X
       year: '2026'
       doi: 10.32614/CRAN.package.digest
+    - type: software
+      title: gifski
+      abstract: 'gifski: Highest Quality GIF Encoder'
+      notes: Suggests
+      url: https://r-rust.r-universe.dev/gifski
+      repository: https://CRAN.R-project.org/package=gifski
+      authors:
+      - family-names: Ooms
+        given-names: Jeroen
+        email: jeroenooms@gmail.com
+        orcid: https://orcid.org/0000-0002-4035-0289
+      - name: Kornel Lesiński
+      - name: Authors of the dependency Rust crates
+      year: '2026'
+      doi: 10.32614/CRAN.package.gifski
     - type: software
       title: htmlwidgets
       abstract: 'htmlwidgets: HTML Widgets for R'
@@ -385,6 +415,19 @@ test <- cff_create("knitr")
       doi: 10.32614/CRAN.package.htmlwidgets
       version: '>= 0.7'
     - type: software
+      title: jpeg
+      abstract: 'jpeg: Read and write JPEG images'
+      notes: Suggests
+      url: https://www.rforge.net/jpeg/
+      repository: https://CRAN.R-project.org/package=jpeg
+      authors:
+      - family-names: Urbanek
+        given-names: Simon
+        email: Simon.Urbanek@r-project.org
+        orcid: https://orcid.org/0000-0003-2297-1732
+      year: '2026'
+      doi: 10.32614/CRAN.package.jpeg
+    - type: software
       title: magick
       abstract: 'magick: Advanced Graphics and Image-Processing in R'
       notes: Suggests
@@ -398,6 +441,37 @@ test <- cff_create("knitr")
       year: '2026'
       doi: 10.32614/CRAN.package.magick
     - type: software
+      title: litedown
+      abstract: 'litedown: A Lightweight Version of R Markdown'
+      notes: Suggests
+      url: https://github.com/yihui/litedown
+      repository: https://CRAN.R-project.org/package=litedown
+      authors:
+      - family-names: Xie
+        given-names: Yihui
+        email: xie@yihui.name
+        orcid: https://orcid.org/0000-0003-0645-5666
+      year: '2026'
+      doi: 10.32614/CRAN.package.litedown
+    - type: software
+      title: markdown
+      abstract: 'markdown: Render Markdown with ''commonmark'''
+      notes: Suggests
+      url: https://github.com/rstudio/markdown
+      repository: https://CRAN.R-project.org/package=markdown
+      authors:
+      - family-names: Xie
+        given-names: Yihui
+        email: xie@yihui.name
+        orcid: https://orcid.org/0000-0003-0645-5666
+      - family-names: Allaire
+        given-names: JJ
+      - family-names: Horner
+        given-names: Jeffrey
+      year: '2026'
+      doi: 10.32614/CRAN.package.markdown
+      version: '>= 1.3'
+    - type: software
       title: otel
       abstract: 'otel: OpenTelemetry R API'
       notes: Suggests
@@ -409,6 +483,19 @@ test <- cff_create("knitr")
         email: csardi.gabor@gmail.com
       year: '2026'
       doi: 10.32614/CRAN.package.otel
+    - type: software
+      title: png
+      abstract: 'png: Read and write PNG images'
+      notes: Suggests
+      url: https://www.rforge.net/png/
+      repository: https://CRAN.R-project.org/package=png
+      authors:
+      - family-names: Urbanek
+        given-names: Simon
+        email: Simon.Urbanek@r-project.org
+        orcid: https://orcid.org/0000-0003-2297-1732
+      year: '2026'
+      doi: 10.32614/CRAN.package.png
     - type: software
       title: ragg
       abstract: 'ragg: Graphic Devices Based on AGG'
@@ -511,6 +598,18 @@ test <- cff_create("knitr")
       year: '2026'
       doi: 10.32614/CRAN.package.sass
     - type: software
+      title: showtext
+      abstract: 'showtext: Using Fonts More Easily in R Graphs'
+      notes: Suggests
+      url: https://github.com/yixuan/showtext
+      repository: https://CRAN.R-project.org/package=showtext
+      authors:
+      - family-names: Qiu
+        given-names: Yixuan
+        email: yixuan.qiu@cos.name
+      year: '2026'
+      doi: 10.32614/CRAN.package.showtext
+    - type: software
       title: styler
       abstract: 'styler: Non-Invasive Pretty Printing of R Code'
       notes: Suggests
@@ -608,7 +707,7 @@ workflow that updates your `CITATION.cff` file in the following cases:
 
 - When you publish a new release of the package on GitHub.
 - Each time you modify your `DESCRIPTION` or `inst/CITATION` files.
-- The action can also be run manually.
+- When you run the workflow manually.
 
 ``` r
 cff_gha_update()
@@ -617,12 +716,12 @@ cff_gha_update()
 #> ℹ Adding .github to .Rbuildignore.
 ```
 
-See the example workflow file
-[here](https://github.com/ropensci/cffr/blob/main/.github/workflows/update-citation-cff.yaml).
+See the [example workflow
+file](https://github.com/ropensci/cffr/blob/main/.github/workflows/update-citation-cff.yaml).
 
 #### Git pre-commit hook [![Experimental](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 
-You can also use a [git pre-commit
+You can also use a [Git pre-commit
 hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workflow_hooks):
 
 > The `pre-commit` hook is run first, before you even type in a commit
@@ -632,9 +731,8 @@ hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workf
 > non-zero from this hook aborts the commit, although you can bypass it
 > with `git commit --no-verify`.
 
-A specific pre-commit hook can be installed with
-`cff_git_hook_install()`. If you want to use a pre-commit hook, please
-make sure you have the **testthat** package installed.
+Install a pre-commit hook with `cff_git_hook_install()`. This function
+requires the **usethis** package.
 
 ### Learn more
 
@@ -649,8 +747,8 @@ Check the following articles to learn more about **cffr**:
 
 ## Related packages
 
-- **citation** ([Dietrich and Leoncio 2025](#ref-citation22)) includes a
-  function `r2cff` that creates a `CITATION.cff` file (v1.1.0) using the
+- **citation** ([Dietrich and Leoncio 2025](#ref-citation22)) includes
+  an `r2cff()` function that creates a `CITATION.cff` file using the
   information in your `DESCRIPTION` file. It also provides minimal
   validity checks.
 - **handlr** ([Chamberlain and Wiernik 2025](#ref-handlr)) is a tool for
@@ -668,8 +766,8 @@ contributing to this project, you agree to abide by its terms.
 
 ## Citation
 
-Hernangómez, D., (2021). cffr: Generate Citation File Format Metadata
-for R Packages. Journal of Open Source Software, 6(67), 3900,
+Hernangómez D (2021). “cffr: Generate Citation File Format Metadata for
+R Packages.” *Journal of Open Source Software*, 6(67), 3900.
 <https://doi.org/10.21105/joss.03900>
 
 A BibTeX entry for LaTeX users is:
@@ -736,7 +834,7 @@ Dietrich, Jan Philipp, and Waldir Leoncio. 2025.
 <div id="ref-druskat_stephan_making_2021" class="csl-entry">
 
 Druskat, Stephan. 2021. *Making Software Citation Easi(er) - The
-Citation File Format and Its Integrations*. Version 1.
+Citation File Format and Its Integrations*. Version 1. Zenodo.
 <https://doi.org/10.5281/zenodo.5529914>.
 
 </div>
@@ -744,7 +842,8 @@ Citation File Format and Its Integrations*. Version 1.
 <div id="ref-druskat_citation_2021" class="csl-entry">
 
 Druskat, Stephan, Jurriaan H. Spaaks, Neil Chue Hong, et al. 2021.
-*Citation File Format*. <https://doi.org/10.5281/zenodo.5171937>.
+*Citation File Format*. Version 1.2.0. Zenodo.
+<https://doi.org/10.5281/zenodo.5171937>.
 
 </div>
 
@@ -776,8 +875,8 @@ on about 2,000 Packages Using GitHub Actions and
 <div id="ref-jones2017" class="csl-entry">
 
 Jones, Matthew B, Carl Boettiger, Abby Cabunoc Mayes, et al. 2017.
-*CodeMeta: An Exchange Schema for Software Metadata*. KNB Data
-Repository. <https://doi.org/10.5063/SCHEMA/CODEMETA-2.0>.
+*CodeMeta: An Exchange Schema for Software Metadata*. Version 2.0. KNB
+Data Repository. <https://doi.org/10.5063/schema/codemeta-2.0>.
 
 </div>
 

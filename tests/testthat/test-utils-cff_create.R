@@ -8,7 +8,7 @@ test_that("Parse Licenses on CRAN (Top 10)", {
   sel <- as.character(cran_packs[1:10, "LICENSE"])
 
   # Tempfile DESCRIPTION that we use for modifications
-  tmp <- tempfile("DESCRIPTION")
+  tmp <- withr::local_tempfile(pattern = "DESCRIPTION")
   file.copy(
     system.file("examples/DESCRIPTION_basic", package = "cffr"),
     tmp,

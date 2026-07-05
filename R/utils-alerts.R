@@ -24,14 +24,15 @@ abort_if_not_cff <- function(x) {
 #' Throw an error if a file does not exist
 #'
 #' @param x A file to be evaluated.
-#' @param abort Logical. Whether to throw an error if the file does not exist.
+#' @param abort A logical value. If `TRUE`, throw an error when the file does
+#'   not exist.
 #' @noRd
 file_exist_abort <- function(x, abort = FALSE) {
   res <- file.exists(x)
 
   if (all(abort, isFALSE(res))) {
     cli::cli_abort(
-      "{.file {x}} does not exist. Check the {.file {dirname(x)}} directory."
+      "{.file {x}} does not exist. Check the {.path {dirname(x)}} directory."
     )
   }
   invisible(res)
@@ -69,7 +70,7 @@ write_lines_msg <- function(lines, file, verbose, append) {
     }
 
     if (verbose) {
-      cli::cli_alert_info("Creating a backup of {.file {file}} in {.file {f}}.")
+      cli::cli_alert_info("Saving a backup of {.file {file}} as {.file {f}}.")
     }
     file.copy(file, f)
   }

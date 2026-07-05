@@ -13,7 +13,7 @@
 #'   \CRANpkg{cffr}. It can be:
 #'   - A missing value, which retrieves the `DESCRIPTION` file from your
 #'     in-development package.
-#'   - An existing `cff` object created with [cff()], [cff_create()], or
+#'   - An existing `cff` object created with [cff()], [cff_create()] or
 #'     [as_cff()].
 #'   - A path to a `CITATION.cff` file (`"CITATION.cff"`).
 #'   - The name of an installed package (`"jsonlite"`).
@@ -33,41 +33,37 @@
 #'
 #' @details
 #' An \R `bibentry` object is the representation of a BibTeX entry. These
-#' objects can be converted to BibTeX markup with [toBibtex()], which creates
-#' an object of class `Bibtex` that can be printed and exported as a valid
-#' BibTeX entry.
+#' objects can be converted to BibTeX markup with [utils::toBibtex()], which
+#' creates an object of class `Bibtex` that can be printed and exported as a
+#' valid BibTeX entry.
 #'
 #' `as_bibentry()` tries to map the information of the source `x` into a [`cff`]
 #' object and performs a mapping of the metadata to BibTeX, according to
 #' `vignette("bibtex-cff", package = "cffr")`.
 #'
 #' @references
-#' Patashnik, Oren. "BIBTEXTING" February 1988.
+#' Patashnik O (1988). "BIBTEXing."
 #' <https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf>.
 #'
-#' Haines, R., & The Ruby Citation File Format Developers. (2021).
-#' *Ruby CFF Library (Version 0.9.0)* (Computer software).
-#' \doi{10.5281/zenodo.1184077}.
+#' Haines R, The Ruby Citation File Format Developers (2022).
+#' "Ruby CFF Library." \doi{10.5281/zenodo.7294987}.
+#' <https://github.com/citation-file-format/ruby-cff>.
 #'
-#' Hernangomez D (2022). "BibTeX and CFF, a potential crosswalk."
-#' *The cffr package, Vignettes*. \doi{10.21105/joss.03900},
-# <https://docs.ropensci.org/cffr/articles/bibtex-cff.html>.
+#' Hernangómez D (2022). "BibTeX and CFF, a potential crosswalk."
+#' \CRANpkg{cffr} vignette.
+#' <https://docs.ropensci.org/cffr/articles/bibtex-cff.html>.
 #'
 #' @seealso
-#' [utils::bibentry()] to understand more about the `bibentry` class.
-#'
-#' - `vignette("r-cff", package = "cffr")` provides details on how the
+#' - [utils::bibentry()] documents the `bibentry` class.
+#' - `vignette("r-cff", package = "cffr")` explains how the
 #'   metadata of a package is mapped to produce a `cff` object.
-#'
 #' - `vignette("bibtex-cff", package = "cffr")` provides details about the
 #'   internal mapping performed between `cff` objects and BibTeX
 #'   markup, both `cff` to BibTeX and BibTeX to `cff`.
-#'
-#' Other related functions:
-#' - [utils::toBibtex()].
+#' - [utils::toBibtex()] converts `bibentry` objects to BibTeX markup.
 #'
 #' @family bibtex
-#' @family s3method
+#' @family conversions
 #' @rdname as_bibentry
 #' @name as_bibentry
 #' @order 1
@@ -135,7 +131,7 @@ as_bibentry.character <- function(
   ...,
   what = c("preferred", "references", "all")
 ) {
-  # A named list
+  # Use a named list.
   if (missing(x)) {
     dot_list <- list(...)
     return(as_bibentry(dot_list))
@@ -157,7 +153,7 @@ as_bibentry.character <- function(
     # nolint end
     cli::cli_abort(paste(
       "Cannot extract a {.cls bibentry} from {.val {x}}.",
-      "If it is a package, run {.run {msg}} first."
+      "If {.pkg {x}} is a package, run {.run {msg}} first."
     ))
   }
 
@@ -188,9 +184,13 @@ as_bibentry.list <- function(x, ...) {
 
   # Return an empty object if a key is missing.
   if (inherits(bib, "try-error")) {
+    # nolint start
     message <- attributes(bib)$condition$message
-    cli::cli_alert_danger("Cannot convert to {.fn utils::bibentry}.")
-    cli::cli_alert_info(message)
+    cli::cli_alert_danger(
+      "Cannot convert {.arg x} to a {.cls bibentry} with {.fn utils::bibentry}."
+    )
+    cli::cli_alert_info("{message}")
+    # nolint end
     cli::cli_alert_warning("Returning an empty {.cls bibentry}.")
     return(bibentry())
   }
@@ -237,7 +237,7 @@ as_bibentry.cff <- function(
 
   if (is.null(obj_extract)) {
     cli::cli_alert_warning(paste0(
-      "In {.arg x}, did not find anything with {.arg what} = {.val {what}}. ",
+      "No entries in {.arg x} matched {.arg what} = {.val {what}}. ",
       "Returning an empty {.cls bibentry}."
     ))
     return(bibentry())
@@ -281,27 +281,27 @@ as_bibentry.cff_ref <- function(x, ...) {
   # Direct mapping ----
 
   ## From BibTeX ----
-  ### author----
+  ### Author ----
   tobibentry$author <- as.person(x$authors)
-  ### chapter----
+  ### Chapter ----
   tobibentry$chapter <- x$section
 
-  ### edition----
+  ### Edition ----
   tobibentry$edition <- x$edition
 
-  ### editor----
+  ### Editor ----
   tobibentry$editor <- as.person(x$editors)
 
-  ### howpublished----
+  ### Publication method ----
   tobibentry$howpublished <- get_bib_howpublised(x)
 
-  ### journal----
+  ### Journal ----
   tobibentry$journal <- x$journal
 
   ### note ----
   tobibentry$note <- get_bib_note(x)
 
-  ### number----
+  ### Number ----
   tobibentry$number <- clean_str(x[["issue"]])
 
   ### pages ----
@@ -316,7 +316,7 @@ as_bibentry.cff_ref <- function(x, ...) {
   ### title ----
   tobibentry$title <- x$title
 
-  ### volume----
+  ### Volume ----
   tobibentry$volume <- x$volume
 
   ## From BibLaTeX ----
@@ -335,29 +335,29 @@ as_bibentry.cff_ref <- function(x, ...) {
   tobibentry$urldate <- x$`date-accessed`
   tobibentry$version <- x$version
 
-  # BibTeX entry----
+  # BibTeX entry ----
 
   tobibentry$bibtype <- guess_bibtype(x)
 
-  # address----
+  # Address ----
   tobibentry$address <- get_bib_address(x)
 
-  # booktitle /series ----
-  # Map cff collection-title.
+  # Book title and series ----
+  # Map the CFF `collection-title` key.
   tobibentry <- c(tobibentry, get_bib_booktitle(x, tobibentry$bibtype))
 
-  # institution/organization/school ----
-  # Map cff institution.
+  # Institution, organization and school ----
+  # Map the CFF `institution` key.
   tobibentry <- c(tobibentry, get_bib_inst_org(x, tobibentry$bibtype))
 
-  # month----
+  # Month ----
   tobibentry$month <- get_bib_month(x)
 
   # year ----
   tobibentry$year <- get_bib_year(x)
 
-  # Handle anonymous author----
-  # If an anonymous author comes from cff and is not needed, do not use it.
+  # Handle anonymous authors ----
+  # Omit an anonymous author from CFF when it is not required.
 
   is_anon <- identical(clean_str(x$authors[[1]]$name), "anonymous")
 
@@ -372,7 +372,7 @@ as_bibentry.cff_ref <- function(x, ...) {
   ) {
     tobibentry$author <- NULL
   }
-  # BibTeX key----
+  # BibTeX key ----
   tobibentry$key <- make_bibkey(tobibentry)
 
   # Final steps ----
@@ -405,7 +405,7 @@ as_bibentry.cff_ref <- function(x, ...) {
   sorted <- unique[unique %in% names(tobibentry)]
   tobibentry <- tobibentry[sorted]
 
-  ## Convert
+  ## Convert ----
 
   as_bibentry(tobibentry)
 }

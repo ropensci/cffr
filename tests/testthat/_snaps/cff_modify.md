@@ -11,7 +11,7 @@
     Code
       xend <- cff_modify(a_cff)
     Message
-      i No `...` arguments supplied, returning `x`.
+      i No `...` arguments supplied. Returning `x`.
 
 ---
 

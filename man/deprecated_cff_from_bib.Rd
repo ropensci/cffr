@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{cff_from_bibtex}
 \alias{cff_from_bibtex}
-\title{Previous API: Create a \code{\link{cff}} object from BibTeX entries}
+\title{Previous API: create a \code{\link{cff}} object from BibTeX entries}
 \usage{
 cff_from_bibtex(x, encoding = "UTF-8", ...)
 }
@@ -15,13 +15,14 @@ cff_from_bibtex(x, encoding = "UTF-8", ...)
 \item A vector of characters with a complete BibTeX string. See \strong{Examples}.
 }}
 
-\item{encoding}{Encoding to be assumed for \code{x}. See \code{\link[=readLines]{readLines()}}.}
+\item{encoding}{Encoding to be assumed for \code{x}. See \code{\link[base:readLines]{base::readLines()}}.}
 
 \item{...}{Arguments passed to \code{\link[=cff_read_bib]{cff_read_bib()}}.}
 }
 \value{
-See \code{\link[=cff_read_bib]{cff_read_bib()}} for reading \verb{*.bib} files and \code{\link[=cff_read_bib_text]{cff_read_bib_text()}}
-for reading a \code{character} object representing a BibTeX entry.
+A \code{\link{cff_ref_lst}} object. See \code{\link[=cff_read_bib]{cff_read_bib()}} for reading \verb{*.bib} files and
+\code{\link[=cff_read_bib_text]{cff_read_bib_text()}} for reading BibTeX entries supplied as a \code{character}
+vector.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use either \code{\link[=cff_read_bib]{cff_read_bib()}} or

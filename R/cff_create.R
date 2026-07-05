@@ -5,7 +5,8 @@
 #' object can be written to a `CITATION.cff` file with [cff_write()]. See
 #' **Examples**.
 #'
-#' Most of the heavy lifting of \CRANpkg{cffr} is done by this function.
+#' This function performs most metadata extraction and conversion in
+#' \CRANpkg{cffr}.
 #'
 #' @param x The source used to generate the [`cff`] object. It can be:
 #'   - A missing value, which retrieves the `DESCRIPTION` file from your
@@ -16,38 +17,32 @@
 #'
 #' @param keys A list of additional keys to add to the [`cff`] object. See
 #'   [cff_modify()].
-#' @param cff_version The Citation File Format schema version that the
-#'   `CITATION.cff` file adheres to for providing the citation metadata.
-#' @param gh_keywords Logical `TRUE/FALSE`. If the package is hosted on
-#'   GitHub, whether to add the repository topics as keywords.
-#' @param dependencies Logical `TRUE/FALSE`. Whether to add your package
-#'   dependencies to the `references` CFF key.
+#' @param cff_version The Citation File Format schema version used for the
+#'   generated metadata.
+#' @param gh_keywords A logical value. If `TRUE` and the package is hosted on
+#'   GitHub, add the repository topics as keywords.
+#' @param dependencies A logical value. If `TRUE`, add the package dependencies
+#'   to the `references` CFF key.
 #' @param authors_roles Roles to be considered as authors of the package when
 #'   generating the `CITATION.cff` file. See **Details**.
 #'
 #' @return A [`cff`] object.
 #'
 #' @details
-#' If `x` is a path to a `DESCRIPTION` file, or if `inst/CITATION` is not
+#' If `x` is a path to a `DESCRIPTION` file or if `inst/CITATION` is not
 #' present in your package, \CRANpkg{cffr} auto-generates a
 #' `preferred-citation` key using the information provided in that file.
 #'
 #' By default, only persons whose role in the `DESCRIPTION` file of the package
 #' is author (`"aut"`) or maintainer (`"cre"`) are considered package authors.
 #' The default setting can be controlled with the `authors_roles` argument. See
-#' **Details** on [person()] for additional information about person roles.
+#' **Details** on [utils::person()] for additional information about person
+#' roles.
 #'
 #' @seealso
-#' ```{r, echo=FALSE, results='asis'}
-#'
-#' cat(paste0("[Guide to Citation File Format schema version 1.2.0]",
-#'            "(https://github.com/citation-file-format/",
-#'            "citation-file-format/blob/main/schema-guide.md)."))
-#'
+#' ```{r child = "man/chunks/schema-guide.Rmd"}
 #' ```
 #'
-#' - [cff_modify()] as the recommended way to modify a `cff` object.
-#' - [cff_write()] for creating a `CITATION.cff` file.
 #' - `vignette("cffr", package = "cffr")` shows an introduction to
 #'   manipulating [`cff`] objects.
 #' - `vignette("r-cff", package = "cffr")` provides details on how the
@@ -183,7 +178,7 @@ build_cff_and_paths <- function(
   if (!is.null(cit_path)) {
     citobj <- cff_safe_read_citation(desc_path, cit_path)
     citobj <- unique(citobj)
-    # Merge DESCRIPTION and CITATION
+    # Merge `DESCRIPTION` and `CITATION`.
     cffobj <- merge_desc_cit(cffobj, citobj)
   }
 
@@ -212,12 +207,12 @@ abort_invalid_cff_source <- function(hint_source) {
     "dontknow" = paste0(
       "If it is a package, ",
       "you may need to install it with ",
-      "{.fn install.packages}."
+      "{.fn utils::install.packages}."
     ),
-    "bib" = "Try {.fn cff_read}."
+    "bib" = "Try {.fn cffr::cff_read}."
   )
 
-  cli::cli_abort(paste0("{.arg x} is not valid. ", msg_hint))
+  cli::cli_abort(paste0("{.arg x} is not a supported source. ", msg_hint))
 }
 
 cff_description_path <- function(x, hint_source) {

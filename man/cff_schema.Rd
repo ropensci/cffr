@@ -10,7 +10,7 @@
 \alias{cff_schema_definitions_refs}
 \title{Inspect CFF schema values}
 \source{
-\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
+\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema guide}.
 }
 \usage{
 cff_schema_keys(sorted = FALSE)
@@ -24,17 +24,16 @@ cff_schema_definitions_entity()
 cff_schema_definitions_refs()
 }
 \arguments{
-\item{sorted}{Logical \code{TRUE/FALSE}. Whether to arrange the keys
-alphabetically.}
+\item{sorted}{A logical value. If \code{TRUE}, arrange the keys alphabetically.}
 }
 \value{
 A character vector with the names of valid keys for Citation File Format
 version 1.2.0.
 }
 \description{
-Helper functions with valid values for different keys and definition fields,
-according to the
-\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema version 1.2.0}.
+Helper functions with valid values for different keys and definition fields.
+See the following guide:
+\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema guide}.
 \itemize{
 \item \code{\link[=cff_schema_keys]{cff_schema_keys()}} provides the valid high-level keys of the Citation
 File Format.

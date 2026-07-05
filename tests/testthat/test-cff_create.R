@@ -10,16 +10,9 @@ test_that("Test installed packages", {
 
 test_that("Test indev", {
   skip_on_cran()
-  current_dir <- getwd()
 
-  name <- paste0("mock-pack", runif(1) * 10)
-  new_dir <- file.path(tempdir(), name)
-
-  dir.create(new_dir, recursive = TRUE)
-
-  expect_true(dir.exists(new_dir))
-
-  setwd(new_dir)
+  new_dir <- withr::local_tempdir(pattern = "mock-pack-")
+  withr::local_dir(new_dir)
 
   # Move files
   file.copy(
@@ -30,12 +23,8 @@ test_that("Test indev", {
   a_cff <- cff_create()
 
   expect_true(cff_validate(a_cff, verbose = FALSE))
-  # Revert to initial wd
-  setwd(current_dir)
 
   expect_snapshot(a_cff)
-
-  unlink(new_dir, recursive = TRUE, force = TRUE)
 })
 
 test_that("Test dependencies extraction", {
@@ -143,7 +132,7 @@ test_that("Default roles on write", {
   cf <- cff_create(p, dependencies = FALSE)
 
   # Same as
-  tmp <- tempfile(fileext = ".cff")
+  tmp <- withr::local_tempfile(fileext = ".cff")
   cf2 <- cff_write(
     p,
     authors_roles = c("aut", "cre"),
@@ -179,7 +168,7 @@ test_that("Add new roles on write", {
   expect_gt(length(cf$authors), length(cf_def$authors))
 
   # Same as
-  tmp <- tempfile(fileext = ".cff")
+  tmp <- withr::local_tempfile(fileext = ".cff")
   expect_message(
     cf2 <- cff_write(p, authors_roles = "ctb", outfile = tmp, validate = FALSE),
     "generated"
@@ -410,7 +399,7 @@ test_that("Parsing Posit Package Manager", {
 test_that("Search package on CRAN", {
   basic_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
-  tmp <- tempfile("DESCRIPTION_basic")
+  tmp <- withr::local_tempfile(pattern = "DESCRIPTION_basic")
   file.copy(basic_path, tmp)
 
   newfile <- desc::desc_set("Package", "ggplot2", file = tmp)
@@ -430,10 +419,7 @@ test_that("Search package on CRAN", {
     get_desc_repository(newfile),
     "https://CRAN.R-project.org/package=ggplot2"
   )
-  expect_equal(
-    get_desc_doi(newfile),
-    "10.32614/CRAN.package.ggplot2"
-  )
+  expect_equal(get_desc_doi(newfile), "10.32614/CRAN.package.ggplot2")
 
   a_cff <- cff_create(tmp, gh_keywords = FALSE)
   expect_length(a_cff$repository, 1)
@@ -474,7 +460,7 @@ test_that("Search package on r-universe with repository fixtures", {
 test_that("Validate keywords", {
   desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
-  tmp <- tempfile("DESCRIPTION_keyword")
+  tmp <- withr::local_tempfile(pattern = "DESCRIPTION_keyword")
 
   copy <- file.copy(desc_path, tmp)
 

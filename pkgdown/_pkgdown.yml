@@ -18,7 +18,7 @@ home:
     packages.
 
 reference:
-- title: Create and maintain CITATION.cff files
+- title: Create and maintain `CITATION.cff` files
   desc: Main workflow for R package authors.
 - contents:
   - cff_write
@@ -29,21 +29,29 @@ reference:
 
 - title: Read and write citation metadata
 - subtitle: Read metadata
+  desc: Read CFF, BibTeX and R package metadata.
 - contents:
   - has_concept("reading")
 - subtitle: Write metadata
+  desc: Write CFF objects as citation files or BibTeX.
 - contents:
   - has_concept("writing")
+  - -cff_write
 
 - title: Convert between CFF, R and BibTeX
-- subtitle: Coercion helpers
+  desc: Convert citation metadata to standard R objects and back.
+- subtitle: Conversion helpers
 - contents:
-  - has_concept("s3method")
+  - has_concept("conversions")
+  - -cff_class
+  - -as_bibentry
 - subtitle: BibTeX helpers
 - contents:
   - has_concept("bibtex")
+  - -cff_read
 
 - title: Inspect CFF schema values
+  desc: List valid keys, licenses, versions and source types.
 - contents:
   - has_concept("schemas")
 
@@ -53,19 +61,24 @@ reference:
   - has_concept("git")
 
 - title: Data
+  desc: Datasets used internally to map citation metadata.
 - contents:
-  - has_concept("datasets")
+  - has_keyword("datasets")
 
-- title: Package internals and lifecycle
+- title: Package internals
 - subtitle: Class system
+  desc: Structure and behavior of CFF objects.
 - contents:
   - cff_class
-- subtitle: Deprecated functions
-- contents:
-  - has_concept("deprecated", internal = TRUE)
 - subtitle: Package overview
+  desc: Package-level documentation and references.
 - contents:
   - cffr-package
+
+- title: Deprecated functions
+  desc: Superseded interfaces retained for compatibility.
+- contents:
+  - has_concept("deprecated", internal = TRUE)
 
 navbar:
   structure:
@@ -90,6 +103,7 @@ authors:
 
 articles:
 - title: Guides
+  desc: Get started creating and maintaining CFF metadata.
   contents:
   - cffr
 - title: Crosswalks
@@ -100,11 +114,12 @@ articles:
   - bibtex-cff
 - title: Publications
   navbar: Publications
+  desc: Research publications describing **cffr**.
   contents:
   - joss-paper
 - title: Around cffr
   navbar: Media
-  desc: Blog posts, podcasts and external material about cffr.
+  desc: Blog posts, podcasts and external material about **cffr**.
   contents:
   - ropensci-cffr
   - ropensci-testing-cffr

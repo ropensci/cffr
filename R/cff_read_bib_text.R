@@ -1,22 +1,17 @@
 #' Read BibTeX markup as a [`cff_ref_lst`] object
 #'
 #' @description
-#' Convert a `character` string representing a BibTeX entry into a
-#' [`cff_ref_lst`] object.
+#' Convert one or more complete BibTeX entries supplied as a `character` vector
+#' into a [`cff_ref_lst`] object.
 #'
 #' @param x A `character` vector with one or more complete BibTeX entries.
-#' @param encoding Encoding to be assumed for `x`. See [readLines()].
+#' @param encoding Encoding to be assumed for `x`. See [base::readLines()].
 #' @param ... Arguments passed to [cff_read_bib()].
 #'
 #' @return
 #' An object of classes [`cff_ref_lst, cff`][cff_ref_lst] according to the
-#' `definitions.reference` specified in the
-#' ```{r, echo=FALSE, results='asis'}
-#'
-#' cat(paste0(" [Citation File Format schema]",
-#'            "(https://github.com/citation-file-format/",
-#'            "citation-file-format/blob/main/schema-guide.md)."))
-#'
+#' `definitions.reference` specified in the following guide:
+#' ```{r child = "man/chunks/schema-guide.Rmd"}
 #' ```
 #' Each element of the `cff_ref_lst` object has classes
 #' [`cff_ref, cff`][cff_ref].

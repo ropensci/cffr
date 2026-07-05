@@ -8,13 +8,13 @@
   "codeRepository": "https://github.com/ropensci/cffr",
   "issueTracker": "https://github.com/ropensci/cffr/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.4.1",
+  "version": "1.4.1.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.6.0 (2026-04-24 ucrt)",
+  "runtimePlatform": "R version 4.6.1 (2026-06-24 ucrt)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -134,6 +134,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=usethis"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "withr",
+      "name": "withr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=withr"
     }
   ],
   "softwareRequirements": {
@@ -222,7 +234,7 @@
   },
   "isPartOf": "https://ropensci.org",
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata", "citation-file-format", "cran", "r", "r-package", "ropensci", "rstats", "r-cran"],
-  "fileSize": "1011.854KB",
+  "fileSize": "998.455KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -309,6 +321,7 @@
     }
   ],
   "releaseNotes": "https://github.com/ropensci/cffr/blob/main/NEWS.md",
+  "readme": "https://github.com/ropensci/cffr/blob/main/README.md",
   "contIntegration": ["https://github.com/ropensci/cffr/actions/workflows/check-full.yaml", "https://app.codecov.io/gh/ropensci/cffr", "https://coveralls.io/github/ropensci/cffr?branch=main", "https://github.com/ropensci/cffr/actions/workflows/cff-validator.yaml"],
   "developmentStatus": ["https://www.repostatus.org/#active", "https://lifecycle.r-lib.org/articles/stages.html#experimental"],
   "review": {

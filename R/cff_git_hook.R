@@ -1,4 +1,4 @@
-#' Use a git pre-commit hook `r lifecycle::badge("experimental")`
+#' Use a Git pre-commit hook `r lifecycle::badge("experimental")`
 #'
 #' @description
 #' Install a
@@ -23,7 +23,7 @@
 #' submission to code review. This pre-commit hook warns you if any of the
 #' following conditions are met:
 #' - You included your `DESCRIPTION` or `inst/CITATION` file in a commit but
-#'   did not include your `CITATION.cff`, and the `CITATION.cff` file is
+#'   did not include your `CITATION.cff` and the `CITATION.cff` file is
 #'   "older" than your `DESCRIPTION` or `inst/CITATION` file.
 #' - You updated your `CITATION.cff` but did not include it in
 #'   your commit.
@@ -47,7 +47,7 @@
 #' - Windows & Linux: `Ctrl+Alt+Enter`.
 #' - Mac: `Cmd+Option+Return`.
 #'
-#' # Removing the git pre-commit hook
+#' # Removing the Git pre-commit hook
 #'
 #' You can remove the pre-commit hook using `cff_git_hook_remove()`.
 #'
@@ -75,7 +75,7 @@ cff_git_hook_install <- function() {
   } else {
     cli::cli_alert_danger(paste0(
       "Install {.pkg usethis} to use the pre-commit hook: ",
-      '{.run install.packages("usethis")}'
+      '{.run install.packages("usethis")}.'
     ))
   }
   invisible()
@@ -90,9 +90,7 @@ cff_git_hook_remove <- function() {
   hookfile <- file.path(".git", "hooks", "pre-commit")
 
   if (file_exist_abort(hookfile)) {
-    cli::cli_alert_info(
-      "Removing git pre-commit hook from {.path {hookfile}}."
-    )
+    cli::cli_alert_info("Removing Git pre-commit hook from {.file {hookfile}}.")
     unlink(hookfile, force = TRUE)
   }
 

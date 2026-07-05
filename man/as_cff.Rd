@@ -52,8 +52,8 @@ applicable.
 \itemize{
 \item \code{person} objects as produced by \code{\link[utils:person]{utils::person()}}.
 \item \code{bibentry} objects as produced by \code{\link[utils:bibentry]{utils::bibentry()}}.
-\item \code{Bibtex} objects as produced by \code{\link[=toBibtex]{toBibtex()}}.
-\item Default: Other inputs are first coerced with \code{\link[=as.list]{as.list()}}.
+\item \code{Bibtex} objects as produced by \code{\link[utils:toBibtex]{utils::toBibtex()}}.
+\item Default: Other inputs are first coerced with \code{\link[base:as.list]{base::as.list()}}.
 }
 }
 \details{
@@ -74,7 +74,7 @@ cffobj <- as_cff(list(
 
 class(cffobj)
 
-# Nice display thanks to the yaml package.
+# Display the YAML representation.
 cffobj
 
 # `bibentry` method.
@@ -94,18 +94,15 @@ as_cff(a_cit)
 }
 \seealso{
 \itemize{
-\item \code{\link[=cff]{cff()}}: Create a full \code{cff} object from scratch.
-\item \code{\link[=cff_modify]{cff_modify()}}: Modify a \code{cff} object.
-\item \code{\link[=cff_create]{cff_create()}}: Create a \code{cff} object for an \R package.
-\item \code{\link[=cff_read]{cff_read()}}: Create a \code{cff} object from an external file.
-\item \code{\link[=as_cff_person]{as_cff_person()}}: Recommended way to create CFF person metadata.
+\item \code{\link[=cff]{cff()}} creates a full \code{cff} object from scratch.
+\item \code{\link[=cff_modify]{cff_modify()}} modifies a \code{cff} object.
+\item \code{\link[=cff_create]{cff_create()}} creates a \code{cff} object for an \R package.
+\item \code{\link[=cff_read]{cff_read()}} creates a \code{cff} object from an external file.
 }
 
-Learn more about the \CRANpkg{cffr} class system in \link{cff_class}.
-
-Coerce between \R classes:
+Convert between \R classes:
 \code{\link[=as_bibentry]{as_bibentry()}},
 \code{\link[=as_cff_person]{as_cff_person()}},
 \code{\link{cff_class}}
 }
-\concept{s3method}
+\concept{conversions}

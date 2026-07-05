@@ -10,10 +10,9 @@
 #' - The action can be run manually.
 #'
 #' @param path Project root directory.
-#' @param overwrite Logical. If the workflow already exists, whether to
-#'   overwrite it.
+#' @param overwrite A logical value. If `TRUE`, overwrite an existing workflow.
 #'
-#' @return Invisible. This function is called for its side effects.
+#' @inherit cff_git_hook return
 #'
 #' @details
 #' Triggers on your action can be modified. See
@@ -44,7 +43,7 @@ cff_gha_update <- function(path = ".", overwrite = FALSE) {
   newfile <- file.path(destdir, "update-citation-cff.yaml")
 
   if (!file_exist_abort(newfile) || isTRUE(overwrite)) {
-    cli::cli_alert_success("Installing {.file {newfile}}.")
+    cli::cli_alert_success("Workflow installed at {.file {newfile}}.")
 
     file.copy(
       system.file("yaml/update-citation-cff.yaml", package = "cffr"),
@@ -53,20 +52,22 @@ cff_gha_update <- function(path = ".", overwrite = FALSE) {
     )
   } else {
     cli::cli_alert_warning(paste0(
-      "File {.file {newfile}} is already installed. ",
-      "Use {.arg overwrite = TRUE} to overwrite it."
+      "Workflow file {.file {newfile}} already exists. ",
+      "Set {.arg overwrite} to {.val TRUE} to overwrite it."
     ))
   }
 
-  if (file_exist_abort(file.path(path, ".Rbuildignore"))) {
-    ignore <- readLines(file.path(path, ".Rbuildignore"))
+  rbuildignore <- file.path(path, ".Rbuildignore")
+
+  if (file_exist_abort(rbuildignore)) {
+    ignore <- readLines(rbuildignore)
 
     # If not already present.
     if (!("^\\.github$" %in% ignore)) {
       ignore <- c(ignore, "^\\.github$")
       ignore <- unique(ignore)
       cli::cli_alert_info("Adding {.path .github} to {.file .Rbuildignore}.")
-      writeLines(ignore, ".Rbuildignore")
+      writeLines(ignore, rbuildignore)
     }
   }
 

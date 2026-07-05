@@ -24,9 +24,8 @@ Keys provided in \code{...} override the corresponding key in \code{x}.
 
 You can add additional keys not detected by \code{\link[=cff_create]{cff_create()}} using
 the \code{keys} argument. A list of valid keys can be retrieved with
-\code{\link[=cff_schema_keys]{cff_schema_keys()}}. For details, refer to
-\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Guide to Citation File Format schema version 1.2.0}.
-for additional details.
+\code{\link[=cff_schema_keys]{cff_schema_keys()}}. See the following guide for additional details:
+\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema guide}.
 }
 \examples{
 x <- cff()
@@ -48,12 +47,12 @@ cff_validate(x_mod)
 
 }
 \seealso{
-This function is a wrapper of \code{\link[utils:modifyList]{utils::modifyList()}}. See \code{\link[=cff]{cff()}} for
-creating \code{\link{cff}} objects from scratch.
+This function is a wrapper of \code{\link[utils:modifyList]{utils::modifyList()}}.
 
 Core \CRANpkg{cffr} workflow:
 \code{\link[=cff]{cff()}},
 \code{\link[=cff_create]{cff_create()}},
-\code{\link[=cff_validate]{cff_validate()}}
+\code{\link[=cff_validate]{cff_validate()}},
+\code{\link[=cff_write]{cff_write()}}
 }
 \concept{core}

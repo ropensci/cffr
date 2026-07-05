@@ -4,20 +4,22 @@
 #' Export \R objects representing citations to specific file formats:
 #' - [cff_write_bib()] creates a `.bib` file.
 #' - [cff_write_citation()] creates an \R citation file as described in
-#'   Section 1.9 of *Writing R Extensions* (R Core Team 2023).
+#'   Section 1.9 of *Writing R Extensions* (R Core Team 2026).
 #'
 #' @param x A [`bibentry`] or a [`cff`] object.
 #' @param file Name of the file to be created. If `NULL`, the lines are
 #'   displayed instead.
-#' @param append Logical. Whether to append entries to an existing file.
-#' @param verbose Logical. Display informative messages.
-#' @param ascii Logical. Whether to write entries using ASCII characters only.
+#' @param append A logical value. If `TRUE`, append entries to an existing file.
+#' @param verbose A logical value. If `TRUE`, display informative messages.
+#' @param ascii A logical value. If `TRUE`, write entries using ASCII
+#'   characters only.
 #' @inheritDotParams as_bibentry.cff what
 #' @inheritDotParams as_bibentry.cff_ref
 #' @inheritDotParams as_bibentry.cff_ref_lst
 #'
 #' @return
-#' Writes the corresponding file specified by the `file` argument.
+#' Invisibly returns `NULL`. This function is called for its side effect of
+#' writing a file or displaying its contents.
 #'
 #' @details
 #' When `x` is a `cff` object, it is converted to BibTeX using
@@ -27,8 +29,8 @@
 #' a backup copy in the same directory.
 #'
 #' @references
-#' R Core Team (2023). _Writing R Extensions_.
-#' <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>
+#' R Core Team (2026). *Writing R Extensions*.
+#' <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>.
 #'
 #' @seealso
 #' `vignette("bibtex-cff", package = "cffr")`, [knitr::write_bib()] and the

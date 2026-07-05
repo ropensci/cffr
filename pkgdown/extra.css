@@ -1,4 +1,0 @@
-/* --- Hide first (empty) divider in navbar menu --- */
-.navbar-nav .nav-item.dropdown ul li:first-child hr {
-	display: none;
-}

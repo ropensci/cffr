@@ -25,14 +25,12 @@ test_that("Walk trough full lifecycle", {
   expect_false(read$title == modify$title)
 
   # Write
-  tmp <- tempfile(fileext = ".cff")
+  tmp <- withr::local_tempfile(fileext = ".cff")
   cff_write(modify, outfile = tmp, validate = FALSE, verbose = FALSE)
   expect_silent(file_exist_abort(tmp))
 
   # Validate
   expect_true(cff_validate(tmp, verbose = FALSE))
-
-  file.remove(tmp)
 })
 
 test_that("Recursive parsing", {

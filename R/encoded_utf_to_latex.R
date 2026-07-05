@@ -11,7 +11,7 @@
 #' This is a variation of [tools::encoded_text_to_latex()] with some
 #' additional replacements for better compatibility.
 #'
-#' @seealso [tools::encoded_text_to_latex()]
+#' @seealso [tools::encoded_text_to_latex()].
 #'
 #' @family bibtex
 #' @keywords internal
@@ -34,7 +34,7 @@
 #'   encoding = "UTF-8"
 #' )
 #'
-#' # With cffr.
+#' # With the package-specific approach.
 #' ascii_table$latex_cffr <- encoded_utf_to_latex(ascii_table$utf8)
 #'
 #' ascii_table

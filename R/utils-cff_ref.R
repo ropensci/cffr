@@ -43,7 +43,7 @@ get_bibtex_entry <- function(bib) {
   cit_list
 }
 
-#' Adapt names from R citation()/BibTeX to CFF format
+#' Adapt field names from R citations and BibTeX to CFF
 #' @noRd
 get_bibtex_fields <- function(cit_list) {
   # Convert to lowercase.
@@ -350,9 +350,7 @@ cff_identifier_fields <- function(values, key, type) {
 
   c(
     stats::setNames(list(clean_str(main_value)), key),
-    list(
-      identifiers = identifiers
-    )
+    list(identifiers = identifiers)
   )
 }
 

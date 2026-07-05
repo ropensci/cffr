@@ -1,0 +1,2 @@
+[Citation File Format schema
+guide](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md).

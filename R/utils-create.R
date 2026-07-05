@@ -1,4 +1,4 @@
-#' Merge the information of a coerced description with a coerced citation
+#' Merge converted DESCRIPTION and CITATION metadata
 #' @noRd
 merge_desc_cit <- function(cffobj, citobj) {
   # Return the existing object if there is no citation object.
@@ -168,10 +168,7 @@ cff_dependency_citation <- function(package) {
     return(mod)
   }
 
-  mod <- try(
-    as_cff(citation(package, auto = TRUE)[1])[[1]],
-    silent = TRUE
-  )
+  mod <- try(as_cff(citation(package, auto = TRUE)[1])[[1]], silent = TRUE)
 
   if (inherits(mod, "try-error")) {
     return(NULL) # nocov

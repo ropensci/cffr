@@ -31,11 +31,11 @@ cff_read_bib(path, encoding = "UTF-8", ...)
 \item{...}{Arguments passed to other functions, for example to
 \code{\link[yaml:read_yaml]{yaml::read_yaml()}} or \code{\link[bibtex:read.bib]{bibtex::read.bib()}}.}
 
-\item{cff_version}{The Citation File Format schema version that the
-\code{CITATION.cff} file adheres to for providing the citation metadata.}
+\item{cff_version}{The Citation File Format schema version used for the
+generated metadata.}
 
-\item{gh_keywords}{Logical \code{TRUE/FALSE}. If the package is hosted on
-GitHub, whether to add the repository topics as keywords.}
+\item{gh_keywords}{A logical value. If \code{TRUE} and the package is hosted on
+GitHub, add the repository topics as keywords.}
 
 \item{authors_roles}{Roles to be considered as authors of the package when
 generating the \code{CITATION.cff} file. See \strong{Details}.}
@@ -43,7 +43,7 @@ generating the \code{CITATION.cff} file. See \strong{Details}.}
 \item{meta}{A list of package metadata as obtained by
 \code{\link[utils:packageDescription]{utils::packageDescription()}} or \code{NULL} (the default). See \strong{Details}.}
 
-\item{encoding}{Encoding to be assumed for \code{path}. See \code{\link[=readLines]{readLines()}}.}
+\item{encoding}{Encoding to be assumed for \code{path}. See \code{\link[base:readLines]{base::readLines()}}.}
 }
 \value{
 \itemize{
@@ -51,7 +51,8 @@ generating the \code{CITATION.cff} file. See \strong{Details}.}
 with class \code{cff}.
 \item \code{cff_read_citation()} and \code{cff_read_bib()} return an object of classes
 \code{\link[=cff_ref_lst]{cff_ref_lst, cff}} according to the \code{definitions.reference}
-specified in the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}.
+specified in the following guide:
+\href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema guide}.
 }
 
 Learn more about the \CRANpkg{cffr} class system in \link{cff_class}.
@@ -79,7 +80,7 @@ we provide aliases for each specific file type:
 For details of \code{cff_read_description()}, see \code{\link[=cff_create]{cff_create()}}.
 \subsection{The \code{meta} object}{
 
-Section 1.9 CITATION files of \emph{Writing R Extensions} (R Core Team 2023)
+Section 1.9 CITATION files of \emph{Writing R Extensions} (R Core Team 2026)
 specifies how to create dynamic \code{CITATION} files using a \code{meta} object.
 Therefore, the \code{meta} argument in \code{\link[=cff_read_citation]{cff_read_citation()}} may be needed to
 read some files correctly.
@@ -117,11 +118,11 @@ from_citation[[1]]
 
 }
 \references{
-R Core Team (2023). \emph{Writing R Extensions}.
-\url{https://cran.r-project.org/doc/manuals/r-release/R-exts.html}
+R Core Team (2026). \emph{Writing R Extensions}.
+\url{https://cran.r-project.org/doc/manuals/r-release/R-exts.html}.
 
-Hernangomez D (2022). "BibTeX and CFF, a potential crosswalk."
-\emph{The cffr package, Vignettes}. \doi{10.21105/joss.03900},
+Hernangómez D (2022). "BibTeX and CFF, a potential crosswalk."
+\CRANpkg{cffr} vignette.
 \url{https://docs.ropensci.org/cffr/articles/bibtex-cff.html}.
 }
 \seealso{

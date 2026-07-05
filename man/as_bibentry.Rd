@@ -34,7 +34,7 @@ as_bibentry(x, ...)
 \itemize{
 \item A missing value, which retrieves the \code{DESCRIPTION} file from your
 in-development package.
-\item An existing \code{cff} object created with \code{\link[=cff]{cff()}}, \code{\link[=cff_create]{cff_create()}}, or
+\item An existing \code{cff} object created with \code{\link[=cff]{cff()}}, \code{\link[=cff_create]{cff_create()}} or
 \code{\link[=as_cff]{as_cff()}}.
 \item A path to a \code{CITATION.cff} file (\code{"CITATION.cff"}).
 \item The name of an installed package (\code{"jsonlite"}).
@@ -67,9 +67,9 @@ BibTeX markup on the fly. See \strong{Examples}.
 }
 \details{
 An \R \code{bibentry} object is the representation of a BibTeX entry. These
-objects can be converted to BibTeX markup with \code{\link[=toBibtex]{toBibtex()}}, which creates
-an object of class \code{Bibtex} that can be printed and exported as a valid
-BibTeX entry.
+objects can be converted to BibTeX markup with \code{\link[utils:toBibtex]{utils::toBibtex()}}, which
+creates an object of class \code{Bibtex} that can be printed and exported as a
+valid BibTeX entry.
 
 \code{as_bibentry()} tries to map the information of the source \code{x} into a \code{\link{cff}}
 object and performs a mapping of the metadata to BibTeX, according to
@@ -117,29 +117,26 @@ toBibtex(desc_file)
 
 }
 \references{
-Patashnik, Oren. "BIBTEXTING" February 1988.
+Patashnik O (1988). "BIBTEXing."
 \url{https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf}.
 
-Haines, R., & The Ruby Citation File Format Developers. (2021).
-\emph{Ruby CFF Library (Version 0.9.0)} (Computer software).
-\doi{10.5281/zenodo.1184077}.
+Haines R, The Ruby Citation File Format Developers (2022).
+"Ruby CFF Library." \doi{10.5281/zenodo.7294987}.
+\url{https://github.com/citation-file-format/ruby-cff}.
 
-Hernangomez D (2022). "BibTeX and CFF, a potential crosswalk."
-\emph{The cffr package, Vignettes}. \doi{10.21105/joss.03900},
+Hernangómez D (2022). "BibTeX and CFF, a potential crosswalk."
+\CRANpkg{cffr} vignette.
+\url{https://docs.ropensci.org/cffr/articles/bibtex-cff.html}.
 }
 \seealso{
-\code{\link[utils:bibentry]{utils::bibentry()}} to understand more about the \code{bibentry} class.
 \itemize{
-\item \code{vignette("r-cff", package = "cffr")} provides details on how the
+\item \code{\link[utils:bibentry]{utils::bibentry()}} documents the \code{bibentry} class.
+\item \code{vignette("r-cff", package = "cffr")} explains how the
 metadata of a package is mapped to produce a \code{cff} object.
 \item \code{vignette("bibtex-cff", package = "cffr")} provides details about the
 internal mapping performed between \code{cff} objects and BibTeX
 markup, both \code{cff} to BibTeX and BibTeX to \code{cff}.
-}
-
-Other related functions:
-\itemize{
-\item \code{\link[utils:toBibtex]{utils::toBibtex()}}.
+\item \code{\link[utils:toBibtex]{utils::toBibtex()}} converts \code{bibentry} objects to BibTeX markup.
 }
 
 Work with BibTeX metadata:
@@ -148,10 +145,10 @@ Work with BibTeX metadata:
 \code{\link[=cff_write_bib]{cff_write_bib()}},
 \code{\link[=encoded_utf_to_latex]{encoded_utf_to_latex()}}
 
-Coerce between \R classes:
+Convert between \R classes:
 \code{\link[=as_cff]{as_cff()}},
 \code{\link[=as_cff_person]{as_cff_person()}},
 \code{\link{cff_class}}
 }
 \concept{bibtex}
-\concept{s3method}
+\concept{conversions}
