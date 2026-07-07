@@ -1,5 +1,7 @@
 # cffr (development version)
 
+- The JOSS paper is now linked as an external pkgdown article instead of being
+  rebuilt as a package vignette.
 - `cff_gha_update()` now uses `path` when updating `.Rbuildignore`.
 
 # cffr 1.4.1
@@ -59,9 +61,9 @@
     `identifier`.
   - Otherwise, the **CRAN** DOI is used as `doi`.
   - When extracting dependencies (for example,
-    `cff_create(dependencies = TRUE)`) and
-    the package dependency is on **CRAN**, the **CRAN** DOI is used for the
-    dependency in the `references` key.
+    `cff_create(dependencies = TRUE)`) and the package dependency is on
+    **CRAN**, the **CRAN** DOI is used for the dependency in the `references`
+    key.
 - `commit` is extracted from `RemoteSha`.
 - The `cran_to_spdx` dataset was updated.
 
@@ -99,8 +101,8 @@ This change allows writing specific [S3
 methods](https://adv-r.hadley.nz/s3.html) and extends the capabilities of the
 package.
 
-- `as_cff()` is a new S3 generic that replaces `as.cff()` and coerces
-  **R** objects to `cff` class format. Current methods provided are:
+- `as_cff()` is a new S3 generic that replaces `as.cff()` and coerces **R**
+  objects to `cff` class format. Current methods provided are:
   - `as_cff.Bibtex()`.
   - `as_cff.bibentry()`, replacing `cff_parse_citation()`.
   - `as_cff.person()`, similar to `as_cff_person()` but only for `person`

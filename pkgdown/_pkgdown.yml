@@ -126,6 +126,10 @@ articles:
   - rweekly-podcast
 
 external-articles:
+- name: joss-paper
+  title: "cffr: Generate Citation File Format Metadata for R Packages"
+  description: JOSS paper describing **cffr**.
+  href: https://doi.org/10.21105/joss.03900
 - name: ropensci-cffr
   title: "cffr: Create a CITATION.cff file for your R package"
   description: rOpenSci blog post introducing cffr.
