@@ -372,7 +372,7 @@ test_that("Corrupt CITATION", {
 test_that("Creating cff from packages encoded in latin1", {
   rvers <- getRversion()
   skip_if(rvers >= "4.7.0", "R 4.7.0 only uses UTF-8 in DESCRIPTION")
-  
+
   # Surveillance package
   desc_path <- system.file(
     "examples/DESCRIPTION_surveillance",
