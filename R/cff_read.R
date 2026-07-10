@@ -211,7 +211,7 @@ cff_read_citation <- function(path, meta = NULL, ...) {
   }
 
   new_meta <- clean_package_meta(meta)
-  the_cit <- try(utils::readCitationFile(path, meta = new_meta), silent = TRUE)
+  the_cit <- try(cff_read_citation_file(path, meta = new_meta), silent = TRUE)
 
   # If there is an error, try again.
   if (inherits(the_cit, "try-error")) {
@@ -221,21 +221,23 @@ cff_read_citation <- function(path, meta = NULL, ...) {
     ))
     new_meta <- packageDescription("base")
     the_cit <- try(
-      utils::readCitationFile(path, meta = new_meta),
+      cff_read_citation_file(path, meta = new_meta),
       silent = TRUE
     )
-    # nocov start
     if (inherits(the_cit, "try-error")) {
       cli::cli_alert_danger(
         "Cannot read {.file {path}}. Returning {.code NULL}."
       )
       return(NULL)
     }
-    # nocov end
   }
   tocff <- as_cff(the_cit)
 
   tocff
+}
+
+cff_read_citation_file <- function(path, meta) {
+  utils::readCitationFile(path, meta = meta)
 }
 
 #' @family bibtex

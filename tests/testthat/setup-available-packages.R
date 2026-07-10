@@ -24,10 +24,9 @@ test_available_packages <- data.frame(
 )
 
 local_test_available_packages <- function(env = parent.frame()) {
-  testthat::local_mocked_bindings(
-    get_avail_on_init = function() test_available_packages,
-    .package = "cffr",
-    .env = env
+  withr::local_options(
+    cffr.available_packages = test_available_packages,
+    .local_envir = env
   )
 }
 

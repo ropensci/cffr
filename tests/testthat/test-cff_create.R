@@ -1,5 +1,5 @@
 test_that("Error if file not exists", {
-  expect_error(cff_create("DESCRIPTION_not_exists"))
+  expect_snapshot(cff_create("DESCRIPTION_not_exists"), error = TRUE)
 })
 
 test_that("Test installed packages", {
@@ -31,16 +31,16 @@ test_that("Test dependencies extraction", {
   yes <- cff_create("jsonlite")
   no <- cff_create("jsonlite", dependencies = FALSE)
 
-  expect_true(length(yes$references) > length(no$references))
+  expect_gt(length(yes$references), length(no$references))
 })
 
 test_that("Test error formats on inputs", {
   df <- data.frame(x = 1, b = "c")
-  expect_error(cff_create(df))
+  expect_snapshot(cff_create(df), error = TRUE)
   l <- list(a = 1, b = 3)
-  expect_error(cff_create(l))
+  expect_snapshot(cff_create(l), error = TRUE)
 
-  expect_error(cff_create("uanuanua"))
+  expect_snapshot(cff_create("uanuanua"), error = TRUE)
 })
 
 test_that("Validate all DESCRIPTION files", {
@@ -408,10 +408,9 @@ test_that("Search package on CRAN", {
     Repository = "https://cloud.r-project.org/src/contrib"
   )
   repos <- c(CRAN = "https://cloud.r-project.org/")
-  testthat::local_mocked_bindings(
-    get_avail_on_init = function() avail,
-    detect_repos = function() repos,
-    .package = "cffr"
+  withr::local_options(
+    cffr.available_packages = avail,
+    cffr.repos = repos
   )
 
   expect_equal(clean_str(newfile$get("Package")), "ggplot2")

@@ -296,7 +296,8 @@ get_gh_topics <- function(x) {
 
   # Get topics from the repository.
   api_url <- gh_topics_api_url(x)
-  topics <- fetch_gh_topics(api_url)
+  fetch <- getOption("cffr.fetch_gh_topics", fetch_gh_topics)
+  topics <- fetch(api_url)
 
   if (is.null(topics)) {
     return(NULL)
@@ -313,7 +314,11 @@ get_gh_topics <- function(x) {
   remotetopics
 }
 
-fetch_gh_topics <- function(api_url, tmpfile = tempfile(fileext = ".json")) {
+fetch_gh_topics <- function(
+  api_url,
+  tmpfile = tempfile(fileext = ".json"),
+  downloader = download.file
+) {
   # Check whether GH_TOKEN is set in Renviron.
   # Tests can quickly reach the GitHub API limit without authentication.
   # Authenticate to increase the limit.
@@ -325,7 +330,7 @@ fetch_gh_topics <- function(api_url, tmpfile = tempfile(fileext = ".json")) {
 
   # Try with GITHUB_TOKEN.
   res <- tryCatch(
-    download.file(
+    downloader(
       api_url,
       tmpfile,
       quiet = TRUE,
@@ -336,7 +341,7 @@ fetch_gh_topics <- function(api_url, tmpfile = tempfile(fileext = ".json")) {
       TRUE
     },
     error = function(e) {
-      TRUE # nocov
+      TRUE
     }
   )
 
@@ -344,12 +349,12 @@ fetch_gh_topics <- function(api_url, tmpfile = tempfile(fileext = ".json")) {
   if (isTRUE(res)) {
     # Regular call.
     res <- tryCatch(
-      download.file(api_url, tmpfile, quiet = TRUE, mode = "wb"),
+      downloader(api_url, tmpfile, quiet = TRUE, mode = "wb"),
       warning = function(e) {
         TRUE
       },
       error = function(e) {
-        TRUE # nocov
+        TRUE
       }
     )
   }

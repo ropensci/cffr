@@ -1,3 +1,11 @@
+# Error if file not exists
+
+    Code
+      cff_create("DESCRIPTION_not_exists")
+    Condition
+      Error in `build_cff_and_paths()`:
+      ! No 'DESCRIPTION' file found for `x`.
+
 # Test indev
 
     Code
@@ -20,6 +28,30 @@
       - family-names: Basic
         given-names: Marc
         email: marcbasic@gmail.com
+
+# Test error formats on inputs
+
+    Code
+      cff_create(df)
+    Condition
+      Error in `abort_invalid_cff_source()`:
+      ! `x` is not a supported source. If it is a package, you may need to install it with `utils::install.packages()`.
+
+---
+
+    Code
+      cff_create(l)
+    Condition
+      Error in `abort_invalid_cff_source()`:
+      ! `x` is not a supported source. If it is a package, you may need to install it with `utils::install.packages()`.
+
+---
+
+    Code
+      cff_create("uanuanua")
+    Condition
+      Error in `abort_invalid_cff_source()`:
+      ! `x` is not a supported source. If it is a package, you may need to install it with `utils::install.packages()`.
 
 # No auto generate preferred citations
 

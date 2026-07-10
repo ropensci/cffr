@@ -22,7 +22,7 @@ test_that("Validate error CITATION.cff", {
   # From cff
   ferr <- cff_read(err)
   expect_snapshot(tab <- cff_validate(ferr))
-  expect_false(tab)
+  expect_false(as.logical(tab))
   # Extract attr table
   df <- attr(tab, "errors")
   expect_s3_class(df, "data.frame")
@@ -40,15 +40,18 @@ test_that("Validate cffr objects from installed packages", {
 
 test_that("Validate error for invalid input", {
   nocff <- system.file("CITATION", package = "cffr")
-  expect_error(cff_validate(nocff))
+  expect_snapshot(cff_validate(nocff), error = TRUE)
 
   nofile <- system.file("examples/no_file_here", package = "cffr")
-  expect_error(cff_validate(nofile))
+  expect_snapshot(cff_validate(nofile), error = TRUE)
 })
 
 test_that("File that is not cff", {
-  expect_error(cff_validate(system.file(
-    "examples/DESCRIPTION_basic",
-    package = "cffr"
-  )))
+  expect_snapshot(
+    cff_validate(system.file(
+      "examples/DESCRIPTION_basic",
+      package = "cffr"
+    )),
+    error = TRUE
+  )
 })

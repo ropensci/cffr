@@ -116,3 +116,27 @@
       17             /url
       18             /url
 
+# Validate error for invalid input
+
+    Code
+      cff_validate(nocff)
+    Condition
+      Error in `abort_if_not_cff()`:
+      ! `x` is not a '*.cff' file.
+
+---
+
+    Code
+      cff_validate(nofile)
+    Condition
+      Error in `abort_if_not_cff()`:
+      ! `x` is not a '*.cff' file.
+
+# File that is not cff
+
+    Code
+      cff_validate(system.file("examples/DESCRIPTION_basic", package = "cffr"))
+    Condition
+      Error in `abort_if_not_cff()`:
+      ! `x` is not a '*.cff' file.
+

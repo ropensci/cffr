@@ -85,9 +85,8 @@ test_that("Utils coverage", {
   expect_identical(cff_dependency_year(mod2), "1904")
 
   avail <- data.frame(Package = c("foo", "stats"))
-  testthat::local_mocked_bindings(
-    get_avail_on_init = function() avail,
-    .package = "cffr"
+  withr::local_options(
+    cffr.available_packages = avail
   )
   expect_true(is_cran_dependency("foo"))
   expect_false(is_cran_dependency("stats"))
@@ -105,4 +104,19 @@ test_that("Utils coverage", {
   expect_null(cff_dependency_reference(dep))
   expect_null(get_dependencies(1))
   expect_null(get_dependencies(withr::local_tempfile()))
+})
+
+test_that("dependency citation returns NULL when citation cannot be read", {
+  local_mocked_bindings(
+    cff_citation = function(...) {
+      stop("no citation")
+    }
+  )
+
+  expect_null(cff_dependency_citation("foo"))
+  expect_null(cff_dependency_reference(list(
+    package = "foo",
+    version_clean = "",
+    scope = "Imports"
+  )))
 })

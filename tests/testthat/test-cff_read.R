@@ -3,7 +3,12 @@ test_that("Test errors on cff_read", {
   expect_snapshot(cff_read("abcde"), error = TRUE)
 
   f <- system.file("schema/schema.json", package = "cffr")
-  expect_error(cff_read(f), "Cannot recognize the file type of")
+  err <- tryCatch(cff_read(f), error = function(cnd) cnd)
+  expect_s3_class(err, "rlang_error")
+  expect_match(
+    conditionMessage(err),
+    "Cannot recognize the file type of .*schema[.]json"
+  )
 })
 
 test_that("cff_read citation.cff", {
@@ -115,10 +120,9 @@ test_that("DESCRIPTION repository helpers accept fixtures", {
     Repository = "https://cloud.r-project.org/src/contrib"
   )
   repos <- c(CRAN = "https://cloud.r-project.org/")
-  testthat::local_mocked_bindings(
-    get_avail_on_init = function() avail,
-    detect_repos = function() repos,
-    .package = "cffr"
+  withr::local_options(
+    cffr.available_packages = avail,
+    cffr.repos = repos
   )
 
   expect_equal(
@@ -140,10 +144,9 @@ test_that("DESCRIPTION DOI returns NULL outside known repositories", {
 
   pkg <- desc::desc_set("Package", "fixturepkg", file = tmp)
   empty_avail <- data.frame(Package = character(0), Repository = character(0))
-  testthat::local_mocked_bindings(
-    get_avail_on_init = function() empty_avail,
-    detect_repos = function() c(CRAN = "https://cloud.r-project.org/"),
-    .package = "cffr"
+  withr::local_options(
+    cffr.available_packages = empty_avail,
+    cffr.repos = c(CRAN = "https://cloud.r-project.org/")
   )
 
   expect_null(get_desc_doi(pkg))
@@ -156,12 +159,11 @@ test_that("GitHub topics API URL is built without network calls", {
     "https://api.github.com/repos/ropensci/cffr"
   )
 
-  testthat::local_mocked_bindings(
-    fetch_gh_topics = function(api_url) {
+  withr::local_options(
+    cffr.fetch_gh_topics = function(api_url) {
       expect_equal(api_url, "https://api.github.com/repos/ropensci/cffr")
       c("r", "citation", "r")
-    },
-    .package = "cffr"
+    }
   )
 
   expect_equal(get_gh_topics(x), c("r", "citation"))
@@ -170,11 +172,10 @@ test_that("GitHub topics API URL is built without network calls", {
 test_that("GitHub topics returns NULL when API has no topics", {
   x <- c("repository-code" = "https://github.com/ropensci/cffr")
 
-  testthat::local_mocked_bindings(
-    fetch_gh_topics = function(...) {
+  withr::local_options(
+    cffr.fetch_gh_topics = function(...) {
       list()
-    },
-    .package = "cffr"
+    }
   )
 
   expect_null(get_gh_topics(x))
@@ -183,11 +184,10 @@ test_that("GitHub topics returns NULL when API has no topics", {
 test_that("GitHub topics returns NULL outside GitHub repositories", {
   x <- c("repository-code" = "https://gitlab.com/ropensci/cffr")
 
-  testthat::local_mocked_bindings(
-    fetch_gh_topics = function(...) {
+  withr::local_options(
+    cffr.fetch_gh_topics = function(...) {
       stop("fetch_gh_topics() should not be called")
-    },
-    .package = "cffr"
+    }
   )
 
   expect_null(get_gh_topics(x))
@@ -196,11 +196,10 @@ test_that("GitHub topics returns NULL outside GitHub repositories", {
 test_that("GitHub topics returns NULL when the API request fails", {
   x <- c("repository-code" = "https://github.com/ropensci/cffr")
 
-  testthat::local_mocked_bindings(
-    fetch_gh_topics = function(...) {
+  withr::local_options(
+    cffr.fetch_gh_topics = function(...) {
       NULL
-    },
-    .package = "cffr"
+    }
   )
 
   expect_null(get_gh_topics(x))
@@ -209,14 +208,67 @@ test_that("GitHub topics returns NULL when the API request fails", {
 test_that("GitHub topics are cleaned before being used as keywords", {
   x <- c("repository-code" = "https://github.com/ropensci/cffr")
 
-  testthat::local_mocked_bindings(
-    fetch_gh_topics = function(...) {
+  withr::local_options(
+    cffr.fetch_gh_topics = function(...) {
       c(" R ", "", "citation", "R")
-    },
-    .package = "cffr"
+    }
   )
 
   expect_equal(get_gh_topics(x), c("R", "citation"))
+})
+
+test_that("GitHub topics can be fetched from the API response", {
+  tmpfile <- withr::local_tempfile(fileext = ".json")
+  downloader <- function(api_url, destfile, ...) {
+    expect_equal(api_url, "https://api.github.com/repos/ropensci/cffr")
+    jsonlite::write_json(list(topics = c("r", "citation")), destfile)
+    0
+  }
+
+  expect_equal(
+    fetch_gh_topics(
+      "https://api.github.com/repos/ropensci/cffr",
+      tmpfile,
+      downloader
+    ),
+    list("r", "citation")
+  )
+})
+
+test_that("GitHub topics retry without token after authenticated fetch fails", {
+  tmpfile <- withr::local_tempfile(fileext = ".json")
+  calls <- 0
+  downloader <- function(api_url, destfile, ...) {
+    calls <<- calls + 1
+    if (calls == 1) {
+      stop("authenticated fetch failed")
+    }
+    jsonlite::write_json(list(topics = c("r", "citation")), destfile)
+    0
+  }
+
+  expect_equal(
+    fetch_gh_topics(
+      "https://api.github.com/repos/ropensci/cffr",
+      tmpfile,
+      downloader
+    ),
+    list("r", "citation")
+  )
+  expect_identical(calls, 2)
+})
+
+test_that("GitHub topics return NULL when all fetch attempts fail", {
+  tmpfile <- withr::local_tempfile(fileext = ".json")
+  downloader <- function(...) {
+    stop("fetch failed")
+  }
+
+  expect_null(fetch_gh_topics(
+    "https://api.github.com/repos/ropensci/cffr",
+    tmpfile,
+    downloader
+  ))
 })
 
 
@@ -369,6 +421,22 @@ test_that("Corrupt CITATION", {
   expect_null(anull)
 })
 
+test_that("cff_read_citation returns NULL when both read attempts fail", {
+  tmp <- withr::local_tempfile(pattern = "CITATION")
+  writeLines("citEntry(entry = 'Manual')", tmp)
+  local_mocked_bindings(
+    cff_read_citation_file = function(...) {
+      stop("read failed")
+    }
+  )
+
+  expect_message(
+    expect_message(anull <- cff_read_citation(tmp), "Could not read"),
+    "Cannot read"
+  )
+  expect_null(anull)
+})
+
 test_that("Creating cff from packages encoded in latin1", {
   rvers <- getRversion()
   skip_if(rvers >= "4.7.0", "R 4.7.0 only uses UTF-8 in DESCRIPTION")
@@ -380,7 +448,7 @@ test_that("Creating cff from packages encoded in latin1", {
   )
   cit_path <- system.file("examples/CITATION_surveillance", package = "cffr")
 
-  expect_true(desc::desc(desc_path)$get("Encoding") == "latin1")
+  expect_equal(unname(desc::desc(desc_path)$get("Encoding")), "latin1")
 
   # Parse citation
   bib <- cff_safe_read_citation(desc_path, cit_path)

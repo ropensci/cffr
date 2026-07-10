@@ -52,7 +52,7 @@ print_snapshot <- function(title = "----", obj) {
 }
 
 get_avail_on_init <- function() {
-  avail_on_init # nocov
+  getOption("cffr.available_packages", avail_on_init) # nocov
 }
 
 #' Search for a package in available repositories.
@@ -64,7 +64,7 @@ get_avail_on_init <- function() {
 search_on_repos <- function(
   name,
   avail = get_avail_on_init(),
-  repos = detect_repos()
+  repos = getOption("cffr.repos", detect_repos())
 ) {
   get <- avail[name == avail$Package, "Repository"]
 

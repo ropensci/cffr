@@ -163,15 +163,15 @@ cff_dependency_reference <- function(dep) {
 
 cff_dependency_citation <- function(package) {
   if (package == "R") {
-    mod <- as_cff(citation())[[1]]
+    mod <- as_cff(cff_citation())[[1]]
     mod$year <- format(Sys.Date(), "%Y")
     return(mod)
   }
 
-  mod <- try(as_cff(citation(package, auto = TRUE)[1])[[1]], silent = TRUE)
+  mod <- try(as_cff(cff_citation(package, auto = TRUE)[1])[[1]], silent = TRUE)
 
   if (inherits(mod, "try-error")) {
-    return(NULL) # nocov
+    return(NULL)
   }
 
   # Simplify the `cff` object to avoid cluttering the output.
@@ -183,6 +183,10 @@ cff_dependency_citation <- function(package) {
   }
 
   mod
+}
+
+cff_citation <- function(...) {
+  citation(...)
 }
 
 is_cran_dependency <- function(package) {
