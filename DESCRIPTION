@@ -1,5 +1,5 @@
 Package: cffr
-Title: Generate Citation File Format ('CFF') Metadata for R Packages
+Title: Generate Citation File Format ('CFF') Metadata
 Version: 1.4.1.9000
 Authors@R: c(
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
@@ -12,7 +12,7 @@ Authors@R: c(
 Description: Citation File Format ('CFF') version 1.2.0
     <doi:10.5281/zenodo.5171937> is a human- and machine-readable file
     format for software citation metadata. Core utilities generate, read,
-    write and validate Citation File Format metadata for R packages.
+    write and validate Citation File Format metadata for 'R' packages.
 License: GPL (>= 3)
 URL: https://docs.ropensci.org/cffr/, https://github.com/ropensci/cffr
 BugReports: https://github.com/ropensci/cffr/issues
