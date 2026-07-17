@@ -30,6 +30,9 @@
 \alias{as.person.cff_ref}
 \alias{as.person.cff_ref_lst}
 \title{The \code{cff} class}
+\value{
+A documentation topic describing the \code{cff} class and subclasses.
+}
 \description{
 \CRANpkg{cffr} implements an S3 object with \code{\link[base:class]{base::class()}} \code{cff}, which
 represents the information in a \code{CITATION.cff} file in \R.

@@ -7,6 +7,8 @@
 #' ```{r child = "man/chunks/cffclass.Rmd"}
 #' ```
 #'
+#' @return A documentation topic describing the `cff` class and subclasses.
+#'
 #' @references
 #'
 #' Wickham H (2019). "S3." In *Advanced R*, 2nd edition.
