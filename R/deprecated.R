@@ -289,7 +289,7 @@ cff_parse_person_bibtex <- function(person) {
 #' bib <- citation("base")
 #' bib
 #'
-#' # To cff.
+#' # To `cff`.
 #' bib_to_cff <- as_cff(bib)
 #' bib_to_cff
 #'

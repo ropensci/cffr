@@ -71,7 +71,7 @@
 
 - `cff_write()` gains a new `encoding` argument to make it work with different
   encodings. See `iconv()`.
-- Fixed **NOTEs** caused by empty lines in docs.
+- Fixed **NOTEs** caused by empty lines in documentation.
 
 # cffr 1.0.0
 

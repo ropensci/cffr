@@ -195,7 +195,7 @@ as_bibentry.list <- function(x, ...) {
     return(bibentry())
   }
 
-  # Unlist to undo the do.call effect.
+  # Unlist to undo the `do.call()` effect.
   bib <- bib[[1]]
 
   bib
@@ -298,22 +298,22 @@ as_bibentry.cff_ref <- function(x, ...) {
   ### Journal ----
   tobibentry$journal <- x$journal
 
-  ### note ----
+  ### Note ----
   tobibentry$note <- get_bib_note(x)
 
   ### Number ----
   tobibentry$number <- clean_str(x[["issue"]])
 
-  ### pages ----
+  ### Pages ----
   tobibentry$pages <- clean_str(paste(
     unique(c(x$start, x$end)),
     collapse = "--"
   ))
 
-  ### publisher ----
+  ### Publisher ----
   tobibentry$publisher <- clean_str(x$publisher$name)
 
-  ### title ----
+  ### Title ----
   tobibentry$title <- x$title
 
   ### Volume ----
@@ -353,7 +353,7 @@ as_bibentry.cff_ref <- function(x, ...) {
   # Month ----
   tobibentry$month <- get_bib_month(x)
 
-  # year ----
+  # Year ----
   tobibentry$year <- get_bib_year(x)
 
   # Handle anonymous authors ----

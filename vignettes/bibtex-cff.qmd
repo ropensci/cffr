@@ -258,7 +258,7 @@ The mapping implemented in **cffr** follows a three-step pipeline:
 
 Whenever possible, mappings are deterministic. However, some fields require
 heuristic parsing, particularly when normalizing names, dates or page ranges. As
-a result, semantic round‑trip reversibility is not guaranteed, even when the
+a result, semantic round-trip reversibility is not guaranteed, even when the
 conversion process itself is reproducible.
 
 ```{r}
@@ -408,8 +408,8 @@ transformation classes.
 
 ### Entry/key `type` crosswalk
 
-For mapping general BibTeX entries to CFF key `type`, the following equivalence
-is proposed:
+To map general BibTeX entries to CFF key `type`, the following equivalence is
+proposed:
 
 ```{r}
 #| label: tbl-entry_bib2cff
@@ -553,9 +553,9 @@ from differences between BibTeX and CFF schemas:
 - **Structural transformations**: Some fields require transformation rather than
   direct mapping, such as **pages** → `start`/`end`, altering the representation
   of the original data.
-- **Non-reversibility**: Due to the above factors, round-trip conversion (BibTeX
-  → CFF → BibTeX) is not guaranteed to preserve the original structure or
-  semantics.
+- **Non-reversibility**: Because of these factors, round-trip conversion
+  (BibTeX → CFF → BibTeX) is not guaranteed to preserve the original structure
+  or semantics.
 
 These limitations reflect fundamental differences between the two formats rather
 than implementation-specific constraints.
@@ -564,10 +564,10 @@ than implementation-specific constraints.
 
 The mapping implemented in **cffr** is guided by the following principles:
 
-- Prefer deterministic mappings whenever possible
-- Use heuristics only when unavoidable
-- Normalize metadata to align with CFF conventions
-- Prioritize interoperability over exact round‑trip fidelity
+- Prefer deterministic mappings whenever possible.
+- Use heuristics only when unavoidable.
+- Normalize metadata to align with CFF conventions.
+- Prioritize interoperability over exact round-trip fidelity.
 
 ## Entry models {#entrymodels}
 
@@ -587,7 +587,7 @@ The crosswalk for **\@article** does not require any special treatment.
 df_table <- table_master[table_master$table == "model_article", c(2:4)]
 df_table[is.na(df_table)] <- ""
 
-# fix links
+# Fix links.
 df_table$f3 <- gsub("link_to_entry_models", "#entrymodels", df_table$f3)
 df_table$f3 <- gsub("link_to_article", "#article", df_table$f3)
 df_table$f3 <- gsub("link_to_booklet", "#booklet", df_table$f3)
@@ -657,8 +657,8 @@ knitr::kable(
 ```
 
 There are notable differences in how BibTeX and **BibLaTeX** handle the
-**\@inbook** entry (further discussed in the [Appendix A](#appendix_inbook)). We
-propose to treat a BibLaTeX **\@inbook** as a BibTeX **\@incollection**.
+**\@inbook** entry (discussed further in [Appendix A](#appendix_inbook)). We
+propose treating a BibLaTeX **\@inbook** as a BibTeX **\@incollection**.
 
 **Round-trip: \@book**
 
@@ -707,7 +707,7 @@ toBibtex(cff_read_bib_text(bib))
 
 ### \@booklet {#booklet}
 
-In **\@booklet** **address** is mapped to `location`.
+In **\@booklet**, **address** is mapped to `location`.
 
 ```{r}
 #| label: tbl-model_booklet
@@ -977,9 +977,9 @@ toBibtex(cff_read_bib_text(bib))
 The crosswalk for **\@misc** does not require any special treatment. This
 **entry** does not require any **field**.
 
-Note also that it is mapped to `type: generic` as [**\@incollection**](#incol),
-but in this case **booktitle** is not even an option, so the proposed definition
-should cover both **\@misc** and **\@incollection** without problems.
+Note also that it is mapped to `type: generic`, as with
+[**\@incollection**](#incol). In this case, **booktitle** is not an option, so
+the proposed definition should cover both **\@misc** and **\@incollection**.
 
 ```{r}
 #| label: tbl-model_misc
@@ -1023,9 +1023,9 @@ toBibtex(cff_read_bib_text(bib))
 
 The proposed model is consistent with [**\@conference** /
 **\@inproceedings**](#conf_inproc). Note that **\@proceedings** does not
-prescribe an **author** field. In these cases, as `authors` is required in CFF,
-we use *anonymous*[^6] when mapping to CFF and omit it when mapping from CFF to
-BibTeX.
+prescribe an **author** field. In these cases, because `authors` is required in
+CFF, we use *anonymous*[^6] when mapping to CFF and omit it when mapping from
+CFF to BibTeX.
 
 ```{r}
 #| label: tbl-model_proceedings
@@ -1239,7 +1239,7 @@ knitr::kable(
 ## References
 
 [^1]: See a complete list of possible values of CFF `type` in [Appendix
-    B](#appendix_cff_type)
+    B](#appendix_cff_type).
 
 [^2]: This software performs only the mapping from CFF to BibTeX, but **cffr**
     can perform the mapping in both directions.

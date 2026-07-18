@@ -21,7 +21,7 @@ method instead.
 bib <- citation("base")
 bib
 
-# To cff.
+# To `cff`.
 bib_to_cff <- as_cff(bib)
 bib_to_cff
 

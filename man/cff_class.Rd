@@ -75,11 +75,11 @@ representing persons or entities. In \CRANpkg{cffr}, the subclass
 \code{\link{cff_pers_lst}} collects an array of \code{definitions.person} or
 \code{definitions.entity} objects, where each individual person or entity has
 subclass \code{\link{cff_pers}}.
-\item \code{definitions.reference}: The CFF definition for collecting references to
-related works and other software used in the development of the main work of
-the \code{CITATION.cff} file. In \CRANpkg{cffr}, the subclass \code{\link{cff_ref_lst}}
-represents arrays of \code{definitions.reference} objects, where each element has
-subclass \code{\link{cff_ref}}.
+\item \code{definitions.reference}: The CFF definition for references to related works
+and other software used in the main work described by the \code{CITATION.cff} file.
+In \CRANpkg{cffr}, the subclass \code{\link{cff_ref_lst}} represents arrays of
+\code{definitions.reference} objects, where each element has subclass
+\code{\link{cff_ref}}.
 }
 
 These subclasses are not complete, valid \code{\link{cff}} objects. They adapt

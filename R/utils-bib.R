@@ -165,7 +165,7 @@ make_bibkey <- function(tobibentry) {
 
   init_aut <- tobibentry$author
 
-  # Try to get the editor if the author is null.
+  # Try to get the editor if the author is `NULL`.
   if (is.null(init_aut)) {
     init_aut <- tobibentry$editor
   }

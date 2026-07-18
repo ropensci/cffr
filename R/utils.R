@@ -31,7 +31,7 @@ clean_str <- function(str) {
   clean
 }
 
-#' Drop nulls from a list
+#' Drop `NULL` values from a list
 #' @param x A list to be cleaned.
 #' @source https://github.com/cboettig/codemeta/blob/master/R/utils.R
 #' @noRd

@@ -15,7 +15,7 @@
 #' @inherit cff_git_hook return
 #'
 #' @details
-#' Triggers on your action can be modified. See
+#' Workflow triggers can be modified. See
 #' ```{r, echo=FALSE, results='asis'}
 #'
 #' cat(paste0(" [Events that trigger workflows]",

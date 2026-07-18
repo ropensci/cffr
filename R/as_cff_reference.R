@@ -18,7 +18,7 @@ make_cff_reference <- function(bib) {
   # Get BibTeX entry ----
   cit_list <- get_bibtex_entry(bib)
 
-  ## If there is no title (case of some Misc), return null.
+  ## If there is no title (case of some Misc), return `NULL`.
   if (!("title" %in% names(cit_list))) {
     entry <- capture.output(print(bib, bibtex = FALSE))
     entry <- as.character(entry)
@@ -44,7 +44,7 @@ make_cff_reference <- function(bib) {
 
   # Coerce persons ----
   # Special case: authors.
-  # Some keys do not strictly require authors, so create one for cff.
+  # Some keys do not strictly require authors, so create one for CFF.
   # https://github.com/citation-file-format/citation-file-format/blob/main/
   # (cont) schema-guide.md#how-to-deal-with-unknown-individual-authors
 

@@ -195,7 +195,7 @@ get_desc_urls <- function(pkg) {
   url <- pkg$get_urls()
   allurls <- desc_all_urls(pkg, url)
 
-  # If there are no URLs, return as null.
+  # If there are no URLs, return as `NULL`.
   if (length(allurls) == 0) {
     return(list(url = NULL))
   }

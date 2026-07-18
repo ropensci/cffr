@@ -27,7 +27,7 @@ updates your \code{CITATION.cff} when any of these events occur:
 }
 }
 \details{
-Triggers on your action can be modified. See \href{https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows}{Events that trigger workflows}.
+Workflow triggers can be modified. See \href{https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows}{Events that trigger workflows}.
 }
 \examples{
 \dontrun{
