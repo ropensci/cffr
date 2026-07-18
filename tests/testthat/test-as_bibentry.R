@@ -69,14 +69,7 @@ test_that("as_bibentry default", {
 test_that("as_bibentry NULL", {
   skip_on_cran()
 
-  new_dir <- withr::local_tempdir(pattern = "mock-pack-")
-  withr::local_dir(new_dir)
-
-  # Move files
-  file.copy(
-    system.file("examples/DESCRIPTION_basic", package = "cffr"),
-    to = "DESCRIPTION"
-  )
+  local_mock_package()
 
   # Get bibentry
   a_bib <- as_bibentry()

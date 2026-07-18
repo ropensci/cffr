@@ -146,7 +146,7 @@ test_that("No valid emails", {
 
   p2 <- as_cff_person(pp2)
 
-  expect_equal(p, as_cff_person(person(given = "John", family = "Doe")))
+  expect_equal(p, p2)
 })
 
 test_that("Can extract comments from format", {

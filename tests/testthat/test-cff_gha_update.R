@@ -1,17 +1,12 @@
 test_that("cff_gha_update installs a workflow in the requested package", {
   skip_on_cran()
 
-  new_dir <- withr::local_tempdir(pattern = "mock-pack-")
-
-  # Move files
-  file.copy(
-    system.file("examples/DESCRIPTION_many_urls", package = "cffr"),
-    to = file.path(new_dir, "DESCRIPTION")
+  new_dir <- local_mock_package(
+    description = "DESCRIPTION_many_urls",
+    rbuildignore = TRUE,
+    local_dir = FALSE
   )
-
-  # Create Rbuildignore
   rbuildignore <- file.path(new_dir, ".Rbuildignore")
-  file.create(rbuildignore, showWarnings = FALSE)
   expect_true(file_exist_abort(rbuildignore))
 
   # Add action

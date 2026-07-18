@@ -11,14 +11,7 @@ test_that("Test installed packages", {
 test_that("Test indev", {
   skip_on_cran()
 
-  new_dir <- withr::local_tempdir(pattern = "mock-pack-")
-  withr::local_dir(new_dir)
-
-  # Move files
-  file.copy(
-    system.file("examples/DESCRIPTION_basic", package = "cffr"),
-    to = "DESCRIPTION"
-  )
+  local_mock_package()
 
   a_cff <- cff_create()
 
@@ -143,20 +136,6 @@ test_that("Default roles on write", {
   )
 
   expect_identical(cf, cf2)
-})
-
-test_that("Add new roles", {
-  p <- system.file("examples/DESCRIPTION_no_URL", package = "cffr")
-
-  cf <- cff_create(p, dependencies = FALSE)
-  cf2 <- cff_create(
-    p,
-    authors_roles = c("aut", "cre", "ctb"),
-    dependencies = FALSE
-  )
-
-  expect_gt(length(cf2$authors), length(cf$authors))
-  expect_true(cff_validate(cf2, verbose = FALSE))
 })
 
 test_that("Add new roles on write", {

@@ -3,6 +3,7 @@
 - The JOSS paper is now linked as an external pkgdown article instead of being
   rebuilt as a package vignette.
 - `cff_gha_update()` now uses `path` when updating `.Rbuildignore`.
+- `cff_write()` now formats the `inst/CITATION` update message correctly.
 
 # cffr 1.4.1
 

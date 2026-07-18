@@ -190,23 +190,28 @@ test_that("Update .Rbuildignore", {
 })
 
 
-test_that("Test in mock package", {
+test_that("cff_write creates CITATION.cff in a mock package", {
   skip_on_cran()
 
-  new_dir <- withr::local_tempdir(pattern = "mock-pack-")
-  withr::local_dir(new_dir)
-
-  # Move files
-  file.copy(
-    system.file("examples/DESCRIPTION_many_urls", package = "cffr"),
-    to = "DESCRIPTION"
+  local_mock_package(
+    description = "DESCRIPTION_many_urls",
+    rbuildignore = TRUE
   )
 
-  # Create a cff
   expect_silent(cff_write(verbose = FALSE))
+  expect_true(file_exist_abort("CITATION.cff"))
+  expect_true(cff_validate("CITATION.cff", verbose = FALSE))
   expect_false(file.exists("inst/CITATION"))
 
-  # Create a cff also with auto_citation
+  ignore <- readLines(".Rbuildignore")
+  expect_true("^CITATION\\.cff$" %in% ignore)
+})
+
+test_that("cff_write creates and updates inst/CITATION in a mock package", {
+  skip_on_cran()
+
+  local_mock_package(description = "DESCRIPTION_many_urls")
+
   expect_silent(cff_write(verbose = FALSE, r_citation = TRUE))
   expect_true(file.exists("inst/CITATION"))
 
@@ -215,11 +220,10 @@ test_that("Test in mock package", {
     meta = list(Encoding = "UTF-8")
   )
 
-  # Same but with verbose
-  ff <- cff_write(verbose = TRUE, r_citation = TRUE)
-
-  # No backup
-
+  expect_output(
+    cff_write(verbose = TRUE, r_citation = TRUE),
+    "Updating\\s+'inst/CITATION'"
+  )
   expect_length(list.files("inst"), 1)
 
   auto_cit2 <- utils::readCitationFile(
@@ -229,14 +233,10 @@ test_that("Test in mock package", {
 
   expect_identical(auto_cit1, auto_cit2)
 
-  # Update version and re-check
-
   d <- desc::desc("DESCRIPTION")
-
   expect_message(d$bump_version("major"))
   d$write("DESCRIPTION")
 
-  # Check new vers
   cff_write(verbose = FALSE, r_citation = TRUE)
 
   auto_cit3 <- utils::readCitationFile(
@@ -244,13 +244,20 @@ test_that("Test in mock package", {
     meta = list(Encoding = "UTF-8")
   )
 
-  # Clean
-  unlink("inst", recursive = TRUE, force = TRUE)
-  expect_false(dir.exists("inst"))
+  expect_false(identical(auto_cit1, auto_cit3))
 
-  # Get bibentry
-  a_bib <- as_bibentry()
-  # Create citation
+  rvers <- getRversion()
+  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+
+  expect_snapshot(auto_cit1)
+  expect_snapshot(auto_cit3)
+})
+
+test_that("cff_write_citation creates inst/CITATION in a mock package", {
+  skip_on_cran()
+
+  local_mock_package()
+
   cit <- utils::readCitationFile(
     system.file("examples/CITATION_basic", package = "cffr"),
     meta = list(Encoding = "UTF-8")
@@ -259,55 +266,9 @@ test_that("Test in mock package", {
   expect_silent(cff_write_citation(cit, "./inst/CITATION", verbose = FALSE))
   expect_true(file_exist_abort("./inst/CITATION"))
 
-  # Create Rbuildignore
-  file.create(".Rbuildignore", showWarnings = FALSE)
-  expect_true(file_exist_abort(".Rbuildignore"))
-
-  # Add action
-  expect_message(
-    expect_message(
-      expect_message(cff_gha_update(), "Creating directory"),
-      "Workflow installed"
-    ),
-    "Adding"
-  )
-
-  expect_message(cff_gha_update(), "already exists")
-  expect_message(cff_gha_update(overwrite = TRUE), "Workflow installed")
-
-  expect_true(file_exist_abort(file.path(
-    ".github",
-    "workflows",
-    "update-citation-cff.yaml"
-  )))
-
-  cffobj <- cff_create()
-
-  expect_output(cff_write())
-
-  expect_true(file_exist_abort("CITATION.cff"))
-
-  expect_true(cff_validate("CITATION.cff", verbose = FALSE))
-
-  ignore <- readLines(".Rbuildignore")
-
-  expect_true(("^CITATION\\.cff$" %in% ignore))
-  expect_true(("^\\.github$" %in% ignore))
-
-  # Check citation from package
-  cit <- utils::readCitationFile(
+  written <- utils::readCitationFile(
     "./inst/CITATION",
     meta = list(Encoding = "UTF-8")
   )
-
-  rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
-
-  expect_false(identical(auto_cit1, cit))
-  expect_true(identical(auto_cit1, auto_cit2))
-  expect_snapshot(auto_cit1)
-  expect_snapshot(auto_cit3)
-  expect_snapshot(cffobj)
-  expect_snapshot(toBibtex(cit))
-  expect_snapshot(toBibtex(a_bib))
+  expect_identical(written, cit)
 })

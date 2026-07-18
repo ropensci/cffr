@@ -188,7 +188,11 @@ auto_r_citation <- function(
 
   # Otherwise update `inst/CITATION`.
   if (verbose) {
-    cli::cat_rule("Updating {.file inst/CITATION}", col = "cyan", line = 2)
+    cli::cat_rule(
+      cli::format_inline("Updating {.file inst/CITATION}"),
+      col = "cyan",
+      line = 2
+    )
   }
   cffobj <- cff_read(outfile)
   fpath <- "./inst/CITATION"

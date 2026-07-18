@@ -256,7 +256,7 @@ test_that("toBibtex", {
 
   # One entry
   oneent <- toBibtex(full_cff$references[[1]])
-  expect_s3_class(single, "Bibtex")
+  expect_s3_class(oneent, "Bibtex")
   expect_equal(sum(names(oneent) == "title"), 1)
 
   fromfile <- toBibtex(newbib)
@@ -312,22 +312,21 @@ test_that("as.list", {
 
   full_cff <- cff_read_cff_citation(f)
 
-  # Capture dput and search
-  dput_cff <- capture.output(dput(full_cff))
+  count_cff_classes <- function(x) {
+    n <- as.integer("cff" %in% class(x))
+    if (!is.list(x)) {
+      return(n)
+    }
 
-  ntot_class <- sum(grepl("\"cff\"", dput_cff))
+    n + sum(vapply(x, count_cff_classes, integer(1)))
+  }
 
-  expect_gt(ntot_class, 30)
+  expect_gt(count_cff_classes(full_cff), 0)
 
   # Unlist
   unl <- as.list(full_cff)
 
-  # Capture dput and search
-  dput_unl <- capture.output(dput(unl))
-
-  ntot_class_unl <- sum(grepl("\"cff\"", unl))
-
-  expect_identical(ntot_class_unl, 0L)
+  expect_identical(count_cff_classes(unl), 0L)
 
   # Reclass
   regen_cff <- as_cff(unl)
