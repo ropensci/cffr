@@ -904,8 +904,8 @@ toBibtex(cff_read_bib_text(bib))
 
 ### \@mastersthesis / \@phdthesis
 
-In terms of fields required by BibTeX, it is identical for both
-**\@mastersthesis** and **\@phdthesis.**
+The BibTeX field requirements are identical for **\@mastersthesis** and
+**\@phdthesis**.
 
 We propose here to identify each type of thesis using the key `thesis-type`. If
 `thesis-type` contains a [regex pattern](https://regex101.com/r/mBWfbs/1)

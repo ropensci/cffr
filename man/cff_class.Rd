@@ -37,8 +37,8 @@ A documentation topic describing the \code{cff} class and subclasses.
 \CRANpkg{cffr} implements an S3 object with \code{\link[base:class]{base::class()}} \code{cff}, which
 represents the information in a \code{CITATION.cff} file in \R.
 
-Under the hood, a \code{cff} object is a named \code{\link{list}} with additional methods, most
-notably \code{\link{print}} and \code{\link[=as_cff]{as_cff()}}.
+Under the hood, a \code{\link{cff}} object is a named \code{\link{list}} with additional methods,
+most notably \code{\link[=print]{print()}} and \code{\link[=as_cff]{as_cff()}}.
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{a_named_list <- list(
   first = "I", second = "am", third = "a", fourth = "list",
@@ -63,31 +63,31 @@ is.list(a_cff_object)
 #> [1] TRUE
 }\if{html}{\out{</div>}}
 
-\code{\link[=as_cff]{as_cff()}} converts a \code{list} to \code{cff} and removes elements that are \code{NULL} or
-\code{NA}. Named elements are known as keys in CFF terminology.
+\code{\link[=as_cff]{as_cff()}} converts a \code{\link{list}} to \code{\link{cff}} and removes elements that are \code{NULL}
+or \code{NA}. Named elements are known as keys in CFF terminology.
 \subsection{Subclasses}{
 
-\CRANpkg{cffr} implements two special subclasses of \code{cff}, which represent two
-types of objects defined in the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}:
+\CRANpkg{cffr} implements two special subclasses of \code{\link{cff}}, which represent
+two types of objects defined in the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}:
 \itemize{
 \item \code{definitions.person} and \code{definitions.entity}: CFF definitions for sublists
 representing persons or entities. In \CRANpkg{cffr}, the subclass
-\code{cff_pers_lst} collects an array of \code{definitions.person} or
+\code{\link{cff_pers_lst}} collects an array of \code{definitions.person} or
 \code{definitions.entity} objects, where each individual person or entity has
-subclass \code{cff_pers}.
+subclass \code{\link{cff_pers}}.
 \item \code{definitions.reference}: The CFF definition for collecting references to
 related works and other software used in the development of the main work of
-the \code{CITATION.cff} file. In \CRANpkg{cffr}, the subclass \code{cff_ref_lst}
+the \code{CITATION.cff} file. In \CRANpkg{cffr}, the subclass \code{\link{cff_ref_lst}}
 represents arrays of \code{definitions.reference} objects, where each element has
-subclass \code{cff_ref}.
+subclass \code{\link{cff_ref}}.
 }
 
-These subclasses are not complete, valid \code{cff} objects. They adapt information
-to the structures required by the CFF schema:
+These subclasses are not complete, valid \code{\link{cff}} objects. They adapt
+information to the structures required by the CFF schema.
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{# Use `utils::person()`.
+The examples below use \code{\link[utils:person]{utils::person()}}.
 
-## Array.
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{## Array.
 two_persons <- as_cff_person(
   c(
     person("A", "person", comment = c(ORCID = "0000-0001-8457-4658")),
@@ -168,9 +168,9 @@ class(ref_list[[1]])
 }\if{html}{\out{</div>}}
 }
 
-\subsection{Valid \code{cff} objects}{
+\subsection{Valid \code{\link{cff}} objects}{
 
-Creating a \code{cff} object does not ensure its validity against the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}:
+Creating a \code{\link{cff}} object does not ensure its validity against the \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema}:
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{class(a_cff_object)
 #> [1] "cff"
@@ -289,7 +289,7 @@ c(minimal_cff, new_keys)
 
 \subsection{\code{\link[=as.person]{as.person()}}}{
 
-Only for \code{cff_pers_lst} and \code{cff_pers} objects:
+Only for \code{\link{cff_pers_lst}} and \code{\link{cff_pers}} objects:
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{as.person(two_persons)
 #> [1] "A person (ORCID: <https://orcid.org/0000-0001-8457-4658>)"

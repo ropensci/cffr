@@ -618,7 +618,9 @@ cff_gha_update()
 See the [example workflow
 file](https://github.com/ropensci/cffr/blob/main/.github/workflows/update-citation-cff.yaml).
 
-#### Git pre-commit hook [![Experimental](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+#### Git pre-commit hook
+
+[![Experimental](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 
 You can also use a [Git pre-commit
 hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_committing_workflow_hooks):

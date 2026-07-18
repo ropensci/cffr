@@ -1,5 +1,5 @@
-Under the hood, a `cff` object is a named [`list`] with additional methods, most
-notably [`print`] and [as_cff()].
+Under the hood, a [`cff`] object is a named [`list`] with additional methods,
+most notably [`print()`] and [`as_cff()`].
 
 ```{r}
 #| include: false
@@ -22,33 +22,33 @@ a_cff_object
 is.list(a_cff_object)
 ```
 
-[as_cff()] converts a `list` to `cff` and removes elements that are `NULL` or
-`NA`. Named elements are known as keys in CFF terminology.
+[`as_cff()`] converts a [`list`] to [`cff`] and removes elements that are `NULL`
+or `NA`. Named elements are known as keys in CFF terminology.
 
 ### Subclasses
 
-\CRANpkg{cffr} implements two special subclasses of `cff`, which represent two
-types of objects defined in the [Citation File Format
+\CRANpkg{cffr} implements two special subclasses of [`cff`], which represent
+two types of objects defined in the [Citation File Format
 schema](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md):
 
 - `definitions.person` and `definitions.entity`: CFF definitions for sublists
   representing persons or entities. In \CRANpkg{cffr}, the subclass
-  `cff_pers_lst` collects an array of `definitions.person` or
+  [`cff_pers_lst`] collects an array of `definitions.person` or
   `definitions.entity` objects, where each individual person or entity has
-  subclass `cff_pers`.
+  subclass [`cff_pers`].
 
 - `definitions.reference`: The CFF definition for collecting references to
   related works and other software used in the development of the main work of
-  the `CITATION.cff` file. In \CRANpkg{cffr}, the subclass `cff_ref_lst`
+  the `CITATION.cff` file. In \CRANpkg{cffr}, the subclass [`cff_ref_lst`]
   represents arrays of `definitions.reference` objects, where each element has
-  subclass `cff_ref`.
+  subclass [`cff_ref`].
 
-These subclasses are not complete, valid `cff` objects. They adapt information
-to the structures required by the CFF schema:
+These subclasses are not complete, valid [`cff`] objects. They adapt
+information to the structures required by the CFF schema.
+
+The examples below use [`utils::person()`].
 
 ```{r}
-# Use `utils::person()`.
-
 ## Array.
 two_persons <- as_cff_person(
   c(
@@ -84,10 +84,10 @@ ref_list[[1]]
 class(ref_list[[1]])
 ```
 
-## Valid `cff` objects
+## Valid [`cff`] objects
 
-Creating a `cff` object does not ensure its validity against the [Citation File
-Format
+Creating a [`cff`] object does not ensure its validity against the [Citation
+File Format
 schema](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md):
 
 ```{r}
@@ -96,10 +96,10 @@ class(a_cff_object)
 cff_validate(a_cff_object)
 ```
 
-[cff_validate()] reports validation problems and invisibly returns `TRUE` or
+[`cff_validate()`] reports validation problems and invisibly returns `TRUE` or
 `FALSE`.
 
-We can use [cff_modify()] to add more keys:
+We can use [`cff_modify()`] to add more keys:
 
 ```{r}
 cff_valid <- cff_modify(a_cff_object,
@@ -122,7 +122,7 @@ cff_validate(cff_valid)
 \CRANpkg{cffr} provides additional S3 methods for common coercion functions from
 the base and utils namespaces.
 
-### [as.data.frame()]
+### [`as.data.frame()`]
 
 ```{r}
 minimal_cff <- cff()
@@ -136,7 +136,7 @@ class(as_df)
 t(as_df)
 ```
 
-### [c()]
+### [`c()`]
 
 ```{r}
 new_keys <- c("date-released" = "2020-01-31", abstract = "Minimal example")
@@ -144,21 +144,21 @@ new_keys <- c("date-released" = "2020-01-31", abstract = "Minimal example")
 c(minimal_cff, new_keys)
 ```
 
-### [as.list()]
+### [`as.list()`]
 
 ```{r}
 as.list(minimal_cff)
 ```
 
-### [as.person()]
+### [`as.person()`]
 
-Only for `cff_pers_lst` and `cff_pers` objects:
+Only for [`cff_pers_lst`] and [`cff_pers`] objects:
 
 ```{r}
 as.person(two_persons)
 ```
 
-### [toBibtex()]
+### [`toBibtex()`]
 
 ```{r}
 # For `cff`.

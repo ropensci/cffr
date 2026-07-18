@@ -160,7 +160,7 @@ warns when used, providing advice on the replacement function.
 - The minimum required **R** version is now **4.0.0**.
 - The BibTeX crosswalk was updated (see
   `vignette("bibtex-cff", package = "cffr")`), with corresponding changes in the
-  mapping performed by `as_bibtex()` and `cff_parse_citation()`:
+  mapping performed by `toBibtex()` and `cff_parse_citation()`:
   - **\@inbook** and **\@book** gain a new value in CFF when **series** is
     provided: `collection-type: book-series`.
   - **cffr** can now handle BibLaTeX **\@inbook**, which differs significantly
