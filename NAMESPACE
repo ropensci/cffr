@@ -72,17 +72,19 @@ export(encoded_utf_to_latex)
 export(write_bib)
 export(write_citation)
 importFrom(tools,encoded_text_to_latex)
-importFrom(utils,as.person)
-importFrom(utils,available.packages)
-importFrom(utils,bibentry)
-importFrom(utils,capture.output)
-importFrom(utils,citation)
-importFrom(utils,download.file)
-importFrom(utils,head)
-importFrom(utils,installed.packages)
-importFrom(utils,modifyList)
-importFrom(utils,packageDescription)
-importFrom(utils,person)
-importFrom(utils,read.csv)
-importFrom(utils,tail)
-importFrom(utils,toBibtex)
+importFrom(utils,
+  as.person,
+  available.packages,
+  bibentry,
+  capture.output,
+  citation,
+  download.file,
+  head,
+  installed.packages,
+  modifyList,
+  packageDescription,
+  person,
+  read.csv,
+  tail,
+  toBibtex
+)
