@@ -72,10 +72,10 @@ jobs:
         core <- dplyr::filter(packs, core == TRUE) %>%
           pull(1)
 
-        # Selected 1500 more packages
+        # Selected non-core packages from CRAN Task Views
         sel_views <- packs %>%
           filter(core == FALSE) %>%
-          slice_head(n = 2500) %>%
+          slice_head(n = 4500) %>%
           pull(name)
 
         # rOpenSci packages from r-universe
@@ -119,11 +119,26 @@ jobs:
           lapply("[[", "Package") %>%
           unlist()
 
+        # Packages that have exposed citation metadata edge cases
+        stress_packages <- c(
+          "codemetar",
+          "ctrdata",
+          "MomTrunc",
+          "options",
+          "quint",
+          "resmush",
+          "Rdimtools",
+          "rmarkdown",
+          "RNeXML",
+          "surveillance",
+          "vcfR"
+        )
+
         # Gather packages
         all <- sort(unique(c(
           trending, last_month,
           core, sel_views, ropensci, ropenscireviewtools, rlib, rforge, rstudio, rspatial,
-          dieghernan, ropenspain, ropengov
+          dieghernan, ropenspain, ropengov, stress_packages
         )))
 
         dir.create(".github", showWarnings = FALSE)
