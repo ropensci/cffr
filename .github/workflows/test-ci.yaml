@@ -142,7 +142,7 @@ jobs:
 
     - name: Test CI package cache restore
       id: test-ci-package-cache
-      uses: actions/cache/restore@v4
+      uses: actions/cache/restore@v6
       with:
         path: |
           ${{ env.R_LIBS_USER }}/*
@@ -187,7 +187,7 @@ jobs:
 
     - name: Test CI package cache save
       if: ${{ steps.test-ci-package-cache.outputs.cache-hit != 'true' }}
-      uses: actions/cache/save@v4
+      uses: actions/cache/save@v6
       with:
         path: |
           ${{ env.R_LIBS_USER }}/*
