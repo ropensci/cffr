@@ -40,7 +40,7 @@ jobs:
           any::ctv
           any::cranlogs
 
-    - name: Install packages
+    - name: Compute packages to install
       run: |
         options(repos = c(CRAN = "https://cloud.r-project.org"))
 
@@ -126,9 +126,42 @@ jobs:
           dieghernan, ropenspain, ropengov
         )))
 
+        dir.create(".github", showWarnings = FALSE)
+        writeLines(all, ".github/test-ci-packages.txt")
+        message("Found ", length(all), " packages to check")
+
+      shell: Rscript {0}
+
+    - name: Record R version
+      id: r-version
+      run: |
+        cat("version=", getRversion(), "\n", file = Sys.getenv("GITHUB_OUTPUT"), sep = "", append = TRUE)
+        cat("arch=", R.Version()$arch, "\n", file = Sys.getenv("GITHUB_OUTPUT"), sep = "", append = TRUE)
+
+      shell: Rscript {0}
+
+    - name: Test CI package cache restore
+      id: test-ci-package-cache
+      uses: actions/cache/restore@v4
+      with:
+        path: |
+          ${{ env.R_LIBS_USER }}/*
+          !${{ env.R_LIBS_USER }}/pak
+          !${{ env.R_LIBS_USER }}/_cache
+        key: test-ci-extra-${{ runner.os }}-${{ steps.r-version.outputs.version }}-${{ steps.r-version.outputs.arch }}-${{ hashFiles('.github/test-ci-packages.txt') }}
+        restore-keys: |
+          test-ci-extra-${{ runner.os }}-${{ steps.r-version.outputs.version }}-${{ steps.r-version.outputs.arch }}-
+
+    - name: Install packages
+      run: |
+        all <- readLines(".github/test-ci-packages.txt", warn = FALSE)
+
         # Check packages not installed yet
         instpack <- as.character(installed.packages()[, "Package"])
         toinstall_init <- setdiff(all, instpack)
+        lib <- Sys.getenv("R_LIBS_USER")
+        stopifnot(nzchar(lib))
+        dir.create(lib, recursive = TRUE, showWarnings = FALSE)
 
         # Install
         options(repos = c(
@@ -146,9 +179,21 @@ jobs:
           nrow(pakav), " available"
         )
 
-        install.packages(toinstall)
+        if (length(toinstall) > 0) {
+          install.packages(toinstall, lib = lib)
+        }
 
       shell: Rscript {0}
+
+    - name: Test CI package cache save
+      if: ${{ steps.test-ci-package-cache.outputs.cache-hit != 'true' }}
+      uses: actions/cache/save@v4
+      with:
+        path: |
+          ${{ env.R_LIBS_USER }}/*
+          !${{ env.R_LIBS_USER }}/pak
+          !${{ env.R_LIBS_USER }}/_cache
+        key: ${{ steps.test-ci-package-cache.outputs.cache-primary-key }}
 
     - name: Test GHA
       run: |
