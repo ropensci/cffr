@@ -135,7 +135,7 @@ jobs:
     - name: Record R version
       id: r-version
       run: |
-        cat("version=", getRversion(), "\n", file = Sys.getenv("GITHUB_OUTPUT"), sep = "", append = TRUE)
+        cat("version=", as.character(getRversion()), "\n", file = Sys.getenv("GITHUB_OUTPUT"), sep = "", append = TRUE)
         cat("arch=", R.Version()$arch, "\n", file = Sys.getenv("GITHUB_OUTPUT"), sep = "", append = TRUE)
 
       shell: Rscript {0}
