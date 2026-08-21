@@ -9,7 +9,7 @@
 #' - [cff_schema_keys()] provides the valid high-level keys of the Citation
 #'   File Format.
 #' - [cff_schema_keys_license()] provides valid
-#'   [SPDX license identifier(s)](https://spdx.org/licenses/) to be used on the
+#'   [SPDX license identifier(s)](https://spdx.org/licenses/) for the
 #'   `CITATION.cff` file.
 #' - [cff_schema_definitions_person()] and [cff_schema_definitions_entity()]
 #'   return the valid fields to include when defining a

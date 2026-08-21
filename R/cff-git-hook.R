@@ -42,7 +42,7 @@
 #' `git commit --no-verify` in the terminal.
 #'
 #' If you are using **RStudio**, you can also run this command from an \R
-#' script by selecting that line and sending it to the terminal using:
+#' script by selecting that line and sending it to the terminal with:
 #'
 #' - Windows & Linux: `Ctrl+Alt+Enter`.
 #' - Mac: `Cmd+Option+Return`.
@@ -70,16 +70,20 @@ cff_git_hook_install <- function() {
   # nocov start
   bash_file <- system.file("bash/citation-cff-pre-commit.sh", package = "cffr")
 
-  if (requireNamespace("usethis", quietly = TRUE)) {
+  if (cff_has_usethis()) {
     usethis::use_git_hook("pre-commit", readLines(con = bash_file))
   } else {
-    cli::cli_alert_danger(paste0(
+    cli::cli_abort(paste0(
       "Install {.pkg usethis} to use the pre-commit hook: ",
       '{.run install.packages("usethis")}.'
     ))
   }
   invisible()
   # nocov end
+}
+
+cff_has_usethis <- function() {
+  requireNamespace("usethis", quietly = TRUE)
 }
 
 #' @rdname cff_git_hook

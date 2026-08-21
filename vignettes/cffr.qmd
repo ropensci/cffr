@@ -25,7 +25,7 @@ library(cffr)
 `CITATION.cff` file using metadata from the following files:
 
 - Your `DESCRIPTION` file.
-- Citation information from `inst/CITATION`, when available.
+- Your `inst/CITATION` file, when available.
 
 ## What is a `CITATION.cff` file?
 
@@ -36,12 +36,12 @@ and datasets. Developers can include it in a repository to explain how to cite
 their software.
 
 This format is increasingly used in the software citation ecosystem.
-[GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
-[Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-) and
-[Zotero](https://citation-file-format.github.io/#/supported-by-zotero-) support
+[**GitHub**](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
+[**Zenodo**](https://citation-file-format.github.io/#/supported-by-zenodo-) and
+[**Zotero**](https://citation-file-format.github.io/#/supported-by-zotero-) support
 this citation format [@druskat_stephan_making_2021].
 
-GitHub support is of special interest:
+**GitHub** support is of special interest:
 
 <figure>
 
@@ -53,7 +53,7 @@ GitHub support is of special interest:
 </figure>
 ```
 
-See [GitHub’s guide to CITATION
+See [**GitHub**'s guide to CITATION
 files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
 for more information.
 
@@ -98,9 +98,9 @@ newobject <- cff()
 newobject
 ```
 
-The valid keys from the [Citation File Format schema version
+You can display the valid keys from the [Citation File Format schema version
 1.2.0](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md)
-can be displayed with `cff_schema_keys()`:
+with `cff_schema_keys()`:
 
 ```{r}
 #| label: validkeys

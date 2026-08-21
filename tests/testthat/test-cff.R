@@ -70,6 +70,11 @@ test_that("Fuzzy matching of keys on cff", {
 
   expect_true(is_cff(cffobj))
   expect_true(cff_validate(cffobj, verbose = FALSE))
+
+  expect_message(
+    do.call(cff, stats::setNames(list("a"), "tit{tle}")),
+    "tit\\{tle\\}: No match"
+  )
 })
 
 test_that("duplicated", {

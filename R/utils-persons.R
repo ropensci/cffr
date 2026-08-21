@@ -326,7 +326,7 @@ extract_person_comments45 <- function(person) {
   }
 
   names(comm_cff) <- tolower(names(comm_cff))
-  # Delete unnamed comments.
+  # Remove unnamed comments.
   nms_com <- names(comm_cff)
   comm_cff <- comm_cff[nchar(nms_com) > 1]
 

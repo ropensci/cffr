@@ -17,7 +17,7 @@ test_that("Write to a non-existing folder", {
   desc_file <- cff_create(desc_file)
   expect_s3_class(desc_file, "cff")
   root <- withr::local_tempdir(pattern = "cff-write-")
-  tmp <- file.path(root, "recursive", "new_folder.cff")
+  tmp <- file.path(root, "recursive", "new-folder.cff")
   cff_write(desc_file, outfile = tmp, validate = FALSE, verbose = FALSE)
 
   expect_true(dir.exists(file.path(root, "recursive")))
@@ -120,7 +120,7 @@ test_that("Append keys", {
 test_that("Fix extension of the file", {
   cffobj <- cff()
   cffobj <- cff_modify(cffobj, authors = as_cff_person("Diego Pérez"))
-  tmp <- file.path(withr::local_tempdir(), "fix_extension")
+  tmp <- file.path(withr::local_tempdir(), "fix-extension")
   expect_silent(cff_write(cffobj, tmp, verbose = FALSE))
 
   expect_false(file_exist_abort(tmp))
@@ -144,7 +144,7 @@ test_that("test encoding others", {
   skip_on_os("mac")
   cffobj <- cff()
   cffobj <- cff_modify(cffobj, authors = as_cff_person("Diego Pérez"))
-  tmp <- file.path(withr::local_tempdir(), "asci_trans.cff")
+  tmp <- file.path(withr::local_tempdir(), "asci-trans.cff")
   expect_silent(cff_write(
     cffobj,
     tmp,

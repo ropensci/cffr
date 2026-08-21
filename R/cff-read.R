@@ -28,8 +28,8 @@
 #' - `cff_read_cff_citation()` and `cff_read_description()` return an object
 #'   with class `cff`.
 #' - `cff_read_citation()` and `cff_read_bib()` return an object of classes
-#'   [`cff_ref_lst, cff`][cff_ref_lst] according to the `definitions.reference`
-#'   specified in the following guide:
+#'   [`cff_ref_lst, cff`][cff_ref_lst] as defined by the
+#'   `definitions.reference` specified in the following guide:
 #' ```{r child = "man/chunks/schema-guide.Rmd"}
 #' ```
 #'
@@ -281,7 +281,7 @@ cff_safe_read_citation <- function(desc_path, cit_path) {
     return(NULL)
   }
 
-  # Need to be named here.
+  # Keep names for downstream conversion.
   tocff <- as_cff(the_cit)
   tocff
 }

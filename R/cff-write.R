@@ -161,7 +161,7 @@ cff_update_rbuildignore <- function(x, outfile, verbose) {
 
   ignore <- readLines(".Rbuildignore")
 
-  # If not already present.
+  # Add the file if it is not already present.
   if ("^CITATION\\.cff$" %in% ignore) {
     return(invisible(NULL))
   }

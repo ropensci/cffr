@@ -7,7 +7,7 @@
 #' updates your `CITATION.cff` when any of these events occur:
 #' - You publish a new release of the package.
 #' - Your `DESCRIPTION` or `inst/CITATION` file is modified.
-#' - The action can be run manually.
+#' - The workflow can be run manually.
 #'
 #' @param path Project root directory.
 #' @param overwrite A logical value. If `TRUE`, overwrite an existing workflow.
@@ -43,13 +43,15 @@ cff_gha_update <- function(path = ".", overwrite = FALSE) {
   newfile <- file.path(destdir, "update-citation-cff.yaml")
 
   if (!file_exist_abort(newfile) || isTRUE(overwrite)) {
-    cli::cli_alert_success("Workflow installed at {.file {newfile}}.")
-
-    file.copy(
+    copied <- cff_copy_workflow(
       system.file("yaml/update-citation-cff.yaml", package = "cffr"),
       newfile,
       overwrite = TRUE
     )
+    if (!isTRUE(copied)) {
+      cli::cli_abort("Cannot install workflow at {.file {newfile}}.")
+    }
+    cli::cli_alert_success("Workflow installed at {.file {newfile}}.")
   } else {
     cli::cli_alert_warning(paste0(
       "Workflow file {.file {newfile}} already exists. ",
@@ -62,7 +64,7 @@ cff_gha_update <- function(path = ".", overwrite = FALSE) {
   if (file_exist_abort(rbuildignore)) {
     ignore <- readLines(rbuildignore)
 
-    # If not already present.
+    # Add `.github` if it is not already present.
     if (!("^\\.github$" %in% ignore)) {
       ignore <- c(ignore, "^\\.github$")
       ignore <- unique(ignore)
@@ -72,4 +74,8 @@ cff_gha_update <- function(path = ".", overwrite = FALSE) {
   }
 
   invisible()
+}
+
+cff_copy_workflow <- function(from, to, overwrite) {
+  file.copy(from, to, overwrite = overwrite)
 }

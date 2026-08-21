@@ -11,7 +11,7 @@ cff(path, ...)
 \item{path}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} \code{path} is no longer supported,
 use \code{\link[=cff_read_cff_citation]{cff_read_cff_citation()}} instead.}
 
-\item{...}{Named arguments to be used for creating a \code{\link{cff}} object. If no
+\item{...}{Named arguments used to create a \code{\link{cff}} object. If no
 arguments are supplied (the default behavior), a minimal valid \code{cff}
 object is created.}
 }

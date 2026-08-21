@@ -45,7 +45,7 @@
 #'
 #' - `vignette("cffr", package = "cffr")` shows an introduction to
 #'   manipulating [`cff`] objects.
-#' - `vignette("r-cff", package = "cffr")` provides details on how the
+#' - `vignette("r-cff", package = "cffr")` provides details about how the
 #'   metadata of a package is mapped to produce a `cff` object.
 #'
 #' @family core
@@ -71,7 +71,7 @@
 #'
 #' cff_create(demo_file, keys = newkeys)
 #'
-#' # Update a key in a list, for example authors or contacts.
+#' # Update a key in a list, such as authors or contacts.
 #' # Add a new contact.
 #'
 #' old <- cff_create(demo_file)

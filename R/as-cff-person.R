@@ -15,16 +15,16 @@
 #'   [`format.person()`][utils::person()]).
 #' - Default: Other inputs are first coerced with [base::as.character()].
 #'
-#' The inverse transformation (`cff_pers_lst` to `person`) can be done with the
-#' methods [as.person.cff_pers()] and [as.person.cff_pers_lst()].
+#' The inverse transformation (`cff_pers_lst` to `person`) can be performed
+#' with the methods [as.person.cff_pers()] and [as.person.cff_pers_lst()].
 #'
 #' @param x Any \R object.
 #' @param ... Ignored by this method.
 #'
 #' @return
 #' `as_cff_person()` returns an object of classes
-#' [`cff_pers_lst, cff`][cff_pers_lst] according to the `definitions.person`
-#' or `definitions.entity` specified in the following guide:
+#' [`cff_pers_lst, cff`][cff_pers_lst] as defined by `definitions.person` or
+#' `definitions.entity` specified in the following guide:
 #' ```{r child = "man/chunks/schema-guide.Rmd"}
 #' ```
 #' Each element of the `cff_pers_lst` object has classes
@@ -94,10 +94,10 @@
 #'
 #' cff_person <- as_cff_person(a_person)
 #'
-#' # Class cff_pers_lst / cff.
+#' # Classes `cff_pers_lst` and `cff`.
 #' class(cff_person)
 #'
-#' # Each element has class cff_pers / cff.
+#' # Each element has classes `cff_pers` and `cff`.
 #' class(cff_person[[1]])
 #'
 #' # Print.
@@ -123,10 +123,10 @@
 #'
 #' a_cff
 #'
-#' # Printed as BibTeX thanks to the method.
+#' # Print as BibTeX with the method.
 #' toBibtex(a_cff)
 #'
-#' # Or as person object.
+#' # Or as a `person` object.
 #' as.person(a_cff)
 #'
 #' # Or use BibTeX style as input.

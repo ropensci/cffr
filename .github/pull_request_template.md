@@ -1,20 +1,22 @@
-<!-- IF THIS INVOLVES AUTHENTICATION: DO NOT SHARE YOUR USERNAME/PASSWORD, OR API KEYS/TOKENS IN THIS ISSUE - MOST LIKELY THE MAINTAINER WILL HAVE THEIR OWN EQUIVALENT KEY -->
+<!-- If this involves authentication, do not share usernames, passwords, API
+keys or tokens. -->
 
-<!-- If you've updated a file in the man-roxygen directory, make sure to update the man/ files by running devtools::document() or similar as .Rd files should be affected by your change -->
-
-<!--- Provide a general summary of your changes in the Title above -->
+<!-- Provide a short summary of your changes in the title above. -->
 
 ## Description
-<!--- Describe your changes in detail -->
 
-## Related Issue
-<!--- if this closes an issue make sure include e.g., "fix #4"
-or similar - or if just relates to an issue make sure to mention
-it like "#4" -->
+<!-- Describe your changes in detail. -->
 
-## Example
-<!--- if introducing a new feature or changing behavior of existing
-methods/functions, include an example if possible to do in brief form -->
+## Related issue
 
-<!--- Did you remember to include tests? Unless you're just changing
-grammar, please include new tests for your change -->
+<!-- If this closes an issue, include "Fixes #issue-number". If it only relates
+to an issue, mention the issue number. -->
+
+## Checklist
+
+- [ ] I have added tests for user-facing changes.
+- [ ] I have added a bullet to `NEWS.md` for user-facing changes.
+- [ ] I have updated generated documentation when changing **roxygen2**
+      comments.
+- [ ] I have checked that this contribution follows the rOpenSci Code of
+      Conduct.

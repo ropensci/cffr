@@ -6,7 +6,7 @@ test_that("Write", {
   bib <- bibentry("Misc", title = "My title", author = "Fran Pérez")
 
   file <- file.path(tempdir(), "noext")
-  expect_message(cff_write_bib(bib, file, verbose = TRUE))
+  expect_message(cff_write_bib(bib, file, verbose = TRUE), "Writing 4 lines")
 
   # Fix extensions
   file <- paste0(file, ".bib")
@@ -101,6 +101,15 @@ test_that("Test dir creation", {
   expect_true(file_exist_abort(file))
 
   unlink(dir, recursive = TRUE, force = TRUE)
+})
+
+test_that("write_lines_msg reports lines, not entries", {
+  file <- withr::local_tempfile()
+
+  expect_message(
+    write_lines_msg(c("a", "", "b"), file, TRUE, FALSE),
+    "Writing 2 lines"
+  )
 })
 
 test_that("Errors citation", {

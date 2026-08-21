@@ -27,3 +27,22 @@ test_that("cff_gha_update installs a workflow in the requested package", {
 
   expect_true("^\\.github$" %in% readLines(rbuildignore))
 })
+
+test_that("cff_gha_update errors when workflow copy fails", {
+  skip_on_cran()
+
+  new_dir <- local_mock_package(
+    description = "DESCRIPTION_many_urls",
+    rbuildignore = TRUE,
+    local_dir = FALSE
+  )
+
+  local_mocked_bindings(
+    cff_copy_workflow = function(from, to, overwrite) FALSE
+  )
+
+  expect_error(
+    cff_gha_update(path = new_dir),
+    "Cannot install workflow"
+  )
+})

@@ -1,7 +1,7 @@
 # cffr (development version)
 
-- The JOSS paper is now linked as an external pkgdown article instead of being
-  rebuilt as a package vignette.
+- The JOSS paper is now linked as an external **pkgdown** article instead of
+  being rebuilt as a package vignette.
 - `cff_gha_update()` now uses `path` when updating `.Rbuildignore`.
 - `cff_write()` now formats the `inst/CITATION` update message correctly.
 
@@ -25,15 +25,15 @@
 
 # cffr 1.3.0
 
-- The minimum required **R** version is now **4.1.0**.
-- Vignettes were migrated to Quarto.
+- The minimum required **R** version is now 4.1.0.
+- Vignettes were migrated to **Quarto**.
 
 # cffr 1.2.1
 
 - `as_cff_person()` improves comment detection and parsing across its function
   family.
-- `cff_gha_update()` now runs in `ubuntu-latest` by default to save [GitHub
-  Actions
+- `cff_gha_update()` now runs in `ubuntu-latest` by default to save [**GitHub
+  Actions**
   quota](https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions#minute-multipliers)
   (#90, thanks to \@Pakillo).
 - The mapping of **CRAN** packages to SPDX codes was updated.
@@ -44,14 +44,14 @@
   **R** citation file (`inst/CITATION`) is generated or updated with the
   information from the generated `CITATION.cff` file. **No backup copy is
   created**. For more control, use `cff_write_citation()` (#79).
-- `repository-code` now also recognizes [Codeberg](https://codeberg.org/) as a
+- `repository-code` now also recognizes [**Codeberg**](https://codeberg.org/) as a
   valid repository (#88).
 - `repository-code` recognizes repositories regardless of casing. Lowercase is
   still recommended as a good practice for **R** developers.
 
 # cffr 1.1.1
 
-- ORCID extraction was adapted for **R \> 4.4.1**.
+- ORCID extraction was adapted for **R** \> 4.4.1.
 
 # cffr 1.1.0
 
@@ -98,7 +98,7 @@ objects:
   `authors` or `contact`, has class `cff_pers_lst, cff`. Individual elements,
   such as `publisher` or each member of `authors`, have class `cff_pers, cff`.
 
-This change allows writing specific [S3
+This change enables specific [S3
 methods](https://adv-r.hadley.nz/s3.html) and extends the capabilities of the
 package.
 
@@ -108,7 +108,7 @@ package.
   - `as_cff.bibentry()`, replacing `cff_parse_citation()`.
   - `as_cff.person()`, similar to `as_cff_person()` but only for `person`
     objects. We recommend using `as_cff_person()` since it can also coerce
-    strings representing authors in BibTeX markup (`"{von Neumen}, James"`),
+    strings representing authors in **BibTeX** markup (`"{von Neumen}, James"`),
     which cannot be captured properly through methods.
 - `as_bibentry()` is a new method for a variety of classes (`character`, `list`,
   `NULL` and classes defined by **cffr**).
@@ -124,10 +124,9 @@ package.
 
 ### API
 
-The API has been completely revised to provide more clarity on function naming
-and to facilitate internal maintenance. This change **only** **affects non-core
-functions**. Each function now does fewer things but does them better. The old
-API [has been
+The API has been completely revised to clarify function naming and simplify
+internal maintenance. This change **only** **affects non-core functions**. Each
+function now does fewer things but does them better. The old API [has been
 deprecated](https://lifecycle.r-lib.org/articles/stages.html#deprecated) and now
 warns when used, providing advice on the replacement function.
 
@@ -146,9 +145,9 @@ warns when used, providing advice on the replacement function.
 
 ### New capabilities
 
-- `cff_read()` now handles reading from external files exclusively. It is
-  designed to fit all supported file types in a single entry point, along with
-  new specific readers used under the hood by `cff_read()`:
+- `cff_read()` now reads only from external files. It is designed to fit all
+  supported file types in a single entry point, along with more specific readers
+  used internally by `cff_read()`:
   - `cff_read_cff_citation()`.
   - `cff_read_description()`.
   - `cff_read_citation()`.
@@ -158,14 +157,14 @@ warns when used, providing advice on the replacement function.
 
 ## Other changes
 
-- The minimum required **R** version is now **4.0.0**.
-- The BibTeX crosswalk was updated (see
+- The minimum required **R** version is now 4.0.0.
+- The **BibTeX** crosswalk was updated (see
   `vignette("bibtex-cff", package = "cffr")`), with corresponding changes in the
   mapping performed by `toBibtex()` and `cff_parse_citation()`:
   - **\@inbook** and **\@book** gain a new value in CFF when **series** is
     provided: `collection-type: book-series`.
-  - **cffr** can now handle BibLaTeX **\@inbook**, which differs significantly
-    from BibTeX **\@inbook**.
+  - **cffr** can now handle **BibLaTeX** **\@inbook**, which differs
+    significantly from **BibTeX** **\@inbook**.
 
 # cffr 0.5.0
 
@@ -204,8 +203,8 @@ warns when used, providing advice on the replacement function.
 
 - Fixed typo (#40, thanks to \@dpprdan).
 - Added `cff_from_bibtex()`.
-- Dependency URLs now behave consistently when RSPM is the default repository
-  (for example, on GitHub Actions or RStudio Cloud).
+- Dependency URLs now behave consistently when **RSPM** is the default repository
+  (for example, on **GitHub Actions** or **RStudio Cloud**).
 
 # cffr 0.3.0
 
@@ -225,7 +224,8 @@ warns when used, providing advice on the replacement function.
 
 # cffr 0.2.1
 
-- The GitHub Actions workflow now runs only on the `master` or `main` branch.
+- The **GitHub Actions** workflow now runs only on the `master` or `main`
+  branch.
 - References are handled better.
 
 # cffr 0.2.0
@@ -238,13 +238,13 @@ warns when used, providing advice on the replacement function.
   - `cff_parse_citation()` extracts more information about authors, based on the
     fields provided in the `DESCRIPTION` file.
   - `cff_parse_citation()` does a better job extracting information from
-    `bibentry()`/BibTeX and mapping it to the `preferred-citation` and
+    `bibentry()`/**BibTeX** and mapping it to the `preferred-citation` and
     `references` CFF keys.
 - Added new functions for working with git pre-commit hooks
   [![Experimental](https://lifecycle.r-lib.org/articles/figures/lifecycle-experimental.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental):
   - `cff_git_hook_install()`.
   - `cff_git_hook_remove()`.
-- Added new BibTeX functions:
+- Added new **BibTeX** functions:
   - `cff_extract_to_bibtex()`.
   - `cff_to_bibtex()`.
   - `cff_parse_person_bibtex()`.
@@ -253,19 +253,19 @@ warns when used, providing advice on the replacement function.
 
 # cffr 0.1.1
 
-- Accepted by JOSS.
+- Accepted by **JOSS**.
   [![DOI](https://joss.theoj.org/papers/10.21105/joss.03900/status.svg)](https://doi.org/10.21105/joss.03900)
 - Added `pages` to `cff_parse_citation()`.
 - Added the `gh_keywords` argument to `cff_create()`/`cff_write()`. If `TRUE`,
-  it includes GitHub repository topics as keywords.
+  it includes **GitHub** repository topics as keywords.
 
 # cffr 0.1.0
 
-- First CRAN release.
+- First **CRAN** release.
 
 # cffr 0.0.2
 
-- **cffr** is now part of rOpenSci.
+- **cffr** is now part of **rOpenSci**.
 - Updated documentation and README.
 - Added fuzzy matching for the `keys` argument.
 - Added the `cran_to_spdx` dataset.

@@ -72,7 +72,7 @@ cff_write_bib <- function(
   btex <- toBibtex(x)
 
   if (ascii) {
-    # Use base encoding as in `file()`.
+    # Use base encoding, matching `file()`.
     btex <- encoded_utf_to_latex(btex)
     class(btex) <- "Bibtex"
   } else {

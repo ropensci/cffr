@@ -53,10 +53,10 @@ and datasets. Developers can include it in a repository to explain how to cite
 their software.
 
 This format is increasingly used in the software citation ecosystem.
-[GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
-[Zenodo](https://citation-file-format.github.io/#/supported-by-zenodo-) and
-[Zotero](https://citation-file-format.github.io/#/supported-by-zotero-) support
-this citation format [@druskat_stephan_making_2021]. GitHub support is of
+[**GitHub**](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
+[**Zenodo**](https://citation-file-format.github.io/#/supported-by-zenodo-) and
+[**Zotero**](https://citation-file-format.github.io/#/supported-by-zotero-) support
+this citation format [@druskat_stephan_making_2021]. **GitHub** support is of
 special interest:
 
 <figure>
@@ -70,7 +70,7 @@ fig-align="center" width="400"}
 ```
 
 See [Enhanced support for citations on
-GitHub](https://github.blog/news-insights/company-news/enhanced-support-citations-github/)
+**GitHub**](https://github.blog/news-insights/company-news/enhanced-support-citations-github/)
 [@smith2021] for more information.
 
 ### Related projects
@@ -86,9 +86,9 @@ package metadata.
 
 ## The **cffr** package
 
-**cffr** maximizes data extraction by using both the `DESCRIPTION` file and the
-`CITATION` file, if present, from your package. **cffr** works best if your
-package passes `R CMD check` or `devtools::check()`.
+**cffr** uses metadata from both your package's `DESCRIPTION` file and its
+`CITATION` file, if present. **cffr** works best if your package passes
+`R CMD check` or `devtools::check()`.
 
 ```{r}
 #| label: count_cffr
@@ -162,7 +162,7 @@ pak::pak("ropensci/cffr")
 ```
 
 Alternatively, you can install **cffr** from
-[r-universe](https://ropensci.r-universe.dev/cffr):
+[**r-universe**](https://ropensci.r-universe.dev/cffr):
 
 ```{r}
 #| eval: false
@@ -231,13 +231,13 @@ objects.
 
 ### Keep your `CITATION.cff` file up to date
 
-#### GitHub Actions
+#### **GitHub Actions**
 
 The easiest way to keep your `CITATION.cff` file up to date is to use **GitHub
-Actions**. Use `cff_gha_update()` to install a GitHub Actions workflow that
+Actions**. Use `cff_gha_update()` to install a **GitHub Actions** workflow that
 updates your `CITATION.cff` file in the following cases:
 
-- When you publish a new release of the package on GitHub.
+- When you publish a new release of the package on **GitHub**.
 - Each time you modify your `DESCRIPTION` or `inst/CITATION` files.
 - When you run the workflow manually.
 
@@ -274,8 +274,8 @@ Check the following articles to learn more about **cffr**:
 
 - [cffr: Create a CITATION.cff file for your R
   package](https://ropensci.org/blog/2021/11/23/cffr/) [@hernangomez_cffr_2021]
-- [How I test cffr on about 2,000 packages using GitHub Actions and
-  r-universe](https://ropensci.org/blog/2021/11/23/how-i-test-cffr/)
+- [How I test cffr on about 2,000 packages using **GitHub Actions** and
+  **r-universe**](https://ropensci.org/blog/2021/11/23/how-i-test-cffr/)
   [@hernangomez_test_2021]
 
 ## Related packages
@@ -301,7 +301,7 @@ Hernangómez D (2021). "cffr: Generate Citation File Format Metadata for R
 Packages." *Journal of Open Source Software*, 6(67), 3900.
 <https://doi.org/10.21105/joss.03900>
 
-A BibTeX entry for LaTeX users is:
+A **BibTeX** entry for **LaTeX** users is:
 
 ``` bibtex
 @article{hernangomez2021,
@@ -319,7 +319,7 @@ A BibTeX entry for LaTeX users is:
 ```
 
 You can also use the [citation provided by
-GitHub](https://github.com/ropensci/cffr), which is generated from the
+**GitHub**](https://github.com/ropensci/cffr), which is generated from the
 information in a `CITATION.cff` file created with **cffr**. See [About CITATION
 files](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files)
 for more information.

@@ -43,7 +43,7 @@ drop_null <- function(x) {
   x[lengths(x) != 0]
 }
 
-#' Pretty printing of snapshots
+#' Pretty-print snapshots
 #' @noRd
 print_snapshot <- function(title = "----", obj) {
   cat("\n\n##", title, "\n\n")
@@ -138,10 +138,10 @@ fuzzy_keys <- function(keys) {
       valid_keys,
       ignore.case = TRUE,
       value = TRUE,
-      fixed = FALSE
+      fixed = TRUE
     )
 
-    # Modify NULL correspondences.
+    # Replace missing correspondences.
     keys_match <- unlist(lapply(keys_match, function(x) {
       if (length(x) == 0) {
         return("No match, removing.")
@@ -149,16 +149,18 @@ fuzzy_keys <- function(keys) {
       x[1]
     }))
 
-    # Message.
-    ll <- paste0("{.dt ", names_fuzzy, "}{.dd ", keys_match, "}")
-
-    bullets <- rep("v", length(ll))
+    bullets <- rep("v", length(keys_match))
     bullets[keys_match == "No match, removing."] <- "x"
+    ll <- paste0(
+      escape_cli_markup(names_fuzzy),
+      ": ",
+      escape_cli_markup(keys_match)
+    )
     names(ll) <- bullets
-    cli::cli_alert_info("Found misspelled keys. Trying to map them:")
 
+    cli::cli_alert_info("Found misspelled keys. Trying to map them:")
     cli::cli_bullets(ll)
-    # Modify names.
+    # Update names.
     names[!is_valid_key] <- keys_match
   }
 
@@ -168,6 +170,11 @@ fuzzy_keys <- function(keys) {
   new_keys <- new_keys[names %in% valid_keys]
 
   new_keys
+}
+
+escape_cli_markup <- function(x) {
+  x <- gsub("{", "{{", x, fixed = TRUE)
+  gsub("}", "}}", x, fixed = TRUE)
 }
 
 guess_cff_named_part <- function(x) {

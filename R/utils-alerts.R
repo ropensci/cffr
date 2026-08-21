@@ -1,6 +1,6 @@
 #' Error if it is not a `cff` file or object
 #'
-#' @param x File to be evaluated.
+#' @param x A file to evaluate.
 #' @noRd
 abort_if_not_cff <- function(x) {
   if (is_cff(x)) {
@@ -23,7 +23,7 @@ abort_if_not_cff <- function(x) {
 
 #' Throw an error if a file does not exist
 #'
-#' @param x A file to be evaluated.
+#' @param x A file to evaluate.
 #' @param abort A logical value. If `TRUE`, throw an error when the file does
 #'   not exist.
 #' @noRd
@@ -78,7 +78,7 @@ write_lines_msg <- function(lines, file, verbose, append) {
   fh <- file(file, encoding = "UTF-8", open = ifelse(append, "a+", "w+"))
   on.exit(if (isOpen(fh)) close(fh))
   if (verbose) {
-    cli::cli_alert_info("Writing {length(lines[lines != ''])} entr{?y/ies}.")
+    cli::cli_alert_info("Writing {length(lines[lines != ''])} line{?s}.")
   }
 
   writeLines(lines, fh)

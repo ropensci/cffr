@@ -5,7 +5,7 @@
 #'
 #' @param path `r lifecycle::badge("deprecated")` `path` is no longer supported,
 #'   use [cff_read_cff_citation()] instead.
-#' @param ... Named arguments to be used for creating a [`cff`] object. If no
+#' @param ... Named arguments used to create a [`cff`] object. If no
 #'   arguments are supplied (the default behavior), a minimal valid `cff`
 #'   object is created.
 #'

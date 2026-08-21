@@ -17,6 +17,14 @@ test_that("Validate minimal CITATION.cff", {
   expect_true(cff_validate(full, verbose = FALSE))
 })
 
+test_that("cff_validate handles file paths with braces in verbose messages", {
+  full <- system.file("examples/CITATION_complete.cff", package = "cffr")
+  tmp <- withr::local_tempfile(pattern = "cff-{path}", fileext = ".cff")
+  file.copy(full, tmp)
+
+  expect_message(cff_validate(tmp), "is valid")
+})
+
 test_that("Validate error CITATION.cff", {
   err <- system.file("examples/CITATION_error.cff", package = "cffr")
   # From cff

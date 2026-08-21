@@ -16,7 +16,7 @@ c.cff <- function(..., recursive = FALSE) {
   rval <- do.call("c", args)
 
   rval <- as.list(rval)
-  # Reclass.
+  # Reclassify.
   as_cff(rval)
 }
 
@@ -309,7 +309,7 @@ toBibtex.cff_pers <- function(object, ...) {
 #' @export
 #' @encoding UTF-8
 as.person.cff_pers <- function(x) {
-  # Enlist to dispatch to the next method.
+  # Wrap in a list to dispatch to the next method.
   x_l <- list(as.list(x))
   as.person(as_cff(x_l))
 }

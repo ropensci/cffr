@@ -38,7 +38,7 @@ See the following guide:
 \item \code{\link[=cff_schema_keys]{cff_schema_keys()}} provides the valid high-level keys of the Citation
 File Format.
 \item \code{\link[=cff_schema_keys_license]{cff_schema_keys_license()}} provides valid
-\href{https://spdx.org/licenses/}{SPDX license identifier(s)} to be used on the
+\href{https://spdx.org/licenses/}{SPDX license identifier(s)} for the
 \code{CITATION.cff} file.
 \item \code{\link[=cff_schema_definitions_person]{cff_schema_definitions_person()}} and \code{\link[=cff_schema_definitions_entity]{cff_schema_definitions_entity()}}
 return the valid fields to include when defining a

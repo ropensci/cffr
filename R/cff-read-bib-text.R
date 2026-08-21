@@ -9,7 +9,7 @@
 #' @param ... Arguments passed to [cff_read_bib()].
 #'
 #' @return
-#' An object of classes [`cff_ref_lst, cff`][cff_ref_lst] according to the
+#' An object of classes [`cff_ref_lst, cff`][cff_ref_lst] as defined by the
 #' `definitions.reference` specified in the following guide:
 #' ```{r child = "man/chunks/schema-guide.Rmd"}
 #' ```

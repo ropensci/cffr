@@ -3,8 +3,8 @@
 #' @description
 #' This function creates [`bibentry`] objects from multiple metadata sources
 #' ([`cff`] objects, `DESCRIPTION` files and other sources). The inverse
-#' transformation (`bibentry` object to [`cff_ref_lst`]) can be done with the
-#' corresponding [as_cff.bibentry()] method.
+#' transformation from a `bibentry` object to [`cff_ref_lst`] can be performed
+#' with the corresponding [as_cff.bibentry()] method.
 #'
 #' With [`toBibtex()`][toBibtex.cff()], you can convert [`cff`] objects to
 #' BibTeX markup on the fly. See **Examples**.
@@ -38,7 +38,7 @@
 #' valid BibTeX entry.
 #'
 #' `as_bibentry()` tries to map the information of the source `x` into a [`cff`]
-#' object and performs a mapping of the metadata to BibTeX, according to
+#' object and maps the metadata to BibTeX as described in
 #' `vignette("bibtex-cff", package = "cffr")`.
 #'
 #' @references
@@ -76,7 +76,7 @@
 #'
 #' cff_object
 #'
-#' # A bibentry object.
+#' # A `bibentry` object.
 #' bib <- as_bibentry(cff_object)
 #'
 #' class(bib)
@@ -86,7 +86,7 @@
 #' # Print as BibTeX.
 #' toBibtex(bib)
 #'
-#' # Thanks to the S3 method, you can also do this.
+#' # The S3 method also supports this.
 #' toBibtex(cff_object)
 #'
 #' # Other sources ----
@@ -255,7 +255,7 @@ as_bibentry.cff <- function(
 #' @encoding UTF-8
 as_bibentry.cff_ref_lst <- function(x, ...) {
   ref <- lapply(x, function(y) {
-    # Reclass to dispatch the method.
+    # Reclassify to dispatch the method.
     as_bibentry(as_cff(y))
   })
   ref <- do.call(c, ref)
@@ -267,7 +267,7 @@ as_bibentry.cff_ref_lst <- function(x, ...) {
 #' @export
 #' @encoding UTF-8
 as_bibentry.cff_ref <- function(x, ...) {
-  # Relist to cff for dispatching methods on persons.
+  # Relist to `cff` for dispatching methods on persons.
   x <- as_cff(x)
 
   # Partially based on the Ruby parser.
