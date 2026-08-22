@@ -85,7 +85,9 @@ cff <- function(path, ...) {
   cffobj <- fuzzy_keys(cffobj)
 
   if (anyDuplicated(names(cffobj)) > 0) {
-    cli::cli_alert_warning("Removing duplicate keys.")
+    cli::cli_alert_warning(
+      "Removing {sum(duplicated(names(cffobj)))} duplicate key{?s}."
+    )
     cffobj <- cffobj[!duplicated(names(cffobj))]
   }
 

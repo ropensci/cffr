@@ -119,31 +119,33 @@ test_that("Append keys", {
 
 test_that("Fix extension of the file", {
   cffobj <- cff()
-  cffobj <- cff_modify(cffobj, authors = as_cff_person("Diego Pérez"))
+  cffobj <- cff_modify(cffobj, authors = as_cff_person("Diego P<U+00E9>rez"))
   tmp <- file.path(withr::local_tempdir(), "fix-extension")
   expect_silent(cff_write(cffobj, tmp, verbose = FALSE))
 
   expect_false(file_exist_abort(tmp))
   expect_true(file_exist_abort(paste0(tmp, ".cff")))
   expect_true(cff_validate(paste0(tmp, ".cff"), verbose = FALSE))
+  skip_if(!isTRUE(l10n_info()[["UTF-8"]]), "Snapshot created with UTF-8 locale")
   expect_snapshot_file(paste0(tmp, ".cff"))
 })
 
 test_that("test encoding utf8", {
   cffobj <- cff()
-  cffobj <- cff_modify(cffobj, authors = as_cff_person("Diego Pérez"))
+  cffobj <- cff_modify(cffobj, authors = as_cff_person("Diego P<U+00E9>rez"))
   tmp <- file.path(withr::local_tempdir(), "utf8.cff")
   expect_silent(cff_write(cffobj, tmp, verbose = FALSE))
 
   expect_true(file_exist_abort(tmp))
   expect_true(cff_validate(tmp, verbose = FALSE))
+  skip_if(!isTRUE(l10n_info()[["UTF-8"]]), "Snapshot created with UTF-8 locale")
   expect_snapshot_file(tmp)
 })
 
 test_that("test encoding others", {
   skip_on_os("mac")
   cffobj <- cff()
-  cffobj <- cff_modify(cffobj, authors = as_cff_person("Diego Pérez"))
+  cffobj <- cff_modify(cffobj, authors = as_cff_person("Diego P<U+00E9>rez"))
   tmp <- file.path(withr::local_tempdir(), "asci-trans.cff")
   expect_silent(cff_write(
     cffobj,
@@ -154,6 +156,7 @@ test_that("test encoding others", {
 
   expect_true(file_exist_abort(tmp))
   expect_true(cff_validate(tmp, verbose = FALSE))
+  skip_if(!isTRUE(l10n_info()[["UTF-8"]]), "Snapshot created with UTF-8 locale")
   expect_snapshot_file(tmp)
 })
 
@@ -246,8 +249,7 @@ test_that("cff_write creates and updates inst/CITATION in a mock package", {
 
   expect_false(identical(auto_cit1, auto_cit3))
 
-  rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if_not_snapshot_env()
 
   expect_snapshot(auto_cit1)
   expect_snapshot(auto_cit3)

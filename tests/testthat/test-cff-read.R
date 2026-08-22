@@ -296,7 +296,9 @@ test_that("cff_read bib", {
 
   d <- f1_2[[2]]
 
-  expect_snapshot(d)
+  if (isTRUE(l10n_info()[["UTF-8"]])) {
+    expect_snapshot(d)
+  }
   f2_2 <- cff_read_bib(f)
   expect_identical(f1_2, f2_2)
 })
@@ -440,6 +442,7 @@ test_that("cff_read_citation returns NULL when both read attempts fail", {
 test_that("Creating cff from packages encoded in latin1", {
   rvers <- getRversion()
   skip_if(rvers >= "4.7.0", "R 4.7.0 only uses UTF-8 in DESCRIPTION")
+  skip_if(!isTRUE(l10n_info()[["UTF-8"]]), "Test requires UTF-8 locale")
 
   # Surveillance package
   desc_path <- system.file(
@@ -460,6 +463,8 @@ test_that("Creating cff from packages encoded in latin1", {
   cffobj <- cff_create(desc_path, keys = list(references = bib))
 
   expect_s3_class(cffobj, "cff")
-  expect_snapshot(cffobj)
   expect_true(cff_validate(cffobj, verbose = FALSE))
+
+  skip_if(!isTRUE(l10n_info()[["UTF-8"]]), "Snapshot created with UTF-8 locale")
+  expect_snapshot(cffobj)
 })

@@ -188,8 +188,8 @@ cff_write()
 #>
 #> CITATION.cff generated.
 #>
-#> ══ Validating CFF ══════════════════════════════════════════════════════════════
-#> ✔ CITATION.cff is valid.
+#> bb Validating CFF bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+#> b CITATION.cff is valid.
 ```
 
 **cffr** also provides custom print methods and helper functions for customizing
@@ -245,8 +245,8 @@ updates your `CITATION.cff` file in the following cases:
 #| eval: false
 cff_gha_update()
 
-#> ✔ Installing ./.github/workflows/update-citation-cff.yaml.
-#> ℹ Adding .github to .Rbuildignore.
+#> b Installing ./.github/workflows/update-citation-cff.yaml.
+#> b9 Adding .github to .Rbuildignore.
 ```
 
 See the [example workflow
@@ -297,7 +297,7 @@ to this project, you agree to abide by its terms.
 
 ## Citation
 
-Hernangómez D (2021). "cffr: Generate Citation File Format Metadata for R
+HernangC3mez D (2021). "cffr: Generate Citation File Format Metadata for R
 Packages." *Journal of Open Source Software*, 6(67), 3900.
 <https://doi.org/10.21105/joss.03900>
 
@@ -306,7 +306,7 @@ A **BibTeX** entry for **LaTeX** users is:
 ``` bibtex
 @article{hernangomez2021,
     title        = {{cffr}: Generate Citation File Format Metadata for {R} Packages},
-    author       = {Diego Hernangómez},
+    author       = {Diego HernangC3mez},
     year         = 2021,
     journal      = {Journal of Open Source Software},
     publisher    = {The Open Journal},

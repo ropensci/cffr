@@ -12,7 +12,7 @@
       abort_if_not_cff(x)
     Condition
       Error in `abort_if_not_cff()`:
-      ! `x` is an object of class <data.frame>, not <cff>.
+      ! `x` must be a <cff> object or a '*.cff' file, not a data frame.
 
 # Check file_exist_abort
 

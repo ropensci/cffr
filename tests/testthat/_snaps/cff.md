@@ -1,4 +1,4 @@
-# Test message on cff
+# cff() informs when input cannot be read
 
     Code
       def <- cff("abcde")
@@ -7,16 +7,7 @@
       The `path` argument of `cff()` is deprecated as of cffr 1.0.0.
       i Argument ignored.
 
----
-
-    Code
-      afile <- cff(nocff)
-    Condition
-      Warning:
-      The `path` argument of `cff()` is deprecated as of cffr 1.0.0.
-      i Argument ignored.
-
-# Walk trough full lifecycle
+# CFF objects can be read, modified, written and validated
 
     Code
       read
@@ -1706,9 +1697,19 @@
 # Fuzzy matching of keys on cff
 
     Code
+      cff(tittle = "a")
+    Message
+      i Found 1 misspelled key. Trying to map it:
+      v tittle: title
+    Output
+      title: a
+
+---
+
+    Code
       cff(tittle = "a", cff_version = "ar", version = "200", messange = "Fix my keys")
     Message
-      i Found misspelled keys. Trying to map them:
+      i Found 2 misspelled keys. Trying to map them:
       v tittle: title
       v messange: message
     Output
@@ -1723,55 +1724,44 @@
       cffobj <- cff(tittle = "a", cff_version = "1.2.0", version = "200", messange = "aa",
         anthor = list(list(`family-names` = "a", `given-names` = "b")))
     Message
-      i Found misspelled keys. Trying to map them:
+      i Found 3 misspelled keys. Trying to map them:
       v tittle: title
       v messange: message
       v anthor: authors
 
-# duplicated
+# cff() removes duplicated arguments
 
     Code
       ss <- cff(tittle = "a", tittle = "ar", version = "200", messange = "Fix my keys")
     Message
-      i Found misspelled keys. Trying to map them:
+      i Found 3 misspelled keys. Trying to map them:
       v tittle: title
       v tittle: title
       v messange: message
-      ! Removing duplicate keys.
+      ! Removing 1 duplicate key.
 
-# unnamed
+# cff() handles unnamed arguments
 
     Code
-      ss <- cff(path = "a", "200", "Fix my keys")
+      ss <- suppressWarnings(cff(path = "a", "200", "Fix my keys"))
     Condition
-      Warning:
-      The `path` argument of `cff()` is deprecated as of cffr 1.0.0.
-      i Argument ignored.
       Error in `validate_extra_keys()`:
       ! Elements in `...` must be named.
 
 ---
 
     Code
-      s1 <- cff(path = NULL, title = "a", "b", version = 1)
-    Condition
-      Warning:
-      The `path` argument of `cff()` is deprecated as of cffr 1.0.0.
-      i Argument ignored.
+      s1 <- suppressWarnings(cff(path = NULL, title = "a", "b", version = 1))
     Message
       ! Found 1 unnamed argument in position 2.
-      i Removing unnamed arguments.
+      i Removing 1 unnamed argument.
 
 ---
 
     Code
-      s2 <- cff(path = NULL, title = "a", "aa", "bb", "cc", "b", version = 1, "h",
-        "j")
-    Condition
-      Warning:
-      The `path` argument of `cff()` is deprecated as of cffr 1.0.0.
-      i Argument ignored.
+      s2 <- suppressWarnings(cff(path = NULL, title = "a", "aa", "bb", "cc", "b",
+        version = 1, "h", "j"))
     Message
       ! Found 6 unnamed arguments in positions 2, 3, 4, 5, 7, and 8.
-      i Removing unnamed arguments.
+      i Removing 6 unnamed arguments.
 

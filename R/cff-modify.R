@@ -66,7 +66,9 @@ modify_cff <- function(x, keys, argname = "...") {
   new_keys <- validate_extra_keys(keys, argname)
   new_keys <- fuzzy_keys(new_keys)
   if (anyDuplicated(names(new_keys)) > 0) {
-    cli::cli_alert_warning("Removing duplicate keys.")
+    cli::cli_alert_warning(
+      "Removing {sum(duplicated(names(new_keys)))} duplicate key{?s}."
+    )
     new_keys <- new_keys[!duplicated(names(new_keys))]
   }
 
@@ -99,7 +101,7 @@ validate_extra_keys <- function(cffobj, argname = "...") {
     cli::cli_alert_warning(
       "Found {length(index)} unnamed argument{?s} in position{?s} {index}."
     )
-    cli::cli_alert_info("Removing unnamed arguments.")
+    cli::cli_alert_info("Removing {length(index)} unnamed argument{?s}.")
     cffobj <- cffobj[nzchar(has_names)]
   }
   cffobj

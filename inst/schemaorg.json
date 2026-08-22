@@ -9,7 +9,7 @@
     "id": "https://orcid.org/0000-0001-8457-4658",
     "type": "Person",
     "email": "diego.hernangomezherrero@gmail.com",
-    "familyName": "Hernangómez",
+    "familyName": "HernangC3mez",
     "givenName": "Diego"
   },
   "description": "Citation File Format ('CFF') version 1.2.0 <doi:10.5281/zenodo.5171937> is a human- and machine-readable file format for software citation metadata. Core utilities generate, read, write and validate Citation File Format metadata for 'R' packages.",

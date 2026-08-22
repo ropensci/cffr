@@ -3,7 +3,7 @@ title: "BibTeX and CFF"
 subtitle: A deterministic crosswalk between two non-equivalent citation schemas
 bibliography: REFERENCES.bib
 author:
-  - name: Diego Hernangómez
+  - name: Diego HernangC3mez
     orcid: 0000-0001-8457-4658
     affiliations:
       - Independent Researcher
@@ -55,7 +55,7 @@ Cite this article with this BibTeX entry:
 ``` bib
 @article{hernangomez2022,
     title        = {{BibTeX} and {CFF}, A deterministic crosswalk between two non-equivalent citation schemas},
-    author       = {Diego Hernangómez},
+    author       = {Diego HernangC3mez},
     year         = 2022,
     journal      = {The {cffr} package},
     volume       = {Vignettes},
@@ -122,7 +122,7 @@ each corresponding to a class of cited work:
 6.  **\@incollection**: A part of a book with its own title.
 7.  **\@inproceedings**: An article in conference proceedings.
 8.  **\@manual**: Technical documentation.
-9.  **\@mastersthesis**: A Master’s thesis.
+9.  **\@mastersthesis**: A Masterb
 10. **\@misc**: A fallback type when no other entry fits.
 11. **\@phdthesis**: A PhD thesis.
 12. **\@proceedings**: The proceedings of a conference.
@@ -554,10 +554,10 @@ from differences between **BibTeX** and CFF schemas:
   **\@incollection**, are mapped to a single CFF type (`generic`), which acts as
   a fallback when no more specific type is available.
 - **Structural transformations**: Some fields require transformation rather than
-  direct mapping, such as **pages** → `start`/`end`, altering the representation
+  direct mapping, such as **pages** b `start`/`end`, altering the representation
   of the original data.
 - **Non-reversibility**: Because of these factors, round-trip conversion
-  (**BibTeX** → CFF → **BibTeX**) is not guaranteed to preserve the original
+  (**BibTeX** b CFF b **BibTeX**) is not guaranteed to preserve the original
   structure or semantics.
 
 These limitations reflect fundamental differences between the two formats rather
@@ -1184,7 +1184,7 @@ Whereas **BibLaTeX** [@biblatexpack] specifies:
 
 > - **\@inbook:** A part of a book which forms a self-contained unit with its
 >   own title. Note that the [profile]{.underline} of this entry type is
->   [different from standard **BibTeX**]{.underline}, see § 2.3.1. Required
+>   [different from standard **BibTeX**]{.underline}, see B' 2.3.1. Required
 >   fields: author, title, booktitle, year/date (...).
 
 When considering required fields, an important difference is the **booktitle**

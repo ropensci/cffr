@@ -1,14 +1,13 @@
-test_that("Test message on cff", {
+test_that("cff() informs when input cannot be read", {
   expect_snapshot(def <- cff("abcde"))
 
   expect_identical(def, cff())
-  nocff <- system.file("examples/CITATION_skeleton.cff", package = "cffR")
-  expect_snapshot(afile <- cff(nocff))
+  afile <- suppressWarnings(cff(""))
 
   expect_identical(afile, cff())
 })
 
-test_that("Walk trough full lifecycle", {
+test_that("CFF objects can be read, modified, written and validated", {
   complete <- system.file("examples/CITATION_complete.cff", package = "cffr")
 
   # Read
@@ -20,9 +19,9 @@ test_that("Walk trough full lifecycle", {
   # Modify
   modify <- cff_create(read, keys = list(title = "A new title"))
   expect_snapshot(modify)
-  expect_true(length(read) == length(modify))
-  expect_true(length((setdiff(names(read), names(modify)))) == 0)
-  expect_false(read$title == modify$title)
+  expect_length(modify, length(read))
+  expect_setequal(names(modify), names(read))
+  expect_false(identical(read$title, modify$title))
 
   # Write
   tmp <- withr::local_tempfile(fileext = ".cff")
@@ -51,6 +50,8 @@ test_that("Recursive parsing", {
 
 
 test_that("Fuzzy matching of keys on cff", {
+  expect_snapshot(cff(tittle = "a"))
+
   expect_snapshot(cff(
     tittle = "a",
     cff_version = "ar",
@@ -77,7 +78,7 @@ test_that("Fuzzy matching of keys on cff", {
   )
 })
 
-test_that("duplicated", {
+test_that("cff() removes duplicated arguments", {
   # jarl-ignore-start duplicated_arguments: Testing edge case.
   expect_snapshot(
     ss <- cff(
@@ -93,21 +94,28 @@ test_that("duplicated", {
   expect_length(ss, 3)
 })
 
-test_that("unnamed", {
-  expect_snapshot(ss <- cff(path = "a", "200", "Fix my keys"), error = TRUE)
-
-  expect_snapshot(s1 <- cff(path = NULL, title = "a", "b", version = 1))
+test_that("cff() handles unnamed arguments", {
   expect_snapshot(
-    s2 <- cff(
-      path = NULL,
-      title = "a",
-      "aa",
-      "bb",
-      "cc",
-      "b",
-      version = 1,
-      "h",
-      "j"
+    ss <- suppressWarnings(cff(path = "a", "200", "Fix my keys")),
+    error = TRUE
+  )
+
+  expect_snapshot(
+    s1 <- suppressWarnings(cff(path = NULL, title = "a", "b", version = 1))
+  )
+  expect_snapshot(
+    s2 <- suppressWarnings(
+      cff(
+        path = NULL,
+        title = "a",
+        "aa",
+        "bb",
+        "cc",
+        "b",
+        version = 1,
+        "h",
+        "j"
+      )
     )
   )
 

@@ -2,6 +2,9 @@
 
 - The JOSS paper is now linked as an external **pkgdown** article instead of
   being rebuilt as a package vignette.
+- Misspelled CFF key messages now use singular or plural wording as needed.
+- Several **cli** messages now use clearer formatting and singular or plural
+  wording as needed.
 - `cff_gha_update()` now uses `path` when updating `.Rbuildignore`.
 - `cff_write()` now formats the `inst/CITATION` update message correctly.
 
@@ -44,8 +47,8 @@
   **R** citation file (`inst/CITATION`) is generated or updated with the
   information from the generated `CITATION.cff` file. **No backup copy is
   created**. For more control, use `cff_write_citation()` (#79).
-- `repository-code` now also recognizes [**Codeberg**](https://codeberg.org/) as a
-  valid repository (#88).
+- `repository-code` now also recognizes [**Codeberg**](https://codeberg.org/) as
+  a valid repository (#88).
 - `repository-code` recognizes repositories regardless of casing. Lowercase is
   still recommended as a good practice for **R** developers.
 
@@ -98,9 +101,8 @@ objects:
   `authors` or `contact`, has class `cff_pers_lst, cff`. Individual elements,
   such as `publisher` or each member of `authors`, have class `cff_pers, cff`.
 
-This change enables specific [S3
-methods](https://adv-r.hadley.nz/s3.html) and extends the capabilities of the
-package.
+This change enables specific [S3 methods](https://adv-r.hadley.nz/s3.html) and
+extends the capabilities of the package.
 
 - `as_cff()` is a new S3 generic that replaces `as.cff()` and coerces **R**
   objects to `cff` class format. Current methods provided are:
@@ -203,8 +205,8 @@ warns when used, providing advice on the replacement function.
 
 - Fixed typo (#40, thanks to \@dpprdan).
 - Added `cff_from_bibtex()`.
-- Dependency URLs now behave consistently when **RSPM** is the default repository
-  (for example, on **GitHub Actions** or **RStudio Cloud**).
+- Dependency URLs now behave consistently when **RSPM** is the default
+  repository (for example, on **GitHub Actions** or **RStudio Cloud**).
 
 # cffr 0.3.0
 

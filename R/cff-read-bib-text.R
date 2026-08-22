@@ -56,10 +56,9 @@
 cff_read_bib_text <- function(x, encoding = "UTF-8", ...) {
   # Validate input.
   if (!inherits(x, "character")) {
-    cli::cli_abort(paste0(
-      "{.arg x} must be a {.cls character}, not a ",
-      "{.cls {class(x)}}."
-    ))
+    cli::cli_abort(
+      "{.arg x} must be a {.cls character}, not {.obj_type_friendly {x}}."
+    )
   }
 
   if (any(grepl("\\.bib$", x, ignore.case = TRUE))) {

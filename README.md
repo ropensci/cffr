@@ -79,7 +79,7 @@ from **R** package metadata.
 its `CITATION` file, if present. **cffr** works best if your package
 passes `R CMD check` or `devtools::check()`.
 
-As of 2026-08-21 there are at least 577 repositories on GitHub using
+As of 2026-08-22 there are at least 577 repositories on GitHub using
 **cffr**. [Browse the search
 results](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -122,8 +122,8 @@ cff_write()
 #>
 #> CITATION.cff generated.
 #>
-#> ══ Validating CFF ══════════════════════════════════════════════════════════════
-#> ✔ CITATION.cff is valid.
+#> bb Validating CFF bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+#> b CITATION.cff is valid.
 ```
 
 **cffr** also provides custom print methods and helper functions for
@@ -354,7 +354,7 @@ test <- cff_create("knitr")
       - name: R Special Interest Group on Databases (R-SIG-DB)
       - family-names: Wickham
         given-names: Hadley
-      - family-names: Müller
+      - family-names: Muller
         given-names: Kirill
         email: kirill@cynkra.com
         orcid: https://orcid.org/0000-0002-1416-3412
@@ -385,7 +385,7 @@ test <- cff_create("knitr")
         given-names: Jeroen
         email: jeroenooms@gmail.com
         orcid: https://orcid.org/0000-0002-4035-0289
-      - name: Kornel Lesiński
+      - name: Kornel Lesinski
       - name: Authors of the dependency Rust crates
       year: '2026'
       doi: 10.32614/CRAN.package.gifski
@@ -478,8 +478,8 @@ test <- cff_create("knitr")
       url: https://otel.r-lib.org
       repository: https://CRAN.R-project.org/package=otel
       authors:
-      - family-names: Csárdi
-        given-names: Gábor
+      - family-names: Csardi
+        given-names: Gabor
         email: csardi.gabor@gmail.com
       year: '2026'
       doi: 10.32614/CRAN.package.otel
@@ -616,7 +616,7 @@ test <- cff_create("knitr")
       url: https://styler.r-lib.org
       repository: https://CRAN.R-project.org/package=styler
       authors:
-      - family-names: Müller
+      - family-names: Muller
         given-names: Kirill
         email: kirill@cynkra.com
         orcid: https://orcid.org/0000-0002-1416-3412
@@ -637,7 +637,7 @@ test <- cff_create("knitr")
       url: https://tibble.tidyverse.org/
       repository: https://CRAN.R-project.org/package=tibble
       authors:
-      - family-names: Müller
+      - family-names: Muller
         given-names: Kirill
         email: kirill@cynkra.com
         orcid: https://orcid.org/0000-0002-1416-3412
@@ -689,7 +689,7 @@ We can validate the result using `cff_validate()`:
 
 ``` r
 cff_validate(test)
-#> ══ Validating CFF ══════════════════════════════════════════════════════════════
+#> == Validating CFF ==============================================================
 ```
 
 See the [reference
@@ -713,8 +713,8 @@ following cases:
 ``` r
 cff_gha_update()
 
-#> ✔ Installing ./.github/workflows/update-citation-cff.yaml.
-#> ℹ Adding .github to .Rbuildignore.
+#> b Installing ./.github/workflows/update-citation-cff.yaml.
+#> b9 Adding .github to .Rbuildignore.
 ```
 
 See the [example workflow
@@ -769,7 +769,7 @@ contributing to this project, you agree to abide by its terms.
 
 ## Citation
 
-Hernangómez D (2021). “cffr: Generate Citation File Format Metadata for
+HernangC3mez D (2021). “cffr: Generate Citation File Format Metadata for
 R Packages.” *Journal of Open Source Software*, 6(67), 3900.
 <https://doi.org/10.21105/joss.03900>
 
@@ -778,7 +778,7 @@ A **BibTeX** entry for **LaTeX** users is:
 ``` bibtex
 @article{hernangomez2021,
     title        = {{cffr}: Generate Citation File Format Metadata for {R} Packages},
-    author       = {Diego Hernangómez},
+    author       = {Diego HernangC3mez},
     year         = 2021,
     journal      = {Journal of Open Source Software},
     publisher    = {The Open Journal},

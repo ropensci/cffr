@@ -25,7 +25,7 @@
     {
       "@type": "Person",
       "givenName": "Diego",
-      "familyName": "Hernangómez",
+      "familyName": "HernangC3mez",
       "email": "diego.hernangomezherrero@gmail.com",
       "@id": "https://orcid.org/0000-0001-8457-4658"
     }
@@ -34,7 +34,7 @@
     {
       "@type": "Person",
       "givenName": "Diego",
-      "familyName": "Hernangómez",
+      "familyName": "HernangC3mez",
       "email": "diego.hernangomezherrero@gmail.com",
       "@id": "https://orcid.org/0000-0001-8457-4658"
     }
@@ -43,7 +43,7 @@
     {
       "@type": "Person",
       "givenName": "Diego",
-      "familyName": "Hernangómez",
+      "familyName": "HernangC3mez",
       "email": "diego.hernangomezherrero@gmail.com",
       "@id": "https://orcid.org/0000-0001-8457-4658"
     }
@@ -234,7 +234,7 @@
   },
   "isPartOf": "https://ropensci.org",
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata", "citation-file-format", "cran", "r", "r-package", "ropensci", "rstats", "r-cran"],
-  "fileSize": "985.322KB",
+  "fileSize": "943.588KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

@@ -126,8 +126,7 @@ test_that("Convert list of authors", {
 
 
 test_that("as.person method", {
-  rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if_not_snapshot_env()
   skip_on_cran()
   path <- system.file("examples/CITATION_complete.cff", package = "cffr")
 
@@ -240,9 +239,11 @@ test_that("toBibtex", {
   expect_true(cff_validate(full_cff, verbose = FALSE))
 
   # A. validate extractions
-  expect_snapshot(toBibtex(full_cff))
-  expect_snapshot(toBibtex(full_cff, what = "references"))
-  expect_snapshot(toBibtex(full_cff, what = "all"))
+  if (isTRUE(l10n_info()[["UTF-8"]])) {
+    expect_snapshot(toBibtex(full_cff))
+    expect_snapshot(toBibtex(full_cff, what = "references"))
+    expect_snapshot(toBibtex(full_cff, what = "all"))
+  }
 
   # single entries
   single <- toBibtex(full_cff$`preferred-citation`)

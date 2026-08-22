@@ -443,83 +443,12 @@
         year: '2006'
         isbn: 1-59593-322-02
 
-# Skip misc without title
-
-    Code
-      cffobj
-    Output
-      cff-version: 1.2.0
-      message: If you use this software, please cite it using these metadata.
-      title: My Research Software
-      authors:
-      - family-names: Doe
-        given-names: John
-
-# Skip misc without title, not skipping the good one
-
-    Code
-      cffobj
-    Output
-      cff-version: 1.2.0
-      message: If you use this software, please cite it using these metadata.
-      title: My Research Software
-      authors:
-      - family-names: Doe
-        given-names: John
-      references:
-      - type: generic
-        title: 'rromeo: An R Client for SHERPA/RoMEO API'
-        authors:
-        - family-names: Grenié
-          given-names: Matthias
-        - family-names: Gruson
-          given-names: Hugo
-        year: '2019'
-        url: https://CRAN.R-project.org/package=rromeo
-
-# Check extended BibLatex Fields
-
-    Code
-      bib_cff
-    Output
-      - type: article
-        title: Computation of methodology hyphen independent ionic solvation free energies
-          from molecular simulations
-        authors:
-        - family-names: Kastenholz
-          given-names: M. A.
-        - family-names: Hünenbergerb
-          given-names: Philippe H.
-        journal: J. Chem. Phys.
-        year: '2006'
-        notes: Example modified for testing purposes
-        date-published: '2006-03-15'
-        filename: a_file.pdf
-        issue-title: Semantic 3D Media and Content
-        translators:
-        - family-names: Wicksteed
-          given-names: P. H.
-        - family-names: Cornford
-          given-names: F. M.
-        date-accessed: '2006-10-01'
-        pages: '528'
-        abstract: The computation of ionic solvation free energies from atomistic simulations
-          is a surprisingly difficult problem that has found no satisfactory solution for
-          more than 15 years.
-        doi: 10.1063/1.2172593
-        isbn: 0-816-52066-6
-        issn: 0097-8493
-        url: http://www.ctan.org
-        start: '55'
-        end: '65'
-        month: '3'
-
 # Duplicate entries
 
     Code
       bib_cff <- as_cff(rep(bib, 2))
     Message
-      i Removing duplicate <bibentry> objects.
+      i Removing 1 duplicate <bibentry> object.
 
 # Identifiers and dois
 

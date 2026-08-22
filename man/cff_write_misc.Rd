@@ -72,7 +72,7 @@ a backup copy in the same directory.
 \examples{
 bib <- bibentry("Misc",
   title = "My title",
-  author = "Fran Pérez"
+  author = "Fran P<U+00E9>rez"
 )
 
 my_temp_bib <- tempfile(fileext = ".bib")

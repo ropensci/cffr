@@ -147,7 +147,7 @@ cff_schema_definitions_person()
 
 chiquito <- person(
   "Gregorio",
-  "Sánchez Fernández",
+  "SC!nchez FernC!ndez",
   email = "fake@email2.com",
   comment = c(
     alias = "Chiquito de la Calzada",

@@ -25,6 +25,23 @@ test_that("Errors and messages", {
   expect_identical(mod$abstract, "b")
 })
 
+test_that("Cleanup messages are pluralized", {
+  a_cff <- cff()
+
+  # jarl-ignore-start duplicated_arguments: Testing edge case.
+  expect_snapshot(cff_modify(a_cff, abstract = "a", abstract = "b"))
+  expect_snapshot(cff_modify(
+    a_cff,
+    abstract = "a",
+    abstract = "b",
+    abstract = "c"
+  ))
+  # jarl-ignore-end duplicated_arguments
+
+  expect_snapshot(cff_modify(a_cff, "a", abstract = "b"))
+  expect_snapshot(cff_modify(a_cff, "a", "b", abstract = "c"))
+})
+
 test_that("Can reclass", {
   a_cff <- cff()
 

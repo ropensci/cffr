@@ -124,7 +124,7 @@ Haines R, The Ruby Citation File Format Developers (2022).
 "Ruby CFF Library." \doi{10.5281/zenodo.7294987}.
 \url{https://github.com/citation-file-format/ruby-cff}.
 
-Hernangómez D (2022). "BibTeX and CFF, a potential crosswalk."
+Hernang<U+00F3>mez D (2022). "BibTeX and CFF, a potential crosswalk."
 \CRANpkg{cffr} vignette.
 \url{https://docs.ropensci.org/cffr/articles/bibtex-cff.html}.
 }

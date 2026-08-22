@@ -121,7 +121,7 @@ from_citation[[1]]
 R Core Team (2026). \emph{Writing R Extensions}.
 \url{https://cran.r-project.org/doc/manuals/r-release/R-exts.html}.
 
-Hernangómez D (2022). "BibTeX and CFF, a potential crosswalk."
+Hernang<U+00F3>mez D (2022). "BibTeX and CFF, a potential crosswalk."
 \CRANpkg{cffr} vignette.
 \url{https://docs.ropensci.org/cffr/articles/bibtex-cff.html}.
 }

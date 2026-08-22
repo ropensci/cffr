@@ -10,7 +10,10 @@ abort_if_not_cff <- function(x) {
   # `x` should at least be a character vector.
   if (!inherits(x, "character")) {
     cli::cli_abort(
-      "{.arg x} is an object of class {.cls {class(x)}}, not {.cls cff}."
+      paste0(
+        "{.arg x} must be a {.cls cff} object or a {.file *.cff} file, ",
+        "not {.obj_type_friendly {x}}."
+      )
     )
   }
 

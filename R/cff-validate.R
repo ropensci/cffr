@@ -62,6 +62,7 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
   if (!is_cff(x)) {
     # Check the source.
     abort_if_not_cff(x)
+    # nolint start: object_usage_linter.
     is_a <- escape_cli_markup(cli::format_inline("{.file {x}}"))
     # nolint end
     x <- cff_read_cff_citation(x)

@@ -61,12 +61,12 @@
     Output
       a: '1'
 
-# Other convertes
+# other inputs can be converted to CFF
 
     Code
       noadd <- cff(chocolate = "New York", version = 5)
     Message
-      i Found misspelled keys. Trying to map them:
+      i Found 1 misspelled key. Trying to map it:
       x chocolate: No match, removing.
 
 # Reading full cff

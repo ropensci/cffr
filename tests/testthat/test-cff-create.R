@@ -1,33 +1,36 @@
-test_that("Error if file not exists", {
+test_that("cff_create() errors when file does not exist", {
   expect_snapshot(cff_create("DESCRIPTION_not_exists"), error = TRUE)
 })
 
-test_that("Test installed packages", {
+test_that("cff_create() works with installed packages", {
   skip_on_cran()
   expect_silent(cff_create("jsonlite"))
   expect_silent(cff_create("yaml"))
 })
 
-test_that("Test indev", {
+test_that("cff_create() works for an in-development package", {
   skip_on_cran()
 
   local_mock_package()
 
   a_cff <- cff_create()
 
+  expect_s3_class(a_cff, "cff")
   expect_true(cff_validate(a_cff, verbose = FALSE))
 
   expect_snapshot(a_cff)
 })
 
-test_that("Test dependencies extraction", {
+test_that("cff_create() includes dependencies by default", {
   yes <- cff_create("jsonlite")
   no <- cff_create("jsonlite", dependencies = FALSE)
 
+  expect_s3_class(yes, "cff")
+  expect_s3_class(no, "cff")
   expect_gt(length(yes$references), length(no$references))
 })
 
-test_that("Test error formats on inputs", {
+test_that("cff_create() errors on unsupported input types", {
   df <- data.frame(x = 1, b = "c")
   expect_snapshot(cff_create(df), error = TRUE)
   l <- list(a = 1, b = 3)
@@ -36,7 +39,7 @@ test_that("Test error formats on inputs", {
   expect_snapshot(cff_create("uanuanua"), error = TRUE)
 })
 
-test_that("Validate all DESCRIPTION files", {
+test_that("all example DESCRIPTION files create valid CFF", {
   allfiles <- list.files(
     system.file("examples", package = "cffr"),
     pattern = "^DESC",
@@ -44,15 +47,17 @@ test_that("Validate all DESCRIPTION files", {
   )
 
   for (i in seq_along(allfiles)) {
+    desc_name <- basename(allfiles[i])
     cffobj <- cff_create(allfiles[i], gh_keywords = FALSE)
     # Check that no preferred citation is created
-    expect_null(cffobj$`preferred-citation`)
+    expect_null(cffobj$`preferred-citation`, info = desc_name)
+    expect_s3_class(cffobj, "cff")
 
-    expect_true(cff_validate(cffobj, verbose = FALSE))
+    expect_true(cff_validate(cffobj, verbose = FALSE), info = desc_name)
   }
 })
 
-test_that("No auto generate preferred citations", {
+test_that("cff_create() does not auto-generate preferred citations", {
   rgeos <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
 
   expect_snapshot(cff_create(
@@ -69,7 +74,7 @@ test_that("No auto generate preferred citations", {
   ))
 })
 
-test_that("Fuzzy match on cff_create", {
+test_that("cff_create() fuzzy matches keys", {
   newobject <- cff_create(cff())
   newkeys <- list(
     "url" = "https://ropensci.org/",
@@ -85,7 +90,7 @@ test_that("Fuzzy match on cff_create", {
   expect_snapshot(print_snapshot("Fuzzy match on cff_create", modobject))
 })
 
-test_that("Test installed packages vs call to file", {
+test_that("installed package and DESCRIPTION path produce same CFF", {
   skip_on_cran()
   call1 <- cff_create("jsonlite")
   call2 <- cff_create(system.file("DESCRIPTION", package = "jsonlite"))
@@ -105,7 +110,7 @@ test_that("Default roles", {
   expect_identical(cf, cf2)
 })
 
-test_that("Add new roles", {
+test_that("cff_create() includes authors with selected roles", {
   p <- system.file("examples/DESCRIPTION_no_URL", package = "cffr")
 
   cf <- cff_create(p, dependencies = FALSE)
@@ -116,6 +121,7 @@ test_that("Add new roles", {
   )
 
   expect_gt(length(cf2$authors), length(cf$authors))
+  expect_s3_class(cf2, "cff")
   expect_true(cff_validate(cf2, verbose = FALSE))
 })
 
@@ -228,11 +234,10 @@ test_that("Parsing Gitlab", {
   expect_length(a_cff$url, 1)
   expect_length(a_cff$identifiers, 0)
   expect_s3_class(a_cff, "cff")
-
-  rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
-  expect_snapshot(a_cff)
   expect_true(cff_validate(a_cff, verbose = FALSE))
+
+  skip_if_not_snapshot_env()
+  expect_snapshot(a_cff)
 })
 
 test_that("Parsing many persons", {
@@ -255,16 +260,15 @@ test_that("Parsing many persons", {
   names <- unlist(lapply(a_cff$authors, names))
 
   expect_s3_class(a_cff, "cff")
-  expect_snapshot(a_cff)
   expect_true(cff_validate(a_cff, verbose = FALSE))
+
+  skip_if_not_snapshot_env()
+  expect_snapshot(a_cff)
 })
 
 
 test_that("Parsing wrong urls", {
   skip_on_cran()
-
-  rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
 
   desc_path <- system.file("examples/DESCRIPTION_wrong_urls", package = "cffr")
 
@@ -279,8 +283,10 @@ test_that("Parsing wrong urls", {
   expect_length(a_cff$identifiers, 2)
 
   expect_s3_class(a_cff, "cff")
-  expect_snapshot(a_cff)
   expect_true(cff_validate(a_cff, verbose = FALSE))
+
+  skip_if_not_snapshot_env()
+  expect_snapshot(a_cff)
 })
 
 
@@ -300,11 +306,10 @@ test_that("Parsing two maintainers", {
   expect_length(a_cff$contact, 2)
 
   expect_s3_class(a_cff, "cff")
-
-  rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
-  expect_snapshot(a_cff)
   expect_true(cff_validate(a_cff, verbose = FALSE))
+
+  skip_if_not_snapshot_env()
+  expect_snapshot(a_cff)
 })
 
 test_that("Parsing r-universe", {
@@ -319,8 +324,10 @@ test_that("Parsing r-universe", {
   expect_length(a_cff$repository, 1)
 
   expect_s3_class(a_cff, "cff")
-  expect_snapshot(a_cff)
   expect_true(cff_validate(a_cff, verbose = FALSE))
+
+  skip_if_not_snapshot_env()
+  expect_snapshot(a_cff)
 })
 
 
@@ -341,8 +348,7 @@ test_that("Parsing Bioconductor", {
   expect_s3_class(a_cff, "cff")
   expect_true(cff_validate(a_cff, verbose = FALSE))
 
-  rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if_not_snapshot_env()
 
   expect_snapshot(a_cff)
 })
@@ -361,18 +367,17 @@ test_that("Parsing Posit Package Manager", {
     keys = list(references = NULL)
   )
 
-  expect_s3_class(a_cff, "cff")
-
-  rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
   expect_length(a_cff$repository, 1)
+  expect_s3_class(a_cff, "cff")
+  expect_true(cff_validate(a_cff, verbose = FALSE))
+
+  skip_if_not_snapshot_env()
   expect_identical(
     a_cff$repository,
     "https://CRAN.R-project.org/package=resmush"
   )
 
   expect_snapshot(a_cff)
-  expect_true(cff_validate(a_cff, verbose = FALSE))
 })
 
 test_that("Search package on CRAN", {

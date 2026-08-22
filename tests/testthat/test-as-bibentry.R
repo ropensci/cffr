@@ -107,11 +107,17 @@ test_that("as_bibentry character", {
 })
 
 test_that("as_bibentry cff", {
-  f <- system.file("examples/CITATION_basic.cff", package = "cffr")
+  a_cff <- cff()
+  theref <- list(
+    type = "book",
+    title = "Bootstrap Methods and Their Applications",
+    year = "1997",
+    publisher = list(name = "Cambridge University Press (Madrid)"),
+    url = "http://statwww.epfl.ch/davison/BMA/",
+    translators = list(list(name = "Research Translators Ltd."))
+  )
+  class(theref) <- c("cff_ref", "cff")
 
-  a_cff <- cff_read(f)
-  theref <- a_cff$references[[1]]
-  a_cff <- cff_modify(a_cff, references = NULL)
   expect_null(a_cff$references)
 
   expect_snapshot(end <- as_bibentry(a_cff, what = "references"))

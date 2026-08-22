@@ -49,7 +49,7 @@
 #' "Ruby CFF Library." \doi{10.5281/zenodo.7294987}.
 #' <https://github.com/citation-file-format/ruby-cff>.
 #'
-#' Hernangómez D (2022). "BibTeX and CFF, a potential crosswalk."
+#' Hernang<U+00F3>mez D (2022). "BibTeX and CFF, a potential crosswalk."
 #' \CRANpkg{cffr} vignette.
 #' <https://docs.ropensci.org/cffr/articles/bibtex-cff.html>.
 #'
@@ -151,9 +151,9 @@ as_bibentry.character <- function(
     # nolint start
     msg <- paste0('install.packages("', x, '")')
     # nolint end
-    cli::cli_abort(paste(
+    cli::cli_abort(c(
       "Cannot extract a {.cls bibentry} from {.val {x}}.",
-      "If {.pkg {x}} is a package, run {.run {msg}} first."
+      "i" = "If {.pkg {x}} is a package, run {.run {msg}} first."
     ))
   }
 

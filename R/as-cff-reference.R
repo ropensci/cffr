@@ -5,7 +5,9 @@ as_cff_reference <- function(x) {
   # Always require an unnamed bibentry.
   bib <- unname(x)
   if (anyDuplicated(bib) > 0) {
-    cli::cli_alert_info("Removing duplicate {.cls bibentry} objects.")
+    cli::cli_alert_info(
+      "Removing {sum(duplicated(bib))} duplicate {.cls bibentry} object{?s}."
+    )
     bib <- unique(bib)
   }
 

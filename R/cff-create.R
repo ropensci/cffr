@@ -212,7 +212,10 @@ abort_invalid_cff_source <- function(hint_source) {
     "bib" = "Try {.fn cffr::cff_read}."
   )
 
-  cli::cli_abort(paste0("{.arg x} is not a supported source. ", msg_hint))
+  cli::cli_abort(c(
+    "{.arg x} is not a supported source.",
+    "i" = msg_hint
+  ))
 }
 
 cff_description_path <- function(x, hint_source) {

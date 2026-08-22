@@ -1,4 +1,4 @@
-# Error if file not exists
+# cff_create() errors when file does not exist
 
     Code
       cff_create("DESCRIPTION_not_exists")
@@ -6,7 +6,7 @@
       Error in `build_cff_and_paths()`:
       ! No 'DESCRIPTION' file found for `x`.
 
-# Test indev
+# cff_create() works for an in-development package
 
     Code
       a_cff
@@ -29,13 +29,14 @@
         given-names: Marc
         email: marcbasic@gmail.com
 
-# Test error formats on inputs
+# cff_create() errors on unsupported input types
 
     Code
       cff_create(df)
     Condition
       Error in `abort_invalid_cff_source()`:
-      ! `x` is not a supported source. If it is a package, you may need to install it with `utils::install.packages()`.
+      ! `x` is not a supported source.
+      i If it is a package, you may need to install it with `utils::install.packages()`.
 
 ---
 
@@ -43,7 +44,8 @@
       cff_create(l)
     Condition
       Error in `abort_invalid_cff_source()`:
-      ! `x` is not a supported source. If it is a package, you may need to install it with `utils::install.packages()`.
+      ! `x` is not a supported source.
+      i If it is a package, you may need to install it with `utils::install.packages()`.
 
 ---
 
@@ -51,9 +53,10 @@
       cff_create("uanuanua")
     Condition
       Error in `abort_invalid_cff_source()`:
-      ! `x` is not a supported source. If it is a package, you may need to install it with `utils::install.packages()`.
+      ! `x` is not a supported source.
+      i If it is a package, you may need to install it with `utils::install.packages()`.
 
-# No auto generate preferred citations
+# cff_create() does not auto-generate preferred citations
 
     Code
       cff_create(rgeos, gh_keywords = FALSE, keys = list(references = NULL))
@@ -126,7 +129,7 @@
         given-names: Marc
         email: marcbasic@gmail.com
 
-# Fuzzy match on cff_create
+# cff_create() fuzzy matches keys
 
     Code
       print_snapshot("Fuzzy match on cff_create", modobject)

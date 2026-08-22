@@ -621,7 +621,9 @@ test_that("Skip misc without title", {
 
   cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
-  expect_snapshot(cffobj)
+  if (isTRUE(l10n_info()[["UTF-8"]])) {
+    expect_snapshot(cffobj)
+  }
 
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
@@ -638,7 +640,7 @@ test_that("Skip misc without title, not skipping the good one", {
     bibentry(
       bibtype = "misc",
       title = "{rromeo}: An {R} Client for {SHERPA/RoMEO} {API}",
-      author = c(person("Matthias", "Grenié"), person("Hugo", "Gruson")),
+      author = c(person("Matthias", "Greni<U+00E9>"), person("Hugo", "Gruson")),
       year = 2019,
       header = "To cite this package in publications, please use:",
       url = "https://CRAN.R-project.org/package=rromeo"
@@ -653,7 +655,9 @@ test_that("Skip misc without title, not skipping the good one", {
 
   cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
-  expect_snapshot(cffobj)
+  if (isTRUE(l10n_info()[["UTF-8"]])) {
+    expect_snapshot(cffobj)
+  }
 
   expect_equal(
     cffobj$references[[1]]$title,
@@ -667,7 +671,7 @@ test_that("Skip misc without title, not skipping the good one", {
 test_that("Check extended BibLatex Fields", {
   bib <- bibentry(
     "Article",
-    author = "M. A. Kastenholz, and Philippe H. Hünenbergerb",
+    author = "M. A. Kastenholz, and Philippe H. H<U+00FC>nenbergerb",
     title = "Computation of methodology hyphen independent ionic solvation
                   free energies from molecular simulations",
     journal = "J. Chem. Phys.",
@@ -692,7 +696,9 @@ test_that("Check extended BibLatex Fields", {
   )
 
   bib_cff <- as_cff(bib)
-  expect_snapshot(bib_cff)
+  if (isTRUE(l10n_info()[["UTF-8"]])) {
+    expect_snapshot(bib_cff)
+  }
 
   cffobj <- cff_create(cff(), keys = list(references = bib_cff))
 
@@ -749,8 +755,7 @@ test_that("Identifiers and dois", {
 })
 
 test_that("Test R 2026", {
-  rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if_not_snapshot_env()
 
   # https://github.com/wch/r-source/blob/trunk/src/library/base/inst/CITATION
 

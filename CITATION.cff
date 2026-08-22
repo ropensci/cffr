@@ -18,7 +18,7 @@ abstract: Citation File Format ('CFF') version 1.2.0 <https://doi.org/10.5281/ze
   utilities generate, read, write and validate Citation File Format metadata for 'R'
   packages.
 authors:
-- family-names: Hernangómez
+- family-names: HernangC3mez
   given-names: Diego
   email: diego.hernangomezherrero@gmail.com
   orcid: https://orcid.org/0000-0001-8457-4658
@@ -26,10 +26,8 @@ preferred-citation:
   type: article
   title: 'cffr: Generate Citation File Format Metadata for R Packages'
   authors:
-  - family-names: Hernangómez
+  - family-names: Hernang<U+00F3>mez
     given-names: Diego
-    email: diego.hernangomezherrero@gmail.com
-    orcid: https://orcid.org/0000-0001-8457-4658
   doi: 10.21105/joss.03900
   url: https://doi.org/10.21105/joss.03900
   year: '2021'
@@ -43,7 +41,7 @@ repository: https://CRAN.R-project.org/package=cffr
 repository-code: https://github.com/ropensci/cffr
 url: https://docs.ropensci.org/cffr/
 contact:
-- family-names: Hernangómez
+- family-names: HernangC3mez
   given-names: Diego
   email: diego.hernangomezherrero@gmail.com
   orcid: https://orcid.org/0000-0001-8457-4658
@@ -79,7 +77,7 @@ references:
     given-names: Spencer
   - family-names: Willighagen
     given-names: Egon
-  - family-names: Pérez-Suárez
+  - family-names: P<U+00E9>rez-Su<U+00E1>rez
     given-names: David
   - family-names: Konovalov
     given-names: Alexander
@@ -112,8 +110,8 @@ references:
   url: https://cli.r-lib.org
   repository: https://CRAN.R-project.org/package=cli
   authors:
-  - family-names: Csárdi
-    given-names: Gábor
+  - family-names: Csardi
+    given-names: Gabor
     email: gabor@posit.co
   year: '2026'
   doi: 10.32614/CRAN.package.cli
@@ -125,10 +123,10 @@ references:
   url: https://desc.r-lib.org/
   repository: https://CRAN.R-project.org/package=desc
   authors:
-  - family-names: Csárdi
-    given-names: Gábor
+  - family-names: Csardi
+    given-names: Gabor
     email: csardi.gabor@gmail.com
-  - family-names: Müller
+  - family-names: Muller
     given-names: Kirill
   - family-names: Hester
     given-names: Jim
@@ -220,7 +218,7 @@ references:
     given-names: Romain
     email: romain@purrple.cat
     orcid: https://orcid.org/0000-0002-2444-4226
-  - family-names: Hernangómez
+  - family-names: Hernangomez
     given-names: Diego
     email: diego.hernangomezherrero@gmail.com
     orcid: https://orcid.org/0000-0001-8457-4658
@@ -371,7 +369,7 @@ references:
   - family-names: Henry
     given-names: Lionel
     email: lionel@posit.co
-  - family-names: Müller
+  - family-names: Muller
     given-names: Kirill
     email: krlmlr+r@mailbox.org
   - family-names: Ushey

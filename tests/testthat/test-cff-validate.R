@@ -26,6 +26,7 @@ test_that("cff_validate handles file paths with braces in verbose messages", {
 })
 
 test_that("Validate error CITATION.cff", {
+  skip_if(!isTRUE(l10n_info()[["UTF-8"]]), "Test requires UTF-8 locale")
   err <- system.file("examples/CITATION_error.cff", package = "cffr")
   # From cff
   ferr <- cff_read(err)

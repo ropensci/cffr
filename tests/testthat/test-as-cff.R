@@ -24,8 +24,7 @@ test_that("as_cff.person", {
   expect_s3_class(aa, c("cff_pers_lst", "cff"), exact = TRUE)
   expect_s3_class(aa[[1]], c("cff_pers", "cff"), exact = TRUE)
   expect_identical(aa, as_cff_person(pers))
-  rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if_not_snapshot_env()
   expect_snapshot(as_cff(pers))
 
   # Check a single person
@@ -73,7 +72,7 @@ test_that("as_cff.default", {
   expect_snapshot(as_cff(b))
 })
 
-test_that("Other convertes", {
+test_that("other inputs can be converted to CFF", {
   a <- cff()
   expect_s3_class(a, "cff")
   a <- as_cff(a)

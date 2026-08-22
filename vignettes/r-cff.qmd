@@ -3,7 +3,7 @@ title: "From R to CFF"
 subtitle: "Crosswalk"
 description: >
   A comprehensive description of the internal mappings performed by **cffr**.
-author: Diego Hernangómez
+author: Diego HernangC3mez
 bibliography: REFERENCES.bib
 link-citations: true
 toc: true

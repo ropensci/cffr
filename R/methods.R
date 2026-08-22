@@ -329,7 +329,9 @@ as.person.cff_pers_lst <- function(x) {
   }
   end <- do.call(c, pers)
   if (anyDuplicated(end) > 0) {
-    cli::cli_alert_info("Removing duplicate {.cls person} objects.")
+    cli::cli_alert_info(
+      "Removing {sum(duplicated(end))} duplicate {.cls person} object{?s}."
+    )
     end <- end[!duplicated(end)]
   }
   end

@@ -26,7 +26,8 @@
       as_bibentry("invented_package")
     Condition
       Error in `as_bibentry()`:
-      ! Cannot extract a <bibentry> from "invented_package". If invented_package is a package, run `install.packages("invented_package")` first.
+      ! Cannot extract a <bibentry> from "invented_package".
+      i If invented_package is a package, run `install.packages("invented_package")` first.
 
 # as_bibentry cff
 

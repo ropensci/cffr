@@ -1,4 +1,4 @@
-# See ´
+# See <U+00B4>
 # https://github.com/citation-file-format/ruby-cff/tree/main/test/files
 
 test_that("preferred-citation-book-missing", {
@@ -38,6 +38,7 @@ test_that("preferred-citation-conference-paper-missing", {
 })
 
 test_that("preferred-citation-conference-paper", {
+  skip_if(!isTRUE(l10n_info()[["UTF-8"]]), "Test requires UTF-8 locale")
   x <- system.file(
     "examples/preferred-citation-conference-paper.cff",
     package = "cffr"
@@ -48,6 +49,7 @@ test_that("preferred-citation-conference-paper", {
 })
 
 test_that("preferred-citation-manual", {
+  skip_if(!isTRUE(l10n_info()[["UTF-8"]]), "Test requires UTF-8 locale")
   x <- system.file("examples/preferred-citation-manual.cff", package = "cffr")
 
   bib <- as_bibentry(x)

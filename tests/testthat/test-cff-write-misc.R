@@ -1,17 +1,20 @@
-test_that("Errors", {
+test_that("cff_write_bib() errors on unsupported input", {
   expect_snapshot(cff_write_bib(1:4), error = TRUE)
 })
 
-test_that("Write", {
-  bib <- bibentry("Misc", title = "My title", author = "Fran Pérez")
+test_that("cff_write_bib() writes BibTeX files", {
+  bib <- bibentry("Misc", title = "My title", author = "Fran P<U+00E9>rez")
 
   file <- file.path(tempdir(), "noext")
   expect_message(cff_write_bib(bib, file, verbose = TRUE), "Writing 4 lines")
 
   # Fix extensions
   file <- paste0(file, ".bib")
+  withr::defer(unlink(file, force = TRUE))
+  withr::defer(unlink(paste0(file, ".bk1"), force = TRUE))
   expect_true(file_exist_abort(file))
 
+  skip_if(!isTRUE(l10n_info()[["UTF-8"]]), "Snapshot created with UTF-8 locale")
   expect_snapshot_file(file)
 
   # Check backup
@@ -20,23 +23,21 @@ test_that("Write", {
   # Check now backup exists
   cff_write_bib(bib, file, append = TRUE)
   expect_true(file_exist_abort(paste0(file, ".bk1")))
-
-  file.remove(file)
-  file.remove(paste0(file, ".bk1"))
 })
 
-test_that("Write ASCII", {
-  bib <- bibentry("Misc", title = "My title", author = "Fran Pérez")
+test_that("cff_write_bib() writes ASCII BibTeX files", {
+  bib <- bibentry("Misc", title = "My title", author = "Fran P<U+00E9>rez")
 
   file <- file.path(tempdir(), "ascii.bib")
+  withr::defer(unlink(file, force = TRUE))
   expect_silent(cff_write_bib(bib, file, verbose = FALSE, ascii = TRUE))
 
   # Fix extensions
+  skip_if(!isTRUE(l10n_info()[["UTF-8"]]), "Snapshot created with UTF-8 locale")
   expect_snapshot_file(file)
-  file.remove(file)
 })
 
-test_that("Test append", {
+test_that("cff_write_bib() appends entries", {
   bib <- bibentry("Misc", title = "My title", author = "Fran Herrero")
   cf <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
@@ -76,10 +77,11 @@ test_that("Test append", {
 })
 
 
-test_that("Test dir creation", {
+test_that("cff_write_bib() creates parent directories", {
   bib <- bibentry("Misc", title = "My title", author = "Fran Herrero")
 
-  file <- file.path(tempdir(), "idontexist", "append.bib")
+  root <- withr::local_tempdir()
+  file <- file.path(root, "idontexist", "append.bib")
 
   dir <- dirname(file)
 
@@ -89,18 +91,14 @@ test_that("Test dir creation", {
   expect_true(dir.exists(dir))
   expect_true(file_exist_abort(file))
 
-  unlink(dir, recursive = TRUE, force = TRUE)
-
   # With messages
-  file <- file.path(tempdir(), "nowiamverbose", "append.bib")
+  file <- file.path(root, "nowiamverbose", "append.bib")
   dir <- dirname(file)
   expect_false(dir.exists(dir))
   expect_message(cff_write_bib(bib, file, verbose = TRUE), "Creating directory")
 
   expect_true(dir.exists(dir))
   expect_true(file_exist_abort(file))
-
-  unlink(dir, recursive = TRUE, force = TRUE)
 })
 
 test_that("write_lines_msg reports lines, not entries", {
@@ -112,18 +110,20 @@ test_that("write_lines_msg reports lines, not entries", {
   )
 })
 
-test_that("Errors citation", {
+test_that("cff_write_citation() errors on unsupported input", {
   expect_snapshot(cff_write_citation(1:4), error = TRUE)
 })
 
-test_that("Write CITATION", {
+test_that("cff_write_citation() writes CITATION files", {
   f <- system.file("examples", package = "cffr")
   thepath <- list.files(f, pattern = "DESCRIPTION_basicdate", full.names = TRUE)
   f1 <- cff_read(thepath)
 
-  bib <- bibentry("Misc", title = "My title", author = "Fran Pérez")
+  bib <- bibentry("Misc", title = "My title", author = "Fran P<U+00E9>rez")
 
   file <- file.path(tempdir(), "CITAT_ION")
+  withr::defer(unlink(file, force = TRUE))
+  withr::defer(unlink(paste0(file, ".bk1"), force = TRUE))
   expect_message(cff_write_citation(bib, file, verbose = TRUE))
 
   # Check backup
@@ -138,8 +138,6 @@ test_that("Write CITATION", {
     append = TRUE
   ))
 
+  skip_if(!isTRUE(l10n_info()[["UTF-8"]]), "Snapshot created with UTF-8 locale")
   expect_snapshot_file(file)
-
-  file.remove(file)
-  file.remove(paste0(file, ".bk1"))
 })

@@ -47,7 +47,7 @@
 #' @examples
 #' bib <- bibentry("Misc",
 #'   title = "My title",
-#'   author = "Fran Pérez"
+#'   author = "Fran P<U+00E9>rez"
 #' )
 #'
 #' my_temp_bib <- tempfile(fileext = ".bib")
@@ -129,8 +129,8 @@ cff_coerce_bibentry <- function(x, ...) {
   if (!inherits(x, "bibentry")) {
     cli::cli_abort(
       paste0(
-        "{.arg x} must be a {.cls bibentry} object, not a ",
-        "{.cls {class(x)}} object."
+        "{.arg x} must be a {.cls bibentry} object, ",
+        "not {.obj_type_friendly {x}}."
       ),
       call = error_call
     )

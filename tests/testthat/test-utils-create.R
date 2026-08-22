@@ -1,6 +1,4 @@
-test_that("Merge all DESCRIPTION files with CITATION_basic", {
-  rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+test_that("example DESCRIPTION files merge with CITATION_basic", {
   skip_on_cran()
 
   allfiles <- list.files(
@@ -11,18 +9,22 @@ test_that("Merge all DESCRIPTION files with CITATION_basic", {
 
   citpath <- system.file("examples/CITATION_basic", package = "cffr")
   for (i in seq_along(allfiles)) {
+    desc_name <- basename(allfiles[i])
     desc_cff <- cff_read_description(allfiles[i], gh_keywords = FALSE)
     generate_cit <- cff_safe_read_citation(allfiles[i], citpath)
     merged <- merge_desc_cit(desc_cff, generate_cit)
     merged <- as_cff(merged)
 
-    expect_snapshot(merged)
+    expect_s3_class(merged, "cff")
+    expect_true(cff_validate(merged, verbose = FALSE), info = desc_name)
 
-    expect_true(cff_validate(merged, verbose = FALSE))
+    if (is_snapshot_env()) {
+      expect_snapshot(merged)
+    }
   }
 })
 
-test_that("Check dependencies", {
+test_that("dependencies keep selected CFF fields", {
   skip_on_cran()
   deps <- get_dependencies(system.file("DESCRIPTION", package = "cffr"))
 
@@ -37,14 +39,12 @@ test_that("Check dependencies", {
 
   class(selected) <- "cff"
 
-  rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if_not_snapshot_env()
   expect_snapshot(print(selected))
 })
 
-test_that("Merge DESCRIPTION wrong url with CITATION_dx", {
-  rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+test_that("wrong DOI URL is normalized when DESCRIPTION and CITATION merge", {
+  skip_if_not_snapshot_env()
   skip_on_cran()
 
   dd <- list.files(

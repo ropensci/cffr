@@ -37,20 +37,22 @@ test_that("cff_from_bibtex", {
 })
 
 test_that("write_bib", {
-  bib <- bibentry("Misc", title = "My title", author = "Fran Pérez")
+  bib <- bibentry("Misc", title = "My title", author = "Fran P<U+00E9>rez")
 
   tmp <- withr::local_tempfile(fileext = ".bib")
   expect_snapshot(write_bib(bib, tmp, verbose = FALSE))
 
+  skip_if(!isTRUE(l10n_info()[["UTF-8"]]), "Snapshot created with UTF-8 locale")
   expect_snapshot(cat(readLines(tmp), sep = "\n"))
 })
 
 test_that("write_citation", {
-  bib <- bibentry("Misc", title = "My title", author = "Fran Pérez")
+  bib <- bibentry("Misc", title = "My title", author = "Fran P<U+00E9>rez")
 
   tmp <- withr::local_tempfile(pattern = "CIT_ATION")
   expect_snapshot(write_citation(bib, tmp, verbose = FALSE))
 
+  skip_if(!isTRUE(l10n_info()[["UTF-8"]]), "Snapshot created with UTF-8 locale")
   expect_snapshot(cat(readLines(tmp), sep = "\n"))
 })
 

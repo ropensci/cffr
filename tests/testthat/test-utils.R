@@ -1,5 +1,6 @@
 test_that("Try encoding conversion", {
-  a <- iconv("España", to = "latin1")
+  skip_if(!isTRUE(l10n_info()[["UTF-8"]]), "Test requires UTF-8 locale")
+  a <- iconv("Espa<U+00F1>a", to = "latin1")
 
   expect_true(Encoding(a) == "latin1")
 

@@ -41,8 +41,16 @@ test_that("cff_gha_update errors when workflow copy fails", {
     cff_copy_workflow = function(from, to, overwrite) FALSE
   )
 
-  expect_error(
-    cff_gha_update(path = new_dir),
-    "Cannot install workflow"
+  mock_path <- normalizePath(new_dir, winslash = "\\", mustWork = FALSE)
+  mock_path_fwd <- normalizePath(new_dir, winslash = "/", mustWork = FALSE)
+  redact_mock_path <- function(x) {
+    x <- gsub(mock_path, "<mock-package>", x, fixed = TRUE)
+    gsub(mock_path_fwd, "<mock-package>", x, fixed = TRUE)
+  }
+
+  expect_snapshot(
+    error = TRUE,
+    transform = redact_mock_path,
+    cff_gha_update(path = new_dir)
   )
 })

@@ -1,4 +1,4 @@
-test_that("Parse Licenses on CRAN (Top 10)", {
+test_that("top CRAN licenses create valid CFF", {
   cran_packs <- read.csv(system.file(
     "extdata/cran_licenses.csv",
     package = "cffr"
@@ -15,8 +15,9 @@ test_that("Parse Licenses on CRAN (Top 10)", {
     overwrite = TRUE
   )
   for (i in seq_along(sel)) {
+    license <- sel[i]
     p <- desc::desc_set("License", sel[i], file = tmp)
     expect_silent(r <- cff_validate(cff_create(tmp), verbose = FALSE))
-    expect_true(r)
+    expect_true(r, info = license)
   }
 })

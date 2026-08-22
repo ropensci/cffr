@@ -49,7 +49,7 @@
 #' R Core Team (2026). *Writing R Extensions*.
 #' <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>.
 #'
-#' Hernangómez D (2022). "BibTeX and CFF, a potential crosswalk."
+#' Hernang<U+00F3>mez D (2022). "BibTeX and CFF, a potential crosswalk."
 #' \CRANpkg{cffr} vignette.
 #' <https://docs.ropensci.org/cffr/articles/bibtex-cff.html>.
 #'
@@ -105,9 +105,9 @@ cff_read <- function(path, ...) {
   filetype <- detect_x_source(path)
 
   if (filetype == "dontknow") {
-    cli::cli_abort(paste0(
+    cli::cli_abort(c(
       "Cannot recognize the file type of {.file {path}}.",
-      " Use a specific function, such as {.fn cffr::cff_read_description}."
+      "i" = "Use a specific function, such as {.fn cffr::cff_read_description}."
     ))
   }
 
@@ -204,8 +204,11 @@ cff_read_citation <- function(path, meta = NULL, ...) {
     # nolint end
 
     cli::cli_alert_warning(paste0(
-      "{.arg meta} must be {.code NULL} or {.obj_type_friendly {ex}}, ",
-      "not {.obj_type_friendly {meta}}. Using {.code meta = NULL}."
+      paste0(
+        "{.arg meta} must be {.code NULL} or ",
+        "{.obj_type_friendly {ex}}, not {.obj_type_friendly {meta}}."
+      ),
+      " Using {.code meta = NULL}."
     ))
     meta <- NULL
   }
