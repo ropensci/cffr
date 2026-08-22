@@ -1,4 +1,4 @@
-# Coerce one person
+# as_cff_person converts one person
 
     Code
       as_cff_person(p)
@@ -6,7 +6,7 @@
       - family-names: person
         given-names: one
 
-# Coerce several persons
+# as_cff_person converts multiple persons
 
     Code
       as_cff_person(p)
@@ -18,7 +18,7 @@
       - family-names: more
         given-names: and one
 
-# Coerce bibtex persons
+# as_cff_person converts BibTeX person strings
 
     Code
       as_cff_person(s)
@@ -38,7 +38,7 @@
       - family-names: one
         given-names: Another
 
-# Coerce bibtex persons with masks
+# as_cff_person preserves masked BibTeX names
 
     Code
       as_cff_person(s)
@@ -70,7 +70,7 @@
       - name: Elephant and Castle
       - name: this AND Ltd.
 
-# Can extract comments from format
+# as_cff_person extracts metadata from person comments
 
     Code
       pp2

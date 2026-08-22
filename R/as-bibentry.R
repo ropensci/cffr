@@ -151,9 +151,9 @@ as_bibentry.character <- function(
     # nolint start
     msg <- paste0('install.packages("', x, '")')
     # nolint end
-    cli::cli_abort(paste(
+    cli::cli_abort(c(
       "Cannot extract a {.cls bibentry} from {.val {x}}.",
-      "If {.pkg {x}} is a package, run {.run {msg}} first."
+      "i" = "If {.val {x}} is a package, run {.run {msg}} first."
     ))
   }
 

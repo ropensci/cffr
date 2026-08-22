@@ -151,14 +151,23 @@ fuzzy_keys <- function(keys) {
 
     bullets <- rep("v", length(keys_match))
     bullets[keys_match == "No match, removing."] <- "x"
-    ll <- paste0(
+    names_formatted <- paste0(
+      "{.field ",
       escape_cli_markup(names_fuzzy),
-      ": ",
-      escape_cli_markup(keys_match)
+      "}"
     )
+    matches_formatted <- ifelse(
+      keys_match == "No match, removing.",
+      keys_match,
+      paste0("{.field ", escape_cli_markup(keys_match), "}")
+    )
+    ll <- paste0(names_formatted, ": ", matches_formatted)
     names(ll) <- bullets
 
-    cli::cli_alert_info("Found misspelled keys. Trying to map them:")
+    cli::cli_alert_info(paste0(
+      "Found {length(names_fuzzy)} unknown key{?s}. ",
+      "Trying to map {?it/them}:"
+    ))
     cli::cli_bullets(ll)
     # Update names.
     names[!is_valid_key] <- keys_match

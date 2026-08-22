@@ -7,7 +7,7 @@ test_that("cff_gha_update installs a workflow in the requested package", {
     local_dir = FALSE
   )
   rbuildignore <- file.path(new_dir, ".Rbuildignore")
-  expect_true(file_exist_abort(rbuildignore))
+  expect_true(file.exists(rbuildignore))
 
   # Add action
   expect_message(cff_gha_update(path = new_dir), "Creating directory")
@@ -18,7 +18,7 @@ test_that("cff_gha_update installs a workflow in the requested package", {
     "Workflow installed"
   )
 
-  expect_true(file_exist_abort(file.path(
+  expect_true(file.exists(file.path(
     new_dir,
     ".github",
     "workflows",
@@ -41,8 +41,9 @@ test_that("cff_gha_update errors when workflow copy fails", {
     cff_copy_workflow = function(from, to, overwrite) FALSE
   )
 
-  expect_error(
+  expect_snapshot(
     cff_gha_update(path = new_dir),
-    "Cannot install workflow"
+    error = TRUE,
+    transform = \(lines) gsub(new_dir, "<package>", lines, fixed = TRUE)
   )
 })

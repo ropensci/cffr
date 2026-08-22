@@ -61,7 +61,8 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
   # Read the file if the input is not a `cff` object.
   if (!is_cff(x)) {
     # Check the source.
-    abort_if_not_cff(x)
+    abort_if_not_cff(x, call = environment())
+    file_exist_abort(x, abort = TRUE, call = environment())
     is_a <- escape_cli_markup(cli::format_inline("{.file {x}}"))
     # nolint end
     x <- cff_read_cff_citation(x)
@@ -108,7 +109,7 @@ cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
       cli::cli_alert_danger(paste0(
         "Validation failed. ",
         is_a,
-        " has the following errors:\n",
+        " has {nrow(get_errors)} validation error{?s}:\n",
         ll
       ))
     }

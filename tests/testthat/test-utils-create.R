@@ -1,4 +1,4 @@
-test_that("Merge all DESCRIPTION files with CITATION_basic", {
+test_that("merge_cff combines DESCRIPTION fixtures with CITATION", {
   rvers <- getRversion()
   skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
   skip_on_cran()
@@ -10,19 +10,22 @@ test_that("Merge all DESCRIPTION files with CITATION_basic", {
   )
 
   citpath <- system.file("examples/CITATION_basic", package = "cffr")
-  for (i in seq_along(allfiles)) {
-    desc_cff <- cff_read_description(allfiles[i], gh_keywords = FALSE)
-    generate_cit <- cff_safe_read_citation(allfiles[i], citpath)
+  merged_cffs <- setNames(vector("list", length(allfiles)), basename(allfiles))
+  for (file in allfiles) {
+    fixture <- basename(file)
+    desc_cff <- cff_read_description(file, gh_keywords = FALSE)
+    generate_cit <- cff_safe_read_citation(file, citpath)
     merged <- merge_desc_cit(desc_cff, generate_cit)
     merged <- as_cff(merged)
 
-    expect_snapshot(merged)
-
-    expect_true(cff_validate(merged, verbose = FALSE))
+    expect_true(cff_validate(merged, verbose = FALSE), info = fixture)
+    merged_cffs[[fixture]] <- merged
   }
+
+  expect_snapshot(merged_cffs)
 })
 
-test_that("Check dependencies", {
+test_that("dependency helpers select supported package dependencies", {
   skip_on_cran()
   deps <- get_dependencies(system.file("DESCRIPTION", package = "cffr"))
 
@@ -42,7 +45,7 @@ test_that("Check dependencies", {
   expect_snapshot(print(selected))
 })
 
-test_that("Merge DESCRIPTION wrong url with CITATION_dx", {
+test_that("merge_cff resolves conflicting DESCRIPTION and CITATION URLs", {
   rvers <- getRversion()
   skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
   skip_on_cran()
@@ -66,7 +69,7 @@ test_that("Merge DESCRIPTION wrong url with CITATION_dx", {
   )
 })
 
-test_that("Utils coverage", {
+test_that("cff_dependency_rows normalizes versions and dependency scopes", {
   deps <- data.frame(
     package = c("foo", "foo", "bar"),
     version = c("*", "1.0", "2.0"),
@@ -77,13 +80,17 @@ test_that("Utils coverage", {
   expect_equal(rows$package, c("foo", "foo", "bar"))
   expect_equal(rows$version_clean, c("", "1.0", "2.0"))
   expect_equal(rows$scope, c("Imports", "Imports", "Depends"))
+})
 
+test_that("cff_dependency_year extracts years from supported dates", {
   mod <- list(`date-released` = "1995-02-01")
   expect_identical(cff_dependency_year(mod), "1995")
 
   mod2 <- list(`date-released` = "1904/12/30")
   expect_identical(cff_dependency_year(mod2), "1904")
+})
 
+test_that("is_cran_dependency excludes base and unavailable packages", {
   avail <- data.frame(Package = c("foo", "stats"))
   withr::local_options(
     cffr.available_packages = avail
@@ -91,7 +98,9 @@ test_that("Utils coverage", {
   expect_true(is_cran_dependency("foo"))
   expect_false(is_cran_dependency("stats"))
   expect_false(is_cran_dependency("bar"))
+})
 
+test_that("cff_dependency_order uses canonical field order", {
   ordered <- drop_null(cff_dependency_order(list(
     year = "2025",
     repository = "https://example.org/repo",
@@ -99,9 +108,14 @@ test_that("Utils coverage", {
     type = "software"
   )))
   expect_named(ordered, c("type", "title", "repository", "year"))
+})
 
+test_that("cff_dependency_reference returns NULL for unavailable packages", {
   dep <- list(package = "aaaa")
   expect_null(cff_dependency_reference(dep))
+})
+
+test_that("get_dependencies rejects invalid DESCRIPTION inputs", {
   expect_null(get_dependencies(1))
   expect_null(get_dependencies(withr::local_tempfile()))
 })

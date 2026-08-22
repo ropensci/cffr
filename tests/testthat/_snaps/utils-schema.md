@@ -1,4 +1,4 @@
-# Keys snapshot
+# schema key ordering remains stable
 
     Code
       cff_schema_keys(FALSE)

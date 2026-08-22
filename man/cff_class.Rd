@@ -177,7 +177,7 @@ Creating a \code{\link{cff}} object does not ensure its validity against the \hr
 
 cff_validate(a_cff_object)
 #> == Validating CFF ==============================================================
-#> x Validation failed. This <cff> object has the following errors:
+#> x Validation failed. This <cff> object has 10 validation errors:
 #> * cff/: must have required property 'authors'
 #> * cff/: must have required property 'cff-version'
 #> * cff/: must have required property 'message'

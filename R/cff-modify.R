@@ -43,9 +43,10 @@
 #' cff_validate(x_mod)
 #'
 cff_modify <- function(x, ...) {
+  error_call <- environment()
   if (!inherits(x, "cff")) {
     cli::cli_abort(
-      "{.arg x} must be a {.cls cff} object, not {.cls {class(x)}}."
+      "{.arg x} must be a {.cls cff} object, not {.obj_type_friendly {x}}."
     )
   }
   new_keys <- list(...)
@@ -54,16 +55,16 @@ cff_modify <- function(x, ...) {
     return(x)
   }
 
-  modify_cff(x, new_keys, "...")
+  modify_cff(x, new_keys, "...", call = error_call)
 }
 
-modify_cff <- function(x, keys, argname = "...") {
+modify_cff <- function(x, keys, argname = "...", call = environment()) {
   # Do not show a message here because these cases come from cff_create().
   if (all(argname == "keys", length(keys) == 0)) {
     return(x)
   }
 
-  new_keys <- validate_extra_keys(keys, argname)
+  new_keys <- validate_extra_keys(keys, argname, call = call)
   new_keys <- fuzzy_keys(new_keys)
   if (anyDuplicated(names(new_keys)) > 0) {
     cli::cli_alert_warning("Removing duplicate keys.")
@@ -84,20 +85,25 @@ modify_cff <- function(x, keys, argname = "...") {
 }
 
 # Check names.
-validate_extra_keys <- function(cffobj, argname = "...") {
+validate_extra_keys <- function(cffobj, argname = "...", call = environment()) {
   has_names <- names(cffobj)
   if (is.null(has_names)) {
-    cli::cli_abort("Elements in {.arg {argname}} must be named.")
+    cli::cli_abort(
+      "Elements in {.arg {argname}} must be named.",
+      call = call
+    )
   }
 
   if (!all(nzchar(has_names))) {
     # nolint start
-    # For printing only.
-    index <- as.character(which(has_names %in% ""))
+    index <- which(has_names %in% "")
     # nolint end
 
     cli::cli_alert_warning(
-      "Found {length(index)} unnamed argument{?s} in position{?s} {index}."
+      paste(
+        "Found {length(index)} unnamed argument{?s}",
+        "in position{?s} {.val {index}}."
+      )
     )
     cli::cli_alert_info("Removing unnamed arguments.")
     cffobj <- cffobj[nzchar(has_names)]

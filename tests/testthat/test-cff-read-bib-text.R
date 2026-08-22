@@ -1,11 +1,23 @@
-test_that("Errors and messages", {
+test_that("cff_read_bib_text validates malformed input", {
   skip_if_not_installed("bibtex", "0.5.0")
   a_cff <- cff()
   expect_snapshot(cff_read_bib_text(a_cff), error = TRUE)
   expect_snapshot(cff_read_bib_text("a bad line"), error = TRUE)
 })
 
-test_that("Read lines", {
+test_that("cff_read_bib_text rejects file paths mixed with entries", {
+  expect_snapshot(
+    cff_read_bib_text(c("first.bib", "@misc{second, title={Second}}")),
+    error = TRUE
+  )
+
+  expect_snapshot(
+    cff_read_bib_text(c("first.bib", "second.bib")),
+    error = TRUE
+  )
+})
+
+test_that("cff_read_bib_text reads entries and bib files", {
   skip_if_not_installed("bibtex", "0.5.0")
 
   x <- c(

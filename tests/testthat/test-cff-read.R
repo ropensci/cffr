@@ -1,4 +1,4 @@
-test_that("Test errors on cff_read", {
+test_that("cff_read reports invalid paths and file types", {
   expect_snapshot(cff_read(c("abcde", "b")), error = TRUE)
   expect_snapshot(cff_read("abcde"), error = TRUE)
 
@@ -11,7 +11,7 @@ test_that("Test errors on cff_read", {
   )
 })
 
-test_that("cff_read citation.cff", {
+test_that("cff_read_cff_citation reads and validates cff files", {
   expect_snapshot(cff_read_cff_citation("a"), error = TRUE)
 
   f <- system.file("examples/CITATION_complete.cff", package = "cffr")
@@ -24,7 +24,7 @@ test_that("cff_read citation.cff", {
   expect_identical(f1, f2)
 })
 
-test_that("cff_read DESCRIPTION", {
+test_that("cff_read_description reads DESCRIPTION files", {
   expect_snapshot(cff_read_description("a"), error = TRUE)
 
   f <- system.file("examples/DESCRIPTION_no_URL", package = "cffr")
@@ -272,7 +272,7 @@ test_that("GitHub topics return NULL when all fetch attempts fail", {
 })
 
 
-test_that("cff_read bib", {
+test_that("cff_read_bib reads BibTeX files", {
   skip_if_not_installed("bibtex", "0.5.0")
 
   expect_snapshot(cff_read_bib("a"), error = TRUE)
@@ -301,7 +301,7 @@ test_that("cff_read bib", {
   expect_identical(f1_2, f2_2)
 })
 
-test_that("cff_read citation messages", {
+test_that("cff_read_citation reports fallback attempts", {
   expect_snapshot(cff_read_citation("a"), error = TRUE)
 
   f <- system.file("examples/CITATION_basic", package = "cffr")
@@ -318,7 +318,7 @@ test_that("cff_read citation messages", {
   expect_s3_class(s, c("cff_ref_lst", "cff"), exact = TRUE)
 })
 
-test_that("cff_read CITATION_basic", {
+test_that("cff_read reads basic CITATION files", {
   a_desc <- system.file("examples/DESCRIPTION_basic", package = "cffr")
   my_meta <- desc_to_meta(a_desc)
 
@@ -328,7 +328,7 @@ test_that("cff_read CITATION_basic", {
   expect_length(a_cff, 2)
 })
 
-test_that("cff_read CITATION with no encoding", {
+test_that("cff_read handles CITATION files without encoding", {
   desc_path <- system.file("examples/DESCRIPTION_no_encoding", package = "cffr")
   cit_path <- system.file("examples/CITATION_basic", package = "cffr")
 
@@ -337,7 +337,7 @@ test_that("cff_read CITATION with no encoding", {
   expect_s3_class(a_cff, c("cff_ref_lst", "cff"), exact = TRUE)
 })
 
-test_that("cff_read CITATION_auto", {
+test_that("cff_read handles generated CITATION files", {
   # Needs an installed package
   desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
   cit_path <- system.file("examples/CITATION_auto", package = "cffr")
@@ -348,7 +348,7 @@ test_that("cff_read CITATION_auto", {
   expect_length(a_cff, 3)
 })
 
-test_that("cff_read CITATION_rmarkdown", {
+test_that("cff_read handles rmarkdown CITATION files", {
   desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
   cit_path <- system.file("examples/CITATION_rmarkdown", package = "cffr")
 
@@ -358,7 +358,7 @@ test_that("cff_read CITATION_rmarkdown", {
   expect_length(a_cff, 3)
 })
 
-test_that("cff_read_safe CITATION_basic", {
+test_that("cff_safe_read_citation reads basic CITATION files", {
   desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
   cit_path <- system.file("examples/CITATION_basic", package = "cffr")
   a_cff <- cff_safe_read_citation(desc_path, cit_path)
@@ -367,7 +367,7 @@ test_that("cff_read_safe CITATION_basic", {
   expect_length(a_cff, 2)
 })
 
-test_that("cff_read_safe CITATION with no encoding", {
+test_that("cff_safe_read_citation handles missing encoding", {
   desc_path <- system.file("examples/DESCRIPTION_no_encoding", package = "cffr")
   cit_path <- system.file("examples/CITATION_basic", package = "cffr")
 
@@ -377,7 +377,7 @@ test_that("cff_read_safe CITATION with no encoding", {
   expect_length(a_cff, 2)
 })
 
-test_that("cff_read_safe CITATION_auto", {
+test_that("cff_safe_read_citation reads generated CITATION files", {
   # Needs an installed package
   desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
   cit_path <- system.file("examples/CITATION_auto", package = "cffr")
@@ -387,7 +387,7 @@ test_that("cff_read_safe CITATION_auto", {
   expect_length(a_cff, 3)
 })
 
-test_that("cff_read_safe CITATION_rmarkdown", {
+test_that("cff_safe_read_citation reads rmarkdown CITATION files", {
   desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
   cit_path <- system.file("examples/CITATION_rmarkdown", package = "cffr")
 
@@ -398,14 +398,14 @@ test_that("cff_read_safe CITATION_rmarkdown", {
 })
 
 
-test_that("cff_read_safe CITATION NULL", {
+test_that("cff_safe_read_citation returns NULL without readable files", {
   desc_path <- system.file("x", package = "cffr")
   cit_path <- system.file("y", package = "cffr")
 
   expect_null(cff_safe_read_citation(desc_path, cit_path))
 })
 
-test_that("Corrupt CITATION", {
+test_that("cff_read returns NULL for corrupt CITATION files", {
   tmp <- withr::local_tempfile(pattern = "CITATION")
   writeLines("I am a bad CITATION", tmp)
   expect_message(
@@ -437,7 +437,7 @@ test_that("cff_read_citation returns NULL when both read attempts fail", {
   expect_null(anull)
 })
 
-test_that("Creating cff from packages encoded in latin1", {
+test_that("cff_read converts latin1 package metadata to UTF-8", {
   rvers <- getRversion()
   skip_if(rvers >= "4.7.0", "R 4.7.0 only uses UTF-8 in DESCRIPTION")
 

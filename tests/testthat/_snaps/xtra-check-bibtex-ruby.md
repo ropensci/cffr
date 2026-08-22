@@ -1,4 +1,4 @@
-# preferred-citation-book-missing
+# Ruby CFF book fixture reports missing fields
 
     Code
       s <- as_bibentry(x)
@@ -7,7 +7,7 @@
       i A bibentry of bibtype 'Book' has to specify the field: publisher
       ! Returning an empty <bibentry>.
 
-# preferred-citation-book
+# Ruby CFF book fixture converts to BibTeX
 
     Code
       toBibtex(bib)
@@ -22,7 +22,7 @@
         url = {https://github.com/bueler/p4pdes},
       }
 
-# preferred-citation-conference-paper-2
+# Ruby CFF alternate conference fixture converts to BibTeX
 
     Code
       toBibtex(bib)
@@ -38,7 +38,7 @@
         doi = {10.1244/2886907.2879400},
       }
 
-# preferred-citation-conference-paper-missing
+# Ruby CFF conference fixture reports missing fields
 
     Code
       toBibtex(bib)
@@ -52,7 +52,7 @@
         doi = {10.1244/2886907.2879400},
       }
 
-# preferred-citation-conference-paper
+# Ruby CFF conference fixture converts to BibTeX
 
     Code
       toBibtex(bib)
@@ -70,7 +70,7 @@
         date = {2016-06-26},
       }
 
-# preferred-citation-manual
+# Ruby CFF manual fixture converts to BibTeX
 
     Code
       toBibtex(bib)
@@ -83,7 +83,7 @@
         url = {https://dieghernan.github.io/cffr/},
       }
 
-# preferred-citation-no-month
+# Ruby CFF fixture supports missing months
 
     Code
       toBibtex(bib)
@@ -95,7 +95,7 @@
         journal = {Journal Title},
       }
 
-# preferred-citation-no-vol
+# Ruby CFF fixture supports missing volumes
 
     Code
       toBibtex(bib)
@@ -110,7 +110,7 @@
         url = {https://elifesciences.org/articles/55913},
       }
 
-# preferred-citation-pamphlet
+# Ruby CFF pamphlet fixture converts to BibTeX
 
     Code
       toBibtex(bib)
@@ -124,7 +124,7 @@
         url = {https://github.com/citation-file-format/ruby-cff},
       }
 
-# preferred-citation-report-no-institution
+# Ruby CFF report fixture supports missing institutions
 
     Code
       toBibtex(bib)
@@ -139,7 +139,7 @@
         institution = {The University of Manchester},
       }
 
-# preferred-citation-report
+# Ruby CFF report fixture converts to BibTeX
 
     Code
       toBibtex(bib)
@@ -154,7 +154,7 @@
         institution = {The CFF Institute},
       }
 
-# preferred-citation-unpublished
+# Ruby CFF unpublished fixture converts to BibTeX
 
     Code
       toBibtex(bib)
@@ -169,7 +169,7 @@
         note = {Self-published by the author.},
       }
 
-# reprozip
+# ReproZip fixture converts to BibTeX
 
     Code
       toBibtex(bib)
@@ -185,7 +185,7 @@
         date = {2016-06-26},
       }
 
-# smith-et-al
+# Smith et al fixture converts to BibTeX
 
     Code
       toBibtex(bib)
@@ -202,7 +202,7 @@
         doi = {10.7717/peerj-cs.86},
       }
 
-# tidyverse-joss-paper
+# tidyverse JOSS fixture converts to BibTeX
 
     Code
       toBibtex(bib)

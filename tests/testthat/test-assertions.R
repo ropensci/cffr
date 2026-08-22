@@ -1,4 +1,4 @@
-test_that("Check is_email", {
+test_that("is_email recognizes valid email addresses", {
   # Examples from https://www.nicebread.de/validating-email-adresses-in-r/
 
   # Valid addresses
@@ -26,7 +26,7 @@ test_that("Check is_email", {
   )
 })
 
-test_that("Check is_url", {
+test_that("is_url recognizes supported URLs", {
   # Valid urls
   expect_all_true(c(
     is_url("https://github.com/dieghernan"),
@@ -51,7 +51,7 @@ test_that("Check is_url", {
 })
 
 
-test_that("Check is_substring", {
+test_that("is_substring detects contained strings", {
   expect_all_true(c(
     is_substring("amanda", "a"),
     is_substring("amanda erele", "e")
@@ -67,7 +67,7 @@ test_that("Check is_substring", {
   )
 })
 
-test_that("Check cff", {
+test_that("cff predicates recognize cff objects", {
   a_pers <- as_cff_person("Barnes and Noble")
   sing <- a_pers[[1]]
   expect_s3_class(sing, "cff_pers")
@@ -90,12 +90,12 @@ test_that("Check cff", {
 })
 
 
-test_that("Check is cff file", {
+test_that("is_cff_file recognizes cff extensions case-insensitively", {
   expect_true(is_cff_file("CIt_aT.cff"))
   expect_false(is_cff_file("CIt_aT_cff"))
 })
 
-test_that("is named", {
+test_that("is_named recognizes fully named objects", {
   a_n <- c("a" = 1, b = "2")
   expect_true(is_named(a_n))
   expect_true(is_named(as.list(a_n)))
@@ -104,7 +104,7 @@ test_that("is named", {
   expect_false(is_named(as.list(LETTERS)))
 })
 
-test_that("is github", {
+test_that("is_github recognizes GitHub repository URLs", {
   x <- list("repository-code" = "https://github.com/")
   x2 <- x
   x2$`repository-code` <- "gogle.com"

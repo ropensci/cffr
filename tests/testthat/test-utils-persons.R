@@ -2,177 +2,108 @@
 # https://maverick.inria.fr/~Xavier.Decoret/resources/xdkbibtex/ >>
 # bibtex_summary.html
 
-test_that("Test first von last", {
-  x <- "AA BB"
+test_that("person parser handles First von Last names", {
+  inputs <- c(
+    "AA BB",
+    "AA",
+    "AA bb",
+    "aa",
+    "AA bb CC",
+    "AA bb CC dd EE",
+    "AA {b}B cc dd",
+    "AA \\BB{b} cc dd",
+    "AA {bb} cc DD",
+    "AA bb {cc} DD",
+    "AA {bb} CC"
+  )
+  results <- lapply(inputs, \(x) unlist(create_person_from_txt(x)))
+  names(results) <- inputs
 
-  res <- create_person_from_txt(x)
-  expect_type(res, "list")
-
-  expect_snapshot(unlist(res))
-
-  x <- "AA"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "AA bb"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "aa"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "AA bb CC"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "AA bb CC dd EE"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "AA {b}B cc dd"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "AA \\BB{b} cc dd"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "AA {bb} cc DD"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "AA bb {cc} DD"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "AA {bb} CC"
-  expect_snapshot(unlist(create_person_from_txt(x)))
+  expect_type(create_person_from_txt(inputs[[1]]), "list")
+  expect_snapshot(results)
 })
 
-test_that("Testing with random names First von Last", {
-  x <- "Jean de La Fontaine"
-  expect_snapshot(unlist(create_person_from_txt(x)))
+test_that("person parser handles varied First von Last names", {
+  inputs <- c(
+    "Jean de La Fontaine",
+    "Diego {Hernandez Sanz}",
+    "Juan Manuel Miramontes",
+    "Juan Manuel {Miramontes Garcia}",
+    "Juan Manuel van Halen",
+    "Bosco {de la Cruz y Ochoa}"
+  )
+  results <- lapply(inputs, \(x) unlist(create_person_from_txt(x)))
+  names(results) <- inputs
 
-  x <- "Diego {Hernandez Sanz}"
-
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "Juan Manuel Miramontes"
-
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "Juan Manuel {Miramontes Garcia}"
-
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "Juan Manuel van Halen"
-
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "Bosco {de la Cruz y Ochoa}"
-
-  expect_snapshot(unlist(create_person_from_txt(x)))
+  expect_snapshot(results)
 })
 
-test_that("Test von Last, First", {
-  x <- "bb CC, AA"
+test_that("person parser handles von Last, First names", {
+  inputs <- c("bb CC, AA", "bb CC, aa", "bb CC dd EE, AA", "bb, AA", "BB,")
+  results <- lapply(inputs, \(x) unlist(create_person_from_txt(x)))
+  names(results) <- inputs
 
-  res <- create_person_from_txt(x)
-  expect_type(res, "list")
-
-  expect_snapshot(unlist(res))
-
-  x <- "bb CC, aa"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "bb CC dd EE, AA"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "bb, AA"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "BB,"
-  expect_snapshot(unlist(create_person_from_txt(x)))
+  expect_type(create_person_from_txt(inputs[[1]]), "list")
+  expect_snapshot(results)
 })
 
-test_that("Test von Last, First with brackets, etc", {
-  x <- "de Armas, Ana"
-  expect_snapshot(unlist(create_person_from_txt(x)))
+test_that("person parser preserves masking in von Last, First names", {
+  inputs <- c(
+    "de Armas, Ana",
+    "{de Armas}, Ana",
+    "{de Armas, Aguero}, Ana",
+    "{de Armas, Aguero}, Ana Maria"
+  )
+  results <- lapply(inputs, \(x) unlist(create_person_from_txt(x)))
+  names(results) <- inputs
 
-  x <- "{de Armas}, Ana"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "{de Armas, Aguero}, Ana"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "{de Armas, Aguero}, Ana Maria"
-  expect_snapshot(unlist(create_person_from_txt(x)))
+  expect_snapshot(results)
 })
 
-test_that("Test von Last, Jr,  First", {
-  x <- "bb CC,XX, AA"
+test_that("person parser handles von Last, Jr, First names", {
+  inputs <- c("bb CC,XX, AA", "BB,, AA", "BB, AA,")
+  results <- lapply(inputs, \(x) unlist(create_person_from_txt(x)))
+  names(results) <- inputs
 
-  res <- create_person_from_txt(x)
-  expect_type(res, "list")
-
-  expect_snapshot(unlist(res))
-
-  x <- "BB,, AA"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "BB, AA,"
-  expect_snapshot(unlist(create_person_from_txt(x)))
+  expect_type(create_person_from_txt(inputs[[1]]), "list")
+  expect_snapshot(results)
 })
 
-test_that("Test von Last, Jr,  First with masking", {
-  x <- "Davis, Jr, Sammy"
-  expect_snapshot(unlist(create_person_from_txt(x)))
+test_that("person parser preserves masking with suffixes", {
+  inputs <- c("Davis, Jr, Sammy", "{Davis, and}, {Jr, another}, Sammy")
+  results <- lapply(inputs, \(x) unlist(create_person_from_txt(x)))
+  names(results) <- inputs
 
-  x <- "{Davis, and}, {Jr, another}, Sammy"
-  expect_snapshot(unlist(create_person_from_txt(x)))
+  expect_snapshot(results)
 })
 
-test_that("Rest of cases", {
-  x <- "David, and, Jr, another, Sammy"
+test_that("person parser handles organizations and edge cases", {
+  result <- create_person_from_txt("David, and, Jr, another, Sammy")
 
-  res <- create_person_from_txt(x)
-  expect_type(res, "list")
-  expect_length(res, 1)
-
-  expect_snapshot(unlist(res))
+  expect_type(result, "list")
+  expect_length(result, 1)
+  expect_snapshot(unlist(result))
 })
 
-test_that("tames da beast", {
+test_that("person parser handles canonical BibTeX name examples", {
   # http://tug.ctan.org/info/bibtex/tamethebeast/ttb_en.pdf
+  inputs <- c(
+    "jean de la fontaine",
+    "Jean de la fontaine ",
+    "Jean {de} la fontaine ",
+    "jean {de} {la} fontaine ",
+    "Jean {de} {la} fontaine ",
+    "Jean De La Fontaine ",
+    "jean De la Fontaine ",
+    "Jean de La Fontaine ",
+    "jean de la fontaine,",
+    "de la fontaine, Jean ",
+    "De La Fontaine, Jean",
+    "De la Fontaine, Jean",
+    "de La Fontaine, Jean"
+  )
+  results <- lapply(inputs, \(x) unlist(create_person_from_txt(x)))
+  names(results) <- inputs
 
-  x <- "jean de la fontaine"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "Jean de la fontaine "
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "Jean {de} la fontaine "
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "jean {de} {la} fontaine "
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "Jean {de} {la} fontaine "
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "Jean De La Fontaine "
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "jean De la Fontaine "
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "Jean de La Fontaine "
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "jean de la fontaine,"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "de la fontaine, Jean "
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "De La Fontaine, Jean"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "De la Fontaine, Jean"
-  expect_snapshot(unlist(create_person_from_txt(x)))
-
-  x <- "de La Fontaine, Jean"
-  expect_snapshot(unlist(create_person_from_txt(x)))
+  expect_snapshot(results)
 })

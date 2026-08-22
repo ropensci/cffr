@@ -323,9 +323,10 @@ as.person.cff_pers_lst <- function(x) {
 
   # Inform if not all were extracted.
   if (!all(lengths(pers) > 0)) {
-    cli::cli_alert_info(
-      "Cannot create {.cls person} for some elements of {.arg x}."
-    )
+    cli::cli_alert_warning(paste0(
+      "Cannot create {sum(lengths(pers) == 0)} {.cls person} ",
+      "object{?s} from {.arg x}."
+    ))
   }
   end <- do.call(c, pers)
   if (anyDuplicated(end) > 0) {

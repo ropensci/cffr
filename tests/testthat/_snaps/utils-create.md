@@ -1,8 +1,9 @@
-# Merge all DESCRIPTION files with CITATION_basic
+# merge_cff combines DESCRIPTION fixtures with CITATION
 
     Code
-      merged
+      merged_cffs
     Output
+      $DESCRIPTION_basic
       cff-version: 1.2.0
       message: 'To cite package "basicdesc" in publications use:'
       type: software
@@ -51,12 +52,8 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
-
----
-
-    Code
-      merged
-    Output
+      
+      $DESCRIPTION_basic_plain_authors
       cff-version: 1.2.0
       message: 'To cite package "basicdesc" in publications use:'
       type: software
@@ -105,12 +102,8 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
-
----
-
-    Code
-      merged
-    Output
+      
+      $DESCRIPTION_basicdate
       cff-version: 1.2.0
       message: 'To cite package "basicdescdate" in publications use:'
       type: software
@@ -160,12 +153,8 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
-
----
-
-    Code
-      merged
-    Output
+      
+      $DESCRIPTION_bioconductor
       cff-version: 1.2.0
       message: 'To cite package "GenomicRanges" in publications use:'
       type: software
@@ -227,12 +216,8 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
-
----
-
-    Code
-      merged
-    Output
+      
+      $DESCRIPTION_codeberg
       cff-version: 1.2.0
       message: 'To cite package "options" in publications use:'
       type: software
@@ -287,12 +272,8 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
-
----
-
-    Code
-      merged
-    Output
+      
+      $DESCRIPTION_gitlab
       cff-version: 1.2.0
       message: 'To cite package "codemetar" in publications use:'
       type: software
@@ -360,12 +341,8 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
-
----
-
-    Code
-      merged
-    Output
+      
+      $DESCRIPTION_many_persons
       cff-version: 1.2.0
       message: 'To cite package "manypersons" in publications use:'
       type: software
@@ -436,12 +413,8 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
-
----
-
-    Code
-      merged
-    Output
+      
+      $DESCRIPTION_many_urls
       cff-version: 1.2.0
       message: 'To cite package "manyurls" in publications use:'
       type: software
@@ -499,12 +472,8 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
-
----
-
-    Code
-      merged
-    Output
+      
+      $DESCRIPTION_no_URL
       cff-version: 1.2.0
       message: 'To cite package "codemetar" in publications use:'
       type: software
@@ -570,12 +539,8 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
-
----
-
-    Code
-      merged
-    Output
+      
+      $DESCRIPTION_no_encoding
       cff-version: 1.2.0
       message: 'To cite package "idonthavencoding" in publications use:'
       type: software
@@ -627,12 +592,8 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
-
----
-
-    Code
-      merged
-    Output
+      
+      $DESCRIPTION_posit_package_manager
       cff-version: 1.2.0
       message: 'To cite package "resmush" in publications use:'
       type: software
@@ -694,12 +655,8 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
-
----
-
-    Code
-      merged
-    Output
+      
+      $DESCRIPTION_quint
       cff-version: 1.2.0
       message: 'To cite package "quint" in publications use:'
       type: software
@@ -767,12 +724,8 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
-
----
-
-    Code
-      merged
-    Output
+      
+      $DESCRIPTION_r_universe
       cff-version: 1.2.0
       message: 'To cite package "codemetar" in publications use:'
       type: software
@@ -842,12 +795,8 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
-
----
-
-    Code
-      merged
-    Output
+      
+      $DESCRIPTION_rgeos
       cff-version: 1.2.0
       message: 'To cite package "rgeos" in publications use:'
       type: software
@@ -922,12 +871,8 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
-
----
-
-    Code
-      merged
-    Output
+      
+      $DESCRIPTION_surveillance
       cff-version: 1.2.0
       message: 'To cite package "surveillance" in publications use:'
       type: software
@@ -1014,12 +959,8 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
-
----
-
-    Code
-      merged
-    Output
+      
+      $DESCRIPTION_two_emails
       cff-version: 1.2.0
       message: 'To cite package "MomTrunc" in publications use:'
       type: software
@@ -1084,12 +1025,8 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
-
----
-
-    Code
-      merged
-    Output
+      
+      $DESCRIPTION_twomaintainers
       cff-version: 1.2.0
       message: 'To cite package "codemetar" in publications use:'
       type: software
@@ -1153,12 +1090,8 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
-
----
-
-    Code
-      merged
-    Output
+      
+      $DESCRIPTION_wrong_urls
       cff-version: 1.2.0
       message: 'To cite package "wrongurls" in publications use:'
       type: software
@@ -1220,8 +1153,9 @@
         year: '2016'
         isbn: 978-3-319-24277-4
         url: https://ggplot2.tidyverse.org
+      
 
-# Check dependencies
+# dependency helpers select supported package dependencies
 
     Code
       print(selected)

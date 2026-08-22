@@ -81,7 +81,7 @@ cff <- function(path, ...) {
 
   # Check names.
 
-  cffobj <- validate_extra_keys(cffobj)
+  cffobj <- validate_extra_keys(cffobj, call = environment())
   cffobj <- fuzzy_keys(cffobj)
 
   if (anyDuplicated(names(cffobj)) > 0) {

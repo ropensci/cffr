@@ -1,4 +1,4 @@
-test_that("cff_extract_to_bibtex", {
+test_that("cff_extract_to_bibtex delegates with a deprecation warning", {
   a_cff <- cff_create("cffr")
 
   current <- as_bibentry(a_cff)
@@ -7,7 +7,7 @@ test_that("cff_extract_to_bibtex", {
   expect_identical(current, old1)
 })
 
-test_that("cff_to_bibtex", {
+test_that("cff_to_bibtex delegates with a deprecation warning", {
   a_cff <- cff_create("cffr")
 
   current <- as_bibentry(a_cff)
@@ -16,7 +16,7 @@ test_that("cff_to_bibtex", {
   expect_identical(current, old1)
 })
 
-test_that("cff_from_bibtex", {
+test_that("cff_from_bibtex delegates with a deprecation warning", {
   # From file
   x2 <- system.file("examples/example.bib", package = "cffr")
   expect_snapshot(ffile <- cff_from_bibtex(x2))
@@ -36,7 +36,7 @@ test_that("cff_from_bibtex", {
   expect_identical(flines, cff_read_bib_text(x))
 })
 
-test_that("write_bib", {
+test_that("write_bib delegates with a deprecation warning", {
   bib <- bibentry("Misc", title = "My title", author = "Fran Pérez")
 
   tmp <- withr::local_tempfile(fileext = ".bib")
@@ -45,7 +45,7 @@ test_that("write_bib", {
   expect_snapshot(cat(readLines(tmp), sep = "\n"))
 })
 
-test_that("write_citation", {
+test_that("write_citation delegates with a deprecation warning", {
   bib <- bibentry("Misc", title = "My title", author = "Fran Pérez")
 
   tmp <- withr::local_tempfile(pattern = "CIT_ATION")
@@ -54,14 +54,14 @@ test_that("write_citation", {
   expect_snapshot(cat(readLines(tmp), sep = "\n"))
 })
 
-test_that("cff_parse_person", {
+test_that("cff_parse_person delegates with a deprecation warning", {
   p <- person("A", "person")
   expect_snapshot(pend <- cff_parse_person(p))
 
   expect_identical(pend, as_cff_person(p))
 })
 
-test_that("cff_parse_person_bibtex", {
+test_that("cff_parse_person_bibtex delegates with a deprecation warning", {
   p <- "{Elephant and Castle}"
   expect_snapshot(pend <- cff_parse_person_bibtex(p))
 
@@ -69,7 +69,7 @@ test_that("cff_parse_person_bibtex", {
 })
 
 
-test_that("cff_parse_citation", {
+test_that("cff_parse_citation delegates with a deprecation warning", {
   p <- citation("testthat")
   expect_snapshot(pend <- cff_parse_citation(p))
 

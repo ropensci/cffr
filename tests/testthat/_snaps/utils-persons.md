@@ -1,360 +1,226 @@
-# Test first von last
+# person parser handles First von Last names
 
     Code
-      unlist(res)
+      results
     Output
+      $`AA BB`
       family-names  given-names 
               "BB"         "AA" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $AA
       name 
       "AA" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`AA bb`
       family-names  given-names 
               "bb"         "AA" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $aa
       name 
       "aa" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`AA bb CC`
        family-names   given-names name-particle 
                "CC"          "AA"          "bb" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`AA bb CC dd EE`
        family-names   given-names name-particle 
                "EE"          "AA"    "bb CC dd" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`AA {b}B cc dd`
        family-names   given-names name-particle 
                "dd"       "AA bB"          "cc" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`AA \\BB{b} cc dd`
        family-names   given-names name-particle 
                "dd"    "AA \\BBb"          "cc" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`AA {bb} cc DD`
        family-names   given-names name-particle 
                "DD"       "AA bb"          "cc" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`AA bb {cc} DD`
        family-names   given-names name-particle 
             "cc DD"          "AA"          "bb" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`AA {bb} CC`
       family-names  given-names 
               "CC"      "AA bb" 
+      
 
-# Testing with random names First von Last
+# person parser handles varied First von Last names
 
     Code
-      unlist(create_person_from_txt(x))
+      results
     Output
+      $`Jean de La Fontaine`
        family-names   given-names name-particle 
       "La Fontaine"        "Jean"          "de" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`Diego {Hernandez Sanz}`
           family-names      given-names 
       "Hernandez Sanz"          "Diego" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`Juan Manuel Miramontes`
        family-names   given-names 
        "Miramontes" "Juan Manuel" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`Juan Manuel {Miramontes Garcia}`
              family-names         given-names 
       "Miramontes Garcia"       "Juan Manuel" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`Juan Manuel van Halen`
        family-names   given-names name-particle 
             "Halen" "Juan Manuel"         "van" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`Bosco {de la Cruz y Ochoa}`
               family-names          given-names 
       "de la Cruz y Ochoa"              "Bosco" 
+      
 
-# Test von Last, First
+# person parser handles von Last, First names
 
     Code
-      unlist(res)
+      results
     Output
+      $`bb CC, AA`
        family-names   given-names name-particle 
                "CC"          "AA"          "bb" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`bb CC, aa`
        family-names   given-names name-particle 
                "CC"          "aa"          "bb" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`bb CC dd EE, AA`
        family-names   given-names name-particle 
                "EE"          "AA"    "bb CC dd" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`bb, AA`
       family-names  given-names 
               "bb"         "AA" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`BB,`
       name 
       "BB" 
+      
 
-# Test von Last, First with brackets, etc
+# person parser preserves masking in von Last, First names
 
     Code
-      unlist(create_person_from_txt(x))
+      results
     Output
+      $`de Armas, Ana`
        family-names   given-names name-particle 
             "Armas"         "Ana"          "de" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`{de Armas}, Ana`
       family-names  given-names 
         "de Armas"        "Ana" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`{de Armas, Aguero}, Ana`
             family-names        given-names 
       "de Armas, Aguero"              "Ana" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`{de Armas, Aguero}, Ana Maria`
             family-names        given-names 
       "de Armas, Aguero"        "Ana Maria" 
+      
 
-# Test von Last, Jr,  First
+# person parser handles von Last, Jr, First names
 
     Code
-      unlist(res)
+      results
     Output
+      $`bb CC,XX, AA`
        family-names   given-names name-particle   name-suffix 
                "CC"          "AA"          "bb"          "XX" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`BB,, AA`
       family-names  given-names 
               "BB"         "AA" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`BB, AA,`
          name 
       "BB AA" 
+      
 
-# Test von Last, Jr,  First with masking
+# person parser preserves masking with suffixes
 
     Code
-      unlist(create_person_from_txt(x))
+      results
     Output
+      $`Davis, Jr, Sammy`
       family-names  given-names  name-suffix 
            "Davis"      "Sammy"         "Jr" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`{Davis, and}, {Jr, another}, Sammy`
        family-names   given-names   name-suffix 
        "Davis, and"       "Sammy" "Jr, another" 
+      
 
-# Rest of cases
+# person parser handles organizations and edge cases
 
     Code
-      unlist(res)
+      unlist(result)
     Output
                                   name 
       "David, and, Jr, another, Sammy" 
 
-# tames da beast
+# person parser handles canonical BibTeX name examples
 
     Code
-      unlist(create_person_from_txt(x))
+      results
     Output
+      $`jean de la fontaine`
                        name 
       "jean de la fontaine" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`Jean de la fontaine `
        family-names   given-names name-particle 
          "fontaine"        "Jean"       "de la" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`Jean {de} la fontaine `
        family-names   given-names name-particle 
          "fontaine"     "Jean de"          "la" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`jean {de} {la} fontaine `
                        name 
       "jean de la fontaine" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`Jean {de} {la} fontaine `
       family-names  given-names 
         "fontaine" "Jean de la" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`Jean De La Fontaine `
       family-names  given-names 
         "Fontaine" "Jean De La" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`jean De la Fontaine `
                        name 
       "jean De la Fontaine" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`Jean de La Fontaine `
        family-names   given-names name-particle 
       "La Fontaine"        "Jean"          "de" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`jean de la fontaine,`
                        name 
       "jean de la fontaine" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`de la fontaine, Jean `
        family-names   given-names name-particle 
          "fontaine"        "Jean"       "de la" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`De La Fontaine, Jean`
           family-names      given-names 
       "De La Fontaine"           "Jean" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`De la Fontaine, Jean`
        family-names   given-names name-particle 
          "Fontaine"        "Jean"       "De la" 
-
----
-
-    Code
-      unlist(create_person_from_txt(x))
-    Output
+      
+      $`de La Fontaine, Jean`
        family-names   given-names name-particle 
       "La Fontaine"        "Jean"          "de" 
+      
 

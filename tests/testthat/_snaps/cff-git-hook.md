@@ -4,5 +4,6 @@
       cff_git_hook_install()
     Condition
       Error in `cff_git_hook_install()`:
-      ! Install usethis to use the pre-commit hook: `install.packages("usethis")`.
+      ! The usethis package is required for the pre-commit hook.
+      i Install it with `install.packages("usethis")`.
 

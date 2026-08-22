@@ -1,4 +1,4 @@
-# as.cff still works
+# as.cff remains compatible with as_cff
 
     Code
       l2
@@ -6,7 +6,7 @@
       cff-version: 1.2.0
       title: Manipulating files
 
-# as_cff.person
+# as_cff converts person objects
 
     Code
       as_cff(pers)
@@ -30,7 +30,7 @@
       affiliation: Real Madrid
       website: https://www.google.com/
 
-# as_cff.bibentry, toBibtex
+# bibentries round-trip through as_cff and toBibtex
 
     Code
       bbb
@@ -54,22 +54,22 @@
       editors:
       - name: Editor
 
-# as_cff.default
+# as_cff converts named lists by default
 
     Code
       as_cff(b)
     Output
       a: '1'
 
-# Other convertes
+# as_cff handles supported auxiliary input types
 
     Code
       noadd <- cff(chocolate = "New York", version = 5)
     Message
-      i Found misspelled keys. Trying to map them:
+      i Found 1 unknown key. Trying to map it:
       x chocolate: No match, removing.
 
-# Reading full cff
+# as_cff reads complete cff structures
 
     Code
       df

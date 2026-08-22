@@ -1,4 +1,4 @@
-test_that("as data frame complete", {
+test_that("as.data.frame flattens complete cff objects", {
   path <- system.file("examples/CITATION_complete.cff", package = "cffr")
 
   the_cff <- cff_read(path)
@@ -22,7 +22,7 @@ test_that("as data frame complete", {
   expect_snapshot(names(the_df))
 })
 
-test_that("as data frame partial", {
+test_that("as.data.frame flattens partial cff objects", {
   path <- system.file("examples/CITATION_complete.cff", package = "cffr")
 
   the_cff <- cff_read(path)
@@ -48,7 +48,7 @@ test_that("as data frame partial", {
   expect_length(unique(names(the_df)), ncol(the_df))
 })
 
-test_that("Convert a citation only", {
+test_that("as.data.frame converts preferred citations", {
   path <- system.file("examples/DESCRIPTION_many_persons", package = "cffr")
   a_cit <- as_bibentry(cff_create(path))
 
@@ -74,7 +74,7 @@ test_that("Convert a citation only", {
 })
 
 
-test_that("Convert authors only", {
+test_that("as.data.frame converts authors", {
   a_pers_lst <- as_cff_person(
     "A person and {A Entity inc.} and {One person} more"
   )
@@ -100,7 +100,7 @@ test_that("Convert authors only", {
   expect_snapshot(names(the_df))
 })
 
-test_that("Convert list of authors", {
+test_that("as.data.frame converts lists of authors", {
   path <- system.file("examples/CITATION_complete.cff", package = "cffr")
 
   the_cff <- cff_read(path)$authors
@@ -125,7 +125,7 @@ test_that("Convert list of authors", {
 })
 
 
-test_that("as.person method", {
+test_that("as.person converts cff person lists", {
   rvers <- getRversion()
   skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
   skip_on_cran()
@@ -181,6 +181,17 @@ test_that("as.person method", {
   expect_length(aa2, 2)
 })
 
+test_that("as.person reports the number of malformed elements", {
+  malformed <- structure(
+    list(list(a = "first"), list(b = "second")),
+    class = c("cff_pers_lst", "cff")
+  )
+
+  expect_snapshot(result <- as.person(malformed))
+  expect_s3_class(result, "person")
+  expect_length(result, 0)
+})
+
 test_that("as.person method names and particles", {
   skip_on_cran()
   str <- "von Wicksteed, III, P. H. and {The translator factory}"
@@ -193,7 +204,7 @@ test_that("as.person method names and particles", {
   expect_identical(cf, again)
 })
 
-test_that("Errors on other as.person methods", {
+test_that("unsupported as.person methods report errors", {
   path <- system.file("examples/CITATION_complete.cff", package = "cffr")
   the_cff <- cff_read(path)
   expect_s3_class(the_cff, "cff", exact = TRUE)
@@ -210,7 +221,7 @@ test_that("Errors on other as.person methods", {
   expect_snapshot(as.person(key), error = TRUE)
 })
 
-test_that("head and tail", {
+test_that("head and tail preserve cff classes", {
   a_cff <- cff()
   expect_snapshot(a_cff)
   expect_snapshot(head(a_cff, 2))
@@ -220,7 +231,7 @@ test_that("head and tail", {
   expect_s3_class(tail(a_cff, 2), "cff")
 })
 
-test_that("toBibtex", {
+test_that("toBibtex converts supported cff structures", {
   skip_on_cran()
 
   # Create several alternatives
@@ -307,7 +318,7 @@ test_that("toBibtex", {
 })
 
 
-test_that("as.list", {
+test_that("as.list removes nested cff classes and supports round-trips", {
   f <- system.file("examples/CITATION_complete.cff", package = "cffr")
 
   full_cff <- cff_read_cff_citation(f)

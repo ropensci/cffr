@@ -1,4 +1,4 @@
-test_that("Check abort_if_not_cff", {
+test_that("abort_if_not_cff rejects unsupported inputs", {
   obj <- cff()
 
   expect_silent(abort_if_not_cff(obj))
@@ -18,7 +18,7 @@ test_that("Check abort_if_not_cff", {
   expect_snapshot(abort_if_not_cff(x), error = TRUE)
 })
 
-test_that("Check file_exist_abort", {
+test_that("file_exist_abort reports missing files", {
   nonexits <- "aaaaaaaa"
   expect_silent(file_exist_abort(nonexits))
   expect_false(file_exist_abort(nonexits))
@@ -36,7 +36,7 @@ test_that("Check file_exist_abort", {
   expect_true(file_exist_abort(tmp, abort = TRUE))
 })
 
-test_that("Check match_cff_arg", {
+test_that("match_cff_arg validates allowed values", {
   x <- "aaaaaaaa"
   expect_snapshot(match_cff_arg("a", "b", "..."), error = TRUE)
   expect_snapshot(match_cff_arg("a", c("b", "c", "d"), "what"), error = TRUE)

@@ -1,4 +1,4 @@
-test_that("as_bibentry default", {
+test_that("as_bibentry converts supported objects by default", {
   bib_coerced <- as_bibentry(
     bibtype = "Article",
     key = "knuth:1984",
@@ -66,7 +66,7 @@ test_that("as_bibentry default", {
   expect_snapshot(s <- as_bibentry(a = 1))
 })
 
-test_that("as_bibentry NULL", {
+test_that("as_bibentry returns an empty bibentry for NULL", {
   skip_on_cran()
 
   local_mock_package()
@@ -77,7 +77,7 @@ test_that("as_bibentry NULL", {
   expect_snapshot(toBibtex(a_bib))
 })
 
-test_that("as_bibentry character", {
+test_that("as_bibentry reads packages and files from character input", {
   skip_on_cran()
   skip_if_not_installed("rmarkdown")
 
@@ -106,7 +106,7 @@ test_that("as_bibentry character", {
   expect_s3_class(s, "bibentry")
 })
 
-test_that("as_bibentry cff", {
+test_that("as_bibentry extracts references from cff objects", {
   f <- system.file("examples/CITATION_basic.cff", package = "cffr")
 
   a_cff <- cff_read(f)

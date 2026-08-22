@@ -56,15 +56,27 @@
 cff_read_bib_text <- function(x, encoding = "UTF-8", ...) {
   # Validate input.
   if (!inherits(x, "character")) {
-    cli::cli_abort(paste0(
-      "{.arg x} must be a {.cls character}, not a ",
-      "{.cls {class(x)}}."
+    cli::cli_abort(
+      "{.arg x} must be a character vector, not {.obj_type_friendly {x}}."
+    )
+  }
+
+  is_bib_file <- grepl("\\.bib$", x, ignore.case = TRUE)
+
+  if (length(x) > 1 && any(is_bib_file)) {
+    cli::cli_abort(c(
+      "{.arg x} must contain BibTeX entries or one {.code *.bib} file path.",
+      "x" = paste0(
+        "Found {sum(is_bib_file)} file-like value{?s} at ",
+        "position{?s} {.val {which(is_bib_file)}}."
+      ),
+      "i" = "Read each file separately with {.fn cffr::cff_read_bib}."
     ))
   }
 
-  if (any(grepl("\\.bib$", x, ignore.case = TRUE))) {
+  if (length(x) == 1 && is_bib_file) {
     cli::cli_alert_warning(
-      "{.arg x} seems to be a {.file *.bib} file, not a BibTeX entry."
+      "{.arg x} seems to be a {.code *.bib} file, not a BibTeX entry."
     )
     cli::cli_alert_info("Reading {.arg x} with {.fn cffr::cff_read_bib}.")
     the_cff <- cff_read_bib(x, encoding = encoding, ...)

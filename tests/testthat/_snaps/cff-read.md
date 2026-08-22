@@ -1,4 +1,4 @@
-# Test errors on cff_read
+# cff_read reports invalid paths and file types
 
     Code
       cff_read(c("abcde", "b"))
@@ -11,32 +11,36 @@
     Code
       cff_read("abcde")
     Condition
-      Error in `file_exist_abort()`:
-      ! 'abcde' does not exist. Check the '.' directory.
+      Error in `cff_read()`:
+      ! 'abcde' does not exist.
+      i Check the '.' directory.
 
-# cff_read citation.cff
+# cff_read_cff_citation reads and validates cff files
 
     Code
       cff_read_cff_citation("a")
     Condition
-      Error in `file_exist_abort()`:
-      ! 'a' does not exist. Check the '.' directory.
+      Error in `cff_read_cff_citation()`:
+      ! 'a' does not exist.
+      i Check the '.' directory.
 
-# cff_read DESCRIPTION
+# cff_read_description reads DESCRIPTION files
 
     Code
       cff_read_description("a")
     Condition
-      Error in `file_exist_abort()`:
-      ! 'a' does not exist. Check the '.' directory.
+      Error in `cff_read_description()`:
+      ! 'a' does not exist.
+      i Check the '.' directory.
 
-# cff_read bib
+# cff_read_bib reads BibTeX files
 
     Code
       cff_read_bib("a")
     Condition
-      Error in `file_exist_abort()`:
-      ! 'a' does not exist. Check the '.' directory.
+      Error in `cff_read_bib()`:
+      ! 'a' does not exist.
+      i Check the '.' directory.
 
 ---
 
@@ -60,13 +64,14 @@
       notes: 'Publisher: The Open Journal'
       start: '3900'
 
-# cff_read citation messages
+# cff_read_citation reports fallback attempts
 
     Code
       cff_read_citation("a")
     Condition
-      Error in `file_exist_abort()`:
-      ! 'a' does not exist. Check the '.' directory.
+      Error in `cff_read_citation()`:
+      ! 'a' does not exist.
+      i Check the '.' directory.
 
 ---
 
@@ -75,7 +80,7 @@
     Message
       ! `meta` must be `NULL` or a <packageDescription> object, not a string. Using `meta = NULL`.
 
-# Creating cff from packages encoded in latin1
+# cff_read converts latin1 package metadata to UTF-8
 
     Code
       cffobj

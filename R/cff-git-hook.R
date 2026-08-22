@@ -73,18 +73,20 @@ cff_git_hook_install <- function() {
   if (cff_has_usethis()) {
     usethis::use_git_hook("pre-commit", readLines(con = bash_file))
   } else {
-    cli::cli_abort(paste0(
-      "Install {.pkg usethis} to use the pre-commit hook: ",
-      '{.run install.packages("usethis")}.'
+    cli::cli_abort(c(
+      "The {.pkg usethis} package is required for the pre-commit hook.",
+      "i" = 'Install it with {.run install.packages("usethis")}.'
     ))
   }
   invisible()
   # nocov end
 }
 
+# nocov start
 cff_has_usethis <- function() {
   requireNamespace("usethis", quietly = TRUE)
 }
+# nocov end
 
 #' @rdname cff_git_hook
 #' @export

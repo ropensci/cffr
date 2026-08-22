@@ -101,13 +101,16 @@ cff_read <- function(path, ...) {
     )
   }
 
-  file_exist_abort(path, abort = TRUE)
+  file_exist_abort(path, abort = TRUE, call = environment())
   filetype <- detect_x_source(path)
 
   if (filetype == "dontknow") {
-    cli::cli_abort(paste0(
+    cli::cli_abort(c(
       "Cannot recognize the file type of {.file {path}}.",
-      " Use a specific function, such as {.fn cffr::cff_read_description}."
+      "i" = paste(
+        "Use a specific function, such as",
+        "{.fn cffr::cff_read_description}."
+      )
     ))
   }
 
@@ -126,7 +129,7 @@ cff_read <- function(path, ...) {
 #' @export
 #' @encoding UTF-8
 cff_read_cff_citation <- function(path, ...) {
-  file_exist_abort(path, abort = TRUE)
+  file_exist_abort(path, abort = TRUE, call = environment())
 
   cffobj <- yaml::read_yaml(
     path,
@@ -152,7 +155,7 @@ cff_read_description <- function(
   authors_roles = c("aut", "cre"),
   ...
 ) {
-  file_exist_abort(path, abort = TRUE)
+  file_exist_abort(path, abort = TRUE, call = environment())
 
   pkg <- desc::desc(path)
   pkg$coerce_authors_at_r()
@@ -195,7 +198,7 @@ cff_read_description <- function(
 #' @export
 #' @encoding UTF-8
 cff_read_citation <- function(path, meta = NULL, ...) {
-  file_exist_abort(path, abort = TRUE)
+  file_exist_abort(path, abort = TRUE, call = environment())
 
   if (!any(is.null(meta), inherits(meta, "packageDescription"))) {
     # nolint start
@@ -245,15 +248,14 @@ cff_read_citation_file <- function(path, meta) {
 #' @export
 #' @encoding UTF-8
 cff_read_bib <- function(path, encoding = "UTF-8", ...) {
-  file_exist_abort(path, abort = TRUE)
+  file_exist_abort(path, abort = TRUE, call = environment())
 
   # nocov start
   if (!requireNamespace("bibtex", quietly = TRUE)) {
-    msg <- paste0(
-      "The {.pkg bibtex} package is required. Install it with ",
-      '{.run install.packages("bibtex")}.'
-    )
-    cli::cli_abort(msg)
+    cli::cli_abort(c(
+      "The {.pkg bibtex} package is required.",
+      "i" = 'Install it with {.run install.packages("bibtex")}.'
+    ))
   }
   # nocov end
 

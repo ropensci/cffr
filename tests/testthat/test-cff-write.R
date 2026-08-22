@@ -1,18 +1,18 @@
-test_that("Write basic", {
+test_that("cff_write writes and validates basic cff files", {
   desc_file <- system.file("examples/DESCRIPTION_basic", package = "cffr")
   desc_file <- cff_create(desc_file)
   expect_s3_class(desc_file, "cff")
   tmp <- file.path(withr::local_tempdir(), "basic.cff")
   expect_message(cff_write(desc_file, outfile = tmp, validate = FALSE))
   expect_silent(cff_write(desc_file, outfile = tmp, verbose = FALSE))
-  expect_true(file_exist_abort(tmp))
+  expect_true(file.exists(tmp))
 
   # Validate from file
   expect_true(cff_validate(tmp, verbose = FALSE))
   expect_snapshot_file(tmp)
 })
 
-test_that("Write to a non-existing folder", {
+test_that("cff_write creates missing output directories", {
   desc_file <- system.file("examples/DESCRIPTION_basic", package = "cffr")
   desc_file <- cff_create(desc_file)
   expect_s3_class(desc_file, "cff")
@@ -21,28 +21,28 @@ test_that("Write to a non-existing folder", {
   cff_write(desc_file, outfile = tmp, validate = FALSE, verbose = FALSE)
 
   expect_true(dir.exists(file.path(root, "recursive")))
-  expect_true(file_exist_abort(tmp))
+  expect_true(file.exists(tmp))
 
   # Validate from file
   expect_true(cff_validate(tmp, verbose = FALSE))
   expect_snapshot_file(tmp)
 })
 
-test_that("Write no encoding", {
+test_that("cff_write handles metadata without encoding", {
   desc_file <- system.file("examples/DESCRIPTION_no_encoding", package = "cffr")
   desc_file <- cff_create(desc_file)
   expect_s3_class(desc_file, "cff")
   tmp <- file.path(withr::local_tempdir(), "noencoding.cff")
   cff_write(desc_file, outfile = tmp, validate = FALSE, verbose = FALSE)
 
-  expect_true(file_exist_abort(tmp))
+  expect_true(file.exists(tmp))
 
   # Validate from file
   expect_true(cff_validate(tmp, verbose = FALSE))
   expect_snapshot_file(tmp)
 })
 
-test_that("Add new keys", {
+test_that("cff_write adds and validates new keys", {
   desc_file <- system.file("examples/DESCRIPTION_basic", package = "cffr")
   desc_file <- cff_create(desc_file)
   expect_s3_class(desc_file, "cff")
@@ -73,14 +73,14 @@ test_that("Add new keys", {
   )
   expect_snapshot(s)
 
-  expect_true(file_exist_abort(tmp))
+  expect_true(file.exists(tmp))
 
   # Validate from file
   expect_true(cff_validate(tmp, verbose = FALSE))
   expect_snapshot_file(tmp)
 })
 
-test_that("Append keys", {
+test_that("cff_write appends author keys", {
   desc_file <- system.file("examples/DESCRIPTION_basic", package = "cffr")
   desc_file <- cff_create(desc_file)
   expect_snapshot(desc_file)
@@ -117,30 +117,30 @@ test_that("Append keys", {
   expect_snapshot_file(tmp)
 })
 
-test_that("Fix extension of the file", {
+test_that("cff_write adds the cff extension", {
   cffobj <- cff()
   cffobj <- cff_modify(cffobj, authors = as_cff_person("Diego Pérez"))
   tmp <- file.path(withr::local_tempdir(), "fix-extension")
   expect_silent(cff_write(cffobj, tmp, verbose = FALSE))
 
-  expect_false(file_exist_abort(tmp))
-  expect_true(file_exist_abort(paste0(tmp, ".cff")))
+  expect_false(file.exists(tmp))
+  expect_true(file.exists(paste0(tmp, ".cff")))
   expect_true(cff_validate(paste0(tmp, ".cff"), verbose = FALSE))
   expect_snapshot_file(paste0(tmp, ".cff"))
 })
 
-test_that("test encoding utf8", {
+test_that("cff_write preserves UTF-8 output", {
   cffobj <- cff()
   cffobj <- cff_modify(cffobj, authors = as_cff_person("Diego Pérez"))
   tmp <- file.path(withr::local_tempdir(), "utf8.cff")
   expect_silent(cff_write(cffobj, tmp, verbose = FALSE))
 
-  expect_true(file_exist_abort(tmp))
+  expect_true(file.exists(tmp))
   expect_true(cff_validate(tmp, verbose = FALSE))
   expect_snapshot_file(tmp)
 })
 
-test_that("test encoding others", {
+test_that("cff_write transliterates output to other encodings", {
   skip_on_os("mac")
   cffobj <- cff()
   cffobj <- cff_modify(cffobj, authors = as_cff_person("Diego Pérez"))
@@ -152,12 +152,12 @@ test_that("test encoding others", {
     encoding = "ASCII//TRANSLIT"
   ))
 
-  expect_true(file_exist_abort(tmp))
+  expect_true(file.exists(tmp))
   expect_true(cff_validate(tmp, verbose = FALSE))
   expect_snapshot_file(tmp)
 })
 
-test_that("Update .Rbuildignore", {
+test_that("cff_write updates .Rbuildignore idempotently", {
   new_dir <- withr::local_tempdir(pattern = "rbuildignore-")
   withr::local_dir(new_dir)
 
@@ -199,7 +199,7 @@ test_that("cff_write creates CITATION.cff in a mock package", {
   )
 
   expect_silent(cff_write(verbose = FALSE))
-  expect_true(file_exist_abort("CITATION.cff"))
+  expect_true(file.exists("CITATION.cff"))
   expect_true(cff_validate("CITATION.cff", verbose = FALSE))
   expect_false(file.exists("inst/CITATION"))
 
@@ -264,7 +264,7 @@ test_that("cff_write_citation creates inst/CITATION in a mock package", {
   )
 
   expect_silent(cff_write_citation(cit, "./inst/CITATION", verbose = FALSE))
-  expect_true(file_exist_abort("./inst/CITATION"))
+  expect_true(file.exists("./inst/CITATION"))
 
   written <- utils::readCitationFile(
     "./inst/CITATION",

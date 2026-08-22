@@ -1,4 +1,4 @@
-# as_bibentry default
+# as_bibentry converts supported objects by default
 
     Code
       s <- as_bibentry(a = 1)
@@ -7,7 +7,7 @@
       i argument "bibtype" is missing, with no default
       ! Returning an empty <bibentry>.
 
-# as_bibentry NULL
+# as_bibentry returns an empty bibentry for NULL
 
     Code
       toBibtex(a_bib)
@@ -20,15 +20,16 @@
         version = {0.1.6},
       }
 
-# as_bibentry character
+# as_bibentry reads packages and files from character input
 
     Code
       as_bibentry("invented_package")
     Condition
       Error in `as_bibentry()`:
-      ! Cannot extract a <bibentry> from "invented_package". If invented_package is a package, run `install.packages("invented_package")` first.
+      ! Cannot extract a <bibentry> from "invented_package".
+      i If "invented_package" is a package, run `install.packages("invented_package")` first.
 
-# as_bibentry cff
+# as_bibentry extracts references from cff objects
 
     Code
       end <- as_bibentry(a_cff, what = "references")

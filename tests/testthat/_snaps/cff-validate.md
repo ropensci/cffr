@@ -1,4 +1,4 @@
-# Validate full CITATION.cff
+# cff_validate accepts complete cff files
 
     Code
       ok <- cff_validate(fcff)
@@ -7,14 +7,14 @@
     Message
       v This <cff> object is valid.
 
-# Validate error CITATION.cff
+# cff_validate reports all schema errors
 
     Code
       tab <- cff_validate(ferr)
     Output
       == Validating CFF ==============================================================
     Message
-      x Validation failed. This <cff> object has the following errors:
+      x Validation failed. This <cff> object has 18 validation errors:
       * cff/: must NOT have additional properties
       * cff/authors/0: must NOT have additional properties
       * cff/authors/0/orcid: must match pattern "https://orcid\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]{1}"
@@ -116,27 +116,30 @@
       17             /url
       18             /url
 
-# Validate error for invalid input
+# cff_validate rejects unsupported inputs
 
     Code
       cff_validate(nocff)
     Condition
-      Error in `abort_if_not_cff()`:
-      ! `x` is not a '*.cff' file.
+      Error in `cff_validate()`:
+      ! `x` is not a `*.cff` file.
+      i Supply a <cff> object or a `*.cff` file path.
 
 ---
 
     Code
       cff_validate(nofile)
     Condition
-      Error in `abort_if_not_cff()`:
-      ! `x` is not a '*.cff' file.
+      Error in `cff_validate()`:
+      ! `x` is not a `*.cff` file.
+      i Supply a <cff> object or a `*.cff` file path.
 
-# File that is not cff
+# cff_validate rejects non-cff files
 
     Code
       cff_validate(system.file("examples/DESCRIPTION_basic", package = "cffr"))
     Condition
-      Error in `abort_if_not_cff()`:
-      ! `x` is not a '*.cff' file.
+      Error in `cff_validate()`:
+      ! `x` is not a `*.cff` file.
+      i Supply a <cff> object or a `*.cff` file path.
 

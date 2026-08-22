@@ -1,6 +1,6 @@
 # Coerce citation from BibTeX ----
 
-test_that("Article", {
+test_that("article bibentries round-trip through cff references", {
   bib <- bibentry(
     "Article",
     key = "knuth:1984",
@@ -31,7 +31,7 @@ test_that("Article", {
   expect_identical(fld1, fld2)
 })
 
-test_that("Book", {
+test_that("book bibentries round-trip through cff references", {
   bib <- bibentry(
     "Book",
     key = "latex:companion",
@@ -69,7 +69,7 @@ test_that("Book", {
 })
 
 
-test_that("Booklet", {
+test_that("booklet bibentries round-trip through cff references", {
   bib <- bibentry(
     "Booklet",
     key = "Mustermann2016",
@@ -101,7 +101,7 @@ test_that("Booklet", {
   expect_identical(setdiff(fld1, fld2), "keywords")
 })
 
-test_that("Conference", {
+test_that("conference bibentries round-trip through cff references", {
   bib <- bibentry(
     "InProceedings",
     key = "inproceedings-full",
@@ -146,7 +146,7 @@ test_that("Conference", {
   expect_identical(setdiff(fld1, fld2), "series")
 })
 
-test_that("InBook", {
+test_that("inbook bibentries round-trip through cff references", {
   bib <- bibentry(
     "InBook",
     key = "1326",
@@ -183,7 +183,7 @@ test_that("InBook", {
   expect_identical(setdiff(fld1, fld2), "type")
 })
 
-test_that("InCollection", {
+test_that("incollection bibentries round-trip through cff references", {
   bib <- bibentry(
     "InCollection",
     key = "Mihalcea:2006",
@@ -223,7 +223,7 @@ test_that("InCollection", {
   expect_identical(setdiff(fld1, fld2), c("series", "type"))
 })
 
-test_that("InProceedings", {
+test_that("inproceedings bibentries round-trip through cff references", {
   bib <- bibentry(
     "InProceedings",
     key = "inproceedings-full",
@@ -265,7 +265,7 @@ test_that("InProceedings", {
   expect_snapshot(toBibtex(bib))
 })
 
-test_that("Manual", {
+test_that("manual bibentries round-trip through cff references", {
   bib <- bibentry(
     "Manual",
     title = "A Language and Environment for Statistical Computing",
@@ -295,7 +295,7 @@ test_that("Manual", {
   expect_identical(fld1, fld2)
 })
 
-test_that("MastersThesis", {
+test_that("mastersthesis bibentries round-trip through cff references", {
   bib <- bibentry(
     "MastersThesis",
     key = "Master2006",
@@ -326,7 +326,7 @@ test_that("MastersThesis", {
   expect_identical(setdiff(fld1, fld2), "type")
 })
 
-test_that("Misc", {
+test_that("misc bibentries round-trip through cff references", {
   bib <- bibentry(
     "Misc",
     # Optional
@@ -355,7 +355,7 @@ test_that("Misc", {
 })
 
 
-test_that("PhdThesis", {
+test_that("phdthesis bibentries round-trip through cff references", {
   bib <- bibentry(
     "PhdThesis",
     author = "Eesa Alsolami",
@@ -387,7 +387,7 @@ test_that("PhdThesis", {
 })
 
 
-test_that("Proceedings", {
+test_that("proceedings bibentries round-trip through cff references", {
   bib <- bibentry(
     "Proceedings",
     title = "Proc. Fifteenth Annual STOC",
@@ -420,7 +420,7 @@ test_that("Proceedings", {
   expect_identical(fld1, fld2)
 })
 
-test_that("TechReport", {
+test_that("techreport bibentries round-trip through cff references", {
   bib <- bibentry(
     "TechReport",
     author = "Matthew C. Jadud and Sally A. Fincher",
@@ -454,7 +454,7 @@ test_that("TechReport", {
   expect_identical(setdiff(fld1, fld2), "type")
 })
 
-test_that("Unpublished", {
+test_that("unpublished bibentries round-trip through cff references", {
   bib <- bibentry(
     "Unpublished",
     author = "D. Kaplan",
@@ -486,7 +486,7 @@ test_that("Unpublished", {
   expect_snapshot(toBibtex(bib))
 })
 
-test_that("InBook with booktitle", {
+test_that("inbook bibentries preserve book titles", {
   bib <- bibentry(
     "InBook",
     title = "Bibliographies and citations",
@@ -522,7 +522,7 @@ test_that("InBook with booktitle", {
   expect_identical(setdiff(fld1, fld2), "series")
 })
 
-test_that("Test entry without author", {
+test_that("references support entries without authors", {
   bib <- bibentry(
     "Proceedings",
     editor = "Yolande Berbers and Willy Zwaenepoel",
@@ -551,7 +551,7 @@ test_that("Test entry without author", {
 })
 
 
-test_that("Test entry without author but has a key", {
+test_that("references preserve keys when authors are absent", {
   bib <- bibentry(
     "Misc",
     key = "I am the key",
@@ -579,7 +579,7 @@ test_that("Test entry without author but has a key", {
 })
 
 
-test_that("Test entry without author and key", {
+test_that("references support entries without authors or keys", {
   bib <- bibentry(
     "Misc",
     title = "Proceedings of the 6th European Conference on Computer Systems",
@@ -607,7 +607,7 @@ test_that("Test entry without author and key", {
 })
 
 
-test_that("Skip misc without title", {
+test_that("references skip misc entries without titles", {
   bib <- bibentry(
     bibtype = "misc",
     author = c(person("SHERPA/RoMEO")),
@@ -627,7 +627,7 @@ test_that("Skip misc without title", {
 })
 
 
-test_that("Skip misc without title, not skipping the good one", {
+test_that("invalid references do not remove valid references", {
   bib <- c(
     bibentry(
       bibtype = "misc",
@@ -664,7 +664,7 @@ test_that("Skip misc without title, not skipping the good one", {
 })
 
 
-test_that("Check extended BibLatex Fields", {
+test_that("references preserve extended BibLaTeX fields", {
   bib <- bibentry(
     "Article",
     author = "M. A. Kastenholz, and Philippe H. Hünenbergerb",
@@ -699,7 +699,7 @@ test_that("Check extended BibLatex Fields", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
-test_that("Duplicate entries", {
+test_that("references remove duplicate entries", {
   bib <- bibentry(
     "InBook",
     title = "Bibliographies and citations",
@@ -718,7 +718,7 @@ test_that("Duplicate entries", {
   expect_length(bib_cff, 1)
 })
 
-test_that("Identifiers and dois", {
+test_that("references normalize identifiers and DOIs", {
   # jarl-ignore-start duplicated_arguments: Testing edge case.
   bib <- bibentry(
     bibtype = "Manual",
@@ -748,7 +748,7 @@ test_that("Identifiers and dois", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
-test_that("Test R 2026", {
+test_that("references support R 4.6 bibentry output", {
   rvers <- getRversion()
   skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
 

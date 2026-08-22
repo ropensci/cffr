@@ -1,4 +1,4 @@
-# as data frame complete
+# as.data.frame flattens complete cff objects
 
     Code
       names(the_df)
@@ -793,7 +793,7 @@
       [788] "references.00.translators.01.date_end"             
       [789] "references.00.translators.01.location"             
 
-# Convert a citation only
+# as.data.frame converts preferred citations
 
     Code
       names(the_df)
@@ -825,14 +825,14 @@
       [25] "references.00.keywords.07"            
       [26] "references.00.version"                
 
-# Convert authors only
+# as.data.frame converts authors
 
     Code
       names(the_df)
     Output
       [1] "family_names" "given_names" 
 
-# Convert list of authors
+# as.data.frame converts lists of authors
 
     Code
       names(the_df)
@@ -853,7 +853,7 @@
       [27] "person.01.website"       "person.01.date_start"   
       [29] "person.01.date_end"      "person.01.location"     
 
-# as.person method
+# as.person converts cff person lists
 
     Code
       dput(pub)
@@ -919,7 +919,7 @@
     Code
       end <- as.person(malf)
     Message
-      i Cannot create <person> for some elements of `x`.
+      ! Cannot create 1 <person> object from `x`.
 
 ---
 
@@ -927,6 +927,13 @@
       aa2 <- as.person(aa)
     Message
       i Removing duplicate <person> objects.
+
+# as.person reports the number of malformed elements
+
+    Code
+      result <- as.person(malformed)
+    Message
+      ! Cannot create 2 <person> objects from `x`.
 
 # as.person method names and particles
 
@@ -939,7 +946,7 @@
         name-suffix: III
       - name: The translator factory
 
-# Errors on other as.person methods
+# unsupported as.person methods report errors
 
     Code
       as.person(the_cff)
@@ -963,7 +970,7 @@
       Error in `as.person()`:
       ! The `as.person.cff_ref()` method is not implemented yet.
 
-# head and tail
+# head and tail preserve cff classes
 
     Code
       a_cff
@@ -993,7 +1000,7 @@
       - family-names: Doe
         given-names: John
 
-# toBibtex
+# toBibtex converts supported cff structures
 
     Code
       toBibtex(full_cff)

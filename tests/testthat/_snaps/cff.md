@@ -1,4 +1,4 @@
-# Test message on cff
+# cff reports defaults and invalid file input
 
     Code
       def <- cff("abcde")
@@ -16,7 +16,7 @@
       The `path` argument of `cff()` is deprecated as of cffr 1.0.0.
       i Argument ignored.
 
-# Walk trough full lifecycle
+# cff objects survive the full write and modify lifecycle
 
     Code
       read
@@ -1694,7 +1694,7 @@
           location: The team garage
       license-url: https://spdx.org/licenses/CC-BY-SA-4.0.html#licenseText
 
-# Recursive parsing
+# cff recursively parses complete files
 
     Code
       read <- cff(complete)
@@ -1703,12 +1703,12 @@
       The `path` argument of `cff()` is deprecated as of cffr 1.0.0.
       i Please use `cff_read_cff_citation()` instead.
 
-# Fuzzy matching of keys on cff
+# cff fuzzy-matches misspelled keys
 
     Code
       cff(tittle = "a", cff_version = "ar", version = "200", messange = "Fix my keys")
     Message
-      i Found misspelled keys. Trying to map them:
+      i Found 2 unknown keys. Trying to map them:
       v tittle: title
       v messange: message
     Output
@@ -1723,23 +1723,23 @@
       cffobj <- cff(tittle = "a", cff_version = "1.2.0", version = "200", messange = "aa",
         anthor = list(list(`family-names` = "a", `given-names` = "b")))
     Message
-      i Found misspelled keys. Trying to map them:
+      i Found 3 unknown keys. Trying to map them:
       v tittle: title
       v messange: message
       v anthor: authors
 
-# duplicated
+# cff removes duplicate keys
 
     Code
       ss <- cff(tittle = "a", tittle = "ar", version = "200", messange = "Fix my keys")
     Message
-      i Found misspelled keys. Trying to map them:
+      i Found 3 unknown keys. Trying to map them:
       v tittle: title
       v tittle: title
       v messange: message
       ! Removing duplicate keys.
 
-# unnamed
+# cff removes unnamed arguments
 
     Code
       ss <- cff(path = "a", "200", "Fix my keys")
@@ -1747,7 +1747,7 @@
       Warning:
       The `path` argument of `cff()` is deprecated as of cffr 1.0.0.
       i Argument ignored.
-      Error in `validate_extra_keys()`:
+      Error in `cff()`:
       ! Elements in `...` must be named.
 
 ---

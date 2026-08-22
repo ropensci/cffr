@@ -128,9 +128,9 @@ cff_coerce_bibentry <- function(x, ...) {
 
   if (!inherits(x, "bibentry")) {
     cli::cli_abort(
-      paste0(
-        "{.arg x} must be a {.cls bibentry} object, not a ",
-        "{.cls {class(x)}} object."
+      paste(
+        "{.arg x} must be a {.cls bibentry} object,",
+        "not {.obj_type_friendly {x}}."
       ),
       call = error_call
     )

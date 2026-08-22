@@ -1,4 +1,4 @@
-# cff_extract_to_bibtex
+# cff_extract_to_bibtex delegates with a deprecation warning
 
     Code
       old1 <- cff_extract_to_bibtex(a_cff)
@@ -7,7 +7,7 @@
       `cff_extract_to_bibtex()` was deprecated in cffr 0.5.0.
       i Function renamed, use `as_bibentry()` instead.
 
-# cff_to_bibtex
+# cff_to_bibtex delegates with a deprecation warning
 
     Code
       old1 <- cff_to_bibtex(a_cff)
@@ -16,7 +16,7 @@
       `cff_extract_to_bibtex()` was deprecated in cffr 1.0.0.
       i Function renamed, use `as_bibentry()` instead.
 
-# cff_from_bibtex
+# cff_from_bibtex delegates with a deprecation warning
 
     Code
       ffile <- cff_from_bibtex(x2)
@@ -34,7 +34,7 @@
       `cff_from_bibtex()` was deprecated in cffr 1.0.0.
       i Please use `cff_read_bib_text()` instead.
 
-# write_bib
+# write_bib delegates with a deprecation warning
 
     Code
       write_bib(bib, tmp, verbose = FALSE)
@@ -53,7 +53,7 @@
         author = {Fran Pérez},
       }
 
-# write_citation
+# write_citation delegates with a deprecation warning
 
     Code
       write_citation(bib, tmp, verbose = FALSE)
@@ -73,7 +73,7 @@
                author = person(given = "Fran",
                                family = "Pérez"))
 
-# cff_parse_person
+# cff_parse_person delegates with a deprecation warning
 
     Code
       pend <- cff_parse_person(p)
@@ -82,7 +82,7 @@
       `cff_parse_person()` was deprecated in cffr 1.0.0.
       i Please use `as_cff_person()` instead.
 
-# cff_parse_person_bibtex
+# cff_parse_person_bibtex delegates with a deprecation warning
 
     Code
       pend <- cff_parse_person_bibtex(p)
@@ -91,7 +91,7 @@
       `cff_parse_person_bibtex()` was deprecated in cffr 1.0.0.
       i Please use `as_cff_person()` instead.
 
-# cff_parse_citation
+# cff_parse_citation delegates with a deprecation warning
 
     Code
       pend <- cff_parse_citation(p)

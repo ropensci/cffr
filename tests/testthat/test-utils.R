@@ -1,15 +1,14 @@
-test_that("Try encoding conversion", {
+test_that("encoding helpers convert strings to UTF-8", {
   a <- iconv("España", to = "latin1")
 
-  expect_true(Encoding(a) == "latin1")
+  expect_identical(Encoding(a), "latin1")
 
   b <- clean_str(a)
 
-  expect_false(Encoding(b) == Encoding(a))
-  expect_true(Encoding(b) == "UTF-8")
+  expect_identical(Encoding(b), "UTF-8")
 })
 
-test_that("Try cleaning string", {
+test_that("clean_str removes empty and malformed values", {
   expect_identical(clean_str(c("a", "b")), c("a b"))
 
   expect_null(clean_str(NA))
@@ -21,7 +20,7 @@ test_that("Try cleaning string", {
   expect_null(clean_str(list()))
 })
 
-test_that("Use right repo", {
+test_that("repository helpers select CRAN-compatible repositories", {
   # Use some other repos
   repos <- c("https://ropensci.r-universe.dev", "https://cloud.r-project.org")
 

@@ -1,4 +1,4 @@
-# Article
+# article bibentries round-trip through cff references
 
     Code
       bib_cff
@@ -16,7 +16,7 @@
         start: '97'
         end: '111'
 
-# Book
+# book bibentries round-trip through cff references
 
     Code
       bib_cff
@@ -51,7 +51,7 @@
         - Two
         - keyword
 
-# Booklet
+# booklet bibentries round-trip through cff references
 
     Code
       bib_cff
@@ -68,7 +68,7 @@
         year: '2016'
         notes: Example modified from Jabref
 
-# Conference
+# conference bibentries round-trip through cff references
 
     Code
       bib_cff
@@ -103,7 +103,7 @@
           name: Proc. Fifteenth Annual ACM STOC
           address: Boston
 
-# InBook
+# inbook bibentries round-trip through cff references
 
     Code
       bib_cff
@@ -133,7 +133,7 @@
         start: '137'
         end: '149'
 
-# InCollection
+# incollection bibentries round-trip through cff references
 
     Code
       bib_cff
@@ -163,7 +163,7 @@
         start: '24'
         end: '57'
 
-# InProceedings
+# inproceedings bibentries round-trip through cff references
 
     Code
       bib_cff
@@ -218,7 +218,7 @@
         organization = {ACM},
       }
 
-# Manual
+# manual bibentries round-trip through cff references
 
     Code
       bib_cff
@@ -235,7 +235,7 @@
         year: '2021'
         notes: Example modified for testing purposes
 
-# MastersThesis
+# mastersthesis bibentries round-trip through cff references
 
     Code
       bib_cff
@@ -253,7 +253,7 @@
         notes: Example modified for testing purposes
         thesis-type: Master's Thesis
 
-# Misc
+# misc bibentries round-trip through cff references
 
     Code
       bib_cff
@@ -267,7 +267,7 @@
         year: '2021'
         notes: A note
 
-# PhdThesis
+# phdthesis bibentries round-trip through cff references
 
     Code
       bib_cff
@@ -285,7 +285,7 @@
         notes: Example modified for testing purposes
         thesis-type: PhD Thesis
 
-# Proceedings
+# proceedings bibentries round-trip through cff references
 
     Code
       bib_cff
@@ -314,7 +314,7 @@
           name: All ACM Conferences
           address: Boston, US
 
-# TechReport
+# techreport bibentries round-trip through cff references
 
     Code
       bib_cff
@@ -334,7 +334,7 @@
         month: '3'
         notes: Example modified for testing purposes
 
-# Unpublished
+# unpublished bibentries round-trip through cff references
 
     Code
       bib_cff
@@ -361,7 +361,7 @@
         note = {Extracted with cffr R package},
       }
 
-# InBook with booktitle
+# inbook bibentries preserve book titles
 
     Code
       bib_cff
@@ -385,7 +385,7 @@
         url: https://yihui.org/rmarkdown-cookbook/
         section: '4.5'
 
-# Test entry without author
+# references support entries without authors
 
     Code
       bib_cff
@@ -409,7 +409,7 @@
         conference:
           name: Proceedings of the 6th European Conference on Computer Systems
 
-# Test entry without author but has a key
+# references preserve keys when authors are absent
 
     Code
       bib_cff
@@ -426,7 +426,7 @@
         year: '2006'
         isbn: 1-59593-322-02
 
-# Test entry without author and key
+# references support entries without authors or keys
 
     Code
       bib_cff
@@ -443,7 +443,7 @@
         year: '2006'
         isbn: 1-59593-322-02
 
-# Skip misc without title
+# references skip misc entries without titles
 
     Code
       cffobj
@@ -455,7 +455,7 @@
       - family-names: Doe
         given-names: John
 
-# Skip misc without title, not skipping the good one
+# invalid references do not remove valid references
 
     Code
       cffobj
@@ -477,7 +477,7 @@
         year: '2019'
         url: https://CRAN.R-project.org/package=rromeo
 
-# Check extended BibLatex Fields
+# references preserve extended BibLaTeX fields
 
     Code
       bib_cff
@@ -514,14 +514,14 @@
         end: '65'
         month: '3'
 
-# Duplicate entries
+# references remove duplicate entries
 
     Code
       bib_cff <- as_cff(rep(bib, 2))
     Message
       i Removing duplicate <bibentry> objects.
 
-# Identifiers and dois
+# references normalize identifiers and DOIs
 
     Code
       as_cff(checf)
@@ -563,7 +563,7 @@
         - type: url
           value: https://google.com/
 
-# Test R 2026
+# references support R 4.6 bibentry output
 
     Code
       as_cff(sin)

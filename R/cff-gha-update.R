@@ -49,7 +49,10 @@ cff_gha_update <- function(path = ".", overwrite = FALSE) {
       overwrite = TRUE
     )
     if (!isTRUE(copied)) {
-      cli::cli_abort("Cannot install workflow at {.file {newfile}}.")
+      cli::cli_abort(c(
+        "Cannot install workflow at {.file {newfile}}.",
+        "i" = "Check write permissions for {.path {destdir}}."
+      ))
     }
     cli::cli_alert_success("Workflow installed at {.file {newfile}}.")
   } else {

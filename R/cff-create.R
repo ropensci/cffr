@@ -100,8 +100,9 @@ cff_create <- function(
     x <- getwd()
   }
   hint_source <- cff_source_hint(x)
+  error_call <- environment()
 
-  abort_invalid_cff_source(hint_source)
+  abort_invalid_cff_source(hint_source, call = error_call)
 
   # Build the CFF object and return paths if any.
   result_paths <- build_cff_and_paths(
@@ -110,7 +111,8 @@ cff_create <- function(
     gh_keywords,
     dependencies,
     authors_roles,
-    hint_source
+    hint_source,
+    call = error_call
   )
 
   desc_path <- result_paths[["desc_path"]]
@@ -125,7 +127,7 @@ cff_create <- function(
   }
 
   # Add additional keys using internals from `cff_modify()`.
-  cffobjend <- modify_cff(cffobjend, keys, "keys")
+  cffobjend <- modify_cff(cffobjend, keys, "keys", call = error_call)
 
   # Order keys.
   cffobjend <- cffobjend[cff_schema_keys()]
@@ -144,7 +146,8 @@ build_cff_and_paths <- function(
   gh_keywords = TRUE,
   dependencies = TRUE,
   authors_roles = c("aut", "cre"),
-  hint_source
+  hint_source,
+  call = environment()
 ) {
   collect_list <- list(desc_path = NULL, cffobjend = NULL)
 
@@ -162,7 +165,16 @@ build_cff_and_paths <- function(
   desc_path <- cff_description_path(x, hint_source)
 
   if (is.null(file_path_or_null(desc_path))) {
-    cli::cli_abort("No {.file DESCRIPTION} file found for {.arg x}.")
+    cli::cli_abort(
+      c(
+        "No {.file DESCRIPTION} file found for {.arg x}.",
+        "i" = paste(
+          "Supply a package directory, an installed package name,",
+          "or a {.file DESCRIPTION} file."
+        )
+      ),
+      call = call
+    )
   }
 
   cffobj <- cff_read_description(
@@ -197,7 +209,7 @@ cff_source_hint <- function(x) {
   detect_x_source(x)
 }
 
-abort_invalid_cff_source <- function(hint_source) {
+abort_invalid_cff_source <- function(hint_source, call = environment()) {
   valid_sources <- c("indev", "cff_obj", "package", "description")
   if (hint_source %in% valid_sources) {
     return(invisible(NULL))
@@ -212,7 +224,13 @@ abort_invalid_cff_source <- function(hint_source) {
     "bib" = "Try {.fn cffr::cff_read}."
   )
 
-  cli::cli_abort(paste0("{.arg x} is not a supported source. ", msg_hint))
+  cli::cli_abort(
+    c(
+      "{.arg x} is not a supported source.",
+      "i" = msg_hint
+    ),
+    call = call
+  )
 }
 
 cff_description_path <- function(x, hint_source) {

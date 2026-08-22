@@ -1,4 +1,4 @@
-test_that("NULL gives NULL", {
+test_that("as_cff_person returns NULL for NULL", {
   expect_null(as_cff_person(NULL))
   expect_null(as_cff_person(NA))
   expect_null(as_cff_person(person()))
@@ -6,19 +6,19 @@ test_that("NULL gives NULL", {
   expect_null(as_cff_person(""))
 })
 
-test_that("default", {
+test_that("as_cff_person preserves cff person objects", {
   p <- list("One", "person")
   expect_identical(as_cff_person(p), as_cff_person("One person"))
 
   expect_identical(as_cff_person(1), as_cff_person("1"))
 })
 
-test_that("Coerce one person", {
+test_that("as_cff_person converts one person", {
   p <- person("one", "person")
   expect_snapshot(as_cff_person(p))
 })
 
-test_that("Coerce several persons", {
+test_that("as_cff_person converts multiple persons", {
   p <- c(
     person("one", "person"),
     person("another", "human"),
@@ -27,7 +27,7 @@ test_that("Coerce several persons", {
   expect_snapshot(as_cff_person(p))
 })
 
-test_that("Coerce bibtex persons", {
+test_that("as_cff_person converts BibTeX person strings", {
   s <- "Wright, III, Frank Edwin"
 
   expect_snapshot(as_cff_person(s))
@@ -41,7 +41,7 @@ test_that("Coerce bibtex persons", {
   expect_identical(as_cff_person(s), as_cff_person(s2))
 })
 
-test_that("Coerce bibtex persons with masks", {
+test_that("as_cff_person preserves masked BibTeX names", {
   s <- "Elephant and Castle"
 
   expect_snapshot(as_cff_person(s))
@@ -60,7 +60,7 @@ test_that("Coerce bibtex persons with masks", {
 })
 
 
-test_that("Get same results with both", {
+test_that("person and BibTeX inputs produce equivalent cff persons", {
   s3 <- as_cff_person(c(person(family = "Entity"), person("A", "person")))
 
   b3 <- as_cff_person("Entity and A person")
@@ -73,7 +73,7 @@ test_that("Get same results with both", {
   expect_identical(s4, b4)
 })
 
-test_that("R Core Team", {
+test_that("as_cff_person handles the R Core Team", {
   p <- as_cff_person(person("R Core", "Team"))
 
   expect_equal(p[[1]]$name, "R Core Team")
@@ -83,7 +83,7 @@ test_that("R Core Team", {
   expect_equal(p[[1]]$name, "R Core Team")
 })
 
-test_that("Bioconductor", {
+test_that("as_cff_person handles Bioconductor team authors", {
   # Several tastes of Bioconductor
   bio <- person(
     "Bioconductor Package Maintainer",
@@ -102,7 +102,7 @@ test_that("Bioconductor", {
   expect_equal(p[[1]]$name, "The Bioconductor Package Maintainer")
 })
 
-test_that("Several emails, select first", {
+test_that("as_cff_person selects the first valid email", {
   pp <- person(
     given = "John",
     family = "Doe",
@@ -116,7 +116,7 @@ test_that("Several emails, select first", {
 })
 
 
-test_that("Several emails, select second if first no valid", {
+test_that("as_cff_person skips invalid emails", {
   pp <- person(
     given = "John",
     family = "Doe",
@@ -130,7 +130,7 @@ test_that("Several emails, select second if first no valid", {
 })
 
 
-test_that("No valid emails", {
+test_that("as_cff_person omits email when none are valid", {
   pp <- person(
     given = "John",
     family = "Doe",
@@ -149,7 +149,7 @@ test_that("No valid emails", {
   expect_equal(p, p2)
 })
 
-test_that("Can extract comments from format", {
+test_that("as_cff_person extracts metadata from person comments", {
   rvers <- getRversion()
   skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
 

@@ -1,4 +1,4 @@
-test_that("Validate full CITATION.cff", {
+test_that("cff_validate accepts complete cff files", {
   full <- system.file("examples/CITATION_complete.cff", package = "cffr")
 
   # From object
@@ -12,7 +12,7 @@ test_that("Validate full CITATION.cff", {
   expect_true(cff_validate(full))
 })
 
-test_that("Validate minimal CITATION.cff", {
+test_that("cff_validate accepts minimal cff files", {
   full <- system.file("examples/CITATION_skeleton.cff", package = "cffr")
   expect_true(cff_validate(full, verbose = FALSE))
 })
@@ -25,7 +25,7 @@ test_that("cff_validate handles file paths with braces in verbose messages", {
   expect_message(cff_validate(tmp), "is valid")
 })
 
-test_that("Validate error CITATION.cff", {
+test_that("cff_validate reports all schema errors", {
   err <- system.file("examples/CITATION_error.cff", package = "cffr")
   # From cff
   ferr <- cff_read(err)
@@ -41,12 +41,25 @@ test_that("Validate error CITATION.cff", {
   expect_silent(cff_validate(err, verbose = FALSE))
 })
 
-test_that("Validate cffr objects from installed packages", {
+test_that("cff_validate pluralizes one validation error", {
+  cffobj <- cff(
+    "cff-version" = "1.2.0",
+    message = "If you use this software, please cite it as below.",
+    title = "A minimal package"
+  )
+
+  expect_message(
+    cff_validate(cffobj),
+    "has 1 validation error:"
+  )
+})
+
+test_that("cff_validate accepts cff objects from installed packages", {
   cffr <- cff_create("jsonlite")
   expect_true(cff_validate(cffr, verbose = FALSE))
 })
 
-test_that("Validate error for invalid input", {
+test_that("cff_validate rejects unsupported inputs", {
   nocff <- system.file("CITATION", package = "cffr")
   expect_snapshot(cff_validate(nocff), error = TRUE)
 
@@ -54,7 +67,7 @@ test_that("Validate error for invalid input", {
   expect_snapshot(cff_validate(nofile), error = TRUE)
 })
 
-test_that("File that is not cff", {
+test_that("cff_validate rejects non-cff files", {
   expect_snapshot(
     cff_validate(system.file(
       "examples/DESCRIPTION_basic",

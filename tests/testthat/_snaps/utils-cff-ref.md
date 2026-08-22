@@ -1,4 +1,4 @@
-# fallback_dates
+# fallback_dates normalizes reference dates
 
     Code
       as_cff(p2)

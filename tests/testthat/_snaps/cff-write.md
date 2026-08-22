@@ -1,4 +1,4 @@
-# Add new keys
+# cff_write adds and validates new keys
 
     Code
       s
@@ -27,7 +27,7 @@
       - of
       - keywords
 
-# Append keys
+# cff_write appends author keys
 
     Code
       desc_file

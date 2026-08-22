@@ -1,12 +1,13 @@
-# Error if file not exists
+# cff_create errors when DESCRIPTION does not exist
 
     Code
       cff_create("DESCRIPTION_not_exists")
     Condition
-      Error in `build_cff_and_paths()`:
+      Error in `cff_create()`:
       ! No 'DESCRIPTION' file found for `x`.
+      i Supply a package directory, an installed package name, or a 'DESCRIPTION' file.
 
-# Test indev
+# cff_create reads the package in the working directory
 
     Code
       a_cff
@@ -29,31 +30,34 @@
         given-names: Marc
         email: marcbasic@gmail.com
 
-# Test error formats on inputs
+# cff_create reports unsupported input sources
 
     Code
       cff_create(df)
     Condition
-      Error in `abort_invalid_cff_source()`:
-      ! `x` is not a supported source. If it is a package, you may need to install it with `utils::install.packages()`.
+      Error in `cff_create()`:
+      ! `x` is not a supported source.
+      i If it is a package, you may need to install it with `utils::install.packages()`.
 
 ---
 
     Code
       cff_create(l)
     Condition
-      Error in `abort_invalid_cff_source()`:
-      ! `x` is not a supported source. If it is a package, you may need to install it with `utils::install.packages()`.
+      Error in `cff_create()`:
+      ! `x` is not a supported source.
+      i If it is a package, you may need to install it with `utils::install.packages()`.
 
 ---
 
     Code
       cff_create("uanuanua")
     Condition
-      Error in `abort_invalid_cff_source()`:
-      ! `x` is not a supported source. If it is a package, you may need to install it with `utils::install.packages()`.
+      Error in `cff_create()`:
+      ! `x` is not a supported source.
+      i If it is a package, you may need to install it with `utils::install.packages()`.
 
-# No auto generate preferred citations
+# cff_create does not generate preferred citations automatically
 
     Code
       cff_create(rgeos, gh_keywords = FALSE, keys = list(references = NULL))
@@ -126,7 +130,7 @@
         given-names: Marc
         email: marcbasic@gmail.com
 
-# Fuzzy match on cff_create
+# cff_create fuzzy-matches additional keys
 
     Code
       print_snapshot("Fuzzy match on cff_create", modobject)
@@ -147,7 +151,7 @@
       
       ---
 
-# Coerce date
+# cff_create normalizes DESCRIPTION dates
 
     Code
       a_cff
@@ -196,7 +200,7 @@
         email: Roger.Bivand@nhh.no
         orcid: https://orcid.org/0000-0003-2392-6140
 
-# Coerce date in another format
+# cff_create normalizes alternate date formats
 
     Code
       a_cff
@@ -220,7 +224,7 @@
         given-names: Marc
         email: marcbasic@gmail.com
 
-# Parsing many urls
+# cff_create classifies multiple DESCRIPTION URLs
 
     Code
       a_cff
@@ -252,7 +256,7 @@
         given-names: Marc
         email: marcbasic@gmail.com
 
-# Parsing Gitlab
+# cff_create recognizes GitLab repositories
 
     Code
       a_cff
@@ -292,7 +296,7 @@
       - credit
       - linked-data
 
-# Parsing many persons
+# cff_create parses multiple DESCRIPTION persons
 
     Code
       a_cff
@@ -337,7 +341,7 @@
       - one
       - two
 
-# Parsing wrong urls
+# cff_create ignores malformed DESCRIPTION URLs
 
     Code
       a_cff
@@ -373,7 +377,7 @@
       - credit
       - linked-data
 
-# Parsing two maintainers
+# cff_create handles multiple maintainers
 
     Code
       a_cff
@@ -409,7 +413,7 @@
         given-names: Jane
         email: email2@email.edu
 
-# Parsing r-universe
+# cff_create recognizes R-universe repositories
 
     Code
       a_cff
@@ -451,7 +455,7 @@
       - credit
       - linked-data
 
-# Parsing Bioconductor
+# cff_create recognizes Bioconductor packages
 
     Code
       a_cff
@@ -487,7 +491,7 @@
         given-names: Hervé
         email: hpages.on.github@gmail.com
 
-# Parsing Posit Package Manager
+# cff_create recognizes Posit Package Manager repositories
 
     Code
       a_cff
@@ -521,7 +525,7 @@
       - resmushit
       - api
 
-# Search package on CRAN
+# repository helpers find packages on CRAN
 
     Code
       a_cff

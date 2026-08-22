@@ -1,14 +1,17 @@
-test_that("Error if file not exists", {
+test_that("cff_create errors when DESCRIPTION does not exist", {
   expect_snapshot(cff_create("DESCRIPTION_not_exists"), error = TRUE)
 })
 
-test_that("Test installed packages", {
+test_that("cff_create reads installed packages", {
   skip_on_cran()
+  skip_if_not_installed("jsonlite")
+  skip_if_not_installed("yaml")
+
   expect_silent(cff_create("jsonlite"))
   expect_silent(cff_create("yaml"))
 })
 
-test_that("Test indev", {
+test_that("cff_create reads the package in the working directory", {
   skip_on_cran()
 
   local_mock_package()
@@ -20,14 +23,16 @@ test_that("Test indev", {
   expect_snapshot(a_cff)
 })
 
-test_that("Test dependencies extraction", {
+test_that("cff_create optionally extracts package dependencies", {
+  skip_if_not_installed("jsonlite")
+
   yes <- cff_create("jsonlite")
   no <- cff_create("jsonlite", dependencies = FALSE)
 
   expect_gt(length(yes$references), length(no$references))
 })
 
-test_that("Test error formats on inputs", {
+test_that("cff_create reports unsupported input sources", {
   df <- data.frame(x = 1, b = "c")
   expect_snapshot(cff_create(df), error = TRUE)
   l <- list(a = 1, b = 3)
@@ -36,23 +41,24 @@ test_that("Test error formats on inputs", {
   expect_snapshot(cff_create("uanuanua"), error = TRUE)
 })
 
-test_that("Validate all DESCRIPTION files", {
+test_that("cff_create produces valid cff from all DESCRIPTION fixtures", {
   allfiles <- list.files(
     system.file("examples", package = "cffr"),
     pattern = "^DESC",
     full.names = TRUE
   )
 
-  for (i in seq_along(allfiles)) {
-    cffobj <- cff_create(allfiles[i], gh_keywords = FALSE)
+  for (file in allfiles) {
+    fixture <- basename(file)
+    cffobj <- cff_create(file, gh_keywords = FALSE)
     # Check that no preferred citation is created
-    expect_null(cffobj$`preferred-citation`)
+    expect_null(cffobj$`preferred-citation`, info = fixture)
 
-    expect_true(cff_validate(cffobj, verbose = FALSE))
+    expect_true(cff_validate(cffobj, verbose = FALSE), info = fixture)
   }
 })
 
-test_that("No auto generate preferred citations", {
+test_that("cff_create does not generate preferred citations automatically", {
   rgeos <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
 
   expect_snapshot(cff_create(
@@ -69,7 +75,7 @@ test_that("No auto generate preferred citations", {
   ))
 })
 
-test_that("Fuzzy match on cff_create", {
+test_that("cff_create fuzzy-matches additional keys", {
   newobject <- cff_create(cff())
   newkeys <- list(
     "url" = "https://ropensci.org/",
@@ -85,7 +91,7 @@ test_that("Fuzzy match on cff_create", {
   expect_snapshot(print_snapshot("Fuzzy match on cff_create", modobject))
 })
 
-test_that("Test installed packages vs call to file", {
+test_that("package names and DESCRIPTION paths produce equivalent cff", {
   skip_on_cran()
   call1 <- cff_create("jsonlite")
   call2 <- cff_create(system.file("DESCRIPTION", package = "jsonlite"))
@@ -95,7 +101,7 @@ test_that("Test installed packages vs call to file", {
 
 # Additional authors ----
 
-test_that("Default roles", {
+test_that("cff_create includes default author roles", {
   p <- system.file("examples/DESCRIPTION_no_URL", package = "cffr")
 
   cf <- cff_create(p, dependencies = FALSE)
@@ -105,7 +111,7 @@ test_that("Default roles", {
   expect_identical(cf, cf2)
 })
 
-test_that("Add new roles", {
+test_that("cff_create accepts additional author roles", {
   p <- system.file("examples/DESCRIPTION_no_URL", package = "cffr")
 
   cf <- cff_create(p, dependencies = FALSE)
@@ -119,7 +125,7 @@ test_that("Add new roles", {
   expect_true(cff_validate(cf2, verbose = FALSE))
 })
 
-test_that("Default roles on write", {
+test_that("cff_write includes default author roles", {
   p <- system.file("examples/DESCRIPTION_no_URL", package = "cffr")
 
   cf <- cff_create(p, dependencies = FALSE)
@@ -138,7 +144,7 @@ test_that("Default roles on write", {
   expect_identical(cf, cf2)
 })
 
-test_that("Add new roles on write", {
+test_that("cff_write accepts additional author roles", {
   p <- system.file("examples/DESCRIPTION_no_URL", package = "cffr")
 
   cf_def <- cff_create(p)
@@ -157,7 +163,7 @@ test_that("Add new roles on write", {
 })
 
 # Check DESCRIPTION ----
-test_that("Coerce date", {
+test_that("cff_create normalizes DESCRIPTION dates", {
   desc_path <- system.file("examples/DESCRIPTION_rgeos", package = "cffr")
 
   a_cff <- cff_create(
@@ -173,7 +179,7 @@ test_that("Coerce date", {
   expect_true(cff_validate(a_cff, verbose = FALSE))
 })
 
-test_that("Coerce date in another format", {
+test_that("cff_create normalizes alternate date formats", {
   desc_path <- system.file("examples/DESCRIPTION_basicdate", package = "cffr")
 
   a_cff <- cff_create(
@@ -190,7 +196,7 @@ test_that("Coerce date in another format", {
 })
 
 
-test_that("No date coerced in DESCRIPTION without it", {
+test_that("cff_create omits dates absent from DESCRIPTION", {
   desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
   a_cff <- cff_create(desc_path, keys = list(references = NULL))
@@ -201,7 +207,7 @@ test_that("No date coerced in DESCRIPTION without it", {
   expect_true(cff_validate(a_cff, verbose = FALSE))
 })
 
-test_that("Parsing many urls", {
+test_that("cff_create classifies multiple DESCRIPTION URLs", {
   desc_path <- system.file("examples/DESCRIPTION_many_urls", package = "cffr")
 
   a_cff <- cff_create(
@@ -219,7 +225,7 @@ test_that("Parsing many urls", {
 })
 
 
-test_that("Parsing Gitlab", {
+test_that("cff_create recognizes GitLab repositories", {
   desc_path <- system.file("examples/DESCRIPTION_gitlab", package = "cffr")
 
   a_cff <- cff_create(desc_path, keys = list(references = NULL))
@@ -235,7 +241,7 @@ test_that("Parsing Gitlab", {
   expect_true(cff_validate(a_cff, verbose = FALSE))
 })
 
-test_that("Parsing many persons", {
+test_that("cff_create parses multiple DESCRIPTION persons", {
   desc_path <- system.file(
     "examples/DESCRIPTION_many_persons",
     package = "cffr"
@@ -260,7 +266,7 @@ test_that("Parsing many persons", {
 })
 
 
-test_that("Parsing wrong urls", {
+test_that("cff_create ignores malformed DESCRIPTION URLs", {
   skip_on_cran()
 
   rvers <- getRversion()
@@ -284,7 +290,7 @@ test_that("Parsing wrong urls", {
 })
 
 
-test_that("Parsing two maintainers", {
+test_that("cff_create handles multiple maintainers", {
   desc_path <- system.file(
     "examples/DESCRIPTION_twomaintainers",
     package = "cffr"
@@ -307,7 +313,7 @@ test_that("Parsing two maintainers", {
   expect_true(cff_validate(a_cff, verbose = FALSE))
 })
 
-test_that("Parsing r-universe", {
+test_that("cff_create recognizes R-universe repositories", {
   desc_path <- system.file("examples/DESCRIPTION_r_universe", package = "cffr")
 
   a_cff <- cff_create(
@@ -324,7 +330,7 @@ test_that("Parsing r-universe", {
 })
 
 
-test_that("Parsing Bioconductor", {
+test_that("cff_create recognizes Bioconductor packages", {
   desc_path <- system.file(
     "examples/DESCRIPTION_bioconductor",
     package = "cffr"
@@ -347,7 +353,7 @@ test_that("Parsing Bioconductor", {
   expect_snapshot(a_cff)
 })
 
-test_that("Parsing Posit Package Manager", {
+test_that("cff_create recognizes Posit Package Manager repositories", {
   skip_on_cran()
 
   desc_path <- system.file(
@@ -375,7 +381,7 @@ test_that("Parsing Posit Package Manager", {
   expect_true(cff_validate(a_cff, verbose = FALSE))
 })
 
-test_that("Search package on CRAN", {
+test_that("repository helpers find packages on CRAN", {
   basic_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
   tmp <- withr::local_tempfile(pattern = "DESCRIPTION_basic")
@@ -409,7 +415,7 @@ test_that("Search package on CRAN", {
 })
 
 
-test_that("Search package on r-universe with repository fixtures", {
+test_that("repository helpers distinguish R-universe and CRAN packages", {
   newrepos <- c(
     dieghernan = "https://dieghernan.r-universe.dev",
     CRAN = "https://cloud.r-project.org"
@@ -435,7 +441,7 @@ test_that("Search package on r-universe with repository fixtures", {
 })
 
 
-test_that("Validate keywords", {
+test_that("cff_create validates package keywords", {
   desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
   tmp <- withr::local_tempfile(pattern = "DESCRIPTION_keyword")
@@ -477,7 +483,7 @@ test_that("Validate keywords", {
 })
 
 
-test_that("Coerce keywords from GH", {
+test_that("cff_create converts GitHub topics to keywords", {
   expect_null(desc_gh_keywords(NULL, NULL))
   expect_equal(
     desc_gh_keywords("keyword1", c("keyword1", "keyword2")),

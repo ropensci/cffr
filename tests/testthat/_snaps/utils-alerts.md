@@ -1,10 +1,11 @@
-# Check abort_if_not_cff
+# abort_if_not_cff rejects unsupported inputs
 
     Code
       abort_if_not_cff(err)
     Condition
       Error in `abort_if_not_cff()`:
-      ! `x` is not a '*.cff' file.
+      ! `x` is not a `*.cff` file.
+      i Supply a <cff> object or a `*.cff` file path.
 
 ---
 
@@ -12,15 +13,16 @@
       abort_if_not_cff(x)
     Condition
       Error in `abort_if_not_cff()`:
-      ! `x` is an object of class <data.frame>, not <cff>.
+      ! `x` must be a <cff> object or a `*.cff` file path, not a data frame.
 
-# Check file_exist_abort
+# file_exist_abort reports missing files
 
     Code
       file_exist_abort(nonexits, abort = TRUE)
     Condition
       Error in `file_exist_abort()`:
-      ! 'aaaaaaaa' does not exist. Check the '.' directory.
+      ! 'aaaaaaaa' does not exist.
+      i Check the '.' directory.
 
 ---
 
@@ -28,9 +30,10 @@
       file_exist_abort(non_with_path, abort = TRUE)
     Condition
       Error in `file_exist_abort()`:
-      ! './R/no/existe' does not exist. Check the './R/no' directory.
+      ! './R/no/existe' does not exist.
+      i Check the './R/no' directory.
 
-# Check match_cff_arg
+# match_cff_arg validates allowed values
 
     Code
       match_cff_arg("a", "b", "...")

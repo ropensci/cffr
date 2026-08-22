@@ -1,7 +1,7 @@
 # See ´
 # https://github.com/citation-file-format/ruby-cff/tree/main/test/files
 
-test_that("preferred-citation-book-missing", {
+test_that("Ruby CFF book fixture reports missing fields", {
   x <- system.file(
     "examples/preferred-citation-book-missing.cff",
     package = "cffr"
@@ -10,14 +10,14 @@ test_that("preferred-citation-book-missing", {
   expect_snapshot(s <- as_bibentry(x))
 })
 
-test_that("preferred-citation-book", {
+test_that("Ruby CFF book fixture converts to BibTeX", {
   x <- system.file("examples/preferred-citation-book.cff", package = "cffr")
 
   bib <- as_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
-test_that("preferred-citation-conference-paper-2", {
+test_that("Ruby CFF alternate conference fixture converts to BibTeX", {
   x <- system.file(
     "examples/preferred-citation-conference-paper-2.cff",
     package = "cffr"
@@ -27,7 +27,7 @@ test_that("preferred-citation-conference-paper-2", {
   expect_snapshot(toBibtex(bib))
 })
 
-test_that("preferred-citation-conference-paper-missing", {
+test_that("Ruby CFF conference fixture reports missing fields", {
   x <- system.file(
     "examples/preferred-citation-conference-paper-missing.cff",
     package = "cffr"
@@ -37,7 +37,7 @@ test_that("preferred-citation-conference-paper-missing", {
   expect_snapshot(toBibtex(bib))
 })
 
-test_that("preferred-citation-conference-paper", {
+test_that("Ruby CFF conference fixture converts to BibTeX", {
   x <- system.file(
     "examples/preferred-citation-conference-paper.cff",
     package = "cffr"
@@ -47,35 +47,35 @@ test_that("preferred-citation-conference-paper", {
   expect_snapshot(toBibtex(bib))
 })
 
-test_that("preferred-citation-manual", {
+test_that("Ruby CFF manual fixture converts to BibTeX", {
   x <- system.file("examples/preferred-citation-manual.cff", package = "cffr")
 
   bib <- as_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
-test_that("preferred-citation-no-month", {
+test_that("Ruby CFF fixture supports missing months", {
   x <- system.file("examples/preferred-citation-no-month.cff", package = "cffr")
 
   bib <- as_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
-test_that("preferred-citation-no-vol", {
+test_that("Ruby CFF fixture supports missing volumes", {
   x <- system.file("examples/preferred-citation-no-vol.cff", package = "cffr")
 
   bib <- as_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
-test_that("preferred-citation-pamphlet", {
+test_that("Ruby CFF pamphlet fixture converts to BibTeX", {
   x <- system.file("examples/preferred-citation-pamphlet.cff", package = "cffr")
 
   bib <- as_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
-test_that("preferred-citation-report-no-institution", {
+test_that("Ruby CFF report fixture supports missing institutions", {
   x <- system.file(
     "examples/preferred-citation-report-no-institution.cff",
     package = "cffr"
@@ -85,7 +85,7 @@ test_that("preferred-citation-report-no-institution", {
   expect_snapshot(toBibtex(bib))
 })
 
-test_that("preferred-citation-report", {
+test_that("Ruby CFF report fixture converts to BibTeX", {
   x <- system.file("examples/preferred-citation-report.cff", package = "cffr")
 
   bib <- as_bibentry(x)
@@ -93,7 +93,7 @@ test_that("preferred-citation-report", {
 })
 
 
-test_that("preferred-citation-unpublished", {
+test_that("Ruby CFF unpublished fixture converts to BibTeX", {
   x <- system.file(
     "examples/preferred-citation-unpublished.cff",
     package = "cffr"
@@ -103,7 +103,7 @@ test_that("preferred-citation-unpublished", {
   expect_snapshot(toBibtex(bib))
 })
 
-test_that("reprozip", {
+test_that("ReproZip fixture converts to BibTeX", {
   x <- system.file("examples/reprozip.cff", package = "cffr")
 
   bib <- as_bibentry(x)
@@ -111,14 +111,14 @@ test_that("reprozip", {
 })
 
 
-test_that("smith-et-al", {
+test_that("Smith et al fixture converts to BibTeX", {
   x <- system.file("examples/smith-et-al.cff", package = "cffr")
 
   bib <- as_bibentry(x)
   expect_snapshot(toBibtex(bib))
 })
 
-test_that("tidyverse-joss-paper", {
+test_that("tidyverse JOSS fixture converts to BibTeX", {
   x <- system.file("examples/tidyverse-joss-paper.cff", package = "cffr")
 
   bib <- as_bibentry(x)

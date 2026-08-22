@@ -1,4 +1,4 @@
-test_that("fallback_dates", {
+test_that("fallback_dates normalizes reference dates", {
   xinit <- list(year = "2025")
   p <- fallback_dates(list(year = "2025"))
   expect_identical(xinit, p)

@@ -1,4 +1,4 @@
-test_that("as.cff still works", {
+test_that("as.cff remains compatible with as_cff", {
   l <- list("cff-version" = "1.2.0", title = "Manipulating files")
 
   expect_silent(l1 <- as_cff(l))
@@ -8,7 +8,7 @@ test_that("as.cff still works", {
   expect_snapshot(l2)
 })
 
-test_that("as_cff.person", {
+test_that("as_cff converts person objects", {
   pers <- person(
     "A",
     "person",
@@ -36,7 +36,7 @@ test_that("as_cff.person", {
   expect_snapshot(single_cff)
 })
 
-test_that("as_cff.bibentry, toBibtex", {
+test_that("bibentries round-trip through as_cff and toBibtex", {
   b <- bibentry("Misc", title = "title", author = "Author", editor = "Editor")
 
   bbb <- as_cff(b)
@@ -65,7 +65,7 @@ test_that("as_cff.bibentry, toBibtex", {
 })
 
 
-test_that("as_cff.default", {
+test_that("as_cff converts named lists by default", {
   b <- c(a = 1)
 
   expect_identical(as_cff(b), as_cff(as.list(b)))
@@ -73,7 +73,7 @@ test_that("as_cff.default", {
   expect_snapshot(as_cff(b))
 })
 
-test_that("Other convertes", {
+test_that("as_cff handles supported auxiliary input types", {
   a <- cff()
   expect_s3_class(a, "cff")
   a <- as_cff(a)
@@ -87,7 +87,7 @@ test_that("Other convertes", {
 })
 
 
-test_that("]] cff_ref", {
+test_that("cff references preserve class when subset", {
   b1 <- bibentry("Misc", title = "title", author = "Author", editor = "Editor")
   b2 <- bibentry("Manual", author = "Another", title = "another title")
 
@@ -104,7 +104,7 @@ test_that("]] cff_ref", {
   expect_s3_class(b2_reg, c("cff_ref", "cff"), exact = TRUE)
 })
 
-test_that("]] cff_pers", {
+test_that("cff persons preserve class when subset", {
   b1 <- person("One", "person")
   b2 <- person("ntity")
 
@@ -122,7 +122,7 @@ test_that("]] cff_pers", {
 })
 
 # Check full classes with recursion
-test_that("Reading full cff", {
+test_that("as_cff reads complete cff structures", {
   full <- system.file("examples/CITATION_complete.cff", package = "cffr")
   cff_complete <- cff_read(full)
   expect_true(cff_validate(cff_complete, verbose = FALSE))
@@ -163,7 +163,7 @@ test_that("Reading full cff", {
   expect_false(inherits(asl, "cff"))
   expect_identical(cff_complete, as_cff(asl))
 })
-test_that("Reading languages", {
+test_that("as_cff preserves language fields", {
   # full cff has two languages in preferred-citation
   full <- system.file("examples/CITATION_complete.cff", package = "cffr")
   cff_complete <- cff_read(full)
@@ -187,7 +187,7 @@ test_that("Reading languages", {
   expect_identical(cff_lang[["references"]][[2]]$languages, c("en", "es", "fr"))
 })
 
-test_that("Language round-trip", {
+test_that("language fields survive cff round-trips", {
   lang_file <- system.file("examples/CITATION_lang.cff", package = "cffr")
 
   cff_lang <- cff_read(lang_file)

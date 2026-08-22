@@ -32,7 +32,7 @@ Suggests:
     lifecycle,
     quarto,
     rmarkdown,
-    testthat (>= 3.0.0),
+    testthat (>= 3.3.0),
     usethis,
     withr
 VignetteBuilder:
