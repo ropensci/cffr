@@ -48,9 +48,9 @@ jobs:
           summary <- Sys.getenv("GITHUB_STEP_SUMMARY")
 
           heading <- if (healthy) {
-            "## b checktor passed"
+            "## checktor passed"
           } else {
-            "## b checktor found issues"
+            "## checktor found issues"
           }
 
           writeLines(
