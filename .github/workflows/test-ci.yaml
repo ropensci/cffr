@@ -27,8 +27,12 @@ jobs:
       with:
         use-public-rspm: true
 
-    - name: Install JAGS
-      run: choco install jags -y
+    - name: Install JAGS (Windows)
+      shell: cmd
+      run: |
+        curl.exe --fail -L -o jags_installer.exe "https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Windows/JAGS-4.3.2.exe/download"
+        jags_installer.exe /S
+        del jags_installer.exe
 
     - uses: r-lib/actions/setup-r-dependencies@v2
       with:
