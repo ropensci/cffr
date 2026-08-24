@@ -120,10 +120,7 @@ test_that("DESCRIPTION repository helpers accept fixtures", {
     Repository = "https://cloud.r-project.org/src/contrib"
   )
   repos <- c(CRAN = "https://cloud.r-project.org/")
-  withr::local_options(
-    cffr.available_packages = avail,
-    cffr.repos = repos
-  )
+  withr::local_options(cffr.available_packages = avail, cffr.repos = repos)
 
   expect_equal(
     cran_package_url("fixturepkg"),
@@ -159,12 +156,10 @@ test_that("GitHub topics API URL is built without network calls", {
     "https://api.github.com/repos/ropensci/cffr"
   )
 
-  withr::local_options(
-    cffr.fetch_gh_topics = function(api_url) {
-      expect_equal(api_url, "https://api.github.com/repos/ropensci/cffr")
-      c("r", "citation", "r")
-    }
-  )
+  withr::local_options(cffr.fetch_gh_topics = function(api_url) {
+    expect_equal(api_url, "https://api.github.com/repos/ropensci/cffr")
+    c("r", "citation", "r")
+  })
 
   expect_equal(get_gh_topics(x), c("r", "citation"))
 })
@@ -172,11 +167,9 @@ test_that("GitHub topics API URL is built without network calls", {
 test_that("GitHub topics returns NULL when API has no topics", {
   x <- c("repository-code" = "https://github.com/ropensci/cffr")
 
-  withr::local_options(
-    cffr.fetch_gh_topics = function(...) {
-      list()
-    }
-  )
+  withr::local_options(cffr.fetch_gh_topics = function(...) {
+    list()
+  })
 
   expect_null(get_gh_topics(x))
 })
@@ -184,11 +177,9 @@ test_that("GitHub topics returns NULL when API has no topics", {
 test_that("GitHub topics returns NULL outside GitHub repositories", {
   x <- c("repository-code" = "https://gitlab.com/ropensci/cffr")
 
-  withr::local_options(
-    cffr.fetch_gh_topics = function(...) {
-      stop("fetch_gh_topics() should not be called")
-    }
-  )
+  withr::local_options(cffr.fetch_gh_topics = function(...) {
+    stop("fetch_gh_topics() should not be called")
+  })
 
   expect_null(get_gh_topics(x))
 })
@@ -196,11 +187,9 @@ test_that("GitHub topics returns NULL outside GitHub repositories", {
 test_that("GitHub topics returns NULL when the API request fails", {
   x <- c("repository-code" = "https://github.com/ropensci/cffr")
 
-  withr::local_options(
-    cffr.fetch_gh_topics = function(...) {
-      NULL
-    }
-  )
+  withr::local_options(cffr.fetch_gh_topics = function(...) {
+    NULL
+  })
 
   expect_null(get_gh_topics(x))
 })
@@ -208,11 +197,9 @@ test_that("GitHub topics returns NULL when the API request fails", {
 test_that("GitHub topics are cleaned before being used as keywords", {
   x <- c("repository-code" = "https://github.com/ropensci/cffr")
 
-  withr::local_options(
-    cffr.fetch_gh_topics = function(...) {
-      c(" R ", "", "citation", "R")
-    }
-  )
+  withr::local_options(cffr.fetch_gh_topics = function(...) {
+    c(" R ", "", "citation", "R")
+  })
 
   expect_equal(get_gh_topics(x), c("R", "citation"))
 })
@@ -424,11 +411,9 @@ test_that("cff_read returns NULL for corrupt CITATION files", {
 test_that("cff_read_citation returns NULL when both read attempts fail", {
   tmp <- withr::local_tempfile(pattern = "CITATION")
   writeLines("citEntry(entry = 'Manual')", tmp)
-  local_mocked_bindings(
-    cff_read_citation_file = function(...) {
-      stop("read failed")
-    }
-  )
+  local_mocked_bindings(cff_read_citation_file = function(...) {
+    stop("read failed")
+  })
 
   expect_message(
     expect_message(anull <- cff_read_citation(tmp), "Could not read"),

@@ -48,10 +48,7 @@ test_that("cff_validate pluralizes one validation error", {
     title = "A minimal package"
   )
 
-  expect_message(
-    cff_validate(cffobj),
-    "has 1 validation error:"
-  )
+  expect_message(cff_validate(cffobj), "has 1 validation error:")
 })
 
 test_that("cff_validate accepts cff objects from installed packages", {
@@ -69,10 +66,7 @@ test_that("cff_validate rejects unsupported inputs", {
 
 test_that("cff_validate rejects non-cff files", {
   expect_snapshot(
-    cff_validate(system.file(
-      "examples/DESCRIPTION_basic",
-      package = "cffr"
-    )),
+    cff_validate(system.file("examples/DESCRIPTION_basic", package = "cffr")),
     error = TRUE
   )
 })

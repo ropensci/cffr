@@ -37,9 +37,7 @@ test_that("cff_gha_update errors when workflow copy fails", {
     local_dir = FALSE
   )
 
-  local_mocked_bindings(
-    cff_copy_workflow = function(from, to, overwrite) FALSE
-  )
+  local_mocked_bindings(cff_copy_workflow = function(from, to, overwrite) FALSE)
 
   expect_snapshot(
     cff_gha_update(path = new_dir),

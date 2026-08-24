@@ -88,10 +88,7 @@ modify_cff <- function(x, keys, argname = "...", call = environment()) {
 validate_extra_keys <- function(cffobj, argname = "...", call = environment()) {
   has_names <- names(cffobj)
   if (is.null(has_names)) {
-    cli::cli_abort(
-      "Elements in {.arg {argname}} must be named.",
-      call = call
-    )
+    cli::cli_abort("Elements in {.arg {argname}} must be named.", call = call)
   }
 
   if (!all(nzchar(has_names))) {
@@ -99,12 +96,10 @@ validate_extra_keys <- function(cffobj, argname = "...", call = environment()) {
     index <- which(has_names %in% "")
     # nolint end
 
-    cli::cli_alert_warning(
-      paste(
-        "Found {length(index)} unnamed argument{?s}",
-        "in position{?s} {.val {index}}."
-      )
-    )
+    cli::cli_alert_warning(paste(
+      "Found {length(index)} unnamed argument{?s}",
+      "in position{?s} {.val {index}}."
+    ))
     cli::cli_alert_info("Removing unnamed arguments.")
     cffobj <- cffobj[nzchar(has_names)]
   }

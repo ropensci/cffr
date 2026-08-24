@@ -151,11 +151,7 @@ fuzzy_keys <- function(keys) {
 
     bullets <- rep("v", length(keys_match))
     bullets[keys_match == "No match, removing."] <- "x"
-    names_formatted <- paste0(
-      "{.field ",
-      escape_cli_markup(names_fuzzy),
-      "}"
-    )
+    names_formatted <- paste0("{.field ", escape_cli_markup(names_fuzzy), "}")
     matches_formatted <- ifelse(
       keys_match == "No match, removing.",
       keys_match,

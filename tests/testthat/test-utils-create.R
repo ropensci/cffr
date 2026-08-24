@@ -92,9 +92,7 @@ test_that("cff_dependency_year extracts years from supported dates", {
 
 test_that("is_cran_dependency excludes base and unavailable packages", {
   avail <- data.frame(Package = c("foo", "stats"))
-  withr::local_options(
-    cffr.available_packages = avail
-  )
+  withr::local_options(cffr.available_packages = avail)
   expect_true(is_cran_dependency("foo"))
   expect_false(is_cran_dependency("stats"))
   expect_false(is_cran_dependency("bar"))
@@ -121,11 +119,9 @@ test_that("get_dependencies rejects invalid DESCRIPTION inputs", {
 })
 
 test_that("dependency citation returns NULL when citation cannot be read", {
-  local_mocked_bindings(
-    cff_citation = function(...) {
-      stop("no citation")
-    }
-  )
+  local_mocked_bindings(cff_citation = function(...) {
+    stop("no citation")
+  })
 
   expect_null(cff_dependency_citation("foo"))
   expect_null(cff_dependency_reference(list(

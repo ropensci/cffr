@@ -27,6 +27,9 @@ jobs:
       with:
         use-public-rspm: true
 
+    - name: Install JAGS
+      run: choco install jags -y
+
     - uses: r-lib/actions/setup-r-dependencies@v2
       with:
         cache-version: "test_full_ci"
@@ -212,7 +215,7 @@ jobs:
 
     - name: Test GHA
       run: |
-        
+
         # Run the tests
         source("tests/testthat/test_ci/test-new.R")
 

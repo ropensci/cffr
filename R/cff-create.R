@@ -225,10 +225,7 @@ abort_invalid_cff_source <- function(hint_source, call = environment()) {
   )
 
   cli::cli_abort(
-    c(
-      "{.arg x} is not a supported source.",
-      "i" = msg_hint
-    ),
+    c("{.arg x} is not a supported source.", "i" = msg_hint),
     call = call
   )
 }

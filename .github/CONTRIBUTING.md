@@ -1,19 +1,19 @@
-# Contributing to **cffr**
+# Contributing to cffr
 
 This guide explains how to propose a change to **cffr**. Because **cffr** is an
-rOpenSci package, please also review the
-[rOpenSci package development guide](https://devguide.ropensci.org/) and the
-[rOpenSci Code of Conduct](https://ropensci.org/code-of-conduct/) before making
-a substantial contribution.
+rOpenSci package, please also review the [rOpenSci package development
+guide](https://devguide.ropensci.org/) and the [rOpenSci Code of
+Conduct](https://ropensci.org/code-of-conduct/) before making a substantial
+contribution.
 
 ## Fixing typos
 
 You can fix typos, spelling mistakes or grammatical errors in the documentation
 directly in the GitHub web interface, as long as you make the changes in the
-_source_ file. This generally means editing
-[**roxygen2** comments](https://roxygen2.r-lib.org/articles/roxygen2.html) in
-an `.R` file, not an `.Rd` file. You can find the `.R` file that generates the
-`.Rd` file by reading the comment in the first line.
+*source* file. This generally means editing [**roxygen2**
+comments](https://roxygen2.r-lib.org/articles/roxygen2.html) in an `.R` file,
+not an `.Rd` file. You can find the `.R` file that generates the `.Rd` file by
+reading the comment in the first line.
 
 ## Bigger changes
 
@@ -21,9 +21,8 @@ If you want to make a bigger change, first file an issue and make sure someone
 from the team agrees that it is needed. If you have found a bug, file an issue
 that illustrates it with a minimal
 [**reprex**](https://www.tidyverse.org/help/#reprex). This will also help you
-write a unit test, if needed. See the guide on
-[how to create a great issue](https://code-review.tidyverse.org/issues/) for
-more advice.
+write a unit test, if needed. See the guide on [how to create a great
+issue](https://code-review.tidyverse.org/issues/) for more advice.
 
 ### Pull request process
 
@@ -43,8 +42,8 @@ more advice.
 
 ### Code style
 
-- New code should follow the [**tidyverse**
-  style guide](https://style.tidyverse.org). You can use
+- New code should follow the [**tidyverse** style
+  guide](https://style.tidyverse.org). You can use
   [**Air**](https://posit-dev.github.io/air/) to apply this style, but do not
   restyle code unrelated to your PR.
 - We use [**roxygen2**](https://cran.r-project.org/package=roxygen2) with
@@ -55,6 +54,6 @@ more advice.
 
 ## Code of Conduct
 
-Please note that **cffr** is released with the
-[rOpenSci Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project
-you agree to abide by its terms.
+Please note that **cffr** is released with the [rOpenSci Code of
+Conduct](CODE_OF_CONDUCT.md). By contributing to this project you agree to abide
+by its terms.

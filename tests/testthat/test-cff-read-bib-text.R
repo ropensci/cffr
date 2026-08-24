@@ -11,10 +11,7 @@ test_that("cff_read_bib_text rejects file paths mixed with entries", {
     error = TRUE
   )
 
-  expect_snapshot(
-    cff_read_bib_text(c("first.bib", "second.bib")),
-    error = TRUE
-  )
+  expect_snapshot(cff_read_bib_text(c("first.bib", "second.bib")), error = TRUE)
 })
 
 test_that("cff_read_bib_text reads entries and bib files", {

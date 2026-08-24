@@ -223,10 +223,7 @@ cff_read_citation <- function(path, meta = NULL, ...) {
       'Trying {.code utils::packageDescription("base")}.'
     ))
     new_meta <- packageDescription("base")
-    the_cit <- try(
-      cff_read_citation_file(path, meta = new_meta),
-      silent = TRUE
-    )
+    the_cit <- try(cff_read_citation_file(path, meta = new_meta), silent = TRUE)
     if (inherits(the_cit, "try-error")) {
       cli::cli_alert_danger(
         "Cannot read {.file {path}}. Returning {.code NULL}."

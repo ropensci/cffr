@@ -393,10 +393,7 @@ test_that("repository helpers find packages on CRAN", {
     Repository = "https://cloud.r-project.org/src/contrib"
   )
   repos <- c(CRAN = "https://cloud.r-project.org/")
-  withr::local_options(
-    cffr.available_packages = avail,
-    cffr.repos = repos
-  )
+  withr::local_options(cffr.available_packages = avail, cffr.repos = repos)
 
   expect_equal(clean_str(newfile$get("Package")), "ggplot2")
   expect_equal(

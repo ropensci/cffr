@@ -193,10 +193,7 @@ test_that("cff_write updates .Rbuildignore idempotently", {
 test_that("cff_write creates CITATION.cff in a mock package", {
   skip_on_cran()
 
-  local_mock_package(
-    description = "DESCRIPTION_many_urls",
-    rbuildignore = TRUE
-  )
+  local_mock_package(description = "DESCRIPTION_many_urls", rbuildignore = TRUE)
 
   expect_silent(cff_write(verbose = FALSE))
   expect_true(file.exists("CITATION.cff"))

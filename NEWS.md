@@ -1,4 +1,4 @@
-# cffr (development version)
+# cffr 1.4.2
 
 - The JOSS paper is now linked as an external **pkgdown** article instead of
   being rebuilt as a package vignette.
