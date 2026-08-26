@@ -288,6 +288,7 @@ get_bibtex_doi <- function(cit_list) {
   dois <- unlist(lapply(dois, function(x) {
     x <- gsub("^.*doi.org/", "", x)
     x <- clean_str(x)
+    x
   }))
 
   dois <- unique(as.character(dois))
@@ -379,10 +380,6 @@ get_bibtex_other_pers <- function(field_list) {
 
     end
   })
-
-  # Remaining fields.
-
-  rest <- others[!names(others) %in% toent_pers]
 
   # If any field has multiple persons, paste and collapse them.
   rest <- lapply(others, function(x) {

@@ -178,7 +178,7 @@ test_that("GitHub topics returns NULL outside GitHub repositories", {
   x <- c("repository-code" = "https://gitlab.com/ropensci/cffr")
 
   withr::local_options(cffr.fetch_gh_topics = function(...) {
-    stop("fetch_gh_topics() should not be called")
+    stop("fetch_gh_topics() should not be called", call. = FALSE)
   })
 
   expect_null(get_gh_topics(x))
@@ -228,7 +228,7 @@ test_that("GitHub topics retry without token after authenticated fetch fails", {
   downloader <- function(api_url, destfile, ...) {
     calls <<- calls + 1
     if (calls == 1) {
-      stop("authenticated fetch failed")
+      stop("authenticated fetch failed", call. = FALSE)
     }
     jsonlite::write_json(list(topics = c("r", "citation")), destfile)
     0
@@ -248,7 +248,7 @@ test_that("GitHub topics retry without token after authenticated fetch fails", {
 test_that("GitHub topics return NULL when all fetch attempts fail", {
   tmpfile <- withr::local_tempfile(fileext = ".json")
   downloader <- function(...) {
-    stop("fetch failed")
+    stop("fetch failed", call. = FALSE)
   }
 
   expect_null(fetch_gh_topics(
@@ -412,7 +412,7 @@ test_that("cff_read_citation returns NULL when both read attempts fail", {
   tmp <- withr::local_tempfile(pattern = "CITATION")
   writeLines("citEntry(entry = 'Manual')", tmp)
   local_mocked_bindings(cff_read_citation_file = function(...) {
-    stop("read failed")
+    stop("read failed", call. = FALSE)
   })
 
   expect_message(

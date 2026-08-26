@@ -59,15 +59,15 @@
 #' try(cff_validate(system.file("CITATION", package = "cffr")))
 cff_validate <- function(x = "CITATION.cff", verbose = TRUE) {
   # Read the file if the input is not a `cff` object.
-  if (!is_cff(x)) {
+  if (is_cff(x)) {
+    is_a <- "This {.cls cff} object"
+  } else {
     # Check the source.
     abort_if_not_cff(x, call = environment())
     file_exist_abort(x, abort = TRUE, call = environment())
     is_a <- escape_cli_markup(cli::format_inline("{.file {x}}"))
     # nolint end
     x <- cff_read_cff_citation(x)
-  } else {
-    is_a <- "This {.cls cff} object"
   }
 
   # Convert to a list.

@@ -21,6 +21,7 @@
 #'
 #' # A `bibentry` object.
 #' bib <- as_bibentry(cff_object)
+#' bib
 #' }
 cff_extract_to_bibtex <- function(
   x,

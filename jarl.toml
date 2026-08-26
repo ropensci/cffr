@@ -1,7 +1,6 @@
 [lint]
-ignore = ["implicit_assignment"]
-exclude = ["tests/testthat/test_ci/*"]
-extend-select = ["TESTTHAT", "DPLYR", "unnecessary_nesting", "nzchar", "quotes", "fixed_regex"]
+select = ["ALL"]
+exclude = ["data-raw/", "tests/testthat/test_ci"]
 check-roxygen = true
 fix-roxygen = true
 

@@ -298,10 +298,7 @@ extract_person_comments45 <- function(person) {
   has_comment <- all(last == ")", start_comment > 5)
 
   # If it does not have a comment, convert to person.
-  if (!has_comment) {
-    p <- as.person(person)
-    comm_cff <- list(fake = 123)
-  } else {
+  if (has_comment) {
     # Split and convert.
     the_person <- substr(person, 1, start_comment - 1)
     p <- as.person(the_person)
@@ -323,6 +320,9 @@ extract_person_comments45 <- function(person) {
     })
 
     comm_cff <- as.list(unlist(comm_list))
+  } else {
+    p <- as.person(person)
+    comm_cff <- list(fake = 123)
   }
 
   names(comm_cff) <- tolower(names(comm_cff))

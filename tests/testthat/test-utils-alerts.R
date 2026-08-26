@@ -37,7 +37,6 @@ test_that("file_exist_abort reports missing files", {
 })
 
 test_that("match_cff_arg validates allowed values", {
-  x <- "aaaaaaaa"
   expect_snapshot(match_cff_arg("a", "b", "..."), error = TRUE)
   expect_snapshot(match_cff_arg("a", c("b", "c", "d"), "what"), error = TRUE)
 

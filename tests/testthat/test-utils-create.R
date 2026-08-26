@@ -120,7 +120,7 @@ test_that("get_dependencies rejects invalid DESCRIPTION inputs", {
 
 test_that("dependency citation returns NULL when citation cannot be read", {
   local_mocked_bindings(cff_citation = function(...) {
-    stop("no citation")
+    stop("no citation", call. = FALSE)
   })
 
   expect_null(cff_dependency_citation("foo"))

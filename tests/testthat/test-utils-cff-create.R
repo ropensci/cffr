@@ -14,7 +14,7 @@ test_that("license helpers parse common CRAN licenses", {
       tmp,
       overwrite = TRUE
     )
-    p <- desc::desc_set("License", license, file = tmp)
+    desc::desc_set("License", license, file = tmp)
     expect_silent(r <- cff_validate(cff_create(tmp), verbose = FALSE))
     expect_true(r, info = license)
   }

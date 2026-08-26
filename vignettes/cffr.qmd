@@ -38,8 +38,8 @@ their software.
 This format is increasingly used in the software citation ecosystem.
 [**GitHub**](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files),
 [**Zenodo**](https://citation-file-format.github.io/#/supported-by-zenodo-) and
-[**Zotero**](https://citation-file-format.github.io/#/supported-by-zotero-) support
-this citation format [@druskat_stephan_making_2021].
+[**Zotero**](https://citation-file-format.github.io/#/supported-by-zotero-)
+support this citation format [@druskat_stephan_making_2021].
 
 **GitHub** support is of special interest:
 
@@ -227,7 +227,7 @@ The result can be written with `cff_write()`:
 # Create a temporary output file.
 tmp <- tempfile(fileext = ".cff")
 
-see_res <- cff_write(finalobject, outfile = tmp)
+cff_write(finalobject, outfile = tmp)
 
 cat(readLines(tmp), sep = "\n")
 ```

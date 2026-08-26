@@ -258,7 +258,6 @@ test_that("cff_create parses multiple DESCRIPTION persons", {
   authors <- unlist(a_cff$authors)
 
   expect_length(grep("erro", authors, fixed = TRUE), 0)
-  names <- unlist(lapply(a_cff$authors, names))
 
   expect_s3_class(a_cff, "cff")
   expect_snapshot(a_cff)
@@ -443,7 +442,7 @@ test_that("cff_create validates package keywords", {
 
   tmp <- withr::local_tempfile(pattern = "DESCRIPTION_keyword")
 
-  copy <- file.copy(desc_path, tmp)
+  file.copy(desc_path, tmp)
 
   cffobj <- cff_create(tmp)
   expect_null(cffobj$keywords)
@@ -451,7 +450,7 @@ test_that("cff_create validates package keywords", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 
   # Add keywords
-  silent <- desc::desc_set(
+  desc::desc_set(
     "X-schema.org-keywords",
     "keyword1, keyword1, keyword3",
     file = tmp
@@ -462,18 +461,14 @@ test_that("cff_create validates package keywords", {
   expect_true(cff_validate(cffobj2, verbose = FALSE))
 
   # Single keyword
-  silent <- desc::desc_set(
-    "X-schema.org-keywords",
-    "keyword1, keyword1",
-    file = tmp
-  )
+  desc::desc_set("X-schema.org-keywords", "keyword1, keyword1", file = tmp)
   cffobj3 <- cff_create(tmp)
   expect_length(cffobj3$keywords, 2)
   expect_equal(cffobj3$keywords, c("keyword1", "r-package"))
   expect_true(cff_validate(cffobj3, verbose = FALSE))
 
   # NULL case keyword
-  silent <- desc::desc_set("X-schema.org-keywords", "r-package", file = tmp)
+  desc::desc_set("X-schema.org-keywords", "r-package", file = tmp)
   cffobj4 <- cff_create(tmp)
   expect_null(cffobj4$keywords)
   expect_true(cff_validate(cffobj4, verbose = FALSE))

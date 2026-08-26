@@ -113,9 +113,7 @@ get_bib_booktitle <- function(x, bibtype) {
   book_series <- list()
   tag_value <- clean_str(x[["collection-title"]])
 
-  if (!bibtype %in% c("incollection", "inproceedings")) {
-    book_series$series <- tag_value
-  } else {
+  if (bibtype %in% c("incollection", "inproceedings")) {
     # Map booktitle only for incollection and inproceedings.
     book_series$booktitle <- tag_value
 
@@ -123,6 +121,8 @@ get_bib_booktitle <- function(x, bibtype) {
     if (all(bibtype == "inproceedings", is.null(tag_value))) {
       book_series$booktitle <- clean_str(x$conference$name)
     }
+  } else {
+    book_series$series <- tag_value
   }
   book_series
 }
