@@ -214,7 +214,6 @@ test_that("language fields survive cff round-trips", {
   expect_identical(cff_lang[["references"]][[2]]$languages, c("en", "es", "fr"))
 })
 
-
 test_that("cff references can handle issn", {
   b1 <- bibentry(
     "Misc",

@@ -452,7 +452,6 @@ test_that("cff_read converts latin1 package metadata to UTF-8", {
 test_that("cff_read_citation extract first issn", {
   f <- system.file("examples/CITATION_biascorrector", package = "cffr")
   res <- cff_read_citation(f)
-  as.data.frame(res)
 
   expect_identical(res[[1]]$issn, "0020-7136")
 })
