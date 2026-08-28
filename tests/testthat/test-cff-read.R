@@ -354,6 +354,17 @@ test_that("cff_safe_read_citation reads basic CITATION files", {
   expect_length(a_cff, 2)
 })
 
+test_that("cff_safe_read_citation extracts a valid first issn", {
+  desc_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
+  cit_path <- system.file("examples/CITATION_biascorrector", package = "cffr")
+
+  res <- cff_safe_read_citation(desc_path, cit_path)
+  cffobj <- cff_create(desc_path, keys = list("preferred-citation" = res[[1]]))
+
+  expect_identical(res[[1]]$issn, "0020-7136")
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+})
+
 test_that("cff_safe_read_citation handles missing encoding", {
   desc_path <- system.file("examples/DESCRIPTION_no_encoding", package = "cffr")
   cit_path <- system.file("examples/CITATION_basic", package = "cffr")
@@ -383,7 +394,6 @@ test_that("cff_safe_read_citation reads rmarkdown CITATION files", {
   expect_s3_class(a_cff, c("cff_ref_lst", "cff"), exact = TRUE)
   expect_length(a_cff, 3)
 })
-
 
 test_that("cff_safe_read_citation returns NULL without readable files", {
   desc_path <- system.file("x", package = "cffr")

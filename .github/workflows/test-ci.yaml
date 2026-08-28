@@ -168,6 +168,7 @@ jobs:
       with:
         path: |
           ${{ env.R_LIBS_USER }}/*
+          !${{ env.R_LIBS_USER }}/cffr
           !${{ env.R_LIBS_USER }}/pak
           !${{ env.R_LIBS_USER }}/_cache
         key: test-ci-extra-${{ runner.os }}-${{ steps.r-version.outputs.version }}-${{ steps.r-version.outputs.arch }}-${{ hashFiles('.github/test-ci-packages.txt') }}
@@ -213,6 +214,7 @@ jobs:
       with:
         path: |
           ${{ env.R_LIBS_USER }}/*
+          !${{ env.R_LIBS_USER }}/cffr
           !${{ env.R_LIBS_USER }}/pak
           !${{ env.R_LIBS_USER }}/_cache
         key: ${{ steps.test-ci-package-cache.outputs.cache-primary-key }}

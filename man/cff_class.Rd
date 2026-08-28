@@ -176,7 +176,7 @@ Creating a \code{\link{cff}} object does not ensure its validity against the \hr
 #> [1] "cff"
 
 cff_validate(a_cff_object)
-#> == Validating CFF ==============================================================
+#> == Validating CFF ==========================================
 #> x Validation failed. This <cff> object has 10 validation errors:
 #> * cff/: must have required property 'authors'
 #> * cff/: must have required property 'cff-version'
@@ -213,7 +213,7 @@ cff_valid
 #> title: My title
 
 cff_validate(cff_valid)
-#> == Validating CFF ==============================================================
+#> == Validating CFF ==========================================
 #> v This <cff> object is valid.
 }\if{html}{\out{</div>}}
 }
