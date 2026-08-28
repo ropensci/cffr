@@ -1,3 +1,7 @@
+# cffr (development version)
+
+- `as_cff.bibentry()` now selects the first `issn` of each `bibentry()`.
+
 # cffr 1.4.2
 
 - The JOSS paper is now linked as an external **pkgdown** article instead of

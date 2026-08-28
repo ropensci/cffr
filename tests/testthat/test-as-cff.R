@@ -213,3 +213,31 @@ test_that("language fields survive cff round-trips", {
 
   expect_identical(cff_lang[["references"]][[2]]$languages, c("en", "es", "fr"))
 })
+
+
+test_that("cff references can handle issn", {
+  b1 <- bibentry(
+    "Misc",
+    title = "title",
+    author = "Author",
+    editor = "Editor",
+    issn = "xxxx-xxxx  , abcd"
+  )
+  b2 <- bibentry("Manual", author = "Another", title = "another title")
+
+  b_all <- c(b1, b2)
+
+  expect_s3_class(b_all, "bibentry", exact = TRUE)
+  bbb <- as_cff(b_all)
+
+  expect_s3_class(bbb, c("cff_ref_lst", "cff"), exact = TRUE)
+  expect_length(bbb, 2)
+
+  b1_reg <- bbb[1]
+  expect_s3_class(b1_reg, c("cff_ref", "cff"), exact = TRUE)
+  expect_identical(b1_reg[[1]]$issn, "xxxx-xxxx")
+
+  b2_reg <- bbb[2]
+  expect_s3_class(b2_reg, c("cff_ref", "cff"), exact = TRUE)
+  expect_null(b2_reg[[1]]$issn)
+})

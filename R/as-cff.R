@@ -112,6 +112,14 @@ as_cff.bibentry <- function(x, ...) {
 
   cff_refs <- as_cff(cff_ref, ...)
 
+  # Split issn
+  cff_refs <- lapply(cff_refs, function(x) {
+    if ("issn" %in% names(x)) {
+      x$issn <- clean_str(unlist(strsplit(x$issn, ","))[1])
+    }
+    x
+  })
+
   # Add classes.
   cff_refs_class <- lapply(cff_refs, function(x) {
     class(x) <- c("cff_ref", "cff")
