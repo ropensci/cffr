@@ -35,6 +35,7 @@ merge_desc_cit <- function(cffobj, citobj) {
     cranid <- as_cff(list(list(type = "doi", value = clean_str(cran_doi))))
     merged_ids <- c(cranid, merged_ids)
   }
+  merged_ids <- unique(merged_ids)
   cffobjend$identifiers <- merged_ids
 
   # Reorder keys.

@@ -1,6 +1,8 @@
 # cffr (development version)
 
 - `as_cff.bibentry()` now selects the first `issn` of each `bibentry()`.
+- `cff_create()` no longer creates duplicate identifiers when adding inferred
+  CRAN metadata.
 
 # cffr 1.4.2
 

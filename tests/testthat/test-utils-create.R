@@ -25,6 +25,26 @@ test_that("merge_cff combines DESCRIPTION fixtures with CITATION", {
   expect_snapshot(merged_cffs)
 })
 
+test_that("citation merging retains one copy of each identifier", {
+  cran_doi <- "10.32614/CRAN.package.example"
+  other_doi <- "10.1234/example"
+  desc_cff <- as_cff(list(doi = cran_doi))
+  citation_cff <- as_cff(list(list(
+    type = "generic",
+    title = "Example package",
+    doi = "10.5678/example",
+    identifiers = list(
+      list(type = "doi", value = cran_doi),
+      list(type = "doi", value = other_doi)
+    )
+  )))
+
+  merged <- merge_desc_cit(desc_cff, citation_cff)
+  identifier_values <- vapply(merged$identifiers, `[[`, character(1), "value")
+
+  expect_identical(identifier_values, c(cran_doi, other_doi))
+})
+
 test_that("dependency helpers select supported package dependencies", {
   skip_on_cran()
   deps <- get_dependencies(system.file("DESCRIPTION", package = "cffr"))
