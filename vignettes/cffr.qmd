@@ -79,7 +79,9 @@ Under the hood, `cff_write()` performs these tasks:
 - Writes a `CITATION.cff` file.
 - Validates the result using `cff_validate()`.
 
-You now have a complete `CITATION.cff` file for your **R** package.
+You now have a `CITATION.cff` file populated from the available package
+metadata. The validation step reports any values that do not satisfy the CFF
+schema so that they can be corrected in their original metadata source.
 
 ## Modifying your `CITATION.cff` file
 
