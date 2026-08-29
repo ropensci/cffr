@@ -3,6 +3,11 @@
 - `as_cff.bibentry()` now selects the first `issn` of each `bibentry()`.
 - `cff_create()` no longer creates duplicate identifiers when adding inferred
   CRAN metadata.
+- `cff_create()` now adds inferred CRAN DOIs only to packages available from
+  CRAN and preserves dependency titles, abstracts and years as extracted.
+- `cff_read_citation()` now makes all `DESCRIPTION` fields available to
+  `CITATION` files and no longer replaces package metadata with metadata from
+  the **base** package when reading fails.
 
 # cffr 1.4.2
 

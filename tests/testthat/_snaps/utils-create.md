@@ -858,6 +858,8 @@
         start: '352'
         end: '357'
       identifiers:
+      - type: doi
+        value: 10.32614/CRAN.package.rgeos
       - type: url
         value: http://rgeos.r-forge.r-project.org/index.html
       references:
@@ -1162,10 +1164,10 @@
     Output
       - title: 'R: A Language and Environment for Statistical Computing'
         url: https://www.R-project.org/
-      - title: cli
+      - title: 'cli: Helpers for Developing Command Line Interfaces'
         url: https://cli.r-lib.org
         repository: https://CRAN.R-project.org/package=cli
-      - title: desc
+      - title: 'desc: Manipulate DESCRIPTION Files'
         url: https://desc.r-lib.org/
         repository: https://CRAN.R-project.org/package=desc
 

@@ -286,7 +286,7 @@ clean_package_meta <- function(meta) {
   pkg <- desc::desc(tmp)
   pkg$coerce_authors_at_r()
   # Extract package data.
-  meta <- pkg$get(desc::cran_valid_fields)
+  meta <- pkg$get(pkg$fields())
 
   # Clean missing values and drop empty fields.
   meta <- drop_null(lapply(meta, clean_str))
@@ -308,7 +308,7 @@ desc_to_meta <- function(x) {
   my_meta$coerce_authors_at_r()
 
   # Convert to a list.
-  my_meta_l <- my_meta$get(desc::cran_valid_fields)
+  my_meta_l <- my_meta$get(my_meta$fields())
   my_meta_l <- as.list(my_meta_l)
   v_nas <- vapply(my_meta_l, is.na, logical(1))
   my_meta_l <- my_meta_l[!v_nas]

@@ -64,7 +64,7 @@
       notes: 'Publisher: The Open Journal'
       start: '3900'
 
-# cff_read_citation reports fallback attempts
+# cff_read_citation reports read failures
 
     Code
       cff_read_citation("a")

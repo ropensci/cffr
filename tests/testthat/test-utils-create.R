@@ -108,14 +108,54 @@ test_that("cff_dependency_year extracts years from supported dates", {
 
   mod2 <- list(`date-released` = "1904/12/30")
   expect_identical(cff_dependency_year(mod2), "1904")
+
+  expect_null(cff_dependency_year(list()))
 })
 
-test_that("is_cran_dependency excludes base and unavailable packages", {
-  avail <- data.frame(Package = c("foo", "stats"))
-  withr::local_options(cffr.available_packages = avail)
-  expect_true(is_cran_dependency("foo"))
-  expect_false(is_cran_dependency("stats"))
-  expect_false(is_cran_dependency("bar"))
+test_that("is_cran_dependency checks the package repository", {
+  avail <- data.frame(
+    Package = c("foo", "bar", "stats"),
+    Repository = c(
+      "https://cloud.r-project.org/src/contrib",
+      "https://fixture.r-universe.dev/src/contrib",
+      "https://cloud.r-project.org/src/contrib"
+    )
+  )
+  withr::local_options(
+    cffr.available_packages = avail,
+    cffr.repos = c(
+      fixture = "https://fixture.r-universe.dev",
+      CRAN = "https://cloud.r-project.org/"
+    )
+  )
+
+  result <- vapply(
+    c("foo", "bar", "stats", "unknown"),
+    is_cran_dependency,
+    logical(1)
+  )
+  expect_identical(unname(result), c(TRUE, FALSE, FALSE, FALSE))
+})
+
+test_that("dependency citations preserve source metadata", {
+  local_mocked_bindings(
+    cff_citation = function(...) {
+      bibentry(
+        bibtype = "Manual",
+        title = "Original dependency title",
+        author = person("Jane", "Doe"),
+        year = "1999"
+      )
+    },
+    is_cran_dependency = function(package) FALSE
+  )
+
+  dependency <- cff_dependency_citation("example")
+  r_dependency <- cff_dependency_citation("R")
+
+  expect_identical(dependency$title, "Original dependency title")
+  expect_null(dependency$abstract)
+  expect_identical(r_dependency$year, "1999")
 })
 
 test_that("cff_dependency_order uses canonical field order", {

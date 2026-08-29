@@ -216,20 +216,15 @@ cff_read_citation <- function(path, meta = NULL, ...) {
   new_meta <- clean_package_meta(meta)
   the_cit <- try(cff_read_citation_file(path, meta = new_meta), silent = TRUE)
 
-  # If there is an error, try again.
+  # If there is an error, return no citation.
   if (inherits(the_cit, "try-error")) {
-    cli::cli_alert_warning(paste0(
-      "Could not read {.file {path}} with the provided {.arg meta}. ",
-      'Trying {.code utils::packageDescription("base")}.'
-    ))
-    new_meta <- packageDescription("base")
-    the_cit <- try(cff_read_citation_file(path, meta = new_meta), silent = TRUE)
-    if (inherits(the_cit, "try-error")) {
-      cli::cli_alert_danger(
-        "Cannot read {.file {path}}. Returning {.code NULL}."
+    cli::cli_alert_danger(
+      paste0(
+        "Cannot read {.file {path}} with the provided {.arg meta}. ",
+        "Returning {.code NULL}."
       )
-      return(NULL)
-    }
+    )
+    return(NULL)
   }
   tocff <- as_cff(the_cit)
 
