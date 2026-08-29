@@ -133,17 +133,23 @@ test_that("DESCRIPTION repository helpers accept fixtures", {
   expect_equal(get_desc_doi(pkg), "10.32614/CRAN.package.fixturepkg")
 })
 
-test_that("DESCRIPTION DOI returns NULL outside known repositories", {
+test_that("DESCRIPTION DOI returns NULL outside CRAN", {
   basic_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
 
   tmp <- withr::local_tempfile(pattern = "DESCRIPTION_basic")
   file.copy(basic_path, tmp)
 
   pkg <- desc::desc_set("Package", "fixturepkg", file = tmp)
-  empty_avail <- data.frame(Package = character(0), Repository = character(0))
+  avail <- data.frame(
+    Package = "fixturepkg",
+    Repository = "https://fixture.r-universe.dev/src/contrib"
+  )
   withr::local_options(
-    cffr.available_packages = empty_avail,
-    cffr.repos = c(CRAN = "https://cloud.r-project.org/")
+    cffr.available_packages = avail,
+    cffr.repos = c(
+      fixture = "https://fixture.r-universe.dev",
+      CRAN = "https://cloud.r-project.org/"
+    )
   )
 
   expect_null(get_desc_doi(pkg))
@@ -288,7 +294,7 @@ test_that("cff_read_bib reads BibTeX files", {
   expect_identical(f1_2, f2_2)
 })
 
-test_that("cff_read_citation reports fallback attempts", {
+test_that("cff_read_citation reports read failures", {
   expect_snapshot(cff_read_citation("a"), error = TRUE)
 
   f <- system.file("examples/CITATION_basic", package = "cffr")
@@ -302,7 +308,7 @@ test_that("cff_read_citation reports fallback attempts", {
   f <- system.file("examples/CITATION_auto", package = "cffr")
 
   expect_message(s <- cff_read(f), "with the provided")
-  expect_s3_class(s, c("cff_ref_lst", "cff"), exact = TRUE)
+  expect_null(s)
 })
 
 test_that("cff_read reads basic CITATION files", {
@@ -395,6 +401,39 @@ test_that("cff_safe_read_citation reads rmarkdown CITATION files", {
   expect_length(a_cff, 3)
 })
 
+test_that("cff_safe_read_citation preserves additional DESCRIPTION fields", {
+  dir <- withr::local_tempdir()
+  desc_path <- file.path(dir, "DESCRIPTION")
+  cit_path <- file.path(dir, "CITATION")
+  basic_path <- system.file("examples/DESCRIPTION_basic", package = "cffr")
+  file.copy(basic_path, desc_path)
+  desc::desc_set(
+    "Config/Citation-Title",
+    "Title from an additional field",
+    file = desc_path
+  )
+  writeLines(
+    c(
+      "bibentry(",
+      "  bibtype = 'Manual',",
+      "  title = meta[['Config/Citation-Title']],",
+      "  author = person('Jane', 'Doe'),",
+      "  year = '2024'",
+      ")"
+    ),
+    cit_path
+  )
+
+  meta <- desc_to_meta(desc_path)
+  result <- cff_safe_read_citation(desc_path, cit_path)
+
+  expect_identical(
+    unname(meta[["Config/Citation-Title"]]),
+    "Title from an additional field"
+  )
+  expect_identical(result[[1]]$title, "Title from an additional field")
+})
+
 test_that("cff_safe_read_citation returns NULL without readable files", {
   desc_path <- system.file("x", package = "cffr")
   cit_path <- system.file("y", package = "cffr")
@@ -405,10 +444,7 @@ test_that("cff_safe_read_citation returns NULL without readable files", {
 test_that("cff_read returns NULL for corrupt CITATION files", {
   tmp <- withr::local_tempfile(pattern = "CITATION")
   writeLines("I am a bad CITATION", tmp)
-  expect_message(
-    expect_message(anull <- cff_read(tmp), "Could not read"),
-    "Cannot read"
-  )
+  expect_message(anull <- cff_read(tmp), "Cannot read")
   expect_null(anull)
 
   # Internal
@@ -418,17 +454,14 @@ test_that("cff_read returns NULL for corrupt CITATION files", {
   expect_null(anull)
 })
 
-test_that("cff_read_citation returns NULL when both read attempts fail", {
+test_that("cff_read_citation returns NULL when reading fails", {
   tmp <- withr::local_tempfile(pattern = "CITATION")
   writeLines("citEntry(entry = 'Manual')", tmp)
   local_mocked_bindings(cff_read_citation_file = function(...) {
     stop("read failed", call. = FALSE)
   })
 
-  expect_message(
-    expect_message(anull <- cff_read_citation(tmp), "Could not read"),
-    "Cannot read"
-  )
+  expect_message(anull <- cff_read_citation(tmp), "Cannot read")
   expect_null(anull)
 })
 

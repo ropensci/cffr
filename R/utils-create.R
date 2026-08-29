@@ -165,7 +165,6 @@ cff_dependency_reference <- function(dep) {
 cff_dependency_citation <- function(package) {
   if (package == "R") {
     mod <- as_cff(cff_citation())[[1]]
-    mod$year <- format(Sys.Date(), "%Y")
     return(mod)
   }
 
@@ -174,10 +173,6 @@ cff_dependency_citation <- function(package) {
   if (inherits(mod, "try-error")) {
     return(NULL)
   }
-
-  # Simplify the `cff` object to avoid cluttering the output.
-  mod$abstract <- mod$title
-  mod$title <- package
 
   if (is_cran_dependency(package)) {
     mod$doi <- paste0("10.32614/CRAN.package.", package)
@@ -191,10 +186,13 @@ cff_citation <- function(...) {
 }
 
 is_cran_dependency <- function(package) {
-  avail <- get_avail_on_init()
   base_packages <- rownames(installed.packages(priority = "base"))
+  repository <- search_on_repos(package)
 
-  all(package %in% avail$Package, !package %in% base_packages)
+  all(
+    !package %in% base_packages,
+    identical(repository, cran_package_url(package))
+  )
 }
 
 cff_dependency_desc_fields <- function(mod, package) {
@@ -215,7 +213,7 @@ cff_dependency_year <- function(mod) {
   date_rel <- mod[["date-released"]]
 
   if (is.null(date_rel)) {
-    return(format(Sys.Date(), "%Y"))
+    return(mod[["year"]])
   }
 
   format(as.Date(date_rel), "%Y")

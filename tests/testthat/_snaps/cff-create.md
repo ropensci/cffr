@@ -68,6 +68,7 @@
       license: GPL-2.0-or-later
       title: 'rgeos: Interface to Geometry Engine - Open Source (''GEOS'')'
       version: 0.5-7
+      doi: 10.32614/CRAN.package.rgeos
       identifiers:
       - type: url
         value: http://rgeos.r-forge.r-project.org/index.html
@@ -162,6 +163,7 @@
       license: GPL-2.0-or-later
       title: 'rgeos: Interface to Geometry Engine - Open Source (''GEOS'')'
       version: 0.5-7
+      doi: 10.32614/CRAN.package.rgeos
       identifiers:
       - type: url
         value: http://rgeos.r-forge.r-project.org/index.html

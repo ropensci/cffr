@@ -28,7 +28,7 @@
 #' primarily for its side effect of writing a `CITATION.cff` file.
 #'
 #' @details
-#' For details of `authors_roles`, see [cff_create()].
+#' For details of `authors_roles` and dependency extraction, see [cff_create()].
 #'
 #' The `x` argument identifies the metadata source. It does not determine the
 #' output directory. This allows you to create a `CITATION.cff` from a package

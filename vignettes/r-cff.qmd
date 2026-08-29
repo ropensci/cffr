@@ -45,7 +45,7 @@ keys <- cff_schema_keys(sorted = TRUE)
 origin <- vector(length = length(keys))
 origin[keys == "cff-version"] <- "function argument"
 origin[keys == "type"] <- "Fixed value: 'software'"
-origin[keys == "identifiers"] <- "DESCRIPTION and inst/CITATION"
+origin[keys == "identifiers"] <- "DESCRIPTION, inst/CITATION and CRAN"
 origin[keys == "references"] <- "DESCRIPTION and inst/CITATION"
 
 origin[
@@ -67,13 +67,8 @@ origin[
     )
 ] <- "DESCRIPTION file"
 
-origin[
-  keys %in%
-    c(
-      "doi",
-      "preferred-citation"
-    )
-] <- "inst/CITATION"
+origin[keys == "doi"] <- "inst/CITATION or CRAN"
+origin[keys == "preferred-citation"] <- "inst/CITATION"
 
 origin[origin == "FALSE"] <- "Ignored by cffr"
 
@@ -236,9 +231,12 @@ Back to @tbl-summary.
 ### doi {#doi}
 
 This key is coerced from the `"doi"` field of the
-[preferred-citation](#preferred-citation) object. If not present and the package
-is on **CRAN**, it is populated with the DOI provided by **CRAN** (for example,
-<https://doi.org/10.32614/CRAN.package.cffr>).
+[preferred-citation](#preferred-citation) object. If it is not present, **cffr**
+adds the canonical **CRAN** DOI only when the package metadata identifies
+**CRAN** as its repository or a repository lookup resolves to the canonical
+**CRAN** package URL. Finding the package in another configured repository does
+not produce a **CRAN** DOI. For example, the canonical DOI for **cffr** is
+<https://doi.org/10.32614/CRAN.package.cffr>.
 
 ```{r}
 #| label: doi
@@ -262,6 +260,9 @@ This key contains the available package identifiers:
   [preferred-citation](#preferred-citation).
 - If the package is on **CRAN** and it has a `CITATION` file providing a DOI,
   the DOI provided by **CRAN** is added as well.
+
+**cffr** removes identical entries after merging identifiers from these
+sources.
 
 ```{r}
 #| label: identifiers
@@ -401,9 +402,13 @@ Back to @tbl-summary.
 
 ### preferred-citation {#preferred-citation}
 
-This key is extracted from `inst/CITATION`. If multiple references are provided,
-it selects the first citation as `"preferred-citation"` and uses the remaining
-citations as [references](#references).
+This key is extracted from `inst/CITATION`. When `cff_create()` reads this file,
+all fields from `DESCRIPTION`, including custom fields, are available through
+the `meta` object used by the `CITATION` file. If multiple references are
+provided, **cffr** selects the first citation as `"preferred-citation"` and uses
+the remaining citations as [references](#references). If the file cannot be
+read with the package metadata, **cffr** does not retry with metadata from
+another package.
 
 ```{r}
 #| label: preferred-citation
@@ -420,9 +425,17 @@ Back to @tbl-summary.
 
 This key is extracted from `inst/CITATION` if multiple references are provided.
 The first citation becomes the [preferred citation](#preferred-citation) and the
-remaining citations become `"references"`. **cffr** can also extract package
-dependencies and add them to this field by calling `citation(auto = TRUE)` for
-each dependency.
+remaining citations become `"references"`.
+
+When `dependencies = TRUE`, **cffr** also adds installed package dependencies by
+calling `citation(auto = TRUE)` for each one. It preserves the citation metadata,
+including the title, abstract, authors and year, while adapting the reference to
+the CFF software type. It adds the dependency scope and version constraint from
+the source `DESCRIPTION`, URLs and repository information from the installed
+dependency's `DESCRIPTION` and the canonical **CRAN** DOI only when the
+dependency is available from **CRAN**. A release date, when available, determines
+the year; otherwise the year returned by `citation()` is retained. The year is
+omitted only when neither source provides one.
 
 ```{r}
 #| label: references

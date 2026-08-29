@@ -40,7 +40,7 @@ GitHub, add the repository topics as keywords.}
 \item{authors_roles}{Roles to be considered as authors of the package when
 generating the \code{CITATION.cff} file. See \strong{Details}.}
 
-\item{meta}{A list of package metadata as obtained by
+\item{meta}{A package metadata object as obtained by
 \code{\link[utils:packageDescription]{utils::packageDescription()}} or \code{NULL} (the default). See \strong{Details}.}
 
 \item{encoding}{Encoding to be assumed for \code{path}. See \code{\link[base:readLines]{base::readLines()}}.}
@@ -49,10 +49,12 @@ generating the \code{CITATION.cff} file. See \strong{Details}.}
 \itemize{
 \item \code{cff_read_cff_citation()} and \code{cff_read_description()} return an object
 with class \code{cff}.
-\item \code{cff_read_citation()} and \code{cff_read_bib()} return an object of classes
+\item \code{cff_read_bib()} returns an object of classes
 \code{\link[=cff_ref_lst]{cff_ref_lst, cff}} as defined by the
 \code{definitions.reference} specified in the following guide:
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema guide}.
+\item \code{cff_read_citation()} returns the same classes as \code{cff_read_bib()}, or
+\code{NULL} when the file cannot be evaluated.
 }
 
 Learn more about the \CRANpkg{cffr} class system in \link{cff_class}.
@@ -82,8 +84,13 @@ For details of \code{cff_read_description()}, see \code{\link[=cff_create]{cff_c
 
 Section 1.9 CITATION files of \emph{Writing R Extensions} (R Core Team 2026)
 specifies how to create dynamic \code{CITATION} files using a \code{meta} object.
-Therefore, the \code{meta} argument in \code{\link[=cff_read_citation]{cff_read_citation()}} may be needed to
-read some files correctly.
+\code{\link[=cff_read_citation]{cff_read_citation()}} makes every field supplied in \code{meta}, including custom
+\code{DESCRIPTION} fields, available to the \code{CITATION} file. When \code{cff_create()}
+reads a package \code{CITATION} file, it constructs \code{meta} from all fields in that
+package's \code{DESCRIPTION}. With \code{meta = NULL}, only default encoding metadata
+is supplied. If the file cannot be evaluated with those metadata,
+\code{cff_read_citation()} returns \code{NULL}; it does not substitute metadata from
+another package.
 }
 }
 \examples{

@@ -858,6 +858,8 @@
         start: '352'
         end: '357'
       identifiers:
+      - type: doi
+        value: 10.32614/CRAN.package.rgeos
       - type: url
         value: http://rgeos.r-forge.r-project.org/index.html
       references:
@@ -1155,17 +1157,14 @@
         url: https://ggplot2.tidyverse.org
       
 
-# dependency helpers select supported package dependencies
+# dependency references preserve citation years
 
     Code
-      print(selected)
+      result
     Output
-      - title: 'R: A Language and Environment for Statistical Computing'
-        url: https://www.R-project.org/
-      - title: cli
-        url: https://cli.r-lib.org
-        repository: https://CRAN.R-project.org/package=cli
-      - title: desc
-        url: https://desc.r-lib.org/
-        repository: https://CRAN.R-project.org/package=desc
+      type: software
+      title: Dependency title
+      notes: Imports
+      year: '1999'
+      version: '1.0'
 

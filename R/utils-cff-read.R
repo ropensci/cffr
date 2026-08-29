@@ -384,11 +384,15 @@ get_desc_sha <- function(pkg) {
 }
 
 get_desc_doi <- function(pkg) {
-  pkg <- pkg$get("Package")
-  if (is.null(search_on_repos(pkg))) {
+  package <- pkg$get("Package")
+  repository <- clean_str(pkg$get("Repository"))
+  on_cran <- identical(repository, "CRAN") ||
+    identical(search_on_repos(package), cran_package_url(package))
+
+  if (!on_cran) {
     return(NULL)
   }
 
-  doi <- paste0("10.32614/CRAN.package.", pkg)
+  doi <- paste0("10.32614/CRAN.package.", package)
   clean_str(doi)
 }

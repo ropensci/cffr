@@ -45,24 +45,34 @@ test_that("citation merging retains one copy of each identifier", {
   expect_identical(identifier_values, c(cran_doi, other_doi))
 })
 
-test_that("dependency helpers select supported package dependencies", {
+test_that("get_dependencies preserves package citation metadata", {
   skip_on_cran()
-  deps <- get_dependencies(system.file("DESCRIPTION", package = "cffr"))
+  desc_path <- system.file("DESCRIPTION", package = "cffr")
+  dep_rows <- desc::desc(desc_path)$get_deps()
+  dep_rows <- cff_dependency_rows(dep_rows)
+  installed <- as.character(installed.packages()[, "Package"])
+  dep_rows <- dep_rows[dep_rows$package %in% c("R", installed), ]
 
-  # Extract selected fields
-  selected <- lapply(deps, function(x) {
-    y <- x[names(x) %in% c("title", "url", "repository")]
-    y
+  actual <- get_dependencies(desc_path)
+  actual <- lapply(actual, \(x) drop_null(x[c("title", "abstract", "year")]))
+
+  expected <- lapply(dep_rows$package, function(package) {
+    raw_citation <- if (package == "R") {
+      utils::citation()
+    } else {
+      utils::citation(package, auto = TRUE)[1]
+    }
+    citation_cff <- as_cff(raw_citation)[[1]]
+
+    date_released <- citation_cff[["date-released"]]
+    if (!is.null(date_released)) {
+      citation_cff$year <- format(as.Date(date_released), "%Y")
+    }
+
+    drop_null(citation_cff[c("title", "abstract", "year")])
   })
 
-  # Select just a sample of dependencies
-  selected <- selected[seq(1, 3)]
-
-  class(selected) <- "cff"
-
-  rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
-  expect_snapshot(print(selected))
+  expect_setequal(unique(actual), unique(expected))
 })
 
 test_that("merge_cff resolves conflicting DESCRIPTION and CITATION URLs", {
@@ -103,19 +113,80 @@ test_that("cff_dependency_rows normalizes versions and dependency scopes", {
 })
 
 test_that("cff_dependency_year extracts years from supported dates", {
-  mod <- list(`date-released` = "1995-02-01")
+  mod <- list(`date-released` = "1995-02-01", year = "1990")
   expect_identical(cff_dependency_year(mod), "1995")
 
   mod2 <- list(`date-released` = "1904/12/30")
   expect_identical(cff_dependency_year(mod2), "1904")
+
+  expect_identical(cff_dependency_year(list(year = "1999")), "1999")
+  expect_null(cff_dependency_year(list()))
 })
 
-test_that("is_cran_dependency excludes base and unavailable packages", {
-  avail <- data.frame(Package = c("foo", "stats"))
-  withr::local_options(cffr.available_packages = avail)
-  expect_true(is_cran_dependency("foo"))
-  expect_false(is_cran_dependency("stats"))
-  expect_false(is_cran_dependency("bar"))
+test_that("is_cran_dependency checks the package repository", {
+  avail <- data.frame(
+    Package = c("foo", "bar", "stats"),
+    Repository = c(
+      "https://cloud.r-project.org/src/contrib",
+      "https://fixture.r-universe.dev/src/contrib",
+      "https://cloud.r-project.org/src/contrib"
+    )
+  )
+  withr::local_options(
+    cffr.available_packages = avail,
+    cffr.repos = c(
+      fixture = "https://fixture.r-universe.dev",
+      CRAN = "https://cloud.r-project.org/"
+    )
+  )
+
+  result <- vapply(
+    c("foo", "bar", "stats", "unknown"),
+    is_cran_dependency,
+    logical(1)
+  )
+  expect_identical(unname(result), c(TRUE, FALSE, FALSE, FALSE))
+})
+
+test_that("dependency citations preserve source metadata", {
+  local_mocked_bindings(
+    cff_citation = function(...) {
+      bibentry(
+        bibtype = "Manual",
+        title = "Original dependency title",
+        author = person("Jane", "Doe"),
+        year = "1999"
+      )
+    },
+    is_cran_dependency = function(package) FALSE
+  )
+
+  dependency <- cff_dependency_citation("example")
+  r_dependency <- cff_dependency_citation("R")
+
+  expect_identical(dependency$title, "Original dependency title")
+  expect_null(dependency$abstract)
+  expect_identical(r_dependency$year, "1999")
+})
+
+test_that("dependency references preserve citation years", {
+  rvers <- getRversion()
+  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+
+  local_mocked_bindings(
+    cff_dependency_citation = function(package) {
+      list(title = "Dependency title", year = "1999")
+    },
+    cff_dependency_desc_fields = function(mod, package) mod
+  )
+
+  result <- cff_dependency_reference(list(
+    package = "example",
+    version_clean = "1.0",
+    scope = "Imports"
+  ))
+
+  expect_snapshot(result)
 })
 
 test_that("cff_dependency_order uses canonical field order", {
