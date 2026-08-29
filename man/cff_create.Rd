@@ -33,8 +33,8 @@ generated metadata.}
 \item{gh_keywords}{A logical value. If \code{TRUE} and the package is hosted on
 GitHub, add the repository topics as keywords.}
 
-\item{dependencies}{A logical value. If \code{TRUE}, add the package dependencies
-to the \code{references} CFF key.}
+\item{dependencies}{A logical value. If \code{TRUE}, add installed package
+dependencies to the \code{references} CFF key. See \strong{Details}.}
 
 \item{authors_roles}{Roles to be considered as authors of the package when
 generating the \code{CITATION.cff} file. See \strong{Details}.}
@@ -54,6 +54,21 @@ This function performs most metadata extraction and conversion in
 If \code{x} is a path to a \code{DESCRIPTION} file or if \code{inst/CITATION} is not
 present in your package, \CRANpkg{cffr} auto-generates a
 \code{preferred-citation} key using the information provided in that file.
+
+When \code{inst/CITATION} is present, every field from the package's
+\code{DESCRIPTION}, including custom fields, is made available to that file
+through its \code{meta} object. If the file cannot be evaluated with those
+metadata, \code{cff_create()} does not retry with metadata from another package.
+
+When \code{dependencies = TRUE}, \code{cff_create()} starts from the first reference
+returned by \code{\link[utils:citation]{utils::citation()}} for each installed dependency. Citation
+fields such as title, abstract, authors and year are preserved. Each
+reference is adapted to the CFF software-reference type and enriched with
+the dependency scope and version constraint from the source \code{DESCRIPTION},
+URLs and repository information from the installed dependency's
+\code{DESCRIPTION} and the canonical CRAN DOI only when the dependency is
+available from CRAN. A release date, when present, determines the year;
+otherwise the citation year is retained.
 
 By default, only persons whose role in the \code{DESCRIPTION} file of the package
 is author (\code{"aut"}) or maintainer (\code{"cre"}) are considered package authors.

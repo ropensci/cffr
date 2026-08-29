@@ -17,7 +17,7 @@
 #'
 #' @param path A path to a file.
 #' @param encoding Encoding to be assumed for `path`. See [base::readLines()].
-#' @param meta A list of package metadata as obtained by
+#' @param meta A package metadata object as obtained by
 #'   [utils::packageDescription()] or `NULL` (the default). See **Details**.
 #' @param ... Arguments passed to other functions, for example to
 #'   [yaml::read_yaml()] or [bibtex::read.bib()].
@@ -27,11 +27,13 @@
 #' @return
 #' - `cff_read_cff_citation()` and `cff_read_description()` return an object
 #'   with class `cff`.
-#' - `cff_read_citation()` and `cff_read_bib()` return an object of classes
+#' - `cff_read_bib()` returns an object of classes
 #'   [`cff_ref_lst, cff`][cff_ref_lst] as defined by the
 #'   `definitions.reference` specified in the following guide:
 #' ```{r child = "man/chunks/schema-guide.Rmd"}
 #' ```
+#' - `cff_read_citation()` returns the same classes as `cff_read_bib()`, or
+#'   `NULL` when the file cannot be evaluated.
 #'
 #' Learn more about the \CRANpkg{cffr} class system in [cff_class].
 #'
@@ -42,8 +44,13 @@
 #'
 #' Section 1.9 CITATION files of *Writing R Extensions* (R Core Team 2026)
 #' specifies how to create dynamic `CITATION` files using a `meta` object.
-#' Therefore, the `meta` argument in [cff_read_citation()] may be needed to
-#' read some files correctly.
+#' [cff_read_citation()] makes every field supplied in `meta`, including custom
+#' `DESCRIPTION` fields, available to the `CITATION` file. When `cff_create()`
+#' reads a package `CITATION` file, it constructs `meta` from all fields in that
+#' package's `DESCRIPTION`. With `meta = NULL`, only default encoding metadata
+#' is supplied. If the file cannot be evaluated with those metadata,
+#' `cff_read_citation()` returns `NULL`; it does not substitute metadata from
+#' another package.
 #'
 #' @references
 #' R Core Team (2026). *Writing R Extensions*.

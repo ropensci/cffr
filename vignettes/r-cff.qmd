@@ -407,8 +407,8 @@ all fields from `DESCRIPTION`, including custom fields, are available through
 the `meta` object used by the `CITATION` file. If multiple references are
 provided, **cffr** selects the first citation as `"preferred-citation"` and uses
 the remaining citations as [references](#references). If the file cannot be
-read with the package metadata, **cffr** reports the failure instead of retrying
-with metadata from another package.
+read with the package metadata, **cffr** does not retry with metadata from
+another package.
 
 ```{r}
 #| label: preferred-citation
@@ -428,12 +428,14 @@ The first citation becomes the [preferred citation](#preferred-citation) and the
 remaining citations become `"references"`.
 
 When `dependencies = TRUE`, **cffr** also adds installed package dependencies by
-calling `citation(auto = TRUE)` for each one. It preserves the title and
-abstract returned by `citation()`, adds URLs and repository information from the
-dependency's `DESCRIPTION` file and adds the canonical **CRAN** DOI only when the
-dependency is available from **CRAN**. The year is derived from the dependency's
-release date when available. Otherwise, **cffr** preserves the year returned by
-`citation()` and omits the year only when neither source provides one.
+calling `citation(auto = TRUE)` for each one. It preserves the citation metadata,
+including the title, abstract, authors and year, while adapting the reference to
+the CFF software type. It adds the dependency scope and version constraint from
+the source `DESCRIPTION`, URLs and repository information from the installed
+dependency's `DESCRIPTION` and the canonical **CRAN** DOI only when the
+dependency is available from **CRAN**. A release date, when available, determines
+the year; otherwise the year returned by `citation()` is retained. The year is
+omitted only when neither source provides one.
 
 ```{r}
 #| label: references

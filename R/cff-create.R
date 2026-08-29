@@ -21,8 +21,8 @@
 #'   generated metadata.
 #' @param gh_keywords A logical value. If `TRUE` and the package is hosted on
 #'   GitHub, add the repository topics as keywords.
-#' @param dependencies A logical value. If `TRUE`, add the package dependencies
-#'   to the `references` CFF key.
+#' @param dependencies A logical value. If `TRUE`, add installed package
+#'   dependencies to the `references` CFF key. See **Details**.
 #' @param authors_roles Roles to be considered as authors of the package when
 #'   generating the `CITATION.cff` file. See **Details**.
 #'
@@ -32,6 +32,21 @@
 #' If `x` is a path to a `DESCRIPTION` file or if `inst/CITATION` is not
 #' present in your package, \CRANpkg{cffr} auto-generates a
 #' `preferred-citation` key using the information provided in that file.
+#'
+#' When `inst/CITATION` is present, every field from the package's
+#' `DESCRIPTION`, including custom fields, is made available to that file
+#' through its `meta` object. If the file cannot be evaluated with those
+#' metadata, `cff_create()` does not retry with metadata from another package.
+#'
+#' When `dependencies = TRUE`, `cff_create()` starts from the first reference
+#' returned by [utils::citation()] for each installed dependency. Citation
+#' fields such as title, abstract, authors and year are preserved. Each
+#' reference is adapted to the CFF software-reference type and enriched with
+#' the dependency scope and version constraint from the source `DESCRIPTION`,
+#' URLs and repository information from the installed dependency's
+#' `DESCRIPTION` and the canonical CRAN DOI only when the dependency is
+#' available from CRAN. A release date, when present, determines the year;
+#' otherwise the citation year is retained.
 #'
 #' By default, only persons whose role in the `DESCRIPTION` file of the package
 #' is author (`"aut"`) or maintainer (`"cre"`) are considered package authors.

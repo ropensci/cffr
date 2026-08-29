@@ -47,8 +47,8 @@ citation (\code{inst/CITATION}) is created or updated relative to the current
 working directory. \strong{No backup copy is created}. For more control, use
 \code{\link[=cff_write_citation]{cff_write_citation()}}.}
 
-\item{dependencies}{A logical value. If \code{TRUE}, add the package dependencies
-to the \code{references} CFF key.}
+\item{dependencies}{A logical value. If \code{TRUE}, add installed package
+dependencies to the \code{references} CFF key. See \strong{Details}.}
 
 \item{validate}{A logical value. If \code{TRUE}, validate the new file with
 \code{\link[=cff_validate]{cff_validate()}}.}
@@ -75,7 +75,7 @@ This function writes a \code{CITATION.cff} file for a given package. It wraps
 YAML-formatted file in one command.
 }
 \details{
-For details of \code{authors_roles}, see \code{\link[=cff_create]{cff_create()}}.
+For details of \code{authors_roles} and dependency extraction, see \code{\link[=cff_create]{cff_create()}}.
 
 The \code{x} argument identifies the metadata source. It does not determine the
 output directory. This allows you to create a \code{CITATION.cff} from a package

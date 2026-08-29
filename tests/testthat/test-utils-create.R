@@ -45,24 +45,34 @@ test_that("citation merging retains one copy of each identifier", {
   expect_identical(identifier_values, c(cran_doi, other_doi))
 })
 
-test_that("dependency helpers select supported package dependencies", {
+test_that("get_dependencies preserves package citation metadata", {
   skip_on_cran()
-  deps <- get_dependencies(system.file("DESCRIPTION", package = "cffr"))
+  desc_path <- system.file("DESCRIPTION", package = "cffr")
+  dep_rows <- desc::desc(desc_path)$get_deps()
+  dep_rows <- cff_dependency_rows(dep_rows)
+  installed <- as.character(installed.packages()[, "Package"])
+  dep_rows <- dep_rows[dep_rows$package %in% c("R", installed), ]
 
-  # Extract selected fields
-  selected <- lapply(deps, function(x) {
-    y <- x[names(x) %in% c("title", "url", "repository")]
-    y
+  actual <- get_dependencies(desc_path)
+  actual <- lapply(actual, \(x) drop_null(x[c("title", "abstract", "year")]))
+
+  expected <- lapply(dep_rows$package, function(package) {
+    raw_citation <- if (package == "R") {
+      utils::citation()
+    } else {
+      utils::citation(package, auto = TRUE)[1]
+    }
+    citation_cff <- as_cff(raw_citation)[[1]]
+
+    date_released <- citation_cff[["date-released"]]
+    if (!is.null(date_released)) {
+      citation_cff$year <- format(as.Date(date_released), "%Y")
+    }
+
+    drop_null(citation_cff[c("title", "abstract", "year")])
   })
 
-  # Select just a sample of dependencies
-  selected <- selected[seq(1, 3)]
-
-  class(selected) <- "cff"
-
-  rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
-  expect_snapshot(print(selected))
+  expect_setequal(unique(actual), unique(expected))
 })
 
 test_that("merge_cff resolves conflicting DESCRIPTION and CITATION URLs", {
@@ -160,6 +170,9 @@ test_that("dependency citations preserve source metadata", {
 })
 
 test_that("dependency references preserve citation years", {
+  rvers <- getRversion()
+  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+
   local_mocked_bindings(
     cff_dependency_citation = function(package) {
       list(title = "Dependency title", year = "1999")
@@ -173,7 +186,7 @@ test_that("dependency references preserve citation years", {
     scope = "Imports"
   ))
 
-  expect_identical(result$year, "1999")
+  expect_snapshot(result)
 })
 
 test_that("cff_dependency_order uses canonical field order", {
