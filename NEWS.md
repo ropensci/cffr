@@ -4,9 +4,9 @@
 - `cff_create()` no longer creates duplicate identifiers when adding inferred
   CRAN metadata.
 - `cff_create()` now adds inferred CRAN DOIs only to packages available from
-  CRAN, preserves dependency titles and abstracts as extracted and no longer
-  substitutes the current year when a dependency release date is unavailable
-  (#114).
+  CRAN and preserves dependency titles, abstracts and citation years as
+  extracted. A dependency release date takes precedence over its citation year
+  when available (#114).
 - `cff_read_citation()` now makes all `DESCRIPTION` fields available to
   `CITATION` files and no longer replaces package metadata with metadata from
   the **base** package when reading fails (#114).

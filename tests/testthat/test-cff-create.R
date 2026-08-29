@@ -324,8 +324,11 @@ test_that("cff_create recognizes R-universe repositories", {
   expect_length(a_cff$repository, 1)
 
   expect_s3_class(a_cff, "cff")
-  expect_snapshot(a_cff)
   expect_true(cff_validate(a_cff, verbose = FALSE))
+
+  rvers <- getRversion()
+  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  expect_snapshot(a_cff)
 })
 
 

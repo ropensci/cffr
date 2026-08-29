@@ -102,6 +102,7 @@ references:
     name: R Foundation for Statistical Computing
     website: https://ror.org/05qewa988
     address: Vienna, Austria
+  year: '2026'
   doi: 10.32614/R.manuals
   version: '>= 4.1.0'
 - type: software
@@ -113,6 +114,7 @@ references:
   - family-names: Csárdi
     given-names: Gábor
     email: gabor@posit.co
+  year: '2026'
   doi: 10.32614/CRAN.package.cli
   version: '>= 2.0.0'
 - type: software
@@ -129,6 +131,7 @@ references:
   - family-names: Hester
     given-names: Jim
     email: james.f.hester@gmail.com
+  year: '2023'
   doi: 10.32614/CRAN.package.desc
   version: '>= 1.3.0'
 - type: software
@@ -141,6 +144,7 @@ references:
     given-names: Jeroen
     email: jeroenooms@gmail.com
     orcid: https://orcid.org/0000-0002-4035-0289
+  year: '2025'
   doi: 10.32614/CRAN.package.jsonlite
   version: '>= 1.7.2'
 - type: software
@@ -158,6 +162,7 @@ references:
     given-names: Mathias
   - family-names: Poberezkin
     given-names: Evgeny
+  year: '2025'
   doi: 10.32614/CRAN.package.jsonvalidate
   version: '>= 1.1.0'
 - type: software
@@ -170,6 +175,7 @@ references:
     name: R Foundation for Statistical Computing
     website: https://ror.org/05qewa988
     address: Vienna, Austria
+  year: '2026'
   doi: 10.32614/R.manuals
 - type: software
   title: 'yaml: Methods to Convert R Data to YAML and Back'
@@ -181,6 +187,7 @@ references:
     given-names: Jeremy
   - family-names: Simonov
     given-names: Kirill
+  year: '2025'
   doi: 10.32614/CRAN.package.yaml
   version: '>= 2.2.1'
 - type: software
@@ -201,6 +208,7 @@ references:
     given-names: James Joseph
     email: balamut2@illinois.edu
     orcid: https://orcid.org/0000-0003-2826-8458
+  year: '2026'
   doi: 10.32614/CRAN.package.bibtex
   version: '>= 0.5.0'
 - type: software
@@ -213,6 +221,7 @@ references:
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
+  year: '2025'
   doi: 10.32614/CRAN.package.knitr
 - type: software
   title: 'lifecycle: Manage the Life Cycle of your Package Functions'
@@ -227,6 +236,7 @@ references:
     given-names: Hadley
     email: hadley@posit.co
     orcid: https://orcid.org/0000-0003-4757-117X
+  year: '2026'
   doi: 10.32614/CRAN.package.lifecycle
 - type: software
   title: 'quarto: R Interface to ''Quarto'' Markdown Publishing System'
@@ -242,6 +252,7 @@ references:
     given-names: Christophe
     email: cderv@posit.co
     orcid: https://orcid.org/0000-0003-4474-2498
+  year: '2026'
   doi: 10.32614/CRAN.package.quarto
 - type: software
   title: 'rmarkdown: Dynamic Documents for R'
@@ -284,6 +295,7 @@ references:
     given-names: Richard
     email: rich@posit.co
     orcid: https://orcid.org/0000-0003-3925-190X
+  year: '2026'
   doi: 10.32614/CRAN.package.rmarkdown
 - type: software
   title: 'testthat: Unit Testing for R'
@@ -294,6 +306,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
+  year: '2026'
   doi: 10.32614/CRAN.package.testthat
   version: '>= 3.3.0'
 - type: software
@@ -318,6 +331,7 @@ references:
     given-names: Andy
     email: andy.teucher@posit.co
     orcid: https://orcid.org/0000-0002-7840-692X
+  year: '2026'
   doi: 10.32614/CRAN.package.usethis
 - type: software
   title: 'withr: Run Code ''With'' Temporarily Modified Global State'
@@ -341,5 +355,6 @@ references:
     email: hadley@posit.co
   - family-names: Chang
     given-names: Winston
+  year: '2026'
   doi: 10.32614/CRAN.package.withr
 

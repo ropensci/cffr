@@ -432,7 +432,8 @@ calling `citation(auto = TRUE)` for each one. It preserves the title and
 abstract returned by `citation()`, adds URLs and repository information from the
 dependency's `DESCRIPTION` file and adds the canonical **CRAN** DOI only when the
 dependency is available from **CRAN**. The year is derived from the dependency's
-release date and is omitted when that date is unavailable.
+release date when available. Otherwise, **cffr** preserves the year returned by
+`citation()` and omits the year only when neither source provides one.
 
 ```{r}
 #| label: references

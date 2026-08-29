@@ -103,12 +103,13 @@ test_that("cff_dependency_rows normalizes versions and dependency scopes", {
 })
 
 test_that("cff_dependency_year extracts years from supported dates", {
-  mod <- list(`date-released` = "1995-02-01")
+  mod <- list(`date-released` = "1995-02-01", year = "1990")
   expect_identical(cff_dependency_year(mod), "1995")
 
   mod2 <- list(`date-released` = "1904/12/30")
   expect_identical(cff_dependency_year(mod2), "1904")
 
+  expect_identical(cff_dependency_year(list(year = "1999")), "1999")
   expect_null(cff_dependency_year(list()))
 })
 
@@ -156,6 +157,23 @@ test_that("dependency citations preserve source metadata", {
   expect_identical(dependency$title, "Original dependency title")
   expect_null(dependency$abstract)
   expect_identical(r_dependency$year, "1999")
+})
+
+test_that("dependency references preserve citation years", {
+  local_mocked_bindings(
+    cff_dependency_citation = function(package) {
+      list(title = "Dependency title", year = "1999")
+    },
+    cff_dependency_desc_fields = function(mod, package) mod
+  )
+
+  result <- cff_dependency_reference(list(
+    package = "example",
+    version_clean = "1.0",
+    scope = "Imports"
+  ))
+
+  expect_identical(result$year, "1999")
 })
 
 test_that("cff_dependency_order uses canonical field order", {

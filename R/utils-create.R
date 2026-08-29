@@ -213,7 +213,7 @@ cff_dependency_year <- function(mod) {
   date_rel <- mod[["date-released"]]
 
   if (is.null(date_rel)) {
-    return(NULL)
+    return(mod[["year"]])
   }
 
   format(as.Date(date_rel), "%Y")

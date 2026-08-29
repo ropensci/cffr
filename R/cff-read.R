@@ -218,12 +218,10 @@ cff_read_citation <- function(path, meta = NULL, ...) {
 
   # If there is an error, return no citation.
   if (inherits(the_cit, "try-error")) {
-    cli::cli_alert_danger(
-      paste0(
-        "Cannot read {.file {path}} with the provided {.arg meta}. ",
-        "Returning {.code NULL}."
-      )
-    )
+    cli::cli_alert_danger(paste0(
+      "Cannot read {.file {path}} with the provided {.arg meta}. ",
+      "Returning {.code NULL}."
+    ))
     return(NULL)
   }
   tocff <- as_cff(the_cit)
