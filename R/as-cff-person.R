@@ -323,7 +323,8 @@ create_person_from_txt <- function(as_bib_text) {
   )))
 
   # Assign the corresponding function.
-  bibtex_name_str <- switch(commas,
+  bibtex_name_str <- switch(
+    commas,
     # Case A.
     "0" = bibtex_pers_first_von_last(person_only),
     # Case B.

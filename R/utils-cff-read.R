@@ -99,19 +99,15 @@ get_desc_keywords <- function(pkg) {
     return(kword)
   }
 
-  kword <- unlist(strsplit(kword, ", "))
-  kword <- unlist(strsplit(unique(kword), ","))
+  kword <- unlist(strsplit(kword, ",", fixed = TRUE))
+  kword <- unique(unlist(lapply(kword, clean_str), use.names = FALSE))
 
-  # Hack: the validator does not seem to recognize a single keyword.
-  # Add the new keyword r-package.
-
-  if (length(kword) == 1) {
-    kword <- unique(c(kword, "r-package"))
+  if (length(kword) == 0) {
+    return(NULL)
   }
 
-  # If there is still one keyword, return NULL.
   if (length(kword) == 1) {
-    return(NULL)
+    kword <- as.list(kword)
   }
 
   kword
@@ -122,12 +118,8 @@ get_desc_keywords <- function(pkg) {
 get_desc_license <- function(pkg) {
   licenses <- pkg$get_field("License")
 
-  # The schema accepts at most two licenses.
-
-  licenses <- unlist(strsplit(licenses, "\\| "))[1:2]
-
-  # Clean up and split.
-  split <- unlist(strsplit(licenses, " \\+ |\\+"))
+  # Split alternative licenses and license-file qualifiers.
+  split <- unlist(strsplit(licenses, "\\s*(?:\\||\\+)\\s*", perl = TRUE))
 
   # Clean leading and trailing blanks.
   split <- unique(trimws(split))
@@ -143,7 +135,7 @@ get_desc_license <- function(pkg) {
   licenses_list <- lapply(licenses_df$SPDX, clean_str)
   licenses_list <- drop_null(licenses_list)
 
-  license_char <- unlist(licenses_list)
+  license_char <- unique(unlist(licenses_list))
 
   license_char
 }

@@ -89,7 +89,7 @@ specifies how to create dynamic \code{CITATION} files using a \code{meta} object
 reads a package \code{CITATION} file, it constructs \code{meta} from all fields in that
 package's \code{DESCRIPTION}. With \code{meta = NULL}, only default encoding metadata
 is supplied. If the file cannot be evaluated with those metadata,
-\code{cff_read_citation()} returns \code{NULL}; it does not substitute metadata from
+\code{cff_read_citation()} returns \code{NULL} rather than substituting metadata from
 another package.
 }
 }

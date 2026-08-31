@@ -43,7 +43,7 @@
         volume: '3'
         issue: '7'
         collection-title: The LateX Books
-        collection-type: book
+        collection-type: book-series
         edition: Fourth
         month: '8'
         notes: Example modified for testing purposes
@@ -67,6 +67,8 @@
         month: '2'
         year: '2016'
         notes: Example modified from Jabref
+        keywords:
+        - java
 
 # conference bibentries round-trip through cff references
 
@@ -126,7 +128,7 @@
         volume: '27'
         issue: '2'
         collection-title: Implementations of Logic Programming Systems
-        collection-type: book
+        collection-type: book-series
         edition: Second
         month: '1'
         notes: Example modified for testing purposes

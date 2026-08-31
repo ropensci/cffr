@@ -229,7 +229,8 @@ as_bibentry.cff <- function(
   }
 
   # Select the type to extract.
-  obj_extract <- switch(what,
+  obj_extract <- switch(
+    what,
     "preferred" = list(obj$`preferred-citation`),
     "references" = obj$references,
     c(list(obj$`preferred-citation`), obj$references)

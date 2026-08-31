@@ -49,7 +49,7 @@
 #' reads a package `CITATION` file, it constructs `meta` from all fields in that
 #' package's `DESCRIPTION`. With `meta = NULL`, only default encoding metadata
 #' is supplied. If the file cannot be evaluated with those metadata,
-#' `cff_read_citation()` returns `NULL`; it does not substitute metadata from
+#' `cff_read_citation()` returns `NULL` rather than substituting metadata from
 #' another package.
 #'
 #' @references
@@ -121,7 +121,8 @@ cff_read <- function(path, ...) {
     ))
   }
 
-  endobj <- switch(filetype,
+  endobj <- switch(
+    filetype,
     "cff_citation" = cff_read_cff_citation(path, ...),
     "description" = cff_read_description(path, ...),
     "bib" = cff_read_bib(path, ...),

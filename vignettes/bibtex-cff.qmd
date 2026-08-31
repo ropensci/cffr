@@ -91,8 +91,9 @@ structural transformations, heuristic parsing and controlled information loss.
 At a conceptual level, **BibTeX** and CFF embody different design philosophies.
 
 **BibTeX** represents bibliographic information as flat records with loosely
-defined fields, optimized for citation rendering in documents. Semantics are largely
-implicit and contextual, depending on entry types and bibliography styles.
+defined fields, optimized for citation rendering in documents. Semantics are
+largely implicit and contextual, depending on entry types and bibliography
+styles.
 
 CFF, in contrast, defines a structured schema with explicit typing, nested
 objects and richer metadata support. It is designed for producing citations and
@@ -310,8 +311,8 @@ inline code formatting (for example, `book` and `edition`) is used for CFF keys.
 |:---|:---|:---|:---|
 | **\@article** | `type: article` | direct | \- |
 | **\@book** | `type: book` | direct | \- |
-| **\@inbook** | `type: chapter` | transform | Normalized to CFF taxonomy |
-| **\@incollection** | `type: chapter` | transform | Same as **\@inbook** |
+| **\@inbook** | `type: book` | transform | Distinguished from **\@book** by `section` and/or `start`/`end` |
+| **\@incollection** | `type: generic` | heuristic | `collection-title` preserves the containing work |
 | **\@manual** | `type: manual` | direct | \- |
 | **\@misc** | `type: generic` | heuristic | `generic` is used as a fallback when no more specific CFF type applies. |
 | **\@phdthesis** | `type: thesis` | transform | The specific thesis subtype (e.g., master's vs PhD) may be lost when mapping from BibTeX to CFF. |
@@ -335,18 +336,19 @@ inline code formatting (for example, `book` and `edition`) is used for CFF keys.
 | **number**    | `issue`            | transform    | Naming normalization                |
 | **pages**     | `start`/`end`      | split        | Parsed from page range              |
 | **doi**       | `doi`              | direct       | \-                                  |
-| **url**       | `url`              | direct       | \-                                  |
+| **url**       | `url` and `doi`    | split        | Resolver URLs also populate `doi`   |
 
 : Core fields
 :::
 
 ::: {#tbl-mapstruct}
-| BibTeX field    | CFF key              | Mapping type | Notes                          |
-|:----------------|:---------------------|:-------------|:-------------------------------|
-| **publisher**   | `publisher.name`     | transform    | Converted to structured object |
-| **address**     | `publisher.location` | transform    | Combined with `publisher`      |
-| **institution** | `institution`        | direct       | Used mainly in reports/thesis  |
-| **school**      | `institution`        | transform    | Thesis normalization           |
+| BibTeX field | CFF key | Mapping type | Notes |
+|:---|:---|:---|:---|
+| **publisher** | `publisher.name` | transform | Converted to structured object |
+| **address** | `*.address` or `location.name` | heuristic | Target depends on entry type |
+| **institution** | `institution` | transform | Retained unless superseded |
+| **organization** | `institution` | transform | Entry-specific normalization |
+| **school** | `institution` | transform | Thesis normalization |
 
 : Structural fields
 :::
@@ -384,9 +386,9 @@ The crosswalk is primarily defined for **BibTeX** to CFF conversion. Reverse
 mapping is a best-effort approximation and may be lossy.
 
 After presenting the general mapping between **BibTeX** **entries** and
-**fields** and CFF keys, the next section introduces
-[**entry models**](#entrymodels) that refine these rules for specific
-**BibTeX** entry types.
+**fields** and CFF keys, the next section introduces [**entry
+models**](#entrymodels) that refine these rules for specific **BibTeX** entry
+types.
 
 The mapping is structured according to the transformation semantics defined
 below.
@@ -434,11 +436,12 @@ knitr::kable(
 The previous mapping has the following specifications:
 
 - **\@book**, **\@inbook** and **\@incollection** are closely related in
-  **BibTeX**[^3]. While **\@inbook** and **\@incollection** both reference parts
-  of a **\@book**, the former is used for citing sections, chapters, pages or other
-  specific parts, whereas the latter is used for citing parts with a specific
-  title. Since CFF allows keys `type: book` and `collection-type: book`, we can
-  use a combination of these fields to tag each entry type in CFF accordingly.
+  **BibTeX**[^3]. The crosswalk maps **\@book** and **\@inbook** to `type: book`
+  and distinguishes **\@inbook** with `section` and/or `start`/`end`.
+  **\@incollection** maps to `type: generic`, with **booktitle** preserved as
+  `collection-title`. When **series** is provided for **\@book** or
+  **\@inbook**, it is represented by `collection-title` together with
+  `collection-type: book-series`.
 - **\@mastersthesis** and **\@phdthesis** are tagged using a combination of
   `type: thesis` and `thesis-type` keys.
 
@@ -504,7 +507,12 @@ We provide more detail on some of the mappings presented in the table above:
   same entry-based logic, using the key `location` as a fallback value when
   mapping to **address**.
 - Because of the complexity mentioned above, **institution, organization** and
-  **school** are mapped to `institution`.
+  **school** are mapped to `institution`. For applicable entry types,
+  **organization** or **school** takes precedence when present, and otherwise an
+  existing **institution** is retained.
+- A **url** is preserved as `url`. URLs using the `doi.org` or `dx.doi.org`
+  resolver also populate `doi` with the normalized DOI value. Each URL is
+  classified independently when an entry provides multiple URLs.
 - **series** is mapped to `collection-title` only on those entries that do not
   require **booktitle**. In practice, this means that `collection-title`
   corresponds to **booktitle** (for **\@incollection** and **\@inproceedings**),
@@ -544,9 +552,8 @@ knitr::kable(
 The proposed crosswalk is subject to multiple structural limitations arising
 from differences between **BibTeX** and CFF schemas:
 
-- **Lossy mappings**: Some **BibTeX** fields, including **crossref**,
-  **annote** and **key**, have no equivalent in CFF and are omitted during
-  conversion.
+- **Lossy mappings**: Some **BibTeX** fields, including **crossref**, **annote**
+  and **key**, have no equivalent in CFF and are omitted during conversion.
 - **Ambiguous semantics**: Certain fields such as **address** and **series**
   have context-dependent meanings in **BibTeX**, requiring heuristic mapping to
   CFF keys such as `institution`, `location` or `collection-title`.
@@ -628,9 +635,8 @@ toBibtex(cff_read_bib_text(bib))
 In terms of fields required in **BibTeX**, the primary difference between
 **\@book** and **\@inbook** is that **\@inbook** requires a **chapter** or
 **page** field, while **\@book** does not allow these fields as optional.
-Therefore, we propose
-that an **\@inbook** entry in CFF be treated as a **\@book** with the following
-supplementary fields:
+Therefore, we propose that an **\@inbook** entry in CFF be treated as a
+**\@book** with the following supplementary fields:
 
 1.  `section`: To denote the specific **chapter** within the book.
 2.  `start`/`end`: To indicate the range of **pages** covered by the section.
@@ -1190,8 +1196,8 @@ Whereas **BibLaTeX** [@biblatexpack] specifies:
 When considering required fields, an important difference is the **booktitle**
 requirement in **BibLaTeX**. Notably, **BibTeX** **\@incollection** also
 requires this field. Moreover, both **BibTeX** **\@incollection** and
-**BibLaTeX** **\@inbook**
-emphasize its reference to *"a part of a book (...) with its own title"*.
+**BibLaTeX** **\@inbook** emphasize its reference to *"a part of a book (...)
+with its own title"*.
 
 In this article, the proposed crosswalk ensures full compatibility with
 **BibTeX**. Therefore, we treat a **BibLaTeX** **\@inbook** entry as equivalent

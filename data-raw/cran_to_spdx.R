@@ -1,6 +1,6 @@
 ## code to prepare `cran_to_spdx` dataset goes here
 
-# Run on 2024-07-23
+# Run on 2026-08-31
 library(ggplot2)
 library(dplyr)
 
@@ -29,7 +29,7 @@ paste0(cran_packs[1:20, ]$LICENSE, collapse = " | ")
 lic_string <- as.character(cran_packs$LICENSE)
 
 # Split if needed
-split <- unlist(strsplit(lic_string, "\\| | \\+ |\\+"))
+split <- unlist(strsplit(lic_string, "\\s*(?:\\||\\+)\\s*", perl = TRUE))
 
 # Clean leading and trailing blanks
 split <- trimws(split)
@@ -71,12 +71,8 @@ themap <- lapply(mymap, function(x) {
 
   licenses <- as.character(x)
 
-  # The schema only accepts two LiCENSES max
-
-  licenses <- unlist(strsplit(licenses, "\\| "))[1:2]
-
   # Clean up and split
-  split <- unlist(strsplit(licenses, " \\+ |\\+"))
+  split <- unlist(strsplit(licenses, "\\s*(?:\\||\\+)\\s*", perl = TRUE))
 
   # Clean leading and trailing blanks
   split <- unique(trimws(split))
@@ -92,7 +88,7 @@ themap <- lapply(mymap, function(x) {
   licenses_list <- lapply(licenses_df$SPDX, clean_str)
   licenses_list <- drop_null(licenses_list)
 
-  license_char <- unlist(licenses_list)
+  license_char <- unique(unlist(licenses_list))
 
   !is.null(license_char)
 }) %>%
@@ -115,7 +111,11 @@ cran_db <- as.data.frame(available.packages()) %>%
   inner_join(mapped_end %>% filter(!captured))
 
 
-cran_db[, c("Package", "License")] %>% as.data.frame()
+cran_db[, c("Package", "License", "Published")] %>%
+  as.data.frame() |>
+  as_tibble() |>
+  arrange(desc(Published)) |>
+  print(n = 100)
 
 
 usethis::use_data(cran_to_spdx, overwrite = TRUE)

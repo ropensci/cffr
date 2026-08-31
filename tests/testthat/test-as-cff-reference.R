@@ -97,8 +97,7 @@ test_that("booklet bibentries round-trip through cff references", {
   fld1 <- sort(names(unclass(bib)[[1]]))
   fld2 <- sort(names(unclass(tobib)[[1]]))
 
-  # Keyword is not coerced
-  expect_identical(setdiff(fld1, fld2), "keywords")
+  expect_identical(fld1, fld2)
 })
 
 test_that("conference bibentries round-trip through cff references", {

@@ -45,8 +45,8 @@
 #' the dependency scope and version constraint from the source `DESCRIPTION`,
 #' URLs and repository information from the installed dependency's
 #' `DESCRIPTION` and the canonical CRAN DOI only when the dependency is
-#' available from CRAN. A release date, when present, determines the year;
-#' otherwise the citation year is retained.
+#' available from CRAN. A release date, when present, determines the year, with
+#' the citation year retained otherwise.
 #'
 #' By default, only persons whose role in the `DESCRIPTION` file of the package
 #' is author (`"aut"`) or maintainer (`"cre"`) are considered package authors.
@@ -230,7 +230,8 @@ abort_invalid_cff_source <- function(hint_source, call = environment()) {
     return(invisible(NULL))
   }
 
-  msg_hint <- switch(hint_source,
+  msg_hint <- switch(
+    hint_source,
     "dontknow" = paste0(
       "If it is a package, ",
       "you may need to install it with ",
@@ -246,7 +247,8 @@ abort_invalid_cff_source <- function(hint_source, call = environment()) {
 }
 
 cff_description_path <- function(x, hint_source) {
-  switch(hint_source,
+  switch(
+    hint_source,
     "indev" = file.path(getwd(), "DESCRIPTION"),
     "description" = x,
     "package" = system.file("DESCRIPTION", package = x)
@@ -254,7 +256,8 @@ cff_description_path <- function(x, hint_source) {
 }
 
 cff_citation_path <- function(x, hint_source) {
-  switch(hint_source,
+  switch(
+    hint_source,
     "indev" = file.path(getwd(), "inst/CITATION"),
     "description" = cff_citation_from_description(x),
     "package" = system.file("CITATION", package = x)

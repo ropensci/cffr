@@ -1,8 +1,11 @@
 # cffr (development version)
 
 - `as_cff.bibentry()` now selects the first `issn` of each `bibentry()`.
+- `as_cff.bibentry()` now preserves single keywords and generic institutions, removes empty keyword values, restores `collection-type: book-series` for **\@book** and **\@inbook** series, preserves legal commas in URLs, removes duplicate URLs and extracts DOI resolver URLs without including resolver query or fragment components in DOI values. Original URL metadata is retained.
 - `cff_create()` no longer creates duplicate identifiers when merging inferred CRAN metadata with `CITATION` metadata.
-- `cff_create()` now adds inferred CRAN DOIs only to packages available from CRAN. Dependency references retain extracted titles, abstracts, authors and citation years while adding their declared scope and version constraint, plus URLs and repository information from installed package metadata; a release date takes precedence over a citation year when available (#114).
+- `cff_create()` now adds inferred CRAN DOIs only to packages available from CRAN. Dependency references retain extracted titles, abstracts, authors and citation years while adding their declared scope and version constraint, plus URLs and repository information from installed package metadata. A release date takes precedence over a citation year when available (#114).
+- `cff_create()` now preserves every recognized alternative license from `DESCRIPTION` instead of limiting the CFF output to two SPDX identifiers.
+- `cff_create()` now trims, removes empty and duplicate `X-schema.org-keywords` values and preserves a single value as a one-item CFF keyword array.
 - `cff_read_citation()` now makes every field supplied in `meta`, including custom `DESCRIPTION` fields, available to `CITATION` files and no longer retries with metadata from the **base** package when reading fails (#114).
 
 # cffr 1.4.2

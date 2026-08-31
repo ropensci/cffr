@@ -466,15 +466,24 @@ test_that("cff_create validates package keywords", {
   # Single keyword
   desc::desc_set("X-schema.org-keywords", "keyword1, keyword1", file = tmp)
   cffobj3 <- cff_create(tmp)
-  expect_length(cffobj3$keywords, 2)
-  expect_equal(cffobj3$keywords, c("keyword1", "r-package"))
+  expect_identical(cffobj3$keywords, list("keyword1"))
   expect_true(cff_validate(cffobj3, verbose = FALSE))
 
-  # NULL case keyword
+  # Single r-package keyword
   desc::desc_set("X-schema.org-keywords", "r-package", file = tmp)
   cffobj4 <- cff_create(tmp)
-  expect_null(cffobj4$keywords)
+  expect_identical(cffobj4$keywords, list("r-package"))
   expect_true(cff_validate(cffobj4, verbose = FALSE))
+
+  # Normalize keyword separators without changing their content
+  desc::desc_set(
+    "X-schema.org-keywords",
+    " keyword1 , , keyword1,  keyword2 ",
+    file = tmp
+  )
+  cffobj5 <- cff_create(tmp)
+  expect_identical(cffobj5$keywords, c("keyword1", "keyword2"))
+  expect_true(cff_validate(cffobj5, verbose = FALSE))
 })
 
 

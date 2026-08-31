@@ -67,8 +67,8 @@ reference is adapted to the CFF software-reference type and enriched with
 the dependency scope and version constraint from the source \code{DESCRIPTION},
 URLs and repository information from the installed dependency's
 \code{DESCRIPTION} and the canonical CRAN DOI only when the dependency is
-available from CRAN. A release date, when present, determines the year;
-otherwise the citation year is retained.
+available from CRAN. A release date, when present, determines the year, with
+the citation year retained otherwise.
 
 By default, only persons whose role in the \code{DESCRIPTION} file of the package
 is author (\code{"aut"}) or maintainer (\code{"cre"}) are considered package authors.

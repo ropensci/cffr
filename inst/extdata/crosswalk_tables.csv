@@ -55,7 +55,7 @@
 "fields_bib2cff","**edition**","`edition`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "fields_bib2cff","**editor**","`editors`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "fields_bib2cff","**howpublished**","`medium`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"fields_bib2cff","**institution, school, organization**","`institution`","No overlapping on **BibteX** requirements",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_bib2cff","**institution, school, organization**","`institution`","For applicable entries, **school** or **organization** takes precedence when present, and otherwise **institution** is retained.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "fields_bib2cff","**journal**","`journal`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "fields_bib2cff","**key**","Not clear, won't be mapped",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "fields_bib2cff","**month**","`month`","Fallback: information in `date-published`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -75,10 +75,10 @@
 "fields_biblatex2cff","**isbn**","`isbn`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "fields_biblatex2cff","**issn**","`issn`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "fields_biblatex2cff","**issuetitle**","`issue-title`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"fields_biblatex2cff","**keywords**","`keywords`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_biblatex2cff","**keywords**","`keywords`","A single value is preserved as a one-item CFF array.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "fields_biblatex2cff","**pagetotal**","`pages`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "fields_biblatex2cff","**translator**","`translators`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"fields_biblatex2cff","**url**","`url`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"fields_biblatex2cff","**url**","`url` and `doi`","The URL is preserved, and DOI resolver URLs also populate `doi`.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "fields_biblatex2cff","**urldate**","`date-accessed`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "fields_biblatex2cff","**version**","`version`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "model_article","**\@article**","`type: article, magazine-article,  newspaper-article`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -151,7 +151,7 @@
 "model_manual","**title** (required)","`title`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "model_manual","**author**","`authors`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "model_manual","**organization**","`institution`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"model_manual","**address**","`address` property of `organization`","On missing `organization` mapped to `location`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"model_manual","**address**","`address` property of `institution`","On missing `organization` mapped to `location`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "model_manual","**edition**","`edition`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "model_manual","**month**","`month`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "model_manual","**year**","`year`",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
