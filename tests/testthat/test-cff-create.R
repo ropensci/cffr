@@ -484,6 +484,12 @@ test_that("cff_create validates package keywords", {
   cffobj5 <- cff_create(tmp)
   expect_identical(cffobj5$keywords, c("keyword1", "keyword2"))
   expect_true(cff_validate(cffobj5, verbose = FALSE))
+
+  # Omit keyword metadata when every separated value is empty
+  desc::desc_set("X-schema.org-keywords", ", ,", file = tmp)
+  cffobj6 <- cff_create(tmp)
+  expect_null(cffobj6$keywords)
+  expect_true(cff_validate(cffobj6, verbose = FALSE))
 })
 
 

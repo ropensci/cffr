@@ -44,6 +44,7 @@ Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
 LazyData: true
+X-schema.org-applicationCategory: Citation Management
 X-schema.org-isPartOf: https://ropensci.org
 X-schema.org-keywords: attribution, citation, credit, citation-files, cff,
     metadata, citation-file-format, cran, r, r-package, ropensci, rstats,
