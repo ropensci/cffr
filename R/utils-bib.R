@@ -27,8 +27,7 @@ get_bib_note <- function(x) {
 }
 
 guess_bibtype <- function(x) {
-  init_guess <- switch(
-    tolower(x$type),
+  init_guess <- switch(tolower(x$type),
     "article" = "article",
     "book" = "book",
     "manual" = "manual",

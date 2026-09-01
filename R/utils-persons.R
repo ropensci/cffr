@@ -190,8 +190,7 @@ validate_cff_person_fields <- function(person_cff) {
   is_entity <- as.character("name" %in% names(person_cff))
 
   # Keep only valid tags depending on entity or person.
-  definition <- switch(
-    is_entity,
+  definition <- switch(is_entity,
     "TRUE" = cff_schema_definitions_entity(),
     cff_schema_definitions_person()
   )

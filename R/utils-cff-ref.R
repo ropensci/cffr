@@ -15,8 +15,7 @@ get_bibtex_entry <- function(bib) {
 
   # Manage type from BibTeX and convert to CFF.
   # This overwrites the BibTeX type field. This function does not handle it.
-  cit_list$type <- switch(
-    init_type,
+  cit_list$type <- switch(init_type,
     "article" = "article",
     "book" = "book",
     "booklet" = "pamphlet",
@@ -145,8 +144,7 @@ get_bibtex_fields <- function(cit_list) {
 get_bibtex_inst <- function(field_list) {
   # Initial values.
   bibtex_entry <- field_list$bibtex_entry
-  to_replace <- switch(
-    bibtex_entry,
+  to_replace <- switch(bibtex_entry,
     "mastersthesis" = "school",
     "phdthesis" = "school",
     "conference" = "organization",
@@ -193,8 +191,7 @@ add_thesis <- function(cit_list) {
     return(cit_list)
   }
 
-  cit_list$`thesis-type` <- switch(
-    bibtex_entry,
+  cit_list$`thesis-type` <- switch(bibtex_entry,
     phdthesis = "PhD Thesis",
     "Master's Thesis"
   )

@@ -4,7 +4,6 @@
   "identifier": "cffr",
   "description": "Citation File Format ('CFF') version 1.2.0 <doi:10.5281/zenodo.5171937> is a human- and machine-readable file format for software citation metadata. Core utilities generate, read, write and validate Citation File Format metadata for 'R' packages.",
   "name": "cffr: Generate Citation File Format ('CFF') Metadata",
-  "applicationCategory": "Citation Management",
   "relatedLink": ["https://docs.ropensci.org/cffr/", "https://CRAN.R-project.org/package=cffr"],
   "codeRepository": "https://github.com/ropensci/cffr",
   "issueTracker": "https://github.com/ropensci/cffr/issues",
@@ -233,9 +232,10 @@
     },
     "SystemRequirements": null
   },
+  "applicationCategory": "CitationManagement",
   "isPartOf": "https://ropensci.org",
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata", "citation-file-format", "cran", "r", "r-package", "ropensci", "rstats", "r-cran"],
-  "fileSize": "2111.535KB",
+  "fileSize": "1020.018KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

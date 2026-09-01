@@ -230,8 +230,7 @@ abort_invalid_cff_source <- function(hint_source, call = environment()) {
     return(invisible(NULL))
   }
 
-  msg_hint <- switch(
-    hint_source,
+  msg_hint <- switch(hint_source,
     "dontknow" = paste0(
       "If it is a package, ",
       "you may need to install it with ",
@@ -247,8 +246,7 @@ abort_invalid_cff_source <- function(hint_source, call = environment()) {
 }
 
 cff_description_path <- function(x, hint_source) {
-  switch(
-    hint_source,
+  switch(hint_source,
     "indev" = file.path(getwd(), "DESCRIPTION"),
     "description" = x,
     "package" = system.file("DESCRIPTION", package = x)
@@ -256,8 +254,7 @@ cff_description_path <- function(x, hint_source) {
 }
 
 cff_citation_path <- function(x, hint_source) {
-  switch(
-    hint_source,
+  switch(hint_source,
     "indev" = file.path(getwd(), "inst/CITATION"),
     "description" = cff_citation_from_description(x),
     "package" = system.file("CITATION", package = x)

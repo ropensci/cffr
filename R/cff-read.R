@@ -121,8 +121,7 @@ cff_read <- function(path, ...) {
     ))
   }
 
-  endobj <- switch(
-    filetype,
+  endobj <- switch(filetype,
     "cff_citation" = cff_read_cff_citation(path, ...),
     "description" = cff_read_description(path, ...),
     "bib" = cff_read_bib(path, ...),

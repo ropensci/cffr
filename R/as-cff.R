@@ -268,8 +268,7 @@ new_cff <- function(x) {
 
   xend <- rapply_class(x)
 
-  final_class <- switch(
-    guess_x,
+  final_class <- switch(guess_x,
     "cff_full" = "cff",
     "unclear" = "cff",
     c(guess_x, "cff")
