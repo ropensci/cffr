@@ -66,14 +66,18 @@ test_that("as_bibentry converts supported objects by default", {
   expect_snapshot(s <- as_bibentry(a = 1))
 })
 
-test_that("as_bibentry returns an empty bibentry for NULL", {
+test_that("as_bibentry creates a package bibentry for NULL", {
   skip_on_cran()
 
   local_mock_package()
 
-  # Get bibentry
-  a_bib <- as_bibentry()
+  package_cff <- cff_create()
+  expect_true(cff_validate(package_cff, verbose = FALSE))
 
+  a_bib <- as_bibentry(NULL)
+
+  expect_s3_class(a_bib, "bibentry")
+  expect_identical(a_bib, as_bibentry(package_cff))
   expect_snapshot(toBibtex(a_bib))
 })
 

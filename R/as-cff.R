@@ -134,7 +134,8 @@ as_cff.bibentry <- function(x, ...) {
 #' @export
 #' @encoding UTF-8
 as_cff.Bibtex <- function(x, ...) {
-  tmp <- tempfile(fileext = ".bib")
+  tmp <- cff_tempfile(fileext = ".bib")
+  on.exit(unlink(tmp), add = TRUE)
   writeLines(x, tmp)
   abib <- cff_read_bib(tmp)
   cff_refs <- as_cff(abib, ...)

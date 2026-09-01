@@ -24,6 +24,49 @@ test_that("cff_read_cff_citation reads and validates cff files", {
   expect_identical(f1, f2)
 })
 
+test_that("cff_read_cff_citation preserves one-item keyword sequences", {
+  valid <- withr::local_tempfile(
+    fileext = ".cff",
+    lines = c(
+      "cff-version: 1.2.0",
+      "message: Cite this work",
+      "title: Keyword sequence",
+      "authors:",
+      "  - family-names: Author",
+      "keywords:",
+      "  - citation",
+      "references:",
+      "  - type: generic",
+      "    title: Referenced work",
+      "    authors:",
+      "      - family-names: Author",
+      "    keywords:",
+      "      - metadata"
+    )
+  )
+
+  valid_cff <- cff_read_cff_citation(valid)
+  expect_identical(valid_cff$keywords, list("citation"))
+  expect_identical(valid_cff$references[[1]]$keywords, list("metadata"))
+  expect_true(cff_validate(valid_cff, verbose = FALSE))
+
+  invalid <- withr::local_tempfile(
+    fileext = ".cff",
+    lines = c(
+      "cff-version: 1.2.0",
+      "message: Cite this work",
+      "title: Keyword scalar",
+      "authors:",
+      "  - family-names: Author",
+      "keywords: citation"
+    )
+  )
+
+  invalid_cff <- cff_read_cff_citation(invalid)
+  expect_identical(invalid_cff$keywords, "citation")
+  expect_false(cff_validate(invalid_cff, verbose = FALSE))
+})
+
 test_that("cff_read_description reads DESCRIPTION files", {
   expect_snapshot(cff_read_description("a"), error = TRUE)
 
@@ -226,6 +269,28 @@ test_that("GitHub topics can be fetched from the API response", {
     ),
     list("r", "citation")
   )
+})
+
+test_that("GitHub topic fetching removes its temporary response", {
+  tmpfile <- withr::local_tempfile(fileext = ".json")
+  unlink(tmpfile)
+  local_mocked_bindings(cff_tempfile = \(...) tmpfile)
+
+  downloader <- function(api_url, destfile, ...) {
+    jsonlite::write_json(list(topics = "citation"), destfile)
+    0
+  }
+
+  topics <- fetch_gh_topics(
+    "https://api.github.com/repos/ropensci/cffr",
+    downloader = downloader
+  )
+
+  expect_identical(topics, list("citation"))
+  expect_false(file.exists(tmpfile))
+
+  cffobj <- cff_create(cff(), keys = list(keywords = topics))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
 test_that("GitHub topics retry without token after authenticated fetch fails", {

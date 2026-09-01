@@ -11,8 +11,8 @@
 #'
 #' @param x The source used to generate the `bibentry` object with
 #'   \CRANpkg{cffr}. It can be:
-#'   - A missing value, which retrieves the `DESCRIPTION` file from your
-#'     in-development package.
+#'   - A missing or `NULL` value, which retrieves the `DESCRIPTION` file from
+#'     your in-development package.
 #'   - An existing `cff` object created with [cff()], [cff_create()] or
 #'     [as_cff()].
 #'   - A path to a `CITATION.cff` file (`"CITATION.cff"`).
@@ -171,7 +171,7 @@ as_bibentry.character <- function(
 #' @export
 #' @encoding UTF-8
 as_bibentry.NULL <- function(x, ...) {
-  cff_create()
+  as_bibentry(cff_create(), ...)
 }
 
 #' @rdname as_bibentry

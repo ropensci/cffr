@@ -330,6 +330,8 @@ inline code formatting (for example, `book` and `edition`) is used for CFF keys.
 | **editor**    | `editors`          | transform    | Same parsing logic as authors       |
 | **year**      | `year`             | direct       | \-                                  |
 | **month**     | `month`            | heuristic    | Format normalization required       |
+| **date**      | `date-published`, `year` and `month` | transform | Partial dates retain available precision |
+| **urldate**   | `date-accessed`     | transform    | Unsupported values are retained for validation |
 | **journal**   | `journal`          | direct       | \-                                  |
 | **booktitle** | `collection-title` | transform    | Container title                     |
 | **volume**    | `volume`           | direct       | \-                                  |
@@ -511,8 +513,8 @@ We provide more detail on some of the mappings presented in the table above:
   **organization** or **school** takes precedence when present, and otherwise an
   existing **institution** is retained.
 - A **url** is preserved as `url`. URLs using the `doi.org` or `dx.doi.org`
-  resolver also populate `doi` with the normalized DOI value. Each URL is
-  classified independently when an entry provides multiple URLs.
+  resolver also populate `doi` when their paths contain a valid DOI value. Each
+  URL is classified independently when an entry provides multiple URLs.
 - **series** is mapped to `collection-title` only on those entries that do not
   require **booktitle**. In practice, this means that `collection-title`
   corresponds to **booktitle** (for **\@incollection** and **\@inproceedings**),
@@ -521,6 +523,10 @@ We provide more detail on some of the mappings presented in the table above:
   but in those cases it is an optional field.
 - When mapping from CFF to **BibTeX**, we propose to use `date-published` as a
   fallback for extracting **month** and **year** fields.
+- When mapping BibLaTeX **date** to CFF, complete dates populate
+  `date-published`, while `YYYY` and `YYYY-MM` values populate the available
+  **year** and **month** fields without inventing a day. Date values that cannot
+  be represented remain unchanged so that CFF validation can report them.
 - When **pages** is provided as a range separated by `--`, that is, **pages =
   {3--5}**, it is coerced as `start: 3`, `end: 5` in CFF.
 

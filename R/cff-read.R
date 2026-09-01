@@ -141,15 +141,27 @@ cff_read_cff_citation <- function(path, ...) {
   cffobj <- yaml::read_yaml(
     path,
     ...,
-    # Always read languages as a list (#105).
-    handlers = list(map = function(x) {
-      if (length(x$languages) == 1) {
-        x$languages <- list(x$languages)
-      }
-      x
-    })
+    # Preserve YAML sequences with one element as lists (#105).
+    handlers = list(seq = cff_yaml_sequence)
   )
   new_cff(cffobj)
+}
+
+cff_yaml_sequence <- function(x) {
+  if (length(x) == 1) {
+    return(x)
+  }
+
+  scalar <- vapply(
+    x,
+    \(value) !is.list(value) && length(value) == 1,
+    logical(1)
+  )
+  if (all(scalar)) {
+    return(do.call(c, unname(x)))
+  }
+
+  x
 }
 
 #' @rdname cff_read

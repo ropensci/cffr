@@ -89,9 +89,9 @@ cff_read_bib_text <- function(x, encoding = "UTF-8", ...) {
     )
   }
   # Write `x` to a temporary file.
-  file <- tempfile(fileext = ".bib")
+  file <- cff_tempfile(fileext = ".bib")
+  on.exit(unlink(file), add = TRUE)
   writeLines(x, file)
   the_cff <- cff_read_bib(file, encoding = encoding, ...)
-  unlink(file)
   the_cff
 }

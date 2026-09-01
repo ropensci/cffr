@@ -308,9 +308,15 @@ get_gh_topics <- function(x) {
 
 fetch_gh_topics <- function(
   api_url,
-  tmpfile = tempfile(fileext = ".json"),
+  tmpfile = NULL,
   downloader = download.file
 ) {
+  remove_tmpfile <- is.null(tmpfile)
+  if (remove_tmpfile) {
+    tmpfile <- cff_tempfile(fileext = ".json")
+    on.exit(unlink(tmpfile), add = TRUE)
+  }
+
   # Check whether GH_TOKEN is set in Renviron.
   # Tests can quickly reach the GitHub API limit without authentication.
   # Authenticate to increase the limit.

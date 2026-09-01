@@ -14,6 +14,23 @@ test_that("cff_read_bib_text rejects file paths mixed with entries", {
   expect_snapshot(cff_read_bib_text(c("first.bib", "second.bib")), error = TRUE)
 })
 
+test_that("cff_read_bib_text removes its temporary file after errors", {
+  tmp <- withr::local_tempfile(fileext = ".bib")
+  unlink(tmp)
+  local_mocked_bindings(
+    cff_tempfile = \(...) tmp,
+    cff_read_bib = function(...) {
+      stop("Unable to read temporary BibTeX", call. = FALSE)
+    }
+  )
+
+  expect_snapshot(
+    cff_read_bib_text("@misc{temporary, title = {Temporary}}"),
+    error = TRUE
+  )
+  expect_false(file.exists(tmp))
+})
+
 test_that("cff_read_bib_text reads entries and bib files", {
   skip_if_not_installed("bibtex", "0.5.0")
 

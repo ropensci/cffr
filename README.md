@@ -79,7 +79,7 @@ from **R** package metadata.
 its `CITATION` file, if present. **cffr** works best if your package
 passes `R CMD check` or `devtools::check()`.
 
-As of 2026-09-01 there are at least 588 repositories on GitHub using
+As of 2026-09-01 there are at least 590 repositories on GitHub using
 **cffr**. [Browse the search
 results](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 

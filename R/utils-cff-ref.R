@@ -119,11 +119,17 @@ get_bibtex_fields <- function(cit_list) {
   }
 
   # Treat additional dates ----
-  dpub <- clean_str(cit_list$`date-published`)
-  cit_list$`date-published` <- clean_str(as.Date(dpub, optional = TRUE))
+  dpub <- bibtex_date_parts(cit_list$`date-published`, allow_partial = TRUE)
+  cit_list$`date-published` <- dpub$date
+  if (is.null(cit_list$year)) {
+    cit_list$year <- dpub$year
+  }
+  if (is.null(cit_list$month)) {
+    cit_list$month <- dpub$month
+  }
 
-  datacc <- clean_str(cit_list$`date-accessed`)
-  cit_list$`date-accessed` <- clean_str(as.Date(datacc, optional = TRUE))
+  datacc <- bibtex_date_parts(cit_list$`date-accessed`)
+  cit_list$`date-accessed` <- datacc$date
 
   # Treat pages.
 
@@ -137,6 +143,36 @@ get_bibtex_fields <- function(cit_list) {
   }
 
   cit_list
+}
+
+bibtex_date_parts <- function(x, allow_partial = FALSE) {
+  value <- clean_str(x)
+  result <- list(date = NULL, year = NULL, month = NULL)
+
+  if (is.null(value)) {
+    return(result)
+  }
+
+  if (grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}$", value)) {
+    parsed <- suppressWarnings(as.Date(value, format = "%Y-%m-%d"))
+    if (!is.na(parsed)) {
+      result$date <- as.character(parsed)
+      return(result)
+    }
+  }
+
+  if (allow_partial && grepl("^[0-9]{4}(-[0-9]{2})?$", value)) {
+    parts <- strsplit(value, "-", fixed = TRUE)[[1]]
+    month <- parts[2]
+    if (is.na(month) || as.integer(month) %in% seq_len(12)) {
+      result$year <- parts[1]
+      result$month <- clean_str(month)
+      return(result)
+    }
+  }
+
+  result$date <- value
+  result
 }
 
 #' Modify mapping of some organization fields from BibTeX to CFF
@@ -285,6 +321,14 @@ is_doi_url <- function(x) {
   grepl("^https?://(?:dx\\.)?doi\\.org/", x, ignore.case = TRUE, perl = TRUE)
 }
 
+is_cff_doi <- function(x) {
+  grepl(
+    "^10\\.\\d{4,9}(\\.\\d+)?/[A-Za-z0-9:/_;\\-\\.\\(\\)\\[\\]\\\\]+$",
+    x,
+    perl = TRUE
+  )
+}
+
 get_bibtex_url_values <- function(cit_list) {
   urls <- unlist(cit_list[names(cit_list) == "url"], use.names = FALSE)
   urls <- unlist(strsplit(
@@ -317,6 +361,9 @@ get_bibtex_doi <- function(cit_list) {
       x <- sub("[?#].*$", "", x)
     }
     x <- clean_str(x)
+    if (is_resolver && !isTRUE(is_cff_doi(x))) {
+      return(NULL)
+    }
     x
   }))
 

@@ -7,7 +7,7 @@
       i argument "bibtype" is missing, with no default
       ! Returning an empty <bibentry>.
 
-# as_bibentry returns an empty bibentry for NULL
+# as_bibentry creates a package bibentry for NULL
 
     Code
       toBibtex(a_bib)

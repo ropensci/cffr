@@ -54,6 +54,14 @@
       editors:
       - name: Editor
 
+# Bibtex conversion removes its temporary file after errors
+
+    Code
+      as_cff(bib)
+    Condition
+      Error:
+      ! Unable to parse temporary BibTeX
+
 # as_cff converts named lists by default
 
     Code

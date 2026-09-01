@@ -36,6 +36,14 @@
       x Found 2 file-like values at positions 1 and 2.
       i Read each file separately with `cffr::cff_read_bib()`.
 
+# cff_read_bib_text removes its temporary file after errors
+
+    Code
+      cff_read_bib_text("@misc{temporary, title = {Temporary}}")
+    Condition
+      Error:
+      ! Unable to read temporary BibTeX
+
 # cff_read_bib_text reads entries and bib files
 
     Code

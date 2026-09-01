@@ -61,7 +61,13 @@ two_persons
 
 class(two_persons)
 
-# Single element.
+# A subset remains an array.
+
+one_person <- two_persons[1]
+
+class(one_person)
+
+# Extract a single element.
 
 two_persons[[1]]
 
@@ -77,7 +83,13 @@ ref_list
 
 class(ref_list)
 
-# Single element.
+# A subset remains an array.
+
+one_ref <- ref_list[1]
+
+class(one_ref)
+
+# Extract a single element.
 
 ref_list[[1]]
 

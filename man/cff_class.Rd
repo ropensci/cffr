@@ -105,7 +105,14 @@ two_persons
 class(two_persons)
 #> [1] "cff_pers_lst" "cff"
 
-# Single element.
+# A subset remains an array.
+
+one_person <- two_persons[1]
+
+class(one_person)
+#> [1] "cff_pers_lst" "cff"
+
+# Extract a single element.
 
 two_persons[[1]]
 #> family-names: person
@@ -147,7 +154,14 @@ ref_list
 class(ref_list)
 #> [1] "cff_ref_lst" "cff"
 
-# Single element.
+# A subset remains an array.
+
+one_ref <- ref_list[1]
+
+class(one_ref)
+#> [1] "cff_ref_lst" "cff"
+
+# Extract a single element.
 
 ref_list[[1]]
 #> type: manual

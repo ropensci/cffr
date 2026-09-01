@@ -43,6 +43,10 @@ drop_null <- function(x) {
   x[lengths(x) != 0]
 }
 
+cff_tempfile <- function(fileext = "") {
+  tempfile(fileext = fileext)
+}
+
 #' Pretty-print snapshots
 #' @noRd
 print_snapshot <- function(title = "----", obj) {
@@ -280,7 +284,8 @@ clean_package_meta <- function(meta) {
   # Convert to a desc object.
 
   # First write to a DCF file.
-  tmp <- tempfile("DESCRIPTION")
+  tmp <- cff_tempfile(fileext = "DESCRIPTION")
+  on.exit(unlink(tmp), add = TRUE)
   meta_unl <- unclass(meta)
   write.dcf(meta_unl, tmp)
   pkg <- desc::desc(tmp)
@@ -297,7 +302,6 @@ clean_package_meta <- function(meta) {
   } else {
     meta$Encoding <- "UTF-8"
   }
-  unlink(tmp, force = TRUE)
   meta
 }
 

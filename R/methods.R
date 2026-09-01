@@ -31,7 +31,7 @@ c.cff <- function(..., recursive = FALSE) {
 #' @encoding UTF-8
 `[.cff_ref_lst` <- function(x, i) {
   rval <- unclass(x)[i]
-  class(rval) <- class(x[[i]])
+  class(rval) <- class(x)
   rval
 }
 
@@ -41,7 +41,7 @@ c.cff <- function(..., recursive = FALSE) {
 #' @encoding UTF-8
 `[.cff_pers_lst` <- function(x, i) {
   rval <- unclass(x)[i]
-  class(rval) <- class(x[[i]])
+  class(rval) <- class(x)
   rval
 }
 

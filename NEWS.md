@@ -1,11 +1,14 @@
 # cffr (development version)
 
+- `as_bibentry()` now returns a `bibentry` object when `x` is `NULL`, using metadata from the package in the current working directory.
 - `as_cff.bibentry()` now selects the first `issn` of each `bibentry()`.
-- `as_cff.bibentry()` now preserves single keywords and generic institutions, removes empty keyword values, restores `collection-type: book-series` for **\@book** and **\@inbook** series, preserves legal commas in URLs, removes duplicate URLs and extracts DOI resolver URLs without including resolver query or fragment components in DOI values. Original URL metadata is retained.
+- `as_cff.bibentry()` now preserves single keywords and generic institutions, removes empty keyword values, restores `collection-type: book-series` for **\@book** and **\@inbook** series, preserves legal commas in URLs, removes duplicate URLs and extracts DOI resolver URLs only when their paths are valid DOI values. Partial BibLaTeX publication dates retain their available year and month, while unsupported date values remain available for CFF validation. Resolver query and fragment components are excluded from DOI values, while original URL metadata is retained.
+- `[.cff_ref_lst()` and `[.cff_pers_lst()` now preserve their collection classes for subsets of any length.
 - `cff_create()` no longer creates duplicate identifiers when merging inferred CRAN metadata with `CITATION` metadata.
 - `cff_create()` now adds inferred CRAN DOIs only to packages available from CRAN. Dependency references retain extracted titles, abstracts, authors and citation years while adding their declared scope and version constraint, plus URLs and repository information from installed package metadata. A release date takes precedence over a citation year when available (#114).
 - `cff_create()` now preserves every recognized alternative license from `DESCRIPTION` instead of limiting the CFF output to two SPDX identifiers.
 - `cff_create()` now trims, removes empty and duplicate `X-schema.org-keywords` values and preserves a single value as a one-item CFF keyword array.
+- `cff_read_cff_citation()` now preserves YAML sequences with one element, including `keywords`, while retaining invalid scalar values for CFF validation.
 - `cff_read_citation()` now makes every field supplied in `meta`, including custom `DESCRIPTION` fields, available to `CITATION` files and no longer retries with metadata from the **base** package when reading fails (#114).
 
 # cffr 1.4.2
@@ -17,6 +20,7 @@
 - `cff_gha_update()` now uses `path` when updating `.Rbuildignore`.
 - `cff_read_bib_text()` now rejects vectors that mix BibTeX entries with `.bib`
   file paths.
+- `cff_write_bib()` and `cff_write_citation()` now stop before modifying an existing file when its backup cannot be created, and backup numbering is no longer limited to 100 files.
 - `cff_write()` now formats the `inst/CITATION` update message correctly.
 
 # cffr 1.4.1

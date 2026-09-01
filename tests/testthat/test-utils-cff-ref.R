@@ -7,6 +7,39 @@ test_that("fallback_dates normalizes reference dates", {
   expect_snapshot(as_cff(p2))
 })
 
+test_that("BibLaTeX partial dates retain their available precision", {
+  partial <- bibentry(
+    "Misc",
+    title = "Partial publication date",
+    author = "A. Author",
+    date = "2024-05"
+  )
+  partial_ref <- as_cff(partial)
+
+  expect_identical(partial_ref[[1]]$year, "2024")
+  expect_identical(partial_ref[[1]]$month, "5")
+  expect_null(partial_ref[[1]]$`date-published`)
+
+  partial_cff <- cff_create(cff(), keys = list(references = partial_ref))
+  expect_true(cff_validate(partial_cff, verbose = FALSE))
+
+  inaccessible <- bibentry(
+    "Misc",
+    title = "Partial access date",
+    author = "A. Author",
+    urldate = "2024-05"
+  )
+  inaccessible_ref <- as_cff(inaccessible)
+
+  expect_identical(inaccessible_ref[[1]]$`date-accessed`, "2024-05")
+
+  inaccessible_cff <- cff_create(
+    cff(),
+    keys = list(references = inaccessible_ref)
+  )
+  expect_false(cff_validate(inaccessible_cff, verbose = FALSE))
+})
+
 test_that("BibTeX keywords omit empty values", {
   bib <- bibentry(
     "Misc",
@@ -159,6 +192,26 @@ test_that("DOI resolver URLs are classified independently", {
   expect_true(cff_validate(cffobj, verbose = FALSE))
 })
 
+test_that("non-DOI resolver paths remain URLs", {
+  resolver <- "https://doi.org/about"
+  fields <- list(url = resolver)
+  expect_identical(get_bibtex_doi(fields), list(doi = NULL, identifiers = NULL))
+
+  bib <- bibentry(
+    "Misc",
+    title = "DOI resolver page",
+    author = "A. Author",
+    year = "2020",
+    url = resolver
+  )
+  refs <- as_cff(bib)
+  expect_null(refs[[1]]$doi)
+  expect_identical(refs[[1]]$url, resolver)
+
+  cffobj <- cff_create(cff(), keys = list(references = refs))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+})
+
 test_that("BibTeX URLs preserve legal commas", {
   packed <- list(
     url = "https://example.org/?q=a,b, https://doi.org/10.1000/packed"
@@ -212,6 +265,19 @@ test_that("DOI resolver query and fragment are not DOI metadata", {
       identifiers = list(list(type = "doi", value = "10.1000/resolver"))
     )
   )
+
+  invalid_bib <- bibentry(
+    "Misc",
+    title = "Explicit DOI",
+    author = "A. Author",
+    year = "2020",
+    doi = explicit
+  )
+  invalid_refs <- as_cff(invalid_bib)
+  expect_identical(invalid_refs[[1]]$doi, explicit)
+
+  invalid_cff <- cff_create(cff(), keys = list(references = invalid_refs))
+  expect_false(cff_validate(invalid_cff, verbose = FALSE))
 
   bib <- bibentry(
     "Misc",

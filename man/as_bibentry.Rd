@@ -32,8 +32,8 @@ as_bibentry(x, ...)
 \item{x}{The source used to generate the \code{bibentry} object with
 \CRANpkg{cffr}. It can be:
 \itemize{
-\item A missing value, which retrieves the \code{DESCRIPTION} file from your
-in-development package.
+\item A missing or \code{NULL} value, which retrieves the \code{DESCRIPTION} file from
+your in-development package.
 \item An existing \code{cff} object created with \code{\link[=cff]{cff()}}, \code{\link[=cff_create]{cff_create()}} or
 \code{\link[=as_cff]{as_cff()}}.
 \item A path to a \code{CITATION.cff} file (\code{"CITATION.cff"}).

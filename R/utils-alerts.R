@@ -78,15 +78,23 @@ write_lines_msg <- function(lines, file, verbose, append) {
 
   # Create a backup if the file already exists.
   if (file_exist_abort(file)) {
-    for (i in seq(1, 100)) {
-      f <- paste0(file, ".bk", i)
-      if (!file_exist_abort(f)) break
+    backup <- cff_backup_path(file)
+    copied <- cff_copy_backup(file, backup)
+    if (!isTRUE(copied)) {
+      cli::cli_abort(
+        c(
+          "Cannot back up {.file {file}}.",
+          "i" = "The original file has not been modified."
+        ),
+        class = "cffr_error_backup"
+      )
     }
 
     if (verbose) {
-      cli::cli_alert_info("Saving a backup of {.file {file}} as {.file {f}}.")
+      cli::cli_alert_info(
+        "Saved a backup of {.file {file}} as {.file {backup}}."
+      )
     }
-    file.copy(file, f)
   }
 
   fh <- file(file, encoding = "UTF-8", open = ifelse(append, "a+", "w+"))
@@ -99,4 +107,19 @@ write_lines_msg <- function(lines, file, verbose, append) {
   if (verbose) {
     cli::cli_alert_success("Results written to {.file {file}}.")
   }
+}
+
+cff_backup_path <- function(file) {
+  index <- 1L
+  repeat {
+    backup <- paste0(file, ".bk", index)
+    if (!file.exists(backup)) {
+      return(backup)
+    }
+    index <- index + 1L
+  }
+}
+
+cff_copy_backup <- function(from, to) {
+  file.copy(from, to, overwrite = FALSE)
 }

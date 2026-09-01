@@ -20,6 +20,18 @@ test_that("clean_str removes empty and malformed values", {
   expect_null(clean_str(list()))
 })
 
+test_that("clean_package_meta removes its temporary file after errors", {
+  tmp <- withr::local_tempfile()
+  unlink(tmp)
+  local_mocked_bindings(cff_tempfile = \(...) tmp, clean_str = function(...) {
+    stop("Unable to clean package metadata", call. = FALSE)
+  })
+
+  meta <- packageDescription("cffr")
+  expect_snapshot(clean_package_meta(meta), error = TRUE)
+  expect_false(file.exists(tmp))
+})
+
 test_that("repository helpers select CRAN-compatible repositories", {
   # Use some other repos
   repos <- c("https://ropensci.r-universe.dev", "https://cloud.r-project.org")

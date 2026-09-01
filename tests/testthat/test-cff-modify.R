@@ -49,5 +49,5 @@ test_that("cff_modify preserves valid cff classes", {
 
   expect_true(cff_validate(mod, verbose = FALSE))
   expect_s3_class(mod$contact, c("cff_pers_lst", "cff"), exact = TRUE)
-  expect_s3_class(mod$contact[1], c("cff_pers", "cff"), exact = TRUE)
+  expect_s3_class(mod$contact[[1]], c("cff_pers", "cff"), exact = TRUE)
 })

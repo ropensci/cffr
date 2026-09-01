@@ -36,6 +36,30 @@ test_that("file_exist_abort reports missing files", {
   expect_true(file_exist_abort(tmp, abort = TRUE))
 })
 
+test_that("write_lines_msg does not limit backup numbering", {
+  tmp <- withr::local_tempfile()
+  writeLines("original", tmp)
+  existing <- paste0(tmp, ".bk", seq_len(100))
+  expect_true(all(file.create(existing)))
+
+  write_lines_msg("replacement", tmp, verbose = FALSE, append = FALSE)
+
+  expect_identical(readLines(paste0(tmp, ".bk101")), "original")
+  expect_identical(readLines(tmp), "replacement")
+})
+
+test_that("write_lines_msg preserves files when backup creation fails", {
+  tmp <- withr::local_tempfile(lines = "original")
+  local_mocked_bindings(cff_copy_backup = \(...) FALSE)
+
+  expect_error(
+    write_lines_msg("replacement", tmp, verbose = FALSE, append = FALSE),
+    class = "cffr_error_backup"
+  )
+
+  expect_identical(readLines(tmp), "original")
+})
+
 test_that("match_cff_arg validates allowed values", {
   expect_snapshot(match_cff_arg("a", "b", "..."), error = TRUE)
   expect_snapshot(match_cff_arg("a", c("b", "c", "d"), "what"), error = TRUE)

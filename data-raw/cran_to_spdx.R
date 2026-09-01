@@ -4,9 +4,9 @@
 library(ggplot2)
 library(dplyr)
 
-cran_packs <- as.data.frame(table(available.packages()[, "License"])) %>%
-  arrange(desc(Freq)) %>%
-  select(LICENSE = Var1, n = Freq) %>%
+cran_packs <- as.data.frame(table(available.packages()[, "License"])) |>
+  arrange(desc(Freq)) |>
+  select(LICENSE = Var1, n = Freq) |>
   as_tibble()
 
 # Add %
@@ -52,14 +52,14 @@ write.csv2(all_licenses, "data-raw/cran_licenses.csv", row.names = FALSE)
 cran_to_spdx <- read.csv2("data-raw/cran_licenses_mapped.csv")
 
 # Check
-cran_to_spdx %>% filter(!(LICENSE %in% all_licenses$LICENSE))
+cran_to_spdx |> filter(!(LICENSE %in% all_licenses$LICENSE))
 
 # Check on validator
 validator <- jsonlite::read_json("inst/schema/schema.json")
 
-licenses <- validator$definitions$`license-enum`$enum %>% unlist()
+licenses <- validator$definitions$`license-enum`$enum |> unlist()
 
-cran_to_spdx %>% filter(!(SPDX %in% licenses))
+cran_to_spdx |> filter(!(SPDX %in% licenses))
 
 
 # Summary CRAN
@@ -91,27 +91,27 @@ themap <- lapply(mymap, function(x) {
   license_char <- unique(unlist(licenses_list))
 
   !is.null(license_char)
-}) %>%
+}) |>
   unlist()
 
 
 mapped_end <- cran_packs
 mapped_end$captured <- themap
 
-mapped_end %>%
-  group_by(captured) %>%
-  summarise(n = sum(n)) %>%
+mapped_end |>
+  group_by(captured) |>
+  summarise(n = sum(n)) |>
   mutate(porc = n / sum(n))
 
 # Which packages I can't capture?
 
-cran_db <- as.data.frame(available.packages()) %>%
-  as_tibble() %>%
-  mutate(LICENSE = License) %>%
-  inner_join(mapped_end %>% filter(!captured))
+cran_db <- as.data.frame(available.packages()) |>
+  as_tibble() |>
+  mutate(LICENSE = License) |>
+  inner_join(mapped_end |> filter(!captured))
 
 
-cran_db[, c("Package", "License", "Published")] %>%
+cran_db[, c("Package", "License", "Published")] |>
   as.data.frame() |>
   as_tibble() |>
   arrange(desc(Published)) |>
