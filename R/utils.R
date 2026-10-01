@@ -59,7 +59,7 @@ get_avail_on_init <- function() {
   getOption("cffr.available_packages", avail_on_init) # nocov
 }
 
-#' Search for a package in available repositories.
+#' Search for a package in available repositories
 #' @param name Name of the package.
 #' @param avail Data frame with available packages. See
 #'   [utils::available.packages()].
@@ -281,7 +281,7 @@ clean_package_meta <- function(meta) {
     return(meta)
   }
 
-  # Convert to a desc object.
+  # Convert to a `desc` object.
 
   # First write to a DCF file.
   tmp <- cff_tempfile(fileext = "DESCRIPTION")

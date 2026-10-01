@@ -32,10 +32,10 @@ list.}
 \value{
 \itemize{
 \item \code{as_cff.person()} returns an object with classes
-\code{\link[=cff_pers_lst]{cff_pers_lst, cff}}.
+\code{\link{cff_pers_lst}} and \code{\link{cff}}.
 \item \code{as_cff.bibentry()} and \code{as_cff.Bibtex()} return an object with classes
-\code{\link[=cff_ref_lst]{cff_ref_lst, cff}}.
-\item The remaining methods return an object of class \code{cff}. However, if
+\code{\link{cff_ref_lst}} and \code{cff}.
+\item The remaining methods return a \code{cff} object. However, if
 \code{x} has a structure compatible with \code{definitions.person},
 \code{definitions.entity} or \code{definitions.reference}, the object has the
 corresponding subclass.
@@ -62,7 +62,7 @@ For \code{as_cff.bibentry()} and \code{as_cff.Bibtex()}, see
 performed.
 
 \code{\link[=as_cff_person]{as_cff_person()}} is preferred over \code{as_cff.person()} because it can handle
-\code{character} inputs such as \code{"Davis, Jr., Sammy"}. For \code{person} objects both
+\code{character} inputs such as \code{"Davis, Jr., Sammy"}. For \code{person} objects, both
 functions behave similarly.
 }
 \examples{

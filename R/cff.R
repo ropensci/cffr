@@ -9,7 +9,7 @@
 #'   arguments are supplied (the default behavior), a minimal valid `cff`
 #'   object is created.
 #'
-#' @return
+#' @returns
 #' A [`cff`] object. Under the hood, a `cff` object is a regular [base::list()]
 #' object with a special [`print`][print.cff()] method.
 #'

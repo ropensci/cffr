@@ -1,4 +1,4 @@
-# Utilities for as_cff_reference.
+# Utilities for `as_cff_reference()`.
 
 #' Extract and map BibTeX entries
 #' @noRd
@@ -75,7 +75,7 @@ get_bibtex_fields <- function(cit_list) {
   nm[nm == "address"] <- "location"
   nm[nm == "pages"] <- "bibtex_pages" # This would be removed later
 
-  # Get some fields from BibLaTeX
+  # Get additional fields from BibLaTeX.
   nm[nm == "date"] <- "date-published"
   nm[nm == "file"] <- "filename"
   nm[nm == "issuetitle"] <- "issue-title"
@@ -153,8 +153,13 @@ bibtex_date_parts <- function(x, allow_partial = FALSE) {
     return(result)
   }
 
-  if (grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}$", value)) {
-    parsed <- suppressWarnings(as.Date(value, format = "%Y-%m-%d"))
+  full_date <- grepl(
+    "^([0-9]{4}-[0-9]{2}-[0-9]{2}|[0-9]{4}/[0-9]{2}/[0-9]{2})$",
+    value
+  )
+  if (full_date) {
+    normalized <- gsub("/", "-", value, fixed = TRUE)
+    parsed <- suppressWarnings(as.Date(normalized, format = "%Y-%m-%d"))
     if (!is.na(parsed)) {
       result$date <- as.character(parsed)
       return(result)
@@ -450,7 +455,7 @@ get_bibtex_other_pers <- function(field_list) {
     end
   })
 
-  # If any field has multiple persons, paste and collapse them.
+  # If any field has multiple people, paste and collapse them.
   rest <- lapply(others, function(x) {
     if (length(x) > 1) {
       and <- paste(

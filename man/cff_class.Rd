@@ -87,7 +87,7 @@ information to the structures required by the CFF schema.
 
 The examples below use \code{\link[utils:person]{utils::person()}}.
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{## Array.
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{# Array of persons.
 two_persons <- as_cff_person(
   c(
     person("A", "person", comment = c(ORCID = "0000-0001-8457-4658")),
@@ -235,7 +235,7 @@ cff_validate(cff_valid)
 \subsection{Base methods provided by \CRANpkg{cffr}}{
 
 \CRANpkg{cffr} provides additional S3 methods for common coercion functions from
-the base and utils namespaces.
+the \pkg{base} and \pkg{utils} namespaces.
 \subsection{\code{\link[=as.data.frame]{as.data.frame()}}}{
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{minimal_cff <- cff()

@@ -6,7 +6,8 @@
 \alias{cran_to_spdx}
 \title{Mapping between \code{License} fields and SPDX}
 \format{
-A data frame with 87 rows and two variables:
+A \link[base:data.frame]{data frame} with 87 rows and two
+variables:
 \describe{
 \item{\code{LICENSE}}{A valid \code{License} string on CRAN.}
 \item{\code{SPDX}}{A valid SPDX license identifier.}

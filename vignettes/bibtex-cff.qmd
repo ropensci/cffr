@@ -123,7 +123,7 @@ each corresponding to a class of cited work:
 6.  **\@incollection**: A part of a book with its own title.
 7.  **\@inproceedings**: An article in conference proceedings.
 8.  **\@manual**: Technical documentation.
-9.  **\@mastersthesis**: A Master’s thesis.
+9.  **\@mastersthesis**: A master's thesis.
 10. **\@misc**: A fallback type when no other entry fits.
 11. **\@phdthesis**: A PhD thesis.
 12. **\@proceedings**: The proceedings of a conference.
@@ -291,12 +291,12 @@ specification.
 
 Mapping types include:
 
-- **direct**: preserved without modification.
-- **transform**: renamed or structurally reorganized.
-- **split**: one field mapped to multiple fields.
-- **heuristic**: requires parsing or inference.
-- **unsupported**: omitted due to lack of correspondence.
-- **enrichment**: exists only in CFF.
+- **Direct**: Preserved without modification.
+- **Transform**: Renamed or structurally reorganized.
+- **Split**: One field mapped to multiple fields.
+- **Heuristic**: Requires parsing or inference.
+- **Unsupported**: Omitted due to lack of correspondence.
+- **Enrichment**: Exists only in CFF.
 
 These mappings are not bijective and may introduce normalization effects.
 
@@ -399,12 +399,12 @@ below.
 
 The crosswalk applies different transformation strategies:
 
-- **Direct mapping**: one-to-one correspondence between a **BibTeX** field and a
+- **Direct mapping**: One-to-one correspondence between a **BibTeX** field and a
   CFF key.
-- **Structural transformation**: a single field is expanded into multiple keys,
+- **Structural transformation**: A single field is expanded into multiple keys,
   such as **pages** to `start` and `end`.
-- **Heuristic mapping**: equivalence is inferred based on entry type or context.
-- **Lossy mapping**: information is discarded due to lack of an equivalent
+- **Heuristic mapping**: Equivalence is inferred based on entry type or context.
+- **Lossy mapping**: Information is discarded due to lack of an equivalent
   representation.
 
 Unless stated otherwise, mappings are lossy in at least one direction.
@@ -497,8 +497,8 @@ We provide more detail on some of the mappings presented in the table above:
 
 - Some fields are not mapped because they have no clear equivalent CFF keys
   (such as **annote**, **crossref** and **key**). Regarding the **type** field,
-  the CFF key `type` corresponds to the identifier of the work, similar to an
-  entry in **BibTeX**. Therefore, **BibTeX** **type** is not mapped. These
+  the CFF key `type` identifies the kind of work, similar to an entry type in
+  **BibTeX**. Therefore, **BibTeX** **type** is not mapped. These
   fields are always optional in **BibTeX**.
 - For the **address** field, its intended use in **BibTeX** varies depending on
   the entry type. For **\@inproceedings**, it denotes the **address** of the
@@ -508,8 +508,8 @@ We provide more detail on some of the mappings presented in the table above:
   mappings in CFF. When mapping from CFF to **BibTeX**, we propose to follow the
   same entry-based logic, using the key `location` as a fallback value when
   mapping to **address**.
-- Because of the complexity mentioned above, **institution, organization** and
-  **school** are mapped to `institution`. For applicable entry types,
+- Because of the complexity mentioned above, **institution**, **organization**
+  and **school** are mapped to `institution`. For applicable entry types,
   **organization** or **school** takes precedence when present, and otherwise an
   existing **institution** is retained.
 - A **url** is preserved as `url`. URLs using the `doi.org` or `dx.doi.org`
@@ -523,7 +523,7 @@ We provide more detail on some of the mappings presented in the table above:
   but in those cases it is an optional field.
 - When mapping from CFF to **BibTeX**, we propose to use `date-published` as a
   fallback for extracting **month** and **year** fields.
-- When mapping BibLaTeX **date** to CFF, complete dates populate
+- When mapping **BibLaTeX** **date** to CFF, complete dates populate
   `date-published`, while `YYYY` and `YYYY-MM` values populate the available
   **year** and **month** fields without inventing a day. Date values that cannot
   be represented remain unchanged so that CFF validation can report them.
@@ -640,7 +640,7 @@ toBibtex(cff_read_bib_text(bib))
 
 In terms of fields required in **BibTeX**, the primary difference between
 **\@book** and **\@inbook** is that **\@inbook** requires a **chapter** or
-**page** field, while **\@book** does not allow these fields as optional.
+**pages** field, while **\@book** does not list these as optional fields.
 Therefore, we propose that an **\@inbook** entry in CFF be treated as a
 **\@book** with the following supplementary fields:
 
@@ -898,8 +898,8 @@ knitr::kable(
 
 **Round-trip**
 
-Note that **month** cannot be coerced to a single integer in the range `1--12`
-as required in CFF, so it is ignored to avoid validation errors.
+The **month** range `apr-may` is converted to `month: 4` in CFF. Only April is
+retained, so the information about May is lost.
 
 ```{r}
 bib <- "@manual{manual-full,
@@ -1202,7 +1202,7 @@ Whereas **BibLaTeX** [@biblatexpack] specifies:
 When considering required fields, an important difference is the **booktitle**
 requirement in **BibLaTeX**. Notably, **BibTeX** **\@incollection** also
 requires this field. Moreover, both **BibTeX** **\@incollection** and
-**BibLaTeX** **\@inbook** emphasize its reference to *"a part of a book (...)
+**BibLaTeX** **\@inbook** refer to *"a part of a book (...)
 with its own title"*.
 
 In this article, the proposed crosswalk ensures full compatibility with
@@ -1261,14 +1261,14 @@ knitr::kable(
 [^2]: This software performs only the mapping from CFF to **BibTeX**, but
     **cffr** can perform the mapping in both directions.
 
-[^3]: Note that **BibLaTeX** [@biblatexpack] handles **\@inbook** differently,
-    see [Appendix A](#appendix_inbook).
+[^3]: Note that **BibLaTeX** [@biblatexpack] handles **\@inbook** differently.
+    See [Appendix A](#appendix_inbook).
 
 [^4]: See [Appendix B](#appendix_cff_type) for all possible values. Information
     extracted from @druskat2019.
 
 [^5]: See @biblatexcheatsheet for a preview of the accepted **BibLaTeX** fields.
 
-[^6]: As proposed on [*How to deal with unknown individual
-    authors?*](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors),
-    (Guide to Citation File Format schema version 1.2.0).
+[^6]: As proposed in [*How to deal with unknown individual
+    authors?*](https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md#how-to-deal-with-unknown-individual-authors)
+    in the Guide to Citation File Format schema version 1.2.0.

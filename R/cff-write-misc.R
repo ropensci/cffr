@@ -6,7 +6,7 @@
 #' - [cff_write_citation()] creates an \R citation file as described in
 #'   Section 1.9 of *Writing R Extensions* (R Core Team 2026).
 #'
-#' @param x A [`bibentry`] or a [`cff`] object.
+#' @param x A [`bibentry`][utils::bibentry] or a [`cff`] object.
 #' @param file Name of the file to be created. If `NULL`, the lines are
 #'   displayed instead.
 #' @param append A logical value. If `TRUE`, append entries to an existing file.
@@ -17,7 +17,7 @@
 #' @inheritDotParams as_bibentry.cff_ref
 #' @inheritDotParams as_bibentry.cff_ref_lst
 #'
-#' @return
+#' @returns
 #' Invisibly returns `NULL`. This function is called for its side effect of
 #' writing a file or displaying its contents.
 #'
@@ -34,10 +34,8 @@
 #'
 #' @seealso
 #' `vignette("bibtex-cff", package = "cffr")`, [knitr::write_bib()] and the
-#' following packages:
-#' - \CRANpkg{bibtex}.
-#' - \CRANpkg{RefManageR}.
-#' - \CRANpkg{rbibutils}.
+#' following packages: \CRANpkg{bibtex}, \CRANpkg{RefManageR} and
+#' \CRANpkg{rbibutils}.
 #'
 #' @family bibtex
 #' @family writing

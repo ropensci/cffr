@@ -4,10 +4,10 @@
 #' This function installs a
 #' [GitHub Actions](https://github.com/features/actions) workflow in your
 #' repository. The workflow
-#' updates your `CITATION.cff` when any of these events occur:
+#' updates your `CITATION.cff` file when any of these events occur:
 #' - You publish a new release of the package.
 #' - Your `DESCRIPTION` or `inst/CITATION` file is modified.
-#' - The workflow can be run manually.
+#' - You run the workflow manually.
 #'
 #' @param path Project root directory.
 #' @param overwrite A logical value. If `TRUE`, overwrite an existing workflow.

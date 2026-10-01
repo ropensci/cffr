@@ -15,12 +15,12 @@
 #'   list.
 #' @param ... Additional arguments passed on to other methods.
 #'
-#' @return
+#' @returns
 #' - `as_cff.person()` returns an object with classes
-#'   [`cff_pers_lst, cff`][cff_pers_lst].
+#'   [`cff_pers_lst`] and [`cff`].
 #' - `as_cff.bibentry()` and `as_cff.Bibtex()` return an object with classes
-#'   [`cff_ref_lst, cff`][cff_ref_lst].
-#' - The remaining methods return an object of class `cff`. However, if
+#'   [`cff_ref_lst`] and `cff`.
+#' - The remaining methods return a `cff` object. However, if
 #'   `x` has a structure compatible with `definitions.person`,
 #'   `definitions.entity` or `definitions.reference`, the object has the
 #'   corresponding subclass.
@@ -33,7 +33,7 @@
 #' performed.
 #'
 #' [as_cff_person()] is preferred over `as_cff.person()` because it can handle
-#' `character` inputs such as `"Davis, Jr., Sammy"`. For `person` objects both
+#' `character` inputs such as `"Davis, Jr., Sammy"`. For `person` objects, both
 #' functions behave similarly.
 #'
 #' @seealso

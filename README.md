@@ -2,7 +2,7 @@
 
 <!-- README.md is generated from README.qmd. Please edit that file -->
 
-# cffr <a href="https://docs.ropensci.org/cffr/"><img src="man/figures/logo.png" alt="cffr website" align="right" height="139"/></a>
+# cffr <a href="https://docs.ropensci.org/cffr/"><img src="man/figures/logo.png" alt="cffr logo: blue hexagon with a network of nodes shaped like a brain" align="right" height="139"/></a>
 
 <!-- badges: start -->
 
@@ -51,7 +51,7 @@ special interest:
 
 <img src="vignettes/tweet-1.png" class="mx-auto d-block"
 data-fig-align="center" width="400"
-alt="GitHub citation support announcement" />
+alt="Nat Friedman’s announcement that adding a CITATION.cff file to a repository enables GitHub’s Cite this repository menu, shown below the post." />
 
 <figcaption class="blockquote-footer">Nat Friedman (@natfriedman) July 27, 2021</figcaption>
 </figure>
@@ -79,7 +79,7 @@ from **R** package metadata.
 its `CITATION` file, if present. **cffr** works best if your package
 passes `R CMD check` or `devtools::check()`.
 
-As of 2026-09-01 there are at least 590 repositories on GitHub using
+As of 2026-10-01 there are at least 652 repositories on GitHub using
 **cffr**. [Browse the search
 results](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
@@ -110,9 +110,8 @@ install.packages(
 
 ### Example
 
-Most commonly, from within your package directory, you run
-`cff_write()`. It creates a `cff` object, writes it to a `CITATION.cff`
-file and validates it in a single command:
+Run `cff_write()` from your package directory to create a `cff` object,
+write it to a `CITATION.cff` file and validate it in a single command:
 
 ``` r
 library(cffr)
@@ -153,7 +152,7 @@ test <- cff_create("knitr")
     type: software
     license: GPL-1.0-only
     title: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
-    version: '1.51'
+    version: '1.52'
     identifiers:
     - type: doi
       value: 10.32614/CRAN.package.knitr
@@ -172,13 +171,13 @@ test <- cff_create("knitr")
         given-names: Yihui
         orcid: https://orcid.org/0000-0003-0645-5666
         email: xie@yihui.name
-      year: '2025'
-      notes: R package version 1.51
+      year: '2026'
+      notes: R package version 1.52
       url: https://yihui.org/knitr/
     repository: https://CRAN.R-project.org/package=knitr
     repository-code: https://github.com/yihui/knitr
     url: https://yihui.org/knitr/
-    date-released: '2025-12-20'
+    date-released: '2026-09-06'
     contact:
     - family-names: Xie
       given-names: Yihui
@@ -427,23 +426,7 @@ test <- cff_create("knitr")
         orcid: https://orcid.org/0000-0003-0645-5666
       year: '2026'
       doi: 10.32614/CRAN.package.litedown
-    - type: software
-      title: 'markdown: Render Markdown with ''commonmark'''
-      notes: Suggests
-      url: https://github.com/rstudio/markdown
-      repository: https://CRAN.R-project.org/package=markdown
-      authors:
-      - family-names: Xie
-        given-names: Yihui
-        email: xie@yihui.name
-        orcid: https://orcid.org/0000-0003-0645-5666
-      - family-names: Allaire
-        given-names: JJ
-      - family-names: Horner
-        given-names: Jeffrey
-      year: '2025'
-      doi: 10.32614/CRAN.package.markdown
-      version: '>= 1.3'
+      version: '>= 0.10'
     - type: software
       title: 'otel: OpenTelemetry R API'
       notes: Suggests
@@ -481,6 +464,7 @@ test <- cff_create("knitr")
         given-names: Maxim
       year: '2026'
       doi: 10.32614/CRAN.package.ragg
+      version: '>= 1.5.0'
     - type: software
       title: 'rlang: Functions for Base Types and Core R and ''Tidyverse'' Features'
       notes: Suggests

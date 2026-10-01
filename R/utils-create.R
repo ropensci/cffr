@@ -53,7 +53,7 @@ merge_desc_cit <- function(cffobj, citobj) {
   cffobjfinal
 }
 
-#' Enhance authors info from preferred-citation using metadata from DESCRIPTION
+#' Enhance author information from `preferred-citation` using `DESCRIPTION`
 #' @noRd
 enhance_pref_authors <- function(cffobjend) {
   # Create an index of authors extracted from DESCRIPTION.
@@ -197,7 +197,7 @@ is_cran_dependency <- function(package) {
 
 cff_dependency_desc_fields <- function(mod, package) {
   # Get URL and repository from package DESCRIPTION.
-  # URLs from citation() vary due to auto = TRUE.
+  # URLs from `citation()` vary due to `auto = TRUE`.
   dfile <- system.file("DESCRIPTION", package = package)
 
   if (file_exist_abort(dfile)) {

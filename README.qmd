@@ -17,7 +17,7 @@ knitr:
 
 <!-- README.md is generated from README.qmd. Please edit that file -->
 
-# cffr <a href="https://docs.ropensci.org/cffr/"><img src="man/figures/logo.png" alt="cffr website" align="right" height="139"/></a>
+# cffr <a href="https://docs.ropensci.org/cffr/"><img src="man/figures/logo.png" alt="cffr logo: blue hexagon with a network of nodes shaped like a brain" align="right" height="139"/></a>
 
 <!-- badges: start -->
 
@@ -61,7 +61,7 @@ special interest:
 
 <figure>
 
-![GitHub citation support announcement](vignettes/tweet-1.png){.mx-auto .d-block
+![Nat Friedman's announcement that adding a CITATION.cff file to a repository enables GitHub's Cite this repository menu, shown below the post.](vignettes/tweet-1.png){.mx-auto .d-block
 fig-align="center" width="400"}
 
 ```{=html}
@@ -175,9 +175,8 @@ install.packages(
 
 ### Example
 
-Most commonly, from within your package directory, you run `cff_write()`. It
-creates a `cff` object, writes it to a `CITATION.cff` file and validates it in a
-single command:
+Run `cff_write()` from your package directory to create a `cff` object, write
+it to a `CITATION.cff` file and validate it in a single command:
 
 ```{r}
 #| eval: false

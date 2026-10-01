@@ -9,7 +9,7 @@
 #' - [cff_schema_keys()] provides the valid high-level keys of the Citation
 #'   File Format.
 #' - [cff_schema_keys_license()] provides valid
-#'   [SPDX license identifier(s)](https://spdx.org/licenses/) for the
+#'   [SPDX license identifiers](https://spdx.org/licenses/) for the
 #'   `CITATION.cff` file.
 #' - [cff_schema_definitions_person()] and [cff_schema_definitions_entity()]
 #'   return the valid fields to include when defining a
@@ -19,9 +19,9 @@
 #'
 #' @param sorted A logical value. If `TRUE`, arrange the keys alphabetically.
 #'
-#' @return
-#' A character vector with the names of valid keys for Citation File Format
-#' version 1.2.0.
+#' @returns
+#' A [character][base::character] vector with the names of valid keys for
+#' Citation File Format version 1.2.0.
 #'
 #' @source
 #' ```{r child = "man/chunks/schema-guide.Rmd"}

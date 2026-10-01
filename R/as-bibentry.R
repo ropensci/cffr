@@ -28,8 +28,8 @@
 #'
 #' See `vignette("r-cff", package = "cffr")`.
 #'
-#' @return
-#' `as_bibentry()` returns a `bibentry` object with one or more entries.
+#' @returns
+#' A [`bibentry`][utils::bibentry] object with one or more entries.
 #'
 #' @details
 #' An \R `bibentry` object is the representation of a BibTeX entry. These
@@ -90,7 +90,7 @@
 #' toBibtex(cff_object)
 #'
 #' # Other sources ----
-#' # From a CITATION.cff.
+#' # From a CITATION.cff file.
 #'
 #' path <- system.file("examples/CITATION_complete.cff", package = "cffr")
 #' cff_file <- as_bibentry(path)

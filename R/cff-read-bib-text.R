@@ -8,13 +8,13 @@
 #' @param encoding Encoding to be assumed for `x`. See [base::readLines()].
 #' @param ... Arguments passed to [cff_read_bib()].
 #'
-#' @return
-#' An object of classes [`cff_ref_lst, cff`][cff_ref_lst] as defined by the
-#' `definitions.reference` specified in the following guide:
+#' @returns
+#' An object with classes [`cff_ref_lst`] and [`cff`] representing
+#' `definitions.reference`, as defined in the following guide:
 #' ```{r child = "man/chunks/schema-guide.Rmd"}
 #' ```
 #' Each element of the `cff_ref_lst` object has classes
-#' [`cff_ref, cff`][cff_ref].
+#' [`cff_ref`] and `cff`.
 #'
 #' @details
 #' This function writes `x` to a temporary `*.bib` file and reads it using

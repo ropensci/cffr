@@ -11,12 +11,12 @@ bibtex_pers_von_last_first_jr <- function(x) {
   # Junior part.
   jr <- parts_comma[2]
 
-  # From here, it is the same as in bibtex_person_von_last_first().
+  # From here, it is the same as in `bibtex_pers_von_last_first()`.
 
   # Identify the von part.
   family_von <- bibtex_family_von(parts_comma[1])
 
-  # Compose the final list to pass to person().
+  # Compose the final list to pass to `person()`.
 
   # Final cleanup.
   end_list <- c(list(given = given), family_von, list(jr = jr))
@@ -37,7 +37,7 @@ bibtex_pers_von_last_first <- function(x) {
   # Identify the von part.
   family_von <- bibtex_family_von(parts_comma[1])
 
-  # Compose the final list to pass to person().
+  # Compose the final list to pass to `person()`.
 
   # Final cleanup.
   end_list <- c(list(given = given), family_von)
@@ -69,7 +69,7 @@ bibtex_pers_first_von_last <- function(x) {
 
   is_upper <- bibtex_is_upper(parts)
 
-  # Family should always be provided.
+  # A family name should always be provided.
   family <- parts[length(parts)]
 
   # Check whether the remaining parts mix casing styles.
@@ -95,7 +95,7 @@ bibtex_pers_first_von_last <- function(x) {
   von_assess <- as.integer(which(!upper))
 
   # von.
-  # If there is no length, there is no von.
+  # If no lowercase words remain, there is no `von` part.
   if (length(von_assess) == 0) {
     von <- NULL
   } else {
@@ -105,7 +105,7 @@ bibtex_pers_first_von_last <- function(x) {
   # Get the remaining part, which should be First.
   given <- names(upper[setdiff(names(upper), von)])
 
-  # Compose the final list to pass to person().
+  # Compose the final list to pass to `person()`.
 
   # Final cleanup.
   end_list <- list(given = given, von = von, family = family)
@@ -117,7 +117,7 @@ bibtex_family_von <- function(x) {
   parts <- bibtex_split_name_words(x)
   is_upper <- bibtex_is_upper(parts)
 
-  # Family should always be provided.
+  # A family name should always be provided.
   family <- parts[length(parts)]
 
   upper <- is_upper[setdiff(names(is_upper), family)]

@@ -40,6 +40,25 @@ test_that("BibLaTeX partial dates retain their available precision", {
   expect_false(cff_validate(inaccessible_cff, verbose = FALSE))
 })
 
+test_that("BibTeX slash-separated dates are normalized", {
+  bib <- bibentry(
+    "Article",
+    title = "Slash-separated dates",
+    author = "A. Author",
+    journal = "A journal",
+    year = "2017",
+    date = "2017/03/03",
+    urldate = "2017/03/03"
+  )
+  refs <- as_cff(bib)
+
+  expect_identical(refs[[1]]$`date-published`, "2017-03-03")
+  expect_identical(refs[[1]]$`date-accessed`, "2017-03-03")
+
+  cffobj <- cff_create(cff(), keys = list(references = refs))
+  expect_true(cff_validate(cffobj, verbose = FALSE))
+})
+
 test_that("BibTeX keywords omit empty values", {
   bib <- bibentry(
     "Misc",

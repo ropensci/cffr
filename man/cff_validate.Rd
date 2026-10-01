@@ -16,10 +16,10 @@ cff_validate(x = "CITATION.cff", verbose = TRUE)
 informative messages.}
 }
 \value{
-Invisibly returns a logical value indicating the validation result. On
-error, the result has an \code{"errors"} attribute with the error summary. If
-\code{verbose} is \code{TRUE}, the function also displays the result. See \strong{Examples}
-and \code{\link[base:attr]{base::attr()}}.
+Invisibly returns a \link[base:logical]{logical} value indicating the validation
+result. On error, the result has an \code{"errors"} attribute with the error
+summary. If \code{verbose} is \code{TRUE}, the function also displays the result.
+See \strong{Examples} and \code{\link[base:attr]{base::attr()}}.
 }
 \description{
 Validate a \code{CITATION.cff} file or a \code{\link{cff}} object using the corresponding \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema.json}{validation schema}.

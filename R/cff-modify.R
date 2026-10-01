@@ -6,7 +6,7 @@
 #' @param ... Named arguments used to modify `x`. See also the `...`
 #'   argument in [cff()].
 #'
-#' @return
+#' @returns
 #' A [`cff`] object.
 #'
 #' @details
@@ -59,7 +59,7 @@ cff_modify <- function(x, ...) {
 }
 
 modify_cff <- function(x, keys, argname = "...", call = environment()) {
-  # Do not show a message here because these cases come from cff_create().
+  # Do not show a message here because these cases come from `cff_create()`.
   if (all(argname == "keys", length(keys) == 0)) {
     return(x)
   }

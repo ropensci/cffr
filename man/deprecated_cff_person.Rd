@@ -41,7 +41,7 @@ cff_person <- as_cff_person(a_person)
 
 cff_person
 
-# Back to person object with S3 method.
+# Convert back to a `person` object with the S3 method.
 as.person(cff_person)
 
 # Parse a string.
@@ -51,7 +51,7 @@ a_str <- paste0(
 )
 as_cff_person(a_str)
 
-# Several persons.
+# Several people.
 persons <- c(person("Clark", "Kent"), person("Lois", "Lane"))
 
 as_cff_person(persons)

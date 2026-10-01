@@ -11,10 +11,11 @@ encoded_utf_to_latex(x)
 \item{x}{A string, possibly encoded in UTF-8.}
 }
 \value{
-A string with the corresponding transformations.
+A \link[base:character]{character} vector with the corresponding
+transformations.
 }
 \description{
-Transform a UTF-8 string into LaTeX special characters.
+Transform UTF-8 text into LaTeX special characters.
 }
 \details{
 This is a variation of \code{\link[tools:encoded_text_to_latex]{tools::encoded_text_to_latex()}} with some

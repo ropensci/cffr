@@ -12,7 +12,7 @@ cff_git_hook_install()
 cff_git_hook_remove()
 }
 \value{
-Invisible. This function is called for its side effects.
+Invisibly returns \code{NULL}. This function is called for its side effects.
 }
 \description{
 Install a
@@ -29,19 +29,20 @@ submission to code review. This pre-commit hook warns you if any of the
 following conditions are met:
 \itemize{
 \item You included your \code{DESCRIPTION} or \code{inst/CITATION} file in a commit but
-did not include your \code{CITATION.cff} and the \code{CITATION.cff} file is
+did not include your \code{CITATION.cff} file and the \code{CITATION.cff} file is
 "older" than your \code{DESCRIPTION} or \code{inst/CITATION} file.
-\item You updated your \code{CITATION.cff} but did not include it in
+\item You updated your \code{CITATION.cff} file but did not include it in
 your commit.
 }
 }
 \section{A word of caution}{
 The pre-commit hook may prevent you from committing if you are not updating
-your \code{CITATION.cff}. However, the detection mechanism is not perfect and may
-be triggered even if you have attempted to update your \code{CITATION.cff} file.
+your \code{CITATION.cff} file. However, the detection mechanism is not perfect
+and may be triggered even if you have attempted to update your
+\code{CITATION.cff} file.
 
 This typically occurs when you have updated your \code{DESCRIPTION} or
-\code{inst/CITATION} files, but those changes do not affect your
+\code{inst/CITATION} files but those changes do not affect your
 \code{CITATION.cff} file, for example, when you add new dependencies.
 
 In those cases, you can override the check by running
@@ -50,8 +51,8 @@ In those cases, you can override the check by running
 If you are using \strong{RStudio}, you can also run this command from an \R
 script by selecting that line and sending it to the terminal with:
 \itemize{
-\item Windows & Linux: \code{Ctrl+Alt+Enter}.
-\item Mac: \code{Cmd+Option+Return}.
+\item Windows and Linux: \code{Ctrl+Alt+Enter}.
+\item macOS: \code{Cmd+Option+Return}.
 }
 }
 

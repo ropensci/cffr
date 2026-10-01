@@ -47,13 +47,13 @@ generating the \code{CITATION.cff} file. See \strong{Details}.}
 }
 \value{
 \itemize{
-\item \code{cff_read_cff_citation()} and \code{cff_read_description()} return an object
-with class \code{cff}.
-\item \code{cff_read_bib()} returns an object of classes
-\code{\link[=cff_ref_lst]{cff_ref_lst, cff}} as defined by the
-\code{definitions.reference} specified in the following guide:
+\item \code{cff_read_cff_citation()} and \code{cff_read_description()} return a
+\code{\link{cff}} object.
+\item \code{cff_read_bib()} returns an object with classes
+\code{\link{cff_ref_lst}} and \code{\link{cff}} representing
+\code{definitions.reference}, as defined in the following guide:
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema guide}.
-\item \code{cff_read_citation()} returns the same classes as \code{cff_read_bib()}, or
+\item \code{cff_read_citation()} returns the same classes as \code{cff_read_bib()} or
 \code{NULL} when the file cannot be evaluated.
 }
 
@@ -82,7 +82,7 @@ we provide aliases for each specific file type:
 For details of \code{cff_read_description()}, see \code{\link[=cff_create]{cff_create()}}.
 \subsection{The \code{meta} object}{
 
-Section 1.9 CITATION files of \emph{Writing R Extensions} (R Core Team 2026)
+Section 1.9, "CITATION files", of \emph{Writing R Extensions} (R Core Team 2026)
 specifies how to create dynamic \code{CITATION} files using a \code{meta} object.
 \code{\link[=cff_read_citation]{cff_read_citation()}} makes every field supplied in \code{meta}, including custom
 \code{DESCRIPTION} fields, available to the \code{CITATION} file. When \code{cff_create()}

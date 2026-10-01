@@ -17,7 +17,7 @@ write_citation(
 )
 }
 \arguments{
-\item{x}{A \code{\link{bibentry}} or a \code{\link{cff}} object.}
+\item{x}{A \code{\link[utils:bibentry]{bibentry}} or a \code{\link{cff}} object.}
 
 \item{file}{Name of the file to be created. If \code{NULL}, the lines are
 displayed instead.}
@@ -30,7 +30,8 @@ displayed instead.}
 characters only.}
 }
 \value{
-Writes a file.
+Invisibly returns \code{NULL}. This function is called for its side effect of
+writing a file or displaying its contents.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use \code{\link[=cff_write_bib]{cff_write_bib()}} or

@@ -22,12 +22,12 @@ as_cff_person(x, ...)
 \item{...}{Ignored by this method.}
 }
 \value{
-\code{as_cff_person()} returns an object of classes
-\code{\link[=cff_pers_lst]{cff_pers_lst, cff}} as defined by \code{definitions.person} or
-\code{definitions.entity} specified in the following guide:
+An object with classes
+\code{\link{cff_pers_lst}} and \code{\link{cff}} representing \code{definitions.person} or
+\code{definitions.entity}, as defined in the following guide:
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema guide}.
 Each element of the \code{cff_pers_lst} object has classes
-\code{\link[=cff_pers]{cff_pers, cff}}.
+\code{\link{cff_pers}} and \code{cff}.
 }
 \description{
 \code{as_cff_person()} turns an existing list-like \R object into a
@@ -68,7 +68,7 @@ Mapping is performed as follows:
 \item \code{Jr} is mapped to the CFF key \code{name-suffix}.
 }
 
-For entities, the entire \code{character} is mapped to \code{name}.
+For entities, the entire string is mapped to \code{name}.
 We recommend "protecting" entity names with \code{{}}:
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{# Avoid unprotected entity names.
@@ -111,7 +111,7 @@ class(cff_person[[1]])
 # Print.
 cff_person
 
-# Back to person object with S3 method.
+# Convert back to a `person` object with the S3 method.
 as.person(cff_person)
 
 # Coerce a string.
@@ -121,7 +121,7 @@ a_str <- paste0(
 )
 as_cff_person(a_str)
 
-# Several persons.
+# Several people.
 persons <- c(
   person("Clark", "Kent", comment = c(affiliation = "Daily Planet")),
   person("Lois", "Lane"), person("Oscorp Inc.")

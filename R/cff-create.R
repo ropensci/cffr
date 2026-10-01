@@ -26,7 +26,7 @@
 #' @param authors_roles Roles to be considered as authors of the package when
 #'   generating the `CITATION.cff` file. See **Details**.
 #'
-#' @return A [`cff`] object.
+#' @returns A [`cff`] object.
 #'
 #' @details
 #' If `x` is a path to a `DESCRIPTION` file or if `inst/CITATION` is not

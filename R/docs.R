@@ -7,7 +7,7 @@
 #' ```{r child = "man/chunks/cffclass.Rmd"}
 #' ```
 #'
-#' @return A documentation topic describing the `cff` class and subclasses.
+#' @returns A documentation topic describing the `cff` class and subclasses.
 #'
 #' @references
 #'

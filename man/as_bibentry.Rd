@@ -54,7 +54,7 @@ of the package (key \code{preferred-citation}).
 See \code{vignette("r-cff", package = "cffr")}.}
 }
 \value{
-\code{as_bibentry()} returns a \code{bibentry} object with one or more entries.
+A \code{\link[utils:bibentry]{bibentry}} object with one or more entries.
 }
 \description{
 This function creates \code{\link{bibentry}} objects from multiple metadata sources
@@ -96,7 +96,7 @@ toBibtex(bib)
 toBibtex(cff_object)
 
 # Other sources ----
-# From a CITATION.cff.
+# From a CITATION.cff file.
 
 path <- system.file("examples/CITATION_complete.cff", package = "cffr")
 cff_file <- as_bibentry(path)

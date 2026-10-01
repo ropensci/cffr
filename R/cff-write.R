@@ -23,7 +23,7 @@
 #'   `"ASCII//TRANSLIT"`.
 #' @inheritParams cff_create
 #'
-#' @return
+#' @returns
 #' Invisibly returns the generated [`cff`] object. This function is called
 #' primarily for its side effect of writing a `CITATION.cff` file.
 #'
@@ -31,10 +31,10 @@
 #' For details of `authors_roles` and dependency extraction, see [cff_create()].
 #'
 #' The `x` argument identifies the metadata source. It does not determine the
-#' output directory. This allows you to create a `CITATION.cff` from a package
-#' or file located outside the current working directory.
+#' output directory. This allows you to create a `CITATION.cff` file from a
+#' package or file located outside the current working directory.
 #'
-#' When creating and writing a `CITATION.cff` for a package in the current
+#' When creating and writing a `CITATION.cff` file for a package in the current
 #' working directory, this function adds the pattern `"^CITATION\.cff$"` to
 #' the local `.Rbuildignore` file.
 #'

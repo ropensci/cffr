@@ -15,11 +15,11 @@
 #'   [cff_read_cff_citation()].
 #' @inheritParams cff_write
 #'
-#' @return
-#' Invisibly returns a logical value indicating the validation result. On
-#' error, the result has an `"errors"` attribute with the error summary. If
-#' `verbose` is `TRUE`, the function also displays the result. See **Examples**
-#' and [base::attr()].
+#' @returns
+#' Invisibly returns a [logical][base::logical] value indicating the validation
+#' result. On error, the result has an `"errors"` attribute with the error
+#' summary. If `verbose` is `TRUE`, the function also displays the result.
+#' See **Examples** and [base::attr()].
 #'
 #' @seealso
 #' [jsonvalidate::json_validate()], which is the function that performs the

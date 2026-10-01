@@ -5,7 +5,8 @@
 #' [SPDX License List](https://spdx.org/licenses/).
 #'
 #' @format
-#' A data frame with `r nrow(cran_to_spdx)` rows and two variables:
+#' A [data frame][base::data.frame] with `r nrow(cran_to_spdx)` rows and two
+#' variables:
 #' \describe{
 #'   \item{`LICENSE`}{A valid `License` string on CRAN.}
 #'   \item{`SPDX`}{A valid SPDX license identifier.}

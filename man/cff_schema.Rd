@@ -27,8 +27,8 @@ cff_schema_definitions_refs()
 \item{sorted}{A logical value. If \code{TRUE}, arrange the keys alphabetically.}
 }
 \value{
-A character vector with the names of valid keys for Citation File Format
-version 1.2.0.
+A \link[base:character]{character} vector with the names of valid keys for
+Citation File Format version 1.2.0.
 }
 \description{
 Helper functions with valid values for different keys and definition fields.
@@ -38,7 +38,7 @@ See the following guide:
 \item \code{\link[=cff_schema_keys]{cff_schema_keys()}} provides the valid high-level keys of the Citation
 File Format.
 \item \code{\link[=cff_schema_keys_license]{cff_schema_keys_license()}} provides valid
-\href{https://spdx.org/licenses/}{SPDX license identifier(s)} for the
+\href{https://spdx.org/licenses/}{SPDX license identifiers} for the
 \code{CITATION.cff} file.
 \item \code{\link[=cff_schema_definitions_person]{cff_schema_definitions_person()}} and \code{\link[=cff_schema_definitions_entity]{cff_schema_definitions_entity()}}
 return the valid fields to include when defining a

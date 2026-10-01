@@ -5,7 +5,7 @@
 #'
 #' @inheritParams as_bibentry
 #'
-#' @return See [as_bibentry()].
+#' @returns See [as_bibentry()].
 #'
 #' @family deprecated
 #' @rdname deprecated_cff_to_bib
@@ -61,10 +61,10 @@ cff_to_bibtex <- function(x, what = c("preferred", "references", "all")) {
 #' @param x The source used to generate the
 #'   [`cff`] object. It must be a `character` object indicating either:
 #'   - The path to a BibTeX file.
-#'   - A vector of characters with a complete BibTeX string. See **Examples**.
+#'   - A character vector with complete BibTeX entries. See **Examples**.
 #' @inheritParams cff_read_bib_text
 #'
-#' @return
+#' @returns
 #' A [`cff_ref_lst`] object. See [cff_read_bib()] for reading `*.bib` files and
 #' [cff_read_bib_text()] for reading BibTeX entries supplied as a `character`
 #' vector.
@@ -130,7 +130,9 @@ cff_from_bibtex <- function(x, encoding = "UTF-8", ...) {
 #'
 #' @inheritParams cff_write_bib
 #'
-#' @return Writes a file.
+#' @returns
+#' Invisibly returns `NULL`. This function is called for its side effect of
+#' writing a file or displaying its contents.
 #'
 #' @seealso
 #' - [cff_write_bib()] for writing `*.bib` files.
@@ -200,7 +202,7 @@ write_citation <- function(
 #'     [utils::person()].
 #'   - A `character` object or vector representing a person or persons.
 #'
-#' @return A [`cff_pers_lst`] object.
+#' @returns A [`cff_pers_lst`] object.
 #'
 #' @seealso [as_cff_person()].
 #'
@@ -226,7 +228,7 @@ write_citation <- function(
 #'
 #' cff_person
 #'
-#' # Back to person object with S3 method.
+#' # Convert back to a `person` object with the S3 method.
 #' as.person(cff_person)
 #'
 #' # Parse a string.
@@ -236,7 +238,7 @@ write_citation <- function(
 #' )
 #' as_cff_person(a_str)
 #'
-#' # Several persons.
+#' # Several people.
 #' persons <- c(person("Clark", "Kent"), person("Lois", "Lane"))
 #'
 #' as_cff_person(persons)
@@ -277,7 +279,7 @@ cff_parse_person_bibtex <- function(person) {
 #' method instead.
 #'
 #' @param bib A `bibentry` object.
-#' @return A [`cff_ref_lst`] object.
+#' @returns A [`cff_ref_lst`] object.
 #'
 #' @seealso [as_cff.bibentry()].
 #'

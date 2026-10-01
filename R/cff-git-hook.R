@@ -13,7 +13,8 @@
 #' that reminds you to update your `CITATION.cff` file. This is a wrapper around
 #' [usethis::use_git_hook()].
 #'
-#' @return Invisible. This function is called for its side effects.
+#' @returns
+#' Invisibly returns `NULL`. This function is called for its side effects.
 #'
 #' @details
 #' This function installs a pre-commit hook using
@@ -23,19 +24,20 @@
 #' submission to code review. This pre-commit hook warns you if any of the
 #' following conditions are met:
 #' - You included your `DESCRIPTION` or `inst/CITATION` file in a commit but
-#'   did not include your `CITATION.cff` and the `CITATION.cff` file is
+#'   did not include your `CITATION.cff` file and the `CITATION.cff` file is
 #'   "older" than your `DESCRIPTION` or `inst/CITATION` file.
-#' - You updated your `CITATION.cff` but did not include it in
+#' - You updated your `CITATION.cff` file but did not include it in
 #'   your commit.
 #'
 #' # A word of caution
 #'
 #' The pre-commit hook may prevent you from committing if you are not updating
-#' your `CITATION.cff`. However, the detection mechanism is not perfect and may
-#' be triggered even if you have attempted to update your `CITATION.cff` file.
+#' your `CITATION.cff` file. However, the detection mechanism is not perfect
+#' and may be triggered even if you have attempted to update your
+#' `CITATION.cff` file.
 #'
 #' This typically occurs when you have updated your `DESCRIPTION` or
-#' `inst/CITATION` files, but those changes do not affect your
+#' `inst/CITATION` files but those changes do not affect your
 #' `CITATION.cff` file, for example, when you add new dependencies.
 #'
 #' In those cases, you can override the check by running
@@ -44,8 +46,8 @@
 #' If you are using **RStudio**, you can also run this command from an \R
 #' script by selecting that line and sending it to the terminal with:
 #'
-#' - Windows & Linux: `Ctrl+Alt+Enter`.
-#' - Mac: `Cmd+Option+Return`.
+#' - Windows and Linux: `Ctrl+Alt+Enter`.
+#' - macOS: `Cmd+Option+Return`.
 #'
 #' # Removing the Git pre-commit hook
 #'

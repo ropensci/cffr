@@ -2,7 +2,7 @@ protect_bib_braces <- function(x) {
   paste0("{", x, "}")
 }
 
-# Utils for as_bibentry() ----
+# Utilities for `as_bibentry()` ----
 get_bib_howpublised <- function(x) {
   howpublished <- x$medium
 
@@ -78,7 +78,7 @@ guess_bibtype <- function(x) {
 get_bib_address <- function(x) {
   # BibTeX 'address' is taken from the publisher (book, others) or the
   # conference (inproceedings).
-  # Precedence is conference, institution, then publisher.
+  # Precedence is conference, institution and then publisher.
   if (!is.null(x$conference)) {
     addr_search <- x$conference
   } else if (!is.null(x$institution)) {
@@ -153,7 +153,7 @@ get_bib_inst_org <- function(x, bibtype) {
 }
 
 make_bibkey <- function(tobibentry) {
-  # Be kind and provide a bibentry key.
+  # Provide a `bibentry` key.
 
   y <- tobibentry$year
 
@@ -195,8 +195,8 @@ make_bibkey <- function(tobibentry) {
     r <- tolower(paste0(r, collapse = ""))
   }
 
-  # Try hard to remove accents.
-  # First use iconv.
+  # Remove accents for compatibility.
+  # First use `iconv()`.
   r <- iconv(r, from = "UTF-8", to = "ASCII//TRANSLIT", sub = "?")
 
   # Then convert to LaTeX.

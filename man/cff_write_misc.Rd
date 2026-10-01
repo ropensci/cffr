@@ -24,7 +24,7 @@ cff_write_citation(
 )
 }
 \arguments{
-\item{x}{A \code{\link{bibentry}} or a \code{\link{cff}} object.}
+\item{x}{A \code{\link[utils:bibentry]{bibentry}} or a \code{\link{cff}} object.}
 
 \item{file}{Name of the file to be created. If \code{NULL}, the lines are
 displayed instead.}
@@ -104,12 +104,8 @@ R Core Team (2026). \emph{Writing R Extensions}.
 }
 \seealso{
 \code{vignette("bibtex-cff", package = "cffr")}, \code{\link[knitr:write_bib]{knitr::write_bib()}} and the
-following packages:
-\itemize{
-\item \CRANpkg{bibtex}.
-\item \CRANpkg{RefManageR}.
-\item \CRANpkg{rbibutils}.
-}
+following packages: \CRANpkg{bibtex}, \CRANpkg{RefManageR} and
+\CRANpkg{rbibutils}.
 
 Work with BibTeX metadata:
 \code{\link[=as_bibentry]{as_bibentry()}},

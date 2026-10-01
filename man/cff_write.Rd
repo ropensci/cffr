@@ -78,10 +78,10 @@ YAML-formatted file in one command.
 For details of \code{authors_roles} and dependency extraction, see \code{\link[=cff_create]{cff_create()}}.
 
 The \code{x} argument identifies the metadata source. It does not determine the
-output directory. This allows you to create a \code{CITATION.cff} from a package
-or file located outside the current working directory.
+output directory. This allows you to create a \code{CITATION.cff} file from a
+package or file located outside the current working directory.
 
-When creating and writing a \code{CITATION.cff} for a package in the current
+When creating and writing a \code{CITATION.cff} file for a package in the current
 working directory, this function adds the pattern \code{"^CITATION\\.cff$"} to
 the local \code{.Rbuildignore} file.
 }

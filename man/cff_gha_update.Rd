@@ -13,17 +13,17 @@ cff_gha_update(path = ".", overwrite = FALSE)
 \item{overwrite}{A logical value. If \code{TRUE}, overwrite an existing workflow.}
 }
 \value{
-Invisible. This function is called for its side effects.
+Invisibly returns \code{NULL}. This function is called for its side effects.
 }
 \description{
 This function installs a
 \href{https://github.com/features/actions}{GitHub Actions} workflow in your
 repository. The workflow
-updates your \code{CITATION.cff} when any of these events occur:
+updates your \code{CITATION.cff} file when any of these events occur:
 \itemize{
 \item You publish a new release of the package.
 \item Your \code{DESCRIPTION} or \code{inst/CITATION} file is modified.
-\item The workflow can be run manually.
+\item You run the workflow manually.
 }
 }
 \details{

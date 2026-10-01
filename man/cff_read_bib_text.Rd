@@ -15,11 +15,11 @@ cff_read_bib_text(x, encoding = "UTF-8", ...)
 \item{...}{Arguments passed to \code{\link[=cff_read_bib]{cff_read_bib()}}.}
 }
 \value{
-An object of classes \code{\link[=cff_ref_lst]{cff_ref_lst, cff}} as defined by the
-\code{definitions.reference} specified in the following guide:
+An object with classes \code{\link{cff_ref_lst}} and \code{\link{cff}} representing
+\code{definitions.reference}, as defined in the following guide:
 \href{https://github.com/citation-file-format/citation-file-format/blob/main/schema-guide.md}{Citation File Format schema guide}.
 Each element of the \code{cff_ref_lst} object has classes
-\code{\link[=cff_ref]{cff_ref, cff}}.
+\code{\link{cff_ref}} and \code{cff}.
 }
 \description{
 Convert one or more complete BibTeX entries supplied as a \code{character} vector

@@ -21,14 +21,14 @@
 #' @param x Any \R object.
 #' @param ... Ignored by this method.
 #'
-#' @return
-#' `as_cff_person()` returns an object of classes
-#' [`cff_pers_lst, cff`][cff_pers_lst] as defined by `definitions.person` or
-#' `definitions.entity` specified in the following guide:
+#' @returns
+#' An object with classes
+#' [`cff_pers_lst`] and [`cff`] representing `definitions.person` or
+#' `definitions.entity`, as defined in the following guide:
 #' ```{r child = "man/chunks/schema-guide.Rmd"}
 #' ```
 #' Each element of the `cff_pers_lst` object has classes
-#' [`cff_pers, cff`][cff_pers].
+#' [`cff_pers`] and `cff`.
 #'
 #' @details
 #' `as_cff_person()` recognizes whether the input should be converted with the
@@ -47,7 +47,7 @@
 #' - `Last` is mapped to the CFF key `family-names`.
 #' - `Jr` is mapped to the CFF key `name-suffix`.
 #'
-#' For entities, the entire `character` is mapped to `name`.
+#' For entities, the entire string is mapped to `name`.
 #' We recommend "protecting" entity names with `{}`:
 #'
 #' ```{r child = "man/chunks/person.Rmd"}
@@ -103,7 +103,7 @@
 #' # Print.
 #' cff_person
 #'
-#' # Back to person object with S3 method.
+#' # Convert back to a `person` object with the S3 method.
 #' as.person(cff_person)
 #'
 #' # Coerce a string.
@@ -113,7 +113,7 @@
 #' )
 #' as_cff_person(a_str)
 #'
-#' # Several persons.
+#' # Several people.
 #' persons <- c(
 #'   person("Clark", "Kent", comment = c(affiliation = "Daily Planet")),
 #'   person("Lois", "Lane"), person("Oscorp Inc.")

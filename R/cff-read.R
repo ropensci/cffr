@@ -24,15 +24,15 @@
 #'
 #' @inheritParams cff_create
 #'
-#' @return
-#' - `cff_read_cff_citation()` and `cff_read_description()` return an object
-#'   with class `cff`.
-#' - `cff_read_bib()` returns an object of classes
-#'   [`cff_ref_lst, cff`][cff_ref_lst] as defined by the
-#'   `definitions.reference` specified in the following guide:
+#' @returns
+#' - `cff_read_cff_citation()` and `cff_read_description()` return a
+#'   [`cff`] object.
+#' - `cff_read_bib()` returns an object with classes
+#'   [`cff_ref_lst`] and [`cff`] representing
+#'   `definitions.reference`, as defined in the following guide:
 #' ```{r child = "man/chunks/schema-guide.Rmd"}
 #' ```
-#' - `cff_read_citation()` returns the same classes as `cff_read_bib()`, or
+#' - `cff_read_citation()` returns the same classes as `cff_read_bib()` or
 #'   `NULL` when the file cannot be evaluated.
 #'
 #' Learn more about the \CRANpkg{cffr} class system in [cff_class].
@@ -42,7 +42,7 @@
 #'
 #' ## The `meta` object
 #'
-#' Section 1.9 CITATION files of *Writing R Extensions* (R Core Team 2026)
+#' Section 1.9, "CITATION files", of *Writing R Extensions* (R Core Team 2026)
 #' specifies how to create dynamic `CITATION` files using a `meta` object.
 #' [cff_read_citation()] makes every field supplied in `meta`, including custom
 #' `DESCRIPTION` fields, available to the `CITATION` file. When `cff_create()`

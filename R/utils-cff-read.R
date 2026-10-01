@@ -14,9 +14,8 @@ get_desc_abstract <- function(pkg) {
   abstract
 }
 
-#' Map to people with the roles "aut" and "cre".
-#' Uncertain: this approach may need review.
-#' On CRAN, only the first "aut" is used.
+#' Map all people whose roles match `authors_roles`.
+#' By default, include authors ("aut") and maintainers ("cre").
 #' @noRd
 get_desc_authors <- function(pkg, authors_roles = c("aut", "cre")) {
   # Extract all persons.
@@ -87,7 +86,7 @@ get_desc_date_released <- function(pkg) {
   date
 }
 
-#' Mapped to X-schema.org-keywords, as codemeta/codemetar
+#' Map `X-schema.org-keywords`, as in \CRANpkg{codemetar}
 #' @noRd
 get_desc_keywords <- function(pkg) {
   kword <- pkg$get("X-schema.org-keywords")

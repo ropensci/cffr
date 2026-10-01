@@ -12,7 +12,7 @@ cff_from_bibtex(x, encoding = "UTF-8", ...)
 \code{\link{cff}} object. It must be a \code{character} object indicating either:
 \itemize{
 \item The path to a BibTeX file.
-\item A vector of characters with a complete BibTeX string. See \strong{Examples}.
+\item A character vector with complete BibTeX entries. See \strong{Examples}.
 }}
 
 \item{encoding}{Encoding to be assumed for \code{x}. See \code{\link[base:readLines]{base::readLines()}}.}
