@@ -10,6 +10,7 @@
 - `cff_create()` now trims `X-schema.org-keywords` values, removes empty and duplicate values and preserves a single value as a one-item CFF keyword array.
 - `cff_read_cff_citation()` now preserves YAML sequences with one element, including `keywords`, while retaining invalid scalar values for CFF validation.
 - `cff_read_citation()` now makes every field supplied in `meta`, including custom `DESCRIPTION` fields, available to `CITATION` files and no longer retries with metadata from the **base** package when reading fails (#114).
+- `cff_read_description()` now preserves characters in legacy non-UTF-8 `DESCRIPTION` files with R 4.7, including metadata used to read citations.
 
 # cffr 1.4.2
 

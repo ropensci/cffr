@@ -151,7 +151,7 @@ test_that("as_cff_person omits email when none are valid", {
 
 test_that("as_cff_person extracts metadata from person comments", {
   rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if(rvers < "4.6.0", "Snapshots require R >= 4.6.0")
 
   pp <- person(
     given = "John",

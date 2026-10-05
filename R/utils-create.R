@@ -107,7 +107,7 @@ get_dependencies <- function(
     return(NULL)
   }
 
-  getdeps <- desc::desc(desc_path)
+  getdeps <- cff_read_description_file(desc_path)
 
   deps <- cff_dependency_rows(getdeps$get_deps())
 
@@ -201,7 +201,7 @@ cff_dependency_desc_fields <- function(mod, package) {
   dfile <- system.file("DESCRIPTION", package = package)
 
   if (file_exist_abort(dfile)) {
-    pkg <- desc::desc(dfile)
+    pkg <- cff_read_description_file(dfile)
     mod$url <- get_desc_urls(pkg)$url
     mod$repository <- get_desc_repository(pkg)
   }

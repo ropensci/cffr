@@ -121,7 +121,8 @@ cff_read <- function(path, ...) {
     ))
   }
 
-  endobj <- switch(filetype,
+  endobj <- switch(
+    filetype,
     "cff_citation" = cff_read_cff_citation(path, ...),
     "description" = cff_read_description(path, ...),
     "bib" = cff_read_bib(path, ...),
@@ -176,7 +177,7 @@ cff_read_description <- function(
 ) {
   file_exist_abort(path, abort = TRUE, call = environment())
 
-  pkg <- desc::desc(path)
+  pkg <- cff_read_description_file(path)
   pkg$coerce_authors_at_r()
 
   msg <- paste0(

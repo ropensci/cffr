@@ -25,7 +25,7 @@ test_that("as_cff converts person objects", {
   expect_s3_class(aa[[1]], c("cff_pers", "cff"), exact = TRUE)
   expect_identical(aa, as_cff_person(pers))
   rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if(rvers < "4.6.0", "Snapshots require R >= 4.6.0")
   expect_snapshot(as_cff(pers))
 
   # Check a single person

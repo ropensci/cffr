@@ -236,7 +236,7 @@ test_that("cff_create recognizes GitLab repositories", {
   expect_s3_class(a_cff, "cff")
 
   rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if(rvers < "4.6.0", "Snapshots require R >= 4.6.0")
   expect_snapshot(a_cff)
   expect_true(cff_validate(a_cff, verbose = FALSE))
 })
@@ -269,7 +269,7 @@ test_that("cff_create ignores malformed DESCRIPTION URLs", {
   skip_on_cran()
 
   rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if(rvers < "4.6.0", "Snapshots require R >= 4.6.0")
 
   desc_path <- system.file("examples/DESCRIPTION_wrong_urls", package = "cffr")
 
@@ -307,7 +307,7 @@ test_that("cff_create handles multiple maintainers", {
   expect_s3_class(a_cff, "cff")
 
   rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if(rvers < "4.6.0", "Snapshots require R >= 4.6.0")
   expect_snapshot(a_cff)
   expect_true(cff_validate(a_cff, verbose = FALSE))
 })
@@ -327,7 +327,7 @@ test_that("cff_create recognizes R-universe repositories", {
   expect_true(cff_validate(a_cff, verbose = FALSE))
 
   rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if(rvers < "4.6.0", "Snapshots require R >= 4.6.0")
   expect_snapshot(a_cff)
 })
 
@@ -350,7 +350,7 @@ test_that("cff_create recognizes Bioconductor packages", {
   expect_true(cff_validate(a_cff, verbose = FALSE))
 
   rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if(rvers < "4.6.0", "Snapshots require R >= 4.6.0")
 
   expect_snapshot(a_cff)
 })
@@ -372,7 +372,7 @@ test_that("cff_create recognizes Posit Package Manager repositories", {
   expect_s3_class(a_cff, "cff")
 
   rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if(rvers < "4.6.0", "Snapshots require R >= 4.6.0")
   expect_length(a_cff$repository, 1)
   expect_identical(
     a_cff$repository,
