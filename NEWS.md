@@ -1,5 +1,6 @@
 # cffr (development version)
 
+- CRAN repository detection now ignores domain capitalization and trailing slashes while preserving URL path boundaries.
 - `as_bibentry()` now returns a `bibentry` object when `x` is `NULL`, using metadata from the package in the current working directory.
 - `as_cff.bibentry()` now selects the first `issn` of each `bibentry()`.
 - `as_cff.bibentry()` now preserves single keywords and generic institutions, removes empty keyword values, restores `collection-type: book-series` for **\@book** and **\@inbook** series, preserves legal commas in URLs, removes duplicate URLs and extracts DOI resolver URLs only when their paths are valid DOI values. Partial BibLaTeX publication dates retain their available year and month, while unsupported date values remain available for CFF validation. Resolver query and fragment components are excluded from DOI values, while original URL metadata is retained.

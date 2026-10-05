@@ -28,6 +28,8 @@
 #' Learn more about the \CRANpkg{cffr} class system in [cff_class].
 #'
 #' @details
+#' `as.cff(x)` is an alias for `as_cff(x)`.
+#'
 #' For `as_cff.bibentry()` and `as_cff.Bibtex()`, see
 #' `vignette("bibtex-cff", package = "cffr")` to understand how the mapping is
 #' performed.
@@ -152,7 +154,6 @@ as_cff.Bibtex <- function(x, ...) {
 
 # nolint start
 #' @rdname as_cff
-#' @usage NULL
 #' @export
 #' @encoding UTF-8
 as.cff <- function(x) {

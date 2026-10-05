@@ -81,7 +81,18 @@ search_on_repos <- function(
   # Try to find the package in CRAN.
   cran_repo <- clean_str(repos["CRAN"])
 
-  if (length(grep(cran_repo, get)) == 1) {
+  if (!is.null(cran_repo)) {
+    cran_repo <- normalize_repository_url(cran_repo)
+    repository_urls <- normalize_repository_url(get)
+    on_cran <- any(
+      repository_urls == cran_repo |
+        startsWith(repository_urls, paste0(cran_repo, "/"))
+    )
+  } else {
+    on_cran <- FALSE
+  }
+
+  if (on_cran) {
     # Canonical URL to CRAN.
 
     repos <- paste0("https://CRAN.R-project.org/package=", name)
@@ -91,6 +102,12 @@ search_on_repos <- function(
   repos <- gsub("src/contrib$", "", get)
 
   repos
+}
+
+normalize_repository_url <- function(x) {
+  authority <- regexpr("^https?://[^/]+", x, ignore.case = TRUE)
+  regmatches(x, authority) <- tolower(regmatches(x, authority))
+  sub("/+$", "", x)
 }
 
 #' Detect current repositories
@@ -219,8 +236,7 @@ guess_cff_part <- function(x) {
   # Look at the first element.
   guess <- guess_cff_named_part(x[[1]])
 
-  fin <- switch(
-    guess,
+  fin <- switch(guess,
     "cff_pers" = "cff_pers_lst",
     "cff_ref" = "cff_ref_lst",
     "unclear"
