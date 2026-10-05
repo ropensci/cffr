@@ -531,9 +531,6 @@ test_that("cff_read_citation returns NULL when reading fails", {
 })
 
 test_that("cff_read converts latin1 package metadata to UTF-8", {
-  rvers <- getRversion()
-  skip_if(rvers >= "4.7.0", "R 4.7.0 only uses UTF-8 in DESCRIPTION")
-
   # Surveillance package
   desc_path <- system.file(
     "examples/DESCRIPTION_surveillance",
@@ -552,9 +549,38 @@ test_that("cff_read converts latin1 package metadata to UTF-8", {
   # Create cff
   cffobj <- cff_create(desc_path, keys = list(references = bib))
 
+  expect_equal(cffobj$authors[[1]]$`family-names`, "Höhle")
+  expect_equal(cffobj$authors[[1]]$`given-names`, "Michael")
+  expect_match(cffobj$abstract, "Höhle and Paul", fixed = TRUE)
   expect_s3_class(cffobj, "cff")
   expect_snapshot(cffobj)
   expect_true(cff_validate(cffobj, verbose = FALSE))
+})
+
+test_that("DESCRIPTION reading preserves literal escapes and source bytes", {
+  path <- withr::local_tempfile(fileext = "DESCRIPTION")
+  text <- paste(
+    "Package: encodingfixture",
+    "Title: Höhle <f6>",
+    "Description: Höhle and Paul <f6>.",
+    "Version: 1.0",
+    'Authors@R: person("Michael", "Höhle", role = "cre", email = "a@b.org")',
+    "License: MIT",
+    "Encoding: latin1",
+    sep = "\n"
+  )
+  for (encoding in c("latin1", "UTF-8")) {
+    bytes <- charToRaw(iconv(text, from = "UTF-8", to = encoding))
+    writeBin(bytes, path)
+    result <- cff_read_description(path, gh_keywords = FALSE)
+    expect_equal(result$title, "encodingfixture: Höhle <f6>")
+    expect_equal(result$abstract, "Höhle and Paul <f6>.")
+    expect_equal(result$authors[[1]]$`family-names`, "Höhle")
+    expect_identical(readBin(path, "raw", n = file.info(path)$size), bytes)
+    meta <- clean_package_meta(desc_to_meta(path))
+    expect_equal(meta$Title, "Höhle <f6>")
+    expect_equal(meta$Encoding, "latin1")
+  }
 })
 
 test_that("cff_read_citation extract first issn", {

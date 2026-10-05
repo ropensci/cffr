@@ -1,6 +1,6 @@
 test_that("merge_cff combines DESCRIPTION fixtures with CITATION", {
   rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if(rvers < "4.6.0", "Snapshots require R >= 4.6.0")
   skip_on_cran()
 
   allfiles <- list.files(
@@ -77,7 +77,7 @@ test_that("get_dependencies preserves package citation metadata", {
 
 test_that("merge_cff resolves conflicting DESCRIPTION and CITATION URLs", {
   rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if(rvers < "4.6.0", "Snapshots require R >= 4.6.0")
   skip_on_cran()
 
   dd <- list.files(
@@ -171,7 +171,7 @@ test_that("dependency citations preserve source metadata", {
 
 test_that("dependency references preserve citation years", {
   rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if(rvers < "4.6.0", "Snapshots require R >= 4.6.0")
 
   local_mocked_bindings(
     cff_dependency_citation = function(package) {

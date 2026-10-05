@@ -1,5 +1,6 @@
 # cffr (development version)
 
+- CRAN repository detection now ignores domain capitalization and trailing slashes while preserving URL path boundaries.
 - `as_bibentry()` now returns a `bibentry` object when `x` is `NULL`, using metadata from the package in the current working directory.
 - `as_cff.bibentry()` now selects the first `issn` of each `bibentry()`.
 - `as_cff.bibentry()` now preserves single keywords and generic institutions, removes empty keyword values, restores `collection-type: book-series` for **\@book** and **\@inbook** series, preserves legal commas in URLs, removes duplicate URLs and extracts DOI resolver URLs only when their paths are valid DOI values. Partial BibLaTeX publication dates retain their available year and month, while unsupported date values remain available for CFF validation. Resolver query and fragment components are excluded from DOI values, while original URL metadata is retained.
@@ -10,6 +11,7 @@
 - `cff_create()` now trims `X-schema.org-keywords` values, removes empty and duplicate values and preserves a single value as a one-item CFF keyword array.
 - `cff_read_cff_citation()` now preserves YAML sequences with one element, including `keywords`, while retaining invalid scalar values for CFF validation.
 - `cff_read_citation()` now makes every field supplied in `meta`, including custom `DESCRIPTION` fields, available to `CITATION` files and no longer retries with metadata from the **base** package when reading fails (#114).
+- `cff_read_description()` now preserves characters in legacy non-UTF-8 `DESCRIPTION` files with R 4.7, including metadata used to read citations.
 
 # cffr 1.4.2
 

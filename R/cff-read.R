@@ -176,7 +176,7 @@ cff_read_description <- function(
 ) {
   file_exist_abort(path, abort = TRUE, call = environment())
 
-  pkg <- desc::desc(path)
+  pkg <- cff_read_description_file(path)
   pkg$coerce_authors_at_r()
 
   msg <- paste0(

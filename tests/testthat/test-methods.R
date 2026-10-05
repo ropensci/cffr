@@ -127,7 +127,7 @@ test_that("as.data.frame converts lists of authors", {
 
 test_that("as.person converts cff person lists", {
   rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if(rvers < "4.6.0", "Snapshots require R >= 4.6.0")
   skip_on_cran()
   path <- system.file("examples/CITATION_complete.cff", package = "cffr")
 

@@ -244,7 +244,7 @@ test_that("cff_write creates and updates inst/CITATION in a mock package", {
   expect_false(identical(auto_cit1, auto_cit3))
 
   rvers <- getRversion()
-  skip_if(!grepl("^4.6", rvers), "Snapshot created with R 4.6.*")
+  skip_if(rvers < "4.6.0", "Snapshots require R >= 4.6.0")
 
   expect_snapshot(auto_cit1)
   expect_snapshot(auto_cit3)

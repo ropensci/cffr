@@ -81,7 +81,18 @@ search_on_repos <- function(
   # Try to find the package in CRAN.
   cran_repo <- clean_str(repos["CRAN"])
 
-  if (length(grep(cran_repo, get)) == 1) {
+  if (!is.null(cran_repo)) {
+    cran_repo <- normalize_repository_url(cran_repo)
+    repository_urls <- normalize_repository_url(get)
+    on_cran <- any(
+      repository_urls == cran_repo |
+        startsWith(repository_urls, paste0(cran_repo, "/"))
+    )
+  } else {
+    on_cran <- FALSE
+  }
+
+  if (on_cran) {
     # Canonical URL to CRAN.
 
     repos <- paste0("https://CRAN.R-project.org/package=", name)
@@ -91,6 +102,12 @@ search_on_repos <- function(
   repos <- gsub("src/contrib$", "", get)
 
   repos
+}
+
+normalize_repository_url <- function(x) {
+  authority <- regexpr("^https?://[^/]+", x, ignore.case = TRUE)
+  regmatches(x, authority) <- tolower(regmatches(x, authority))
+  sub("/+$", "", x)
 }
 
 #' Detect current repositories
@@ -271,8 +288,29 @@ file_path_or_null <- function(x) {
   NULL
 }
 
-#' Coerce and clean data from DESCRIPTION to create metadata
-#' @noRd
+cff_read_description_file <- function(path) {
+  file <- if (dir.exists(path)) file.path(path, "DESCRIPTION") else path
+  lines <- readLines(file, warn = FALSE)
+  encoding_line <- grep("^Encoding:[[:space:]]*", lines, useBytes = TRUE)
+  if (length(encoding_line) != 1L) {
+    return(desc::desc(path))
+  }
+
+  encoding <- trimws(sub("^Encoding:", "", lines[encoding_line]))
+  if (toupper(encoding) == "UTF-8") {
+    return(desc::desc(path))
+  }
+
+  # Convert legacy DCF bytes before read.dcf() escapes invalid UTF-8.
+  if (!all(validUTF8(lines))) {
+    lines <- iconv(lines, from = encoding, to = "UTF-8")
+  }
+  lines[encoding_line] <- "Encoding: UTF-8"
+  pkg <- desc::desc(text = paste(lines, collapse = "\n"))
+  pkg$set("Encoding", encoding)
+  pkg
+}
+
 clean_package_meta <- function(meta) {
   if (!inherits(meta, "packageDescription")) {
     # Add encoding.
@@ -288,7 +326,7 @@ clean_package_meta <- function(meta) {
   on.exit(unlink(tmp), add = TRUE)
   meta_unl <- unclass(meta)
   write.dcf(meta_unl, tmp)
-  pkg <- desc::desc(tmp)
+  pkg <- cff_read_description_file(tmp)
   pkg$coerce_authors_at_r()
   # Extract package data.
   meta <- pkg$get(pkg$fields())
@@ -297,9 +335,8 @@ clean_package_meta <- function(meta) {
   meta <- drop_null(lapply(meta, clean_str))
 
   # Check encoding.
-  if (!is.null(meta$Encoding)) {
-    meta <- lapply(meta, iconv, from = meta$Encoding, to = "UTF-8")
-  } else {
+  meta <- lapply(meta, enc2utf8)
+  if (is.null(meta$Encoding)) {
     meta$Encoding <- "UTF-8"
   }
   meta
@@ -308,7 +345,7 @@ clean_package_meta <- function(meta) {
 # Convert a `DESCRIPTION` object to a metadata object with `desc`.
 desc_to_meta <- function(x) {
   src <- x
-  my_meta <- desc::desc(src)
+  my_meta <- cff_read_description_file(src)
   my_meta$coerce_authors_at_r()
 
   # Convert to a list.

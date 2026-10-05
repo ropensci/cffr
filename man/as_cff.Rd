@@ -22,6 +22,8 @@ as_cff(x, ...)
 \method{as_cff}{bibentry}(x, ...)
 
 \method{as_cff}{Bibtex}(x, ...)
+
+as.cff(x)
 }
 \arguments{
 \item{x}{A \code{person}, \code{bibentry} or other object that can be coerced to a
@@ -57,6 +59,8 @@ applicable.
 }
 }
 \details{
+\code{as.cff(x)} is an alias for \code{as_cff(x)}.
+
 For \code{as_cff.bibentry()} and \code{as_cff.Bibtex()}, see
 \code{vignette("bibtex-cff", package = "cffr")} to understand how the mapping is
 performed.

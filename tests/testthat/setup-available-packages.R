@@ -26,6 +26,7 @@ test_available_packages <- data.frame(
 local_test_available_packages <- function(env = parent.frame()) {
   withr::local_options(
     cffr.available_packages = test_available_packages,
+    cffr.repos = c(CRAN = "https://cloud.r-project.org/"),
     .local_envir = env
   )
 }
