@@ -294,11 +294,12 @@ test_that("GitHub topic fetching removes its temporary response", {
 })
 
 test_that("GitHub topics retry without token after authenticated fetch fails", {
+  state <- new.env(parent = emptyenv())
   tmpfile <- withr::local_tempfile(fileext = ".json")
-  calls <- 0
+  state$calls <- 0
   downloader <- function(api_url, destfile, ...) {
-    calls <<- calls + 1
-    if (calls == 1) {
+    state$calls <- state$calls + 1
+    if (state$calls == 1) {
       stop("authenticated fetch failed", call. = FALSE)
     }
     jsonlite::write_json(list(topics = c("r", "citation")), destfile)
@@ -313,7 +314,7 @@ test_that("GitHub topics retry without token after authenticated fetch fails", {
     ),
     list("r", "citation")
   )
-  expect_identical(calls, 2)
+  expect_identical(state$calls, 2)
 })
 
 test_that("GitHub topics return NULL when all fetch attempts fail", {

@@ -27,22 +27,7 @@ get_bib_note <- function(x) {
 }
 
 guess_bibtype <- function(x) {
-  init_guess <- switch(tolower(x$type),
-    "article" = "article",
-    "book" = "book",
-    "manual" = "manual",
-    "unpublished" = "unpublished",
-    "conference" = "inproceedings",
-    "conference-paper" = "inproceedings",
-    "proceedings" = "proceedings",
-    "magazine-article" = "article",
-    "newspaper-article" = "article",
-    "pamphlet" = "booklet",
-    "report" = "techreport",
-    "thesis" = "mastersthesis",
-    # Guess when no direct mapping is available.
-    "misc"
-  )
+  init_guess <- initial_bibtype(x$type)
 
   # Try to guess inbook ----
   # inbook is a book where chapter or pages are present.
@@ -245,4 +230,24 @@ get_bib_year <- function(x) {
   }
 
   clean_str(year)
+}
+
+initial_bibtype <- function(type) {
+  switch(
+    tolower(type),
+    "article" = "article",
+    "book" = "book",
+    "manual" = "manual",
+    "unpublished" = "unpublished",
+    "conference" = "inproceedings",
+    "conference-paper" = "inproceedings",
+    "proceedings" = "proceedings",
+    "magazine-article" = "article",
+    "newspaper-article" = "article",
+    "pamphlet" = "booklet",
+    "report" = "techreport",
+    "thesis" = "mastersthesis",
+    # Guess when no direct mapping is available.
+    "misc"
+  )
 }
