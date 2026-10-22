@@ -15,7 +15,8 @@ get_bibtex_entry <- function(bib) {
 
   # Manage type from BibTeX and convert to CFF.
   # This overwrites the BibTeX type field. This function does not handle it.
-  cit_list$type <- switch(init_type,
+  cit_list$type <- switch(
+    init_type,
     "article" = "article",
     "book" = "book",
     "booklet" = "pamphlet",
@@ -88,7 +89,7 @@ get_bibtex_fields <- function(cit_list) {
 
   # Keywords may be duplicated, so unify them.
   if ("keywords" %in% nm) {
-    kwords <- unlist(cit_list["keywords" == nm])
+    kwords <- unlist(cit_list[nm == "keywords"])
     kwords <- clean_str(paste(kwords, collapse = ", "))
     kwords <- unlist(strsplit(kwords, ",|;"))
     kwords <- unique(unlist(lapply(kwords, clean_str), use.names = FALSE))
@@ -185,7 +186,8 @@ bibtex_date_parts <- function(x, allow_partial = FALSE) {
 get_bibtex_inst <- function(field_list) {
   # Initial values.
   bibtex_entry <- field_list$bibtex_entry
-  to_replace <- switch(bibtex_entry,
+  to_replace <- switch(
+    bibtex_entry,
     "mastersthesis" = "school",
     "phdthesis" = "school",
     "conference" = "organization",
@@ -205,7 +207,7 @@ get_bibtex_inst <- function(field_list) {
 
   # Prefer the entry-specific field over a generic BibTeX institution.
   nms <- names(field_list)
-  field_list <- field_list["institution" != nms]
+  field_list <- field_list[nms != "institution"]
 
   # Rename.
   nms2 <- names(field_list)
@@ -232,7 +234,8 @@ add_thesis <- function(cit_list) {
     return(cit_list)
   }
 
-  cit_list$`thesis-type` <- switch(bibtex_entry,
+  cit_list$`thesis-type` <- switch(
+    bibtex_entry,
     phdthesis = "PhD Thesis",
     "Master's Thesis"
   )

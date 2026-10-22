@@ -190,7 +190,8 @@ validate_cff_person_fields <- function(person_cff) {
   is_entity <- as.character("name" %in% names(person_cff))
 
   # Keep only valid tags depending on entity or person.
-  definition <- switch(is_entity,
+  definition <- switch(
+    is_entity,
     "TRUE" = cff_schema_definitions_entity(),
     cff_schema_definitions_person()
   )
@@ -353,7 +354,7 @@ finalize_person_comments <- function(person, comm_cff, fallback_ror = FALSE) {
   valid_emails <- unlist(lapply(look_emails, is_email))
   email <- look_emails[valid_emails][1]
 
-  fin_list <- c(list(email = NULL), comm_cff["email" != names(comm_cff)])
+  fin_list <- c(list(email = NULL), comm_cff[names(comm_cff) != "email"])
   fin_list$email <- clean_str(email)
   fin_list
 }
