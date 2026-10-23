@@ -235,7 +235,7 @@
   "applicationCategory": "CitationManagement",
   "isPartOf": "https://ropensci.org",
   "keywords": ["attribution", "citation", "credit", "citation-files", "cff", "metadata", "citation-file-format", "cran", "r", "r-package", "ropensci", "rstats", "r-cran"],
-  "fileSize": "1039.749KB",
+  "fileSize": "1039.82KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

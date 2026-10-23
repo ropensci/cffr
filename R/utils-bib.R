@@ -233,8 +233,7 @@ get_bib_year <- function(x) {
 }
 
 initial_bibtype <- function(type) {
-  switch(
-    tolower(type),
+  switch(tolower(type),
     "article" = "article",
     "book" = "book",
     "manual" = "manual",
