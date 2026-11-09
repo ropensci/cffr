@@ -53,7 +53,7 @@ with the methods \code{\link[=as.person.cff_pers]{as.person.cff_pers()}} and \co
 CFF reference for \code{definitions.person} or \code{definitions.entity}.
 
 \code{as_cff_person()} uses a custom algorithm that parses names as explained in
-Section 11 of "Tame the BeaST" (Markey, 2009) (see also Decoret, 2007):
+Section 11 of "Tame the BeaST" (Markey, 2009):
 \itemize{
 \item \verb{First von Last}.
 \item \verb{von Last, First}.
@@ -153,8 +153,6 @@ Patashnik O (1988). "BIBTEXing."
 
 Markey N (2009). \emph{Tame the BeaST: The B to X of BibTeX}.
 \url{https://osl.ugr.es/CTAN/info/bibtex/tamethebeast/ttb_en.pdf}.
-
-Decoret X (2007). "A summary of BibTeX." \url{https://maverick.inria.fr/~Xavier.Decoret/resources/xdkbibtex/bibtex_summary.html#names}.
 }
 \seealso{
 Examples in \code{vignette("cffr", package = "cffr")} and \code{\link[utils:person]{utils::person()}}.

@@ -1,4 +1,4 @@
-# cffr (development version)
+# cffr 1.4.3
 
 - CRAN repository detection now ignores domain capitalization and trailing slashes while preserving URL path boundaries.
 - `as_bibentry()` now returns a `bibentry` object when `x` is `NULL`, using metadata from the package in the current working directory.

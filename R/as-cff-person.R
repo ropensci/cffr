@@ -35,7 +35,7 @@
 #' CFF reference for `definitions.person` or `definitions.entity`.
 #'
 #' `as_cff_person()` uses a custom algorithm that parses names as explained in
-#' Section 11 of "Tame the BeaST" (Markey, 2009) (see also Decoret, 2007):
+#' Section 11 of "Tame the BeaST" (Markey, 2009):
 #'
 #' - `First von Last`.
 #' - `von Last, First`.
@@ -62,12 +62,6 @@
 #'
 #' Markey N (2009). *Tame the BeaST: The B to X of BibTeX*.
 #' <https://osl.ugr.es/CTAN/info/bibtex/tamethebeast/ttb_en.pdf>.
-#'
-#' Decoret X (2007). "A summary of BibTeX."
-#' ```{r, echo=FALSE, results='asis'}
-#' cat(paste0(" <https://maverick.inria.fr/~Xavier.Decoret/resources/",
-#'   "xdkbibtex/bibtex_summary.html#names>."))
-#' ```
 #'
 #' @seealso
 #' Examples in `vignette("cffr", package = "cffr")` and [utils::person()].
