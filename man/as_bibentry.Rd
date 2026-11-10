@@ -118,7 +118,7 @@ toBibtex(desc_file)
 }
 \references{
 Patashnik O (1988). "BIBTEXing."
-\url{https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf}.
+\url{https://ctan.math.illinois.edu/biblio/bibtex/base/btxdoc.pdf}.
 
 Haines R, The Ruby Citation File Format Developers (2022).
 "Ruby CFF Library." \doi{10.5281/zenodo.7294987}.

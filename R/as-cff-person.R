@@ -58,10 +58,10 @@
 #'
 #' @references
 #' Patashnik O (1988). "BIBTEXing."
-#' <https://osl.ugr.es/CTAN/biblio/bibtex/base/btxdoc.pdf>.
+#' <https://ctan.math.illinois.edu/biblio/bibtex/base/btxdoc.pdf>.
 #'
 #' Markey N (2009). *Tame the BeaST: The B to X of BibTeX*.
-#' <https://osl.ugr.es/CTAN/info/bibtex/tamethebeast/ttb_en.pdf>.
+#' <https://ctan.math.illinois.edu/info/bibtex/tamethebeast/ttb_en.pdf>.
 #'
 #' @seealso
 #' Examples in `vignette("cffr", package = "cffr")` and [utils::person()].

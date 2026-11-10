@@ -589,7 +589,7 @@ The mapping implemented in **cffr** is guided by the following principles:
 
 This section documents entry-specific mapping behavior, expanding the general
 crosswalk into concrete and testable models. Examples are adapted from the
-[xampl.bib](https://tug.org/texmf-docs/bibtex/xampl.bib) distributed with
+[xampl.bib](https://ctan.math.illinois.edu/biblio/bibtex/base/xampl.bib) distributed with
 **BibTeX** [@patashnik].
 
 ### \@article {#article}

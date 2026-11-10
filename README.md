@@ -11,8 +11,6 @@
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/cffr?color=blue)](https://cran.r-project.org/package=cffr)
 [![R-CMD-check](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/check-full.yaml)
 [![codecov](https://codecov.io/gh/ropensci/cffr/branch/main/graph/badge.svg?token=YRO3XL8RWK)](https://app.codecov.io/gh/ropensci/cffr)
-[![Coverage
-Status](https://coveralls.io/repos/github/ropensci/cffr/badge.svg?branch=main)](https://coveralls.io/github/ropensci/cffr?branch=main)
 [![r-universe](https://ropensci.r-universe.dev/badges/cffr)](https://ropensci.r-universe.dev/cffr)
 [![CITATION-cff](https://github.com/ropensci/cffr/actions/workflows/cff-validator.yaml/badge.svg)](https://github.com/ropensci/cffr/actions/workflows/cff-validator.yaml)
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.03900/status.svg)](https://doi.org/10.21105/joss.03900)
@@ -79,7 +77,7 @@ from **R** package metadata.
 its `CITATION` file, if present. **cffr** works best if your package
 passes `R CMD check` or `devtools::check()`.
 
-As of 2026-11-09 there are at least 625 repositories on GitHub using
+As of 2026-11-10 there are at least 627 repositories on GitHub using
 **cffr**. [Browse the search
 results](https://github.com/search?q=cffr%20path%3A**%2FCITATION.cff&type=code).
 
