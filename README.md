@@ -449,23 +449,23 @@ test <- cff_create("knitr")
       authors:
       - family-names: Cheng
         given-names: Joe
-        email: joe@rstudio.com
+        email: joe@posit.co
       - family-names: Mastny
         given-names: Timothy
         email: tim.mastny@gmail.com
       - family-names: Iannone
         given-names: Richard
-        email: rich@rstudio.com
+        email: rich@posit.co
         orcid: https://orcid.org/0000-0003-3925-190X
       - family-names: Schloerke
         given-names: Barret
-        email: barret@rstudio.com
+        email: barret@posit.co
         orcid: https://orcid.org/0000-0001-9986-114X
       - family-names: Sievert
         given-names: Carson
-        email: carson@rstudio.com
+        email: carson@posit.co
         orcid: https://orcid.org/0000-0002-4958-2844
-      year: '2025'
+      year: '2026'
       doi: 10.32614/CRAN.package.sass
     - type: software
       title: 'styler: Non-Invasive Pretty Printing of R Code'
