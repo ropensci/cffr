@@ -1,3 +1,7 @@
+# cffr (development version)
+
+- `as_cff_person()` preserves all persons when splitting formatted strings with roles (#117, \@chenyangsu).
+
 # cffr 1.4.3
 
 - CRAN repository detection now ignores domain capitalization and trailing slashes while preserving URL path boundaries.
