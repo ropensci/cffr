@@ -209,7 +209,7 @@ split_txt_persons <- function(person) {
 
   # Remove the role in `[]` added by `print.person()` by default.
   # We do not use it here.
-  person <- gsub("\\[[^()]*\\]", "", person)
+  person <- gsub("\\[[^\\]]*\\]", "", person)
 
   # Protect "and" inside braces.
   # Lowercase.

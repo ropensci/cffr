@@ -171,3 +171,19 @@ test_that("as_cff_person extracts metadata from person comments", {
 
   expect_snapshot(pp2)
 })
+
+test_that("as_cff_person preserves multiple persons formatted with roles", {
+  p <- c(
+    person("Alice", "Smith", role = c("aut", "cre"), email = "a@example.com"),
+    person("Bob", "Jones", role = "ctb"),
+    person("Carol", "Lee", role = "aut")
+  )
+
+  expect_identical(as_cff_person(format(p)), as_cff_person(p))
+
+  s <- "Alice Smith [aut] and Bob Jones [ctb]"
+  expect_identical(
+    as_cff_person(s),
+    as_cff_person(c(person("Alice", "Smith"), person("Bob", "Jones")))
+  )
+})
